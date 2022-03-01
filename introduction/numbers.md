@@ -22,3 +22,5 @@ Percentages use the same base as amounts, but:
 
 * Require a `%` symbol at the end of the serialised value, for example `10.0%`
 * Will always be converted with a factor of 100, so `16.0%` implies an underlying value of `0.160` or `160` as an integer, in order to make calculations.
+
+The [GOBL num package](https://github.com/invopop/gobl/tree/main/num) contains implementation details and helper methods for dealing with amounts and percentages.

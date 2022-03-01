@@ -4,12 +4,21 @@
 
 * [Overview](README.md)
 * [What is GOBL?](introduction/what-is-gobl.md)
-* [Envelopes](introduction/envelopes.md)
+* [Versions](introduction/versions.md)
 * [Schemas](introduction/schemas.md)
-* [Headers](introduction/headers.md)
-* [Documents](introduction/documents.md)
-* [Signatures](introduction/signatures.md)
 * [Numbers](introduction/numbers.md)
+* [Canonicalization](introduction/canonicalization.md)
+
+## Quick Start
+
+* [Invoices](quick-start/invoices.md)
+
+## Core
+
+* [Envelopes](core/envelopes.md)
+* [Headers](core/headers.md)
+* [Documents](core/documents.md)
+* [Signatures](core/signatures.md)
 
 ## Regions
 
