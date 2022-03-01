@@ -11,6 +11,7 @@
 
 ## Quick Start
 
+* [CLI](quick-start/cli.md)
 * [Invoices](quick-start/invoices.md)
 
 ## Core
