@@ -1,2 +1,15 @@
 # Versions
 
+GOBL follows [semver](https://semver.org) and [Go Module Versioning](https://go.dev/doc/modules/version-numbers) best practices for all code based projects. Versions require `v` to be in front of the semver, for example: `v0.18.0`. When deciding what type of release to make, we take in the following considerations for each level:
+
+* Patch - typically a bug fix or change to documentation with no expected side effects.
+* Minor - significant changes that must not alter existing functionality. Adding support for a new region or support for a new type of structure are good examples. While we're still developing `v0`,  changes may be more significant.
+* Major - changes that will break previous implementations and should not be considered compatible. Once we hit the `v1` milestone, our objetive is to try and avoid major releases as much as possible.
+
+JSON Schemas created by GOBL use a simplified approach and only include the "major" version in sources. A few observations:
+
+* Schema versions match GOBL major versions.
+* GOBL `v0` releases will use `draft-0` in schemas for more closer alignment to JSON Schema expectations.
+* Complete GOBL Schema URLs include the version in the URL, e.g.: `https://gobl.org/draft-0/envelope` or `https://gobl.org/v1/envelope`.
+* Patch and minor releases of GOBL may add new fields or alter descriptions, but must be 100% backwards and forwards compatible inside the same major version. Most schema definitions allow additional properties, which simplifies this task.
+
