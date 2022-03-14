@@ -2,7 +2,7 @@
 
 The objective that underpins GOBL, which we pronounce as "gobble", is to simplify the creation and sharing of electronic business documents so that they are easily accessible using modern standards and development techniques.
 
-Our focus initially is on invoicing, as we believe this is the area of electronic business documents that needs the most attention. The aim however is to create a library that is flexible enough to represent any business need.&#x20;
+Our focus initially is on invoicing, as we believe this is the area of electronic business documents that needs the most attention. The aim however is to create a library that is flexible enough to represent any business need.
 
 ### Up to now
 
