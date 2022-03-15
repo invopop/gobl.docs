@@ -92,7 +92,7 @@ You could also create the base document directly in JSON, but we find YAML much 
 Now send the document to the gobl `envelop` command, indicating that we want to insert a document of type `note.Message` into a new envelope:
 
 ```
-gobl envelop -i -t note.Message ./message.yaml | json_pp
+gobl envelop -i -t note.Message ./message.yaml
 ```
 
 You should get something similar to the following:
@@ -120,10 +120,12 @@ You should get something similar to the following:
 
 The envelop command performed a few tasks to create a complete envelope:
 
-1. Validated the message object to check it contains the required fields, and added the message schema: `https://gobl.org/draft-0/note/message`.
-2. Wrapped the document inside an envelope defined with the JSON schema `https://gobl.org/draft-0/envelope`.
-3. Generated a `head` element containing a unique UUIDv1 for the envelope and a digest of the document (`doc`) contents.
-4. Added a [JSON Web Signature](https://datatracker.ietf.org/doc/html/rfc7515) to the `sigs` array.
+1. Prepared the document type with the `-t note.Message` flag.
+2. Validated the message object to check it contains the required fields, and added the message schema: `https://gobl.org/draft-0/note/message`.
+3. Wrapped the document inside an envelope defined with the JSON schema `https://gobl.org/draft-0/envelope`.
+4. Generated a `head` element containing a unique UUIDv1 for the envelope and a digest of the document (`doc`) contents.
+5. Added a [JSON Web Signature](https://datatracker.ietf.org/doc/html/rfc7515) to the `sigs` array.
+6. Output the JSON data with indenting, set by the `-i` flag.
 
 > **TIP:** you can checkout the contents of the JSON Web Signature by copying and pasting it on the website [jwt.io](https://jwt.io).
 
