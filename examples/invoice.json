@@ -1,0 +1,97 @@
+{
+	"$schema": "https://gobl.org/draft-0/envelope",
+	"head": {
+		"uuid": "be1625e4-a482-11ec-b1d8-3e7e00ce5635",
+		"dig": {
+			"alg": "sha256",
+			"val": "8783ae676923eaa6add4ef53c7e0a6d0dc5a249ba0b8597f4b4bc25197f67b8f"
+		}
+	},
+	"doc": {
+		"$schema": "https://gobl.org/draft-0/bill/invoice",
+		"region": "ES",
+		"code": "SAMPLE-001",
+		"currency": "EUR",
+		"issue_date": "2022-02-01",
+		"supplier": {
+			"tax_id": {
+				"country": "ES",
+				"code": "B98602642"
+			},
+			"name": "Provider One S.L.",
+			"addresses": [
+				{
+					"num": "42",
+					"street": "Calle Pradillo",
+					"locality": "Madrid",
+					"region": "Madrid",
+					"code": "28002",
+					"country": "ES"
+				}
+			],
+			"emails": [
+				{
+					"addr": "billing@example.com"
+				}
+			]
+		},
+		"customer": {
+			"tax_id": {
+				"country": "ES",
+				"code": "54387763P"
+			},
+			"name": "Sample Consumer"
+		},
+		"lines": [
+			{
+				"i": 1,
+				"quantity": "10",
+				"item": {
+					"name": "Item being purchased",
+					"price": "100.00"
+				},
+				"sum": "1000.00",
+				"discounts": [
+					{
+						"rate": "10%",
+						"amount": "100.00"
+					}
+				],
+				"taxes": [
+					{
+						"cat": "VAT",
+						"code": "STD"
+					}
+				],
+				"total": "900.00"
+			}
+		],
+		"totals": {
+			"sum": "900.00",
+			"total": "900.00",
+			"taxes": {
+				"categories": [
+					{
+						"code": "VAT",
+						"rates": [
+							{
+								"code": "STD",
+								"base": "900.00",
+								"percent": "21.0%",
+								"amount": "189.00"
+							}
+						],
+						"base": "900.00",
+						"amount": "189.00"
+					}
+				],
+				"sum": "189.00"
+			},
+			"total_with_tax": "1089.00",
+			"payable": "1089.00"
+		}
+	},
+	"sigs": [
+		"eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiYmUxNjI1ZTQtYTQ4Mi0xMWVjLWIxZDgtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6Ijg3ODNhZTY3NjkyM2VhYTZhZGQ0ZWY1M2M3ZTBhNmQwZGM1YTI0OWJhMGI4NTk3ZjRiNGJjMjUxOTdmNjdiOGYifX0.-X66yTFvHZmDI9RqFus0XEGItr8OBmXhzrLb-dNN18WCK8CKLpOR1M-8aoT3DYDtCtu8-Eq0NGYfDvsVHi_73Q"
+	]
+}

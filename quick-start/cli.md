@@ -92,7 +92,7 @@ You could also create the base document directly in JSON, but we find YAML much 
 Now send the document to the gobl `envelop` command, indicating that we want to insert a document of type `note.Message` into a new envelope:
 
 ```
-gobl envelop -t note.Message ./message.yaml | json_pp
+gobl envelop -i -t note.Message ./message.yaml | json_pp
 ```
 
 You should get something similar to the following:
@@ -144,7 +144,7 @@ doc:
 Running the command:
 
 ```bash
-gobl complete ./message.draft.yaml | json_pp
+gobl build -i ./message.draft.yaml
 ```
 
 Will result in the following output, note the lack of the `sigs` property which are not included in draft envelopes:
