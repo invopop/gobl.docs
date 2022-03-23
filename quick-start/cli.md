@@ -129,7 +129,7 @@ The envelop command performed a few tasks to create a complete envelope:
 
 > **TIP:** you can checkout the contents of the JSON Web Signature by copying and pasting it on the website [jwt.io](https://jwt.io).
 
-It's also possible "complete" a GOBL envelope, especially useful where you want to add additional data to the envelope's headers. For example, given a message definition like the following:
+It's also possible to write a "complete" a GOBL envelope, especially useful where you want to add additional data to the envelope's headers. For example, given a message definition like the following:
 
 ```yaml
 head:
