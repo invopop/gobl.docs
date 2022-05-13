@@ -15,7 +15,7 @@ Until we have some pre-built binaries, you'll need to have a [working Go environ
 Install the GOBL CLI tool with:
 
 ```
-go install github.com/invopop/gobl.cli/cmd/gobl
+go install github.com/invopop/gobl.cli/cmd/gobl@latest
 ```
 
 Check it's working:

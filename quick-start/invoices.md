@@ -9,7 +9,6 @@ Creating an invoice is one of the most useful features of GOBL as it demonstrate
 To get started we're going to need some base data. Take the following yaml, modify as you see fit, and output to a file like `invoice.yaml`:
 
 ```yaml
-region: "ES"
 currency: "EUR"
 issue_date: "2022-02-01"
 code: "SAMPLE-001"
@@ -41,18 +40,17 @@ lines:
       name: "Item being purchased"
       price: "100.00"
     discounts:
-      - rate: "10%"
+      - percent: "10%"
     taxes:
       - cat: "VAT"
-        code: "STD"
+        rate: "standard"
 ```
 
 Take note of some of the key details there:
 
-- The `region` is set to `ES`, the 2-letter ISO code for spain.
-- `supplier` identifies the issuer of the invoice.
+- `supplier` identifies the issuer of the invoice, and the `tax_id` specifically sets the origin country for this invoice.
 - `customer` includes the minimum amount of data possible for a customer.
-- `lines` defines a simple list of items, including the tax codes, in this case "standard VAT".
+- `lines` defines a simple list of items, including the tax codes, in this case the category is "VAT" at the "standard" rate.
 - A single discount of "10%" has been defined for the line.
 - There are no totals or other calculations, just the basic raw data.
 
@@ -70,15 +68,14 @@ You should get back something like:
 {
   "$schema": "https://gobl.org/draft-0/envelope",
   "head": {
-    "uuid": "80c678a5-a481-11ec-aa03-3e7e00ce5635",
+    "uuid": "0699dd94-d296-11ec-9e60-02f7bbd929bc",
     "dig": {
       "alg": "sha256",
-      "val": "8783ae676923eaa6add4ef53c7e0a6d0dc5a249ba0b8597f4b4bc25197f67b8f"
+      "val": "c0d4efca94e2980a90f725a98d16ff5f7a48e8deb932a436da24b54b2a76aa3d"
     }
   },
   "doc": {
     "$schema": "https://gobl.org/draft-0/bill/invoice",
-    "region": "ES",
     "code": "SAMPLE-001",
     "currency": "EUR",
     "issue_date": "2022-02-01",
@@ -122,14 +119,14 @@ You should get back something like:
         "sum": "1000.00",
         "discounts": [
           {
-            "rate": "10%",
+            "percent": "10%",
             "amount": "100.00"
           }
         ],
         "taxes": [
           {
             "cat": "VAT",
-            "code": "STD"
+            "rate": "standard"
           }
         ],
         "total": "900.00"
@@ -144,7 +141,7 @@ You should get back something like:
             "code": "VAT",
             "rates": [
               {
-                "code": "STD",
+                "key": "standard",
                 "base": "900.00",
                 "percent": "21.0%",
                 "amount": "189.00"
@@ -156,12 +153,13 @@ You should get back something like:
         ],
         "sum": "189.00"
       },
+      "tax": "189.00",
       "total_with_tax": "1089.00",
       "payable": "1089.00"
     }
   },
   "sigs": [
-    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiODBjNjc4YTUtYTQ4MS0xMWVjLWFhMDMtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6Ijg3ODNhZTY3NjkyM2VhYTZhZGQ0ZWY1M2M3ZTBhNmQwZGM1YTI0OWJhMGI4NTk3ZjRiNGJjMjUxOTdmNjdiOGYifX0.ueUv3IYQPXgOUzRrBIxMH1eWkHUzVt6Um04ZWO7dhoj0SHlVA4ZS82glDfG0Njjn0fRc4UlpZGKz8j0aJJKABg"
+    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjlmNWM5MmUyLWIwMDUtNGIyZi04MTExLTUzYTVlMmJmNzZiNSJ9.eyJ1dWlkIjoiMDY5OWRkOTQtZDI5Ni0xMWVjLTllNjAtMDJmN2JiZDkyOWJjIiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6ImMwZDRlZmNhOTRlMjk4MGE5MGY3MjVhOThkMTZmZjVmN2E0OGU4ZGViOTMyYTQzNmRhMjRiNTRiMmE3NmFhM2QifX0.zDA-foD7axWp-FY0rz5tdjkAOaxy_GHHDGN_GuV-aS1U7TAe56pX3K3RjBMAAPc1UMA4JRirb3eehU9jUuvIbg"
   ]
 }
 ```
@@ -187,7 +185,7 @@ gobl envelop -t bill.Invoice -i invoice.yaml > invoice.json
 Now use curl to send it to the testing service and dump the output:
 
 ```bash
-curl -X POST -F envelope=@invoice.json https://es-pdf.invopop.com/api > output.pdf
+curl -X POST -F envelope=@invoice.json https://pdf.invopop.com/api > output.pdf
 ```
 
 And open it either from the command line if supported by your system, or directly in your favorite PDF reader:
