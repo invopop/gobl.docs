@@ -1,15 +1,14 @@
 {
 	"$schema": "https://gobl.org/draft-0/envelope",
 	"head": {
-		"uuid": "be1625e4-a482-11ec-b1d8-3e7e00ce5635",
+		"uuid": "706bade0-ec92-11ec-8cfe-e2c0624703d9",
 		"dig": {
 			"alg": "sha256",
-			"val": "8783ae676923eaa6add4ef53c7e0a6d0dc5a249ba0b8597f4b4bc25197f67b8f"
+			"val": "1e11c95c78f0a5de339dcb837a662b31b954cf923c879f61f29149b556bdb1d7"
 		}
 	},
 	"doc": {
 		"$schema": "https://gobl.org/draft-0/bill/invoice",
-		"region": "ES",
 		"code": "SAMPLE-001",
 		"currency": "EUR",
 		"issue_date": "2022-02-01",
@@ -53,14 +52,15 @@
 				"sum": "1000.00",
 				"discounts": [
 					{
-						"rate": "10%",
+						"percent": "10%",
 						"amount": "100.00"
 					}
 				],
 				"taxes": [
 					{
 						"cat": "VAT",
-						"code": "STD"
+						"rate": "standard",
+						"percent": "21.0%"
 					}
 				],
 				"total": "900.00"
@@ -75,7 +75,7 @@
 						"code": "VAT",
 						"rates": [
 							{
-								"code": "STD",
+								"key": "standard",
 								"base": "900.00",
 								"percent": "21.0%",
 								"amount": "189.00"
@@ -87,11 +87,12 @@
 				],
 				"sum": "189.00"
 			},
+			"tax": "189.00",
 			"total_with_tax": "1089.00",
 			"payable": "1089.00"
 		}
 	},
 	"sigs": [
-		"eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiYmUxNjI1ZTQtYTQ4Mi0xMWVjLWIxZDgtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6Ijg3ODNhZTY3NjkyM2VhYTZhZGQ0ZWY1M2M3ZTBhNmQwZGM1YTI0OWJhMGI4NTk3ZjRiNGJjMjUxOTdmNjdiOGYifX0.-X66yTFvHZmDI9RqFus0XEGItr8OBmXhzrLb-dNN18WCK8CKLpOR1M-8aoT3DYDtCtu8-Eq0NGYfDvsVHi_73Q"
+		"eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiNzA2YmFkZTAtZWM5Mi0xMWVjLThjZmUtZTJjMDYyNDcwM2Q5IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjFlMTFjOTVjNzhmMGE1ZGUzMzlkY2I4MzdhNjYyYjMxYjk1NGNmOTIzYzg3OWY2MWYyOTE0OWI1NTZiZGIxZDcifX0.RQJeMCkbwhwEcfGExutuid38ERcyDhu6sJ8aVSkBQs19eVRHYXti71luDaOH-bbjOsqU_eMlNcXYmclcsBixFg"
 	]
 }

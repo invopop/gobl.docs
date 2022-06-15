@@ -68,10 +68,10 @@ You should get back something like:
 {
   "$schema": "https://gobl.org/draft-0/envelope",
   "head": {
-    "uuid": "0699dd94-d296-11ec-9e60-02f7bbd929bc",
+    "uuid": "706bade0-ec92-11ec-8cfe-e2c0624703d9",
     "dig": {
       "alg": "sha256",
-      "val": "c0d4efca94e2980a90f725a98d16ff5f7a48e8deb932a436da24b54b2a76aa3d"
+      "val": "1e11c95c78f0a5de339dcb837a662b31b954cf923c879f61f29149b556bdb1d7"
     }
   },
   "doc": {
@@ -126,7 +126,8 @@ You should get back something like:
         "taxes": [
           {
             "cat": "VAT",
-            "rate": "standard"
+            "rate": "standard",
+            "percent": "21.0%"
           }
         ],
         "total": "900.00"
@@ -159,7 +160,7 @@ You should get back something like:
     }
   },
   "sigs": [
-    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjlmNWM5MmUyLWIwMDUtNGIyZi04MTExLTUzYTVlMmJmNzZiNSJ9.eyJ1dWlkIjoiMDY5OWRkOTQtZDI5Ni0xMWVjLTllNjAtMDJmN2JiZDkyOWJjIiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6ImMwZDRlZmNhOTRlMjk4MGE5MGY3MjVhOThkMTZmZjVmN2E0OGU4ZGViOTMyYTQzNmRhMjRiNTRiMmE3NmFhM2QifX0.zDA-foD7axWp-FY0rz5tdjkAOaxy_GHHDGN_GuV-aS1U7TAe56pX3K3RjBMAAPc1UMA4JRirb3eehU9jUuvIbg"
+    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiNzA2YmFkZTAtZWM5Mi0xMWVjLThjZmUtZTJjMDYyNDcwM2Q5IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjFlMTFjOTVjNzhmMGE1ZGUzMzlkY2I4MzdhNjYyYjMxYjk1NGNmOTIzYzg3OWY2MWYyOTE0OWI1NTZiZGIxZDcifX0.RQJeMCkbwhwEcfGExutuid38ERcyDhu6sJ8aVSkBQs19eVRHYXti71luDaOH-bbjOsqU_eMlNcXYmclcsBixFg"
   ]
 }
 ```
@@ -170,6 +171,7 @@ Take a look at some of the data that has been generated, a few observations:
 
 - Everything has been embedded inside a GOBL Envelope, with a head and signature.
 - Each invoice line has been updated with a `sum` and `total`, where the total is the sum with discounts applied.
+- Tax rates valid for the `issue_date` have been added automatically.
 - A `totals` property has been added to the invoice, and details all the taxes that were applied to the calculations made from the lines.
 
 ## Test PDF
