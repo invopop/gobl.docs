@@ -9,6 +9,7 @@ Creating an invoice is one of the most useful features of GOBL as it demonstrate
 To get started we're going to need some base data. Take the following yaml, modify as you see fit, and output to a file like `invoice.yaml`:
 
 ```yaml
+$schema: "https://gobl.org/draft-0/bill/invoice"
 currency: "EUR"
 issue_date: "2022-02-01"
 code: "SAMPLE-001"
@@ -48,6 +49,7 @@ lines:
 
 Take note of some of the key details there:
 
+- `$schema` is set to the GOBL Draft-0 invoice definition.
 - `supplier` identifies the issuer of the invoice, and the `tax_id` specifically sets the origin country for this invoice.
 - `customer` includes the minimum amount of data possible for a customer.
 - `lines` defines a simple list of items, including the tax codes, in this case the category is "VAT" at the "standard" rate.
@@ -56,10 +58,10 @@ Take note of some of the key details there:
 
 ## Building
 
-Take the invoice details and send them to the `gobl envelop` command:
+Take the invoice details and send them to the `gobl build` command:
 
 ```bash
-gobl envelop -t bill.Invoice -i invoice.yaml
+gobl build -i --envelop invoice.yaml
 ```
 
 You should get back something like:
@@ -72,7 +74,8 @@ You should get back something like:
     "dig": {
       "alg": "sha256",
       "val": "1e11c95c78f0a5de339dcb837a662b31b954cf923c879f61f29149b556bdb1d7"
-    }
+    },
+    "draft": true
   },
   "doc": {
     "$schema": "https://gobl.org/draft-0/bill/invoice",
@@ -158,14 +161,11 @@ You should get back something like:
       "total_with_tax": "1089.00",
       "payable": "1089.00"
     }
-  },
-  "sigs": [
-    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiNzA2YmFkZTAtZWM5Mi0xMWVjLThjZmUtZTJjMDYyNDcwM2Q5IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjFlMTFjOTVjNzhmMGE1ZGUzMzlkY2I4MzdhNjYyYjMxYjk1NGNmOTIzYzg3OWY2MWYyOTE0OWI1NTZiZGIxZDcifX0.RQJeMCkbwhwEcfGExutuid38ERcyDhu6sJ8aVSkBQs19eVRHYXti71luDaOH-bbjOsqU_eMlNcXYmclcsBixFg"
-  ]
+  }
 }
 ```
 
-Congratulations! You've just created a complete invoice written in GOBL, including digital signatures.
+Congratulations! You've just created a complete GOBL invoice.
 
 Take a look at some of the data that has been generated, a few observations:
 
@@ -181,7 +181,7 @@ Take a look at some of the data that has been generated, a few observations:
 Create a new `invoice.json` file:
 
 ```bash
-gobl envelop -t bill.Invoice -i invoice.yaml > invoice.json
+gobl build -i --envelop invoice.yaml > invoice.json
 ```
 
 Now use curl to send it to the testing service and dump the output:
@@ -194,4 +194,10 @@ And open it either from the command line if supported by your system, or directl
 
 ```bash
 open output.pdf
+```
+
+You'll notice that the resulting PDF has a big "DRAFT" message in the middle. If you want to remove this, you'll have to sign the document with:
+
+```bash
+gobl sign -i invoice.yaml > invoice.json
 ```
