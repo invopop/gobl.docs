@@ -4,7 +4,7 @@ description: Getting started with the GOBL Command Line Interface.
 
 # CLI
 
-The GOBL CLI is one of the easiest ways to get to grips with using and understanding some of the underlying concepts.
+The GOBL CLI is a useful tool to get to grips with using and understanding some of the underlying concepts.
 
 For the sake of the examples here, we'll be using the `note` package's `Message` type.
 
