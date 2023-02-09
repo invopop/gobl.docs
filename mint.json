@@ -1,0 +1,68 @@
+{
+    "$schema": "https://mintlify.com/schema.json",
+    "name": "GOBL",
+    "logo": {
+        "light": "static/logo.svg",
+        "dark": "static/logo.svg"
+    },
+    "favicon": "static/favicon.svg",
+    "colors": {
+        "primary": "#15c6f6",
+        "light": "#15c6f6",
+        "dark": "#15c6f6"
+    },
+    "anchors": [
+        {
+            "name": "GitHub",
+            "icon": "github",
+            "url": "https://github.com/invopop/gobl"
+        }
+    ],
+    "navigation": [
+        {
+            "group": "Introduction",
+            "pages": [
+                "overview",
+                "introduction/what-is-gobl",
+                "introduction/versions",
+                "introduction/schemas",
+                "introduction/numbers",
+                "introduction/canonicalization"
+            ]
+        },
+        {
+            "group": "Quick Start",
+            "pages": [
+                "quick-start/builder",
+                "quick-start/cli",
+                "quick-start/invoices"
+            ]
+        },
+        {
+            "group": "Core",
+            "pages": [
+                "core/envelopes",
+                "core/headers",
+                "core/documents",
+                "core/signatures"
+            ]
+        },
+        {
+            "group": "Regions",
+            "pages": [
+                "regions/details"
+            ]
+        },
+        {
+            "group": "Bill",
+            "pages": [
+                "bill/invoices"
+            ]
+        }
+    ],
+    "footerSocials": {
+        "twitter": "https://twitter.com/goInvopop",
+        "linkedin": "https://www.linkedin.com/company/invopop/",
+        "github": "https://github.com/invopop"
+    }
+}

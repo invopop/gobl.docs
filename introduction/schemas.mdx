@@ -1,4 +1,6 @@
-# Schemas
+---
+title: "Schemas"
+---
 
 GOBL defines all structures in Go and uses the [jsonschema](https://github.com/invopop/jsonschema) package to automatically convert them into valid [JSON Schema](https://json-schema.org).
 
@@ -49,13 +51,10 @@ When converted to JSON Schema, it takes the following form:
         }
       },
       "type": "object",
-      "required": [
-        "content"
-      ],
+      "required": ["content"],
       "description": "Message represents the minimum possible contents for a GoBL document type."
     }
   },
   "$comment": "Generated with GOBL v0.18.0"
 }
 ```
-
