@@ -1,0 +1,20 @@
+---
+title: DocumentReference
+comment: Generated with GOBL v0.35.0
+---
+
+DocumentReference provides a link to a existing document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/DocumentReference`
+
+## Attributes
+
+| Property | Type                                   | Required | Calculated | Description                                 |
+|----------|----------------------------------------|----------|------------|---------------------------------------------|
+| `uuid`   | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique ID copied from the source document.  |
+| `series` | String                                 | false    | false      | Series the reference document belongs to.   |
+| `code`   | String                                 | false    | false      | Source document's code or other identifier. |
+| `url`    | String                                 | false    | false      | Link to the source document.                |
+

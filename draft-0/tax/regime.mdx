@@ -1,0 +1,23 @@
+---
+title: Regime
+comment: Generated with GOBL v0.35.0
+---
+
+Regime defines the holding structure for the definitions of taxes inside a country or territory.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime`
+
+## Attributes
+
+| Property     | Type                                                 | Required | Calculated | Description                                                                                       |
+|--------------|------------------------------------------------------|----------|------------|---------------------------------------------------------------------------------------------------|
+| `name`       | [GOBL::I18n::String](/draft-0/i18n/string)           | true     | false      | Name of the country                                                                               |
+| `country`    | [GOBL::L10n::CountryCode](/draft-0/l10n/countrycode) | true     | false      | Country code for the region                                                                       |
+| `zone`       | [GOBL::L10n::Code](/draft-0/l10n/code)               | false    | false      | Specific Locality, region, city, province, county, or similar code inside the country, if needed. |
+| `zones`      | [GOBL::Zone](/draft-0/zone)[]                        | false    | false      | List of sub-zones inside a country.                                                               |
+| `currency`   | [GOBL::Currency::Code](/draft-0/currency/code)       | true     | false      | Currency used by the country.                                                                     |
+| `schemes`    | [GOBL::Schemes](/draft-0/schemes)                    | false    | false      | Set of specific scheme definitions inside the region.                                             |
+| `categories` | [GOBL::Category](/draft-0/category)[]                | true     | false      | List of tax categories.                                                                           |
+

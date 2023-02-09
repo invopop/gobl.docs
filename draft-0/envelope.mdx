@@ -1,0 +1,20 @@
+---
+title: Envelope
+comment: Generated with GOBL v0.35.0
+---
+
+Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
+
+## Schema ID
+
+`https://gobl.org/draft-0/envelope`
+
+## Attributes
+
+| Property  | Type                                               | Required | Calculated | Description                                                                  |
+|-----------|----------------------------------------------------|----------|------------|------------------------------------------------------------------------------|
+| `$schema` | String                                             | true     | false      | Schema identifies the schema that should be used to understand this document |
+| `head`    | [GOBL::Header](/draft-0/header)                    | true     | false      | Details on what the contents are                                             |
+| `doc`     | [GOBL::Document](/draft-0/document)                | true     | false      | The data inside the envelope                                                 |
+| `sigs`    | [GOBL::DSig::Signature](/draft-0/dsig/signature)[] | false    | false      | JSON Web Signatures of the header                                            |
+

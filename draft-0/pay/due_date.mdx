@@ -1,0 +1,21 @@
+---
+title: DueDate
+comment: Generated with GOBL v0.35.0
+---
+
+DueDate contains an amount that should be paid by the given date.
+
+## Schema ID
+
+`https://gobl.org/draft-0/pay/terms#/$defs/DueDate`
+
+## Attributes
+
+| Property   | Type                                           | Required | Calculated | Description                                              |
+|------------|------------------------------------------------|----------|------------|----------------------------------------------------------|
+| `date`     | [GOBL::Cal::Date](/draft-0/cal/date)           | true     | false      | When the payment is due.                                 |
+| `notes`    | String                                         | false    | false      | Other details to take into account for the due date.     |
+| `amount`   | GOBL::Num::Amount                              | true     | false      | How much needs to be paid by the date.                   |
+| `percent`  | GOBL::Num::Percentage                          | false    | false      | Percentage of the total that should be paid by the date. |
+| `currency` | [GOBL::Currency::Code](/draft-0/currency/code) | false    | false      | If different from the parent document's base currency.   |
+

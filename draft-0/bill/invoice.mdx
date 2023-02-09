@@ -1,0 +1,39 @@
+---
+title: Invoice
+comment: Generated with GOBL v0.35.0
+---
+
+Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice`
+
+## Attributes
+
+| Property         | Type                                           | Required | Calculated | Description                                                                                                      |
+|------------------|------------------------------------------------|----------|------------|------------------------------------------------------------------------------------------------------------------|
+| `uuid`           | [GOBL::UUID::UUID](/draft-0/uuid/uuid)         | false    | false      | Unique document ID. Not required, but always recommended in addition to the Code.                                |
+| `series`         | String                                         | false    | false      | Used as a prefix to group codes.                                                                                 |
+| `code`           | String                                         | true     | false      | Sequential code used to identify this invoice in tax declarations.                                               |
+| `type`           | [GOBL::InvoiceType](/draft-0/invoicetype)      | false    | false      | Optional invoice type, leave empty unless needed for a specific situation.                                       |
+| `currency`       | [GOBL::Currency::Code](/draft-0/currency/code) | true     | false      | Currency for all invoice totals.                                                                                 |
+| `exchange_rates` | [GOBL::ExchangeRates](/draft-0/exchangerates)  | false    | false      | Exchange rates to be used when converting the invoices monetary values into other currencies.                    |
+| `tax`            | [GOBL::Tax](/draft-0/tax)                      | false    | false      | Special tax configuration for billing.                                                                           |
+| `preceding`      | [GOBL::Preceding](/draft-0/preceding)[]        | false    | false      | Key information regarding previous invoices and potentially details as to why they were corrected.               |
+| `issue_date`     | [GOBL::Cal::Date](/draft-0/cal/date)           | true     | false      | When the invoice was created.                                                                                    |
+| `op_date`        | [GOBL::Cal::Date](/draft-0/cal/date)           | false    | false      | Date when the operation defined by the invoice became effective.                                                 |
+| `value_date`     | [GOBL::Cal::Date](/draft-0/cal/date)           | false    | false      | When the taxes of this invoice become accountable, if none set, the issue date is used.                          |
+| `supplier`       | [GOBL::Org::Party](/draft-0/org/party)         | true     | false      | The taxable entity supplying the goods or services.                                                              |
+| `customer`       | [GOBL::Org::Party](/draft-0/org/party)         | false    | false      | Legal entity receiving the goods or services, may be empty in certain circumstances such as simplified invoices. |
+| `lines`          | [GOBL::Line](/draft-0/line)[]                  | false    | false      | List of invoice lines representing each of the items sold to the customer.                                       |
+| `discounts`      | [GOBL::Discount](/draft-0/discount)[]          | false    | false      | Discounts or allowances applied to the complete invoice                                                          |
+| `charges`        | [GOBL::Charge](/draft-0/charge)[]              | false    | false      | Charges or surcharges applied to the complete invoice                                                            |
+| `outlays`        | [GOBL::Outlay](/draft-0/outlay)[]              | false    | false      | Expenses paid for by the supplier but invoiced directly to the customer.                                         |
+| `ordering`       | [GOBL::Ordering](/draft-0/ordering)            | false    | false      | Ordering details including document references and buyer or seller parties.                                      |
+| `payment`        | [GOBL::Payment](/draft-0/payment)              | false    | false      | Information on when, how, and to whom the invoice should be paid.                                                |
+| `delivery`       | [GOBL::Delivery](/draft-0/delivery)            | false    | false      | Specific details on delivery of the goods referenced in the invoice.                                             |
+| `totals`         | [GOBL::Totals](/draft-0/totals)                | false    | true       | Summary of all the invoice totals, including taxes (calculated).                                                 |
+| `notes`          | [GOBL::CBC::Note](/draft-0/cbc/note)[]         | false    | false      | Unstructured information that is relevant to the invoice, such as correction or additional legal details.        |
+| `meta`           | [GOBL::CBC::Meta](/draft-0/cbc/meta)           | false    | false      | Additional semi-structured data that doesn't fit into the body of the invoice.                                   |
+

@@ -1,0 +1,21 @@
+---
+title: Category
+comment: Generated with GOBL v0.35.0
+---
+
+Category contains the definition of a general type of tax inside a region.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/Category`
+
+## Attributes
+
+| Property   | Type                                       | Required | Calculated | Description                                                                                                                                                                                                  |
+|------------|--------------------------------------------|----------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`     | [GOBL::CBC::Code](/draft-0/cbc/code)       | true     | false      |                                                                                                                                                                                                              |
+| `name`     | [GOBL::I18n::String](/draft-0/i18n/string) | true     | false      |                                                                                                                                                                                                              |
+| `desc`     | [GOBL::I18n::String](/draft-0/i18n/string) | false    | false      |                                                                                                                                                                                                              |
+| `retained` | Boolean                                    | false    | false      | Retained when true implies that the tax amount will be retained by the buyer on behalf of the supplier, and thus subtracted from the invoice taxable base total. Typically used for taxes related to income. |
+| `rates`    | [GOBL::Rate](/draft-0/rate)[]              | true     | false      | Specific tax definitions inside this category.                                                                                                                                                               |
+

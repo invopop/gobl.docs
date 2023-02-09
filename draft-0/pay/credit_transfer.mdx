@@ -1,0 +1,21 @@
+---
+title: CreditTransfer
+comment: Generated with GOBL v0.35.0
+---
+
+CreditTransfer contains fields that can be used for making payments via a bank transfer or wire.
+
+## Schema ID
+
+`https://gobl.org/draft-0/pay/instructions#/$defs/CreditTransfer`
+
+## Attributes
+
+| Property | Type                                       | Required | Calculated | Description                                            |
+|----------|--------------------------------------------|----------|------------|--------------------------------------------------------|
+| `iban`   | String                                     | false    | false      | International Bank Account Number                      |
+| `bic`    | String                                     | false    | false      | Bank Identifier Code used for international transfers. |
+| `number` | String                                     | false    | false      | Account number, if IBAN not available.                 |
+| `name`   | String                                     | false    | false      | Name of the bank.                                      |
+| `branch` | [GOBL::Org::Address](/draft-0/org/address) | false    | false      | Bank office branch address, not normally required.     |
+

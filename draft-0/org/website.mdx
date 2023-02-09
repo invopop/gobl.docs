@@ -1,0 +1,20 @@
+---
+title: Website
+comment: Generated with GOBL v0.35.0
+---
+
+Website describes what is expected for a web address.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/party#/$defs/Website`
+
+## Attributes
+
+| Property | Type                                   | Required | Calculated | Description                                                            |
+|----------|----------------------------------------|----------|------------|------------------------------------------------------------------------|
+| `uuid`   | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique identity code                                                   |
+| `label`  | String                                 | false    | false      | Identifier for this number.                                            |
+| `title`  | String                                 | false    | false      | Title of the website to help distinguish between this and other links. |
+| `url`    | String                                 | true     | false      | URL for the website.                                                   |
+

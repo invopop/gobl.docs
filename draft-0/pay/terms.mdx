@@ -1,0 +1,20 @@
+---
+title: Terms
+comment: Generated with GOBL v0.35.0
+---
+
+Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/pay/terms`
+
+## Attributes
+
+| Property    | Type                                | Required | Calculated | Description                                |
+|-------------|-------------------------------------|----------|------------|--------------------------------------------|
+| `key`       | [GOBL::TermKey](/draft-0/termkey)   | true     | false      | Type of terms to be applied.               |
+| `detail`    | String                              | false    | false      | Text detail of the chosen payment terms.   |
+| `due_dates` | [GOBL::DueDate](/draft-0/duedate)[] | false    | false      | Set of dates for agreed payments.          |
+| `notes`     | String                              | false    | false      | Description of the conditions for payment. |
+

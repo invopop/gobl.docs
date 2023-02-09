@@ -1,0 +1,26 @@
+---
+title: Item
+comment: Generated with GOBL v0.35.0
+---
+
+Item is used to describe a single product or service.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/item`
+
+## Attributes
+
+| Property   | Type                                                 | Required | Calculated | Description                                                                                                                             |
+|------------|------------------------------------------------------|----------|------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `uuid`     | [GOBL::UUID::UUID](/draft-0/uuid/uuid)               | false    | false      | Unique identify of this item independent of the Supplier IDs                                                                            |
+| `ref`      | String                                               | false    | false      | Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.                                |
+| `name`     | String                                               | true     | false      | Brief name of the item                                                                                                                  |
+| `desc`     | String                                               | false    | false      | Detailed description                                                                                                                    |
+| `currency` | String                                               | false    | false      | Currency used for the item's price.                                                                                                     |
+| `price`    | GOBL::Num::Amount                                    | true     | false      | Base price of a single unit to be sold.                                                                                                 |
+| `unit`     | [GOBL::Org::Unit](/draft-0/org/unit)                 | false    | false      | Unit of measure.                                                                                                                        |
+| `codes`    | [GOBL::ItemCode](/draft-0/itemcode)[]                | false    | false      | List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer. |
+| `origin`   | [GOBL::L10n::CountryCode](/draft-0/l10n/countrycode) | false    | false      | Country code of where this item was from originally.                                                                                    |
+| `meta`     | [GOBL::CBC::Meta](/draft-0/cbc/meta)                 | false    | false      | Additional meta information that may be useful                                                                                          |
+

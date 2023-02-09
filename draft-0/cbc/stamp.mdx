@@ -1,0 +1,18 @@
+---
+title: Stamp
+comment: Generated with GOBL v0.35.0
+---
+
+Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes.
+
+## Schema ID
+
+`https://gobl.org/draft-0/cbc/stamp`
+
+## Attributes
+
+| Property | Type                               | Required | Calculated | Description                                                                     |
+|----------|------------------------------------|----------|------------|---------------------------------------------------------------------------------|
+| `prv`    | [GOBL::CBC::Key](/draft-0/cbc/key) | true     | false      | Identity of the agency used to create the stamp usually defined by each region. |
+| `val`    | String                             | true     | false      | The serialized stamp value generated for or by the external agency              |
+

@@ -1,0 +1,24 @@
+---
+title: Outlay
+comment: Generated with GOBL v0.35.0
+---
+
+Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/Outlay`
+
+## Attributes
+
+| Property   | Type                                   | Required | Calculated | Description                                                           |
+|------------|----------------------------------------|----------|------------|-----------------------------------------------------------------------|
+| `uuid`     | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique identity for this outlay.                                      |
+| `i`        | Integer                                | false    | true       | Outlay number index inside the invoice for ordering (calculated).     |
+| `date`     | [GOBL::Cal::Date](/draft-0/cal/date)   | false    | false      | When was the outlay made.                                             |
+| `code`     | String                                 | false    | false      | Invoice number or other reference detail used to identify the outlay. |
+| `series`   | String                                 | false    | false      | Series of the outlay invoice.                                         |
+| `desc`     | String                                 | true     | false      | Details on what the outlay was.                                       |
+| `supplier` | [GOBL::Org::Party](/draft-0/org/party) | false    | false      | Who was the supplier of the outlay                                    |
+| `amount`   | GOBL::Num::Amount                      | true     | false      | Amount paid by the supplier.                                          |
+
