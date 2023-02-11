@@ -1,0 +1,22 @@
+---
+title: CategoryTotal
+comment: Generated with GOBL v0.35.0
+---
+
+CategoryTotal groups together all rates inside a given category.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/total#/$defs/CategoryTotal`
+
+## Attributes
+
+| Property    | Type                                    | Required | Calculated | Description |
+|-------------|-----------------------------------------|----------|------------|-------------|
+| `code`      | [GOBL::CBC::Code](/draft-0/cbc/code)    | true     | false      |             |
+| `retained`  | Boolean                                 | false    | false      |             |
+| `rates`     | [GOBL::RateTotal](/draft-0/ratetotal)[] | true     | false      |             |
+| `base`      | GOBL::Num::Amount                       | true     | false      |             |
+| `amount`    | GOBL::Num::Amount                       | true     | false      |             |
+| `surcharge` | GOBL::Num::Amount                       | false    | false      |             |
+

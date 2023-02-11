@@ -1,0 +1,20 @@
+---
+title: LineDiscount
+comment: Generated with GOBL v0.35.0
+---
+
+LineDiscount represents an amount deducted from the line, and will be applied before taxes.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/LineDiscount`
+
+## Attributes
+
+| Property  | Type                  | Required | Calculated | Description                                                     |
+|-----------|-----------------------|----------|------------|-----------------------------------------------------------------|
+| `percent` | GOBL::Num::Percentage | false    | false      | Percentage if fixed amount not applied                          |
+| `amount`  | GOBL::Num::Amount     | false    | true       | Fixed discount amount to apply (calculated if percent present). |
+| `code`    | String                | false    | false      | Reason code.                                                    |
+| `reason`  | String                | false    | false      | Text description as to why the discount was applied             |
+

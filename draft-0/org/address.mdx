@@ -1,0 +1,31 @@
+---
+title: Address
+comment: Generated with GOBL v0.35.0
+---
+
+Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/address`
+
+## Attributes
+
+| Property       | Type                                                 | Required | Calculated | Description                                                                                    |
+|----------------|------------------------------------------------------|----------|------------|------------------------------------------------------------------------------------------------|
+| `uuid`         | [GOBL::UUID::UUID](/draft-0/uuid/uuid)               | false    | false      | Internal ID used to identify the party inside a document.                                      |
+| `label`        | String                                               | false    | false      | Useful identifier, such as home, work, etc.                                                    |
+| `po_box`       | String                                               | false    | false      | Box number or code for the post office box located at the address.                             |
+| `num`          | String                                               | false    | false      | House or building number in the street.                                                        |
+| `floor`        | String                                               | false    | false      | Floor number within the building.                                                              |
+| `block`        | String                                               | false    | false      | Block number within the building.                                                              |
+| `door`         | String                                               | false    | false      | Door number within the building.                                                               |
+| `street`       | String                                               | false    | false      | First line of street.                                                                          |
+| `street_extra` | String                                               | false    | false      | Additional street address details.                                                             |
+| `locality`     | String                                               | true     | false      | Village, town, district, or city, typically inside a region.                                   |
+| `region`       | String                                               | false    | false      | Province, county, or state, inside a country.                                                  |
+| `code`         | String                                               | false    | false      | Post or ZIP code.                                                                              |
+| `country`      | [GOBL::L10n::CountryCode](/draft-0/l10n/countrycode) | false    | false      | ISO country code.                                                                              |
+| `coords`       | [GOBL::Org::Coordinates](/draft-0/org/coordinates)   | false    | false      | When the postal address is not sufficient, coordinates help locate the address more precisely. |
+| `meta`         | [GOBL::CBC::Meta](/draft-0/cbc/meta)                 | false    | false      | Any additional semi-structure details about the address.                                       |
+

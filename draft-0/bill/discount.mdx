@@ -1,0 +1,26 @@
+---
+title: Discount
+comment: Generated with GOBL v0.35.0
+---
+
+Discount represents an allowance applied to the complete document independent from the individual lines.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/Discount`
+
+## Attributes
+
+| Property  | Type                                   | Required | Calculated | Description                                                                                                              |
+|-----------|----------------------------------------|----------|------------|--------------------------------------------------------------------------------------------------------------------------|
+| `uuid`    | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique identifying for the discount entry                                                                                |
+| `i`       | Integer                                | false    | true       | Line number inside the list of discounts (calculated)                                                                    |
+| `ref`     | String                                 | false    | false      | Reference or ID for this Discount                                                                                        |
+| `base`    | GOBL::Num::Amount                      | false    | false      | Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum. |
+| `percent` | GOBL::Num::Percentage                  | false    | false      | Percentage to apply to the invoice's Sum.                                                                                |
+| `amount`  | GOBL::Num::Amount                      | false    | true       | Amount to apply (calculated if percent present).                                                                         |
+| `taxes`   | [GOBL::Tax::Set](/draft-0/tax/set)     | false    | false      | List of taxes to apply to the discount                                                                                   |
+| `code`    | String                                 | false    | false      | Code for the reason this discount applied                                                                                |
+| `reason`  | String                                 | false    | false      | Text description as to why the discount was applied                                                                      |
+| `meta`    | [GOBL::CBC::Meta](/draft-0/cbc/meta)   | false    | false      | Additional semi-structured information.                                                                                  |
+

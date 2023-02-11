@@ -1,0 +1,19 @@
+---
+title: Tax
+comment: Generated with GOBL v0.35.0
+---
+
+Tax defines a summary of the taxes which may be applied to an invoice.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/Tax`
+
+## Attributes
+
+| Property         | Type                                    | Required | Calculated | Description                                                                                                                                                |
+|------------------|-----------------------------------------|----------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `prices_include` | [GOBL::CBC::Code](/draft-0/cbc/code)    | false    | false      | Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax. |
+| `schemes`        | [GOBL::SchemeKeys](/draft-0/schemekeys) | false    | false      | Special tax schemes that apply to this invoice according to local requirements.                                                                            |
+| `meta`           | [GOBL::CBC::Meta](/draft-0/cbc/meta)    | false    | false      | Any additional data that may be required for processing, but should never be relied upon by recipients.                                                    |
+

@@ -58,6 +58,148 @@
             "pages": [
                 "bill/invoices"
             ]
+        },
+        {
+            "group": "draft-0",
+            "pages": [
+                "draft-0/document",
+                "draft-0/envelope",
+                "draft-0/header",
+                {
+                    "group": "Bill",
+                    "pages": [
+                        "draft-0/bill/advances",
+                        "draft-0/bill/charge",
+                        "draft-0/bill/delivery",
+                        "draft-0/bill/discount",
+                        "draft-0/bill/document_reference",
+                        "draft-0/bill/exchange_rates",
+                        "draft-0/bill/invoice",
+                        "draft-0/bill/invoice_type",
+                        "draft-0/bill/line",
+                        "draft-0/bill/line_charge",
+                        "draft-0/bill/line_discount",
+                        "draft-0/bill/ordering",
+                        "draft-0/bill/outlay",
+                        "draft-0/bill/payment",
+                        "draft-0/bill/preceding",
+                        "draft-0/bill/scheme_keys",
+                        "draft-0/bill/tax",
+                        "draft-0/bill/totals"
+                    ]
+                },
+                {
+                    "group": "Cal",
+                    "pages": [
+                        "draft-0/cal/date",
+                        "draft-0/cal/period"
+                    ]
+                },
+                {
+                    "group": "CBC",
+                    "pages": [
+                        "draft-0/cbc/code",
+                        "draft-0/cbc/key",
+                        "draft-0/cbc/meta",
+                        "draft-0/cbc/note",
+                        "draft-0/cbc/note_key",
+                        "draft-0/cbc/stamp"
+                    ]
+                },
+                {
+                    "group": "Currency",
+                    "pages": [
+                        "draft-0/currency/code",
+                        "draft-0/currency/exchange_rate"
+                    ]
+                },
+                {
+                    "group": "DSig",
+                    "pages": [
+                        "draft-0/dsig/digest",
+                        "draft-0/dsig/signature"
+                    ]
+                },
+                {
+                    "group": "I18n",
+                    "pages": [
+                        "draft-0/i18n/string"
+                    ]
+                },
+                {
+                    "group": "L10n",
+                    "pages": [
+                        "draft-0/l10n/code",
+                        "draft-0/l10n/country_code"
+                    ]
+                },
+                {
+                    "group": "Note",
+                    "pages": [
+                        "draft-0/note/message"
+                    ]
+                },
+                {
+                    "group": "Org",
+                    "pages": [
+                        "draft-0/org/address",
+                        "draft-0/org/coordinates",
+                        "draft-0/org/email",
+                        "draft-0/org/image",
+                        "draft-0/org/inbox",
+                        "draft-0/org/item",
+                        "draft-0/org/item_code",
+                        "draft-0/org/name",
+                        "draft-0/org/party",
+                        "draft-0/org/person",
+                        "draft-0/org/registration",
+                        "draft-0/org/telephone",
+                        "draft-0/org/unit",
+                        "draft-0/org/website"
+                    ]
+                },
+                {
+                    "group": "Pay",
+                    "pages": [
+                        "draft-0/pay/advance",
+                        "draft-0/pay/card",
+                        "draft-0/pay/credit_transfer",
+                        "draft-0/pay/direct_debit",
+                        "draft-0/pay/due_date",
+                        "draft-0/pay/instructions",
+                        "draft-0/pay/method_key",
+                        "draft-0/pay/online",
+                        "draft-0/pay/term_key",
+                        "draft-0/pay/terms"
+                    ]
+                },
+                {
+                    "group": "Tax",
+                    "pages": [
+                        "draft-0/tax/category",
+                        "draft-0/tax/category_total",
+                        "draft-0/tax/combo",
+                        "draft-0/tax/identity",
+                        "draft-0/tax/rate",
+                        "draft-0/tax/rate_total",
+                        "draft-0/tax/rate_total_surcharge",
+                        "draft-0/tax/rate_value",
+                        "draft-0/tax/regime",
+                        "draft-0/tax/scheme",
+                        "draft-0/tax/schemes",
+                        "draft-0/tax/set",
+                        "draft-0/tax/source_key",
+                        "draft-0/tax/total",
+                        "draft-0/tax/zone"
+                    ]
+                },
+                {
+                    "group": "UUID",
+                    "pages": [
+                        "draft-0/uuid/uuid"
+                    ]
+                }
+            ]
         }
     ],
     "footerSocials": {

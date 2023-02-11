@@ -1,0 +1,20 @@
+---
+title: Note
+comment: Generated with GOBL v0.35.0
+---
+
+Note represents a free text of additional information that may be added to a document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/cbc/note`
+
+## Attributes
+
+| Property | Type                              | Required | Calculated | Description                                                              |
+|----------|-----------------------------------|----------|------------|--------------------------------------------------------------------------|
+| `key`    | [GOBL::NoteKey](/draft-0/notekey) | false    | false      | Key specifying subject of the text                                       |
+| `code`   | String                            | false    | false      | Code used for additional data that may be required to identify the note. |
+| `src`    | String                            | false    | false      | Source of this note, especially useful when auto-generated.              |
+| `text`   | String                            | true     | false      | The contents of the note                                                 |
+

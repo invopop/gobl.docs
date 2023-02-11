@@ -1,0 +1,26 @@
+---
+title: Line
+comment: Generated with GOBL v0.35.0
+---
+
+Line is a single row in an invoice.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/Line`
+
+## Attributes
+
+| Property    | Type                                          | Required | Calculated | Description                                                                 |
+|-------------|-----------------------------------------------|----------|------------|-----------------------------------------------------------------------------|
+| `uuid`      | [GOBL::UUID::UUID](/draft-0/uuid/uuid)        | false    | false      | Unique identifier for this line                                             |
+| `i`         | Integer                                       | false    | true       | Line number inside the parent (calculated)                                  |
+| `quantity`  | GOBL::Num::Amount                             | true     | false      | Number of items                                                             |
+| `item`      | [GOBL::Org::Item](/draft-0/org/item)          | true     | false      | Details about what is being sold                                            |
+| `sum`       | GOBL::Num::Amount                             | false    | true       | Result of quantity multiplied by the item's price (calculated)              |
+| `discounts` | [GOBL::LineDiscount](/draft-0/linediscount)[] | false    | false      | Discounts applied to this line                                              |
+| `charges`   | [GOBL::LineCharge](/draft-0/linecharge)[]     | false    | false      | Charges applied to this line                                                |
+| `taxes`     | [GOBL::Tax::Set](/draft-0/tax/set)            | false    | false      | Map of taxes to be applied and used in the invoice totals                   |
+| `total`     | GOBL::Num::Amount                             | false    | true       | Total line amount after applying discounts to the sum (calculated).         |
+| `notes`     | [GOBL::CBC::Note](/draft-0/cbc/note)[]        | false    | false      | Set of specific notes for this line that may be required for clarification. |
+
