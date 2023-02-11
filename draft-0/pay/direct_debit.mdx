@@ -1,6 +1,6 @@
 ---
 title: DirectDebit
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 DirectDebit defines the data that will be used to make the direct debit.
@@ -9,11 +9,11 @@ DirectDebit defines the data that will be used to make the direct debit.
 
 `https://gobl.org/draft-0/pay/instructions#/$defs/DirectDebit`
 
-## Attributes
+## Properties
 
-| Property   | Type   | Required | Calculated | Description                                                                        |
-|------------|--------|----------|------------|------------------------------------------------------------------------------------|
-| `ref`      | String | false    | false      | Unique identifier assigned by the payee for referencing the direct debit.          |
-| `creditor` | String | false    | false      | Unique banking reference that identifies the payee or seller assigned by the bank. |
-| `account`  | String | false    | false      | Account identifier to be debited by the direct debit.                              |
+| Property   | Type   | Req. | Description                                                                        |
+|------------|--------|------|------------------------------------------------------------------------------------|
+| `ref`      | string |      | Unique identifier assigned by the payee for referencing the direct debit.          |
+| `creditor` | string |      | Unique banking reference that identifies the payee or seller assigned by the bank. |
+| `account`  | string |      | Account identifier to be debited by the direct debit.                              |
 

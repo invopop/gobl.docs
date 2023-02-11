@@ -1,6 +1,6 @@
 ---
 title: Name
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Name represents what a human is called.
@@ -9,17 +9,17 @@ Name represents what a human is called.
 
 `https://gobl.org/draft-0/org/name`
 
-## Attributes
+## Properties
 
-| Property   | Type                                   | Required | Calculated | Description                                        |
-|------------|----------------------------------------|----------|------------|----------------------------------------------------|
-| `uuid`     | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique identity code                               |
-| `alias`    | String                                 | false    | false      | What the person would like to be called            |
-| `prefix`   | String                                 | false    | false      | Additional prefix to add to name, like Mrs. or Mr. |
-| `given`    | String                                 | true     | false      | Person's given or first name                       |
-| `middle`   | String                                 | false    | false      | Middle names or initials                           |
-| `surname`  | String                                 | true     | false      | Second or Family name.                             |
-| `surname2` | String                                 | false    | false      | Additional second of family name.                  |
-| `suffix`   | String                                 | false    | false      | Titles to include after the name.                  |
-| `meta`     | [GOBL::CBC::Meta](/draft-0/cbc/meta)   | false    | false      | Any additional useful data.                        |
+| Property   | Type                            | Req. | Description                                        |
+|------------|---------------------------------|------|----------------------------------------------------|
+| `uuid`     | [uuid/UUID](/draft-0/uuid/uuid) |      | Unique identity code                               |
+| `alias`    | string                          |      | What the person would like to be called            |
+| `prefix`   | string                          |      | Additional prefix to add to name, like Mrs. or Mr. |
+| `given`    | string                          | true | Person's given or first name                       |
+| `middle`   | string                          |      | Middle names or initials                           |
+| `surname`  | string                          | true | Second or Family name.                             |
+| `surname2` | string                          |      | Additional second of family name.                  |
+| `suffix`   | string                          |      | Titles to include after the name.                  |
+| `meta`     | [cbc/Meta](/draft-0/cbc/meta)   |      | Any additional useful data.                        |
 

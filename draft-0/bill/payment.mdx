@@ -1,6 +1,6 @@
 ---
 title: Payment
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Payment contains details as to how the invoice should be paid.
@@ -9,12 +9,12 @@ Payment contains details as to how the invoice should be paid.
 
 `https://gobl.org/draft-0/bill/invoice#/$defs/Payment`
 
-## Attributes
+## Properties
 
-| Property       | Type                                                 | Required | Calculated | Description                                                                            |
-|----------------|------------------------------------------------------|----------|------------|----------------------------------------------------------------------------------------|
-| `payee`        | [GOBL::Org::Party](/draft-0/org/party)               | false    | false      | The party responsible for receiving payment of the invoice, if not the supplier.       |
-| `terms`        | [GOBL::Pay::Terms](/draft-0/pay/terms)               | false    | false      | Payment terms or conditions.                                                           |
-| `advances`     | [GOBL::Advances](/draft-0/advances)                  | false    | false      | Any amounts that have been paid in advance and should be deducted from the amount due. |
-| `instructions` | [GOBL::Pay::Instructions](/draft-0/pay/instructions) | false    | false      | Details on how payment should be made.                                                 |
+| Property       | Type                                          | Req. | Description                                                                            |
+|----------------|-----------------------------------------------|------|----------------------------------------------------------------------------------------|
+| `payee`        | [org/Party](/draft-0/org/party)               |      | The party responsible for receiving payment of the invoice, if not the supplier.       |
+| `terms`        | [pay/Terms](/draft-0/pay/terms)               |      | Payment terms or conditions.                                                           |
+| `advances`     | array of [pay/Advance](/draft-0/pay/advance)  |      | Any amounts that have been paid in advance and should be deducted from the amount due. |
+| `instructions` | [pay/Instructions](/draft-0/pay/instructions) |      | Details on how payment should be made.                                                 |
 

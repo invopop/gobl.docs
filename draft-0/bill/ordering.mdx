@@ -1,6 +1,6 @@
 ---
 title: Ordering
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Ordering provides additional information about the ordering process including references to other documents and alternative parties involved in the order-to-delivery process.
@@ -9,18 +9,18 @@ Ordering provides additional information about the ordering process including re
 
 `https://gobl.org/draft-0/bill/invoice#/$defs/Ordering`
 
-## Attributes
+## Properties
 
-| Property    | Type                                                  | Required | Calculated | Description                                                                                  |
-|-------------|-------------------------------------------------------|----------|------------|----------------------------------------------------------------------------------------------|
-| `code`      | String                                                | false    | false      | Identifier assigned by the customer or buyer for internal routing purposes.                  |
-| `project`   | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | Project this invoice refers to.                                                              |
-| `contract`  | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | The identification of a contract.                                                            |
-| `purchase`  | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | Purchase order issued by the customer or buyer.                                              |
-| `sale`      | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | Sales order issued by the supplier or seller.                                                |
-| `receiving` | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | Receiving Advice.                                                                            |
-| `despatch`  | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | Despatch advice.                                                                             |
-| `tender`    | [GOBL::DocumentReference](/draft-0/documentreference) | false    | false      | Tender advice, the identification of the call for tender or lot the invoice relates to.      |
-| `buyer`     | [GOBL::Org::Party](/draft-0/org/party)                | false    | false      | Party who is responsible for making the purchase, but is not responsible for handling taxes. |
-| `seller`    | [GOBL::Org::Party](/draft-0/org/party)                | false    | false      | Party who is selling the goods but is not responsible for taxes like the supplier.           |
+| Property    | Type                                                       | Req. | Description                                                                                  |
+|-------------|------------------------------------------------------------|------|----------------------------------------------------------------------------------------------|
+| `code`      | string                                                     |      | Identifier assigned by the customer or buyer for internal routing purposes.                  |
+| `project`   | [bill/DocumentReference](/draft-0/bill/document_reference) |      | Project this invoice refers to.                                                              |
+| `contract`  | [bill/DocumentReference](/draft-0/bill/document_reference) |      | The identification of a contract.                                                            |
+| `purchase`  | [bill/DocumentReference](/draft-0/bill/document_reference) |      | Purchase order issued by the customer or buyer.                                              |
+| `sale`      | [bill/DocumentReference](/draft-0/bill/document_reference) |      | Sales order issued by the supplier or seller.                                                |
+| `receiving` | [bill/DocumentReference](/draft-0/bill/document_reference) |      | Receiving Advice.                                                                            |
+| `despatch`  | [bill/DocumentReference](/draft-0/bill/document_reference) |      | Despatch advice.                                                                             |
+| `tender`    | [bill/DocumentReference](/draft-0/bill/document_reference) |      | Tender advice, the identification of the call for tender or lot the invoice relates to.      |
+| `buyer`     | [org/Party](/draft-0/org/party)                            |      | Party who is responsible for making the purchase, but is not responsible for handling taxes. |
+| `seller`    | [org/Party](/draft-0/org/party)                            |      | Party who is selling the goods but is not responsible for taxes like the supplier.           |
 

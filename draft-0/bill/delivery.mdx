@@ -1,6 +1,6 @@
 ---
 title: Delivery
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Delivery covers the details of the destination for the products described in the invoice body.
@@ -9,12 +9,12 @@ Delivery covers the details of the destination for the products described in the
 
 `https://gobl.org/draft-0/bill/invoice#/$defs/Delivery`
 
-## Attributes
+## Properties
 
-| Property     | Type                                   | Required | Calculated | Description                                                                                               |
-|--------------|----------------------------------------|----------|------------|-----------------------------------------------------------------------------------------------------------|
-| `receiver`   | [GOBL::Org::Party](/draft-0/org/party) | false    | false      | The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes. |
-| `date`       | [GOBL::Cal::Date](/draft-0/cal/date)   | false    | false      | When the goods should be expected                                                                         |
-| `start_date` | [GOBL::Cal::Date](/draft-0/cal/date)   | false    | false      | Start of an invoicing or delivery period                                                                  |
-| `end_date`   | [GOBL::Cal::Date](/draft-0/cal/date)   | false    | false      | End of an invoicing or delivery period                                                                    |
+| Property     | Type                            | Req. | Description                                                                                               |
+|--------------|---------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| `receiver`   | [org/Party](/draft-0/org/party) |      | The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes. |
+| `date`       | [cal/Date](/draft-0/cal/date)   |      | When the goods should be expected                                                                         |
+| `start_date` | [cal/Date](/draft-0/cal/date)   |      | Start of an invoicing or delivery period                                                                  |
+| `end_date`   | [cal/Date](/draft-0/cal/date)   |      | End of an invoicing or delivery period                                                                    |
 

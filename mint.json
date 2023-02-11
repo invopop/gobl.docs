@@ -2,8 +2,8 @@
     "$schema": "https://mintlify.com/schema.json",
     "name": "GOBL",
     "logo": {
-        "light": "static/logo.svg",
-        "dark": "static/logo.svg"
+        "light": "static/logo_long_dark.svg",
+        "dark": "static/logo_long_light.svg"
     },
     "favicon": "static/favicon.svg",
     "colors": {
@@ -39,28 +39,7 @@
             ]
         },
         {
-            "group": "Core",
-            "pages": [
-                "core/envelopes",
-                "core/headers",
-                "core/documents",
-                "core/signatures"
-            ]
-        },
-        {
-            "group": "Regions",
-            "pages": [
-                "regions/details"
-            ]
-        },
-        {
-            "group": "Bill",
-            "pages": [
-                "bill/invoices"
-            ]
-        },
-        {
-            "group": "draft-0",
+            "group": "Draft 0",
             "pages": [
                 "draft-0/document",
                 "draft-0/envelope",
@@ -140,6 +119,13 @@
                     ]
                 },
                 {
+                    "group": "Num",
+                    "pages": [
+                        "draft-0/num/amount",
+                        "draft-0/num/percentage"
+                    ]
+                },
+                {
                     "group": "Org",
                     "pages": [
                         "draft-0/org/address",
@@ -205,6 +191,6 @@
     "footerSocials": {
         "twitter": "https://twitter.com/goInvopop",
         "linkedin": "https://www.linkedin.com/company/invopop/",
-        "github": "https://github.com/invopop"
+        "github": "https://github.com/invopop/gobl"
     }
 }

@@ -1,6 +1,6 @@
 ---
 title: Rate
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Rate defines a single rate inside a category
@@ -9,12 +9,12 @@ Rate defines a single rate inside a category
 
 `https://gobl.org/draft-0/tax/regime#/$defs/Rate`
 
-## Attributes
+## Properties
 
-| Property | Type                                       | Required | Calculated | Description                                                                                                                                                                                              |
-|----------|--------------------------------------------|----------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `key`    | [GOBL::CBC::Key](/draft-0/cbc/key)         | true     | false      | Key identifies this rate within the system                                                                                                                                                               |
-| `name`   | [GOBL::I18n::String](/draft-0/i18n/string) | true     | false      |                                                                                                                                                                                                          |
-| `desc`   | [GOBL::I18n::String](/draft-0/i18n/string) | false    | false      |                                                                                                                                                                                                          |
-| `values` | [GOBL::RateValue](/draft-0/ratevalue)[]    | true     | false      | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
+| Property | Type                                              | Req. | Description                                                                                                                                                                                              |
+|----------|---------------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `key`    | [cbc/Key](/draft-0/cbc/key)                       | true | Key identifies this rate within the system                                                                                                                                                               |
+| `name`   | [i18n/String](/draft-0/i18n/string)               | true |                                                                                                                                                                                                          |
+| `desc`   | [i18n/String](/draft-0/i18n/string)               |      |                                                                                                                                                                                                          |
+| `values` | array of [tax/RateValue](/draft-0/tax/rate_value) | true | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
 

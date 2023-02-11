@@ -1,6 +1,6 @@
 ---
 title: Scheme
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.
@@ -9,13 +9,13 @@ Scheme contains the definition of a scheme that belongs to a region and can be u
 
 `https://gobl.org/draft-0/tax/regime#/$defs/Scheme`
 
-## Attributes
+## Properties
 
-| Property      | Type                                       | Required | Calculated | Description                                                                         |
-|---------------|--------------------------------------------|----------|------------|-------------------------------------------------------------------------------------|
-| `key`         | [GOBL::CBC::Key](/draft-0/cbc/key)         | true     | false      | Key used to identify this scheme                                                    |
-| `name`        | [GOBL::I18n::String](/draft-0/i18n/string) | true     | false      | Name of this scheme.                                                                |
-| `description` | [GOBL::I18n::String](/draft-0/i18n/string) | false    | false      | Human details describing what this scheme is used for.                              |
-| `categories`  | [GOBL::CBC::Code](/draft-0/cbc/code)[]     | false    | false      | List of tax category codes that can be used when this scheme is applied.            |
-| `note`        | [GOBL::CBC::Note](/draft-0/cbc/note)       | false    | false      | Note defines a message that should be added to a document when this scheme is used. |
+| Property      | Type                                   | Req. | Description                                                                         |
+|---------------|----------------------------------------|------|-------------------------------------------------------------------------------------|
+| `key`         | [cbc/Key](/draft-0/cbc/key)            | true | Key used to identify this scheme                                                    |
+| `name`        | [i18n/String](/draft-0/i18n/string)    | true | Name of this scheme.                                                                |
+| `description` | [i18n/String](/draft-0/i18n/string)    |      | Human details describing what this scheme is used for.                              |
+| `categories`  | array of [cbc/Code](/draft-0/cbc/code) |      | List of tax category codes that can be used when this scheme is applied.            |
+| `note`        | [cbc/Note](/draft-0/cbc/note)          |      | Note defines a message that should be added to a document when this scheme is used. |
 

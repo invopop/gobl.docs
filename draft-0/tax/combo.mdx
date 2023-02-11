@@ -1,6 +1,6 @@
 ---
 title: Combo
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Combo represents the tax combination of a category code and rate key.
@@ -9,12 +9,12 @@ Combo represents the tax combination of a category code and rate key.
 
 `https://gobl.org/draft-0/tax/set#/$defs/Combo`
 
-## Attributes
+## Properties
 
-| Property    | Type                                 | Required | Calculated | Description                                                                                               |
-|-------------|--------------------------------------|----------|------------|-----------------------------------------------------------------------------------------------------------|
-| `cat`       | [GOBL::CBC::Code](/draft-0/cbc/code) | true     | false      | Tax category code from those available inside a region.                                                   |
-| `rate`      | [GOBL::CBC::Key](/draft-0/cbc/key)   | false    | false      | Rate within a category to apply.                                                                          |
-| `percent`   | GOBL::Num::Percentage                | false    | true       | Percent defines the percentage set manually or determined from the rate key (calculated if rate present). |
-| `surcharge` | GOBL::Num::Percentage                | false    | true       | Some countries require an additional surcharge (calculated if rate present).                              |
+| Property    | Type                                      | Req. | Description                                                                                               |
+|-------------|-------------------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| `cat`       | [cbc/Code](/draft-0/cbc/code)             | true | Tax category code from those available inside a region.                                                   |
+| `rate`      | [cbc/Key](/draft-0/cbc/key)               |      | Rate within a category to apply.                                                                          |
+| `percent`   | [num/Percentage](/draft-0/num/percentage) |      | Percent defines the percentage set manually or determined from the rate key (calculated if rate present). |
+| `surcharge` | [num/Percentage](/draft-0/num/percentage) |      | Some countries require an additional surcharge (calculated if rate present).                              |
 

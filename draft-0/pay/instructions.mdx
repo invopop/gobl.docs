@@ -1,25 +1,25 @@
 ---
 title: Instructions
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
-Instructions holds a set of instructions that determine how the payment has or should be made.
+Instructions determine how the payment has or should be made.
 
 ## Schema ID
 
 `https://gobl.org/draft-0/pay/instructions`
 
-## Attributes
+## Properties
 
-| Property          | Type                                              | Required | Calculated | Description                                                                                      |
-|-------------------|---------------------------------------------------|----------|------------|--------------------------------------------------------------------------------------------------|
-| `key`             | [GOBL::MethodKey](/draft-0/methodkey)             | true     | false      | How payment is expected or has been arranged to be collected                                     |
-| `detail`          | String                                            | false    | false      | Optional text description of the payment method                                                  |
-| `ref`             | String                                            | false    | false      | Remittance information, a text value used to link the payment with the invoice.                  |
-| `credit_transfer` | [GOBL::CreditTransfer](/draft-0/credittransfer)[] | false    | false      | Instructions for sending payment via a bank transfer.                                            |
-| `card`            | [GOBL::Card](/draft-0/card)                       | false    | false      | Details of the payment that will be made via a credit or debit card.                             |
-| `direct_debit`    | [GOBL::DirectDebit](/draft-0/directdebit)         | false    | false      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
-| `online`          | [GOBL::Online](/draft-0/online)[]                 | false    | false      | Array of online payment options                                                                  |
-| `notes`           | String                                            | false    | false      | Any additional instructions that may be required to make the payment.                            |
-| `meta`            | [GOBL::CBC::Meta](/draft-0/cbc/meta)              | false    | false      | Non-structured additional data that may be useful.                                               |
+| Property          | Type                                                        | Req. | Description                                                                                      |
+|-------------------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------|
+| `key`             | [pay/MethodKey](/draft-0/pay/method_key)                    | true | How payment is expected or has been arranged to be collected                                     |
+| `detail`          | string                                                      |      | Optional text description of the payment method                                                  |
+| `ref`             | string                                                      |      | Remittance information, a text value used to link the payment with the invoice.                  |
+| `credit_transfer` | array of [pay/CreditTransfer](/draft-0/pay/credit_transfer) |      | Instructions for sending payment via a bank transfer.                                            |
+| `card`            | [pay/Card](/draft-0/pay/card)                               |      | Details of the payment that will be made via a credit or debit card.                             |
+| `direct_debit`    | [pay/DirectDebit](/draft-0/pay/direct_debit)                |      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
+| `online`          | array of [pay/Online](/draft-0/pay/online)                  |      | Array of online payment options                                                                  |
+| `notes`           | string                                                      |      | Any additional instructions that may be required to make the payment.                            |
+| `meta`            | [cbc/Meta](/draft-0/cbc/meta)                               |      | Non-structured additional data that may be useful.                                               |
 

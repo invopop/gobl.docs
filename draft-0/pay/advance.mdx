@@ -1,6 +1,6 @@
 ---
 title: Advance
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
@@ -9,16 +9,16 @@ Advance represents a single payment that has been made already, such as a deposi
 
 `https://gobl.org/draft-0/pay/advance`
 
-## Attributes
+## Properties
 
-| Property   | Type                                           | Required | Calculated | Description                                                                          |
-|------------|------------------------------------------------|----------|------------|--------------------------------------------------------------------------------------|
-| `uuid`     | [GOBL::UUID::UUID](/draft-0/uuid/uuid)         | false    | false      | Unique identifier for this advance.                                                  |
-| `date`     | [GOBL::Cal::Date](/draft-0/cal/date)           | false    | false      | When the advance was made.                                                           |
-| `ref`      | String                                         | false    | false      | ID or reference for the advance.                                                     |
-| `grant`    | Boolean                                        | false    | false      | If this "advance" payment has come from a public grant or subsidy, set this to true. |
-| `desc`     | String                                         | true     | false      | Details about the advance.                                                           |
-| `percent`  | GOBL::Num::Percentage                          | false    | false      | How much as a percentage of the total with tax was paid                              |
-| `amount`   | GOBL::Num::Amount                              | true     | false      | How much was paid.                                                                   |
-| `currency` | [GOBL::Currency::Code](/draft-0/currency/code) | false    | false      | If different from the parent document's base currency.                               |
+| Property   | Type                                      | Req. | Description                                                                          |
+|------------|-------------------------------------------|------|--------------------------------------------------------------------------------------|
+| `uuid`     | [uuid/UUID](/draft-0/uuid/uuid)           |      | Unique identifier for this advance.                                                  |
+| `date`     | [cal/Date](/draft-0/cal/date)             |      | When the advance was made.                                                           |
+| `ref`      | string                                    |      | ID or reference for the advance.                                                     |
+| `grant`    | boolean                                   |      | If this "advance" payment has come from a public grant or subsidy, set this to true. |
+| `desc`     | string                                    | true | Details about the advance.                                                           |
+| `percent`  | [num/Percentage](/draft-0/num/percentage) |      | How much as a percentage of the total with tax was paid                              |
+| `amount`   | [num/Amount](/draft-0/num/amount)         | true | How much was paid.                                                                   |
+| `currency` | [currency/Code](/draft-0/currency/code)   |      | If different from the parent document's base currency.                               |
 

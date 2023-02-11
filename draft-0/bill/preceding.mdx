@@ -1,6 +1,6 @@
 ---
 title: Preceding
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from.
@@ -9,18 +9,18 @@ Preceding allows for information to be provided about a previous invoice that th
 
 `https://gobl.org/draft-0/bill/invoice#/$defs/Preceding`
 
-## Attributes
+## Properties
 
-| Property            | Type                                     | Required | Calculated | Description                                                            |
-|---------------------|------------------------------------------|----------|------------|------------------------------------------------------------------------|
-| `uuid`              | [GOBL::UUID::UUID](/draft-0/uuid/uuid)   | false    | false      | Preceding document's UUID if available can be useful for tracing.      |
-| `series`            | String                                   | false    | false      | Series identification code                                             |
-| `code`              | String                                   | true     | false      | Code of the previous document.                                         |
-| `issue_date`        | [GOBL::Cal::Date](/draft-0/cal/date)     | true     | false      | The issue date if the previous document.                               |
-| `period`            | [GOBL::Cal::Period](/draft-0/cal/period) | false    | false      | Tax period in which the previous invoice had an effect.                |
-| `corrections`       | String[]                                 | false    | false      | Specific codes for the corrections made.                               |
-| `correction_method` | String                                   | false    | false      | How has the previous invoice been corrected?                           |
-| `stamps`            | [GOBL::CBC::Stamp](/draft-0/cbc/stamp)[] | false    | false      | Seals of approval from other organisations.                            |
-| `notes`             | String                                   | false    | false      | Additional details regarding preceding invoice                         |
-| `meta`              | [GOBL::CBC::Meta](/draft-0/cbc/meta)     | false    | false      | Additional semi-structured data that may be useful in specific regions |
+| Property            | Type                                     | Req. | Description                                                            |
+|---------------------|------------------------------------------|------|------------------------------------------------------------------------|
+| `uuid`              | [uuid/UUID](/draft-0/uuid/uuid)          |      | Preceding document's UUID if available can be useful for tracing.      |
+| `series`            | string                                   |      | Series identification code                                             |
+| `code`              | string                                   | true | Code of the previous document.                                         |
+| `issue_date`        | [cal/Date](/draft-0/cal/date)            | true | The issue date if the previous document.                               |
+| `period`            | [cal/Period](/draft-0/cal/period)        |      | Tax period in which the previous invoice had an effect.                |
+| `corrections`       | array of string                          |      | Specific codes for the corrections made.                               |
+| `correction_method` | string                                   |      | How has the previous invoice been corrected?                           |
+| `stamps`            | array of [cbc/Stamp](/draft-0/cbc/stamp) |      | Seals of approval from other organisations.                            |
+| `notes`             | string                                   |      | Additional details regarding preceding invoice                         |
+| `meta`              | [cbc/Meta](/draft-0/cbc/meta)            |      | Additional semi-structured data that may be useful in specific regions |
 

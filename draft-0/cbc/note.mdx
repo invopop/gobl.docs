@@ -1,6 +1,6 @@
 ---
 title: Note
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Note represents a free text of additional information that may be added to a document.
@@ -9,12 +9,12 @@ Note represents a free text of additional information that may be added to a doc
 
 `https://gobl.org/draft-0/cbc/note`
 
-## Attributes
+## Properties
 
-| Property | Type                              | Required | Calculated | Description                                                              |
-|----------|-----------------------------------|----------|------------|--------------------------------------------------------------------------|
-| `key`    | [GOBL::NoteKey](/draft-0/notekey) | false    | false      | Key specifying subject of the text                                       |
-| `code`   | String                            | false    | false      | Code used for additional data that may be required to identify the note. |
-| `src`    | String                            | false    | false      | Source of this note, especially useful when auto-generated.              |
-| `text`   | String                            | true     | false      | The contents of the note                                                 |
+| Property | Type                                 | Req. | Description                                                              |
+|----------|--------------------------------------|------|--------------------------------------------------------------------------|
+| `key`    | [cbc/NoteKey](/draft-0/cbc/note_key) |      | Key specifying subject of the text                                       |
+| `code`   | string                               |      | Code used for additional data that may be required to identify the note. |
+| `src`    | string                               |      | Source of this note, especially useful when auto-generated.              |
+| `text`   | string                               | true | The contents of the note                                                 |
 

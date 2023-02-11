@@ -1,6 +1,6 @@
 ---
 title: Person
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Person represents a human, and how to contact them electronically.
@@ -9,16 +9,16 @@ Person represents a human, and how to contact them electronically.
 
 `https://gobl.org/draft-0/org/person`
 
-## Attributes
+## Properties
 
-| Property     | Type                                             | Required | Calculated | Description                                                |
-|--------------|--------------------------------------------------|----------|------------|------------------------------------------------------------|
-| `id`         | String                                           | false    | false      | Internal ID used to identify the person inside a document. |
-| `uuid`       | [GOBL::UUID::UUID](/draft-0/uuid/uuid)           | false    | false      | Unique identity code                                       |
-| `name`       | [GOBL::Org::Name](/draft-0/org/name)             | true     | false      | Complete details on the name of the person                 |
-| `role`       | String                                           | false    | false      | What they do within an organization                        |
-| `emails`     | [GOBL::Org::Email](/draft-0/org/email)[]         | false    | false      | Electronic mail addresses that belong to the person.       |
-| `telephones` | [GOBL::Org::Telephone](/draft-0/org/telephone)[] | false    | false      | Regular phone or mobile numbers                            |
-| `avatars`    | [GOBL::Org::Image](/draft-0/org/image)[]         | false    | false      | Avatars provider links to images or photos or the person.  |
-| `meta`       | [GOBL::CBC::Meta](/draft-0/cbc/meta)             | false    | false      | Data about the data.                                       |
+| Property     | Type                                             | Req. | Description                                                |
+|--------------|--------------------------------------------------|------|------------------------------------------------------------|
+| `id`         | string                                           |      | Internal ID used to identify the person inside a document. |
+| `uuid`       | [uuid/UUID](/draft-0/uuid/uuid)                  |      | Unique identity code                                       |
+| `name`       | [org/Name](/draft-0/org/name)                    | true | Complete details on the name of the person                 |
+| `role`       | string                                           |      | What they do within an organization                        |
+| `emails`     | array of [org/Email](/draft-0/org/email)         |      | Electronic mail addresses that belong to the person.       |
+| `telephones` | array of [org/Telephone](/draft-0/org/telephone) |      | Regular phone or mobile numbers                            |
+| `avatars`    | array of [org/Image](/draft-0/org/image)         |      | Avatars provider links to images or photos or the person.  |
+| `meta`       | [cbc/Meta](/draft-0/cbc/meta)                    |      | Data about the data.                                       |
 

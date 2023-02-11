@@ -1,6 +1,6 @@
 ---
 title: Telephone
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Telephone describes what is expected for a telephone number.
@@ -9,11 +9,11 @@ Telephone describes what is expected for a telephone number.
 
 `https://gobl.org/draft-0/org/telephone`
 
-## Attributes
+## Properties
 
-| Property | Type                                   | Required | Calculated | Description                                                |
-|----------|----------------------------------------|----------|------------|------------------------------------------------------------|
-| `uuid`   | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique identity code                                       |
-| `label`  | String                                 | false    | false      | Identifier for this number.                                |
-| `num`    | String                                 | true     | false      | The number to be dialed in ITU E.164 international format. |
+| Property | Type                            | Req. | Description                                                |
+|----------|---------------------------------|------|------------------------------------------------------------|
+| `uuid`   | [uuid/UUID](/draft-0/uuid/uuid) |      | Unique identity code                                       |
+| `label`  | string                          |      | Identifier for this number.                                |
+| `num`    | string                          | true | The number to be dialed in ITU E.164 international format. |
 

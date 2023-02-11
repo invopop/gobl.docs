@@ -1,6 +1,6 @@
 ---
 title: LineCharge
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 LineCharge represents an amount added to the line, and will be applied before taxes.
@@ -9,12 +9,12 @@ LineCharge represents an amount added to the line, and will be applied before ta
 
 `https://gobl.org/draft-0/bill/invoice#/$defs/LineCharge`
 
-## Attributes
+## Properties
 
-| Property  | Type                  | Required | Calculated | Description                                                                |
-|-----------|-----------------------|----------|------------|----------------------------------------------------------------------------|
-| `percent` | GOBL::Num::Percentage | false    | false      | Percentage if fixed amount not applied                                     |
-| `amount`  | GOBL::Num::Amount     | false    | true       | Fixed or resulting charge amount to apply (calculated if percent present). |
-| `code`    | String                | false    | false      | Reference code.                                                            |
-| `reason`  | String                | false    | false      | Text description as to why the charge was applied                          |
+| Property  | Type                                      | Req. | Description                                                                |
+|-----------|-------------------------------------------|------|----------------------------------------------------------------------------|
+| `percent` | [num/Percentage](/draft-0/num/percentage) |      | Percentage if fixed amount not applied                                     |
+| `amount`  | [num/Amount](/draft-0/num/amount)         |      | Fixed or resulting charge amount to apply (calculated if percent present). |
+| `code`    | string                                    |      | Reference code.                                                            |
+| `reason`  | string                                    |      | Text description as to why the charge was applied                          |
 

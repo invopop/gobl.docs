@@ -1,6 +1,6 @@
 ---
 title: Website
-comment: Generated with GOBL v0.35.0
+comment: Generated with GOBL v0.36.0
 ---
 
 Website describes what is expected for a web address.
@@ -9,12 +9,12 @@ Website describes what is expected for a web address.
 
 `https://gobl.org/draft-0/org/party#/$defs/Website`
 
-## Attributes
+## Properties
 
-| Property | Type                                   | Required | Calculated | Description                                                            |
-|----------|----------------------------------------|----------|------------|------------------------------------------------------------------------|
-| `uuid`   | [GOBL::UUID::UUID](/draft-0/uuid/uuid) | false    | false      | Unique identity code                                                   |
-| `label`  | String                                 | false    | false      | Identifier for this number.                                            |
-| `title`  | String                                 | false    | false      | Title of the website to help distinguish between this and other links. |
-| `url`    | String                                 | true     | false      | URL for the website.                                                   |
+| Property | Type                            | Req. | Description                                                            |
+|----------|---------------------------------|------|------------------------------------------------------------------------|
+| `uuid`   | [uuid/UUID](/draft-0/uuid/uuid) |      | Unique identity code                                                   |
+| `label`  | string                          |      | Identifier for this number.                                            |
+| `title`  | string                          |      | Title of the website to help distinguish between this and other links. |
+| `url`    | string                          | true | URL for the website.                                                   |
 
