@@ -18,6 +18,10 @@
             "url": "https://github.com/invopop/gobl"
         }
     ],
+    "topbarCtaButton": {
+        "type": "github",
+        "url": "https://github.com/invopop/gobl"
+     },
     "navigation": [
         {
             "group": "Introduction",
