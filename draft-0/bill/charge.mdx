@@ -13,14 +13,14 @@ Charge represents a surchange applied to the complete document independent from 
 
 | Property  | Type                                      | Req. | Description                                                                                                                               |
 |-----------|-------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `uuid`    | [uuid/UUID](/draft-0/uuid/uuid)           |      | Unique identifying for the discount entry                                                                                                 |
+| `uuid`    | [uuid.UUID](/draft-0/uuid/uuid)           |      | Unique identifying for the discount entry                                                                                                 |
 | `i`       | integer                                   |      | Line number inside the list of discounts (calculated).                                                                                    |
 | `ref`     | string                                    |      | Code to used to refer to the this charge                                                                                                  |
-| `base`    | [num/Amount](/draft-0/num/amount)         |      | Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum before discounts. |
-| `percent` | [num/Percentage](/draft-0/num/percentage) |      | Percentage to apply to the invoice's Sum                                                                                                  |
-| `amount`  | [num/Amount](/draft-0/num/amount)         |      | Amount to apply (calculated if percent present)                                                                                           |
-| `taxes`   | [tax/Set](/draft-0/tax/set)               |      | List of taxes to apply to the charge                                                                                                      |
+| `base`    | [num.Amount](/draft-0/num/amount)         |      | Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum before discounts. |
+| `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage to apply to the invoice's Sum                                                                                                  |
+| `amount`  | [num.Amount](/draft-0/num/amount)         |      | Amount to apply (calculated if percent present)                                                                                           |
+| `taxes`   | [tax.Set](/draft-0/tax/set)               |      | List of taxes to apply to the charge                                                                                                      |
 | `code`    | string                                    |      | Code for why was this charge applied?                                                                                                     |
 | `reason`  | string                                    |      | Text description as to why the charge was applied                                                                                         |
-| `meta`    | [cbc/Meta](/draft-0/cbc/meta)             |      | Additional semi-structured information.                                                                                                   |
+| `meta`    | [cbc.Meta](/draft-0/cbc/meta)             |      | Additional semi-structured information.                                                                                                   |
 

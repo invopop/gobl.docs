@@ -13,6 +13,11 @@
     },
     "anchors": [
         {
+            "name": "Builder",
+            "icon": "gear",
+            "url": "https://build.gobl.org"
+        },
+        {
             "name": "GitHub",
             "icon": "github",
             "url": "https://github.com/invopop/gobl"
@@ -24,14 +29,14 @@
      },
     "navigation": [
         {
-            "group": "Introduction",
+            "group": "Overview",
             "pages": [
-                "overview",
-                "introduction/what-is-gobl",
-                "introduction/versions",
-                "introduction/schemas",
-                "introduction/numbers",
-                "introduction/canonicalization"
+                "introduction",
+                "overview/components",
+                "overview/versions",
+                "overview/schemas",
+                "overview/numbers",
+                "overview/canonicalization"
             ]
         },
         {
@@ -43,11 +48,12 @@
             ]
         },
         {
-            "group": "Draft 0",
+            "group": "Version: Draft 0",
             "pages": [
-                "draft-0/document",
+                "draft-0",
                 "draft-0/envelope",
                 "draft-0/header",
+                "draft-0/document",
                 {
                     "group": "Bill",
                     "pages": [

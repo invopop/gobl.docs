@@ -1,0 +1,42 @@
+---
+title: "GOBL"
+sidebarTitle: "Introduction"
+description: "Build and share global business documents with ease."
+---
+
+GOBL simplifies the creation of structured business documents, like invoices, so that they are easy to build, read, and share using modern tools.
+
+Instead of depending on slow moving standards bodies and mediocre implementations, GOBL brings the agility of Open Source software development to the world of business documents.
+
+GOBL is an Open Source SDK that combines a JSON Schema, tax database, validation rules, calculation algorithms, and digital signatures all in one place with a reference implementation written in Go.
+
+```json Example GOBL Envelope containing a Message
+{
+  "$schema": "https://gobl.org/draft-0/envelope",
+  "head": {
+    "uuid": "c7eac0a3-2ad2-11ed-964a-3e7e00ce5635",
+    "dig": {
+      "alg": "sha256",
+      "val": "45ac3115c8569a1789e58af8d0dc91ef3baa1fb71daaf38f5aef94f82b4d0033"
+    }
+  },
+  "doc": {
+    "$schema": "https://gobl.org/draft-0/note/message",
+    "title": "Test Message",
+    "content": "We hope you like this test message!"
+  },
+  "sigs": [
+    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiYzdlYWMwYTMtMmFkMi0xMWVkLTk2NGEtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjQ1YWMzMTE1Yzg1NjlhMTc4OWU1OGFmOGQwZGM5MWVmM2JhYTFmYjcxZGFhZjM4ZjVhZWY5NGY4MmI0ZDAwMzMifX0.JsLXd3TkKOwuy0KOXJVG8atIShlNZb1vbLglVO8PDZnZbwGVyWRE_i7y85lVKvSby-j0rwU9wgleIxcGj9tE4g"
+  ]
+}
+```
+
+## Why
+
+If you've ever had to build an invoice or other business document in XML, EDI, or PDF, you'll have felt the pain very quickly. Traditional specifications are usually very hard to read and intepret, and even harder to implement.
+
+Building business documents internationally is even harder. While standards bodies aim for global consensus, a majority of countries "customize" standards for their local market, making it practically impossible to build a single implementation that works everywhere.
+
+Most standards are also just definitions of data structures, and don't define local taxes, let alone validation rules or calculations. GOBL seeks to solve this problem by providing a single and global source of truth, in code.
+
+Another common problem with current standards is that they're usually very verbose (like XML), too hard to read (like EDI), and cannot be stored in a database without transformation. GOBL aims to solve this problem with simple JSON Schemas meaning data can be stored and processed easily.

@@ -13,9 +13,9 @@ Inbox is used to store data about a connection with a service that is responsibl
 
 | Property | Type                            | Req. | Description                                                        |
 |----------|---------------------------------|------|--------------------------------------------------------------------|
-| `uuid`   | [uuid/UUID](/draft-0/uuid/uuid) |      | Unique ID. Useful if inbox is stored in a database.                |
-| `key`    | [cbc/Key](/draft-0/cbc/key)     | true | Type of inbox being defined.                                       |
-| `role`   | [cbc/Key](/draft-0/cbc/key)     |      | Role assigned to this inbox that may be relevant for the consumer. |
+| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique ID. Useful if inbox is stored in a database.                |
+| `key`    | [cbc.Key](/draft-0/cbc/key)     | true | Type of inbox being defined.                                       |
+| `role`   | [cbc.Key](/draft-0/cbc/key)     |      | Role assigned to this inbox that may be relevant for the consumer. |
 | `name`   | string                          |      | Human name for the inbox.                                          |
 | `code`   | string                          | true | Actual Code or ID that identifies the Inbox.                       |
 

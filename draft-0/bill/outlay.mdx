@@ -13,12 +13,12 @@ Outlay represents a reimbursable expense that was paid for by the supplier and i
 
 | Property   | Type                              | Req. | Description                                                           |
 |------------|-----------------------------------|------|-----------------------------------------------------------------------|
-| `uuid`     | [uuid/UUID](/draft-0/uuid/uuid)   |      | Unique identity for this outlay.                                      |
+| `uuid`     | [uuid.UUID](/draft-0/uuid/uuid)   |      | Unique identity for this outlay.                                      |
 | `i`        | integer                           |      | Outlay number index inside the invoice for ordering (calculated).     |
-| `date`     | [cal/Date](/draft-0/cal/date)     |      | When was the outlay made.                                             |
+| `date`     | [cal.Date](/draft-0/cal/date)     |      | When was the outlay made.                                             |
 | `code`     | string                            |      | Invoice number or other reference detail used to identify the outlay. |
 | `series`   | string                            |      | Series of the outlay invoice.                                         |
 | `desc`     | string                            | true | Details on what the outlay was.                                       |
-| `supplier` | [org/Party](/draft-0/org/party)   |      | Who was the supplier of the outlay                                    |
-| `amount`   | [num/Amount](/draft-0/num/amount) | true | Amount paid by the supplier.                                          |
+| `supplier` | [org.Party](/draft-0/org/party)   |      | Who was the supplier of the outlay                                    |
+| `amount`   | [num.Amount](/draft-0/num/amount) | true | Amount paid by the supplier.                                          |
 
