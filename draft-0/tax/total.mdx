@@ -1,0 +1,18 @@
+---
+title: Total
+comment: Generated with GOBL v0.36.0
+---
+
+Total contains a set of Category Totals which in turn contain all the accumulated taxes contained in the document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/total`
+
+## Properties
+
+| Property     | Type                                                      | Req. | Description                                 |
+|--------------|-----------------------------------------------------------|------|---------------------------------------------|
+| `categories` | array of [tax.CategoryTotal](/draft-0/tax/category_total) |      | Grouping of all the taxes by their category |
+| `sum`        | [num.Amount](/draft-0/num/amount)                         | true | Total value of all the taxes applied.       |
+

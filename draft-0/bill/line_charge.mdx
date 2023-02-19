@@ -1,0 +1,20 @@
+---
+title: LineCharge
+comment: Generated with GOBL v0.36.0
+---
+
+LineCharge represents an amount added to the line, and will be applied before taxes.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/LineCharge`
+
+## Properties
+
+| Property  | Type                                      | Req. | Description                                                                |
+|-----------|-------------------------------------------|------|----------------------------------------------------------------------------|
+| `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage if fixed amount not applied                                     |
+| `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed or resulting charge amount to apply (calculated if percent present). |
+| `code`    | string                                    |      | Reference code.                                                            |
+| `reason`  | string                                    |      | Text description as to why the charge was applied                          |
+

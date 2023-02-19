@@ -1,0 +1,26 @@
+---
+title: Item
+comment: Generated with GOBL v0.36.0
+---
+
+Item is used to describe a single product or service.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/item`
+
+## Properties
+
+| Property   | Type                                            | Req. | Description                                                                                                                             |
+|------------|-------------------------------------------------|------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `uuid`     | [uuid.UUID](/draft-0/uuid/uuid)                 |      | Unique identify of this item independent of the Supplier IDs                                                                            |
+| `ref`      | string                                          |      | Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.                                |
+| `name`     | string                                          | true | Brief name of the item                                                                                                                  |
+| `desc`     | string                                          |      | Detailed description                                                                                                                    |
+| `currency` | string                                          |      | Currency used for the item's price.                                                                                                     |
+| `price`    | [num.Amount](/draft-0/num/amount)               | true | Base price of a single unit to be sold.                                                                                                 |
+| `unit`     | [org.Unit](/draft-0/org/unit)                   |      | Unit of measure.                                                                                                                        |
+| `codes`    | array of [org.ItemCode](/draft-0/org/item_code) |      | List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer. |
+| `origin`   | [l10n.CountryCode](/draft-0/l10n/country_code)  |      | Country code of where this item was from originally.                                                                                    |
+| `meta`     | [cbc.Meta](/draft-0/cbc/meta)                   |      | Additional meta information that may be useful                                                                                          |
+

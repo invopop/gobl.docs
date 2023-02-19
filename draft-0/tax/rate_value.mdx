@@ -1,0 +1,21 @@
+---
+title: RateValue
+comment: Generated with GOBL v0.36.0
+---
+
+RateValue contains a percentage rate or fixed amount for a given date range.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/RateValue`
+
+## Properties
+
+| Property    | Type                                      | Req. | Description                                      |
+|-------------|-------------------------------------------|------|--------------------------------------------------|
+| `zones`     | array of [l10n.Code](/draft-0/l10n/code)  |      | Only use this value if one of the zones matches. |
+| `since`     | [cal.Date](/draft-0/cal/date)             |      | Date from which this value should be applied.    |
+| `percent`   | [num.Percentage](/draft-0/num/percentage) | true | Percent rate that should be applied              |
+| `surcharge` | [num.Percentage](/draft-0/num/percentage) |      | An additional surcharge to apply.                |
+| `disabled`  | boolean                                   |      | When true, this value should no longer be used.  |
+

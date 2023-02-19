@@ -1,0 +1,21 @@
+---
+title: Inbox
+comment: Generated with GOBL v0.36.0
+---
+
+Inbox is used to store data about a connection with a service that is responsible for potentially receiving copies of GOBL envelopes or other document formats defined locally.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/inbox`
+
+## Properties
+
+| Property | Type                            | Req. | Description                                                        |
+|----------|---------------------------------|------|--------------------------------------------------------------------|
+| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique ID. Useful if inbox is stored in a database.                |
+| `key`    | [cbc.Key](/draft-0/cbc/key)     | true | Type of inbox being defined.                                       |
+| `role`   | [cbc.Key](/draft-0/cbc/key)     |      | Role assigned to this inbox that may be relevant for the consumer. |
+| `name`   | string                          |      | Human name for the inbox.                                          |
+| `code`   | string                          | true | Actual Code or ID that identifies the Inbox.                       |
+

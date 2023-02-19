@@ -1,0 +1,30 @@
+---
+title: Party
+comment: Generated with GOBL v0.36.0
+---
+
+Party represents a person or business entity.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/party`
+
+## Properties
+
+| Property       | Type                                             | Req. | Description                                                                                                                               |
+|----------------|--------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`           | string                                           |      | Internal ID used to identify the party inside a document.                                                                                 |
+| `uuid`         | [uuid.UUID](/draft-0/uuid/uuid)                  |      | Unique identity code                                                                                                                      |
+| `tax_id`       | [tax.Identity](/draft-0/tax/identity)            |      | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |
+| `name`         | string                                           | true | Legal name or representation of the organization.                                                                                         |
+| `alias`        | string                                           |      | Alternate short name.                                                                                                                     |
+| `people`       | array of [org.Person](/draft-0/org/person)       |      | Details of physical people who represent the party.                                                                                       |
+| `inboxes`      | array of [org.Inbox](/draft-0/org/inbox)         |      | Digital inboxes used for forwarding electronic versions of documents                                                                      |
+| `addresses`    | array of [org.Address](/draft-0/org/address)     |      | Regular post addresses for where information should be sent if needed.                                                                    |
+| `emails`       | array of [org.Email](/draft-0/org/email)         |      | Electronic mail addresses                                                                                                                 |
+| `websites`     | array of [org.Website](/draft-0/org/website)     |      | Public websites that provide further information about the party.                                                                         |
+| `telephones`   | array of [org.Telephone](/draft-0/org/telephone) |      | Regular telephone numbers                                                                                                                 |
+| `registration` | [org.Registration](/draft-0/org/registration)    |      | Additional registration details about the company that may need to be included in a document.                                             |
+| `logos`        | array of [org.Image](/draft-0/org/image)         |      | Images that can be used to identify the party visually.                                                                                   |
+| `meta`         | [cbc.Meta](/draft-0/cbc/meta)                    |      | Any additional semi-structured information that does not fit into the rest of the party.                                                  |
+

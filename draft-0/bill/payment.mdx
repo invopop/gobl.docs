@@ -1,0 +1,20 @@
+---
+title: Payment
+comment: Generated with GOBL v0.36.0
+---
+
+Payment contains details as to how the invoice should be paid.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/invoice#/$defs/Payment`
+
+## Properties
+
+| Property       | Type                                          | Req. | Description                                                                            |
+|----------------|-----------------------------------------------|------|----------------------------------------------------------------------------------------|
+| `payee`        | [org.Party](/draft-0/org/party)               |      | The party responsible for receiving payment of the invoice, if not the supplier.       |
+| `terms`        | [pay.Terms](/draft-0/pay/terms)               |      | Payment terms or conditions.                                                           |
+| `advances`     | array of [pay.Advance](/draft-0/pay/advance)  |      | Any amounts that have been paid in advance and should be deducted from the amount due. |
+| `instructions` | [pay.Instructions](/draft-0/pay/instructions) |      | Details on how payment should be made.                                                 |
+

@@ -1,0 +1,20 @@
+---
+title: Combo
+comment: Generated with GOBL v0.36.0
+---
+
+Combo represents the tax combination of a category code and rate key.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/set#/$defs/Combo`
+
+## Properties
+
+| Property    | Type                                      | Req. | Description                                                                                               |
+|-------------|-------------------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| `cat`       | [cbc.Code](/draft-0/cbc/code)             | true | Tax category code from those available inside a region.                                                   |
+| `rate`      | [cbc.Key](/draft-0/cbc/key)               |      | Rate within a category to apply.                                                                          |
+| `percent`   | [num.Percentage](/draft-0/num/percentage) |      | Percent defines the percentage set manually or determined from the rate key (calculated if rate present). |
+| `surcharge` | [num.Percentage](/draft-0/num/percentage) |      | Some countries require an additional surcharge (calculated if rate present).                              |
+

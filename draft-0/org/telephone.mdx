@@ -1,0 +1,19 @@
+---
+title: Telephone
+comment: Generated with GOBL v0.36.0
+---
+
+Telephone describes what is expected for a telephone number.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/telephone`
+
+## Properties
+
+| Property | Type                            | Req. | Description                                                |
+|----------|---------------------------------|------|------------------------------------------------------------|
+| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity code                                       |
+| `label`  | string                          |      | Identifier for this number.                                |
+| `num`    | string                          | true | The number to be dialed in ITU E.164 international format. |
+

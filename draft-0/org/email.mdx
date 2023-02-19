@@ -1,0 +1,20 @@
+---
+title: Email
+comment: Generated with GOBL v0.36.0
+---
+
+Email describes the electronic mailing details.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/email`
+
+## Properties
+
+| Property | Type                            | Req. | Description                 |
+|----------|---------------------------------|------|-----------------------------|
+| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity code        |
+| `label`  | string                          |      | Identifier for the email.   |
+| `addr`   | string                          | true | Electronic mailing address. |
+| `meta`   | [cbc.Meta](/draft-0/cbc/meta)   |      | Additional fields.          |
+

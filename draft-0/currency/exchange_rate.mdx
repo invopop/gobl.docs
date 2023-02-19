@@ -1,0 +1,18 @@
+---
+title: ExchangeRate
+comment: Generated with GOBL v0.36.0
+---
+
+ExchangeRate contains data on the rate to be used when converting amounts from the document's base currency to whatever is defined.
+
+## Schema ID
+
+`https://gobl.org/draft-0/currency/exchange-rate`
+
+## Properties
+
+| Property   | Type                                    | Req. | Description                                                        |
+|------------|-----------------------------------------|------|--------------------------------------------------------------------|
+| `currency` | [currency.Code](/draft-0/currency/code) | true | ISO currency code this rate represents.                            |
+| `amount`   | [num.Amount](/draft-0/num/amount)       | true | How much is 1.00 of this currency worth in the documents currency. |
+

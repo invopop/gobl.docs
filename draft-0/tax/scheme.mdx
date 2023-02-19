@@ -1,0 +1,21 @@
+---
+title: Scheme
+comment: Generated with GOBL v0.36.0
+---
+
+Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/Scheme`
+
+## Properties
+
+| Property      | Type                                   | Req. | Description                                                                         |
+|---------------|----------------------------------------|------|-------------------------------------------------------------------------------------|
+| `key`         | [cbc.Key](/draft-0/cbc/key)            | true | Key used to identify this scheme                                                    |
+| `name`        | [i18n.String](/draft-0/i18n/string)    | true | Name of this scheme.                                                                |
+| `description` | [i18n.String](/draft-0/i18n/string)    |      | Human details describing what this scheme is used for.                              |
+| `categories`  | array of [cbc.Code](/draft-0/cbc/code) |      | List of tax category codes that can be used when this scheme is applied.            |
+| `note`        | [cbc.Note](/draft-0/cbc/note)          |      | Note defines a message that should be added to a document when this scheme is used. |
+

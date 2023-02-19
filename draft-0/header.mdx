@@ -1,0 +1,23 @@
+---
+title: Header
+comment: Generated with GOBL v0.36.0
+---
+
+Header defines the meta data of the body.
+
+## Schema ID
+
+`https://gobl.org/draft-0/envelope#/$defs/Header`
+
+## Properties
+
+| Property | Type                                     | Req. | Description                                                                                            |
+|----------|------------------------------------------|------|--------------------------------------------------------------------------------------------------------|
+| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid)          | true | Unique UUIDv1 identifier for the envelope.                                                             |
+| `dig`    | [dsig.Digest](/draft-0/dsig/digest)      | true | Digest of the canonical JSON body.                                                                     |
+| `stamps` | array of [cbc.Stamp](/draft-0/cbc/stamp) |      | Seals of approval from other organisations.                                                            |
+| `tags`   | array of string                          |      | Set of labels that describe but have no influence on the data.                                         |
+| `meta`   | [cbc.Meta](/draft-0/cbc/meta)            |      | Additional semi-structured information about this envelope.                                            |
+| `notes`  | string                                   |      | Any information that may be relevant to other humans about this envelope                               |
+| `draft`  | boolean                                  |      | When true, implies that this document should not be considered final. Digital signatures are optional. |
+
