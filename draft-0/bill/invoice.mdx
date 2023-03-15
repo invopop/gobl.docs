@@ -1,6 +1,6 @@
 ---
 title: Invoice
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
 Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
@@ -16,7 +16,7 @@ Invoice represents a payment claim for goods or services supplied under conditio
 | `uuid`           | [uuid.UUID](/draft-0/uuid/uuid)                                   |      | Unique document ID. Not required, but always recommended in addition to the Code.                                |
 | `series`         | string                                                            |      | Used as a prefix to group codes.                                                                                 |
 | `code`           | string                                                            | true | Sequential code used to identify this invoice in tax declarations.                                               |
-| `type`           | [bill.InvoiceType](/draft-0/bill/invoice_type)                    |      | Optional invoice type, leave empty unless needed for a specific situation.                                       |
+| `type`           | [cbc.Key](/draft-0/cbc/key)                                       | true | Type of invoice document subject to the requirements of the local tax regime.                                    |
 | `currency`       | [currency.Code](/draft-0/currency/code)                           | true | Currency for all invoice totals.                                                                                 |
 | `exchange_rates` | array of [currency.ExchangeRate](/draft-0/currency/exchange_rate) |      | Exchange rates to be used when converting the invoices monetary values into other currencies.                    |
 | `tax`            | [bill.Tax](/draft-0/bill/tax)                                     |      | Special tax configuration for billing.                                                                           |

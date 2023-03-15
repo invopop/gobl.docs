@@ -1,6 +1,6 @@
 ---
 title: Party
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
 Party represents a person or business entity.
@@ -13,9 +13,9 @@ Party represents a person or business entity.
 
 | Property       | Type                                             | Req. | Description                                                                                                                               |
 |----------------|--------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`           | string                                           |      | Internal ID used to identify the party inside a document.                                                                                 |
 | `uuid`         | [uuid.UUID](/draft-0/uuid/uuid)                  |      | Unique identity code                                                                                                                      |
 | `tax_id`       | [tax.Identity](/draft-0/tax/identity)            |      | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |
+| `identities`   | array of [org.Identity](/draft-0/org/identity)   |      | Set of codes used to identify the party in other systems.                                                                                 |
 | `name`         | string                                           | true | Legal name or representation of the organization.                                                                                         |
 | `alias`        | string                                           |      | Alternate short name.                                                                                                                     |
 | `people`       | array of [org.Person](/draft-0/org/person)       |      | Details of physical people who represent the party.                                                                                       |

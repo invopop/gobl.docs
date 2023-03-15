@@ -1,9 +1,9 @@
 ---
 title: Message
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
-Message represents the minimum possible contents for a GoBL document type.
+Message represents a simple message object with a title and some content meant.
 
 ## Schema ID
 
@@ -11,9 +11,9 @@ Message represents the minimum possible contents for a GoBL document type.
 
 ## Properties
 
-| Property  | Type                          | Req. | Description                                               |
-|-----------|-------------------------------|------|-----------------------------------------------------------|
-| `title`   | string                        |      | Summary of the message content                            |
-| `content` | string                        | true | Details of what exactly this message wants to communicate |
-| `meta`    | [cbc.Meta](/draft-0/cbc/meta) |      | Any additional semi-structured data that might be useful. |
+| Property  | Type                          | Req. | Description                                                |
+|-----------|-------------------------------|------|------------------------------------------------------------|
+| `title`   | string                        |      | Summary of the message content                             |
+| `content` | string                        | true | Details of what exactly this message wants to communicate. |
+| `meta`    | [cbc.Meta](/draft-0/cbc/meta) |      | Any additional semi-structured data that might be useful.  |
 

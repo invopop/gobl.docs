@@ -1,6 +1,6 @@
 ---
 title: Category
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
 Category contains the definition of a general type of tax inside a region.
@@ -18,4 +18,6 @@ Category contains the definition of a general type of tax inside a region.
 | `desc`     | [i18n.String](/draft-0/i18n/string)    |      |                                                                                                                                                                                                              |
 | `retained` | boolean                                |      | Retained when true implies that the tax amount will be retained by the buyer on behalf of the supplier, and thus subtracted from the invoice taxable base total. Typically used for taxes related to income. |
 | `rates`    | array of [tax.Rate](/draft-0/tax/rate) | true | Specific tax definitions inside this category.                                                                                                                                                               |
+| `tags`     | array of [tax.Tag](/draft-0/tax/tag)   |      | Tags contains a set of tag definitions that can be applied for this tax category.                                                                                                                            |
+| `meta`     | [cbc.Meta](/draft-0/cbc/meta)          |      | Meta contains additional information about the category that is relevant for local frequently used formats.                                                                                                  |
 

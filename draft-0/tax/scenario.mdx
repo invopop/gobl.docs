@@ -1,0 +1,20 @@
+---
+title: Scenario
+comment: Generated with GOBL v0.38.0
+---
+
+Scenario is used to describe a tax scenario of a document based on the combination of document type and tag used.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/Scenario`
+
+## Properties
+
+| Property | Type                                 | Req. | Description                                                        |
+|----------|--------------------------------------|------|--------------------------------------------------------------------|
+| `type`   | array of [cbc.Key](/draft-0/cbc/key) |      | Type of document, if present.                                      |
+| `tags`   | array of [cbc.Key](/draft-0/cbc/key) |      | Tag that was applied to the document                               |
+| `note`   | [cbc.Note](/draft-0/cbc/note)        |      | A note to be added to the document if the scenario is applied.     |
+| `meta`   | [cbc.Meta](/draft-0/cbc/meta)        |      | Any additional local meta data that may be useful in integrations. |
+

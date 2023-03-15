@@ -1,0 +1,18 @@
+---
+title: PrecedingDefinitions
+comment: Generated with GOBL v0.38.0
+---
+
+PrecedingDefinitions contains details about what can be defined in Invoice preceding document data.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/PrecedingDefinitions`
+
+## Properties
+
+| Property             | Type                                                      | Req. | Description                                                                            |
+|----------------------|-----------------------------------------------------------|------|----------------------------------------------------------------------------------------|
+| `corrections`        | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | Corrections contains a list of all the keys that can be used to identify a correction. |
+| `correction_methods` | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | CorrectionMethods describe the methods used to correct an invoice.                     |
+

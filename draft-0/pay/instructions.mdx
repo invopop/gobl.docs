@@ -1,6 +1,6 @@
 ---
 title: Instructions
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
 Instructions determine how the payment has or should be made.
@@ -13,7 +13,7 @@ Instructions determine how the payment has or should be made.
 
 | Property          | Type                                                        | Req. | Description                                                                                      |
 |-------------------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------|
-| `key`             | [pay.MethodKey](/draft-0/pay/method_key)                    | true | How payment is expected or has been arranged to be collected                                     |
+| `key`             | [cbc.Key](/draft-0/cbc/key)                                 | true | How payment is expected or has been arranged to be collected                                     |
 | `detail`          | string                                                      |      | Optional text description of the payment method                                                  |
 | `ref`             | string                                                      |      | Remittance information, a text value used to link the payment with the invoice.                  |
 | `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Instructions for sending payment via a bank transfer.                                            |
