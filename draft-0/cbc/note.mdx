@@ -11,10 +11,10 @@ Note represents a free text of additional information that may be added to a doc
 
 ## Properties
 
-| Property | Type                        | Req. | Description                                                              |
-|----------|-----------------------------|------|--------------------------------------------------------------------------|
-| `key`    | [cbc.Key](/draft-0/cbc/key) |      | Key specifying subject of the text                                       |
-| `code`   | string                      |      | Code used for additional data that may be required to identify the note. |
-| `src`    | [cbc.Key](/draft-0/cbc/key) |      | Source of this note, especially useful when auto-generated.              |
-| `text`   | string                      | true | The contents of the note                                                 |
+| Title  | Property | Type                        | Req. | Description                                                              |
+|--------|----------|-----------------------------|------|--------------------------------------------------------------------------|
+| Key    | `key`    | [cbc.Key](/draft-0/cbc/key) |      | Key specifying subject of the text                                       |
+| Code   | `code`   | string                      |      | Code used for additional data that may be required to identify the note. |
+| Source | `src`    | [cbc.Key](/draft-0/cbc/key) |      | Source of this note, especially useful when auto-generated.              |
+| Text   | `text`   | string                      | true | The contents of the note                                                 |
 

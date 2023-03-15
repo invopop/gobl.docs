@@ -11,15 +11,30 @@ Instructions determine how the payment has or should be made.
 
 ## Properties
 
-| Property          | Type                                                        | Req. | Description                                                                                      |
-|-------------------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------|
-| `key`             | [cbc.Key](/draft-0/cbc/key)                                 | true | How payment is expected or has been arranged to be collected                                     |
-| `detail`          | string                                                      |      | Optional text description of the payment method                                                  |
-| `ref`             | string                                                      |      | Remittance information, a text value used to link the payment with the invoice.                  |
-| `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Instructions for sending payment via a bank transfer.                                            |
-| `card`            | [pay.Card](/draft-0/pay/card)                               |      | Details of the payment that will be made via a credit or debit card.                             |
-| `direct_debit`    | [pay.DirectDebit](/draft-0/pay/direct_debit)                |      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
-| `online`          | array of [pay.Online](/draft-0/pay/online)                  |      | Array of online payment options                                                                  |
-| `notes`           | string                                                      |      | Any additional instructions that may be required to make the payment.                            |
-| `meta`            | [cbc.Meta](/draft-0/cbc/meta)                               |      | Non-structured additional data that may be useful.                                               |
+| Title           | Property          | Type                                                        | Req. | Description                                                                                      |
+|-----------------|-------------------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------|
+| Key             | `key`             | [cbc.Key](/draft-0/cbc/key)                                 | true | How payment is expected or has been arranged to be collected                                     |
+| Detail          | `detail`          | string                                                      |      | Optional text description of the payment method                                                  |
+| Ref             | `ref`             | string                                                      |      | Remittance information, a text value used to link the payment with the invoice.                  |
+| Credit Transfer | `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Instructions for sending payment via a bank transfer.                                            |
+| Card            | `card`            | [pay.Card](/draft-0/pay/card)                               |      | Details of the payment that will be made via a credit or debit card.                             |
+| Direct Debit    | `direct_debit`    | [pay.DirectDebit](/draft-0/pay/direct_debit)                |      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
+| Online          | `online`          | array of [pay.Online](/draft-0/pay/online)                  |      | Array of online payment options                                                                  |
+| Notes           | `notes`           | string                                                      |      | Any additional instructions that may be required to make the payment.                            |
+| Meta            | `meta`            | [cbc.Meta](/draft-0/cbc/meta)                               |      | Non-structured additional data that may be useful.                                               |
+
+## Key Values
+
+| Value             | Description                              |
+|-------------------|------------------------------------------|
+| `any`             | Any method available, no preference      |
+| `card`            | Credit or debit card                     |
+| `credit-transfer` | Sender initiated bank or wire transfer   |
+| `debit-transfer`  | Receiver initiated bank or wire transfer |
+| `cash`            | Cash                                     |
+| `cheque`          | Cheque                                   |
+| `credit`          | Credit                                   |
+| `bank-draft`      | Bankers Draft or Bank Cheque             |
+| `direct-debit`    | Direct debit                             |
+| `online`          | Online or web payment                    |
 

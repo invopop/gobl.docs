@@ -11,10 +11,10 @@ Identity is used to define a code for a specific context.
 
 ## Properties
 
-| Property | Type                            | Req. | Description                                                                                               |
-|----------|---------------------------------|------|-----------------------------------------------------------------------------------------------------------|
-| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity for this identity object.                                                                 |
-| `label`  | string                          |      | Optional label useful for non-standard identities to give a bit more context.                             |
-| `type`   | [cbc.Code](/draft-0/cbc/code)   |      | The type of Code being represented and usually specific for a particular context, country, or tax regime. |
-| `code`   | [cbc.Code](/draft-0/cbc/code)   | true | The actual value of the identity code.                                                                    |
+| Title | Property | Type                            | Req. | Description                                                                                               |
+|-------|----------|---------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| UUID  | `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity for this identity object.                                                                 |
+| Label | `label`  | string                          |      | Optional label useful for non-standard identities to give a bit more context.                             |
+| Type  | `type`   | [cbc.Code](/draft-0/cbc/code)   |      | The type of Code being represented and usually specific for a particular context, country, or tax regime. |
+| Code  | `code`   | [cbc.Code](/draft-0/cbc/code)   | true | The actual value of the identity code.                                                                    |
 

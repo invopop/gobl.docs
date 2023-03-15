@@ -11,16 +11,16 @@ Line is a single row in an invoice.
 
 ## Properties
 
-| Property    | Type                                                      | Req. | Description                                                                 |
-|-------------|-----------------------------------------------------------|------|-----------------------------------------------------------------------------|
-| `uuid`      | [uuid.UUID](/draft-0/uuid/uuid)                           |      | Unique identifier for this line                                             |
-| `i`         | integer                                                   |      | Line number inside the parent (calculated)                                  |
-| `quantity`  | [num.Amount](/draft-0/num/amount)                         | true | Number of items                                                             |
-| `item`      | [org.Item](/draft-0/org/item)                             | true | Details about what is being sold                                            |
-| `sum`       | [num.Amount](/draft-0/num/amount)                         |      | Result of quantity multiplied by the item's price (calculated)              |
-| `discounts` | array of [bill.LineDiscount](/draft-0/bill/line_discount) |      | Discounts applied to this line                                              |
-| `charges`   | array of [bill.LineCharge](/draft-0/bill/line_charge)     |      | Charges applied to this line                                                |
-| `taxes`     | [tax.Set](/draft-0/tax/set)                               |      | Map of taxes to be applied and used in the invoice totals                   |
-| `total`     | [num.Amount](/draft-0/num/amount)                         |      | Total line amount after applying discounts to the sum (calculated).         |
-| `notes`     | array of [cbc.Note](/draft-0/cbc/note)                    |      | Set of specific notes for this line that may be required for clarification. |
+| Title     | Property    | Type                                                      | Req. | Description                                                                 |
+|-----------|-------------|-----------------------------------------------------------|------|-----------------------------------------------------------------------------|
+| UUID      | `uuid`      | [uuid.UUID](/draft-0/uuid/uuid)                           |      | Unique identifier for this line                                             |
+| Index     | `i`         | integer                                                   |      | Line number inside the parent (calculated)                                  |
+| Quantity  | `quantity`  | [num.Amount](/draft-0/num/amount)                         | true | Number of items                                                             |
+| Item      | `item`      | [org.Item](/draft-0/org/item)                             | true | Details about what is being sold                                            |
+| Sum       | `sum`       | [num.Amount](/draft-0/num/amount)                         |      | Result of quantity multiplied by the item's price (calculated)              |
+| Discounts | `discounts` | array of [bill.LineDiscount](/draft-0/bill/line_discount) |      | Discounts applied to this line                                              |
+| Charges   | `charges`   | array of [bill.LineCharge](/draft-0/bill/line_charge)     |      | Charges applied to this line                                                |
+| Taxes     | `taxes`     | [tax.Set](/draft-0/tax/set)                               |      | Map of taxes to be applied and used in the invoice totals                   |
+| Total     | `total`     | [num.Amount](/draft-0/num/amount)                         |      | Total line amount after applying discounts to the sum (calculated).         |
+| Notes     | `notes`     | array of [cbc.Note](/draft-0/cbc/note)                    |      | Set of specific notes for this line that may be required for clarification. |
 
