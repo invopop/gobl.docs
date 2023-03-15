@@ -1,6 +1,6 @@
 ---
 title: Inbox
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
 Inbox is used to store data about a connection with a service that is responsible for potentially receiving copies of GOBL envelopes or other document formats defined locally.
@@ -11,11 +11,11 @@ Inbox is used to store data about a connection with a service that is responsibl
 
 ## Properties
 
-| Property | Type                            | Req. | Description                                                        |
-|----------|---------------------------------|------|--------------------------------------------------------------------|
-| `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique ID. Useful if inbox is stored in a database.                |
-| `key`    | [cbc.Key](/draft-0/cbc/key)     | true | Type of inbox being defined.                                       |
-| `role`   | [cbc.Key](/draft-0/cbc/key)     |      | Role assigned to this inbox that may be relevant for the consumer. |
-| `name`   | string                          |      | Human name for the inbox.                                          |
-| `code`   | string                          | true | Actual Code or ID that identifies the Inbox.                       |
+| Title | Property | Type                            | Req. | Description                                                        |
+|-------|----------|---------------------------------|------|--------------------------------------------------------------------|
+| UUID  | `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique ID. Useful if inbox is stored in a database.                |
+| Key   | `key`    | [cbc.Key](/draft-0/cbc/key)     | true | Type of inbox being defined.                                       |
+| Role  | `role`   | [cbc.Key](/draft-0/cbc/key)     |      | Role assigned to this inbox that may be relevant for the consumer. |
+| Name  | `name`   | string                          |      | Human name for the inbox.                                          |
+|       | `code`   | string                          | true | Actual Code or ID that identifies the Inbox.                       |
 

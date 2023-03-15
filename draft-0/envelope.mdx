@@ -1,9 +1,9 @@
 ---
 title: Envelope
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
-Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
+Envelope wraps around a document adding headers and digital signatures.
 
 ## Schema ID
 
@@ -11,10 +11,10 @@ Envelope wraps around a gobl document and provides support for digest creation a
 
 ## Properties
 
-| Property  | Type                                               | Req. | Description                                                                  |
-|-----------|----------------------------------------------------|------|------------------------------------------------------------------------------|
-| `$schema` | string                                             | true | Schema identifies the schema that should be used to understand this document |
-| `head`    | [Header](/draft-0/header)                          | true | Details on what the contents are                                             |
-| `doc`     | [Document](/draft-0/document)                      | true | The data inside the envelope                                                 |
-| `sigs`    | array of [dsig.Signature](/draft-0/dsig/signature) |      | JSON Web Signatures of the header                                            |
+| Title          | Property  | Type                                               | Req. | Description                                                                  |
+|----------------|-----------|----------------------------------------------------|------|------------------------------------------------------------------------------|
+| JSON Schema ID | `$schema` | string                                             | true | Schema identifies the schema that should be used to understand this document |
+| Header         | `head`    | [Header](/draft-0/header)                          | true | Details on what the contents are                                             |
+| Document       | `doc`     | [Document](/draft-0/document)                      | true | The data inside the envelope                                                 |
+| Signatures     | `sigs`    | array of [dsig.Signature](/draft-0/dsig/signature) |      | JSON Web Signatures of the header                                            |
 

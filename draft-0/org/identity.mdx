@@ -1,0 +1,20 @@
+---
+title: Identity
+comment: Generated with GOBL v0.38.0
+---
+
+Identity is used to define a code for a specific context.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/identity`
+
+## Properties
+
+| Title | Property | Type                            | Req. | Description                                                                                               |
+|-------|----------|---------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| UUID  | `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity for this identity object.                                                                 |
+| Label | `label`  | string                          |      | Optional label useful for non-standard identities to give a bit more context.                             |
+| Type  | `type`   | [cbc.Code](/draft-0/cbc/code)   |      | The type of Code being represented and usually specific for a particular context, country, or tax regime. |
+| Code  | `code`   | [cbc.Code](/draft-0/cbc/code)   | true | The actual value of the identity code.                                                                    |
+

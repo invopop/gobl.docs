@@ -1,6 +1,6 @@
 ---
 title: CreditTransfer
-comment: Generated with GOBL v0.36.0
+comment: Generated with GOBL v0.38.0
 ---
 
 CreditTransfer contains fields that can be used for making payments via a bank transfer or wire.
@@ -11,11 +11,11 @@ CreditTransfer contains fields that can be used for making payments via a bank t
 
 ## Properties
 
-| Property | Type                                | Req. | Description                                            |
-|----------|-------------------------------------|------|--------------------------------------------------------|
-| `iban`   | string                              |      | International Bank Account Number                      |
-| `bic`    | string                              |      | Bank Identifier Code used for international transfers. |
-| `number` | string                              |      | Account number, if IBAN not available.                 |
-| `name`   | string                              |      | Name of the bank.                                      |
-| `branch` | [org.Address](/draft-0/org/address) |      | Bank office branch address, not normally required.     |
+| Title  | Property | Type                                | Req. | Description                                            |
+|--------|----------|-------------------------------------|------|--------------------------------------------------------|
+| IBAN   | `iban`   | string                              |      | International Bank Account Number                      |
+| BIC    | `bic`    | string                              |      | Bank Identifier Code used for international transfers. |
+| Number | `number` | string                              |      | Account number, if IBAN not available.                 |
+| Name   | `name`   | string                              |      | Name of the bank.                                      |
+| Branch | `branch` | [org.Address](/draft-0/org/address) |      | Bank office branch address, not normally required.     |
 

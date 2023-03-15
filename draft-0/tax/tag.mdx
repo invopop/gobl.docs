@@ -1,0 +1,19 @@
+---
+title: Tag
+comment: Generated with GOBL v0.38.0
+---
+
+Tag describes a tax tag that can be used to identify additional requirements in an electronic invoice.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/Tag`
+
+## Properties
+
+| Title | Property | Type                                | Req. | Description                  |
+|-------|----------|-------------------------------------|------|------------------------------|
+| Key   | `key`    | [cbc.Key](/draft-0/cbc/key)         | true | Key used to identify the tag |
+| Name  | `name`   | [i18n.String](/draft-0/i18n/string) |      | Name of this tag.            |
+| Meta  | `meta`   | [cbc.Meta](/draft-0/cbc/meta)       |      | Additional local             |
+

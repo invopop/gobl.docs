@@ -1,0 +1,20 @@
+---
+title: KeyDefinition
+comment: Generated with GOBL v0.38.0
+---
+
+KeyDefinition defines properties of a key that is specific for a regime.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/KeyDefinition`
+
+## Properties
+
+| Title       | Property | Type                                | Req. | Description                                                          |
+|-------------|----------|-------------------------------------|------|----------------------------------------------------------------------|
+| Key         | `key`    | [cbc.Key](/draft-0/cbc/key)         | true | Actual key value.                                                    |
+| Name        | `name`   | [i18n.String](/draft-0/i18n/string) |      | Short name for the key, if relevant.                                 |
+| Description | `desc`   | [i18n.String](/draft-0/i18n/string) |      | Description offering more details about when the key should be used. |
+| Meta        | `meta`   | [cbc.Meta](/draft-0/cbc/meta)       |      | Any additional data that might be relevant in some regimes?          |
+
