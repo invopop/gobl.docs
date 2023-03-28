@@ -1,6 +1,6 @@
 ---
 title: Preceding
-comment: Generated with GOBL v0.38.0
+comment: Generated with GOBL v0.39.0
 ---
 
 Preceding allows for information to be provided about a previous invoice that this one will replace, subtract from, or add to.
@@ -16,7 +16,7 @@ Preceding allows for information to be provided about a previous invoice that th
 | UUID              | `uuid`              | [uuid.UUID](/draft-0/uuid/uuid)          |      | Preceding document's UUID if available can be useful for tracing.                                |
 | Series            | `series`            | string                                   |      | Series identification code                                                                       |
 | Code              | `code`              | string                                   | true | Code of the previous document.                                                                   |
-| Issue Date        | `issue_date`        | [cal.Date](/draft-0/cal/date)            | true | The issue date of the previous document.                                                         |
+| Issue Date        | `issue_date`        | [cal.Date](/draft-0/cal/date)            |      | The issue date of the previous document.                                                         |
 | Reason            | `reason`            | string                                   |      | Human readable description on why the preceding invoice is being replaced.                       |
 | Stamps            | `stamps`            | array of [cbc.Stamp](/draft-0/cbc/stamp) |      | Seals of approval from other organisations that may need to be listed.                           |
 | Corrections       | `corrections`       | array of [cbc.Key](/draft-0/cbc/key)     |      | Tax regime specific keys reflecting why the preceding invoice is being replaced.                 |

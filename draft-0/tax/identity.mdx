@@ -1,6 +1,6 @@
 ---
 title: Identity
-comment: Generated with GOBL v0.38.0
+comment: Generated with GOBL v0.39.0
 ---
 
 Identity stores the details required to identify an entity for tax purposes.
@@ -16,17 +16,7 @@ Identity stores the details required to identify an entity for tax purposes.
 | UUID         | `uuid`    | [uuid.UUID](/draft-0/uuid/uuid)                |      | Unique universal identity code for this tax identity.                                                                                                                                                                                                        |
 | Country Code | `country` | [l10n.CountryCode](/draft-0/l10n/country_code) | true | ISO country code for Where the tax identity was issued.                                                                                                                                                                                                      |
 | Zone Code    | `zone`    | [l10n.Code](/draft-0/l10n/code)                |      | Where inside the country the tax identity holder is based for tax purposes like a village, town, district, city, county, state or province. For some areas, this could be a regular post or zip code. See the regime packages for specific validation rules. |
-| Source Key   | `source`  | [cbc.Key](/draft-0/cbc/key)                    |      | What is the source document of the tax identity.                                                                                                                                                                                                             |
+| Type         | `type`    | [cbc.Key](/draft-0/cbc/key)                    |      | Type is set according the requirements of each regime, some have a single tax document type code, others require a choice to be made.                                                                                                                        |
 | Code         | `code`    | [cbc.Code](/draft-0/cbc/code)                  |      | Normalized code shown on the original identity document.                                                                                                                                                                                                     |
 | Meta         | `meta`    | [cbc.Meta](/draft-0/cbc/meta)                  |      | Additional details that may be required.                                                                                                                                                                                                                     |
-
-## Source Key Values
-
-| Value        | Description                        |
-|--------------|------------------------------------|
-| `tax-agency` | Sourced directly from a tax agency |
-| `passport`   | A passport document                |
-| `national`   | National ID Card or similar        |
-| `permit`     | Residential or similar permit      |
-| `other`      | An other type of source not listed |
 
