@@ -1,6 +1,6 @@
 ---
 title: PrecedingDefinitions
-comment: Generated with GOBL v0.39.0
+comment: Generated with GOBL v0.42.3
 ---
 
 PrecedingDefinitions contains details about what can be defined in Invoice preceding document data.
@@ -13,6 +13,8 @@ PrecedingDefinitions contains details about what can be defined in Invoice prece
 
 | Title              | Property             | Type                                                      | Req. | Description                                                                            |
 |--------------------|----------------------|-----------------------------------------------------------|------|----------------------------------------------------------------------------------------|
+| Types              | `types`              | array of [cbc.Key](/draft-0/cbc/key)                      |      | The types of sub-documents supported by the regime                                     |
+| Stamps             | `stamps`             | array of [cbc.Key](/draft-0/cbc/key)                      |      | Stamps that must be copied from the preceding document.                                |
 | Corrections        | `corrections`        | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | Corrections contains a list of all the keys that can be used to identify a correction. |
 | Correction Methods | `correction_methods` | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | CorrectionMethods describe the methods used to correct an invoice.                     |
 

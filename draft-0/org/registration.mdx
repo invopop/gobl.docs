@@ -1,6 +1,6 @@
 ---
 title: Registration
-comment: Generated with GOBL v0.39.0
+comment: Generated with GOBL v0.42.3
 ---
 
 Registration is used in countries that require additional information to be associated with a company usually related to a specific registration office.
@@ -11,14 +11,16 @@ Registration is used in countries that require additional information to be asso
 
 ## Properties
 
-| Title   | Property  | Type                            | Req. | Description |
-|---------|-----------|---------------------------------|------|-------------|
-| UUID    | `uuid`    | [uuid.UUID](/draft-0/uuid/uuid) |      |             |
-| Office  | `office`  | string                          |      |             |
-| Book    | `book`    | string                          |      |             |
-| Volume  | `volume`  | string                          |      |             |
-| Sheet   | `sheet`   | string                          |      |             |
-| Section | `section` | string                          |      |             |
-| Page    | `page`    | string                          |      |             |
-| Entry   | `entry`   | string                          |      |             |
+| Title    | Property         | Type                                    | Req. | Description |
+|----------|------------------|-----------------------------------------|------|-------------|
+| UUID     | `uuid`           | [uuid.UUID](/draft-0/uuid/uuid)         |      |             |
+| Capital  | `social_capital` | [num.Amount](/draft-0/num/amount)       |      |             |
+| Currency | `currency`       | [currency.Code](/draft-0/currency/code) |      |             |
+| Office   | `office`         | string                                  |      |             |
+| Book     | `book`           | string                                  |      |             |
+| Volume   | `volume`         | string                                  |      |             |
+| Sheet    | `sheet`          | string                                  |      |             |
+| Section  | `section`        | string                                  |      |             |
+| Page     | `page`           | string                                  |      |             |
+| Entry    | `entry`          | string                                  |      |             |
 

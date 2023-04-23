@@ -1,6 +1,6 @@
 ---
 title: Period
-comment: Generated with GOBL v0.39.0
+comment: Generated with GOBL v0.42.3
 ---
 
 Period represents two dates with a start and finish.
@@ -11,8 +11,9 @@ Period represents two dates with a start and finish.
 
 ## Properties
 
-| Title | Property | Type                          | Req. | Description |
-|-------|----------|-------------------------------|------|-------------|
-|       | `start`  | [cal.Date](/draft-0/cal/date) | true |             |
-|       | `end`    | [cal.Date](/draft-0/cal/date) | true |             |
+| Title | Property | Type                          | Req. | Description                                                           |
+|-------|----------|-------------------------------|------|-----------------------------------------------------------------------|
+| Label | `label`  | string                        |      | Label is a short description of the period.                           |
+| Start | `start`  | [cal.Date](/draft-0/cal/date) | true | Start indicates when this period starts.                              |
+| End   | `end`    | [cal.Date](/draft-0/cal/date) | true | End indicates when the period ends, and must be after the start date. |
 

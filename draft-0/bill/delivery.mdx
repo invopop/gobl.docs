@@ -1,6 +1,6 @@
 ---
 title: Delivery
-comment: Generated with GOBL v0.39.0
+comment: Generated with GOBL v0.42.3
 ---
 
 Delivery covers the details of the destination for the products described in the invoice body.
@@ -11,10 +11,10 @@ Delivery covers the details of the destination for the products described in the
 
 ## Properties
 
-| Title      | Property     | Type                            | Req. | Description                                                                                               |
-|------------|--------------|---------------------------------|------|-----------------------------------------------------------------------------------------------------------|
-| Receiver   | `receiver`   | [org.Party](/draft-0/org/party) |      | The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes. |
-| Date       | `date`       | [cal.Date](/draft-0/cal/date)   |      | When the goods should be expected                                                                         |
-| Start Date | `start_date` | [cal.Date](/draft-0/cal/date)   |      | Start of an invoicing or delivery period                                                                  |
-| End Date   | `end_date`   | [cal.Date](/draft-0/cal/date)   |      | End of an invoicing or delivery period                                                                    |
+| Title    | Property   | Type                              | Req. | Description                                                                                               |
+|----------|------------|-----------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| Receiver | `receiver` | [org.Party](/draft-0/org/party)   |      | The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes. |
+| Date     | `date`     | [cal.Date](/draft-0/cal/date)     |      | When the goods should be expected.                                                                        |
+| Period   | `period`   | [cal.Period](/draft-0/cal/period) |      | Period of time in which to expect delivery if a specific date is not available.                           |
+| Meta     | `meta`     | [cbc.Meta](/draft-0/cbc/meta)     |      | Additional custom data.                                                                                   |
 
