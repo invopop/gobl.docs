@@ -1,6 +1,6 @@
 ---
 title: Regime
-comment: Generated with GOBL v0.42.3
+comment: Generated with GOBL v0.42.4
 ---
 
 Regime defines the holding structure for the definitions of taxes inside a country or territory.
@@ -19,6 +19,7 @@ Regime defines the holding structure for the definitions of taxes inside a count
 | Zones          | `zones`          | array of [tax.Zone](/draft-0/tax/zone)                         |      | List of sub-zones inside a country.                                                               |
 | Currency       | `currency`       | [currency.Code](/draft-0/currency/code)                        | true | Currency used by the country.                                                                     |
 | Identity Types | `identity_types` | array of [tax.IdentityType](/draft-0/tax/identity_type)        |      | Identity types specific for the regime and may be validated against.                              |
+| Charge Types   | `charge_types`   | array of [tax.KeyDefinition](/draft-0/tax/key_definition)      |      | Charge types specific for the regime and may be validated or used in the UI as suggestions        |
 | Tags           | `tags`           | array of [tax.Tag](/draft-0/tax/tag)                           |      | Tags that can be applied at the document level to identify additional considerations.             |
 | Scenarios      | `scenarios`      | array of [tax.ScenarioSet](/draft-0/tax/scenario_set)          |      | Sets of scenario definitions for the regime.                                                      |
 | Preceding      | `preceding`      | [tax.PrecedingDefinitions](/draft-0/tax/preceding_definitions) |      | Configuration details for preceding options.                                                      |

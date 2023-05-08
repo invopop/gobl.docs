@@ -1,6 +1,6 @@
 ---
 title: Charge
-comment: Generated with GOBL v0.42.3
+comment: Generated with GOBL v0.42.4
 ---
 
 Charge represents a surchange applied to the complete document independent from the individual lines.
@@ -14,6 +14,7 @@ Charge represents a surchange applied to the complete document independent from 
 | Title       | Property  | Type                                      | Req. | Description                                                                                                                               |
 |-------------|-----------|-------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | UUID        | `uuid`    | [uuid.UUID](/draft-0/uuid/uuid)           |      | Unique identifying for the discount entry                                                                                                 |
+| Key         | `key`     | [cbc.Key](/draft-0/cbc/key)               |      | Key for grouping or identifying charges for tax purposes.                                                                                 |
 | Index       | `i`       | integer                                   |      | Line number inside the list of discounts (calculated).                                                                                    |
 | Reference   | `ref`     | string                                    |      | Code to used to refer to the this charge                                                                                                  |
 | Base        | `base`    | [num.Amount](/draft-0/num/amount)         |      | Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum before discounts. |
