@@ -1,6 +1,6 @@
 ---
 title: Header
-comment: Generated with GOBL v0.42.4
+comment: Generated with GOBL v0.42.8
 ---
 
 Header defines the metadata of the body.
@@ -15,7 +15,7 @@ Header defines the metadata of the body.
 |--------|----------|------------------------------------------|------|--------------------------------------------------------------------------------------------------------|
 | UUID   | `uuid`   | [uuid.UUID](/draft-0/uuid/uuid)          | true | Unique UUIDv1 identifier for the envelope.                                                             |
 | Digest | `dig`    | [dsig.Digest](/draft-0/dsig/digest)      | true | Digest of the canonical JSON body.                                                                     |
-| Stamps | `stamps` | array of [cbc.Stamp](/draft-0/cbc/stamp) |      | Seals of approval from other organisations.                                                            |
+| Stamps | `stamps` | array of [cbc.Stamp](/draft-0/cbc/stamp) |      | Seals of approval from other organisations that can only be added to non-draft envelopes.              |
 | Tags   | `tags`   | array of string                          |      | Set of labels that describe but have no influence on the data.                                         |
 | Meta   | `meta`   | [cbc.Meta](/draft-0/cbc/meta)            |      | Additional semi-structured information about this envelope.                                            |
 | Notes  | `notes`  | string                                   |      | Any information that may be relevant to other humans about this envelope                               |
