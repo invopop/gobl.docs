@@ -13,9 +13,9 @@ Instructions determine how the payment has or should be made.
 
 | Title           | Property          | Type                                                        | Req. | Description                                                                                      |
 |-----------------|-------------------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------|
-| Key             | `key`             | [cbc.Key](/draft-0/cbc/key)                                 | true | How payment is expected or has been arranged to be collected                                     |
+| Key             | `key`             | [cbc.Key](/draft-0/cbc/key)                                 | true | The payment means expected or that have been arranged to be used to make the payment.            |
 | Detail          | `detail`          | string                                                      |      | Optional text description of the payment method                                                  |
-| Ref             | `ref`             | string                                                      |      | Remittance information, a text value used to link the payment with the invoice.                  |
+| Reference       | `ref`             | string                                                      |      | Remittance information or concept, a text value used to link the payment with the invoice.       |
 | Credit Transfer | `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Instructions for sending payment via a bank transfer.                                            |
 | Card            | `card`            | [pay.Card](/draft-0/pay/card)                               |      | Details of the payment that will be made via a credit or debit card.                             |
 | Direct Debit    | `direct_debit`    | [pay.DirectDebit](/draft-0/pay/direct_debit)                |      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
@@ -25,16 +25,18 @@ Instructions determine how the payment has or should be made.
 
 ## Key Values
 
-| Value             | Description                                                |
-|-------------------|------------------------------------------------------------|
-| `any`             | Any method available, no preference.                       |
-| `card`            | Credit or debit card.                                      |
-| `credit-transfer` | Sender initiated bank or wire transfer.                    |
-| `debit-transfer`  | Receiver initiated bank or wire transfer.                  |
-| `cash`            | Cash in hand.                                              |
-| `cheque`          | Cheque from bank.                                          |
-| `credit`          | Using credit from previous transactions with the supplier. |
-| `bank-draft`      | Bankers Draft or Bank Cheque.                              |
-| `direct-debit`    | Direct debit from the customers bank account.              |
-| `online`          | Online or web payment.                                     |
+| Value             | Description                                         |
+|-------------------|-----------------------------------------------------|
+| `any`             | Any method available, no preference.                |
+| `card`            | Payment card.                                       |
+| `credit-transfer` | Sender initiated bank or wire transfer.             |
+| `debit-transfer`  | Receiver initiated bank or wire transfer.           |
+| `cash`            | Cash in hand.                                       |
+| `cheque`          | Cheque from bank.                                   |
+| `bank-draft`      | Bankers Draft or Bank Cheque.                       |
+| `direct-debit`    | Direct debit from the customers bank account.       |
+| `online`          | Online or web payment.                              |
+| `promissory-note` | Promissory note contract.                           |
+| `netting`         | Intercompany clearing or clearing between partners. |
+| `other`           | Other or mutually defined means of payment.         |
 

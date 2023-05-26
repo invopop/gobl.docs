@@ -11,10 +11,12 @@ Scenario is used to describe a tax scenario of a document based on the combinati
 
 ## Properties
 
-| Title | Property | Type                                 | Req. | Description                                                        |
-|-------|----------|--------------------------------------|------|--------------------------------------------------------------------|
-| Type  | `type`   | array of [cbc.Key](/draft-0/cbc/key) |      | Type of document, if present.                                      |
-| Tag   | `tags`   | array of [cbc.Key](/draft-0/cbc/key) |      | Tag that was applied to the document                               |
-| Note  | `note`   | [cbc.Note](/draft-0/cbc/note)        |      | A note to be added to the document if the scenario is applied.     |
-| Meta  | `meta`   | [cbc.Meta](/draft-0/cbc/meta)        |      | Any additional local meta data that may be useful in integrations. |
+| Title | Property | Type                                 | Req. | Description                                                              |
+|-------|----------|--------------------------------------|------|--------------------------------------------------------------------------|
+| Type  | `type`   | array of [cbc.Key](/draft-0/cbc/key) |      | Type of document, if present.                                            |
+| Tag   | `tags`   | array of [cbc.Key](/draft-0/cbc/key) |      | Tag that was applied to the document                                     |
+| Name  | `name`   | [i18n.String](/draft-0/i18n/string)  |      | Name of the scenario for further information.                            |
+| Note  | `note`   | [cbc.Note](/draft-0/cbc/note)        |      | A note to be added to the document if the scenario is applied.           |
+| Codes | `codes`  | [cbc.CodeSet](/draft-0/cbc/code_set) |      | Codes is used to define additional codes for regime specific situations. |
+| Meta  | `meta`   | [cbc.Meta](/draft-0/cbc/meta)        |      | Any additional local meta data that may be useful in integrations.       |
 
