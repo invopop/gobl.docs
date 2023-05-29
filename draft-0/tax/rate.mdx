@@ -1,6 +1,6 @@
 ---
 title: Rate
-comment: Generated with GOBL v0.42.8
+comment: Generated with GOBL v0.50.1
 ---
 
 Rate defines a single rate inside a category
@@ -16,6 +16,8 @@ Rate defines a single rate inside a category
 | Key         | `key`    | [cbc.Key](/draft-0/cbc/key)                       | true | Key identifies this rate within the system                                                                                                                                                               |
 | Name        | `name`   | [i18n.String](/draft-0/i18n/string)               | true | Human name of the rate                                                                                                                                                                                   |
 | Description | `desc`   | [i18n.String](/draft-0/i18n/string)               |      | Useful description of the rate.                                                                                                                                                                          |
-| Values      | `values` | array of [tax.RateValue](/draft-0/tax/rate_value) | true | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
+| Exempt      | `exempt` | boolean                                           |      | Exempt when true implies that the rate when used in a tax Combo should not define a percent value.                                                                                                       |
+| Values      | `values` | array of [tax.RateValue](/draft-0/tax/rate_value) |      | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
+| Codes       | `codes`  | [cbc.CodeSet](/draft-0/cbc/code_set)              |      | Codes defines a set of regime specific code mappings.                                                                                                                                                    |
 | Meta        | `meta`   | [cbc.Meta](/draft-0/cbc/meta)                     |      | Meta contains additional information about the rate that is relevant for local frequently used implementations.                                                                                          |
 

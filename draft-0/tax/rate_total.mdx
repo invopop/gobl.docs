@@ -1,6 +1,6 @@
 ---
 title: RateTotal
-comment: Generated with GOBL v0.42.8
+comment: Generated with GOBL v0.50.1
 ---
 
 RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
@@ -11,11 +11,11 @@ RateTotal contains a sum of all the tax rates in the document with a matching ca
 
 ## Properties
 
-| Title     | Property    | Type                                                        | Req. | Description                                |
-|-----------|-------------|-------------------------------------------------------------|------|--------------------------------------------|
-| Key       | `key`       | [cbc.Key](/draft-0/cbc/key)                                 |      |                                            |
-| Base      | `base`      | [num.Amount](/draft-0/num/amount)                           | true |                                            |
-| Percent   | `percent`   | [num.Percentage](/draft-0/num/percentage)                   | true |                                            |
-| Amount    | `amount`    | [num.Amount](/draft-0/num/amount)                           | true | Total amount of rate, excluding surcharges |
-| Surcharge | `surcharge` | [tax.RateTotalSurcharge](/draft-0/tax/rate_total_surcharge) |      |                                            |
+| Title     | Property    | Type                                                        | Req. | Description                                                |
+|-----------|-------------|-------------------------------------------------------------|------|------------------------------------------------------------|
+| Key       | `key`       | [cbc.Key](/draft-0/cbc/key)                                 |      | Optional rate key is required when grouping.               |
+| Base      | `base`      | [num.Amount](/draft-0/num/amount)                           | true | Base amount that the percentage is applied to.             |
+| Percent   | `percent`   | [num.Percentage](/draft-0/num/percentage)                   |      | Percentage of the rate, which may be nil for exempt rates. |
+| Surcharge | `surcharge` | [tax.RateTotalSurcharge](/draft-0/tax/rate_total_surcharge) |      | Surcharge applied to the rate.                             |
+| Amount    | `amount`    | [num.Amount](/draft-0/num/amount)                           | true | Total amount of rate, excluding surcharges                 |
 
