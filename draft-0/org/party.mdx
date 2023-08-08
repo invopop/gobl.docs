@@ -1,6 +1,6 @@
 ---
 title: Party
-comment: Generated with GOBL v0.50.1
+comment: Generated with GOBL v0.53.0
 ---
 
 Party represents a person or business entity.
@@ -14,10 +14,10 @@ Party represents a person or business entity.
 | Title             | Property       | Type                                             | Req. | Description                                                                                                                               |
 |-------------------|----------------|--------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | UUID              | `uuid`         | [uuid.UUID](/draft-0/uuid/uuid)                  |      | Unique identity code                                                                                                                      |
-| Tax Identity      | `tax_id`       | [tax.Identity](/draft-0/tax/identity)            |      | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |
-| Identities        | `identities`   | array of [org.Identity](/draft-0/org/identity)   |      | Set of codes used to identify the party in other systems.                                                                                 |
 | Name              | `name`         | string                                           | true | Legal name or representation of the organization.                                                                                         |
 | Alias             | `alias`        | string                                           |      | Alternate short name.                                                                                                                     |
+| Tax Identity      | `tax_id`       | [tax.Identity](/draft-0/tax/identity)            |      | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |
+| Identities        | `identities`   | array of [org.Identity](/draft-0/org/identity)   |      | Set of codes used to identify the party in other systems.                                                                                 |
 | People            | `people`       | array of [org.Person](/draft-0/org/person)       |      | Details of physical people who represent the party.                                                                                       |
 | Inboxes           | `inboxes`      | array of [org.Inbox](/draft-0/org/inbox)         |      | Digital inboxes used for forwarding electronic versions of documents                                                                      |
 | Postal Addresses  | `addresses`    | array of [org.Address](/draft-0/org/address)     |      | Regular post addresses for where information should be sent if needed.                                                                    |

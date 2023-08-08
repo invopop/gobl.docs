@@ -1,6 +1,6 @@
 ---
 title: Item
-comment: Generated with GOBL v0.50.1
+comment: Generated with GOBL v0.53.0
 ---
 
 Item is used to describe a single product or service.
@@ -19,7 +19,7 @@ Item is used to describe a single product or service.
 |                   | `name`       | string                                         | true | Brief name of the item                                                                                                                   |
 | Identities        | `identities` | array of [org.Identity](/draft-0/org/identity) |      | List of additional codes, IDs, or SKUs which can be used to identify the item. They should be agreed upon between supplier and customer. |
 |                   | `desc`       | string                                         |      | Detailed description                                                                                                                     |
-| Currency          | `currency`   | string                                         |      | Currency used for the item's price.                                                                                                      |
+| Currency          | `currency`   | [currency.Code](/draft-0/currency/code)        |      | Currency used for the item's price.                                                                                                      |
 | Price             | `price`      | [num.Amount](/draft-0/num/amount)              | true | Base price of a single unit to be sold.                                                                                                  |
 | Unit              | `unit`       | [org.Unit](/draft-0/org/unit)                  |      | Unit of measure.                                                                                                                         |
 | Country of Origin | `origin`     | [l10n.CountryCode](/draft-0/l10n/country_code) |      | Country code of where this item was from originally.                                                                                     |

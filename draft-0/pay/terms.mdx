@@ -1,6 +1,6 @@
 ---
 title: Terms
-comment: Generated with GOBL v0.50.1
+comment: Generated with GOBL v0.53.0
 ---
 
 Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
@@ -13,7 +13,7 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 
 | Title     | Property    | Type                                          | Req. | Description                                |
 |-----------|-------------|-----------------------------------------------|------|--------------------------------------------|
-| Key       | `key`       | [cbc.Key](/draft-0/cbc/key)                   | true | Type of terms to be applied.               |
+| Key       | `key`       | [cbc.Key](/draft-0/cbc/key)                   |      | Type of terms to be applied.               |
 | Detail    | `detail`    | string                                        |      | Text detail of the chosen payment terms.   |
 | Due Dates | `due_dates` | array of [pay.DueDate](/draft-0/pay/due_date) |      | Set of dates for agreed payments.          |
 | Notes     | `notes`     | string                                        |      | Description of the conditions for payment. |
