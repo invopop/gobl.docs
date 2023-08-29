@@ -1,6 +1,6 @@
 ---
 title: Invoice
-comment: Generated with GOBL v0.53.0
+comment: Generated with GOBL v0.55.0
 ---
 
 Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
@@ -14,16 +14,16 @@ Invoice represents a payment claim for goods or services supplied under conditio
 | Title             | Property         | Type                                                              | Req. | Description                                                                                                      |
 |-------------------|------------------|-------------------------------------------------------------------|------|------------------------------------------------------------------------------------------------------------------|
 | UUID              | `uuid`           | [uuid.UUID](/draft-0/uuid/uuid)                                   |      | Unique document ID. Not required, but always recommended in addition to the Code.                                |
+| Type              | `type`           | [cbc.Key](/draft-0/cbc/key)                                       |      | Type of invoice document subject to the requirements of the local tax regime.                                    |
 | Series            | `series`         | string                                                            |      | Used as a prefix to group codes.                                                                                 |
 | Code              | `code`           | string                                                            | true | Sequential code used to identify this invoice in tax declarations.                                               |
-| Type              | `type`           | [cbc.Key](/draft-0/cbc/key)                                       | true | Type of invoice document subject to the requirements of the local tax regime.                                    |
-| Currency          | `currency`       | [currency.Code](/draft-0/currency/code)                           | true | Currency for all invoice totals.                                                                                 |
-| Exchange Rates    | `exchange_rates` | array of [currency.ExchangeRate](/draft-0/currency/exchange_rate) |      | Exchange rates to be used when converting the invoices monetary values into other currencies.                    |
-| Tax               | `tax`            | [bill.Tax](/draft-0/bill/tax)                                     |      | Special tax configuration for billing.                                                                           |
-| Preceding Details | `preceding`      | array of [bill.Preceding](/draft-0/bill/preceding)                |      | Key information regarding previous invoices and potentially details as to why they were corrected.               |
-| Issue Date        | `issue_date`     | [cal.Date](/draft-0/cal/date)                                     | true | When the invoice was created.                                                                                    |
+| Issue Date        | `issue_date`     | [cal.Date](/draft-0/cal/date)                                     |      | When the invoice was created.                                                                                    |
 | Operation Date    | `op_date`        | [cal.Date](/draft-0/cal/date)                                     |      | Date when the operation defined by the invoice became effective.                                                 |
 | Value Date        | `value_date`     | [cal.Date](/draft-0/cal/date)                                     |      | When the taxes of this invoice become accountable, if none set, the issue date is used.                          |
+| Currency          | `currency`       | [currency.Code](/draft-0/currency/code)                           |      | Currency for all invoice totals.                                                                                 |
+| Exchange Rates    | `exchange_rates` | array of [currency.ExchangeRate](/draft-0/currency/exchange_rate) |      | Exchange rates to be used when converting the invoices monetary values into other currencies.                    |
+| Preceding Details | `preceding`      | array of [bill.Preceding](/draft-0/bill/preceding)                |      | Key information regarding previous invoices and potentially details as to why they were corrected.               |
+| Tax               | `tax`            | [bill.Tax](/draft-0/bill/tax)                                     |      | Special tax configuration for billing.                                                                           |
 | Supplier          | `supplier`       | [org.Party](/draft-0/org/party)                                   | true | The taxable entity supplying the goods or services.                                                              |
 | Customer          | `customer`       | [org.Party](/draft-0/org/party)                                   |      | Legal entity receiving the goods or services, may be empty in certain circumstances such as simplified invoices. |
 | Lines             | `lines`          | array of [bill.Line](/draft-0/bill/line)                          |      | List of invoice lines representing each of the items sold to the customer.                                       |

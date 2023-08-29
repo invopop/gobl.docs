@@ -1,6 +1,6 @@
 ---
 title: Rate
-comment: Generated with GOBL v0.53.0
+comment: Generated with GOBL v0.55.0
 ---
 
 Rate defines a single rate inside a category
@@ -11,13 +11,14 @@ Rate defines a single rate inside a category
 
 ## Properties
 
-| Title       | Property | Type                                              | Req. | Description                                                                                                                                                                                              |
-|-------------|----------|---------------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Key         | `key`    | [cbc.Key](/draft-0/cbc/key)                       | true | Key identifies this rate within the system                                                                                                                                                               |
-| Name        | `name`   | [i18n.String](/draft-0/i18n/string)               | true | Human name of the rate                                                                                                                                                                                   |
-| Description | `desc`   | [i18n.String](/draft-0/i18n/string)               |      | Useful description of the rate.                                                                                                                                                                          |
-| Exempt      | `exempt` | boolean                                           |      | Exempt when true implies that the rate when used in a tax Combo should not define a percent value.                                                                                                       |
-| Values      | `values` | array of [tax.RateValue](/draft-0/tax/rate_value) |      | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
-| Codes       | `codes`  | [cbc.CodeSet](/draft-0/cbc/code_set)              |      | Codes defines a set of regime specific code mappings.                                                                                                                                                    |
-| Meta        | `meta`   | [cbc.Meta](/draft-0/cbc/meta)                     |      | Meta contains additional information about the rate that is relevant for local frequently used implementations.                                                                                          |
+| Title       | Property     | Type                                              | Req. | Description                                                                                                                                                                                              |
+|-------------|--------------|---------------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Key         | `key`        | [cbc.Key](/draft-0/cbc/key)                       | true | Key identifies this rate within the system                                                                                                                                                               |
+| Name        | `name`       | [i18n.String](/draft-0/i18n/string)               | true | Human name of the rate                                                                                                                                                                                   |
+| Description | `desc`       | [i18n.String](/draft-0/i18n/string)               |      | Useful description of the rate.                                                                                                                                                                          |
+| Exempt      | `exempt`     | boolean                                           |      | Exempt when true implies that the rate when used in a tax Combo should not define a percent value.                                                                                                       |
+| Values      | `values`     | array of [tax.RateValue](/draft-0/tax/rate_value) |      | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
+| Extensions  | `extensions` | array of [cbc.Key](/draft-0/cbc/key)              |      | Extensions defines a list of keys for codes that can or must be associated with the tax rate for it to be validated. Every key must be defined in the Regime's extensions.                               |
+| Map         | `map`        | [cbc.CodeMap](/draft-0/cbc/code_map)              |      | Map is used to associate specific codes with the chosen rate.                                                                                                                                            |
+| Meta        | `meta`       | [cbc.Meta](/draft-0/cbc/meta)                     |      | Meta contains additional information about the rate that is relevant for local frequently used implementations.                                                                                          |
 
