@@ -1,0 +1,125 @@
+---
+title: "Rounding"
+---
+
+Rounding is a deceptively simple issue for business documents. It sounds straightforward from the outset, but can actually be very complicated to get right. Rules around rounding are widely open to interpretation, and thus algorithms and their results can vary between different companies, services, and applications.
+
+GOBL puts lot of effort into trying to avoid rounding errors and the team has identified three key areas to consider:
+
+- General number rounding.
+- Generating totals.
+- Calculating taxes.
+
+We'll cover each below, but first, let's cover precision.
+
+## Precision
+
+To be able to round effectively, we need to know what level of precision we're dealing with. GOBL uses the [num package](https://github.com/invopop/gobl/tree/main/num), also described in the [numbers section](/overview/numbers), to ensure that every number used has a fixed and predetermined number of decimal places.
+
+For example, the number `1.10` has a precision of 2 decimal places, and `1.1020` has a precision of 4 decimal places. This is important as it can have significant effects on calculations. Take the following example of removing 21% from a price of 10 with 2 decimal precision then re-adding it:
+
+- `10.00` ÷ `1.21` = `8.26`
+- `8.26` × `1.21` = `9.99`
+
+We've lost 1 cent! Now with 4 decimal places:
+
+- `10.0000` ÷ `1.21` = `8.2645`
+- `8.2645` × `1.21` = `10.0000`
+
+Its easy to see how issues around this can compound if not taken into account.
+
+## General Rounding
+
+Rounding is the process of reducing a number with greater precision, into a number with less precision. A simple approach would be to simply cut any excess digits from a number, so `8.2556` would be shortened to `8.25`, but this increases the risk of future calculation mistakes. The best general purpose approach is to remove the excess digits and "round up" to the nearest number. Anything equal to or over 0.50 adds 1 to the base, but any value below 0.50 would not modify the base. For example:
+
+- `8.2551` would become `8.26`.
+- `8.2550` would also become `8.26`.
+- `8.2549` would become `8.25`.
+
+Other [techniques do exist](https://en.wikipedia.org/wiki/Rounding), especially in the world of accounting, but in GOBL we've chosen to stick to the most common and expected form.
+
+## Totals
+
+When a document like an invoice contains a set of line amounts and references to other details such as payments and advances, GOBL ensures that all calculations are made using the currency's base precision plus 2 decimal places. If the lines in the document are defined with even greater precision, this will be maintained in all further calculations.
+
+For example, if you're dealing with Euros or US Dollars for example, the final precision for calculations would be 4. The Japanese Yen (YEN) or Chile's Peso (CLP) whose currencies do not use cents, would only have 2 decimal places added.
+
+When numbers are presented in totals GOBL will always round using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage. An unexpected consequence of this however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
+
+```json
+[
+  {
+    "i": 1,
+    "quantity": "20.10",
+    "item": {
+      "name": "Service 1",
+      "price": "3.05"
+    },
+    "sum": "61.31",
+    "total": "61.31"
+  },
+  {
+    "i": 2,
+    "quantity": "20.10",
+    "item": {
+      "name": "Service 2",
+      "price": "3.05"
+    },
+    "sum": "61.31",
+    "total": "61.31"
+  }
+]
+```
+
+When that data is plugged into a GOBL invoice, the final sum of the invoice is `122.61`, and not `122.62` as would be expected by summing the line totals. We can see why if we add a `0` to the item price:
+
+```json
+[
+  {
+    "i": 1,
+    "quantity": "20.10",
+    "item": {
+      "name": "Service 1",
+      "price": "3.050"
+    },
+    "sum": "61.305",
+    "taxes": [
+      {
+        "cat": "VAT",
+        "percent": "23.0%"
+      }
+    ],
+    "total": "61.305"
+  },
+  {
+    "i": 2,
+    "quantity": "20.10",
+    "item": {
+      "name": "Service 2",
+      "price": "3.050"
+    },
+    "sum": "61.305",
+    "taxes": [
+      {
+        "cat": "VAT",
+        "percent": "23.0%"
+      }
+    ],
+    "total": "61.305"
+  }
+]
+```
+
+It should now be clear why the final sum is `122.61`.
+
+## Calculating Taxes
+
+Adding sales tax or VAT to an invoice requires a decision to be made on where the taxes should be applied. There are three main options:
+
+- Per Item - calculating the tax per-item, before taking into a account quantity or discounts. This is not currently supported by GOBL.
+- Per Line - use a line's "total" to figure out how much tax to apply line-by-line, a frequently used calculation method endorsed by many countries.
+- On Total - group all the line totals together by tax category and rate, then perform the calculation. This method is recommended by the EN 16931 as it gives the greatest precision.
+
+By default, GOBL calculates tax amounts -on totals-, this is the best way to reduce the potential for rounding errors. In practice however, as long as calculations are made using more precision, there is little difference between using the line or total methods.
+
+As per the rest of the calculations made for the totals, taxes are also calculated using a precision of at least the currency's base number of decimal places plus 2.

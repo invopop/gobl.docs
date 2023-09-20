@@ -1,0 +1,41 @@
+---
+title: Mexico
+---
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Country Code | <code>MX</code> |
+| Currency | <code>MXN</code> |
+| Base Time Zone | <code>America/Mexico_City</code> |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| <code>VAT</code> | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>standard</code> | Standard Rate | 16.0% |  |
+| <code>reduced</code> | Reduced (Border) Rate | 8.0% |  |
+| <code>zero</code> | Zero Rate | 0.0% |  |
+| <code>exempt</code> | Exempt |  |  |
+
+## Correction Definitions
+
+This tax regime supports auto-generation of corrective invoices
+or credit and debit notes.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+
+### Stamp Keys
+
+Stamp keys from the previous invoice that need to be referenced:
+- <code>sat-uuid</code>

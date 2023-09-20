@@ -1,6 +1,6 @@
 ---
 title: Invoice
-comment: Generated with GOBL v0.55.0
+comment: Generated with GOBL v0.58.0
 ---
 
 Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
@@ -35,6 +35,7 @@ Invoice represents a payment claim for goods or services supplied under conditio
 | Delivery Details  | `delivery`       | [bill.Delivery](/draft-0/bill/delivery)                           |      | Specific details on delivery of the goods referenced in the invoice.                                             |
 | Totals            | `totals`         | [bill.Totals](/draft-0/bill/totals)                               |      | Summary of all the invoice totals, including taxes (calculated).                                                 |
 | Notes             | `notes`          | array of [cbc.Note](/draft-0/cbc/note)                            |      | Unstructured information that is relevant to the invoice, such as correction or additional legal details.        |
+| Complements       | `complements`    | array of [schema.Object](/draft-0/schema/object)                  |      | Additional complementary objects that add relevant information to the invoice.                                   |
 | Meta              | `meta`           | [cbc.Meta](/draft-0/cbc/meta)                                     |      | Additional semi-structured data that doesn't fit into the body of the invoice.                                   |
 
 ## Type Values

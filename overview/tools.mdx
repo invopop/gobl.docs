@@ -1,0 +1,40 @@
+---
+title: "Tools"
+---
+
+GOBL includes of a set of tools designed to help you build and understand all the different types of business document, alongside helping to convert into and from other formats.
+
+# Core
+
+The main libraries and tools for GOBL processing:
+
+- [GOBL](https://github.com/invopop/gobl) - the main repository, written in [Go](https://go.dev), that defines all the structures, databases, validation rules, and algorithms which are used to build complete business documents.
+- [GOBL CLI](https://github.com/invopop/gobl.cli) - command line interface, streaming server, and [WASM](https://webassembly.org/) binary, that leverage the Go validation and calculation methods to complete GOBL envelopes and payloads. 
+- [GOBL Generator](https://github.com/invopop/gobl.generator) - is used to convert the GOBL JSON Schema into documentation and libraries for other programming languages.
+
+# Build
+
+Aside from the main GOBL repository which can be used directly inside your Go projects, the following tools are designed to help construct GOBL files:
+
+- [GOBL Builder](https://build.gobl.org) [source](https://github.com/invopop/gobl.builder) - learn and discover how to build GOBL documents from the comfort of your web browser. The editor leverages the GOBL CLI WASM binary so you can run validation and calculation processes directly.
+- [GOBL for Ruby](https://github.com/invopop/gobl.ruby) - Easily build or read GOBL documents in Ruby.
+
+We'd love for GOBL to be available in more languages. If you'd like to contribute, checkout the [GOBL Generate](https://github.com/invopop/gobl.generator) mentioned above and open a discussion!
+
+# Convert
+
+Each conversion tool can be used as either a Go library or via a CLI interface:
+
+- [GOBL to FacturaE (Spain)](https://github.com/invopop/gobl.facturae) - convert into the [Spanish FacturaE](https://www.facturae.gob.es/Paginas/Index.aspx) format.
+- [GOBL to FatturaPA (Italy)](https://github.com/invopop/gobl.fatturapa) - convert into the [Italian FatturaPA](https://www.fatturapa.gov.it/it/index.html) format.
+- [GOBL to CFDI (Mexico)](https://github.com/invopop/gobl.cfdi) - convert into the Mexican CFDI format.
+
+If you have an idea for a new conversion tool, [open a discussion](https://github.com/invopop/gobl/discussions/new/choose) to let us know.
+
+# Extras
+
+Not strictly part of GOBL, but are key components currently maintained by the same team:
+
+- [Go jsonschema](https://github.com/invopop/jsonschema) - the library we use to convert the Go structs into JSON Schema.
+- [Go validation](https://github.com/invopop/validation) - makes it easy to define validation rules.
+- [Go yaml](https://github.com/invopop/yaml) - converts YAML documents into JSON so that the `json` Go tags can be used universally.

@@ -1,0 +1,22 @@
+---
+title: CorrectionDefinition
+comment: Generated with GOBL v0.58.0
+---
+
+CorrectionDefinition contains details about what can be defined in .
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime#/$defs/CorrectionDefinition`
+
+## Properties
+
+| Title           | Property          | Type                                                      | Req. | Description                                                                   |
+|-----------------|-------------------|-----------------------------------------------------------|------|-------------------------------------------------------------------------------|
+| Schema          | `schema`          | string                                                    | true | Partial or complete schema URL for the document type supported by correction. |
+| Types           | `types`           | array of [cbc.Key](/draft-0/cbc/key)                      |      | The types of sub-documents supported by the regime                            |
+| Keys            | `keys`            | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | List of all the keys that can be used to identify a correction.               |
+| Methods         | `methods`         | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | Methods describe the methods used to correct an invoice.                      |
+| Reason Required | `reason_required` | boolean                                                   |      | ReasonRequired when true implies that a reason must be provided               |
+| Stamps          | `stamps`          | array of [cbc.Key](/draft-0/cbc/key)                      |      | Stamps that must be copied from the preceding document.                       |
+

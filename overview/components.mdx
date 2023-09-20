@@ -2,16 +2,24 @@
 title: "Components"
 ---
 
-GOBL is three things in one:
+# Schemas
 
-- a [Go SDK](https://github.com/invopop/gobl), [CLI tool, and microservice](https://github.com/invopop/gobl.cli) used to build and validate business documents in JSON,
-- a [repository of global taxes and validation rules](https://github.com/invopop/gobl/tree/main/regimes) defined in code and output into JSON, and,
-- a [JSON Schema](https://github.com/invopop/gobl/tree/main/build/schemas) for easy creation and sharing of GOBL data.
+At it's core, GOBL is a set of [JSON Schema](https://json-schema.org/) definitions that describe business documents.
 
-The base component of GOBL is an [Envelope](/draft-0/envelope). This acts as a wrapper around a [Document](/draft-0/document.md) with the actual payload to be read and used.
+The base schema of GOBL is an [Envelope](/draft-0/envelope).
 
-All structures in GOBL are provided with their [JSON Schema](https://json-schema.org/) definitions generated from the structures in Go.
+An envelope acts as a wrapper around a document (`doc` property) with a special type called [schema.Object](/draft-0/schema/object) that uses the embedded `$schema` property to determine what type of GOBL payload is being used.
 
-JSON Schemas allows us to easily generate structures and definitions of GOBL in other languages, so we also currently support:
+Alongside the `doc` property inside an Envelope, you'll find a `head` of type [head.Header](/draft-0/head/header) and array of signatures ([dsig.Signature](/draft-0/dsig/signature)) which ensure that the data is verifiable with any additional properties that help describe the payload.
 
-- [gobl.ruby](https://github.com/invopop/gobl.ruby) - read GOBL generated files in formal Ruby classes.
+You can find all the pre-built GOBL JSON Schema in the [repository's build directory](https://github.com/invopop/gobl/tree/main/build/schemas)
+
+# Tax Regimes
+
+One of the unique features of GOBL is the desire to create a global point of reference for all tax data worldwide.
+
+The aim is to build a single resource that developers can use to determine what is required locally and incorporate these into their automated processes or UIs.
+
+We have be realistic, the US tax system for example is a total mess and incredibly difficult to put into code, but for most countries around the world based on a VAT or GST system there is hope for trying to put the tax types, rates, and rules into a structured format.
+
+Each tax regime in GOBL is defined in Go as structured data and automatically converted into [JSON files](https://github.com/invopop/gobl/tree/main/build/regimes) that conform to the [tax.Regime](/draft-0/tax/regime) schema specification. Every regime is identified by a code based on the country they represent.

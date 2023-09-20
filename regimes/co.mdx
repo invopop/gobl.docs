@@ -1,0 +1,1186 @@
+---
+title: Colombia
+---
+The Colombian tax regime is based on the DIAN (Dirección de Impuestos y Aduanas Nacionales)
+specifications for electronic invoicing.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Country Code | <code>CO</code> |
+| Currency | <code>COP</code> |
+| Base Time Zone | <code>America/Bogota</code> |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| <code>VAT</code> | VAT | Value Added Tax |
+| <code>IC</code> | IC | Consumption Tax |
+| <code>ICA</code> | ICA | Industry and Commerce Tax |
+| <code>RVAT</code> | ReteIVA | Retención en la fuente por el Impuesto al Valor Agregado |
+| <code>RICA</code> | ReteICA | Retención en la fuente por el Impuesto de Industria y Comercio |
+| <code>RR</code> | Retefuente | Retención en la fuente por el Impuesto de la Renta |
+
+### VAT Rates
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>zero</code> | Zero Rate | 0.0% |  |
+| <code>standard</code> | Standard Rate | 19.0% |  |
+| <code>reduced</code> | Reduced Rate | 5.0% |  |
+
+## Correction Definitions
+
+This tax regime supports auto-generation of corrective invoices
+or credit and debit notes.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+
+### Stamp Keys
+
+Stamp keys from the previous invoice that need to be referenced:
+- <code>dian-cude</code>
+
+### Correction Methods
+
+| Key | Name | Extras |
+| --- | ---- | ------ |
+| <code>partial</code> | Partial refund | <code>dian:1</code> |
+| <code>revoked</code> | Revoked | <code>dian:2</code> |
+| <code>discount</code> | Discount | <code>dian:3</code> |
+| <code>price-adjustment</code> | Adjustment | <code>dian:4</code> |
+| <code>other</code> |  | <code>dian:5</code> |
+
+## Zones
+
+The following zone codes may need to be included in the tax identity
+zone field and, or, address fields.
+
+| Code | Locality | Region |
+| ---- | ---- | ---- |
+| <code>91263</code> | El Encanto | Amazonas |
+| <code>91405</code> | La Chorrera | Amazonas |
+| <code>91407</code> | La Pedrera | Amazonas |
+| <code>91430</code> | La Victoria | Amazonas |
+| <code>91460</code> | Mirití - Paraná | Amazonas |
+| <code>91530</code> | Puerto Alegría | Amazonas |
+| <code>91536</code> | Puerto Arica | Amazonas |
+| <code>91540</code> | Puerto Nariño | Amazonas |
+| <code>91669</code> | Puerto Santander | Amazonas |
+| <code>91798</code> | Tarapacá | Amazonas |
+| <code>05001</code> | Medellín | Antioquia |
+| <code>05002</code> | Abejorral | Antioquia |
+| <code>05004</code> | Abriaquí | Antioquia |
+| <code>05021</code> | Alejandría | Antioquia |
+| <code>05030</code> | Amagá | Antioquia |
+| <code>05031</code> | Amalfi | Antioquia |
+| <code>05034</code> | Andes | Antioquia |
+| <code>05036</code> | Angelópolis | Antioquia |
+| <code>05038</code> | Angostura | Antioquia |
+| <code>05040</code> | Anorí | Antioquia |
+| <code>05042</code> | Santa Fé De Antioquia | Antioquia |
+| <code>05044</code> | Anzá | Antioquia |
+| <code>05045</code> | Apartadó | Antioquia |
+| <code>05051</code> | Arboletes | Antioquia |
+| <code>05055</code> | Argelia | Antioquia |
+| <code>05059</code> | Armenia | Antioquia |
+| <code>05079</code> | Barbosa | Antioquia |
+| <code>05086</code> | Belmira | Antioquia |
+| <code>05088</code> | Bello | Antioquia |
+| <code>05091</code> | Betania | Antioquia |
+| <code>05093</code> | Betulia | Antioquia |
+| <code>05101</code> | Ciudad Bolívar | Antioquia |
+| <code>05107</code> | Briceño | Antioquia |
+| <code>05113</code> | Buriticá | Antioquia |
+| <code>05120</code> | Cáceres | Antioquia |
+| <code>05125</code> | Caicedo | Antioquia |
+| <code>05129</code> | Caldas | Antioquia |
+| <code>05134</code> | Campamento | Antioquia |
+| <code>05138</code> | Cañasgordas | Antioquia |
+| <code>05142</code> | Caracolí | Antioquia |
+| <code>05145</code> | Caramanta | Antioquia |
+| <code>05147</code> | Carepa | Antioquia |
+| <code>05148</code> | El Carmen De Viboral | Antioquia |
+| <code>05150</code> | Carolina | Antioquia |
+| <code>05154</code> | Caucasia | Antioquia |
+| <code>05172</code> | Chigorodó | Antioquia |
+| <code>05190</code> | Cisneros | Antioquia |
+| <code>05197</code> | Cocorná | Antioquia |
+| <code>05206</code> | Concepción | Antioquia |
+| <code>05209</code> | Concordia | Antioquia |
+| <code>05212</code> | Copacabana | Antioquia |
+| <code>05234</code> | Dabeiba | Antioquia |
+| <code>05237</code> | Donmatías | Antioquia |
+| <code>05240</code> | Ebéjico | Antioquia |
+| <code>05250</code> | El Bagre | Antioquia |
+| <code>05264</code> | Entrerríos | Antioquia |
+| <code>05266</code> | Envigado | Antioquia |
+| <code>05282</code> | Fredonia | Antioquia |
+| <code>05284</code> | Frontino | Antioquia |
+| <code>05306</code> | Giraldo | Antioquia |
+| <code>05308</code> | Girardota | Antioquia |
+| <code>05310</code> | Gómez Plata | Antioquia |
+| <code>05313</code> | Granada | Antioquia |
+| <code>05315</code> | Guadalupe | Antioquia |
+| <code>05318</code> | Guarne | Antioquia |
+| <code>05321</code> | Guatapé | Antioquia |
+| <code>05347</code> | Heliconia | Antioquia |
+| <code>05353</code> | Hispania | Antioquia |
+| <code>05360</code> | Itagüí | Antioquia |
+| <code>05361</code> | Ituango | Antioquia |
+| <code>05364</code> | Jardín | Antioquia |
+| <code>05368</code> | Jericó | Antioquia |
+| <code>05376</code> | La Ceja | Antioquia |
+| <code>05380</code> | La Estrella | Antioquia |
+| <code>05390</code> | La Pintada | Antioquia |
+| <code>05400</code> | La Unión | Antioquia |
+| <code>05411</code> | Liborina | Antioquia |
+| <code>05425</code> | Maceo | Antioquia |
+| <code>05440</code> | Marinilla | Antioquia |
+| <code>05467</code> | Montebello | Antioquia |
+| <code>05475</code> | Murindó | Antioquia |
+| <code>05480</code> | Mutatá | Antioquia |
+| <code>05483</code> | Nariño | Antioquia |
+| <code>05490</code> | Necoclí | Antioquia |
+| <code>05495</code> | Nechí | Antioquia |
+| <code>05501</code> | Olaya | Antioquia |
+| <code>05541</code> | Peñol | Antioquia |
+| <code>05543</code> | Peque | Antioquia |
+| <code>05576</code> | Pueblorrico | Antioquia |
+| <code>05579</code> | Puerto Berrío | Antioquia |
+| <code>05585</code> | Puerto Nare | Antioquia |
+| <code>05591</code> | Puerto Triunfo | Antioquia |
+| <code>05604</code> | Remedios | Antioquia |
+| <code>05607</code> | Retiro | Antioquia |
+| <code>05615</code> | Rionegro | Antioquia |
+| <code>05628</code> | Sabanalarga | Antioquia |
+| <code>05631</code> | Sabaneta | Antioquia |
+| <code>05642</code> | Salgar | Antioquia |
+| <code>05647</code> | San Andrés De Cuerquía | Antioquia |
+| <code>05649</code> | San Carlos | Antioquia |
+| <code>05652</code> | San Francisco | Antioquia |
+| <code>05656</code> | San Jerónimo | Antioquia |
+| <code>05658</code> | San José De La Montaña | Antioquia |
+| <code>05659</code> | San Juan De Urabá | Antioquia |
+| <code>05660</code> | San Luis | Antioquia |
+| <code>05664</code> | San Pedro De Los Milagros | Antioquia |
+| <code>05665</code> | San Pedro De Urabá | Antioquia |
+| <code>05667</code> | San Rafael | Antioquia |
+| <code>05670</code> | San Roque | Antioquia |
+| <code>05674</code> | San Vicente Ferrer | Antioquia |
+| <code>05679</code> | Santa Bárbara | Antioquia |
+| <code>05686</code> | Santa Rosa De Osos | Antioquia |
+| <code>05690</code> | Santo Domingo | Antioquia |
+| <code>05697</code> | El Santuario | Antioquia |
+| <code>05736</code> | Segovia | Antioquia |
+| <code>05756</code> | Sonsón | Antioquia |
+| <code>05761</code> | Sopetrán | Antioquia |
+| <code>05789</code> | Támesis | Antioquia |
+| <code>05790</code> | Tarazá | Antioquia |
+| <code>05792</code> | Tarso | Antioquia |
+| <code>05809</code> | Titiribí | Antioquia |
+| <code>05819</code> | Toledo | Antioquia |
+| <code>05837</code> | Turbo | Antioquia |
+| <code>05842</code> | Uramita | Antioquia |
+| <code>05847</code> | Urrao | Antioquia |
+| <code>05854</code> | Valdivia | Antioquia |
+| <code>05856</code> | Valparaíso | Antioquia |
+| <code>05858</code> | Vegachí | Antioquia |
+| <code>05861</code> | Venecia | Antioquia |
+| <code>05873</code> | Vigía Del Fuerte | Antioquia |
+| <code>05885</code> | Yalí | Antioquia |
+| <code>05887</code> | Yarumal | Antioquia |
+| <code>05890</code> | Yolombó | Antioquia |
+| <code>05893</code> | Yondó | Antioquia |
+| <code>05895</code> | Zaragoza | Antioquia |
+| <code>81001</code> | Arauca | Arauca |
+| <code>81065</code> | Arauquita | Arauca |
+| <code>81220</code> | Cravo Norte | Arauca |
+| <code>81300</code> | Fortul | Arauca |
+| <code>81591</code> | Puerto Rondón | Arauca |
+| <code>81736</code> | Saravena | Arauca |
+| <code>81794</code> | Tame | Arauca |
+| <code>08001</code> | Barranquilla | Atlántico |
+| <code>08078</code> | Baranoa | Atlántico |
+| <code>08137</code> | Campo De La Cruz | Atlántico |
+| <code>08141</code> | Candelaria | Atlántico |
+| <code>08296</code> | Galapa | Atlántico |
+| <code>08372</code> | Juan De Acosta | Atlántico |
+| <code>08421</code> | Luruaco | Atlántico |
+| <code>08433</code> | Malambo | Atlántico |
+| <code>08436</code> | Manatí | Atlántico |
+| <code>08520</code> | Palmar De Varela | Atlántico |
+| <code>08549</code> | Piojó | Atlántico |
+| <code>08558</code> | Polonuevo | Atlántico |
+| <code>08560</code> | Ponedera | Atlántico |
+| <code>08573</code> | Puerto Colombia | Atlántico |
+| <code>08606</code> | Repelón | Atlántico |
+| <code>08634</code> | Sabanagrande | Atlántico |
+| <code>08638</code> | Sabanalarga | Atlántico |
+| <code>08675</code> | Santa Lucía | Atlántico |
+| <code>08685</code> | Santo Tomás | Atlántico |
+| <code>08758</code> | Soledad | Atlántico |
+| <code>08770</code> | Suan | Atlántico |
+| <code>08832</code> | Tubará | Atlántico |
+| <code>08849</code> | Usiacurí | Atlántico |
+| <code>11001</code> | Bogotá, D.C. | Bogotá |
+| <code>13001</code> | Cartagena De Indias | Bolívar |
+| <code>13006</code> | Achí | Bolívar |
+| <code>13030</code> | Altos Del Rosario | Bolívar |
+| <code>13042</code> | Arenal | Bolívar |
+| <code>13052</code> | Arjona | Bolívar |
+| <code>13062</code> | Arroyohondo | Bolívar |
+| <code>13074</code> | Barranco De Loba | Bolívar |
+| <code>13140</code> | Calamar | Bolívar |
+| <code>13160</code> | Cantagallo | Bolívar |
+| <code>13188</code> | Cicuco | Bolívar |
+| <code>13212</code> | Córdoba | Bolívar |
+| <code>13222</code> | Clemencia | Bolívar |
+| <code>13244</code> | El Carmen De Bolívar | Bolívar |
+| <code>13248</code> | El Guamo | Bolívar |
+| <code>13268</code> | El Peñón | Bolívar |
+| <code>13300</code> | Hatillo De Loba | Bolívar |
+| <code>13430</code> | Magangué | Bolívar |
+| <code>13433</code> | Mahates | Bolívar |
+| <code>13440</code> | Margarita | Bolívar |
+| <code>13442</code> | María La Baja | Bolívar |
+| <code>13458</code> | Montecristo | Bolívar |
+| <code>13468</code> | Mompós | Bolívar |
+| <code>13473</code> | Morales | Bolívar |
+| <code>13490</code> | Norosí | Bolívar |
+| <code>13549</code> | Pinillos | Bolívar |
+| <code>13580</code> | Regidor | Bolívar |
+| <code>13600</code> | Río Viejo | Bolívar |
+| <code>13620</code> | San Cristóbal | Bolívar |
+| <code>13647</code> | San Estanislao | Bolívar |
+| <code>13650</code> | San Fernando | Bolívar |
+| <code>13654</code> | San Jacinto | Bolívar |
+| <code>13655</code> | San Jacinto Del Cauca | Bolívar |
+| <code>13657</code> | San Juan Nepomuceno | Bolívar |
+| <code>13667</code> | San Martín De Loba | Bolívar |
+| <code>13670</code> | San Pablo | Bolívar |
+| <code>13673</code> | Santa Catalina | Bolívar |
+| <code>13683</code> | Santa Rosa | Bolívar |
+| <code>13688</code> | Santa Rosa Del Sur | Bolívar |
+| <code>13744</code> | Simití | Bolívar |
+| <code>13760</code> | Soplaviento | Bolívar |
+| <code>13780</code> | Talaigua Nuevo | Bolívar |
+| <code>13810</code> | Tiquisio | Bolívar |
+| <code>13836</code> | Turbaco | Bolívar |
+| <code>13838</code> | Turbaná | Bolívar |
+| <code>13873</code> | Villanueva | Bolívar |
+| <code>13894</code> | Zambrano | Bolívar |
+| <code>15001</code> | Tunja | Boyacá |
+| <code>15022</code> | Almeida | Boyacá |
+| <code>15047</code> | Aquitania | Boyacá |
+| <code>15051</code> | Arcabuco | Boyacá |
+| <code>15087</code> | Belén | Boyacá |
+| <code>15090</code> | Berbeo | Boyacá |
+| <code>15092</code> | Betéitiva | Boyacá |
+| <code>15097</code> | Boavita | Boyacá |
+| <code>15104</code> | Boyacá | Boyacá |
+| <code>15106</code> | Briceño | Boyacá |
+| <code>15109</code> | Buenavista | Boyacá |
+| <code>15114</code> | Busbanzá | Boyacá |
+| <code>15131</code> | Caldas | Boyacá |
+| <code>15135</code> | Campohermoso | Boyacá |
+| <code>15162</code> | Cerinza | Boyacá |
+| <code>15172</code> | Chinavita | Boyacá |
+| <code>15176</code> | Chiquinquirá | Boyacá |
+| <code>15180</code> | Chiscas | Boyacá |
+| <code>15183</code> | Chita | Boyacá |
+| <code>15185</code> | Chitaraque | Boyacá |
+| <code>15187</code> | Chivatá | Boyacá |
+| <code>15189</code> | Ciénega | Boyacá |
+| <code>15204</code> | Cómbita | Boyacá |
+| <code>15212</code> | Coper | Boyacá |
+| <code>15215</code> | Corrales | Boyacá |
+| <code>15218</code> | Covarachía | Boyacá |
+| <code>15223</code> | Cubará | Boyacá |
+| <code>15224</code> | Cucaita | Boyacá |
+| <code>15226</code> | Cuítiva | Boyacá |
+| <code>15232</code> | Chíquiza | Boyacá |
+| <code>15236</code> | Chivor | Boyacá |
+| <code>15238</code> | Duitama | Boyacá |
+| <code>15244</code> | El Cocuy | Boyacá |
+| <code>15248</code> | El Espino | Boyacá |
+| <code>15272</code> | Firavitoba | Boyacá |
+| <code>15276</code> | Floresta | Boyacá |
+| <code>15293</code> | Gachantivá | Boyacá |
+| <code>15296</code> | Gámeza | Boyacá |
+| <code>15299</code> | Garagoa | Boyacá |
+| <code>15317</code> | Guacamayas | Boyacá |
+| <code>15322</code> | Guateque | Boyacá |
+| <code>15325</code> | Guayatá | Boyacá |
+| <code>15332</code> | Güicán De La Sierra | Boyacá |
+| <code>15362</code> | Iza | Boyacá |
+| <code>15367</code> | Jenesano | Boyacá |
+| <code>15368</code> | Jericó | Boyacá |
+| <code>15377</code> | Labranzagrande | Boyacá |
+| <code>15380</code> | La Capilla | Boyacá |
+| <code>15401</code> | La Victoria | Boyacá |
+| <code>15403</code> | La Uvita | Boyacá |
+| <code>15407</code> | Villa De Leyva | Boyacá |
+| <code>15425</code> | Macanal | Boyacá |
+| <code>15442</code> | Maripí | Boyacá |
+| <code>15455</code> | Miraflores | Boyacá |
+| <code>15464</code> | Mongua | Boyacá |
+| <code>15466</code> | Monguí | Boyacá |
+| <code>15469</code> | Moniquirá | Boyacá |
+| <code>15476</code> | Motavita | Boyacá |
+| <code>15480</code> | Muzo | Boyacá |
+| <code>15491</code> | Nobsa | Boyacá |
+| <code>15494</code> | Nuevo Colón | Boyacá |
+| <code>15500</code> | Oicatá | Boyacá |
+| <code>15507</code> | Otanche | Boyacá |
+| <code>15511</code> | Pachavita | Boyacá |
+| <code>15514</code> | Páez | Boyacá |
+| <code>15516</code> | Paipa | Boyacá |
+| <code>15518</code> | Pajarito | Boyacá |
+| <code>15522</code> | Panqueba | Boyacá |
+| <code>15531</code> | Pauna | Boyacá |
+| <code>15533</code> | Paya | Boyacá |
+| <code>15537</code> | Paz De Río | Boyacá |
+| <code>15542</code> | Pesca | Boyacá |
+| <code>15550</code> | Pisba | Boyacá |
+| <code>15572</code> | Puerto Boyacá | Boyacá |
+| <code>15580</code> | Quípama | Boyacá |
+| <code>15599</code> | Ramiriquí | Boyacá |
+| <code>15600</code> | Ráquira | Boyacá |
+| <code>15621</code> | Rondón | Boyacá |
+| <code>15632</code> | Saboyá | Boyacá |
+| <code>15638</code> | Sáchica | Boyacá |
+| <code>15646</code> | Samacá | Boyacá |
+| <code>15660</code> | San Eduardo | Boyacá |
+| <code>15664</code> | San José De Pare | Boyacá |
+| <code>15667</code> | San Luis De Gaceno | Boyacá |
+| <code>15673</code> | San Mateo | Boyacá |
+| <code>15676</code> | San Miguel De Sema | Boyacá |
+| <code>15681</code> | San Pablo De Borbur | Boyacá |
+| <code>15686</code> | Santana | Boyacá |
+| <code>15690</code> | Santa María | Boyacá |
+| <code>15693</code> | Santa Rosa De Viterbo | Boyacá |
+| <code>15696</code> | Santa Sofía | Boyacá |
+| <code>15720</code> | Sativanorte | Boyacá |
+| <code>15723</code> | Sativasur | Boyacá |
+| <code>15740</code> | Siachoque | Boyacá |
+| <code>15753</code> | Soatá | Boyacá |
+| <code>15755</code> | Socotá | Boyacá |
+| <code>15757</code> | Socha | Boyacá |
+| <code>15759</code> | Sogamoso | Boyacá |
+| <code>15761</code> | Somondoco | Boyacá |
+| <code>15762</code> | Sora | Boyacá |
+| <code>15763</code> | Sotaquirá | Boyacá |
+| <code>15764</code> | Soracá | Boyacá |
+| <code>15774</code> | Susacón | Boyacá |
+| <code>15776</code> | Sutamarchán | Boyacá |
+| <code>15778</code> | Sutatenza | Boyacá |
+| <code>15790</code> | Tasco | Boyacá |
+| <code>15798</code> | Tenza | Boyacá |
+| <code>15804</code> | Tibaná | Boyacá |
+| <code>15806</code> | Tibasosa | Boyacá |
+| <code>15808</code> | Tinjacá | Boyacá |
+| <code>15810</code> | Tipacoque | Boyacá |
+| <code>15814</code> | Toca | Boyacá |
+| <code>15816</code> | Togüí | Boyacá |
+| <code>15820</code> | Tópaga | Boyacá |
+| <code>15822</code> | Tota | Boyacá |
+| <code>15832</code> | Tununguá | Boyacá |
+| <code>15835</code> | Turmequé | Boyacá |
+| <code>15837</code> | Tuta | Boyacá |
+| <code>15839</code> | Tutazá | Boyacá |
+| <code>15842</code> | Úmbita | Boyacá |
+| <code>15861</code> | Ventaquemada | Boyacá |
+| <code>15879</code> | Viracachá | Boyacá |
+| <code>15897</code> | Zetaquira | Boyacá |
+| <code>17001</code> | Manizales | Caldas |
+| <code>17013</code> | Aguadas | Caldas |
+| <code>17042</code> | Anserma | Caldas |
+| <code>17050</code> | Aranzazu | Caldas |
+| <code>17088</code> | Belalcázar | Caldas |
+| <code>17174</code> | Chinchiná | Caldas |
+| <code>17272</code> | Filadelfia | Caldas |
+| <code>17380</code> | La Dorada | Caldas |
+| <code>17388</code> | La Merced | Caldas |
+| <code>17433</code> | Manzanares | Caldas |
+| <code>17442</code> | Marmato | Caldas |
+| <code>17444</code> | Marquetalia | Caldas |
+| <code>17446</code> | Marulanda | Caldas |
+| <code>17486</code> | Neira | Caldas |
+| <code>17495</code> | Norcasia | Caldas |
+| <code>17513</code> | Pácora | Caldas |
+| <code>17524</code> | Palestina | Caldas |
+| <code>17541</code> | Pensilvania | Caldas |
+| <code>17614</code> | Riosucio | Caldas |
+| <code>17616</code> | Risaralda | Caldas |
+| <code>17653</code> | Salamina | Caldas |
+| <code>17662</code> | Samaná | Caldas |
+| <code>17665</code> | San José | Caldas |
+| <code>17777</code> | Supía | Caldas |
+| <code>17867</code> | Victoria | Caldas |
+| <code>17873</code> | Villamaría | Caldas |
+| <code>17877</code> | Viterbo | Caldas |
+| <code>18001</code> | Florencia | Caquetá |
+| <code>18029</code> | Albania | Caquetá |
+| <code>18094</code> | Belén De Los Andaquíes | Caquetá |
+| <code>18150</code> | Cartagena Del Chairá | Caquetá |
+| <code>18205</code> | Curillo | Caquetá |
+| <code>18247</code> | El Doncello | Caquetá |
+| <code>18256</code> | El Paujíl | Caquetá |
+| <code>18410</code> | La Montañita | Caquetá |
+| <code>18460</code> | Milán | Caquetá |
+| <code>18479</code> | Morelia | Caquetá |
+| <code>18592</code> | Puerto Rico | Caquetá |
+| <code>18610</code> | San José Del Fragua | Caquetá |
+| <code>18753</code> | San Vicente Del Caguán | Caquetá |
+| <code>18756</code> | Solano | Caquetá |
+| <code>18785</code> | Solita | Caquetá |
+| <code>18860</code> | Valparaíso | Caquetá |
+| <code>85001</code> | Yopal | Casanare |
+| <code>85010</code> | Aguazul | Casanare |
+| <code>85015</code> | Chámeza | Casanare |
+| <code>85125</code> | Hato Corozal | Casanare |
+| <code>85136</code> | La Salina | Casanare |
+| <code>85139</code> | Maní | Casanare |
+| <code>85162</code> | Monterrey | Casanare |
+| <code>85225</code> | Nunchía | Casanare |
+| <code>85230</code> | Orocué | Casanare |
+| <code>85250</code> | Paz De Ariporo | Casanare |
+| <code>85263</code> | Pore | Casanare |
+| <code>85279</code> | Recetor | Casanare |
+| <code>85300</code> | Sabanalarga | Casanare |
+| <code>85315</code> | Sácama | Casanare |
+| <code>85325</code> | San Luis De Palenque | Casanare |
+| <code>85400</code> | Támara | Casanare |
+| <code>85410</code> | Tauramena | Casanare |
+| <code>85430</code> | Trinidad | Casanare |
+| <code>85440</code> | Villanueva | Casanare |
+| <code>19001</code> | Popayán | Cauca |
+| <code>19022</code> | Almaguer | Cauca |
+| <code>19050</code> | Argelia | Cauca |
+| <code>19075</code> | Balboa | Cauca |
+| <code>19100</code> | Bolívar | Cauca |
+| <code>19110</code> | Buenos Aires | Cauca |
+| <code>19130</code> | Cajibío | Cauca |
+| <code>19137</code> | Caldono | Cauca |
+| <code>19142</code> | Caloto | Cauca |
+| <code>19212</code> | Corinto | Cauca |
+| <code>19256</code> | El Tambo | Cauca |
+| <code>19290</code> | Florencia | Cauca |
+| <code>19300</code> | Guachené | Cauca |
+| <code>19318</code> | Guapí | Cauca |
+| <code>19355</code> | Inzá | Cauca |
+| <code>19364</code> | Jambaló | Cauca |
+| <code>19392</code> | La Sierra | Cauca |
+| <code>19397</code> | La Vega | Cauca |
+| <code>19418</code> | López De Micay | Cauca |
+| <code>19450</code> | Mercaderes | Cauca |
+| <code>19455</code> | Miranda | Cauca |
+| <code>19473</code> | Morales | Cauca |
+| <code>19513</code> | Padilla | Cauca |
+| <code>19517</code> | Páez | Cauca |
+| <code>19532</code> | Patía | Cauca |
+| <code>19533</code> | Piamonte | Cauca |
+| <code>19548</code> | Piendamó - Tunía | Cauca |
+| <code>19573</code> | Puerto Tejada | Cauca |
+| <code>19585</code> | Puracé | Cauca |
+| <code>19622</code> | Rosas | Cauca |
+| <code>19693</code> | San Sebastián | Cauca |
+| <code>19698</code> | Santander De Quilichao | Cauca |
+| <code>19701</code> | Santa Rosa | Cauca |
+| <code>19743</code> | Silvia | Cauca |
+| <code>19760</code> | Sotara | Cauca |
+| <code>19780</code> | Suárez | Cauca |
+| <code>19785</code> | Sucre | Cauca |
+| <code>19807</code> | Timbío | Cauca |
+| <code>19809</code> | Timbiquí | Cauca |
+| <code>19821</code> | Toribío | Cauca |
+| <code>19824</code> | Totoró | Cauca |
+| <code>19845</code> | Villa Rica | Cauca |
+| <code>20001</code> | Valledupar | Cesar |
+| <code>20011</code> | Aguachica | Cesar |
+| <code>20013</code> | Agustín Codazzi | Cesar |
+| <code>20032</code> | Astrea | Cesar |
+| <code>20045</code> | Becerril | Cesar |
+| <code>20060</code> | Bosconia | Cesar |
+| <code>20175</code> | Chimichagua | Cesar |
+| <code>20178</code> | Chiriguaná | Cesar |
+| <code>20228</code> | Curumaní | Cesar |
+| <code>20238</code> | El Copey | Cesar |
+| <code>20250</code> | El Paso | Cesar |
+| <code>20295</code> | Gamarra | Cesar |
+| <code>20310</code> | González | Cesar |
+| <code>20383</code> | La Gloria | Cesar |
+| <code>20400</code> | La Jagua De Ibirico | Cesar |
+| <code>20443</code> | Manaure Balcón Del Cesar | Cesar |
+| <code>20517</code> | Pailitas | Cesar |
+| <code>20550</code> | Pelaya | Cesar |
+| <code>20570</code> | Pueblo Bello | Cesar |
+| <code>20614</code> | Río De Oro | Cesar |
+| <code>20621</code> | La Paz | Cesar |
+| <code>20710</code> | San Alberto | Cesar |
+| <code>20750</code> | San Diego | Cesar |
+| <code>20770</code> | San Martín | Cesar |
+| <code>20787</code> | Tamalameque | Cesar |
+| <code>27001</code> | Quibdó | Chocó |
+| <code>27006</code> | Acandí | Chocó |
+| <code>27025</code> | Alto Baudó | Chocó |
+| <code>27050</code> | Atrato | Chocó |
+| <code>27073</code> | Bagadó | Chocó |
+| <code>27075</code> | Bahía Solano | Chocó |
+| <code>27077</code> | Bajo Baudó | Chocó |
+| <code>27099</code> | Bojayá | Chocó |
+| <code>27135</code> | El Cantón Del San Pablo | Chocó |
+| <code>27150</code> | Carmen Del Darién | Chocó |
+| <code>27160</code> | Cértegui | Chocó |
+| <code>27205</code> | Condoto | Chocó |
+| <code>27245</code> | El Carmen De Atrato | Chocó |
+| <code>27250</code> | El Litoral Del San Juan | Chocó |
+| <code>27361</code> | Istmina | Chocó |
+| <code>27372</code> | Juradó | Chocó |
+| <code>27413</code> | Lloró | Chocó |
+| <code>27425</code> | Medio Atrato | Chocó |
+| <code>27430</code> | Medio Baudó | Chocó |
+| <code>27450</code> | Medio San Juan | Chocó |
+| <code>27491</code> | Nóvita | Chocó |
+| <code>27495</code> | Nuquí | Chocó |
+| <code>27580</code> | Río Iró | Chocó |
+| <code>27600</code> | Río Quito | Chocó |
+| <code>27615</code> | Riosucio | Chocó |
+| <code>27660</code> | San José Del Palmar | Chocó |
+| <code>27745</code> | Sipí | Chocó |
+| <code>27787</code> | Tadó | Chocó |
+| <code>27800</code> | Unguía | Chocó |
+| <code>27810</code> | Unión Panamericana | Chocó |
+| <code>23001</code> | Montería | Córdoba |
+| <code>23068</code> | Ayapel | Córdoba |
+| <code>23079</code> | Buenavista | Córdoba |
+| <code>23090</code> | Canalete | Córdoba |
+| <code>23162</code> | Cereté | Córdoba |
+| <code>23168</code> | Chimá | Córdoba |
+| <code>23182</code> | Chinú | Córdoba |
+| <code>23189</code> | Ciénaga De Oro | Córdoba |
+| <code>23300</code> | Cotorra | Córdoba |
+| <code>23350</code> | La Apartada | Córdoba |
+| <code>23417</code> | Lorica | Córdoba |
+| <code>23419</code> | Los Córdobas | Córdoba |
+| <code>23464</code> | Momil | Córdoba |
+| <code>23466</code> | Montelíbano | Córdoba |
+| <code>23500</code> | Moñitos | Córdoba |
+| <code>23555</code> | Planeta Rica | Córdoba |
+| <code>23570</code> | Pueblo Nuevo | Córdoba |
+| <code>23574</code> | Puerto Escondido | Córdoba |
+| <code>23580</code> | Puerto Libertador | Córdoba |
+| <code>23586</code> | Purísima De La Concepción | Córdoba |
+| <code>23660</code> | Sahagún | Córdoba |
+| <code>23670</code> | San Andrés De Sotavento | Córdoba |
+| <code>23672</code> | San Antero | Córdoba |
+| <code>23675</code> | San Bernardo Del Viento | Córdoba |
+| <code>23678</code> | San Carlos | Córdoba |
+| <code>23682</code> | San José De Uré | Córdoba |
+| <code>23686</code> | San Pelayo | Córdoba |
+| <code>23807</code> | Tierralta | Córdoba |
+| <code>23815</code> | Tuchín | Córdoba |
+| <code>23855</code> | Valencia | Córdoba |
+| <code>25001</code> | Agua De Dios | Cundinamarca |
+| <code>25019</code> | Albán | Cundinamarca |
+| <code>25035</code> | Anapoima | Cundinamarca |
+| <code>25040</code> | Anolaima | Cundinamarca |
+| <code>25053</code> | Arbeláez | Cundinamarca |
+| <code>25086</code> | Beltrán | Cundinamarca |
+| <code>25095</code> | Bituima | Cundinamarca |
+| <code>25099</code> | Bojacá | Cundinamarca |
+| <code>25120</code> | Cabrera | Cundinamarca |
+| <code>25123</code> | Cachipay | Cundinamarca |
+| <code>25126</code> | Cajicá | Cundinamarca |
+| <code>25148</code> | Caparrapí | Cundinamarca |
+| <code>25151</code> | Cáqueza | Cundinamarca |
+| <code>25154</code> | Carmen De Carupa | Cundinamarca |
+| <code>25168</code> | Chaguaní | Cundinamarca |
+| <code>25175</code> | Chía | Cundinamarca |
+| <code>25178</code> | Chipaque | Cundinamarca |
+| <code>25181</code> | Choachí | Cundinamarca |
+| <code>25183</code> | Chocontá | Cundinamarca |
+| <code>25200</code> | Cogua | Cundinamarca |
+| <code>25214</code> | Cota | Cundinamarca |
+| <code>25224</code> | Cucunubá | Cundinamarca |
+| <code>25245</code> | El Colegio | Cundinamarca |
+| <code>25258</code> | El Peñón | Cundinamarca |
+| <code>25260</code> | El Rosal | Cundinamarca |
+| <code>25269</code> | Facatativá | Cundinamarca |
+| <code>25279</code> | Fómeque | Cundinamarca |
+| <code>25281</code> | Fosca | Cundinamarca |
+| <code>25286</code> | Funza | Cundinamarca |
+| <code>25288</code> | Fúquene | Cundinamarca |
+| <code>25290</code> | Fusagasugá | Cundinamarca |
+| <code>25293</code> | Gachalá | Cundinamarca |
+| <code>25295</code> | Gachancipá | Cundinamarca |
+| <code>25297</code> | Gachetá | Cundinamarca |
+| <code>25299</code> | Gama | Cundinamarca |
+| <code>25307</code> | Girardot | Cundinamarca |
+| <code>25312</code> | Granada | Cundinamarca |
+| <code>25317</code> | Guachetá | Cundinamarca |
+| <code>25320</code> | Guaduas | Cundinamarca |
+| <code>25322</code> | Guasca | Cundinamarca |
+| <code>25324</code> | Guataquí | Cundinamarca |
+| <code>25326</code> | Guatavita | Cundinamarca |
+| <code>25328</code> | Guayabal De Síquima | Cundinamarca |
+| <code>25335</code> | Guayabetal | Cundinamarca |
+| <code>25339</code> | Gutiérrez | Cundinamarca |
+| <code>25368</code> | Jerusalén | Cundinamarca |
+| <code>25372</code> | Junín | Cundinamarca |
+| <code>25377</code> | La Calera | Cundinamarca |
+| <code>25386</code> | La Mesa | Cundinamarca |
+| <code>25394</code> | La Palma | Cundinamarca |
+| <code>25398</code> | La Peña | Cundinamarca |
+| <code>25402</code> | La Vega | Cundinamarca |
+| <code>25407</code> | Lenguazaque | Cundinamarca |
+| <code>25426</code> | Machetá | Cundinamarca |
+| <code>25430</code> | Madrid | Cundinamarca |
+| <code>25436</code> | Manta | Cundinamarca |
+| <code>25438</code> | Medina | Cundinamarca |
+| <code>25473</code> | Mosquera | Cundinamarca |
+| <code>25483</code> | Nariño | Cundinamarca |
+| <code>25486</code> | Nemocón | Cundinamarca |
+| <code>25488</code> | Nilo | Cundinamarca |
+| <code>25489</code> | Nimaima | Cundinamarca |
+| <code>25491</code> | Nocaima | Cundinamarca |
+| <code>25506</code> | Venecia | Cundinamarca |
+| <code>25513</code> | Pacho | Cundinamarca |
+| <code>25518</code> | Paime | Cundinamarca |
+| <code>25524</code> | Pandi | Cundinamarca |
+| <code>25530</code> | Paratebueno | Cundinamarca |
+| <code>25535</code> | Pasca | Cundinamarca |
+| <code>25572</code> | Puerto Salgar | Cundinamarca |
+| <code>25580</code> | Pulí | Cundinamarca |
+| <code>25592</code> | Quebradanegra | Cundinamarca |
+| <code>25594</code> | Quetame | Cundinamarca |
+| <code>25596</code> | Quipile | Cundinamarca |
+| <code>25599</code> | Apulo | Cundinamarca |
+| <code>25612</code> | Ricaurte | Cundinamarca |
+| <code>25645</code> | San Antonio Del Tequendama | Cundinamarca |
+| <code>25649</code> | San Bernardo | Cundinamarca |
+| <code>25653</code> | San Cayetano | Cundinamarca |
+| <code>25658</code> | San Francisco | Cundinamarca |
+| <code>25662</code> | San Juan De Rioseco | Cundinamarca |
+| <code>25718</code> | Sasaima | Cundinamarca |
+| <code>25736</code> | Sesquilé | Cundinamarca |
+| <code>25740</code> | Sibaté | Cundinamarca |
+| <code>25743</code> | Silvania | Cundinamarca |
+| <code>25745</code> | Simijaca | Cundinamarca |
+| <code>25754</code> | Soacha | Cundinamarca |
+| <code>25758</code> | Sopó | Cundinamarca |
+| <code>25769</code> | Subachoque | Cundinamarca |
+| <code>25772</code> | Suesca | Cundinamarca |
+| <code>25777</code> | Supatá | Cundinamarca |
+| <code>25779</code> | Susa | Cundinamarca |
+| <code>25781</code> | Sutatausa | Cundinamarca |
+| <code>25785</code> | Tabio | Cundinamarca |
+| <code>25793</code> | Tausa | Cundinamarca |
+| <code>25797</code> | Tena | Cundinamarca |
+| <code>25799</code> | Tenjo | Cundinamarca |
+| <code>25805</code> | Tibacuy | Cundinamarca |
+| <code>25807</code> | Tibirita | Cundinamarca |
+| <code>25815</code> | Tocaima | Cundinamarca |
+| <code>25817</code> | Tocancipá | Cundinamarca |
+| <code>25823</code> | Topaipí | Cundinamarca |
+| <code>25839</code> | Ubalá | Cundinamarca |
+| <code>25841</code> | Ubaque | Cundinamarca |
+| <code>25843</code> | Villa De San Diego De Ubaté | Cundinamarca |
+| <code>25845</code> | Une | Cundinamarca |
+| <code>25851</code> | Útica | Cundinamarca |
+| <code>25862</code> | Vergara | Cundinamarca |
+| <code>25867</code> | Vianí | Cundinamarca |
+| <code>25871</code> | Villagómez | Cundinamarca |
+| <code>25873</code> | Villapinzón | Cundinamarca |
+| <code>25875</code> | Villeta | Cundinamarca |
+| <code>25878</code> | Viotá | Cundinamarca |
+| <code>25885</code> | Yacopí | Cundinamarca |
+| <code>25898</code> | Zipacón | Cundinamarca |
+| <code>25899</code> | Zipaquirá | Cundinamarca |
+| <code>94001</code> | Inírida | Guainía |
+| <code>94343</code> | Barranco Minas | Guainía |
+| <code>94663</code> | Mapiripana | Guainía |
+| <code>94883</code> | San Felipe | Guainía |
+| <code>94884</code> | Puerto Colombia | Guainía |
+| <code>94885</code> | La Guadalupe | Guainía |
+| <code>94886</code> | Cacahual | Guainía |
+| <code>94887</code> | Pana Pana | Guainía |
+| <code>94888</code> | Morichal | Guainía |
+| <code>95001</code> | San José Del Guaviare | Guaviare |
+| <code>95015</code> | Calamar | Guaviare |
+| <code>95025</code> | El Retorno | Guaviare |
+| <code>95200</code> | Miraflores | Guaviare |
+| <code>41001</code> | Neiva | Huila |
+| <code>41006</code> | Acevedo | Huila |
+| <code>41013</code> | Agrado | Huila |
+| <code>41016</code> | Aipe | Huila |
+| <code>41020</code> | Algeciras | Huila |
+| <code>41026</code> | Altamira | Huila |
+| <code>41078</code> | Baraya | Huila |
+| <code>41132</code> | Campoalegre | Huila |
+| <code>41206</code> | Colombia | Huila |
+| <code>41244</code> | Elías | Huila |
+| <code>41298</code> | Garzón | Huila |
+| <code>41306</code> | Gigante | Huila |
+| <code>41319</code> | Guadalupe | Huila |
+| <code>41349</code> | Hobo | Huila |
+| <code>41357</code> | Íquira | Huila |
+| <code>41359</code> | Isnos | Huila |
+| <code>41378</code> | La Argentina | Huila |
+| <code>41396</code> | La Plata | Huila |
+| <code>41483</code> | Nátaga | Huila |
+| <code>41503</code> | Oporapa | Huila |
+| <code>41518</code> | Paicol | Huila |
+| <code>41524</code> | Palermo | Huila |
+| <code>41530</code> | Palestina | Huila |
+| <code>41548</code> | Pital | Huila |
+| <code>41551</code> | Pitalito | Huila |
+| <code>41615</code> | Rivera | Huila |
+| <code>41660</code> | Saladoblanco | Huila |
+| <code>41668</code> | San Agustín | Huila |
+| <code>41676</code> | Santa María | Huila |
+| <code>41770</code> | Suaza | Huila |
+| <code>41791</code> | Tarqui | Huila |
+| <code>41797</code> | Tesalia | Huila |
+| <code>41799</code> | Tello | Huila |
+| <code>41801</code> | Teruel | Huila |
+| <code>41807</code> | Timaná | Huila |
+| <code>41872</code> | Villavieja | Huila |
+| <code>41885</code> | Yaguará | Huila |
+| <code>44001</code> | Riohacha | La Guajira |
+| <code>44035</code> | Albania | La Guajira |
+| <code>44078</code> | Barrancas | La Guajira |
+| <code>44090</code> | Dibulla | La Guajira |
+| <code>44098</code> | Distracción | La Guajira |
+| <code>44110</code> | El Molino | La Guajira |
+| <code>44279</code> | Fonseca | La Guajira |
+| <code>44378</code> | Hatonuevo | La Guajira |
+| <code>44420</code> | La Jagua Del Pilar | La Guajira |
+| <code>44430</code> | Maicao | La Guajira |
+| <code>44560</code> | Manaure | La Guajira |
+| <code>44650</code> | San Juan Del Cesar | La Guajira |
+| <code>44847</code> | Uribia | La Guajira |
+| <code>44855</code> | Urumita | La Guajira |
+| <code>44874</code> | Villanueva | La Guajira |
+| <code>47001</code> | Santa Marta | Magdalena |
+| <code>47030</code> | Algarrobo | Magdalena |
+| <code>47053</code> | Aracataca | Magdalena |
+| <code>47058</code> | Ariguaní | Magdalena |
+| <code>47161</code> | Cerro De San Antonio | Magdalena |
+| <code>47170</code> | Chivolo | Magdalena |
+| <code>47189</code> | Ciénaga | Magdalena |
+| <code>47205</code> | Concordia | Magdalena |
+| <code>47245</code> | El Banco | Magdalena |
+| <code>47258</code> | El Piñón | Magdalena |
+| <code>47268</code> | El Retén | Magdalena |
+| <code>47288</code> | Fundación | Magdalena |
+| <code>47318</code> | Guamal | Magdalena |
+| <code>47460</code> | Nueva Granada | Magdalena |
+| <code>47541</code> | Pedraza | Magdalena |
+| <code>47545</code> | Pijiño Del Carmen | Magdalena |
+| <code>47551</code> | Pivijay | Magdalena |
+| <code>47555</code> | Plato | Magdalena |
+| <code>47570</code> | Puebloviejo | Magdalena |
+| <code>47605</code> | Remolino | Magdalena |
+| <code>47660</code> | Sabanas De San Ángel | Magdalena |
+| <code>47675</code> | Salamina | Magdalena |
+| <code>47692</code> | San Sebastián De Buenavista | Magdalena |
+| <code>47703</code> | San Zenón | Magdalena |
+| <code>47707</code> | Santa Ana | Magdalena |
+| <code>47720</code> | Santa Bárbara De Pinto | Magdalena |
+| <code>47745</code> | Sitionuevo | Magdalena |
+| <code>47798</code> | Tenerife | Magdalena |
+| <code>47960</code> | Zapayán | Magdalena |
+| <code>47980</code> | Zona Bananera | Magdalena |
+| <code>50001</code> | Villavicencio | Meta |
+| <code>50006</code> | Acacías | Meta |
+| <code>50110</code> | Barranca De Upía | Meta |
+| <code>50124</code> | Cabuyaro | Meta |
+| <code>50150</code> | Castilla La Nueva | Meta |
+| <code>50223</code> | Cubarral | Meta |
+| <code>50226</code> | Cumaral | Meta |
+| <code>50245</code> | El Calvario | Meta |
+| <code>50251</code> | El Castillo | Meta |
+| <code>50270</code> | El Dorado | Meta |
+| <code>50287</code> | Fuente De Oro | Meta |
+| <code>50313</code> | Granada | Meta |
+| <code>50318</code> | Guamal | Meta |
+| <code>50325</code> | Mapiripán | Meta |
+| <code>50330</code> | Mesetas | Meta |
+| <code>50350</code> | La Macarena | Meta |
+| <code>50370</code> | Uribe | Meta |
+| <code>50400</code> | Lejanías | Meta |
+| <code>50450</code> | Puerto Concordia | Meta |
+| <code>50568</code> | Puerto Gaitán | Meta |
+| <code>50573</code> | Puerto López | Meta |
+| <code>50577</code> | Puerto Lleras | Meta |
+| <code>50590</code> | Puerto Rico | Meta |
+| <code>50606</code> | Restrepo | Meta |
+| <code>50680</code> | San Carlos De Guaroa | Meta |
+| <code>50683</code> | San Juan De Arama | Meta |
+| <code>50686</code> | San Juanito | Meta |
+| <code>50689</code> | San Martín | Meta |
+| <code>50711</code> | Vistahermosa | Meta |
+| <code>52001</code> | Pasto | Nariño |
+| <code>52019</code> | Albán | Nariño |
+| <code>52022</code> | Aldana | Nariño |
+| <code>52036</code> | Ancuyá | Nariño |
+| <code>52051</code> | Arboleda | Nariño |
+| <code>52079</code> | Barbacoas | Nariño |
+| <code>52083</code> | Belén | Nariño |
+| <code>52110</code> | Buesaco | Nariño |
+| <code>52203</code> | Colón | Nariño |
+| <code>52207</code> | Consacá | Nariño |
+| <code>52210</code> | Contadero | Nariño |
+| <code>52215</code> | Córdoba | Nariño |
+| <code>52224</code> | Cuaspúd | Nariño |
+| <code>52227</code> | Cumbal | Nariño |
+| <code>52233</code> | Cumbitara | Nariño |
+| <code>52240</code> | Chachagüí | Nariño |
+| <code>52250</code> | El Charco | Nariño |
+| <code>52254</code> | El Peñol | Nariño |
+| <code>52256</code> | El Rosario | Nariño |
+| <code>52258</code> | El Tablón De Gómez | Nariño |
+| <code>52260</code> | El Tambo | Nariño |
+| <code>52287</code> | Funes | Nariño |
+| <code>52317</code> | Guachucal | Nariño |
+| <code>52320</code> | Guaitarilla | Nariño |
+| <code>52323</code> | Gualmatán | Nariño |
+| <code>52352</code> | Iles | Nariño |
+| <code>52354</code> | Imués | Nariño |
+| <code>52356</code> | Ipiales | Nariño |
+| <code>52378</code> | La Cruz | Nariño |
+| <code>52381</code> | La Florida | Nariño |
+| <code>52385</code> | La Llanada | Nariño |
+| <code>52390</code> | La Tola | Nariño |
+| <code>52399</code> | La Unión | Nariño |
+| <code>52405</code> | Leiva | Nariño |
+| <code>52411</code> | Linares | Nariño |
+| <code>52418</code> | Los Andes | Nariño |
+| <code>52427</code> | Magüí | Nariño |
+| <code>52435</code> | Mallama | Nariño |
+| <code>52473</code> | Mosquera | Nariño |
+| <code>52480</code> | Nariño | Nariño |
+| <code>52490</code> | Olaya Herrera | Nariño |
+| <code>52506</code> | Ospina | Nariño |
+| <code>52520</code> | Francisco Pizarro | Nariño |
+| <code>52540</code> | Policarpa | Nariño |
+| <code>52560</code> | Potosí | Nariño |
+| <code>52565</code> | Providencia | Nariño |
+| <code>52573</code> | Puerres | Nariño |
+| <code>52585</code> | Pupiales | Nariño |
+| <code>52612</code> | Ricaurte | Nariño |
+| <code>52621</code> | Roberto Payán | Nariño |
+| <code>52678</code> | Samaniego | Nariño |
+| <code>52683</code> | Sandoná | Nariño |
+| <code>52685</code> | San Bernardo | Nariño |
+| <code>52687</code> | San Lorenzo | Nariño |
+| <code>52693</code> | San Pablo | Nariño |
+| <code>52694</code> | San Pedro De Cartago | Nariño |
+| <code>52696</code> | Santa Bárbara | Nariño |
+| <code>52699</code> | Santacruz | Nariño |
+| <code>52720</code> | Sapuyes | Nariño |
+| <code>52786</code> | Taminango | Nariño |
+| <code>52788</code> | Tangua | Nariño |
+| <code>52835</code> | San Andrés De Tumaco | Nariño |
+| <code>52838</code> | Túquerres | Nariño |
+| <code>52885</code> | Yacuanquer | Nariño |
+| <code>54001</code> | San José De Cúcuta | Norte de Santander |
+| <code>54003</code> | Ábrego | Norte de Santander |
+| <code>54051</code> | Arboledas | Norte de Santander |
+| <code>54099</code> | Bochalema | Norte de Santander |
+| <code>54109</code> | Bucarasica | Norte de Santander |
+| <code>54125</code> | Cácota | Norte de Santander |
+| <code>54128</code> | Cáchira | Norte de Santander |
+| <code>54172</code> | Chinácota | Norte de Santander |
+| <code>54174</code> | Chitagá | Norte de Santander |
+| <code>54206</code> | Convención | Norte de Santander |
+| <code>54223</code> | Cucutilla | Norte de Santander |
+| <code>54239</code> | Durania | Norte de Santander |
+| <code>54245</code> | El Carmen | Norte de Santander |
+| <code>54250</code> | El Tarra | Norte de Santander |
+| <code>54261</code> | El Zulia | Norte de Santander |
+| <code>54313</code> | Gramalote | Norte de Santander |
+| <code>54344</code> | Hacarí | Norte de Santander |
+| <code>54347</code> | Herrán | Norte de Santander |
+| <code>54377</code> | Labateca | Norte de Santander |
+| <code>54385</code> | La Esperanza | Norte de Santander |
+| <code>54398</code> | La Playa | Norte de Santander |
+| <code>54405</code> | Los Patios | Norte de Santander |
+| <code>54418</code> | Lourdes | Norte de Santander |
+| <code>54480</code> | Mutiscua | Norte de Santander |
+| <code>54498</code> | Ocaña | Norte de Santander |
+| <code>54518</code> | Pamplona | Norte de Santander |
+| <code>54520</code> | Pamplonita | Norte de Santander |
+| <code>54553</code> | Puerto Santander | Norte de Santander |
+| <code>54599</code> | Ragonvalia | Norte de Santander |
+| <code>54660</code> | Salazar | Norte de Santander |
+| <code>54670</code> | San Calixto | Norte de Santander |
+| <code>54673</code> | San Cayetano | Norte de Santander |
+| <code>54680</code> | Santiago | Norte de Santander |
+| <code>54720</code> | Sardinata | Norte de Santander |
+| <code>54743</code> | Silos | Norte de Santander |
+| <code>54800</code> | Teorama | Norte de Santander |
+| <code>54810</code> | Tibú | Norte de Santander |
+| <code>54820</code> | Toledo | Norte de Santander |
+| <code>54871</code> | Villa Caro | Norte de Santander |
+| <code>54874</code> | Villa Del Rosario | Norte de Santander |
+| <code>86001</code> | Mocoa | Putumayo |
+| <code>86219</code> | Colón | Putumayo |
+| <code>86320</code> | Orito | Putumayo |
+| <code>86568</code> | Puerto Asís | Putumayo |
+| <code>86569</code> | Puerto Caicedo | Putumayo |
+| <code>86571</code> | Puerto Guzmán | Putumayo |
+| <code>86573</code> | Puerto Leguízamo | Putumayo |
+| <code>86749</code> | Sibundoy | Putumayo |
+| <code>86755</code> | San Francisco | Putumayo |
+| <code>86757</code> | San Miguel | Putumayo |
+| <code>86760</code> | Santiago | Putumayo |
+| <code>86865</code> | Valle Del Guamuez | Putumayo |
+| <code>86885</code> | Villagarzón | Putumayo |
+| <code>63001</code> | Armenia | Quindío |
+| <code>63111</code> | Buenavista | Quindío |
+| <code>63130</code> | Calarcá | Quindío |
+| <code>63190</code> | Circasia | Quindío |
+| <code>63212</code> | Córdoba | Quindío |
+| <code>63272</code> | Filandia | Quindío |
+| <code>63302</code> | Génova | Quindío |
+| <code>63401</code> | La Tebaida | Quindío |
+| <code>63470</code> | Montenegro | Quindío |
+| <code>63548</code> | Pijao | Quindío |
+| <code>63594</code> | Quimbaya | Quindío |
+| <code>63690</code> | Salento | Quindío |
+| <code>66001</code> | Pereira | Risaralda |
+| <code>66045</code> | Apía | Risaralda |
+| <code>66075</code> | Balboa | Risaralda |
+| <code>66088</code> | Belén De Umbría | Risaralda |
+| <code>66170</code> | Dosquebradas | Risaralda |
+| <code>66318</code> | Guática | Risaralda |
+| <code>66383</code> | La Celia | Risaralda |
+| <code>66400</code> | La Virginia | Risaralda |
+| <code>66440</code> | Marsella | Risaralda |
+| <code>66456</code> | Mistrató | Risaralda |
+| <code>66572</code> | Pueblo Rico | Risaralda |
+| <code>66594</code> | Quinchía | Risaralda |
+| <code>66682</code> | Santa Rosa De Cabal | Risaralda |
+| <code>66687</code> | Santuario | Risaralda |
+| <code>88001</code> | San Andrés |  |
+| <code>88564</code> | Providencia |  |
+| <code>68001</code> | Bucaramanga | Santander |
+| <code>68013</code> | Aguada | Santander |
+| <code>68020</code> | Albania | Santander |
+| <code>68051</code> | Aratoca | Santander |
+| <code>68077</code> | Barbosa | Santander |
+| <code>68079</code> | Barichara | Santander |
+| <code>68081</code> | Barrancabermeja | Santander |
+| <code>68092</code> | Betulia | Santander |
+| <code>68101</code> | Bolívar | Santander |
+| <code>68121</code> | Cabrera | Santander |
+| <code>68132</code> | California | Santander |
+| <code>68147</code> | Capitanejo | Santander |
+| <code>68152</code> | Carcasí | Santander |
+| <code>68160</code> | Cepitá | Santander |
+| <code>68162</code> | Cerrito | Santander |
+| <code>68167</code> | Charalá | Santander |
+| <code>68169</code> | Charta | Santander |
+| <code>68176</code> | Chima | Santander |
+| <code>68179</code> | Chipatá | Santander |
+| <code>68190</code> | Cimitarra | Santander |
+| <code>68207</code> | Concepción | Santander |
+| <code>68209</code> | Confines | Santander |
+| <code>68211</code> | Contratación | Santander |
+| <code>68217</code> | Coromoro | Santander |
+| <code>68229</code> | Curití | Santander |
+| <code>68235</code> | El Carmen De Chucurí | Santander |
+| <code>68245</code> | El Guacamayo | Santander |
+| <code>68250</code> | El Peñón | Santander |
+| <code>68255</code> | El Playón | Santander |
+| <code>68264</code> | Encino | Santander |
+| <code>68266</code> | Enciso | Santander |
+| <code>68271</code> | Florián | Santander |
+| <code>68276</code> | Floridablanca | Santander |
+| <code>68296</code> | Galán | Santander |
+| <code>68298</code> | Gámbita | Santander |
+| <code>68307</code> | Girón | Santander |
+| <code>68318</code> | Guaca | Santander |
+| <code>68320</code> | Guadalupe | Santander |
+| <code>68322</code> | Guapotá | Santander |
+| <code>68324</code> | Guavatá | Santander |
+| <code>68327</code> | Güepsa | Santander |
+| <code>68344</code> | Hato | Santander |
+| <code>68368</code> | Jesús María | Santander |
+| <code>68370</code> | Jordán | Santander |
+| <code>68377</code> | La Belleza | Santander |
+| <code>68385</code> | Landázuri | Santander |
+| <code>68397</code> | La Paz | Santander |
+| <code>68406</code> | Lebrija | Santander |
+| <code>68418</code> | Los Santos | Santander |
+| <code>68425</code> | Macaravita | Santander |
+| <code>68432</code> | Málaga | Santander |
+| <code>68444</code> | Matanza | Santander |
+| <code>68464</code> | Mogotes | Santander |
+| <code>68468</code> | Molagavita | Santander |
+| <code>68498</code> | Ocamonte | Santander |
+| <code>68500</code> | Oiba | Santander |
+| <code>68502</code> | Onzaga | Santander |
+| <code>68522</code> | Palmar | Santander |
+| <code>68524</code> | Palmas Del Socorro | Santander |
+| <code>68533</code> | Páramo | Santander |
+| <code>68547</code> | Piedecuesta | Santander |
+| <code>68549</code> | Pinchote | Santander |
+| <code>68572</code> | Puente Nacional | Santander |
+| <code>68573</code> | Puerto Parra | Santander |
+| <code>68575</code> | Puerto Wilches | Santander |
+| <code>68615</code> | Rionegro | Santander |
+| <code>68655</code> | Sabana De Torres | Santander |
+| <code>68669</code> | San Andrés | Santander |
+| <code>68673</code> | San Benito | Santander |
+| <code>68679</code> | San Gil | Santander |
+| <code>68682</code> | San Joaquín | Santander |
+| <code>68684</code> | San José De Miranda | Santander |
+| <code>68686</code> | San Miguel | Santander |
+| <code>68689</code> | San Vicente De Chucurí | Santander |
+| <code>68705</code> | Santa Bárbara | Santander |
+| <code>68720</code> | Santa Helena Del Opón | Santander |
+| <code>68745</code> | Simacota | Santander |
+| <code>68755</code> | Socorro | Santander |
+| <code>68770</code> | Suaita | Santander |
+| <code>68773</code> | Sucre | Santander |
+| <code>68780</code> | Suratá | Santander |
+| <code>68820</code> | Tona | Santander |
+| <code>68855</code> | Valle De San José | Santander |
+| <code>68861</code> | Vélez | Santander |
+| <code>68867</code> | Vetas | Santander |
+| <code>68872</code> | Villanueva | Santander |
+| <code>68895</code> | Zapatoca | Santander |
+| <code>70001</code> | Sincelejo | Sucre |
+| <code>70110</code> | Buenavista | Sucre |
+| <code>70124</code> | Caimito | Sucre |
+| <code>70204</code> | Colosó | Sucre |
+| <code>70215</code> | Corozal | Sucre |
+| <code>70221</code> | Coveñas | Sucre |
+| <code>70230</code> | Chalán | Sucre |
+| <code>70233</code> | El Roble | Sucre |
+| <code>70235</code> | Galeras | Sucre |
+| <code>70265</code> | Guaranda | Sucre |
+| <code>70400</code> | La Unión | Sucre |
+| <code>70418</code> | Los Palmitos | Sucre |
+| <code>70429</code> | Majagual | Sucre |
+| <code>70473</code> | Morroa | Sucre |
+| <code>70508</code> | Ovejas | Sucre |
+| <code>70523</code> | Palmito | Sucre |
+| <code>70670</code> | Sampués | Sucre |
+| <code>70678</code> | San Benito Abad | Sucre |
+| <code>70702</code> | San Juan De Betulia | Sucre |
+| <code>70708</code> | San Marcos | Sucre |
+| <code>70713</code> | San Onofre | Sucre |
+| <code>70717</code> | San Pedro | Sucre |
+| <code>70742</code> | San Luis De Sincé | Sucre |
+| <code>70771</code> | Sucre | Sucre |
+| <code>70820</code> | Santiago De Tolú | Sucre |
+| <code>70823</code> | Tolú Viejo | Sucre |
+| <code>73001</code> | Ibagué | Tolima |
+| <code>73024</code> | Alpujarra | Tolima |
+| <code>73026</code> | Alvarado | Tolima |
+| <code>73030</code> | Ambalema | Tolima |
+| <code>73043</code> | Anzoátegui | Tolima |
+| <code>73055</code> | Armero | Tolima |
+| <code>73067</code> | Ataco | Tolima |
+| <code>73124</code> | Cajamarca | Tolima |
+| <code>73148</code> | Carmen De Apicalá | Tolima |
+| <code>73152</code> | Casabianca | Tolima |
+| <code>73168</code> | Chaparral | Tolima |
+| <code>73200</code> | Coello | Tolima |
+| <code>73217</code> | Coyaima | Tolima |
+| <code>73226</code> | Cunday | Tolima |
+| <code>73236</code> | Dolores | Tolima |
+| <code>73268</code> | Espinal | Tolima |
+| <code>73270</code> | Falan | Tolima |
+| <code>73275</code> | Flandes | Tolima |
+| <code>73283</code> | Fresno | Tolima |
+| <code>73319</code> | Guamo | Tolima |
+| <code>73347</code> | Herveo | Tolima |
+| <code>73349</code> | Honda | Tolima |
+| <code>73352</code> | Icononzo | Tolima |
+| <code>73408</code> | Lérida | Tolima |
+| <code>73411</code> | Líbano | Tolima |
+| <code>73443</code> | San Sebastián De Mariquita | Tolima |
+| <code>73449</code> | Melgar | Tolima |
+| <code>73461</code> | Murillo | Tolima |
+| <code>73483</code> | Natagaima | Tolima |
+| <code>73504</code> | Ortega | Tolima |
+| <code>73520</code> | Palocabildo | Tolima |
+| <code>73547</code> | Piedras | Tolima |
+| <code>73555</code> | Planadas | Tolima |
+| <code>73563</code> | Prado | Tolima |
+| <code>73585</code> | Purificación | Tolima |
+| <code>73616</code> | Rioblanco | Tolima |
+| <code>73622</code> | Roncesvalles | Tolima |
+| <code>73624</code> | Rovira | Tolima |
+| <code>73671</code> | Saldaña | Tolima |
+| <code>73675</code> | San Antonio | Tolima |
+| <code>73678</code> | San Luis | Tolima |
+| <code>73686</code> | Santa Isabel | Tolima |
+| <code>73770</code> | Suárez | Tolima |
+| <code>73854</code> | Valle De San Juan | Tolima |
+| <code>73861</code> | Venadillo | Tolima |
+| <code>73870</code> | Villahermosa | Tolima |
+| <code>73873</code> | Villarrica | Tolima |
+| <code>76001</code> | Cali | Valle de Cauca |
+| <code>76020</code> | Alcalá | Valle de Cauca |
+| <code>76036</code> | Andalucía | Valle de Cauca |
+| <code>76041</code> | Ansermanuevo | Valle de Cauca |
+| <code>76054</code> | Argelia | Valle de Cauca |
+| <code>76100</code> | Bolívar | Valle de Cauca |
+| <code>76109</code> | Buenaventura | Valle de Cauca |
+| <code>76111</code> | Guadalajara De Buga | Valle de Cauca |
+| <code>76113</code> | Bugalagrande | Valle de Cauca |
+| <code>76122</code> | Caicedonia | Valle de Cauca |
+| <code>76126</code> | Calima | Valle de Cauca |
+| <code>76130</code> | Candelaria | Valle de Cauca |
+| <code>76147</code> | Cartago | Valle de Cauca |
+| <code>76233</code> | Dagua | Valle de Cauca |
+| <code>76243</code> | El Águila | Valle de Cauca |
+| <code>76246</code> | El Cairo | Valle de Cauca |
+| <code>76248</code> | El Cerrito | Valle de Cauca |
+| <code>76250</code> | El Dovio | Valle de Cauca |
+| <code>76275</code> | Florida | Valle de Cauca |
+| <code>76306</code> | Ginebra | Valle de Cauca |
+| <code>76318</code> | Guacarí | Valle de Cauca |
+| <code>76364</code> | Jamundí | Valle de Cauca |
+| <code>76377</code> | La Cumbre | Valle de Cauca |
+| <code>76400</code> | La Unión | Valle de Cauca |
+| <code>76403</code> | La Victoria | Valle de Cauca |
+| <code>76497</code> | Obando | Valle de Cauca |
+| <code>76520</code> | Palmira | Valle de Cauca |
+| <code>76563</code> | Pradera | Valle de Cauca |
+| <code>76606</code> | Restrepo | Valle de Cauca |
+| <code>76616</code> | Riofrío | Valle de Cauca |
+| <code>76622</code> | Roldanillo | Valle de Cauca |
+| <code>76670</code> | San Pedro | Valle de Cauca |
+| <code>76736</code> | Sevilla | Valle de Cauca |
+| <code>76823</code> | Toro | Valle de Cauca |
+| <code>76828</code> | Trujillo | Valle de Cauca |
+| <code>76834</code> | Tuluá | Valle de Cauca |
+| <code>76845</code> | Ulloa | Valle de Cauca |
+| <code>76863</code> | Versalles | Valle de Cauca |
+| <code>76869</code> | Vijes | Valle de Cauca |
+| <code>76890</code> | Yotoco | Valle de Cauca |
+| <code>76892</code> | Yumbo | Valle de Cauca |
+| <code>76895</code> | Zarzal | Valle de Cauca |
+| <code>97001</code> | Mitú | Vaupés |
+| <code>97161</code> | Carurú | Vaupés |
+| <code>97511</code> | Pacoa | Vaupés |
+| <code>97666</code> | Taraira | Vaupés |
+| <code>97777</code> | Papunahua | Vaupés |
+| <code>97889</code> | Yavaraté | Vaupés |
+| <code>99001</code> | Puerto Carreño | Vichada |
+| <code>99524</code> | La Primavera | Vichada |
+| <code>99624</code> | Santa Rosalía | Vichada |
+| <code>99773</code> | Cumaribo | Vichada |

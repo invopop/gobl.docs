@@ -33,11 +33,17 @@
       "pages": [
         "introduction",
         "overview/components",
+        "overview/tools",
         "overview/versions",
         "overview/schemas",
         "overview/numbers",
+        "overview/rounding",
         "overview/canonicalization"
       ]
+    },
+    {
+      "group": "Use Cases",
+      "pages": ["use-cases/invoicing"]
     },
     {
       "group": "Quick Start",
@@ -48,17 +54,29 @@
       ]
     },
     {
+      "group": "Tax Regimes",
+      "pages": [
+        "regimes/co",
+        "regimes/es",
+        "regimes/fr",
+        "regimes/gb",
+        "regimes/it",
+        "regimes/mx",
+        "regimes/nl",
+        "regimes/pt",
+        "regimes/us"
+      ]
+    },
+    {
       "group": "Schemas (Draft 0)",
       "pages": [
         "draft-0",
         "draft-0/envelope",
-        "draft-0/header",
-        "draft-0/document",
         {
           "group": "Bill",
           "pages": [
-            "draft-0/bill/advances",
             "draft-0/bill/charge",
+            "draft-0/bill/correction_options",
             "draft-0/bill/delivery",
             "draft-0/bill/discount",
             "draft-0/bill/document_reference",
@@ -76,16 +94,20 @@
         },
         {
           "group": "Cal",
-          "pages": ["draft-0/cal/date", "draft-0/cal/period"]
+          "pages": [
+            "draft-0/cal/date",
+            "draft-0/cal/date_time",
+            "draft-0/cal/period"
+          ]
         },
         {
           "group": "CBC",
           "pages": [
             "draft-0/cbc/code",
+            "draft-0/cbc/code_map",
             "draft-0/cbc/key",
             "draft-0/cbc/meta",
-            "draft-0/cbc/note",
-            "draft-0/cbc/stamp"
+            "draft-0/cbc/note"
           ]
         },
         {
@@ -95,6 +117,10 @@
         {
           "group": "DSig",
           "pages": ["draft-0/dsig/digest", "draft-0/dsig/signature"]
+        },
+        {
+          "group": "Head",
+          "pages": ["draft-0/head/header", "draft-0/head/stamp"]
         },
         {
           "group": "I18n",
@@ -145,15 +171,19 @@
           ]
         },
         {
+          "group": "Schema",
+          "pages": ["draft-0/schema/object"]
+        },
+        {
           "group": "Tax",
           "pages": [
             "draft-0/tax/category",
             "draft-0/tax/category_total",
+            "draft-0/tax/code_definition",
             "draft-0/tax/combo",
             "draft-0/tax/identity",
-            "draft-0/tax/identity_type",
             "draft-0/tax/key_definition",
-            "draft-0/tax/preceding_definitions",
+            "draft-0/tax/correction_definition",
             "draft-0/tax/rate",
             "draft-0/tax/rate_total",
             "draft-0/tax/rate_total_surcharge",
@@ -162,7 +192,7 @@
             "draft-0/tax/scenario",
             "draft-0/tax/scenario_set",
             "draft-0/tax/set",
-            "draft-0/tax/tag",
+            "draft-0/tax/source",
             "draft-0/tax/total",
             "draft-0/tax/zone"
           ]

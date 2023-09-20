@@ -1,6 +1,6 @@
 ---
 title: Envelope
-comment: Generated with GOBL v0.55.0
+comment: Generated with GOBL v0.58.0
 ---
 
 Envelope wraps around a document adding headers and digital signatures.
@@ -14,7 +14,7 @@ Envelope wraps around a document adding headers and digital signatures.
 | Title          | Property  | Type                                               | Req. | Description                                                                  |
 |----------------|-----------|----------------------------------------------------|------|------------------------------------------------------------------------------|
 | JSON Schema ID | `$schema` | string                                             | true | Schema identifies the schema that should be used to understand this document |
-| Header         | `head`    | [Header](/draft-0/header)                          | true | Details on what the contents are                                             |
-| Document       | `doc`     | [Document](/draft-0/document)                      | true | The data inside the envelope                                                 |
+| Header         | `head`    | [head.Header](/draft-0/head/header)                | true | Details on what the contents are                                             |
+| Document       | `doc`     | [schema.Object](/draft-0/schema/object)            | true | The data inside the envelope                                                 |
 | Signatures     | `sigs`    | array of [dsig.Signature](/draft-0/dsig/signature) |      | JSON Web Signatures of the header                                            |
 

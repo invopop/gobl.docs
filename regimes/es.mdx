@@ -1,0 +1,165 @@
+---
+title: Spain
+---
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Country Code | <code>ES</code> |
+| Currency | <code>EUR</code> |
+| Base Time Zone | <code>Europe/Madrid</code> |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| <code>VAT</code> | VAT | Value Added Tax |
+| <code>IGIC</code> | IGIC | Canary Island General Indirect Tax |
+| <code>IPSI</code> | IPSI | Production, Services, and Import Tax |
+| <code>IRPF</code> | IRPF | Personal income tax. |
+
+### VAT Rates	
+
+Known in Spanish as "Impuesto sobre el Valor Añadido" (IVA), is a consumption tax
+applied to the purchase of goods and services. It's a tax on the value added at
+each stage of production or distribution. Spain, as a member of the European Union,
+follows the EU's VAT Directive, but with specific rates and exemptions tailored
+to its local needs.
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>zero</code> | Zero Rate | 0.0% | May be applied to exports and intra-community supplies. |
+| <code>standard</code> | Standard Rate | 21.0% |  |
+| <code>standard+eqs</code> | Standard Rate + Equivalence Surcharge | 21.0% (+5.2%) |  |
+| <code>reduced</code> | Reduced Rate | 10.0% |  |
+| <code>reduced+eqs</code> | Reduced Rate + Equivalence Surcharge | 10.0% (+1.4%) |  |
+| <code>super-reduced</code> | Super-Reduced Rate | 4.0% |  |
+| <code>super-reduced+eqs</code> | Super-Reduced Rate + Equivalence Surcharge | 4.0% (+0.5%) |  |
+| <code>exempt</code> | Exempt |  |  |
+
+### IGIC Rates
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>zero</code> | Zero Rate | 0.0% |  |
+| <code>standard</code> | Standard Rate | 7.0% |  |
+| <code>reduced</code> | Reduced Rate | 3.0% |  |
+
+### IRPF Rates
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>pro</code> | Professional Rate | 15.0% |  |
+| <code>pro-start</code> | Professional Starting Rate | 7.0% |  |
+| <code>capital</code> | Rental or Interest Capital | 19.0% |  |
+| <code>modules</code> | Modules Rate | 1.0% |  |
+
+## Correction Definitions
+
+This tax regime supports auto-generation of corrective invoices
+or credit and debit notes.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>corrective</code>
+
+### Correction Methods
+
+| Key | Name | Extras |
+| --- | ---- | ------ |
+| <code>complete</code> | Complete | <code>facturae:01</code> |
+| <code>partial</code> | Corrected items only | <code>facturae:02</code> |
+| <code>discount</code> | Bulk deal in a given period | <code>facturae:03</code> |
+| <code>authorized</code> | Authorized by the Tax Agency | <code>facturae:04</code> |
+
+### Correction Changes
+
+| Key | Name | Extras |
+| --- | ---- | ------ |
+| <code>code</code> | Invoice code | <code>facturae:01</code> |
+| <code>series</code> | Invoice series | <code>facturae:02</code> |
+| <code>issue-date</code> | Issue date | <code>facturae:03</code> |
+| <code>supplier-name</code> | Name and surnames/Corporate name - Issuer (Sender) | <code>facturae:04</code> |
+| <code>customer-name</code> | Name and surnames/Corporate name - Receiver | <code>facturae:05</code> |
+| <code>supplier-tax-id</code> | Issuer's Tax Identification Number | <code>facturae:06</code> |
+| <code>customer-tax-id</code> | Receiver's Tax Identification Number | <code>facturae:07</code> |
+| <code>supplier-addr</code> | Issuer's address | <code>facturae:08</code> |
+| <code>customer-addr</code> | Receiver's address | <code>facturae:09</code> |
+| <code>line</code> | Item line | <code>facturae:10</code> |
+| <code>tax-rate</code> | Applicable Tax Rate | <code>facturae:11</code> |
+| <code>tax-amount</code> | Applicable Tax Amount | <code>facturae:12</code> |
+| <code>period</code> | Applicable Date/Period | <code>facturae:13</code> |
+| <code>type</code> | Invoice Class | <code>facturae:14</code> |
+| <code>legal-details</code> | Legal literals | <code>facturae:15</code> |
+| <code>tax-base</code> | Taxable Base | <code>facturae:16</code> |
+| <code>tax</code> | Calculation of tax outputs | <code>facturae:80</code> |
+| <code>tax-retained</code> | Calculation of tax inputs | <code>facturae:81</code> |
+| <code>refund</code> | Taxable Base modified due to return of packages and packaging materials | <code>facturae:82</code> |
+| <code>discount</code> | Taxable Base modified due to discounts and rebates | <code>facturae:83</code> |
+| <code>judicial</code> | Taxable Base modified due to firm court ruling or administrative decision | <code>facturae:84</code> |
+| <code>insolvency</code> | Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings | <code>facturae:85</code> |
+
+## Zones
+
+The following zone codes may need to be included in the tax identity
+zone field and, or, address fields.
+
+| Code | Locality | Region |
+| ---- | ---- | ---- |
+| <code>VI</code> |  | Ávila |
+| <code>AB</code> |  | Albacete |
+| <code>A</code> |  | Alicante |
+| <code>AL</code> |  | Almería |
+| <code>AV</code> |  | Ávila |
+| <code>BA</code> |  | Badajoz |
+| <code>PM</code> |  | Baleares |
+| <code>IB</code> |  | Baleares |
+| <code>B</code> |  | Barcelona |
+| <code>BU</code> |  | Burgos |
+| <code>CC</code> |  | Cáceres |
+| <code>CA</code> |  | Cadiz |
+| <code>CS</code> |  | Castellón |
+| <code>CR</code> |  | Ciudad Real |
+| <code>CO</code> |  | Cordoba |
+| <code>C</code> |  | La Coruña |
+| <code>CU</code> |  | Cuenca |
+| <code>GE</code> |  | Gerona |
+| <code>GI</code> |  | Girona |
+| <code>GR</code> |  | Granada |
+| <code>GU</code> |  | Guadalajara |
+| <code>SS</code> |  | Guipúzcoa |
+| <code>H</code> |  | Huelva |
+| <code>HU</code> |  | Huesca |
+| <code>J</code> |  | Jaén |
+| <code>LE</code> |  | León |
+| <code>L</code> |  | Lérida / Lleida |
+| <code>LO</code> |  | La Rioja |
+| <code>LU</code> |  | Lugo |
+| <code>M</code> |  | Madrid |
+| <code>MA</code> |  | Málaga |
+| <code>MU</code> |  | Murcia |
+| <code>NA</code> |  | Navarra |
+| <code>OR</code> |  | Orense |
+| <code>OU</code> |  | Orense |
+| <code>O</code> |  | Asturias |
+| <code>P</code> |  | Palencia |
+| <code>GC</code> |  | Las Palmas |
+| <code>PO</code> |  | Pontevedra |
+| <code>SA</code> |  | Salamanca |
+| <code>TF</code> |  | Santa Cruz de Tenerife |
+| <code>S</code> |  | Cantabria |
+| <code>SG</code> |  | Segovia |
+| <code>SE</code> |  | Sevilla |
+| <code>SO</code> |  | Soria |
+| <code>T</code> |  | Tarragona |
+| <code>TE</code> |  | Teruel |
+| <code>TO</code> |  | Toledo |
+| <code>V</code> |  | Valencia |
+| <code>VA</code> |  | Valladolid |
+| <code>BI</code> |  | Vizcaya |
+| <code>ZA</code> |  | Zamora |
+| <code>Z</code> |  | Zaragoza |
+| <code>CE</code> |  | Ceuta |
+| <code>ML</code> |  | Melilla |

@@ -1,6 +1,6 @@
 ---
 title: KeyDefinition
-comment: Generated with GOBL v0.55.0
+comment: Generated with GOBL v0.58.0
 ---
 
 KeyDefinition defines properties of a key that is specific for a regime.
@@ -14,7 +14,7 @@ KeyDefinition defines properties of a key that is specific for a regime.
 | Title       | Property | Type                                                        | Req. | Description                                                                                            |
 |-------------|----------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------------|
 | Key         | `key`    | [cbc.Key](/draft-0/cbc/key)                                 | true | Actual key value.                                                                                      |
-| Name        | `name`   | [i18n.String](/draft-0/i18n/string)                         |      | Short name for the key, if relevant.                                                                   |
+| Name        | `name`   | [i18n.String](/draft-0/i18n/string)                         | true | Short name for the key.                                                                                |
 | Description | `desc`   | [i18n.String](/draft-0/i18n/string)                         |      | Description offering more details about when the key should be used.                                   |
 | Codes       | `codes`  | array of [tax.CodeDefinition](/draft-0/tax/code_definition) |      | Codes describes the list of codes that can be used alongside the Key, for example with identities.     |
 | Map         | `map`    | [cbc.CodeMap](/draft-0/cbc/code_map)                        |      | Map helps map local keys to specific codes, useful for converting the described key into a local code. |
