@@ -11,6 +11,11 @@
     "light": "#15c6f6",
     "dark": "#15c6f6"
   },
+  "analytics": {
+    "plausible": {
+      "domain": "docs.gobl.org"
+    }
+  },
   "anchors": [
     {
       "name": "Builder",
