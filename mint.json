@@ -56,15 +56,21 @@
     {
       "group": "Tax Regimes",
       "pages": [
-        "regimes/co",
-        "regimes/es",
-        "regimes/fr",
-        "regimes/gb",
-        "regimes/it",
-        "regimes/mx",
-        "regimes/nl",
-        "regimes/pt",
-        "regimes/us"
+        "regimes/overview",
+        {
+          "group": "Countries",
+          "pages": [
+            "regimes/co",
+            "regimes/es",
+            "regimes/fr",
+            "regimes/gb",
+            "regimes/it",
+            "regimes/mx",
+            "regimes/nl",
+            "regimes/pt",
+            "regimes/us"
+          ]
+        }
       ]
     },
     {

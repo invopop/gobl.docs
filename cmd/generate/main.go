@@ -75,6 +75,9 @@ func (g *generator) generate() error {
 			return err
 		}
 	*/
+	if err := g.extensions(); err != nil {
+		return err
+	}
 	if err := g.zones(); err != nil {
 		return err
 	}
@@ -232,6 +235,55 @@ func (g *generator) preceding() error {
 		{{- end }}
 
 	`), cd)
+}
+
+func (g *generator) extensions() error {
+	if len(g.regime.Extensions) == 0 {
+		return nil
+	}
+
+	if err := g.process(here.Doc(`
+		
+
+		## Extensions
+
+		The following extensions are supported by this tax regime.
+	`)); err != nil {
+		return err
+	}
+
+	for _, kd := range g.regime.Extensions {
+		if err := g.extension(kd); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (g *generator) extension(kd *tax.KeyDefinition) error {
+
+	return g.processWith(here.Doc(`
+
+
+		### {{t .Name}}
+		
+		Key: <code>{{ .Key }}</code>
+		
+		{{- if .Desc }}	
+
+		{{t .Desc }}
+
+		{{- end }}
+
+		{{- if .Codes }}
+
+		| Code | Name |
+		| ---- | ---- |
+		{{- range .Codes }}
+		| <code>{{ .Code }}</code> | {{t .Name }} |
+		{{- end }}
+		{{- end }}
+	`), kd)
 }
 
 func codeMap(m cbc.CodeMap) string {
