@@ -43,7 +43,8 @@
         "overview/schemas",
         "overview/numbers",
         "overview/rounding",
-        "overview/canonicalization"
+        "overview/canonicalization",
+        "overview/support"
       ]
     },
     {
