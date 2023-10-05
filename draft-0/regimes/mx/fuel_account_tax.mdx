@@ -1,0 +1,19 @@
+---
+title: FuelAccountTax
+comment: Generated with GOBL v0.60.0
+---
+
+FuelAccountTax represents a single tax applied to a fuel purchase.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/fuel-account-balance#/$defs/FuelAccountTax`
+
+## Properties
+
+| Title  | Property | Type                              | Req. | Description                                                                                          |
+|--------|----------|-----------------------------------|------|------------------------------------------------------------------------------------------------------|
+| Code   | `code`   | [cbc.Code](/draft-0/cbc/code)     | true | Code that identifies the tax ("IVA" or "IEPS", maps to `Impuesto`)                                   |
+| Rate   | `rate`   | [num.Amount](/draft-0/num/amount) | true | Rate applicable to either the line total (tasa) or the line quantity (cuota) (maps to `TasaOCuota`). |
+| Amount | `amount` | [num.Amount](/draft-0/num/amount) | true | Total amount of the tax once the rate has been applied (maps to `Importe`).                          |
+

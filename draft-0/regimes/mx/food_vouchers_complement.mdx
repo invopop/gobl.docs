@@ -1,0 +1,20 @@
+---
+title: FoodVouchersComplement
+comment: Generated with GOBL v0.60.0
+---
+
+FoodVouchersComplement carries the data to produce a CFDI's "Complemento de Vales de Despensa" (version 1.0) providing detailed information about food vouchers issued by an e-wallet supplier to its customer's employees.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/food-vouchers-complement`
+
+## Properties
+
+| Title                 | Property                | Type                                                                           | Req. | Description                                                                     |
+|-----------------------|-------------------------|--------------------------------------------------------------------------------|------|---------------------------------------------------------------------------------|
+| Employer Registration | `employer_registration` | string                                                                         |      | Customer's employer registration number (maps to `registroPatronal`).           |
+| Account Number        | `account_number`        | string                                                                         | true | Customer's account number (maps to `numeroDeCuenta`).                           |
+| Total                 | `total`                 | [num.Amount](/draft-0/num/amount)                                              |      | Sum of all line amounts (calculated, maps to `total`).                          |
+| Lines                 | `lines`                 | array of [regimes.mx.FoodVouchersLine](/draft-0/regimes/mx/food_vouchers_line) | true | List of food vouchers issued to the customer's employees (maps to `Conceptos`). |
+
