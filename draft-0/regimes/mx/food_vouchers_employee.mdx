@@ -1,0 +1,20 @@
+---
+title: FoodVouchersEmployee
+comment: Generated with GOBL v0.60.0
+---
+
+FoodVouchersEmployee represents an employee that received a food voucher.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/food-vouchers-complement#/$defs/FoodVouchersEmployee`
+
+## Properties
+
+| Title                             | Property          | Type                          | Req. | Description                                                               |
+|-----------------------------------|-------------------|-------------------------------|------|---------------------------------------------------------------------------|
+| Employee's Tax Identity Code      | `tax_code`        | [cbc.Code](/draft-0/cbc/code) | true | Employee's tax identity code (maps to `rfc`).                             |
+| Employee's CURP                   | `curp`            | [cbc.Code](/draft-0/cbc/code) | true | Employee's CURP ("Clave Única de Registro de Población", maps to `curp`). |
+| Employee's Name                   | `name`            | string                        | true | Employee's name (maps to `nombre`).                                       |
+| Employee's Social Security Number | `social_security` | [cbc.Code](/draft-0/cbc/code) |      | Employee's Social Security Number (maps to `numSeguridadSocial`).         |
+

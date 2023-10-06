@@ -1,0 +1,20 @@
+---
+title: FuelAccountBalance
+comment: Generated with GOBL v0.60.0
+---
+
+FuelAccountBalance carries the data to produce a CFDI's "Complemento de Estado de Cuenta de Combustibles para Monederos Electrónicos" (version 1.2 revision B) providing detailed information about fuel purchases made with electronic wallets.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/fuel-account-balance`
+
+## Properties
+
+| Title          | Property         | Type                                                                         | Req. | Description                                                                        |
+|----------------|------------------|------------------------------------------------------------------------------|------|------------------------------------------------------------------------------------|
+| Account Number | `account_number` | string                                                                       | true | Customer's account number (maps to `NumeroDeCuenta`).                              |
+| Subtotal       | `subtotal`       | [num.Amount](/draft-0/num/amount)                                            |      | Sum of all line totals (i.e. taxes not included) (calculated, maps to `SubTotal`). |
+| Total          | `total`          | [num.Amount](/draft-0/num/amount)                                            |      | Grand total after taxes have been applied (calculated, maps to `Total`).           |
+| Lines          | `lines`          | array of [regimes.mx.FuelAccountLine](/draft-0/regimes/mx/fuel_account_line) | true | List of fuel purchases made with the customer's e-wallets (maps to `Conceptos`).   |
+

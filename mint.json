@@ -183,6 +183,23 @@
           ]
         },
         {
+          "group": "Regimes",
+          "pages": [
+            {
+              "group": "MX",
+              "pages": [
+                "draft-0/regimes/mx/food_vouchers_complement",
+                "draft-0/regimes/mx/food_vouchers_employee",
+                "draft-0/regimes/mx/food_vouchers_line",
+                "draft-0/regimes/mx/fuel_account_balance",
+                "draft-0/regimes/mx/fuel_account_item",
+                "draft-0/regimes/mx/fuel_account_line",
+                "draft-0/regimes/mx/fuel_account_tax"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Schema",
           "pages": ["draft-0/schema/object"]
         },
@@ -205,8 +222,7 @@
             "draft-0/tax/scenario_set",
             "draft-0/tax/set",
             "draft-0/tax/source",
-            "draft-0/tax/total",
-            "draft-0/tax/zone"
+            "draft-0/tax/total"
           ]
         },
         {

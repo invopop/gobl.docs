@@ -1,0 +1,20 @@
+---
+title: FoodVouchersLine
+comment: Generated with GOBL v0.60.0
+---
+
+FoodVouchersLine represents a single food voucher issued to the e-wallet of one of the customer's employees.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/food-vouchers-complement#/$defs/FoodVouchersLine`
+
+## Properties
+
+| Title               | Property          | Type                                                                          | Req. | Description                                                                          |
+|---------------------|-------------------|-------------------------------------------------------------------------------|------|--------------------------------------------------------------------------------------|
+| E-wallet Identifier | `e_wallet_id`     | [cbc.Code](/draft-0/cbc/code)                                                 | true | Identifier of the e-wallet that received the food voucher (maps to `Identificador`). |
+| Issue Date and Time | `issue_date_time` | [cal.DateTime](/draft-0/cal/date_time)                                        | true | Date and time of the food voucher's issue (maps to `Fecha`).                         |
+| Employee            | `employee`        | [regimes.mx.FoodVouchersEmployee](/draft-0/regimes/mx/food_vouchers_employee) |      | Employee that received the food voucher.                                             |
+| Amount              | `amount`          | [num.Amount](/draft-0/num/amount)                                             | true | Amount of the food voucher (maps to `importe`).                                      |
+

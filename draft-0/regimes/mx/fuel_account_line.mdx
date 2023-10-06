@@ -1,0 +1,25 @@
+---
+title: FuelAccountLine
+comment: Generated with GOBL v0.60.0
+---
+
+FuelAccountLine represents a single fuel purchase made with an e-wallet issued by the invoice's supplier.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/fuel-account-balance#/$defs/FuelAccountLine`
+
+## Properties
+
+| Title                      | Property               | Type                                                                       | Req. | Description                                                                        |
+|----------------------------|------------------------|----------------------------------------------------------------------------|------|------------------------------------------------------------------------------------|
+| E-wallet Identifier        | `e_wallet_id`          | [cbc.Code](/draft-0/cbc/code)                                              | true | Identifier of the e-wallet used to make the purchase (maps to `Identificador`).    |
+| Purchase Date and Time     | `purchase_date_time`   | [cal.DateTime](/draft-0/cal/date_time)                                     | true | Date and time of the purchase (maps to `Fecha`).                                   |
+| Vendor's Tax Identity Code | `vendor_tax_code`      | [cbc.Code](/draft-0/cbc/code)                                              | true | Tax Identity Code of the fuel's vendor (maps to `Rfc`)                             |
+| Service Station Code       | `service_station_code` | [cbc.Code](/draft-0/cbc/code)                                              | true | Code of the service station where the purchase was made (maps to `ClaveEstacion`). |
+| Quantity                   | `quantity`             | [num.Amount](/draft-0/num/amount)                                          | true | Amount of fuel units purchased (maps to `Cantidad`)                                |
+| Item                       | `item`                 | [regimes.mx.FuelAccountItem](/draft-0/regimes/mx/fuel_account_item)        | true | Details of the fuel purchased.                                                     |
+| Purchase Code              | `purchase_code`        | [cbc.Code](/draft-0/cbc/code)                                              | true | Identifier of the purchase (maps to `FolioOperacion`).                             |
+| Total                      | `total`                | [num.Amount](/draft-0/num/amount)                                          | true | Result of quantity multiplied by the unit price (maps to `Importe`).               |
+| Taxes                      | `taxes`                | array of [regimes.mx.FuelAccountTax](/draft-0/regimes/mx/fuel_account_tax) | true | Map of taxes applied to the purchase (maps to `Traslados`).                        |
+

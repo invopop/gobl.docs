@@ -1,0 +1,20 @@
+---
+title: FuelAccountItem
+comment: Generated with GOBL v0.60.0
+---
+
+FuelAccountItem provides the details of a fuel purchase.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/fuel-account-balance#/$defs/FuelAccountItem`
+
+## Properties
+
+| Title | Property | Type                              | Req. | Description                                                                      |
+|-------|----------|-----------------------------------|------|----------------------------------------------------------------------------------|
+| Type  | `type`   | [cbc.Code](/draft-0/cbc/code)     | true | Type of fuel (one of `c_ClaveTipoCombustible` codes, maps to `TipoCombustible`). |
+| Unit  | `unit`   | [org.Unit](/draft-0/org/unit)     |      | Reference unit of measure used in the price and the quantity (maps to `Unidad`). |
+| Name  | `name`   | string                            | true | Name of the fuel (maps to `NombreCombustible`).                                  |
+| Price | `price`  | [num.Amount](/draft-0/num/amount) | true | Base price of a single unit of the fuel without taxes (maps to `ValorUnitario`). |
+

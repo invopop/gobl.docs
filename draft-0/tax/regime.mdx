@@ -1,6 +1,6 @@
 ---
 title: Regime
-comment: Generated with GOBL v0.58.0
+comment: Generated with GOBL v0.60.0
 ---
 
 Regime defines the holding structure for the definitions of taxes inside a country or territory.
@@ -18,7 +18,6 @@ Regime defines the holding structure for the definitions of taxes inside a count
 | Time Zone      | `time_zone`      | string                                                                  | true | Location name for the country's central time zone. Accepted values from IANA Time Zone Database (https://iana.org/time-zones).                                                                                                                                                        |
 | Code           | `country`        | [l10n.CountryCode](/draft-0/l10n/country_code)                          | true | Country code for the region                                                                                                                                                                                                                                                           |
 | Zone           | `zone`           | [l10n.Code](/draft-0/l10n/code)                                         |      | Specific Locality, region, city, province, county, or similar code inside the country, if needed.                                                                                                                                                                                     |
-| Zones          | `zones`          | array of [tax.Zone](/draft-0/tax/zone)                                  |      | List of sub-zones inside a country.                                                                                                                                                                                                                                                   |
 | Currency       | `currency`       | [currency.Code](/draft-0/currency/code)                                 | true | Currency used by the country.                                                                                                                                                                                                                                                         |
 | Tags           | `tags`           | array of [tax.KeyDefinition](/draft-0/tax/key_definition)               |      | Tags that can be applied at the document level to identify additional considerations.                                                                                                                                                                                                 |
 | Identity Types | `identity_types` | array of [tax.KeyDefinition](/draft-0/tax/key_definition)               |      | Identity types specific for the regime and may be validated against.                                                                                                                                                                                                                  |
