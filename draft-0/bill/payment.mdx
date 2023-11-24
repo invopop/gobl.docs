@@ -1,6 +1,6 @@
 ---
 title: Payment
-comment: Generated with GOBL v0.60.0
+comment: Generated with GOBL v0.63.0
 ---
 
 Payment contains details as to how the invoice should be paid.
@@ -13,7 +13,7 @@ Payment contains details as to how the invoice should be paid.
 
 | Title        | Property       | Type                                          | Req. | Description                                                                            |
 |--------------|----------------|-----------------------------------------------|------|----------------------------------------------------------------------------------------|
-| Payer        | `payee`        | [org.Party](/draft-0/org/party)               |      | The party responsible for receiving payment of the invoice, if not the supplier.       |
+| Payee        | `payee`        | [org.Party](/draft-0/org/party)               |      | The party responsible for receiving payment of the invoice, if not the supplier.       |
 | Terms        | `terms`        | [pay.Terms](/draft-0/pay/terms)               |      | Payment terms or conditions.                                                           |
 | Advances     | `advances`     | array of [pay.Advance](/draft-0/pay/advance)  |      | Any amounts that have been paid in advance and should be deducted from the amount due. |
 | Instructions | `instructions` | [pay.Instructions](/draft-0/pay/instructions) |      | Details on how payment should be made.                                                 |

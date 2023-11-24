@@ -325,7 +325,11 @@ func joinKeys(keys []cbc.Key) string {
 }
 
 func (g *generator) zones() error {
-	if len(g.regime.Zones) == 0 {
+	if g.regime.Zones == nil {
+		return nil
+	}
+	list := g.regime.Zones.List()
+	if len(list) == 0 {
 		return nil
 	}
 	return g.process(here.Doc(`
@@ -338,7 +342,7 @@ func (g *generator) zones() error {
 
 		| Code | Locality | Region |
 		| ---- | ---- | ---- |
-		{{- range .Zones }}
+		{{- range .Zones.List }}
 		| <code>{{ .Code }}</code> | {{t .Locality }} | {{t .Region }} |
 		{{- end }}
 	`))
