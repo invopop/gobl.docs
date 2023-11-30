@@ -2,7 +2,7 @@ module github.com/invopop/gobl.docs
 
 go 1.21.1
 
-require github.com/invopop/gobl v0.63.1
+require github.com/invopop/gobl v0.64.0
 
 require (
 	cloud.google.com/go v0.110.2 // indirect
