@@ -12,7 +12,7 @@ An envelope acts as a wrapper around a document (`doc` property) with a special 
 
 Alongside the `doc` property inside an Envelope, you'll find a `head` of type [head.Header](/draft-0/head/header) and array of signatures ([dsig.Signature](/draft-0/dsig/signature)) which ensure that the data is verifiable with any additional properties that help describe the payload.
 
-You can find all the pre-built GOBL JSON Schema in the [repository's build directory](https://github.com/invopop/gobl/tree/main/build/schemas)
+You can find all the pre-built GOBL JSON Schema in the [repository's data directory](https://github.com/invopop/gobl/tree/main/data/schemas)
 
 # Tax Regimes
 
@@ -22,4 +22,4 @@ The aim is to build a single resource that developers can use to determine what 
 
 We have be realistic, the US tax system for example is a total mess and incredibly difficult to put into code, but for most countries around the world based on a VAT or GST system there is hope for trying to put the tax types, rates, and rules into a structured format.
 
-Each tax regime in GOBL is defined in Go as structured data and automatically converted into [JSON files](https://github.com/invopop/gobl/tree/main/build/regimes) that conform to the [tax.Regime](/draft-0/tax/regime) schema specification. Every regime is identified by a code based on the country they represent.
+Each tax regime in GOBL is defined in Go as structured data and automatically converted into [JSON files](https://github.com/invopop/gobl/tree/main/data/regimes) that conform to the [tax.Regime](/draft-0/tax/regime) schema specification. Every regime is identified by a code based on the country they represent.
