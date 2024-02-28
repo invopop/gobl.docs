@@ -1,6 +1,6 @@
 ---
 title: Preceding
-comment: Generated with GOBL v0.64.0
+comment: Generated with GOBL v0.68.0
 ---
 
 Preceding allows for information to be provided about a previous invoice that this one will replace, subtract from, or add to.
@@ -11,16 +11,16 @@ Preceding allows for information to be provided about a previous invoice that th
 
 ## Properties
 
-| Title             | Property            | Type                                       | Req. | Description                                                                                      |
-|-------------------|---------------------|--------------------------------------------|------|--------------------------------------------------------------------------------------------------|
-| UUID              | `uuid`              | [uuid.UUID](/draft-0/uuid/uuid)            |      | Preceding document's UUID if available can be useful for tracing.                                |
-| Series            | `series`            | string                                     |      | Series identification code                                                                       |
-| Code              | `code`              | string                                     | true | Code of the previous document.                                                                   |
-| Issue Date        | `issue_date`        | [cal.Date](/draft-0/cal/date)              |      | The issue date of the previous document.                                                         |
-| Reason            | `reason`            | string                                     |      | Human readable description on why the preceding invoice is being replaced.                       |
-| Stamps            | `stamps`            | array of [head.Stamp](/draft-0/head/stamp) |      | Seals of approval from other organisations that may need to be listed.                           |
-| Correction Method | `correction_method` | [cbc.Key](/draft-0/cbc/key)                |      | Tax regime specific key reflecting the method used to correct the preceding invoice.             |
-| Changes           | `changes`           | array of [cbc.Key](/draft-0/cbc/key)       |      | Tax regime specific keys reflecting what has been changed from the previous invoice.             |
-| Period            | `period`            | [cal.Period](/draft-0/cal/period)          |      | Tax period in which the previous invoice had an effect required by some tax regimes and formats. |
-| Meta              | `meta`              | [cbc.Meta](/draft-0/cbc/meta)              |      | Additional semi-structured data that may be useful in specific regions                           |
+| Title      | Property     | Type                                       | Req. | Description                                                                                      |
+|------------|--------------|--------------------------------------------|------|--------------------------------------------------------------------------------------------------|
+| UUID       | `uuid`       | [uuid.UUID](/draft-0/uuid/uuid)            |      | Preceding document's UUID if available can be useful for tracing.                                |
+| Type       | `type`       | [cbc.Key](/draft-0/cbc/key)                |      | Type of the preceding document                                                                   |
+| Series     | `series`     | string                                     |      | Series identification code                                                                       |
+| Code       | `code`       | string                                     | true | Code of the previous document.                                                                   |
+| Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date)              |      | The issue date of the previous document.                                                         |
+| Reason     | `reason`     | string                                     |      | Human readable description on why the preceding invoice is being replaced.                       |
+| Stamps     | `stamps`     | array of [head.Stamp](/draft-0/head/stamp) |      | Seals of approval from other organisations that may need to be listed.                           |
+| Period     | `period`     | [cal.Period](/draft-0/cal/period)          |      | Tax period in which the previous invoice had an effect required by some tax regimes and formats. |
+| Ext        | `ext`        | [tax.Extensions](/draft-0/tax/extensions)  |      | Extensions for region specific requirements.                                                     |
+| Meta       | `meta`       | [cbc.Meta](/draft-0/cbc/meta)              |      | Additional semi-structured data that may be useful in specific regions                           |
 

@@ -1,6 +1,6 @@
 ---
 title: Advance
-comment: Generated with GOBL v0.64.0
+comment: Generated with GOBL v0.68.0
 ---
 
 Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
@@ -11,17 +11,20 @@ Advance represents a single payment that has been made already, such as a deposi
 
 ## Properties
 
-| Title       | Property   | Type                                      | Req. | Description                                                                          |
-|-------------|------------|-------------------------------------------|------|--------------------------------------------------------------------------------------|
-| UUID        | `uuid`     | [uuid.UUID](/draft-0/uuid/uuid)           |      | Unique identifier for this advance.                                                  |
-| Date        | `date`     | [cal.Date](/draft-0/cal/date)             |      | When the advance was made.                                                           |
-| Key         | `key`      | [cbc.Key](/draft-0/cbc/key)               |      | The payment means used to make the advance.                                          |
-| Reference   | `ref`      | string                                    |      | ID or reference for the advance.                                                     |
-| Grant       | `grant`    | boolean                                   |      | If this "advance" payment has come from a public grant or subsidy, set this to true. |
-| Description | `desc`     | string                                    | true | Details about the advance.                                                           |
-| Percent     | `percent`  | [num.Percentage](/draft-0/num/percentage) |      | How much as a percentage of the total with tax was paid                              |
-| Amount      | `amount`   | [num.Amount](/draft-0/num/amount)         | true | How much was paid.                                                                   |
-| Currency    | `currency` | [currency.Code](/draft-0/currency/code)   |      | If different from the parent document's base currency.                               |
+| Title           | Property          | Type                                               | Req. | Description                                                                          |
+|-----------------|-------------------|----------------------------------------------------|------|--------------------------------------------------------------------------------------|
+| UUID            | `uuid`            | [uuid.UUID](/draft-0/uuid/uuid)                    |      | Unique identifier for this advance.                                                  |
+| Date            | `date`            | [cal.Date](/draft-0/cal/date)                      |      | When the advance was made.                                                           |
+| Key             | `key`             | [cbc.Key](/draft-0/cbc/key)                        |      | The payment means used to make the advance.                                          |
+| Reference       | `ref`             | string                                             |      | ID or reference for the advance.                                                     |
+| Grant           | `grant`           | boolean                                            |      | If this "advance" payment has come from a public grant or subsidy, set this to true. |
+| Description     | `description`     | string                                             | true | Details about the advance.                                                           |
+| Percent         | `percent`         | [num.Percentage](/draft-0/num/percentage)          |      | How much as a percentage of the total with tax was paid                              |
+| Amount          | `amount`          | [num.Amount](/draft-0/num/amount)                  | true | How much was paid.                                                                   |
+| Currency        | `currency`        | [currency.Code](/draft-0/currency/code)            |      | If different from the parent document's base currency.                               |
+| Card            | `card`            | [pay.Card](/draft-0/pay/card)                      |      | Details of the payment that was made via a credit or debit card.                     |
+| Credit Transfer | `credit_transfer` | [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Details about how the payment was made by credit (bank) transfer.                    |
+| Meta            | `meta`            | [cbc.Meta](/draft-0/cbc/meta)                      |      | Additional details useful for the parties involved.                                  |
 
 ## Key Values
 

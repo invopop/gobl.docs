@@ -1,6 +1,6 @@
 ---
 title: Party
-comment: Generated with GOBL v0.64.0
+comment: Generated with GOBL v0.68.0
 ---
 
 Party represents a person or business entity.
@@ -26,6 +26,6 @@ Party represents a person or business entity.
 | Telephone Numbers | `telephones`   | array of [org.Telephone](/draft-0/org/telephone) |      | Regular telephone numbers                                                                                                                 |
 | Registration      | `registration` | [org.Registration](/draft-0/org/registration)    |      | Additional registration details about the company that may need to be included in a document.                                             |
 | Logos             | `logos`        | array of [org.Image](/draft-0/org/image)         |      | Images that can be used to identify the party visually.                                                                                   |
-| Ext               | `ext`          | [cbc.CodeMap](/draft-0/cbc/code_map)             |      | Extension code map for any additional regime specific codes that may be required.                                                         |
+| Ext               | `ext`          | [tax.Extensions](/draft-0/tax/extensions)        |      | Extension code map for any additional regime specific codes that may be required.                                                         |
 | Meta              | `meta`         | [cbc.Meta](/draft-0/cbc/meta)                    |      | Any additional semi-structured information that does not fit into the rest of the party.                                                  |
 

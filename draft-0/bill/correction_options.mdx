@@ -1,6 +1,6 @@
 ---
 title: CorrectionOptions
-comment: Generated with GOBL v0.64.0
+comment: Generated with GOBL v0.68.0
 ---
 
 CorrectionOptions defines a structure used to pass configuration options to correct a previous invoice.
@@ -11,13 +11,11 @@ CorrectionOptions defines a structure used to pass configuration options to corr
 
 ## Properties
 
-| Title      | Property     | Type                                       | Req. | Description                                                                                           |
-|------------|--------------|--------------------------------------------|------|-------------------------------------------------------------------------------------------------------|
-| Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date)              |      | When the new corrective invoice's issue date should be set to.                                        |
-| Stamps     | `stamps`     | array of [head.Stamp](/draft-0/head/stamp) |      | Stamps of the previous document to include in the preceding data.                                     |
-| Credit     | `credit`     | boolean                                    |      | Credit when true indicates that the corrective document should cancel the previous document.          |
-| Debit      | `debit`      | boolean                                    |      | Debit when true indicates that the corrective document should add new items to the previous document. |
-| Reason     | `reason`     | string                                     |      | Human readable reason for the corrective operation.                                                   |
-| Method     | `method`     | [cbc.Key](/draft-0/cbc/key)                |      | Correction method as defined by the tax regime.                                                       |
-| Changes    | `changes`    | array of [cbc.Key](/draft-0/cbc/key)       |      | Changes keys that describe the specific changes according to the tax regime.                          |
+| Title      | Property     | Type                                       | Req. | Description                                                       |
+|------------|--------------|--------------------------------------------|------|-------------------------------------------------------------------|
+| Type       | `type`       | [cbc.Key](/draft-0/cbc/key)                | true | The type of corrective invoice to produce.                        |
+| Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date)              |      | When the new corrective invoice's issue date should be set to.    |
+| Stamps     | `stamps`     | array of [head.Stamp](/draft-0/head/stamp) |      | Stamps of the previous document to include in the preceding data. |
+| Reason     | `reason`     | string                                     |      | Human readable reason for the corrective operation.               |
+| Extensions | `ext`        | [tax.Extensions](/draft-0/tax/extensions)  |      | Extensions for region specific requirements.                      |
 

@@ -1,6 +1,6 @@
 ---
 title: CorrectionDefinition
-comment: Generated with GOBL v0.64.0
+comment: Generated with GOBL v0.68.0
 ---
 
 CorrectionDefinition contains details about what can be defined in .
@@ -11,12 +11,11 @@ CorrectionDefinition contains details about what can be defined in .
 
 ## Properties
 
-| Title           | Property          | Type                                                      | Req. | Description                                                                   |
-|-----------------|-------------------|-----------------------------------------------------------|------|-------------------------------------------------------------------------------|
-| Schema          | `schema`          | string                                                    | true | Partial or complete schema URL for the document type supported by correction. |
-| Types           | `types`           | array of [cbc.Key](/draft-0/cbc/key)                      |      | The types of sub-documents supported by the regime                            |
-| Methods         | `methods`         | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | Methods describe the methods used to correct an invoice.                      |
-| Changes         | `changes`         | array of [tax.KeyDefinition](/draft-0/tax/key_definition) |      | List of change keys that can be used to describe what has been corrected.     |
-| Reason Required | `reason_required` | boolean                                                   |      | ReasonRequired when true implies that a reason must be provided               |
-| Stamps          | `stamps`          | array of [cbc.Key](/draft-0/cbc/key)                      |      | Stamps that must be copied from the preceding document.                       |
+| Title           | Property          | Type                                 | Req. | Description                                                                   |
+|-----------------|-------------------|--------------------------------------|------|-------------------------------------------------------------------------------|
+| Schema          | `schema`          | string                               | true | Partial or complete schema URL for the document type supported by correction. |
+| Types           | `types`           | array of [cbc.Key](/draft-0/cbc/key) |      | The types of sub-documents supported by the regime                            |
+| Extensions      | `extensions`      | array of [cbc.Key](/draft-0/cbc/key) |      | Extension keys that can be included                                           |
+| Reason Required | `reason_required` | boolean                              |      | ReasonRequired when true implies that a reason must be provided               |
+| Stamps          | `stamps`          | array of [cbc.Key](/draft-0/cbc/key) |      | Stamps that must be copied from the preceding document.                       |
 
