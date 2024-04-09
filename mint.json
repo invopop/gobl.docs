@@ -44,7 +44,8 @@
         "overview/numbers",
         "overview/rounding",
         "overview/canonicalization",
-        "overview/support"
+        "overview/support",
+        "overview/inside"
       ]
     },
     {

@@ -260,7 +260,7 @@ func (g *generator) extensions() error {
 	return nil
 }
 
-func (g *generator) extension(kd *tax.KeyDefinition) error {
+func (g *generator) extension(kd *cbc.KeyDefinition) error {
 
 	return g.processWith(here.Doc(`
 
