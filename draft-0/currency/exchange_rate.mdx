@@ -1,9 +1,9 @@
 ---
 title: ExchangeRate
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
-ExchangeRate contains data on the rate to be used when converting amounts from the document's base currency to whatever is defined.
+ExchangeRate contains data on the rate to be used when converting amounts from one currency into another.
 
 ## Schema ID
 
@@ -11,8 +11,10 @@ ExchangeRate contains data on the rate to be used when converting amounts from t
 
 ## Properties
 
-| Title    | Property   | Type                                    | Req. | Description                                                        |
-|----------|------------|-----------------------------------------|------|--------------------------------------------------------------------|
-| Currency | `currency` | [currency.Code](/draft-0/currency/code) | true | ISO currency code this rate represents.                            |
-| Amount   | `amount`   | [num.Amount](/draft-0/num/amount)       | true | How much is 1.00 of this currency worth in the documents currency. |
+| Title  | Property | Type                                    | Req. | Description                                                                                           |
+|--------|----------|-----------------------------------------|------|-------------------------------------------------------------------------------------------------------|
+| From   | `from`   | [currency.Code](/draft-0/currency/code) | true | Currency code this will be converted from.                                                            |
+| To     | `to`     | [currency.Code](/draft-0/currency/code) | true | Currency code this exchange rate will convert into.                                                   |
+| Amount | `amount` | [num.Amount](/draft-0/num/amount)       | true | How much is 1 of the "from" currency worth in the "to" currency.                                      |
+| At     | `at`     | [cal.DateTime](/draft-0/cal/date_time)  |      | At represents the date and time (which may be 00:00:00) when the currency rate amount was determined. |
 

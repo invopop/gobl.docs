@@ -1,6 +1,6 @@
 ---
 title: Advance
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
@@ -13,7 +13,7 @@ Advance represents a single payment that has been made already, such as a deposi
 
 | Title           | Property          | Type                                               | Req. | Description                                                                          |
 |-----------------|-------------------|----------------------------------------------------|------|--------------------------------------------------------------------------------------|
-| UUID            | `uuid`            | [uuid.UUID](/draft-0/uuid/uuid)                    |      | Unique identifier for this advance.                                                  |
+| UUID            | `uuid`            | string                                             |      | Universally Unique Identifier.                                                       |
 | Date            | `date`            | [cal.Date](/draft-0/cal/date)                      |      | When the advance was made.                                                           |
 | Key             | `key`             | [cbc.Key](/draft-0/cbc/key)                        |      | The payment means used to make the advance.                                          |
 | Reference       | `ref`             | string                                             |      | ID or reference for the advance.                                                     |

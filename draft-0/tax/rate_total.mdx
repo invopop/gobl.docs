@@ -1,6 +1,6 @@
 ---
 title: RateTotal
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
@@ -16,7 +16,7 @@ RateTotal contains a sum of all the tax rates in the document with a matching ca
 | Key       | `key`       | [cbc.Key](/draft-0/cbc/key)                                 |      | Optional rate key is required when grouping.                              |
 | Ext       | `ext`       | [tax.Extensions](/draft-0/tax/extensions)                   |      | If the rate is defined with extensions, they'll be used to group by also. |
 | Base      | `base`      | [num.Amount](/draft-0/num/amount)                           | true | Base amount that the percentage is applied to.                            |
-| Percent   | `percent`   | [num.Percentage](/draft-0/num/percentage)                   |      | Percentage of the rate, which may be nil for exempt rates.                |
+| Percent   | `percent`   | [num.Percentage](/draft-0/num/percentage)                   |      | Percentage of the rate. Will be nil when taxes are **exempt**.            |
 | Surcharge | `surcharge` | [tax.RateTotalSurcharge](/draft-0/tax/rate_total_surcharge) |      | Surcharge applied to the rate.                                            |
 | Amount    | `amount`    | [num.Amount](/draft-0/num/amount)                           | true | Total amount of rate, excluding surcharges                                |
 

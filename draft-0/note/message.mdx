@@ -1,6 +1,6 @@
 ---
 title: Message
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Message represents a simple message object with a title and some content meant.
@@ -13,6 +13,7 @@ Message represents a simple message object with a title and some content meant.
 
 | Title     | Property  | Type                          | Req. | Description                                                |
 |-----------|-----------|-------------------------------|------|------------------------------------------------------------|
+| UUID      | `uuid`    | string                        |      | Universally Unique Identifier.                             |
 | Title     | `title`   | string                        |      | Summary of the message content                             |
 | Content   | `content` | string                        | true | Details of what exactly this message wants to communicate. |
 | Meta Data | `meta`    | [cbc.Meta](/draft-0/cbc/meta) |      | Any additional semi-structured data that might be useful.  |

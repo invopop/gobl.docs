@@ -1,6 +1,6 @@
 ---
 title: Outlay
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
@@ -13,7 +13,7 @@ Outlay represents a reimbursable expense that was paid for by the supplier and i
 
 | Title       | Property      | Type                              | Req. | Description                                                           |
 |-------------|---------------|-----------------------------------|------|-----------------------------------------------------------------------|
-| UUID        | `uuid`        | [uuid.UUID](/draft-0/uuid/uuid)   |      | Unique identity for this outlay.                                      |
+| UUID        | `uuid`        | string                            |      | Universally Unique Identifier.                                        |
 | Index       | `i`           | integer                           |      | Outlay number index inside the invoice for ordering (calculated).     |
 | Date        | `date`        | [cal.Date](/draft-0/cal/date)     |      | When was the outlay made.                                             |
 | Code        | `code`        | string                            |      | Invoice number or other reference detail used to identify the outlay. |

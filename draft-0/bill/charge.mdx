@@ -1,6 +1,6 @@
 ---
 title: Charge
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Charge represents a surchange applied to the complete document independent from the individual lines.
@@ -13,9 +13,9 @@ Charge represents a surchange applied to the complete document independent from 
 
 | Title       | Property  | Type                                      | Req. | Description                                                                                                                               |
 |-------------|-----------|-------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| UUID        | `uuid`    | [uuid.UUID](/draft-0/uuid/uuid)           |      | Unique identifying for the discount entry                                                                                                 |
+| UUID        | `uuid`    | string                                    |      | Universally Unique Identifier.                                                                                                            |
 | Key         | `key`     | [cbc.Key](/draft-0/cbc/key)               |      | Key for grouping or identifying charges for tax purposes.                                                                                 |
-| Index       | `i`       | integer                                   |      | Line number inside the list of discounts (calculated).                                                                                    |
+| Index       | `i`       | integer                                   |      | Line number inside the list of charges (calculated).                                                                                      |
 | Reference   | `ref`     | string                                    |      | Code to used to refer to the this charge                                                                                                  |
 | Base        | `base`    | [num.Amount](/draft-0/num/amount)         |      | Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum before discounts. |
 | Percent     | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage to apply to the invoice's Sum                                                                                                  |

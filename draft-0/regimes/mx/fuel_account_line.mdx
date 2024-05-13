@@ -1,6 +1,6 @@
 ---
 title: FuelAccountLine
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 FuelAccountLine represents a single fuel purchase made with an e-wallet issued by the invoice's supplier.
@@ -20,6 +20,6 @@ FuelAccountLine represents a single fuel purchase made with an e-wallet issued b
 | Quantity                   | `quantity`             | [num.Amount](/draft-0/num/amount)                                          | true | Amount of fuel units purchased (maps to `Cantidad`)                                |
 | Item                       | `item`                 | [regimes.mx.FuelAccountItem](/draft-0/regimes/mx/fuel_account_item)        | true | Details of the fuel purchased.                                                     |
 | Purchase Code              | `purchase_code`        | [cbc.Code](/draft-0/cbc/code)                                              | true | Identifier of the purchase (maps to `FolioOperacion`).                             |
-| Total                      | `total`                | [num.Amount](/draft-0/num/amount)                                          | true | Result of quantity multiplied by the unit price (maps to `Importe`).               |
+| Total                      | `total`                | [num.Amount](/draft-0/num/amount)                                          |      | Result of quantity multiplied by the unit price (maps to `Importe`).               |
 | Taxes                      | `taxes`                | array of [regimes.mx.FuelAccountTax](/draft-0/regimes/mx/fuel_account_tax) | true | Map of taxes applied to the purchase (maps to `Traslados`).                        |
 

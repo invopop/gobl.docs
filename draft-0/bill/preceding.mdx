@@ -1,6 +1,6 @@
 ---
 title: Preceding
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Preceding allows for information to be provided about a previous invoice that this one will replace, subtract from, or add to.
@@ -13,7 +13,7 @@ Preceding allows for information to be provided about a previous invoice that th
 
 | Title      | Property     | Type                                       | Req. | Description                                                                                      |
 |------------|--------------|--------------------------------------------|------|--------------------------------------------------------------------------------------------------|
-| UUID       | `uuid`       | [uuid.UUID](/draft-0/uuid/uuid)            |      | Preceding document's UUID if available can be useful for tracing.                                |
+| UUID       | `uuid`       | string                                     |      | Preceding document's UUID.                                                                       |
 | Type       | `type`       | [cbc.Key](/draft-0/cbc/key)                |      | Type of the preceding document                                                                   |
 | Series     | `series`     | string                                     |      | Series identification code                                                                       |
 | Code       | `code`       | string                                     | true | Code of the previous document.                                                                   |
@@ -23,4 +23,15 @@ Preceding allows for information to be provided about a previous invoice that th
 | Period     | `period`     | [cal.Period](/draft-0/cal/period)          |      | Tax period in which the previous invoice had an effect required by some tax regimes and formats. |
 | Ext        | `ext`        | [tax.Extensions](/draft-0/tax/extensions)  |      | Extensions for region specific requirements.                                                     |
 | Meta       | `meta`       | [cbc.Meta](/draft-0/cbc/meta)              |      | Additional semi-structured data that may be useful in specific regions                           |
+
+## Type Values
+
+| Value         | Description                                                                |
+|---------------|----------------------------------------------------------------------------|
+| `standard`    | A regular commercial invoice document between a supplier and customer.     |
+| `proforma`    | For a clients validation before sending a final invoice.                   |
+| `corrective`  | Corrected invoice that completely *replaces* the preceding document.       |
+| `credit-note` | Reflects a refund either partial or complete of the preceding document. A  |
+|               | credit note effectively *extends* the previous document.                   |
+| `debit-note`  | An additional set of charges to be added to the preceding document.        |
 

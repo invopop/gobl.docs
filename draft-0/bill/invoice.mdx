@@ -1,6 +1,6 @@
 ---
 title: Invoice
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
@@ -13,7 +13,7 @@ Invoice represents a payment claim for goods or services supplied under conditio
 
 | Title             | Property         | Type                                                              | Req. | Description                                                                                                      |
 |-------------------|------------------|-------------------------------------------------------------------|------|------------------------------------------------------------------------------------------------------------------|
-| UUID              | `uuid`           | [uuid.UUID](/draft-0/uuid/uuid)                                   |      | Unique document ID. Not required, but always recommended in addition to the Code.                                |
+| UUID              | `uuid`           | string                                                            |      | Universally Unique Identifier.                                                                                   |
 | Type              | `type`           | [cbc.Key](/draft-0/cbc/key)                                       |      | Type of invoice document subject to the requirements of the local tax regime.                                    |
 | Series            | `series`         | string                                                            |      | Used as a prefix to group codes.                                                                                 |
 | Code              | `code`           | string                                                            | true | Sequential code used to identify this invoice in tax declarations.                                               |
@@ -40,11 +40,12 @@ Invoice represents a payment claim for goods or services supplied under conditio
 
 ## Type Values
 
-| Value         | Description                                                             |
-|---------------|-------------------------------------------------------------------------|
-| `standard`    | A regular commercial invoice document between a supplier and customer.  |
-| `proforma`    | For a clients validation before sending a final invoice.                |
-| `corrective`  | Corrected invoice that completely replaces the preceding document.      |
-| `credit-note` | Reflects a refund either partial or complete of the preceding document. |
-| `debit-note`  | An additional set of charges to be added to the preceding document.     |
+| Value         | Description                                                                |
+|---------------|----------------------------------------------------------------------------|
+| `standard`    | A regular commercial invoice document between a supplier and customer.     |
+| `proforma`    | For a clients validation before sending a final invoice.                   |
+| `corrective`  | Corrected invoice that completely *replaces* the preceding document.       |
+| `credit-note` | Reflects a refund either partial or complete of the preceding document. A  |
+|               | credit note effectively *extends* the previous document.                   |
+| `debit-note`  | An additional set of charges to be added to the preceding document.        |
 

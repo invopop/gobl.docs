@@ -1,6 +1,6 @@
 ---
 title: Address
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
@@ -13,7 +13,7 @@ Address defines a globally acceptable set of attributes that describes a postal 
 
 | Title           | Property       | Type                                           | Req. | Description                                                                                    |
 |-----------------|----------------|------------------------------------------------|------|------------------------------------------------------------------------------------------------|
-| UUID            | `uuid`         | [uuid.UUID](/draft-0/uuid/uuid)                |      | Internal ID used to identify the party inside a document.                                      |
+| UUID            | `uuid`         | string                                         |      | Universally Unique Identifier.                                                                 |
 | Label           | `label`        | string                                         |      | Useful identifier, such as home, work, etc.                                                    |
 | Post Office Box | `po_box`       | string                                         |      | Box number or code for the post office box located at the address.                             |
 | Number          | `num`          | string                                         |      | House or building number in the street.                                                        |

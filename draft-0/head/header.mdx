@@ -1,6 +1,6 @@
 ---
 title: Header
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Header defines the metadata of the body.
@@ -13,7 +13,7 @@ Header defines the metadata of the body.
 
 | Title  | Property | Type                                       | Req. | Description                                                                                            |
 |--------|----------|--------------------------------------------|------|--------------------------------------------------------------------------------------------------------|
-| UUID   | `uuid`   | [uuid.UUID](/draft-0/uuid/uuid)            | true | Unique UUIDv1 identifier for the envelope.                                                             |
+| UUID   | `uuid`   | string                                     | true | Unique UUIDv1 identifier for the envelope.                                                             |
 | Digest | `dig`    | [dsig.Digest](/draft-0/dsig/digest)        | true | Digest of the canonical JSON body.                                                                     |
 | Stamps | `stamps` | array of [head.Stamp](/draft-0/head/stamp) |      | Seals of approval from other organisations that can only be added to non-draft envelopes.              |
 | Tags   | `tags`   | array of string                            |      | Set of labels that describe but have no influence on the data.                                         |

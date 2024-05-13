@@ -1,6 +1,6 @@
 ---
 title: Person
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Person represents a human, and how to contact them electronically.
@@ -13,7 +13,7 @@ Person represents a human, and how to contact them electronically.
 
 | Title             | Property     | Type                                             | Req. | Description                                               |
 |-------------------|--------------|--------------------------------------------------|------|-----------------------------------------------------------|
-| UUID              | `uuid`       | [uuid.UUID](/draft-0/uuid/uuid)                  |      | Unique identity code                                      |
+| UUID              | `uuid`       | string                                           |      | Universally Unique Identifier.                            |
 | Name              | `name`       | [org.Name](/draft-0/org/name)                    | true | Complete details on the name of the person                |
 | Role              | `role`       | string                                           |      | What they do within an organization                       |
 | Email Addresses   | `emails`     | array of [org.Email](/draft-0/org/email)         |      | Electronic mail addresses that belong to the person.      |

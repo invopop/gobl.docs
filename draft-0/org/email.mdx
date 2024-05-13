@@ -1,6 +1,6 @@
 ---
 title: Email
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Email describes the electronic mailing details.
@@ -11,10 +11,10 @@ Email describes the electronic mailing details.
 
 ## Properties
 
-| Title   | Property | Type                            | Req. | Description                 |
-|---------|----------|---------------------------------|------|-----------------------------|
-|         | `uuid`   | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity code        |
-| Label   | `label`  | string                          |      | Identifier for the email.   |
-| Address | `addr`   | string                          | true | Electronic mailing address. |
-| Meta    | `meta`   | [cbc.Meta](/draft-0/cbc/meta)   |      | Additional fields.          |
+| Title   | Property | Type                          | Req. | Description                    |
+|---------|----------|-------------------------------|------|--------------------------------|
+| UUID    | `uuid`   | string                        |      | Universally Unique Identifier. |
+| Label   | `label`  | string                        |      | Identifier for the email.      |
+| Address | `addr`   | string                        | true | Electronic mailing address.    |
+| Meta    | `meta`   | [cbc.Meta](/draft-0/cbc/meta) |      | Additional fields.             |
 

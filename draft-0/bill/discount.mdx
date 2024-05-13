@@ -1,6 +1,6 @@
 ---
 title: Discount
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Discount represents an allowance applied to the complete document independent from the individual lines.
@@ -13,7 +13,7 @@ Discount represents an allowance applied to the complete document independent fr
 
 | Title       | Property  | Type                                      | Req. | Description                                                                                                              |
 |-------------|-----------|-------------------------------------------|------|--------------------------------------------------------------------------------------------------------------------------|
-| UUID        | `uuid`    | [uuid.UUID](/draft-0/uuid/uuid)           |      | Unique identifying for the discount entry                                                                                |
+| UUID        | `uuid`    | string                                    |      | Universally Unique Identifier.                                                                                           |
 | Index       | `i`       | integer                                   |      | Line number inside the list of discounts (calculated)                                                                    |
 | Reference   | `ref`     | string                                    |      | Reference or ID for this Discount                                                                                        |
 | Base        | `base`    | [num.Amount](/draft-0/num/amount)         |      | Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum. |

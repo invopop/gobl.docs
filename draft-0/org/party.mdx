@@ -1,6 +1,6 @@
 ---
 title: Party
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Party represents a person or business entity.
@@ -13,7 +13,7 @@ Party represents a person or business entity.
 
 | Title             | Property       | Type                                             | Req. | Description                                                                                                                               |
 |-------------------|----------------|--------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| UUID              | `uuid`         | [uuid.UUID](/draft-0/uuid/uuid)                  |      | Unique identity code                                                                                                                      |
+| UUID              | `uuid`         | string                                           |      | Universally Unique Identifier.                                                                                                            |
 | Name              | `name`         | string                                           | true | Legal name or representation of the organization.                                                                                         |
 | Alias             | `alias`        | string                                           |      | Alternate short name.                                                                                                                     |
 | Tax Identity      | `tax_id`       | [tax.Identity](/draft-0/tax/identity)            |      | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |

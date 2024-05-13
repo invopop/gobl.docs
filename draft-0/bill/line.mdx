@@ -1,6 +1,6 @@
 ---
 title: Line
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Line is a single row in an invoice.
@@ -13,7 +13,7 @@ Line is a single row in an invoice.
 
 | Title     | Property    | Type                                                      | Req. | Description                                                                 |
 |-----------|-------------|-----------------------------------------------------------|------|-----------------------------------------------------------------------------|
-| UUID      | `uuid`      | [uuid.UUID](/draft-0/uuid/uuid)                           |      | Unique identifier for this line                                             |
+| UUID      | `uuid`      | string                                                    |      | Universally Unique Identifier.                                              |
 | Index     | `i`         | integer                                                   |      | Line number inside the parent (calculated)                                  |
 | Quantity  | `quantity`  | [num.Amount](/draft-0/num/amount)                         | true | Number of items                                                             |
 | Item      | `item`      | [org.Item](/draft-0/org/item)                             | true | Details about what is being sold                                            |

@@ -1,6 +1,6 @@
 ---
 title: Identity
-comment: Generated with GOBL v0.68.0
+comment: 
 ---
 
 Identity is used to define a code for a specific context.
@@ -11,12 +11,12 @@ Identity is used to define a code for a specific context.
 
 ## Properties
 
-| Title       | Property      | Type                            | Req. | Description                                                                                                                                     |
-|-------------|---------------|---------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| UUID        | `uuid`        | [uuid.UUID](/draft-0/uuid/uuid) |      | Unique identity for this identity object.                                                                                                       |
-| Label       | `label`       | string                          |      | Optional label useful for non-standard identities to give a bit more context.                                                                   |
-| Key         | `key`         | [cbc.Key](/draft-0/cbc/key)     |      | Uniquely classify this identity using a key instead of a code.                                                                                  |
-| Type        | `type`        | [cbc.Code](/draft-0/cbc/code)   |      | The type of Code being represented and usually specific for a particular context, country, or tax regime, and cannot be used alongside the key. |
-| Code        | `code`        | [cbc.Code](/draft-0/cbc/code)   | true | The actual value of the identity code.                                                                                                          |
-| Description | `description` | string                          |      | Description adds details about what the code could mean or imply                                                                                |
+| Title       | Property      | Type                          | Req. | Description                                                                                                                                     |
+|-------------|---------------|-------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| UUID        | `uuid`        | string                        |      | Universally Unique Identifier.                                                                                                                  |
+| Label       | `label`       | string                        |      | Optional label useful for non-standard identities to give a bit more context.                                                                   |
+| Key         | `key`         | [cbc.Key](/draft-0/cbc/key)   |      | Uniquely classify this identity using a key instead of a code.                                                                                  |
+| Type        | `type`        | [cbc.Code](/draft-0/cbc/code) |      | The type of Code being represented and usually specific for a particular context, country, or tax regime, and cannot be used alongside the key. |
+| Code        | `code`        | [cbc.Code](/draft-0/cbc/code) | true | The actual value of the identity code.                                                                                                          |
+| Description | `description` | string                        |      | Description adds details about what the code could mean or imply                                                                                |
 

@@ -42,9 +42,9 @@ Other [techniques do exist](https://en.wikipedia.org/wiki/Rounding), especially 
 
 When a document like an invoice contains a set of line amounts and references to other details such as payments and advances, GOBL ensures that all calculations are made using the currency's base precision plus 2 decimal places. If the lines in the document are defined with even greater precision, this will be maintained in all further calculations.
 
-For example, if you're dealing with Euros or US Dollars for example, the final precision for calculations would be 4. The Japanese Yen (YEN) or Chile's Peso (CLP) whose currencies do not use cents, would only have 2 decimal places added.
+For example, if you're dealing with Euros or US Dollars, the final precision for calculations would be 4. The Japanese Yen (YEN) or Chile's Peso (CLP) whose currencies do not use cents, would only have 2 decimal places added.
 
-When numbers are presented in totals GOBL will always round using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage. An unexpected consequence of this however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
+Totals in GOBL will always round using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage. An unexpected consequence of this however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
 
 ```json
 [
@@ -71,7 +71,7 @@ When numbers are presented in totals GOBL will always round using the currency's
 ]
 ```
 
-When that data is plugged into a GOBL invoice, the final sum of the invoice is `122.61`, and not `122.62` as would be expected by summing the line totals. We can see why if we add a `0` to the item price:
+When that data is plugged into a GOBL invoice the final sum of the invoice is `122.61` not `122.62` as would be expected by summing the line totals. We can see why if we add a `0` to each item's price:
 
 ```json
 [
