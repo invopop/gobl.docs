@@ -11,8 +11,9 @@ Online provides the details required to make a payment online using a website
 
 ## Properties
 
-| Title   | Property | Type   | Req. | Description                                    |
-|---------|----------|--------|------|------------------------------------------------|
-| Name    | `name`   | string |      | Descriptive name given to the online provider. |
-| Address | `addr`   | string | true | Full URL to be used for payment.               |
+| Title | Property | Type                        | Req. | Description                                    |
+|-------|----------|-----------------------------|------|------------------------------------------------|
+| Key   | `key`    | [cbc.Key](/draft-0/cbc/key) |      | Key identifier for this online payment method. |
+| Label | `label`  | string                      |      | Descriptive label for the online provider.     |
+| URL   | `url`    | string                      | true | URL to be used for payment.                    |
 

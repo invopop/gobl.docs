@@ -15,6 +15,7 @@ CorrectionOptions defines a structure used to pass configuration options to corr
 |------------|--------------|--------------------------------------------|------|-------------------------------------------------------------------|
 | Type       | `type`       | [cbc.Key](/draft-0/cbc/key)                | true | The type of corrective invoice to produce.                        |
 | Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date)              |      | When the new corrective invoice's issue date should be set to.    |
+| Series     | `series`     | string                                     |      | Series to assign to the new corrective invoice.                   |
 | Stamps     | `stamps`     | array of [head.Stamp](/draft-0/head/stamp) |      | Stamps of the previous document to include in the preceding data. |
 | Reason     | `reason`     | string                                     |      | Human readable reason for the corrective operation.               |
 | Extensions | `ext`        | [tax.Extensions](/draft-0/tax/extensions)  |      | Extensions for region specific requirements.                      |
