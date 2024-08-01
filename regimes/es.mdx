@@ -6,7 +6,7 @@ title: Spain
 
 | Key | Value |
 | --- | ----- |
-| Country Code | <code>ES</code> |
+| Tax Country Code | <code>ES</code> |
 | Currency | <code>EUR</code> |
 | Base Time Zone | <code>Europe/Madrid</code> |
 
@@ -29,7 +29,7 @@ to its local needs.
 
 | Key | Name | Percents | Description |
 | --- | ---- | -------- | ----------- |
-| <code>zero</code> | Zero Rate | 0.0% | May be applied to exports and intra-community supplies. |
+| <code>zero</code> | Zero Rate | 0.0% |  |
 | <code>standard</code> | Standard Rate | 21.0% |  |
 | <code>standard+eqs</code> | Standard Rate + Equivalence Surcharge | 21.0% (+5.2%) |  |
 | <code>reduced</code> | Reduced Rate | 10.0% |  |
@@ -63,57 +63,99 @@ or credit and debit notes.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
 - <code>corrective</code>
+- <code>debit-note</code>
 
-### Correction Methods
+### Extension Keys
 
-| Key | Name | Extras |
-| --- | ---- | ------ |
-| <code>complete</code> | Complete | <code>facturae:01</code> |
-| <code>partial</code> | Corrected items only | <code>facturae:02</code> |
-| <code>discount</code> | Bulk deal in a given period | <code>facturae:03</code> |
-| <code>authorized</code> | Authorized by the Tax Agency | <code>facturae:04</code> |
-
-### Correction Changes
-
-| Key | Name | Extras |
-| --- | ---- | ------ |
-| <code>code</code> | Invoice code | <code>facturae:01</code> |
-| <code>series</code> | Invoice series | <code>facturae:02</code> |
-| <code>issue-date</code> | Issue date | <code>facturae:03</code> |
-| <code>supplier-name</code> | Name and surnames/Corporate name - Issuer (Sender) | <code>facturae:04</code> |
-| <code>customer-name</code> | Name and surnames/Corporate name - Receiver | <code>facturae:05</code> |
-| <code>supplier-tax-id</code> | Issuer's Tax Identification Number | <code>facturae:06</code> |
-| <code>customer-tax-id</code> | Receiver's Tax Identification Number | <code>facturae:07</code> |
-| <code>supplier-addr</code> | Issuer's address | <code>facturae:08</code> |
-| <code>customer-addr</code> | Receiver's address | <code>facturae:09</code> |
-| <code>line</code> | Item line | <code>facturae:10</code> |
-| <code>tax-rate</code> | Applicable Tax Rate | <code>facturae:11</code> |
-| <code>tax-amount</code> | Applicable Tax Amount | <code>facturae:12</code> |
-| <code>period</code> | Applicable Date/Period | <code>facturae:13</code> |
-| <code>type</code> | Invoice Class | <code>facturae:14</code> |
-| <code>legal-details</code> | Legal literals | <code>facturae:15</code> |
-| <code>tax-base</code> | Taxable Base | <code>facturae:16</code> |
-| <code>tax</code> | Calculation of tax outputs | <code>facturae:80</code> |
-| <code>tax-retained</code> | Calculation of tax inputs | <code>facturae:81</code> |
-| <code>refund</code> | Taxable Base modified due to return of packages and packaging materials | <code>facturae:82</code> |
-| <code>discount</code> | Taxable Base modified due to discounts and rebates | <code>facturae:83</code> |
-| <code>judicial</code> | Taxable Base modified due to firm court ruling or administrative decision | <code>facturae:84</code> |
-| <code>insolvency</code> | Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings | <code>facturae:85</code> |
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>es-facturae-correction</code>
+- <code>es-tbai-correction</code>
 
 ## Extensions
 
 The following extensions are supported by this tax regime.
 
-### TicketBAI Exemption code
+### FacturaE Change
 
-Key: <code>es-tbai-exemption</code>
+Key: <code>es-facturae-correction</code>	
+
+FacturaE requires a specific and single code that explains why the previous invoice is being corrected.
 
 | Code | Name |
 | ---- | ---- |
-| <code>E1</code> | Exempt pursuant to Article 20 of the Foral VAT Law |
-| <code>E2</code> | Exempt pursuant to Article 21 of the Foral VAT Law |
-| <code>E3</code> | Exempt pursuant to Article 22 of the Foral VAT Law |
-| <code>E4</code> | Exempt pursuant to Articles 23 and 24 of the Foral VAT Law |
-| <code>E5</code> | Exempt pursuant to Article 25 of the Foral VAT law |
-| <code>E6</code> | Exempt pursuant to other reasons |
+| <code>01</code> | Invoice code |
+| <code>02</code> | Invoice series |
+| <code>03</code> | Issue date |
+| <code>04</code> | Name and surnames/Corporate name - Issuer (Sender) |
+| <code>05</code> | Name and surnames/Corporate name - Receiver |
+| <code>06</code> | Issuer's Tax Identification Number |
+| <code>07</code> | Receiver's Tax Identification Number |
+| <code>08</code> | Supplier's address |
+| <code>09</code> | Customer's address |
+| <code>10</code> | Item line |
+| <code>11</code> | Applicable Tax Rate |
+| <code>12</code> | Applicable Tax Amount |
+| <code>13</code> | Applicable Date/Period |
+| <code>14</code> | Invoice Class |
+| <code>15</code> | Legal literals |
+| <code>16</code> | Taxable Base |
+| <code>80</code> | Calculation of tax outputs |
+| <code>81</code> | Calculation of tax inputs |
+| <code>82</code> | Taxable Base modified due to return of packages and packaging materials |
+| <code>83</code> | Taxable Base modified due to discounts and rebates |
+| <code>84</code> | Taxable Base modified due to firm court ruling or administrative decision |
+| <code>85</code> | Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings |
+
+### TicketBAI Product Key
+
+Key: <code>es-tbai-product</code>	
+
+Product keys are used by TicketBAI to differentiate between -exported- goods
+and services. It may be useful to classify all products regardless of wether
+they are exported or not.
+
+There is an additional exception case for goods that are resold without modification
+when the supplier is in the simplified tax regime. For must purposes this special
+case can be ignored.
+
+### TicketBAI Exemption code
+
+Key: <code>es-tbai-exemption</code>	
+
+Codes used by TicketBAI for both "exempt", "not-subject", and reverse
+charge transactions. In the TicketBAI format these are separated,
+but in order to simplify GOBL and be more closely aligned with
+other countries we've combined them into one.
+
+| Code | Name |
+| ---- | ---- |
+| <code>E1</code> | Exempt: pursuant to Article 20 of the Foral VAT Law |
+| <code>E2</code> | Exempt: pursuant to Article 21 of the Foral VAT Law |
+| <code>E3</code> | Exempt: pursuant to Article 22 of the Foral VAT Law |
+| <code>E4</code> | Exempt: pursuant to Articles 23 and 24 of the Foral VAT Law |
+| <code>E5</code> | Exempt: pursuant to Article 25 of the Foral VAT law |
+| <code>E6</code> | Exempt: pursuant to other reasons |
+| <code>OT</code> | Not subject: pursuant to Article 7 of the VAT Law - other cases of non-subject |
+| <code>RL</code> | Not subject: pursuant to localization rules |
+| <code>VT</code> | Not subject: sales made on behalf of third parties (amount not computable for VAT or IRPF purposes) |
+| <code>IE</code> | Not subject in the TAI due to localization rules, but foreign tax, IPS/IGIC or VAT from another EU member state is passed on |
+| <code>S2</code> | Subject and not exempt: with reverse charge |
+
+### TicketBAI Rectification Type Code
+
+Key: <code>es-tbai-correction</code>	
+
+Corrected or rectified invoices that need to be sent in the TicketBAI format
+require a specific type code to be defined alongside the preceding invoice
+data.
+
+| Code | Name |
+| ---- | ---- |
+| <code>R1</code> | Rectified invoice: error based on law and Article 80 One, Two and Six of the Provincial Tax Law of VAT |
+| <code>R2</code> | Rectified invoice: error based on law and Article 80 Three of the Provincial Tax Law of VAT |
+| <code>R3</code> | Rectified invoice: error based on law and Article 80 Four of the Provincial Tax Law of VAT |
+| <code>R4</code> | Rectified invoice: Other |
+| <code>R5</code> | Rectified invoice: simplified invoices |

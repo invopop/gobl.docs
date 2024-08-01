@@ -6,7 +6,7 @@ title: Portugal
 
 | Key | Value |
 | --- | ----- |
-| Country Code | <code>PT</code> |
+| Tax Country Code | <code>PT</code> |
 | Currency | <code>EUR</code> |
 | Base Time Zone | <code>Europe/Lisbon</code> |
 
@@ -23,7 +23,7 @@ title: Portugal
 | <code>standard</code> | Standard Rate | 16.0% |  |
 | <code>intermediate</code> | Intermediate Rate | 9.0% |  |
 | <code>reduced</code> | Reduced Rate | 4.0% |  |
-| <code>exempt</code> |  |  |  |
+| <code>exempt</code> | Exempt |  |  |
 
 ## Correction Definitions
 
@@ -34,10 +34,21 @@ or credit and debit notes.
 
 The types of invoices that can be created with a preceding definition:
 - <code>credit-note</code>
+- <code>debit-note</code>
 
 ## Extensions
 
 The following extensions are supported by this tax regime.
+
+### Region Code
+
+Key: <code>pt-region</code>
+
+| Code | Name |
+| ---- | ---- |
+| <code>PT</code> | Mainland Portugal |
+| <code>PT-AC</code> | Azores |
+| <code>PT-MA</code> | Madeira |
 
 ### Tax exemption reason code
 

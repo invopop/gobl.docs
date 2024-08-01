@@ -6,7 +6,7 @@ title: Mexico
 
 | Key | Value |
 | --- | ----- |
-| Country Code | <code>MX</code> |
+| Tax Country Code | <code>MX</code> |
 | Currency | <code>MXN</code> |
 | Base Time Zone | <code>America/Mexico_City</code> |
 
@@ -48,11 +48,24 @@ Stamp keys from the previous invoice that need to be referenced:
 
 The following extensions are supported by this tax regime.
 
+### Place of Issue
+
+Key: <code>mx-cfdi-issue-place</code>	
+
+Post code of where the invoice was issued. In CFDI, this translates to the 'LugarExpedicion'.
+
+### Post Code
+
+Key: <code>mx-cfdi-post-code</code>	
+
+Post code of a supplier or customer to use instead of an address. Example: "01000".
+
 ### Product or Service Code
 
 Key: <code>mx-cfdi-prod-serv</code>	
 
 Code defined in the CFDI catalogue used to identify a product or service.
+Mapped to the 'ClaveProdServ' CFDI field.
 
 ### Fiscal Regime Code
 

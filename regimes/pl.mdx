@@ -1,0 +1,74 @@
+---
+title: Poland
+---
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | <code>PL</code> |
+| Currency | <code>PLN</code> |
+| Base Time Zone | <code>Europe/Warsaw</code> |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| <code>VAT</code> | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>standard</code> | Standard Rate | 23.0% |  |
+| <code>reduced</code> | First Reduced Rate | 8.0% |  |
+| <code>super-reduced</code> | Second Reduced Rate | 5.0% |  |
+| <code>zero</code> | Zero Rate | 0.0% |  |
+| <code>exempt</code> | Exempt |  |  |
+| <code>special</code> | Special Rate |  |  |
+
+## Correction Definitions
+
+This tax regime supports auto-generation of corrective invoices
+or credit and debit notes.
+
+This tax regime requires a reason to be provided in the <code>reason</code> field
+when submitting the correction options.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+
+### Stamp Keys
+
+Stamp keys from the previous invoice that need to be referenced:
+- <code>ksef-id</code>
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>pl-ksef-effective-date</code>
+
+## Extensions
+
+The following extensions are supported by this tax regime.
+
+### Special VAT Extensions for KSeF
+
+Key: <code>pl-ksef-vat-special</code>
+
+### Zero VAT Extensions for KSeF
+
+Key: <code>pl-ksef-vat-zero</code>
+
+### Effective date code.
+
+Key: <code>pl-ksef-effective-date</code>
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Original |
+| <code>2</code> | Correction |
+| <code>3</code> | Other |

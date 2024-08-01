@@ -67,15 +67,20 @@
         {
           "group": "Countries",
           "pages": [
+            "regimes/at",
+            "regimes/be",
             "regimes/ca",
+            "regimes/ch",
             "regimes/co",
             "regimes/de",
+            "regimes/el",
             "regimes/es",
             "regimes/fr",
             "regimes/gb",
             "regimes/it",
             "regimes/mx",
             "regimes/nl",
+            "regimes/pl",
             "regimes/pt",
             "regimes/us"
           ]

@@ -78,9 +78,6 @@ func (g *generator) generate() error {
 	if err := g.extensions(); err != nil {
 		return err
 	}
-	if err := g.zones(); err != nil {
-		return err
-	}
 	return nil
 }
 
@@ -98,7 +95,7 @@ func (g *generator) base() error {
 
 		| Key | Value |
 		| --- | ----- |
-		| Country Code | <code>{{.Country}}</code> |
+		| Tax Country Code | <code>{{.Country}}</code> |
 		| Currency | <code>{{.Currency}}</code> |
 		| Base Time Zone | <code>{{.TimeZone}}</code> |
 	`))
@@ -191,6 +188,12 @@ func (g *generator) preceding() error {
 		This tax regime supports auto-generation of corrective invoices
 		or credit and debit notes.
 
+		{{- if .ReasonRequired }}
+
+		This tax regime requires a reason to be provided in the <code>reason</code> field
+		when submitting the correction options.
+
+		{{- end }}
 		{{- if .Types }}
 
 		### Invoice Types
@@ -212,27 +215,17 @@ func (g *generator) preceding() error {
 		{{- end }}
 		{{- end}}
 
-		{{- if .Methods }}
+		{{- if .Extensions }}
 
-		### Correction Methods
+		### Extension Keys
 
-		| Key | Name | Extras |
-		| --- | ---- | ------ |
-		{{- range .Methods }}
-		| <code>{{ .Key }}</code> | {{t .Name }} | {{codeMap .Map }} |
+		One or all of the following extensions may be required as part of the correction
+		options. See the [Extensions](#extensions) section for possible values.
+
+		{{- range .Extensions }}
+		- <code>{{ . }}</code>
 		{{- end }}
-		{{- end }}
-
-		{{- if .Changes }}
-
-		### Correction Changes
-
-		| Key | Name | Extras |
-		| --- | ---- | ------ |
-		{{- range .Changes }}
-		| <code>{{ .Key }}</code> | {{t .Name }} | {{codeMap .Map }} |
-		{{- end }}
-		{{- end }}
+		{{- end}}
 
 	`), cd)
 }
@@ -322,30 +315,6 @@ func joinKeys(keys []cbc.Key) string {
 		s = append(s, fmt.Sprintf("<code>%s</code>", k.String()))
 	}
 	return strings.Join(s, ", ")
-}
-
-func (g *generator) zones() error {
-	if g.regime.Zones == nil {
-		return nil
-	}
-	list := g.regime.Zones.List()
-	if len(list) == 0 {
-		return nil
-	}
-	return g.process(here.Doc(`
-		
-
-		## Zones
-
-		The following zone codes may need to be included in the tax identity
-		zone field and, or, address fields.
-
-		| Code | Locality | Region |
-		| ---- | ---- | ---- |
-		{{- range .Zones.List }}
-		| <code>{{ .Code }}</code> | {{t .Locality }} | {{t .Region }} |
-		{{- end }}
-	`))
 }
 
 func (g *generator) process(doc string) error {

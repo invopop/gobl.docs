@@ -6,7 +6,7 @@ title: Italy
 
 | Key | Value |
 | --- | ----- |
-| Country Code | <code>IT</code> |
+| Tax Country Code | <code>IT</code> |
 | Currency | <code>EUR</code> |
 | Base Time Zone | <code>Europe/Rome</code> |
 
@@ -30,11 +30,38 @@ title: Italy
 | <code>reduced</code> | Reduced Rate | 5.0% |  |
 | <code>intermediate</code> | Intermediate Rate | 10.0% |  |
 | <code>standard</code> | Ordinary Rate | 22.0% |  |
-| <code>exempt</code> | None |  |  |
+| <code>exempt</code> | Exempt |  |  |
+
+## Correction Definitions
+
+This tax regime supports auto-generation of corrective invoices
+or credit and debit notes.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+- <code>debit-note</code>
 
 ## Extensions
 
 The following extensions are supported by this tax regime.
+
+### SDI Transmission Format
+
+Key: <code>it-sdi-format</code>	
+
+Code used to describe the transmission format of the invoice. By default
+the value "FPR12" is used unless the user explicitly sets the value
+to something else.
+
+Normally this will only be needed when the invoice is to be sent to governmental
+bodies and must use the "FPA12" format.
+
+| Code | Name |
+| ---- | ---- |
+| <code>FPA12</code> | Public Administration |
+| <code>FPR12</code> | Private Parties (default) |
 
 ### Fiscal Regime Code
 
