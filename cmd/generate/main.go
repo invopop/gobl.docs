@@ -268,6 +268,15 @@ func (g *generator) extension(kd *cbc.KeyDefinition) error {
 
 		{{- end }}
 
+ 		{{- if .Keys }}
+
+		| Key | Name |
+		| ---- | ---- |
+		{{- range .Keys }}
+		| <code>{{ .Key }}</code> | {{t .Name }} |
+		{{- end }}
+		{{- end }}
+
 		{{- if .Codes }}
 
 		| Code | Name |
