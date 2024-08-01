@@ -11,13 +11,14 @@ Person represents a human, and how to contact them electronically.
 
 ## Properties
 
-| Title             | Property     | Type                                             | Req. | Description                                               |
-|-------------------|--------------|--------------------------------------------------|------|-----------------------------------------------------------|
-| UUID              | `uuid`       | string                                           |      | Universally Unique Identifier.                            |
-| Name              | `name`       | [org.Name](/draft-0/org/name)                    | true | Complete details on the name of the person                |
-| Role              | `role`       | string                                           |      | What they do within an organization                       |
-| Email Addresses   | `emails`     | array of [org.Email](/draft-0/org/email)         |      | Electronic mail addresses that belong to the person.      |
-| Telephone Numbers | `telephones` | array of [org.Telephone](/draft-0/org/telephone) |      | Regular phone or mobile numbers                           |
-| Avatars           | `avatars`    | array of [org.Image](/draft-0/org/image)         |      | Avatars provider links to images or photos or the person. |
-| Meta              | `meta`       | [cbc.Meta](/draft-0/cbc/meta)                    |      | Data about the data.                                      |
+| Title             | Property     | Type                                             | Req. | Description                                                                                                                          |
+|-------------------|--------------|--------------------------------------------------|------|--------------------------------------------------------------------------------------------------------------------------------------|
+| UUID              | `uuid`       | string                                           |      | Universally Unique Identifier.                                                                                                       |
+| Label             | `label`      | string                                           |      | Label can be used to identify the person in a given context in a single language, for example "Attn", "Contact", "Responsible", etc. |
+| Name              | `name`       | [org.Name](/draft-0/org/name)                    | true | Complete details on the name of the person                                                                                           |
+| Role              | `role`       | string                                           |      | What they do within an organization                                                                                                  |
+| Email Addresses   | `emails`     | array of [org.Email](/draft-0/org/email)         |      | Electronic mail addresses that belong to the person.                                                                                 |
+| Telephone Numbers | `telephones` | array of [org.Telephone](/draft-0/org/telephone) |      | Regular phone or mobile numbers                                                                                                      |
+| Avatars           | `avatars`    | array of [org.Image](/draft-0/org/image)         |      | Avatars provider links to images or photos or the person.                                                                            |
+| Meta              | `meta`       | [cbc.Meta](/draft-0/cbc/meta)                    |      | Data about the data.                                                                                                                 |
 

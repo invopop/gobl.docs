@@ -140,7 +140,11 @@
         },
         {
           "group": "Head",
-          "pages": ["draft-0/head/header", "draft-0/head/stamp"]
+          "pages": [
+            "draft-0/head/header",
+            "draft-0/head/stamp",
+            "draft-0/head/link"
+          ]
         },
         {
           "group": "I18n",
@@ -148,7 +152,11 @@
         },
         {
           "group": "L10n",
-          "pages": ["draft-0/l10n/code", "draft-0/l10n/country_code"]
+          "pages": [
+            "draft-0/l10n/code",
+            "draft-0/l10n/iso_country_code",
+            "draft-0/l10n/tax_country_code"
+          ]
         },
         {
           "group": "Note",

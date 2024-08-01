@@ -1,0 +1,21 @@
+---
+title: Link
+comment: 
+---
+
+Link defines a link between this document and another resource.
+
+## Schema ID
+
+`https://gobl.org/draft-0/head/link`
+
+## Properties
+
+| Title       | Property      | Type                        | Req. | Description                                                  |
+|-------------|---------------|-----------------------------|------|--------------------------------------------------------------|
+|             | `key`         | [cbc.Key](/draft-0/cbc/key) | true | Key is a unique identifier for the link.                     |
+| Title       | `title`       | string                      |      | Title of the resource to use when presenting to users.       |
+| Description | `description` | string                      |      | Description of the resource to use when presenting to users. |
+| MIME Type   | `mime`        | string                      |      | Expected MIME type of the link's content.                    |
+| URL         | `url`         | string                      | true | URL of the resource.                                         |
+
