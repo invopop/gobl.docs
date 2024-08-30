@@ -35,7 +35,7 @@ or credit and debit notes.
 
 The types of invoices that can be created with a preceding definition:
 - <code>standard</code>
-- <code>corrective</code>
+- <code>credit-note</code>
 
 ## Extensions
 
@@ -59,21 +59,10 @@ Key: <code>hu-exemption-code</code>
 | <code>EUE</code> | Non-reverse charge transaction performed in another Member State (EU) |
 | <code>HO</code> | Non-reverse charge transaction performed in another Member State (EU) |
 
-### VAT out of scope reason code
-
-Key: <code>hu-vat-out-of-scope-code</code>
-| Code | Name |
-| ---- | ---- |
-| <code>ATK</code> | Outside the scope of VAT. Sections 2 and 3 of the VAT Act|
-| <code>EUFAD37</code> | Based on section 37 of the VAT Act, a reverse charge transaction carried out in another Member State (EU) |
-| <code>EUFADE</code> | Reverse charge transaction carried out in another Member State (EU), not subject to Section 37 of the VAT Act |
-| <code>EUE</code> | Non-reverse charge transaction performed in another Member State (EU) |
-| <code>HO</code> | Transaction in a third country |
-
 
 ## Hungary Customer VAT status
 | Case | Customer VAT Status | Implications on the invoice |
-| ---- | ---- | ---- |
+| ---- | ------------------- | --------------------------- |
 | Customer is registered in the group VAT system in Hungary, and the inclusion of tax number is mandatory | DOMESTIC | Their group ID number (VAT code: “5”) must be included in the customerInfo/customerVatData/customerTaxNumber/taxpayerId element, whereas the group member’s own tax number (VAT code: “4”) must be included in the customerInfo/customerVatData/customerTaxNumber/groupMemberTaxNumber/taxpayerId element.|
 | Customer is registered in the VAT system (non-group), and the inclusion of their tax number on the invoice is mandatory | DOMESTIC | At least the first eight digits (registration number) of the tax number must be included in the customerInfo/customerVatData/customerTaxNumber element.|
 | Customer is a private individual| PRIVATE_PERSON | CustomerVatData node may not be filled out|
