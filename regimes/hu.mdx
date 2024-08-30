@@ -1,0 +1,72 @@
+---
+title: Hungary
+---
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | <code>HU</code> |
+| Currency | <code>HUF</code> |
+| Base Time Zone | <code>Europe/Budapest</code> |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| <code>VAT</code> | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Key | Name | Percents | Description |
+| --- | ---- | -------- | ----------- |
+| <code>standard</code> | Standard Rate | 27.0% |  |
+| <code>intermediate</code> | Intermediate Rate | 18.0% |  |
+| <code>reduced</code> | Reduced Rate | 5.0% |  |
+| <code>zero</code> | Zero Rate | 0.0% |  |
+| <code>exempt</code> | Exempt |  |  |
+
+## Correction Definitions
+
+This tax regime supports auto-generation of corrective invoices
+or credit and debit notes.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>standard</code>
+- <code>credit-note</code>
+
+## Extensions
+
+The following extensions are supported by this tax regime.
+
+### Tax exemption reason code
+
+Key: <code>hu-exemption-code</code>
+
+| Code | Name |
+| ---- | ---- |
+| <code>AAM</code> | Personal Tax Exemption, Section XIII of the Vat Act |
+| <code>TAM</code> | Public interest or special in nature, Sections 85 and 86 of the VAT Act |
+| <code>KBAET</code> | Supply of goods/services to a taxable person registered in another Community Member State if the goods have been shipped to that Member State. Section 89 of the VAT Act |
+| <code>KBAUK</code> | The sale of new means of transport to another Member State. Section 89 of the VAT Act |
+| <code>EAM</code> | Export of goods to a non-EU country. Sections 98 to 109 of the VAT Act. |
+| <code>NAM</code> | Tax-exempt on other grounds related to international transactions. Sections 110 to 118 of the VAT act|
+| <code>ATK</code> | Outside the scope of VAT. Sections 2 and 3 of the VAT Act|
+| <code>EUFAD37</code> | Based on section 37 of the VAT Act, a reverse charge transaction carried out in another Member State (EU) |
+| <code>EUFADE</code> | Reverse charge transaction carried out in another Member State (EU), not subject to Section 37 of the VAT Act |
+| <code>EUE</code> | Non-reverse charge transaction performed in another Member State (EU) |
+| <code>HO</code> | Non-reverse charge transaction performed in another Member State (EU) |
+
+
+## Hungary Customer VAT status
+| Case | Customer VAT Status | Implications on the invoice |
+| ---- | ------------------- | --------------------------- |
+| Customer is registered in the group VAT system in Hungary, and the inclusion of tax number is mandatory | DOMESTIC | Their group ID number (VAT code: “5”) must be included in the customerInfo/customerVatData/customerTaxNumber/taxpayerId element, whereas the group member’s own tax number (VAT code: “4”) must be included in the customerInfo/customerVatData/customerTaxNumber/groupMemberTaxNumber/taxpayerId element.|
+| Customer is registered in the VAT system (non-group), and the inclusion of their tax number on the invoice is mandatory | DOMESTIC | At least the first eight digits (registration number) of the tax number must be included in the customerInfo/customerVatData/customerTaxNumber element.|
+| Customer is a private individual| PRIVATE_PERSON | CustomerVatData node may not be filled out|
+| Customer is a taxable person registered in another EC Member State, and the transaction is an EC exempt supply | Non-reverse charge transaction performed in another Member State (EU) | customerInfo/customerVatData/communityVatNumber is mandatory.|
+| Customer is a taxable person registered in another EC Member State, and the transaction has a VAT rate of 27%, 18% or 5% | OTHER | customerInfo/customerVatData/communityVatNumber is not mandatory, but may be provided.
+| Customer is registered in a non-EU country, and does not participate in the transaction as taxable person registered in another Member State | OTHER | customerInfo/customerVatData/communityVatNumber is not mandatory, but may be provided.
+| Customer is neither a taxable person nor a private individual | OTHER | no element of customerInfo/customerVatData can be provided since the customer has no tax number.

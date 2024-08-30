@@ -50,7 +50,9 @@
     },
     {
       "group": "Use Cases",
-      "pages": ["use-cases/invoicing"]
+      "pages": [
+        "use-cases/invoicing"
+      ]
     },
     {
       "group": "Quick Start",
@@ -77,6 +79,7 @@
             "regimes/es",
             "regimes/fr",
             "regimes/gb",
+            "regimes/hu",
             "regimes/it",
             "regimes/mx",
             "regimes/nl",
@@ -132,11 +135,17 @@
         },
         {
           "group": "Currency",
-          "pages": ["draft-0/currency/code", "draft-0/currency/exchange_rate"]
+          "pages": [
+            "draft-0/currency/code",
+            "draft-0/currency/exchange_rate"
+          ]
         },
         {
           "group": "DSig",
-          "pages": ["draft-0/dsig/digest", "draft-0/dsig/signature"]
+          "pages": [
+            "draft-0/dsig/digest",
+            "draft-0/dsig/signature"
+          ]
         },
         {
           "group": "Head",
@@ -148,7 +157,9 @@
         },
         {
           "group": "I18n",
-          "pages": ["draft-0/i18n/string"]
+          "pages": [
+            "draft-0/i18n/string"
+          ]
         },
         {
           "group": "L10n",
@@ -160,11 +171,16 @@
         },
         {
           "group": "Note",
-          "pages": ["draft-0/note/message"]
+          "pages": [
+            "draft-0/note/message"
+          ]
         },
         {
           "group": "Num",
-          "pages": ["draft-0/num/amount", "draft-0/num/percentage"]
+          "pages": [
+            "draft-0/num/amount",
+            "draft-0/num/percentage"
+          ]
         },
         {
           "group": "Org",
@@ -217,7 +233,9 @@
         },
         {
           "group": "Schema",
-          "pages": ["draft-0/schema/object"]
+          "pages": [
+            "draft-0/schema/object"
+          ]
         },
         {
           "group": "Tax",
@@ -243,7 +261,9 @@
         },
         {
           "group": "UUID",
-          "pages": ["draft-0/uuid/uuid"]
+          "pages": [
+            "draft-0/uuid/uuid"
+          ]
         }
       ]
     }
