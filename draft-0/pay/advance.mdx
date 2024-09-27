@@ -24,6 +24,7 @@ Advance represents a single payment that has been made already, such as a deposi
 | Currency        | `currency`        | [currency.Code](/draft-0/currency/code)            |      | If different from the parent document's base currency.                               |
 | Card            | `card`            | [pay.Card](/draft-0/pay/card)                      |      | Details of the payment that was made via a credit or debit card.                     |
 | Credit Transfer | `credit_transfer` | [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Details about how the payment was made by credit (bank) transfer.                    |
+| Extensions      | `ext`             | [tax.Extensions](/draft-0/tax/extensions)          |      | Tax extensions required by tax regimes or addons.                                    |
 | Meta            | `meta`            | [cbc.Meta](/draft-0/cbc/meta)                      |      | Additional details useful for the parties involved.                                  |
 
 ## Key Values

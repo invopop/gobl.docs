@@ -21,6 +21,7 @@ Instructions determine how the payment has or should be made.
 | Direct Debit    | `direct_debit`    | [pay.DirectDebit](/draft-0/pay/direct_debit)                |      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
 | Online          | `online`          | array of [pay.Online](/draft-0/pay/online)                  |      | Array of online payment options                                                                  |
 | Notes           | `notes`           | string                                                      |      | Any additional instructions that may be required to make the payment.                            |
+| Extensions      | `ext`             | [tax.Extensions](/draft-0/tax/extensions)                   |      | Extension key-pairs values defined by a tax regime.                                              |
 | Meta            | `meta`            | [cbc.Meta](/draft-0/cbc/meta)                               |      | Non-structured additional data that may be useful.                                               |
 
 ## Key Values

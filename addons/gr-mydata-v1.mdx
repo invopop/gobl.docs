@@ -1,0 +1,185 @@
+---
+title: Greece MyData v1.x
+---
+
+## Extensions
+
+The following extensions are supported.
+
+### VAT rate
+
+Key: <code>gr-mydata-vat-rate</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>1</code> | Standard rate |
+| <code>2</code> | Reduced rate |
+| <code>3</code> | Super-Reduced Rate |
+| <code>4</code> | Standard rate (Island) |
+| <code>5</code> | Reduced rate (Island) |
+| <code>6</code> | Super-reduced rate (Island) |
+| <code>7</code> | Without VAT |
+| <code>8</code> | Records without VAT (e.g. Payroll, Amortisations) |
+
+### Invoice type
+
+Key: <code>gr-mydata-invoice-type</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>1.1</code> | Sales Invoice |
+| <code>1.2</code> | Sales Invoice/Intra-community Supplies |
+| <code>1.3</code> | Sales Invoice/Third Country Supplies |
+| <code>1.4</code> | Sales Invoice/Sale on Behalf of Third Parties |
+| <code>1.5</code> | Sales Invoice/Clearance of Sales on Behalf of Third Parties – Fees from Sales on Behalf of Third Parties |
+| <code>1.6</code> | Sales Invoice/Supplemental Accounting Source Document |
+| <code>2.1</code> | Service Rendered Invoice |
+| <code>2.2</code> | Intra-community Service Rendered Invoice |
+| <code>2.3</code> | Third Country Service Rendered Invoice |
+| <code>2.4</code> | Service Rendered Invoice/Supplemental Accounting Source Document |
+| <code>3.1</code> | Proof of Expenditure (non-liable Issuer) |
+| <code>3.2</code> | Proof of Expenditure (denial of issuance by liable Issuer) |
+| <code>5.1</code> | Credit Invoice/Associated |
+| <code>5.2</code> | Credit Invoice/Non-Associated |
+| <code>6.1</code> | Self-Delivery Record |
+| <code>6.2</code> | Self-Supply Record |
+| <code>7.1</code> | Contract – Income |
+| <code>8.1</code> | Rents – Income |
+| <code>8.2</code> | Special Record – Accommodation Tax Collection/Payment Receipt |
+| <code>11.1</code> | Retail Sales Receipt |
+| <code>11.2</code> | Service Rendered Receipt |
+| <code>11.3</code> | Simplified Invoice |
+| <code>11.4</code> | Retail Sales Credit Note |
+| <code>11.5</code> | Retail Sales Receipt on Behalf of Third Parties |
+| <code>13.1</code> | Expenses – Domestic/Foreign Retail Transaction Purchases |
+| <code>13.2</code> | Domestic/Foreign Retail Transaction Provision |
+| <code>13.3</code> | Shared Utility Bills |
+| <code>13.4</code> | Subscriptions |
+| <code>13.30</code> | Self-Declared Entity Accounting Source Documents (Dynamic) |
+| <code>13.31</code> | Domestic/Foreign Retail Sales Credit Note |
+| <code>14.1</code> | Invoice/Intra-community Acquisitions |
+| <code>14.2</code> | Invoice/Third Country Acquisitions |
+| <code>14.3</code> | Invoice/Intra-community Services Receipt |
+| <code>14.4</code> | Invoice/Third Country Services Receipt |
+| <code>14.5</code> | EFKA |
+| <code>14.30</code> | Self-Declared Entity Accounting Source Documents (Dynamic) |
+| <code>14.31</code> | Domestic/Foreign Credit Note |
+| <code>15.1</code> | Contract-Expense |
+| <code>16.1</code> | Rent-Expense |
+| <code>17.1</code> | Payroll |
+| <code>17.2</code> | Amortisations |
+| <code>17.3</code> | Other Income Adjustment/Regularisation Entries – Accounting Base |
+| <code>17.4</code> | Other Income Adjustment/Regularisation Entries – Tax Base |
+| <code>17.5</code> | Other Expense Adjustment/Regularisation Entries – Accounting Base |
+| <code>17.6</code> | Other Expense Adjustment/Regularisation Entries – Tax Base |
+
+### Payment means
+
+Key: <code>gr-mydata-payment-means</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>1</code> | Domestic Payments Account Number |
+| <code>2</code> | Foreign Payments Account Number |
+| <code>3</code> | Cash |
+| <code>4</code> | Check |
+| <code>5</code> | On credit |
+| <code>6</code> | Web Banking |
+| <code>7</code> | POS / e-POS |
+
+### VAT exemption cause
+
+Key: <code>gr-mydata-exemption</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>1</code> | Without VAT - article 3 of the VAT code |
+| <code>2</code> | Without VAT - article 5 of the VAT code |
+| <code>3</code> | Without VAT - article 13 of the VAT code |
+| <code>4</code> | Without VAT - article 14 of the VAT code |
+| <code>5</code> | Without VAT - article 16 of the VAT code |
+| <code>6</code> | Without VAT - article 19 of the VAT code |
+| <code>7</code> | Without VAT - article 22 of the VAT code |
+| <code>8</code> | Without VAT - article 24 of the VAT code |
+| <code>9</code> | Without VAT - article 25 of the VAT code |
+| <code>10</code> | Without VAT - article 26 of the VAT code |
+| <code>11</code> | Without VAT - article 27 of the VAT code |
+| <code>12</code> | Without VAT - article 27 - Seagoing Vessels of the VAT code |
+| <code>13</code> | Without VAT - article 27.1.γ - Seagoing Vessels of the VAT code |
+| <code>14</code> | Without VAT - article 28 of the VAT code |
+| <code>15</code> | Without VAT - article 39 of the VAT code |
+| <code>16</code> | Without VAT - article 39a of the VAT code |
+| <code>17</code> | Without VAT - article 40 of the VAT code |
+| <code>18</code> | Without VAT - article 41 of the VAT code |
+| <code>19</code> | Without VAT - article 47 of the VAT code |
+| <code>20</code> | VAT included - article 43 of the VAT code |
+| <code>21</code> | VAT included - article 44 of the VAT code |
+| <code>22</code> | VAT included - article 45 of the VAT code |
+| <code>23</code> | VAT included - article 46 of the VAT code |
+| <code>24</code> | Without VAT - article 6 of the VAT code |
+| <code>25</code> | Without VAT - ΠΟΛ.1029/1995 |
+| <code>26</code> | Without VAT - ΠΟΛ.1167/2015 |
+| <code>27</code> | Without VAT - Other VAT exceptions |
+| <code>28</code> | Without VAT - Article 24 (b) (1) of the VAT Code (Tax Free) |
+| <code>29</code> | Without VAT - Article 47b of the VAT Code (OSS non-EU scheme) |
+| <code>30</code> | Without VAT - Article 47c of the VAT Code (OSS EU scheme) |
+| <code>31</code> | Excluding VAT - Article 47d of the VAT Code (IOSS) |
+
+### Income Classification Category
+
+Key: <code>gr-mydata-income-cat</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>category1_1</code> | Commodity Sale Income (+)/(-) |
+| <code>category1_2</code> | Product Sale Income (+)/(-) |
+| <code>category1_3</code> | Provision of Services Income (+)/(-) |
+| <code>category1_4</code> | Sale of Fixed Assets Income (+)/(-) |
+| <code>category1_5</code> | Other Income/Profits (+)/(-) |
+| <code>category1_6</code> | Self-Deliveries/Self-Supplies (+)/(-) |
+| <code>category1_7</code> | Income on behalf of Third Parties (+)/(-) |
+| <code>category1_8</code> | Past fiscal years income (+)/(-) |
+| <code>category1_9</code> | Future fiscal years income (+)/(-) |
+| <code>category1_10</code> | Other Income Adjustment/Regularisation Entries (+)/(-) |
+| <code>category1_95</code> | Other Income-related Information (+)/(-) |
+
+### Income Classification Type
+
+Key: <code>gr-mydata-income-type</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>E3_106</code> | Self-Production of Fixed Assets – Self-Deliveries – Destroying inventory/Commodities |
+| <code>E3_205</code> | Self-Production of Fixed Assets – Self-Deliveries – Destroying inventory/Raw and other materials |
+| <code>E3_210</code> | Self-Production of Fixed Assets – Self-Deliveries – Destroying inventory/Products and production in progress |
+| <code>E3_305</code> | Self-Production of Fixed Assets – Self-Deliveries – Destroying inventory/Raw and other materials |
+| <code>E3_310</code> | Self-Production of Fixed Assets – Self-Deliveries – Destroying inventory/Products and production in progress |
+| <code>E3_318</code> | Self-Production of Fixed Assets – Self-Deliveries – Destroying inventory/Production expenses |
+| <code>E3_561_001</code> | Wholesale Sales of Goods and Services – for Traders |
+| <code>E3_561_002</code> | Wholesale Sales of Goods and Services pursuant to article 39a paragraph 5 of the VAT Code (Law 2859/2000) |
+| <code>E3_561_003</code> | Retail Sales of Goods and Services – Private Clientele |
+| <code>E3_561_004</code> | Retail Sales of Goods and Services pursuant to article 39a paragraph 5 of the VAT Code (Law 2859/2000) |
+| <code>E3_561_005</code> | Intra-Community Foreign Sales of Goods and Services |
+| <code>E3_561_006</code> | Third Country Foreign Sales of Goods and Services |
+| <code>E3_561_007</code> | Other Sales of Goods and Services |
+| <code>E3_562</code> | Other Ordinary Income |
+| <code>E3_563</code> | Credit Interest and Related Income |
+| <code>E3_564</code> | Credit Exchange Differences |
+| <code>E3_565</code> | Income from Participations |
+| <code>E3_566</code> | Profits from Disposing Non-Current Assets |
+| <code>E3_567</code> | Profits from the Reversal of Provisions and Impairments |
+| <code>E3_568</code> | Profits from Measurement at Fair Value |
+| <code>E3_570</code> | Extraordinary income and profits |
+| <code>E3_595</code> | Self-Production Expenses |
+| <code>E3_596</code> | Subsidies - Grants |
+| <code>E3_597</code> | Subsidies – Grants for Investment Purposes – Expense Coverage |
+| <code>E3_880_001</code> | Wholesale Sales of Fixed Assets |
+| <code>E3_880_002</code> | Retail Sales of Fixed Assets |
+| <code>E3_880_003</code> | Intra-Community Foreign Sales of Fixed Assets |
+| <code>E3_880_004</code> | Third Country Foreign Sales of Fixed Assets |
+| <code>E3_881_001</code> | Wholesale Sales on behalf of Third Parties |
+| <code>E3_881_002</code> | Retail Sales on behalf of Third Parties |
+| <code>E3_881_003</code> | Intra-Community Foreign Sales on behalf of Third Parties |
+| <code>E3_881_004</code> | Third Country Foreign Sales on behalf of Third Parties |
+| <code>E3_598_001</code> | Sales of goods belonging to excise duty |
+| <code>E3_598_003</code> | Sales on behalf of farmers through an agricultural cooperative e.t.c. |

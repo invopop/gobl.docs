@@ -88,6 +88,23 @@
       ]
     },
     {
+      "group": "Addons",
+      "pages": [
+        "addons/overview",
+        {
+          "group": "Definitions",
+          "pages": [
+            "addons/es-facturae-v3",
+            "addons/es-tbai-v1",
+            "addons/gr-mydata-v1",
+            "addons/it-sdi-v1",
+            "addons/mx-cfdi-v4",
+            "addons/pt-saft-v1"
+          ]
+        }
+      ]
+    },
+    {
       "group": "Schemas (Draft 0)",
       "pages": [
         "draft-0",
@@ -99,7 +116,6 @@
             "draft-0/bill/correction_options",
             "draft-0/bill/delivery",
             "draft-0/bill/discount",
-            "draft-0/bill/document_reference",
             "draft-0/bill/invoice",
             "draft-0/bill/line",
             "draft-0/bill/line_charge",
@@ -107,7 +123,6 @@
             "draft-0/bill/ordering",
             "draft-0/bill/outlay",
             "draft-0/bill/payment",
-            "draft-0/bill/preceding",
             "draft-0/bill/tax",
             "draft-0/bill/totals"
           ]
@@ -126,13 +141,19 @@
             "draft-0/cbc/code",
             "draft-0/cbc/code_map",
             "draft-0/cbc/key",
+            "draft-0/cbc/key_definition",
             "draft-0/cbc/meta",
-            "draft-0/cbc/note"
+            "draft-0/cbc/note",
+            "draft-0/cbc/value_definition"
           ]
         },
         {
           "group": "Currency",
-          "pages": ["draft-0/currency/code", "draft-0/currency/exchange_rate"]
+          "pages": [
+            "draft-0/currency/amount",
+            "draft-0/currency/code",
+            "draft-0/currency/exchange_rate"
+          ]
         },
         {
           "group": "DSig",
@@ -142,8 +163,8 @@
           "group": "Head",
           "pages": [
             "draft-0/head/header",
-            "draft-0/head/stamp",
-            "draft-0/head/link"
+            "draft-0/head/link",
+            "draft-0/head/stamp"
           ]
         },
         {
@@ -171,6 +192,7 @@
           "pages": [
             "draft-0/org/address",
             "draft-0/org/coordinates",
+            "draft-0/org/document_ref",
             "draft-0/org/email",
             "draft-0/org/identity",
             "draft-0/org/image",
@@ -199,7 +221,7 @@
           ]
         },
         {
-          "group": "Regimes",
+          "group": "Addons",
           "pages": [
             {
               "group": "MX",
@@ -222,28 +244,27 @@
         {
           "group": "Tax",
           "pages": [
-            "draft-0/tax/category",
+            "draft-0/tax/addon_def",
+            "draft-0/tax/category_def",
             "draft-0/tax/category_total",
-            "draft-0/tax/code_definition",
             "draft-0/tax/combo",
             "draft-0/tax/identity",
-            "draft-0/tax/key_definition",
             "draft-0/tax/correction_definition",
-            "draft-0/tax/rate",
+            "draft-0/tax/correction_set",
+            "draft-0/tax/extensions",
+            "draft-0/tax/identity",
+            "draft-0/tax/rate_def",
             "draft-0/tax/rate_total",
             "draft-0/tax/rate_total_surcharge",
-            "draft-0/tax/rate_value",
-            "draft-0/tax/regime",
+            "draft-0/tax/rate_value_def",
+            "draft-0/tax/regime_def",
             "draft-0/tax/scenario",
             "draft-0/tax/scenario_set",
             "draft-0/tax/set",
             "draft-0/tax/source",
+            "draft-0/tax/tag_set",
             "draft-0/tax/total"
           ]
-        },
-        {
-          "group": "UUID",
-          "pages": ["draft-0/uuid/uuid"]
         }
       ]
     }

@@ -1,0 +1,30 @@
+---
+title: DocumentRef
+comment: 
+---
+
+DocumentRef is used to describe an existing document or a specific part of it's contents.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/document-ref`
+
+## Properties
+
+| Title       | Property      | Type                                           | Req. | Description                                                                                                                                  |
+|-------------|---------------|------------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| UUID        | `uuid`        | string                                         |      | Universally Unique Identifier.                                                                                                               |
+| Type        | `type`        | [cbc.Key](/draft-0/cbc/key)                    |      | Type of the document referenced.                                                                                                             |
+| Issue Date  | `issue_date`  | [cal.Date](/draft-0/cal/date)                  |      | IssueDate reflects the date the document was issued.                                                                                         |
+| Series      | `series`      | [cbc.Code](/draft-0/cbc/code)                  |      | Series the referenced document belongs to.                                                                                                   |
+| Code        | `code`        | [cbc.Code](/draft-0/cbc/code)                  | true | Source document's code or other identifier.                                                                                                  |
+| Line        | `line`        | integer                                        |      | Line index number inside the document, if relevant.                                                                                          |
+| Identities  | `identities`  | array of [org.Identity](/draft-0/org/identity) |      | List of additional codes, IDs, or SKUs which can be used to identify the document or its contents, agreed upon by the supplier and customer. |
+| Period      | `period`      | [cal.Period](/draft-0/cal/period)              |      | Tax period in which the referred document had an effect required by some tax regimes and formats.                                            |
+| Reason      | `reason`      | string                                         |      | Human readable description on why this reference is here or needs to be used.                                                                |
+| Description | `description` | string                                         |      | Additional details about the document.                                                                                                       |
+| Stamps      | `stamps`      | array of [head.Stamp](/draft-0/head/stamp)     |      | Seals of approval from other organisations that may need to be listed.                                                                       |
+| URL         | `url`         | string                                         |      | Link to the source document.                                                                                                                 |
+|             | `ext`         | [tax.Extensions](/draft-0/tax/extensions)      |      | Extensions for additional codes that may be required.                                                                                        |
+| Meta        | `meta`        | [cbc.Meta](/draft-0/cbc/meta)                  |      | Meta contains additional information about the document.                                                                                     |
+

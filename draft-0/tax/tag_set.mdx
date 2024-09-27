@@ -1,0 +1,18 @@
+---
+title: TagSet
+comment: 
+---
+
+TagSet defines a set of tags and their descriptions that can be used for a specific schema in the context of a Regime or Addon.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime-def#/$defs/TagSet`
+
+## Properties
+
+| Title  | Property | Type                                                      | Req. | Description                               |
+|--------|----------|-----------------------------------------------------------|------|-------------------------------------------|
+| Schema | `schema` | string                                                    | true | Schema that the tags are associated with. |
+| List   | `list`   | array of [cbc.KeyDefinition](/draft-0/cbc/key_definition) | true | List of tags for the schema               |
+

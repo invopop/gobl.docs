@@ -1,8 +1,10 @@
 module github.com/invopop/gobl.docs
 
-go 1.21.1
+go 1.22
 
-require github.com/invopop/gobl v0.112.0
+toolchain go1.22.5
+
+require github.com/invopop/gobl v0.200.0
 
 require (
 	cloud.google.com/go v0.115.0 // indirect
@@ -19,7 +21,7 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/square/go-jose/v3 v3.0.0-20200630053402-0a67ce9b0693 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	golang.org/x/crypto v0.25.0 // indirect
+	golang.org/x/crypto v0.26.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 

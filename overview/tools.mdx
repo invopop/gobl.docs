@@ -9,7 +9,7 @@ GOBL includes of a set of tools designed to help you build and understand all th
 The main libraries and tools for GOBL processing:
 
 - [GOBL](https://github.com/invopop/gobl) - the main repository, written in [Go](https://go.dev), that defines all the structures, databases, validation rules, and algorithms which are used to build complete business documents.
-- [GOBL CLI](https://github.com/invopop/gobl.cli) - command line interface, streaming server, and [WASM](https://webassembly.org/) binary, that leverage the Go validation and calculation methods to complete GOBL envelopes and payloads. 
+- [GOBL CLI](https://github.com/invopop/gobl/releases) - command line interface, streaming server, and [WASM](https://webassembly.org/) binary, that leverage the Go validation and calculation methods to complete GOBL envelopes and payloads.
 - [GOBL Generator](https://github.com/invopop/gobl.generator) - is used to convert the GOBL JSON Schema into documentation and libraries for other programming languages.
 
 # Build
@@ -26,8 +26,10 @@ We'd love for GOBL to be available in more languages. If you'd like to contribut
 Each conversion tool can be used as either a Go library or via a CLI interface:
 
 - [GOBL to FacturaE (Spain)](https://github.com/invopop/gobl.facturae) - convert into the [Spanish FacturaE](https://www.facturae.gob.es/Paginas/Index.aspx) format.
+- [GOBL to TicketBAI (Spain)](https://github.com/invopop/gobl.ticketbai) - convert into the TicketBAI format used in the north of Spain.
 - [GOBL to FatturaPA (Italy)](https://github.com/invopop/gobl.fatturapa) - convert into the [Italian FatturaPA](https://www.fatturapa.gov.it/it/index.html) format.
 - [GOBL to CFDI (Mexico)](https://github.com/invopop/gobl.cfdi) - convert into the Mexican CFDI format.
+- [GOBL to XInvoice](https://github.com/invopop/gobl.xinvoice) - conversion into Factur-X (FR) and XRechnung/ZUGFeRD (DE) formats.
 
 If you have an idea for a new conversion tool, [open a discussion](https://github.com/invopop/gobl/discussions/new/choose) to let us know.
 

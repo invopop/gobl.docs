@@ -1,0 +1,72 @@
+---
+title: Spain FacturaE
+---
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>es-facturae-correction</code>
+
+## Extensions
+
+The following extensions are supported.
+
+### FacturaE: Document Type
+
+Key: <code>es-facturae-doc-type</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>FC</code> | Commercial Invoice |
+| <code>FA</code> | Simplified Invoice |
+| <code>AF</code> | Self-billed Invoice |
+
+### FacturaE: Invoice Class
+
+Key: <code>es-facturae-invoice-class</code>
+
+| Value | Name |
+| ---- | ---- |
+| <code>OO</code> | Original |
+| <code>OR</code> | Corrective Original |
+| <code>OC</code> | Summary Original |
+| <code>CO</code> | Copy of the Original |
+| <code>CR</code> | Copy of the Corrective |
+| <code>CC</code> | Copy of the Summary |
+
+### FacturaE Change
+
+Key: <code>es-facturae-correction</code>	
+
+FacturaE requires a specific and single code that explains why the previous invoice is being corrected.
+
+| Value | Name |
+| ---- | ---- |
+| <code>01</code> | Invoice code |
+| <code>02</code> | Invoice series |
+| <code>03</code> | Issue date |
+| <code>04</code> | Name and surnames/Corporate name - Issuer (Sender) |
+| <code>05</code> | Name and surnames/Corporate name - Receiver |
+| <code>06</code> | Issuer's Tax Identification Number |
+| <code>07</code> | Receiver's Tax Identification Number |
+| <code>08</code> | Supplier's address |
+| <code>09</code> | Customer's address |
+| <code>10</code> | Item line |
+| <code>11</code> | Applicable Tax Rate |
+| <code>12</code> | Applicable Tax Amount |
+| <code>13</code> | Applicable Date/Period |
+| <code>14</code> | Invoice Class |
+| <code>15</code> | Legal literals |
+| <code>16</code> | Taxable Base |
+| <code>80</code> | Calculation of tax outputs |
+| <code>81</code> | Calculation of tax inputs |
+| <code>82</code> | Taxable Base modified due to return of packages and packaging materials |
+| <code>83</code> | Taxable Base modified due to discounts and rebates |
+| <code>84</code> | Taxable Base modified due to firm court ruling or administrative decision |
+| <code>85</code> | Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings |

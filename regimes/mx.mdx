@@ -31,8 +31,8 @@ title: Mexico
 
 ## Correction Definitions
 
-This tax regime supports auto-generation of corrective invoices
-or credit and debit notes.
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
 
 ### Invoice Types
 
@@ -43,87 +43,3 @@ The types of invoices that can be created with a preceding definition:
 
 Stamp keys from the previous invoice that need to be referenced:
 - <code>sat-uuid</code>
-
-## Extensions
-
-The following extensions are supported by this tax regime.
-
-### Place of Issue
-
-Key: <code>mx-cfdi-issue-place</code>	
-
-Post code of where the invoice was issued. In CFDI, this translates to the 'LugarExpedicion'.
-
-### Post Code
-
-Key: <code>mx-cfdi-post-code</code>	
-
-Post code of a supplier or customer to use instead of an address. Example: "01000".
-
-### Product or Service Code
-
-Key: <code>mx-cfdi-prod-serv</code>	
-
-Code defined in the CFDI catalogue used to identify a product or service.
-Mapped to the 'ClaveProdServ' CFDI field.
-
-### Fiscal Regime Code
-
-Key: <code>mx-cfdi-fiscal-regime</code>	
-
-Fiscal regime associated with suppliers and customers.
-
-| Code | Name |
-| ---- | ---- |
-| <code>601</code> | General de Ley Personas Morales |
-| <code>603</code> | Personas Morales con Fines no Lucrativos |
-| <code>605</code> | Sueldos y Salarios e Ingresos Asimilados a Salarios |
-| <code>606</code> | Arrendamiento |
-| <code>607</code> | Régimen de Enajenación o Adquisición de Bienes |
-| <code>608</code> | Demás ingresos |
-| <code>610</code> | Residentes en el Extranjero sin Establecimiento Permanente en México |
-| <code>611</code> | Ingresos por Dividendos (socios y accionistas) |
-| <code>612</code> | Personas Físicas con Actividades Empresariales y Profesionales |
-| <code>614</code> | Ingresos por intereses |
-| <code>615</code> | Régimen de los ingresos por obtención de premios |
-| <code>616</code> | Sin obligaciones fiscales |
-| <code>620</code> | Sociedades Cooperativas de Producción que optan por diferir sus ingresos |
-| <code>621</code> | Incorporación Fiscal |
-| <code>622</code> | Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras |
-| <code>623</code> | Opcional para Grupos de Sociedades |
-| <code>624</code> | Coordinados |
-| <code>625</code> | Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas |
-| <code>626</code> | Régimen Simplificado de Confianza |
-
-### CFDI Use Code
-
-Key: <code>mx-cfdi-use</code>	
-
-Chosen by the customer to indicate the purpose of an invoice.
-
-| Code | Name |
-| ---- | ---- |
-| <code>G01</code> | Acquisition of goods |
-| <code>G02</code> | Returns, discounts or rebates |
-| <code>G03</code> | General expenses |
-| <code>I01</code> | Construction |
-| <code>I02</code> | Office furniture and equipment as investmen |
-| <code>I03</code> | Transport equipment |
-| <code>I04</code> | Computer equipment and accessories |
-| <code>I05</code> | Dies, punches, molds, matrices and other toolin |
-| <code>I06</code> | Telephone communications |
-| <code>I07</code> | Satellite communications |
-| <code>I08</code> | Other machinery and equipment |
-| <code>D01</code> | Medical and dental fees and hospital expenses |
-| <code>D02</code> | Medical expenses for disability or incapacity |
-| <code>D03</code> | Funeral expenses |
-| <code>D04</code> | Donations |
-| <code>D05</code> | Interest actually paid on mortgage loans (housing) |
-| <code>D06</code> | Voluntary contributions to the SAR |
-| <code>D07</code> | Medical insurance premiums |
-| <code>D08</code> | Mandatory school transportation expenses |
-| <code>D09</code> | Deposits in savings accounts, pension plans premiums |
-| <code>D10</code> | Payments for educational services (school fees) |
-| <code>S01</code> | Without tax effects |
-| <code>CP01</code> | Payments |
-| <code>CN01</code> | Payroll |
