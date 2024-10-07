@@ -1,8 +1,6 @@
 ---
 title: Colombia
 ---
-The Colombian tax regime is based on the DIAN (Dirección de Impuestos y Aduanas Nacionales)
-specifications for electronic invoicing.
 
 ## Base Details
 
@@ -36,65 +34,8 @@ specifications for electronic invoicing.
 Auto-generation of corrective invoices or credit and debit notes is
 supported.
 
-A reason is required in the <code>reason</code> field
-when submitting the correction options.
-
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
 - <code>credit-note</code>
 - <code>debit-note</code>
-
-### Stamp Keys
-
-Stamp keys from the previous invoice that need to be referenced:
-- <code>dian-cude</code>
-
-### Extension Keys
-
-One or all of the following extensions may be required as part of the correction
-options. See the [Extensions](#extensions) section for possible values.
-- <code>co-dian-credit-code</code>
-- <code>co-dian-debit-code</code>
-
-## Extensions
-
-The following extensions are supported.
-
-### DIAN Municipality Code
-
-Key: <code>co-dian-municipality</code>	
-
-The municipality code as defined by the DIAN.
-
-For further details on the list of possible codes, see:
-
- * https://www.dian.gov.co/atencionciudadano/formulariosinstructivos/Formularios/2007/Codigos_municipios_2007.pdf
- * https://github.com/ALAxHxC/MunicipiosDane
-
-### Credit Code
-
-Key: <code>co-dian-credit-code</code>	
-
-DIAN correction code for credit notes
-
-| Value | Name |
-| ---- | ---- |
-| <code>1</code> | Partial refund |
-| <code>2</code> | Revoked |
-| <code>3</code> | Discount |
-| <code>4</code> | Adjustment |
-| <code>5</code> | Other |
-
-### Debit Code
-
-Key: <code>co-dian-debit-code</code>	
-
-DIAN correction code for debit notes
-
-| Value | Name |
-| ---- | ---- |
-| <code>1</code> | Interest |
-| <code>2</code> | Pending charges |
-| <code>3</code> | Change in value |
-| <code>4</code> | Other |
