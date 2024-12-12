@@ -29,18 +29,20 @@ Advance represents a single payment that has been made already, such as a deposi
 
 ## Key Values
 
-| Value             | Description                                         |
-|-------------------|-----------------------------------------------------|
-| `any`             | Any method available, no preference.                |
-| `card`            | Payment card.                                       |
-| `credit-transfer` | Sender initiated bank or wire transfer.             |
-| `debit-transfer`  | Receiver initiated bank or wire transfer.           |
-| `cash`            | Cash in hand.                                       |
-| `cheque`          | Cheque from bank.                                   |
-| `bank-draft`      | Bankers Draft or Bank Cheque.                       |
-| `direct-debit`    | Direct debit from the customers bank account.       |
-| `online`          | Online or web payment.                              |
-| `promissory-note` | Promissory note contract.                           |
-| `netting`         | Intercompany clearing or clearing between partners. |
-| `other`           | Other or mutually defined means of payment.         |
+| Value                  | Description                                            |
+|------------------------|--------------------------------------------------------|
+| `any`                  | Any method available, no preference.                   |
+| `card`                 | Payment card.                                          |
+| `credit-transfer`      | Sender initiated bank or wire transfer.                |
+| `credit-transfer+sepa` | Sender initiated bank or wire transfer via SEPA.       |
+| `debit-transfer`       | Receiver initiated bank or wire transfer.              |
+| `cash`                 | Cash in hand.                                          |
+| `cheque`               | Cheque from bank.                                      |
+| `bank-draft`           | Bankers Draft or Bank Cheque.                          |
+| `direct-debit`         | Direct debit from the customers bank account.          |
+| `direct-debit+sepa`    | Direct debit from the customers bank account via SEPA. |
+| `online`               | Online or web payment.                                 |
+| `promissory-note`      | Promissory note contract.                              |
+| `netting`              | Intercompany clearing or clearing between partners.    |
+| `other`                | Other or mutually defined means of payment.            |
 

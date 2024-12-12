@@ -67,8 +67,10 @@
         {
           "group": "Countries",
           "pages": [
+            "regimes/ae",
             "regimes/at",
             "regimes/be",
+            "regimes/br",
             "regimes/ca",
             "regimes/ch",
             "regimes/co",
@@ -77,6 +79,7 @@
             "regimes/es",
             "regimes/fr",
             "regimes/gb",
+            "regimes/in",
             "regimes/it",
             "regimes/mx",
             "regimes/nl",
@@ -94,8 +97,13 @@
         {
           "group": "Definitions",
           "pages": [
+            "addons/br-nfse-v1",
+            "addons/co-dian-v2",
+            "addons/de-xrechnung-v3",
             "addons/es-facturae-v3",
             "addons/es-tbai-v1",
+            "addons/es-verifactu-v1",
+            "addons/eu-en16931-v2017",
             "addons/gr-mydata-v1",
             "addons/it-sdi-v1",
             "addons/mx-cfdi-v4",
@@ -140,11 +148,10 @@
           "pages": [
             "draft-0/cbc/code",
             "draft-0/cbc/code_map",
+            "draft-0/cbc/definition",
             "draft-0/cbc/key",
-            "draft-0/cbc/key_definition",
             "draft-0/cbc/meta",
-            "draft-0/cbc/note",
-            "draft-0/cbc/value_definition"
+            "draft-0/cbc/note"
           ]
         },
         {
@@ -245,10 +252,10 @@
           "group": "Tax",
           "pages": [
             "draft-0/tax/addon_def",
+            "draft-0/tax/catalogue_def",
             "draft-0/tax/category_def",
             "draft-0/tax/category_total",
             "draft-0/tax/combo",
-            "draft-0/tax/identity",
             "draft-0/tax/correction_definition",
             "draft-0/tax/correction_set",
             "draft-0/tax/extensions",

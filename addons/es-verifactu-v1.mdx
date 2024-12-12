@@ -1,0 +1,104 @@
+---
+title: Spain Verifactu V1
+---
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>es-verifactu-doc-type</code>
+
+## Extensions
+
+The following extensions are supported.
+
+### Verifactu Invoice Type Code - L2
+Key: <code>es-verifactu-doc-type</code>	
+
+Invoice type code used to identify the type of invoice being sent.
+Source: VeriFactu Ministerial Order:
+ * https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-22138
+
+| Code | Name |
+| ---- | ---- |
+| <code>F1</code> | Invoice (Article 6, 7.2 and 7.3 of RD 1619/2012) |
+| <code>F2</code> | Simplified invoice (Article 6.1.d) of RD 1619/2012) |
+| <code>F3</code> | Invoice issued as a replacement for simplified invoices that have been billed and declared. |
+| <code>R1</code> | Rectified invoice: error based on law and Article 80 One, Two and Six LIVA |
+| <code>R2</code> | Rectified invoice: error based on law and Article 80.3 |
+| <code>R3</code> | Rectified invoice: error based on law and Article 80.4 |
+| <code>R4</code> | Rectified invoice: Other |
+| <code>R5</code> | Rectified invoice: simplified invoices |
+
+### Verifactu Correction Type Code - L3
+Key: <code>es-verifactu-correction-type</code>	
+
+Correction type code used to identify the type of correction being made.
+This value will be determined automatically according to the invoice type.
+Corrective invoices will be marked as "S", while credit and debit notes as "I".
+
+| Code | Name |
+| ---- | ---- |
+| <code>S</code> | Substitution |
+| <code>I</code> | Differences |
+
+### Verifactu Operation Classification/Exemption Code - L9
+Key: <code>es-verifactu-op-class</code>	
+
+Operation classification code used to identify if taxes should be applied to the line.
+Source: VeriFactu Ministerial Order:
+ * https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-22138
+For details on how best to use and apply these and other codes, see the
+AEAT FAQ:
+ * https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/iva/iva-libros-registro-iva-traves-aeat/preguntas-frecuentes/3-libro-registro-facturas-expedidas.html?faqId=b5556c3d02bc9510VgnVCM100000dc381e0aRCRD
+
+| Code | Name |
+| ---- | ---- |
+| <code>S1</code> | Subject and Not Exempt - Without reverse charge |
+| <code>S2</code> | Subject and Not Exempt - With reverse charge |
+| <code>N1</code> | Not Subject - Articles 7, 14, others |
+| <code>N2</code> | Not Subject - Due to location rules |
+
+### Verifactu Exemption Code - L10
+Key: <code>es-verifactu-exempt</code>	
+
+Exemption code used to explain why the operation is exempt from taxes.
+
+| Code | Name |
+| ---- | ---- |
+| <code>E1</code> | Exempt: pursuant to Article 20. Exemptions in internal operations. |
+| <code>E2</code> | Exempt: pursuant to Article 21. Exemptions in exports of goods. |
+| <code>E3</code> | Exempt: pursuant to Article 22. Exemptions in operations asimilated to exports. |
+| <code>E4</code> | Exempt: pursuant to Articles 23 and 24. Exemptions related to temporary deposit, customs and fiscal regimes, and other situations. |
+| <code>E5</code> | Exempt: pursuant to Article 25. Exemptions in the delivery of goods destined to another Member State. |
+| <code>E6</code> | Exempt: pursuant to other reasons |
+
+### VAT/IGIC Regime Code - L8A/B
+Key: <code>es-verifactu-regime</code>	
+
+Identify the type of VAT or IGIC regime applied to the operation. This list combines lists L8A which include values for VAT, and L8B for IGIC.
+
+| Code | Name |
+| ---- | ---- |
+| <code>01</code> | General regime operation |
+| <code>02</code> | Export |
+| <code>03</code> | Special regime for used goods, art objects, antiques and collectibles |
+| <code>04</code> | Special regime for investment gold |
+| <code>05</code> | Special regime for travel agencies |
+| <code>06</code> | Special regime for VAT/IGIC groups (Advanced Level) |
+| <code>07</code> | Special cash accounting regime |
+| <code>08</code> | Operations subject to a different regime |
+| <code>09</code> | Billing of travel agency services acting as mediators in name and on behalf of others |
+| <code>10</code> | Collection of professional fees or rights on behalf of third parties |
+| <code>11</code> | Business premises rental operations |
+| <code>14</code> | Invoice with pending VAT/IGIC accrual in work certifications for Public Administration |
+| <code>15</code> | Invoice with pending VAT/IGIC accrual in successive tract operations |
+| <code>17</code> | Operation under OSS and IOSS regimes (VAT) / Special regime for retail traders. (IGIC) |
+| <code>18</code> | Equivalence surcharge (VAT) / Special regime for small traders or retailers (IGIC) |
+| <code>19</code> | Operations included in the Special Regime for Agriculture, Livestock and Fisheries |
+| <code>20</code> | Simplified regime (VAT only) |

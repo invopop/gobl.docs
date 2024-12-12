@@ -27,12 +27,11 @@ Invoice represents a payment claim for goods or services supplied under conditio
 | Exchange Rates    | `exchange_rates` | array of [currency.ExchangeRate](/draft-0/currency/exchange_rate) |      | Exchange rates to be used when converting the invoices monetary values into other currencies.                                                                                                                                                   |
 | Preceding Details | `preceding`      | array of [org.DocumentRef](/draft-0/org/document_ref)             |      | Key information regarding previous invoices and potentially details as to why they were corrected.                                                                                                                                              |
 | Tax               | `tax`            | [bill.Tax](/draft-0/bill/tax)                                     |      | Special tax configuration for billing.                                                                                                                                                                                                          |
-| Supplier          | `supplier`       | [org.Party](/draft-0/org/party)                                   | true | The taxable entity supplying the goods or services.                                                                                                                                                                                             |
+| Supplier          | `supplier`       | [org.Party](/draft-0/org/party)                                   | true | The entity supplying the goods or services and usually responsible for paying taxes.                                                                                                                                                            |
 | Customer          | `customer`       | [org.Party](/draft-0/org/party)                                   |      | Legal entity receiving the goods or services, may be nil in certain circumstances such as simplified invoices.                                                                                                                                  |
 | Lines             | `lines`          | array of [bill.Line](/draft-0/bill/line)                          |      | List of invoice lines representing each of the items sold to the customer.                                                                                                                                                                      |
 | Discounts         | `discounts`      | array of [bill.Discount](/draft-0/bill/discount)                  |      | Discounts or allowances applied to the complete invoice                                                                                                                                                                                         |
 | Charges           | `charges`        | array of [bill.Charge](/draft-0/bill/charge)                      |      | Charges or surcharges applied to the complete invoice                                                                                                                                                                                           |
-| Outlays           | `outlays`        | array of [bill.Outlay](/draft-0/bill/outlay)                      |      | Expenses paid for by the supplier but invoiced directly to the customer.                                                                                                                                                                        |
 | Ordering Details  | `ordering`       | [bill.Ordering](/draft-0/bill/ordering)                           |      | Ordering details including document references and buyer or seller parties.                                                                                                                                                                     |
 | Payment Details   | `payment`        | [bill.Payment](/draft-0/bill/payment)                             |      | Information on when, how, and to whom the invoice should be paid.                                                                                                                                                                               |
 | Delivery Details  | `delivery`       | [bill.Delivery](/draft-0/bill/delivery)                           |      | Specific details on delivery of the goods referenced in the invoice.                                                                                                                                                                            |
@@ -45,8 +44,10 @@ Invoice represents a payment claim for goods or services supplied under conditio
 
 | Value | Description              |
 |-------|--------------------------|
+| `AE`  | United Arab Emirates     |
 | `AT`  | Austria                  |
 | `BE`  | Belgium                  |
+| `BR`  | Brazil                   |
 | `CA`  | Canada                   |
 | `CH`  | Switzerland              |
 | `CO`  | Colombia                 |
@@ -55,6 +56,7 @@ Invoice represents a payment claim for goods or services supplied under conditio
 | `ES`  | Spain                    |
 | `FR`  | France                   |
 | `GB`  | United Kingdom           |
+| `IN`  | India                    |
 | `IT`  | Italy                    |
 | `MX`  | Mexico                   |
 | `NL`  | The Netherlands          |

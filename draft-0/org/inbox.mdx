@@ -11,11 +11,14 @@ Inbox is used to store data about a connection with a service that is responsibl
 
 ## Properties
 
-| Title | Property | Type                        | Req. | Description                                                        |
-|-------|----------|-----------------------------|------|--------------------------------------------------------------------|
-| UUID  | `uuid`   | string                      |      | Universally Unique Identifier.                                     |
-| Key   | `key`    | [cbc.Key](/draft-0/cbc/key) | true | Type of inbox being defined.                                       |
-| Role  | `role`   | [cbc.Key](/draft-0/cbc/key) |      | Role assigned to this inbox that may be relevant for the consumer. |
-| Name  | `name`   | string                      |      | Human name for the inbox.                                          |
-|       | `code`   | string                      | true | Actual Code or ID that identifies the Inbox.                       |
+| Title      | Property | Type                                      | Req. | Description                                                                                                                                                   |
+|------------|----------|-------------------------------------------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| UUID       | `uuid`   | string                                    |      | Universally Unique Identifier.                                                                                                                                |
+| Label      | `label`  | string                                    |      | Label for the inbox.                                                                                                                                          |
+| Key        | `key`    | [cbc.Key](/draft-0/cbc/key)               |      | Type of inbox being defined.                                                                                                                                  |
+| Role       | `role`   | [cbc.Key](/draft-0/cbc/key)               |      | Role assigned to this inbox that may be relevant for the consumer.                                                                                            |
+| Code       | `code`   | [cbc.Code](/draft-0/cbc/code)             |      | Code or ID that identifies the Inbox. Mutually exclusive with URL and Email.                                                                                  |
+| URL        | `url`    | string                                    |      | URL of the inbox that includes the protocol, server, and path. May be used instead of the Code to identify the inbox. Mutually exclusive with Code and Email. |
+| Email      | `email`  | string                                    |      | Email address for the inbox. Mutually exclusive with Code and URL.                                                                                            |
+| Extensions | `ext`    | [tax.Extensions](/draft-0/tax/extensions) |      | Extension code map for any additional regime or addon specific codes that may be required.                                                                    |
 

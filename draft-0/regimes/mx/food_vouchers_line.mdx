@@ -13,6 +13,7 @@ FoodVouchersLine represents a single food voucher issued to the e-wallet of one 
 
 | Title               | Property          | Type                                                                          | Req. | Description                                                                          |
 |---------------------|-------------------|-------------------------------------------------------------------------------|------|--------------------------------------------------------------------------------------|
+| Index               | `i`               | integer                                                                       |      | Line number starting from 1 (calculated).                                            |
 | E-wallet Identifier | `e_wallet_id`     | [cbc.Code](/draft-0/cbc/code)                                                 | true | Identifier of the e-wallet that received the food voucher (maps to `Identificador`). |
 | Issue Date and Time | `issue_date_time` | [cal.DateTime](/draft-0/cal/date_time)                                        | true | Date and time of the food voucher's issue (maps to `Fecha`).                         |
 | Employee            | `employee`        | [regimes.mx.FoodVouchersEmployee](/draft-0/regimes/mx/food_vouchers_employee) |      | Employee that received the food voucher.                                             |

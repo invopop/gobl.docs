@@ -1,0 +1,945 @@
+---
+key: "en16931"
+name: "EN16931-1 to GOBL Invoice Mapping"
+description: |-
+  Mappings of EN16931 Business terms and rules to GOBL properties.
+
+terms:
+  - id: BT-1
+    name: "Invoice number"
+    paths:
+      - $.doc.series
+      - $.doc.code
+    notes: |-
+      The document series and code are combined to form the document identifier, whereby
+      the code contains a sequential number within the series.
+
+  - id: BT-2
+    name: "Invoice issue date"
+    paths:
+      - $.doc.issue_date
+
+  - id: BT-3
+    name: "Invoice type code"
+    paths:
+      - $.doc.type
+      - $.doc.$tags
+    notes: |-
+      GOBL defines a reduced set of basic invoice types which may be extended using
+      the `$tags` property.
+
+  - id: BT-5
+    name: "Invoice currency code"
+    paths:
+      - $.doc.currency
+    notes: |-
+      The currency code is a three-letter code as defined by ISO 4217. In GOBL, if the
+      currency is different from that of the tax regime of the supplier, the exchange
+      rate used for conversion must also be defined.
+
+  - id: BT-6
+    name: "VAT accounting currency code"
+    paths:
+      - $.doc.currency
+      - $.doc.exchange_rates
+    notes: |-
+      The VAT accounting currency code is the currency in which the VAT amounts are
+      expressed. If the VAT accounting currency is different from the invoice currency,
+      the exchange rate used for conversion must also be defined.
+
+  - id: "BT-7"
+    name: "Value added tax point date"
+    paths:
+      - $.doc.issue_date
+      - $.doc.value_date
+    notes: |-
+      The value added tax point date is the date on which the VAT becomes due and different
+      from the issue date.
+
+  - id: "BT-8"
+    name: "Value added tax point date code"
+    paths: []
+    notes: |-
+      TODO
+
+  - id: "BT-9"
+    name: "Payment due date"
+    paths:
+      - $.doc.payment.terms[*].due_dates
+    notes: |-
+      Forms part of the general payment details.
+
+  - id: "BT-10"
+    name: "Buyer reference"
+    paths:
+      - $.doc.ordering.code
+      - $.doc.ordering.identities[*].code
+    notes: |-
+      Additional codes defined with types or keys are available in the ordering identities
+      array.
+
+  - id: "BT-11"
+    name: "Project reference"
+    paths:
+      - $.doc.ordering.projects
+
+  - id: "BT-12"
+    name: "Contract reference"
+    paths:
+      - $.doc.ordering.contracts
+
+  - id: "BT-13"
+    name: "Purchase order reference"
+    paths:
+      - $.doc.ordering.purchases
+
+  - id: "BT-14"
+    name: "Sales order reference"
+    paths:
+      - $.doc.ordering.sales
+
+  - id: "BT-15"
+    name: "Receiving advice reference"
+    paths:
+      - $.doc.ordering.receiving
+
+  - id: "BT-16"
+    name: "Despatch advice reference"
+    paths:
+      - $.doc.ordering.despatch
+
+  - id: "BT-17"
+    name: "Tender or lot reference"
+    paths:
+      - $.doc.ordering.tenders
+
+  - id: "BT-18"
+    name: "Invoiced object identifier"
+    path:
+      - $.doc.ordering.code
+      - $.doc.ordering.identities[*].code
+      - $.doc.ordering.identities[*].ext['untdid-reference']
+    notes: |-
+      GOBL supports multiple identifiers. If schema is important for the identifier
+      and the regular code cannot be used, assume the **first** identifier should be mapped
+      to the `BT-18` term.
+
+  - id: "BT-19"
+    name: "Buyer accounting reference"
+    paths: []
+    notes: |-
+      TODO
+
+  - id: "BT-20"
+    name: "Payment terms"
+    paths:
+      - $.doc.payment.terms
+
+  - id: "BG-1"
+    name: "INVOICE NOTE"
+    paths:
+      - $.doc.notes
+    terms:
+      - id: "BT-21"
+        name: "Invoice note subject code"
+        paths:
+          - $.doc.notes[*].key
+        notes: |-
+          Note keys include mapping to UNTDID 4451 codes.
+
+      - id: "BT-22"
+        name: "Invoice note"
+        paths:
+          - $.doc.notes[*].text
+        notes: |-
+          Applies when the note `key` property is empty.
+
+  - id: "BG-2"
+    name: "PROCESS CONTROL"
+    terms:
+      - id: "BT-23"
+        name: "Business process type"
+        paths:
+          - $.doc.$addons
+        notes: |-
+          GOBL uses Addons to define additional support for business contexts and formats.
+
+      - id: "BT-24"
+        name: "Specification identifier"
+        paths: []
+        notes: |-
+          GOBL does not explicitly define a specification identifier, but it may be inferred
+          from the GOBL library for conversion purposes.
+
+  - id: "BG-3"
+    name: "PRECEDING INVOICE REFERENCE"
+    paths:
+      - $.doc.preceding
+    terms:
+      - id: "BT-25"
+        name: "Preceding invoice reference"
+        paths:
+          - $.doc.preceding
+
+      - id: "BT-26"
+        name: "Preceding invoice issue date"
+        paths:
+          - $.doc.preceding[*].issue_date
+        notes: |-
+          Issue date copied from the previous document.
+
+  - id: "BG-4"
+    name: "SELLER"
+    paths:
+      - $.doc.supplier
+    notes: |-
+      Seller details in GOBL are represented by the `supplier` property and `org.Party`
+      type.
+
+      If required, the supplier may delegate tax liabilty to the tax representative stored
+      in the `ordering.seller` property. In this scenario, the tax regime of the document
+      should be set explicitly to ensure that the correct tax calculations and regional
+      requirements are met.
+    terms:
+      - id: "BT-27"
+        name: "Seller name"
+        paths:
+          - $.doc.supplier.name
+
+      - id: "BT-28"
+        name: "Seller trading name"
+        paths:
+          - $.doc.supplier.alias
+
+      - id: "BT-29"
+        name: "Seller identifier"
+        paths:
+          - $.doc.supplier.uuid
+          - $.doc.supplier.identities
+        notes: |-
+          Supplier UUID is designed for use with internal systems of the document issuer.
+          dentifier schemes may be defined using extensions according to the standard
+          in use.
+
+      - id: "BT-30"
+        name: "Seller legal registration identifier"
+        paths:
+          - $.doc.supplier.identities
+
+      - id: "BT-31"
+        name: "Seller VAT identifier"
+        paths:
+          - $.doc.supplier.tax_id
+
+      - id: "BT-32"
+        name: "Seller tax registration identifier"
+        paths:
+          - $.doc.supplier.identities
+        notes: |-
+          All non-VAT tax registration details can be defined in the `identities` array.
+
+      - id: "BT-33"
+        name: "Seller additional legal information"
+        paths:
+          - $.doc.supplier.registration
+
+      - id: "BT-34"
+        name: "Seller electronic address"
+        paths:
+          - $.doc.supplier.inboxes
+        notes: |-
+          Electronic addresses are known as "inboxes" in GOBL, and may use the extensions
+          property to define the Scheme Identifier.
+
+      - id: "BG-5"
+        name: "SELLER POSTAL ADDRESS"
+        paths:
+          - $.doc.supplier.address
+        terms:
+          - id: "BT-35"
+            name: "Seller address line 1"
+            paths:
+              - $.doc.supplier.addresses[0].street
+              - $.doc.supplier.addresses[0].number
+              - $.doc.supplier.addresses[0].floor
+              - $.doc.supplier.addresses[0].block
+              - $.doc.supplier.addresses[0].door
+              - $.doc.supplier.addresses[0].po_box
+
+          - id: "BT-36"
+            name: "Seller address line 2"
+            paths:
+              - $.doc.supplier.addresses[0].street_extra
+
+          - id: "BT-162"
+            name: "Seller address line 3"
+            paths: []
+            notes: |-
+              Not supported directly. Use meta data if required between partners.
+
+          - id: "BT-37"
+            name: "Seller city"
+            paths:
+              - $.doc.supplier.addresses[0].locality
+
+          - id: "BT-38"
+            name: "Seller postal code"
+            paths:
+              - $.doc.supplier.addresses[0].code
+
+          - id: "BT-39"
+            name: "Seller country subdivision"
+            paths:
+              - $.doc.supplier.addresses[0].region
+
+          - id: "BT-40"
+            name: "Seller country code"
+            paths:
+              - $.doc.supplier.tax_id.country
+              - $.doc.supplier.addresses[0].country
+            notes: |-
+              The primary source for the country code is the supplier's tax ID, but if that
+              is not available it may also be source from the supplier's first addresses country.
+
+      - id: "BG-6"
+        name: "SELLER CONTACT"
+        terms:
+          - id: "BT-41"
+            name: "Seller contact point"
+            paths:
+              - $.doc.supplier.people
+
+          - id: "BT-42"
+            name: "Seller contact telephone number"
+            paths:
+              - $.doc.supplier.telephones
+
+          - id: "BT-43"
+            name: "Seller contact email address"
+            paths:
+              - $.doc.supplier.emails
+
+  - id: "BG-7"
+    name: "BUYER"
+    paths:
+      - $.doc.customer
+    notes: |-
+      Buyer details are represented by the `customer` property and `org.Party` type.
+    terms:
+      - id: "BT-44"
+        name: "Buyer name"
+        paths:
+          - $.doc.customer.name
+
+      - id: "BT-45"
+        name: "Buyer trading name"
+        paths:
+          - $.doc.customer.alias
+
+      - id: "BT-46"
+        name: "Buyer identifier"
+        paths:
+          - $.doc.customer.uuid
+          - $.doc.customer.identities
+        notes: |-
+          Customer UUID is designed for use with internal systems of the document issuer.
+          Identifier schemes may be defined using extensions according to the standard
+          in use.
+
+      - id: "BT-47"
+        name: "Buyer legal registration identifier"
+        paths:
+          - $.doc.customer.identities
+
+      - id: "BT-48"
+        name: "Buyer VAT identifier"
+        paths:
+          - $.doc.customer.tax_id
+
+      - id: "BT-49"
+        name: "Buyer electronic address"
+        paths:
+          - $.doc.customer.inboxes
+        notes: |-
+          Electronic addresses are known as "inboxes" in GOBL, and may use the extensions
+          property to define the Scheme Identifier.
+
+      - id: "BG-8"
+        name: "BUYER POSTAL ADDRESS"
+        paths:
+          - $.doc.customer.address
+        terms:
+          - id: "BT-50"
+            name: "Buyer address line 1"
+            paths:
+              - $.doc.customer.addresses[0].street
+              - $.doc.customer.addresses[0].number
+              - $.doc.customer.addresses[0].floor
+              - $.doc.customer.addresses[0].block
+              - $.doc.customer.addresses[0].door
+              - $.doc.customer.addresses[0].po_box
+
+          - id: "BT-51"
+            name: "Buyer address line 2"
+            paths:
+              - $.doc.customer.addresses[0].street_extra
+
+          - id: "BT-163"
+            name: "Buyer address line 3"
+            paths: []
+            notes: |-
+              Not supported directly. Use meta data if required between partners.
+
+          - id: "BT-52"
+            name: "Buyer city"
+            paths:
+              - $.doc.customer.addresses[0].locality
+
+          - id: "BT-53"
+            name: "Buyer postal code"
+            paths:
+              - $.doc.customer.addresses[0].code
+
+          - id: "BT-54"
+            name: "Buyer country subdivision"
+            paths:
+              - $.doc.customer.addresses[0].region
+
+          - id: "BT-55"
+            name: "Buyer country code"
+            paths:
+              - $.doc.customer.tax_id.country
+              - $.doc.customer.addresses[0].country
+            notes: |-
+              The primary source for the country code is the customer's tax ID, but if that
+              is not available it may also be source from the customer's first addresses country.
+
+      - id: "BG-9"
+        name: "BUYER CONTACT"
+        terms:
+          - id: "BT-56"
+            name: "Buyer contact point"
+            paths:
+              - $.doc.customer.people
+
+          - id: "BT-57"
+            name: "Buyer contact telephone number"
+            paths:
+              - $.doc.customer.telephones
+
+          - id: "BT-58"
+            name: "Buyer contact email address"
+            paths:
+              - $.doc.customer.emails
+
+  - id: "BG-10"
+    name: "PAYEE"
+    paths:
+      - $.doc.payment.payee
+    terms:
+      - id: "BT-59"
+        name: "Payee name"
+        paths:
+          - $.doc.payment.payee.name
+
+      - id: "BT-60"
+        name: "Payee identifier"
+        paths:
+          - $.doc.payment.payee.uuid
+          - $.doc.payment.payee.identities
+        notes: |-
+          Payee UUID is designed for use with internal systems of the document issuer.
+          Identifier schemes may be defined using extensions according to the standard
+          in use.
+
+      - id: "BT-61"
+        name: "Payee legal registration identifier"
+        paths:
+          - $.doc.payment.payee.tax_id
+          - $.doc.payment.payee.identities
+        notes: |-
+          The payee's VAT ID may be provided as the primary legal registration identifier.
+
+  - id: "BG-11"
+    name: "SELLER TAX REPRESENTATIVE PARTY"
+    paths:
+      - $.doc.ordering.seller
+    terms:
+      - id: "BT-62"
+        name: "Seller tax representative name"
+        paths:
+          - $.doc.ordering.seller.name
+
+      - id: "BT-63"
+        name: "Seller tax representative VAT identifier"
+        paths:
+          - $.doc.ordering.seller.tax_id
+
+      - id: "BG-12"
+        name: "SELLER TAX REPRESENTATIVE POSTAL ADDRESS"
+        terms:
+          - id: "BT-64"
+            name: "Tax representative address line 1"
+            paths:
+              - $.doc.ordering.seller.addresses[0].street
+              - $.doc.ordering.seller.addresses[0].number
+              - $.doc.ordering.seller.addresses[0].floor
+              - $.doc.ordering.seller.addresses[0].block
+              - $.doc.ordering.seller.addresses[0].door
+              - $.doc.ordering.seller.addresses[0].po_box
+
+          - id: "BT-65"
+            name: "Tax representative address line 2"
+            paths:
+              - $.doc.ordering.seller.addresses[0].street_extra
+
+          - id: "BT-164"
+            name: "Tax representative address line 3"
+            paths: []
+            notes: |-
+              Not supported directly. Use meta data if required between partners.
+
+          - id: "BT-66"
+            name: "Tax representative city"
+            paths:
+              - $.doc.ordering.seller.addresses[0].locality
+
+          - id: "BT-67"
+            name: "Tax representative postal code"
+            paths:
+              - $.doc.ordering.seller.addresses[0].code
+
+          - id: "BT-68"
+            name: "Tax representative country subdivision"
+            paths:
+              - $.doc.ordering.seller.addresses[0].region
+
+          - id: "BT-69"
+            name: "Tax representative country code"
+            paths:
+              - $.doc.ordering.seller.tax_id.country
+              - $.doc.ordering.seller.addresses[0].country
+            notes: |-
+              The primary source for the country code is the tax representative's tax ID, but if that
+              is not available it may also be source from the tax representative's first addresses country.
+
+  - id: "BG-13"
+    name: DELIVERY INFORMATION
+    paths:
+      - $.doc.delivery
+    terms:
+      - id: BT-70
+        name: Deliver to party name
+        paths:
+          - $.doc.delivery.receiver.name
+      - id: BT-71
+        name: Deliver to location identifier
+        paths:
+          - $.doc.delivery.receiver.uuid
+          - $.doc.delivery.receiver.identities
+          - $.doc.delivery.receiver.tax_id
+        notes: |-
+          Extensions in identities may be used to determine the scheme identifier if required.
+      - id: BT-72
+        name: "Actual delivery date"
+        paths:
+          - $.doc.delivery.date
+
+      - id: BG-14
+        name: INVOICING PERIOD
+        paths:
+          - $.doc.delivery.period
+        terms:
+          - id: BT-73
+            name: Invoicing period start date
+            paths:
+              - $.doc.delivery.period.start
+          - id: BT-74
+            name: Invoicing period end date
+            paths:
+              - $.doc.delivery.period.end
+
+      - id: BG-15
+        name: DELIVER TO ADDRESS
+        paths:
+          - $.doc.delivery.address
+        terms:
+          - id: BT-75
+            name: Deliver to address line 1
+            paths:
+              - $.doc.delivery.receiver.addresses[0].street
+              - $.doc.delivery.receiver.addresses[0].number
+              - $.doc.delivery.receiver.addresses[0].floor
+              - $.doc.delivery.receiver.addresses[0].block
+              - $.doc.delivery.receiver.addresses[0].door
+              - $.doc.delivery.receiver.addresses[0].po_box
+          - id: BT-76
+            name: Deliver to address line 2
+            paths:
+              - $.doc.delivery.reveiver.addresses[0].street_extra
+          - id: BT-165
+            name: Deliver to address line 3
+            paths: []
+            notes: |-
+              Not supported directly. Use meta data if required between partners.
+          - id: BT-77
+            name: Deliver to city
+            paths:
+              - $.doc.delivery.receiver.addresses[0].locality
+          - id: BT-78
+            name: Deliver to postal code
+            paths:
+              - $.doc.delivery.reveiver.addresses[0].code
+          - id: BT-79
+            name: Deliver to country subdivision
+            paths:
+              - $.doc.delivery.receiver.addresses[0].region
+          - id: BT-80
+            name: Deliver to country code
+            paths:
+              - $.doc.delivery.receiver.addresses[0].country
+
+  - id: "BG-16"
+    name: PAYMENT INSTRUCTIONS
+    paths:
+      - $.doc.payment
+    terms:
+      - id: BT-81
+        name: Payment means type code
+        paths:
+          - $.doc.payment.instructions.key
+          - $.doc.payment.advances[*].key
+        notes: |-
+          Mapping of GOBL payment means key to UNTDID 4461 codes is provided
+          in library will update extensions.
+
+      - id: BT-82
+        name: Payment means text
+        paths:
+          - $.doc.payment.instructions.key
+          - $.doc.payment.advances[*].key
+          - $.doc.payment.instructions.detail
+          - $.doc.payment.advances[*].desription
+        notes: |-
+          In GOBL, payment means keys are self-descriptive, but if additional
+          details are required, they can be provided in the detail or description
+          fields provided.
+
+      - id: BT-83
+        name: Remittance information
+        paths:
+          - $.doc.payment.instructions.ref
+        notes: |-
+          Remittance information is provided in the `ref` property of the payment
+          instructions. The ref value is normalized by GOBL and should be compliant
+          with EN 16931.
+
+      - id: BG-17
+        name: CREDIT TRANSFER
+        paths:
+          - $.doc.payment.instructions.credit_transfer[*]
+        terms:
+          - id: BT-84
+            name: "Payment amount identifier"
+            paths:
+              - $.doc.payment.instructions.credit_transfer[*].iban
+              - $.doc.payment.instructions.credit_transfer[*].number
+            notes: |-
+              IBAN is preferred, but number is available for local bank accounts.
+
+          - id: BT-85
+            name: Payment account name
+            paths:
+              - $.doc.payment.instructions.credit_transfer[*].name
+
+          - id: BT-86
+            name: Payment serivce provider identifier
+            paths:
+              - $.doc.payment.instructions.credit_transfer[*].bic
+
+      - id: BG-18
+        name: PAYMENT CARD INFORMATION
+        paths:
+          - $.doc.payment.instructions.card
+        terms:
+          - id: BT-87
+            name: Payment card primary account number
+            paths:
+              - $.doc.payment.instructions.card.first6
+              - $.doc.payment.instructions.card.last4
+            notes: |-
+              The first 6 and last 4 digits of the card number are split between two
+              fields to ensure that the full number is not stored in a single location.
+          - id: BT-88
+            name: Payment card holder name
+            paths:
+              - $.doc.payment.instructions.card.name
+
+      - id: BG-19
+        name: DIRECT DEBIT
+        paths:
+          - $.doc.payment.instructions.direct_debit
+        terms:
+          - id: BT-89
+            name: Mandate reference identifier
+            paths:
+              - $.doc.payment.instructions.direct_debit.ref
+          - id: BT-90
+            name: Bank assigned creditor identifier
+            paths:
+              - $.doc.payment.instructions.direct_debit.creditor
+          - id: BT-91
+            name: Debited account identifier
+            paths:
+              - $.doc.payment.instructions.direct_debit.account
+
+  - id: "BG-20"
+    name: "DOCUMENT LEVEL ALLOWANCES"
+    paths:
+      - $.doc.discounts
+    notes: |-
+      Allowances are known as simply discounts in GOBL, represented alongside `lines`
+      and `charges` in the invoice.
+
+      These discounts are applied to the whole invoice, and may also be used for
+      representing witheld taxes or other deductions that are not supported using regular
+      tax combos.
+    terms:
+      - id: "BT-92"
+        name: "Document level allowance amount"
+        paths:
+          - $.doc.discounts.amount
+      - id: "BT-93"
+        name: "Document level allowance base amount"
+        paths:
+          - $.doc.discounts.base
+      - id: "BT-94"
+        name: "Document level allowance percentage"
+        paths:
+          - $.doc.discounts.percent
+      - id: "BT-95"
+        name: "Document level allowance VAT category code"
+        paths:
+          - $.doc.discounts.taxes.cat
+          - $.doc.discounts.taxes.ext
+        notes: |-
+          For simple tax regimes the `cat` property defining VAT is normally
+          sufficient, but some may require additional properties to be set
+          in the `ext` property.
+      - id: "BT-96"
+        name: "Document level allowance VAT rate"
+        paths:
+          - $.doc.discounts.taxes.percent
+      - id: "BT-97"
+        name: "Document level allowance reason"
+        paths:
+          - $.doc.discounts.reason
+      - id: BT-98
+        name: "Document level allowance reason code"
+        paths:
+          - $.doc.discounts.ext['untdid-allowance']
+        notes: |-
+          Specific allowance codes can be added in the extensions
+          using the `untdid-allowance` extension key defined in the
+          `untdid` catalogue.
+
+  - id: "BG-21"
+    name: "DOCUMENT LEVEL CHARGES"
+    paths:
+      - $.doc.charges
+    notes: |-
+      Charges are applied to the whole invoice, and may also be used for
+      representing taxes or tariffs that are not supported using regular
+      tax combos.
+    terms:
+      - id: "BT-99"
+        name: "Document level charge amount"
+        paths:
+          - $.doc.charges.amount
+      - id: "BT-100"
+        name: "Document level charge base amount"
+        paths:
+          - $.doc.charges.base
+      - id: "BT-101"
+        name: "Document level charge percentage"
+        paths:
+          - $.doc.charges.percent
+      - id: "BT-102"
+        name: "Document level charge VAT category code"
+        paths:
+          - $.doc.charges.taxes.cat
+          - $.doc.charges.taxes.ext
+        notes: |-
+          For simple tax regimes the `cat` property defining VAT is normally
+          sufficient, but some may require additional properties to be set
+          in the `ext` property.
+      - id: "BT-103"
+        name: "Document level charge VAT rate"
+        paths:
+          - $.doc.charges.taxes.percent
+      - id: "BT-104"
+        name: "Document level charge reason"
+        paths:
+          - $.doc.charges.reason
+      - id: BT-105
+        name: "Document level charge reason code"
+        paths:
+          - $.doc.charges.ext['untdid-charge']
+        notes: |-
+          Specific charge codes can be added in the extensions
+          using the `untdid-charge` extension key defined in the
+          `untdid` catalogue.
+
+  - id: "BG-22"
+    name: "DOCUMENT TOTALS"
+    paths:
+      - $.doc.totals
+    terms:
+      - id: "BT-106"
+        name: "Sum of invoice line net amounts"
+        paths:
+          - $.doc.totals.sum
+          - $.doc.totals.tax_included
+        notes: |-
+          Unlike the EN 16931 standard, GOBL's line item prices may include
+          taxes. In some circumstance the `tax_included` amount may be subtracted
+          from the sum, but this will be skewed if there are any discounts or
+          charges with VAT rates applied.
+
+          We recommend using the "Remove Included Taxes" function of GOBL when
+          converting into other EN 16931 syntaxes.
+      - id: "BT-107"
+        name: "Sum of allowances on document level"
+        paths:
+          - $.doc.totals.discount
+          - $.doc.totals.tax_included
+      - id: "BT-108"
+        name: "Sum of charges on document level"
+        paths:
+          - $.doc.totals.charge
+          - $.doc.totals.tax_included
+      - id: "BT-109"
+        name: "Invoice total amount without VAT"
+        paths:
+          - $.doc.totals.total
+      - id: "BT-110"
+        name: "Invoice total VAT amount"
+        paths:
+          - $.doc.totals.tax
+          - $.doc.totals.taxes.categories[code='VAT'].amount
+        notes: |-
+          In GOBL, the `tax` property is the sum of all taxes defined in the document,
+          which may not always be VAT. To get the VAT total, filter the
+          `taxes` array where the category code is set to `VAT`.
+      - id: "BT-111"
+        name: "Invoice total VAT amount in accounting currency"
+        paths:
+          - $.doc.totals.tax
+          - $.doc.totals.taxes.categories[code='VAT'].amount
+          - $.doc.exchange_rates
+        notes: |-
+          Not stored in accounting currency directly, but must be calculable from the
+          exchange rates set in the document. GOBL will always validate a document
+          to ensure that there is an exchange rate provided that will map the
+          invoice's currency to that of the tax regime.
+      - id: "BT-112"
+        name: "Invoice total amount with VAT"
+        paths:
+          - $.doc.totals.total_with_tax
+      - id: "BT-113"
+        name: "Paid amount"
+        paths:
+          - $.doc.totals.advances
+      - id: "BT-114"
+        name: "Rounding amount"
+        paths:
+          - $.doc.totals.rounding
+      - id: "BT-115"
+        name: "Amount due for payment"
+        paths:
+          - $.doc.totals.due
+
+  - id: "BG-23"
+    name: "VAT BREAKDOWN"
+    paths:
+      - $.doc.totals.taxes
+    terms:
+      - id: "BT-116"
+        name: "VAT category taxable amount"
+        paths:
+          - $.doc.totals.taxes.categories[code='VAT'].base
+      - id: "BT-117"
+        name: "VAT category tax amount"
+        paths:
+          - $.doc.totals.taxes.categories[code='VAT'].amount
+      - id: "BT-118"
+        name: "VAT category code"
+        paths:
+          - $.doc.totals.taxes.categories[code='VAT'].ext['untdid-tax-category']
+        notes: |-
+          Specific tax category codes can be added in the extensions
+          using the `untdid-tax-category` extension key defined in the
+          `untdid` catalogue.
+      - id: BT-119
+        name: "VAT category rate"
+        paths:
+          - $.doc.totals.taxes.categories[code='VAT'].percent
+      - id: "BT-120"
+        name: "VAT exemption reason text"
+        paths:
+          - $.doc.notes[key='legal'].text
+        notes: |-
+          Exemption reasons are added to the list of legal notes included in the
+          invoice as opposed to being stored in the tax breakdown.
+      - id: "BT-121"
+        name: "VAT exemption reason code"
+        paths:
+          - $.doc.totals.taxes.categories[code='VAT'].ext['cef-vatex']
+        notes: |-
+          Specific exemption codes can be added in the extensions
+          using the `cef-vatex` extension key defined in the
+          `cef` catalogue.
+
+  - id: "BG-24"
+    name: "ADDITIONAL SUPPORTING DOCUMENTS"
+    paths:
+      - $.doc.attachments
+    terms:
+      - id: BT-122
+        name: "Supporting document reference"
+        paths:
+          - $.doc.attachments[*].code
+      - id: BT-123
+        name: "Supporting document description"
+        paths:
+          - $.doc.attachments[*].description
+      - id: BT-124
+        name: "External document location"
+        paths:
+          - $.doc.attachments[*].uri
+      - id: BT-125
+        name: "Attached document"
+        paths:
+          - $.doc.attachments[*].data
+          - $.doc.attachments[*].mime
+          - $.doc.attachments[*].name
+
+  - id: BG-25
+    name: "INVOICE LINE"
+    paths:
+      - $.doc.lines
+    terms:
+      - id: BT-126
+        name: "Invoice line identifier"
+        paths:
+          - $.doc.lines[*].i
+      - id: BT-127
+        name: "Invoice line note"
+        paths:
+          - $.doc.lines[*].notes
+        notes: |-
+          Notes are embedded inside the cbc.Note struct.
+      - id: BT-128
+        name: "Invoice line object identifier"
+        paths:
+          - $.doc.lines[*].
