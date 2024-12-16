@@ -11,10 +11,28 @@ LineCharge represents an amount added to the line, and will be applied before ta
 
 ## Properties
 
-| Title   | Property  | Type                                      | Req. | Description                                                                |
-|---------|-----------|-------------------------------------------|------|----------------------------------------------------------------------------|
-| Percent | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage if fixed amount not applied                                     |
-| Amount  | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed or resulting charge amount to apply (calculated if percent present). |
-| Code    | `code`    | string                                    |      | Reference code.                                                            |
-| Reason  | `reason`  | string                                    |      | Text description as to why the charge was applied                          |
+| Title      | Property  | Type                                      | Req. | Description                                                                                                                                                         |
+|------------|-----------|-------------------------------------------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Key        | `key`     | [cbc.Key](/draft-0/cbc/key)               |      | Key for grouping or identifying charges for tax purposes. A suggested list of keys is provided, but these are for reference only and may be extended by the issuer. |
+| Code       | `code`    | [cbc.Code](/draft-0/cbc/code)             |      | Reference or ID for this charge defined by the issuer                                                                                                               |
+| Reason     | `reason`  | string                                    |      | Text description as to why the charge was applied                                                                                                                   |
+| Percent    | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage if fixed amount not applied                                                                                                                              |
+| Amount     | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed or resulting charge amount to apply (calculated if percent present).                                                                                          |
+| Extensions | `ext`     | [tax.Extensions](/draft-0/tax/extensions) |      | Extension codes that apply to the charge                                                                                                                            |
+
+## Key Values
+
+| Value        | Description    |
+|--------------|----------------|
+| `stamp-duty` | Stamp Duty     |
+| `outlay`     | Outlay         |
+| `tax`        | Tax            |
+| `customs`    | Customs        |
+| `delivery`   | Delivery       |
+| `packing`    | Packing        |
+| `handling`   | Handling       |
+| `insurance`  | Insurance      |
+| `storage`    | Storage        |
+| `admin`      | Administration |
+| `cleaning`   | Cleaning       |
 

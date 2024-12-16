@@ -4,7 +4,7 @@ go 1.22
 
 toolchain go1.22.5
 
-require github.com/invopop/gobl v0.201.0
+require github.com/invopop/gobl v0.207.0
 
 require (
 	cloud.google.com/go v0.115.0 // indirect

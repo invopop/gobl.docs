@@ -97,7 +97,7 @@ func (g *generator) preceding(defs tax.CorrectionSet) error {
 	`), cd)
 }
 
-func (g *generator) extensions(exts []*cbc.KeyDefinition) error {
+func (g *generator) extensions(exts []*cbc.Definition) error {
 	if len(exts) == 0 {
 		return nil
 	}
@@ -120,15 +120,19 @@ func (g *generator) extensions(exts []*cbc.KeyDefinition) error {
 	return nil
 }
 
-func (g *generator) extension(kd *cbc.KeyDefinition) error {
+func (g *generator) extension(kd *cbc.Definition) error {
 
 	return g.process(here.Doc(`
 
 
 		### {{t .Name}}
 		
+		{{- if .Key }}
 		Key: <code>{{ .Key }}</code>
-		
+		{{- else }}
+		Code: <code>{{ .Code }}</code>
+		{{- end }}
+
 		{{- if .Desc }}	
 
 		{{t .Desc }}
@@ -137,10 +141,10 @@ func (g *generator) extension(kd *cbc.KeyDefinition) error {
 
  		{{- if .Values }}
 
-		| Value | Name |
+		| Code | Name |
 		| ---- | ---- |
 		{{- range .Values }}
-		| <code>{{ .Value }}</code> | {{t .Name }} |
+		| <code>{{ .Code }}</code> | {{t .Name }} |
 		{{- end }}
 		{{- end }}
 

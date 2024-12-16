@@ -7,19 +7,17 @@ title: Mexican SAT CFDI v4.X
 The following extensions are supported.
 
 ### Document Type
-
 Key: <code>mx-cfdi-doc-type</code>
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>I</code> | Invoice |
 | <code>E</code> | Credit Note |
 
 ### Relation Type
-
 Key: <code>mx-cfdi-rel-type</code>
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>01</code> | Credit note for related documents |
 | <code>02</code> | Debit note for related documents |
@@ -30,43 +28,33 @@ Key: <code>mx-cfdi-rel-type</code>
 | <code>07</code> | CFDI for advance payment |
 
 ### Place of Issue
-
 Key: <code>mx-cfdi-issue-place</code>	
 
 Post code of where the invoice was issued. In CFDI, this translates to the 'LugarExpedicion'.
 
-### Post Code
-
-Key: <code>mx-cfdi-post-code</code>	
-
-Post code of a supplier or customer to use instead of an address. Example: "01000".
-
 ### Tax Type
-
 Key: <code>mx-cfdi-tax-type</code>	
 
 Code defined in the CFDI catalogue "c_Impuesto" for the type of tax. Used in the 'Impuesto' field.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>001</code> | Income Tax |
 | <code>002</code> | Value Added Tax |
 | <code>003</code> | Special Tax on Production and Services |
 
 ### Product or Service Code
-
 Key: <code>mx-cfdi-prod-serv</code>	
 
 Code defined in the CFDI catalogue used to identify a product or service.
 Mapped to the 'ClaveProdServ' CFDI field.
 
 ### Fiscal Regime Code
-
 Key: <code>mx-cfdi-fiscal-regime</code>	
 
 Fiscal regime associated with suppliers and customers.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>601</code> | General de Ley Personas Morales |
 | <code>603</code> | Personas Morales con Fines no Lucrativos |
@@ -89,12 +77,11 @@ Fiscal regime associated with suppliers and customers.
 | <code>626</code> | Régimen Simplificado de Confianza |
 
 ### CFDI Use Code
-
 Key: <code>mx-cfdi-use</code>	
 
 Chosen by the customer to indicate the purpose of an invoice.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>G01</code> | Acquisition of goods |
 | <code>G02</code> | Returns, discounts or rebates |
@@ -122,12 +109,11 @@ Chosen by the customer to indicate the purpose of an invoice.
 | <code>CN01</code> | Payroll |
 
 ### Payment Means
-
 Key: <code>mx-cfdi-payment-means</code>	
 
 Code defined in the CFDI catalogue "c_FormaPago" for the payment method. Used in the 'FormaPago' field.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>01</code> | Cash |
 | <code>02</code> | Check |

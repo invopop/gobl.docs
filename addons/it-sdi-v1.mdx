@@ -7,7 +7,6 @@ title: Italy SDI FatturaPA v1.x
 The following extensions are supported.
 
 ### SDI Transmission Format
-
 Key: <code>it-sdi-format</code>	
 
 Code used to describe the transmission format of the invoice. By default
@@ -17,19 +16,18 @@ to something else.
 Normally this will only be needed when the invoice is to be sent to governmental
 bodies and must use the "FPA12" format.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>FPA12</code> | Public Administration |
 | <code>FPR12</code> | Private Parties (default) |
 
 ### SDI Document Type
-
 Key: <code>it-sdi-document-type</code>	
 
 Code used to describe the type of document being sent to the SDI. This is
 used to determine the correct schema to use when validating the document.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>TD01</code> | Regular Invoice |
 | <code>TD02</code> | Advance or down payment on invoice |
@@ -55,10 +53,9 @@ used to determine the correct schema to use when validating the document.
 | <code>TD28</code> | Purchases from San Marino with VAT (paper invoice) |
 
 ### Fiscal Regime Code
-
 Key: <code>it-sdi-fiscal-regime</code>
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>RF01</code> | Ordinary |
 | <code>RF02</code> | Minimum taxpayers (Art. 1, section 96-117, Italian Law 244/07) |
@@ -80,10 +77,9 @@ Key: <code>it-sdi-fiscal-regime</code>
 | <code>RF18</code> | Other |
 
 ### Exemption Code
-
 Key: <code>it-sdi-exempt</code>
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>N1</code> | Excluded pursuant to Art. 15, DPR 633/72 |
 | <code>N2.1</code> | Not subject pursuant to Art. 7, DPR 633/72 |
@@ -108,10 +104,9 @@ Key: <code>it-sdi-exempt</code>
 | <code>N7</code> | VAT paid in other EU countries (telecommunications, tele-broadcasting and electronic services provision pursuant to Art. 7 -octies letter a, b, art. 74-sexies Italian Presidential Decree 633/72) |
 
 ### Retained Tax Payment Reason Code
-
 Key: <code>it-sdi-retained</code>
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>A</code> | Self-employment services falling within the exercise of habitual art or profession |
 | <code>B</code> | Economic use of intellectual works, industrial patents, and processes, formulas or information related to experiences gained in the industrial, commercial or scientific field, by the author or inventor |
@@ -147,10 +142,9 @@ Key: <code>it-sdi-retained</code>
 | <code>ZO</code> | Different title from the previous ones |
 
 ### Payment Means
-
 Key: <code>it-sdi-payment-means</code>
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>MP01</code> | Cash |
 | <code>MP02</code> | Check |
@@ -175,3 +169,12 @@ Key: <code>it-sdi-payment-means</code>
 | <code>MP21</code> | SEPA B2B Direct Debit |
 | <code>MP22</code> | Deductible Netting |
 | <code>MP23</code> | PagoPA |
+
+### VAT Liability
+Key: <code>it-sdi-vat-liability</code>
+
+| Code | Name |
+| ---- | ---- |
+| <code>I</code> | Immediate |
+| <code>D</code> | Deferred |
+| <code>S</code> | Split Payment |

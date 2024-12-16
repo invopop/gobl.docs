@@ -1,0 +1,24 @@
+---
+title: Definition
+comment: 
+---
+
+Definition defines properties of a key, code, or other value that has a specific meaning or utility.
+
+## Schema ID
+
+`https://gobl.org/draft-0/cbc/definition`
+
+## Properties
+
+| Title       | Property  | Type                                               | Req. | Description                                                                                                                         |
+|-------------|-----------|----------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Key         | `key`     | [cbc.Key](/draft-0/cbc/key)                        |      | Key being defined.                                                                                                                  |
+| Code        | `code`    | [cbc.Code](/draft-0/cbc/code)                      |      | Code this definition represents.                                                                                                    |
+| Name        | `name`    | [i18n.String](/draft-0/i18n/string)                | true | Short name for the key.                                                                                                             |
+| Description | `desc`    | [i18n.String](/draft-0/i18n/string)                |      | Description offering more details about when the key should be used.                                                                |
+| Meta        | `meta`    | [cbc.Meta](/draft-0/cbc/meta)                      |      | Meta defines any additional details that may be useful or associated with the key.                                                  |
+| Values      | `values`  | array of [cbc.Definition](/draft-0/cbc/definition) |      | Values defines the possible values associated with the key, which themselves will either be keys or codes depending on the context. |
+| Pattern     | `pattern` | string                                             |      | Pattern is used to validate the key value instead of using a fixed value from the code or key definitions.                          |
+| Code Map    | `map`     | [cbc.CodeMap](/draft-0/cbc/code_map)               |      | Map helps map local keys to specific codes, useful for converting the described key into a local code.                              |
+

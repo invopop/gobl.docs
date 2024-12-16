@@ -1,0 +1,20 @@
+---
+title: CatalogueDef
+comment: 
+---
+
+A CatalogueDef contains a set of re-useable extensions, scenarios, and validators that can be used by addons or tax regimes.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/catalogue-def`
+
+## Properties
+
+| Title | Property      | Type                                               | Req. | Description                                                     |
+|-------|---------------|----------------------------------------------------|------|-----------------------------------------------------------------|
+|       | `key`         | [cbc.Key](/draft-0/cbc/key)                        | true | Key defines a unique identifier for the catalogue.              |
+|       | `name`        | [i18n.String](/draft-0/i18n/string)                | true | Name is the name of the catalogue.                              |
+|       | `description` | [i18n.String](/draft-0/i18n/string)                |      | Description is a human readable description of the catalogue.   |
+|       | `extensions`  | array of [cbc.Definition](/draft-0/cbc/definition) | true | Extensions defines all the extensions offered by the catalogue. |
+

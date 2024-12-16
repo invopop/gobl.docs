@@ -14,7 +14,7 @@ Note represents a free text of additional information that may be added to a doc
 | Title  | Property | Type                          | Req. | Description                                                              |
 |--------|----------|-------------------------------|------|--------------------------------------------------------------------------|
 | Key    | `key`    | [cbc.Key](/draft-0/cbc/key)   |      | Key specifying subject of the text                                       |
-| Code   | `code`   | string                        |      | Code used for additional data that may be required to identify the note. |
+| Code   | `code`   | [cbc.Code](/draft-0/cbc/code) |      | Code used for additional data that may be required to identify the note. |
 | Source | `src`    | [cbc.Key](/draft-0/cbc/key)   |      | Source of this note, especially useful when auto-generated.              |
 | Text   | `text`   | string                        | true | The contents of the note                                                 |
 | Meta   | `meta`   | [cbc.Meta](/draft-0/cbc/meta) |      | Additional information about the note                                    |

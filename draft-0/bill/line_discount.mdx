@@ -11,10 +11,31 @@ LineDiscount represents an amount deducted from the line, and will be applied be
 
 ## Properties
 
-| Title   | Property  | Type                                      | Req. | Description                                                     |
-|---------|-----------|-------------------------------------------|------|-----------------------------------------------------------------|
-| Percent | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage if fixed amount not applied                          |
-| Amount  | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed discount amount to apply (calculated if percent present). |
-| Code    | `code`    | string                                    |      | Reason code.                                                    |
-| Reason  | `reason`  | string                                    |      | Text description as to why the discount was applied             |
+| Title      | Property  | Type                                      | Req. | Description                                                            |
+|------------|-----------|-------------------------------------------|------|------------------------------------------------------------------------|
+| Key        | `key`     | [cbc.Key](/draft-0/cbc/key)               |      | Key for identifying the type of discount being applied.                |
+| Code       | `code`    | [cbc.Code](/draft-0/cbc/code)             |      | Code or reference for this discount defined by the issuer              |
+| Reason     | `reason`  | string                                    |      | Text description as to why the discount was applied                    |
+| Percent    | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage to apply to the line total to calcaulte the discount amount |
+| Amount     | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed discount amount to apply (calculated if percent present)         |
+| Extensions | `ext`     | [tax.Extensions](/draft-0/tax/extensions) |      | Extension codes that apply to the discount                             |
+
+## Key Values
+
+| Value               | Description                       |
+|---------------------|-----------------------------------|
+| `early-completion`  | Bonus for works ahead of schedule |
+| `military`          | Military Discount                 |
+| `work-accident`     | Work Accident Discount            |
+| `special-agreement` | Special Agreement Discount        |
+| `production-error`  | Production Error Discount         |
+| `new-outlet`        | New Outlet Discount               |
+| `sample`            | Sample Discount                   |
+| `end-of-range`      | End of Range Discount             |
+| `incoterm`          | Incoterm Discount                 |
+| `pos-threshold`     | Point of Sale Threshold Discount  |
+| `special-rebate`    | Special Rebate                    |
+| `temporary`         | Temporary                         |
+| `standard`          | Standard                          |
+| `yearly-turnover`   | Yearly Turnover                   |
 

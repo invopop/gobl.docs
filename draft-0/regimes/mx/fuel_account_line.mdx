@@ -13,6 +13,7 @@ FuelAccountLine represents a single fuel purchase made with an e-wallet issued b
 
 | Title                      | Property               | Type                                                                       | Req. | Description                                                                        |
 |----------------------------|------------------------|----------------------------------------------------------------------------|------|------------------------------------------------------------------------------------|
+| Index                      | `i`                    | integer                                                                    |      | Index of the line starting from 1 (calculated)                                     |
 | E-wallet Identifier        | `e_wallet_id`          | [cbc.Code](/draft-0/cbc/code)                                              | true | Identifier of the e-wallet used to make the purchase (maps to `Identificador`).    |
 | Purchase Date and Time     | `purchase_date_time`   | [cal.DateTime](/draft-0/cal/date_time)                                     | true | Date and time of the purchase (maps to `Fecha`).                                   |
 | Vendor's Tax Identity Code | `vendor_tax_code`      | [cbc.Code](/draft-0/cbc/code)                                              | true | Tax Identity Code of the fuel's vendor (maps to `Rfc`)                             |

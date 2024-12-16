@@ -17,8 +17,20 @@ options. See the [Extensions](#extensions) section for possible values.
 
 The following extensions are supported.
 
-### TicketBAI Product Key
+### TicketBAI Region Code
+Key: <code>es-tbai-region</code>	
 
+Region codes are used by TicketBAI to differentiate between the different
+subdivisions of the Basque Country. This is used to determine the correct
+API endpoint to use when submitting documents.
+
+| Code | Name |
+| ---- | ---- |
+| <code>VI</code> | Araba |
+| <code>BI</code> | Bizkaia |
+| <code>SS</code> | Gipuzkoa |
+
+### TicketBAI Product Key
 Key: <code>es-tbai-product</code>	
 
 Product keys are used by TicketBAI to differentiate between -exported- goods
@@ -29,14 +41,13 @@ There is an additional exception case for goods that are resold without modifica
 when the supplier is in the simplified tax regime. For must purposes this special
 case can be ignored.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>goods</code> | Delivery of goods |
 | <code>services</code> | Provision of services |
 | <code>resale</code> | Resale of goods without modification by vendor in the simplified regime |
 
 ### TicketBAI Exemption code
-
 Key: <code>es-tbai-exemption</code>	
 
 Codes used by TicketBAI for both "exempt", "not-subject", and reverse
@@ -44,7 +55,7 @@ charge transactions. In the TicketBAI format these are separated,
 but in order to simplify GOBL and be more closely aligned with
 other countries we've combined them into one.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>E1</code> | Exempt: pursuant to Article 20 of the Foral VAT Law |
 | <code>E2</code> | Exempt: pursuant to Article 21 of the Foral VAT Law |
@@ -59,14 +70,13 @@ other countries we've combined them into one.
 | <code>S2</code> | Subject and not exempt: with reverse charge |
 
 ### TicketBAI Rectification Type Code
-
 Key: <code>es-tbai-correction</code>	
 
 Corrected or rectified invoices that need to be sent in the TicketBAI format
 require a specific type code to be defined alongside the preceding invoice
 data.
 
-| Value | Name |
+| Code | Name |
 | ---- | ---- |
 | <code>R1</code> | Rectified invoice: error based on law and Article 80 One, Two and Six of the Provincial Tax Law of VAT |
 | <code>R2</code> | Rectified invoice: error based on law and Article 80 Three of the Provincial Tax Law of VAT |
