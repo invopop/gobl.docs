@@ -2,6 +2,8 @@
 title: Spain TicketBAI
 ---
 
+Key: <code>es-tbai-v1</code>
+
 ## Correction Definitions
 
 Auto-generation of corrective invoices or credit and debit notes is
@@ -15,10 +17,8 @@ options. See the [Extensions](#extensions) section for possible values.
 
 ## Extensions
 
-The following extensions are supported.
-
-### TicketBAI Region Code
-Key: <code>es-tbai-region</code>	
+<AccordionGroup>
+<Accordion description="Key: es-tbai-region" title="TicketBAI Region Code">	
 
 Region codes are used by TicketBAI to differentiate between the different
 subdivisions of the Basque Country. This is used to determine the correct
@@ -29,9 +29,8 @@ API endpoint to use when submitting documents.
 | <code>VI</code> | Araba |
 | <code>BI</code> | Bizkaia |
 | <code>SS</code> | Gipuzkoa |
-
-### TicketBAI Product Key
-Key: <code>es-tbai-product</code>	
+</Accordion>
+<Accordion description="Key: es-tbai-product" title="TicketBAI Product Key">	
 
 Product keys are used by TicketBAI to differentiate between -exported- goods
 and services. It may be useful to classify all products regardless of wether
@@ -46,9 +45,8 @@ case can be ignored.
 | <code>goods</code> | Delivery of goods |
 | <code>services</code> | Provision of services |
 | <code>resale</code> | Resale of goods without modification by vendor in the simplified regime |
-
-### TicketBAI Exemption code
-Key: <code>es-tbai-exemption</code>	
+</Accordion>
+<Accordion description="Key: es-tbai-exemption" title="TicketBAI Exemption code">	
 
 Codes used by TicketBAI for both "exempt", "not-subject", and reverse
 charge transactions. In the TicketBAI format these are separated,
@@ -68,9 +66,8 @@ other countries we've combined them into one.
 | <code>VT</code> | Not subject: sales made on behalf of third parties (amount not computable for VAT or IRPF purposes) |
 | <code>IE</code> | Not subject in the TAI due to localization rules, but foreign tax, IPS/IGIC or VAT from another EU member state is passed on |
 | <code>S2</code> | Subject and not exempt: with reverse charge |
-
-### TicketBAI Rectification Type Code
-Key: <code>es-tbai-correction</code>	
+</Accordion>
+<Accordion description="Key: es-tbai-correction" title="TicketBAI Rectification Type Code">	
 
 Corrected or rectified invoices that need to be sent in the TicketBAI format
 require a specific type code to be defined alongside the preceding invoice
@@ -83,3 +80,4 @@ data.
 | <code>R3</code> | Rectified invoice: error based on law and Article 80 Four of the Provincial Tax Law of VAT |
 | <code>R4</code> | Rectified invoice: Other |
 | <code>R5</code> | Rectified invoice: simplified invoices |
+</Accordion></AccordionGroup>	

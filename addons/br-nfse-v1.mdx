@@ -2,21 +2,22 @@
 title: Brazil NFS-e 1.X
 ---
 
+Key: <code>br-nfse-v1</code>
+
 ## Extensions
 
-The following extensions are supported.
+<AccordionGroup>
+<Accordion description="Key: br-nfse-cnae" title="CNAE code">
 
-### CNAE code
-Key: <code>br-nfse-cnae</code>	
+Pattern: <code>^\d{2}[\s\.\-\/]?\d{2}[\s\.\-\/]?\d[\s\.\-\/]?\d{2}$</code>	
 
 The CNAE (National Classification of Economic Activities) code for a service.
 
 List of codes from the IBGE (Brazilian Institute of Geography and Statistics):
 
 * https://www.ibge.gov.br/en/statistics/technical-documents/statistical-lists-and-classifications/17245-national-classification-of-economic-activities.html
-
-### Fiscal Incentive
-Key: <code>br-nfse-fiscal-incentive</code>	
+</Accordion>
+<Accordion description="Key: br-nfse-fiscal-incentive" title="Fiscal Incentive">	
 
 Indicates whether a party benefits from a fiscal incentive.
 
@@ -29,9 +30,8 @@ List of codes from the national NFSe ABRASF (v2.04) model:
 | ---- | ---- |
 | <code>1</code> | Has incentive |
 | <code>2</code> | Does not have incentive |
-
-### ISS Liability
-Key: <code>br-nfse-iss-liability</code>	
+</Accordion>
+<Accordion description="Key: br-nfse-iss-liability" title="ISS Liability">	
 
 Indicates the ISS liability status, i.e., whether the ISS tax is due or not and why.
 
@@ -49,9 +49,10 @@ List of codes from the national NFSe ABRASF (v2.04) model:
 | <code>5</code> | Immune |
 | <code>6</code> | Suspended Judicially |
 | <code>7</code> | Suspended Administratively |
+</Accordion>
+<Accordion description="Key: br-nfse-municipality" title="IGBE Municipality Code">
 
-### IGBE Municipality Code
-Key: <code>br-nfse-municipality</code>	
+Pattern: <code>^\d{7}$</code>	
 
 The municipality code as defined by the IGBE (Brazilian Institute of Geography and
 Statistics).
@@ -59,9 +60,8 @@ Statistics).
 List of codes from the IGBE:
 
 * https://www.ibge.gov.br/explica/codigos-dos-municipios.php
-
-### Service Code
-Key: <code>br-nfse-service</code>	
+</Accordion>
+<Accordion description="Key: br-nfse-service" title="Service Code">	
 
 The service code as defined by the municipality. Typically, one of the codes listed
 in the Lei Complementar 116/2003, but municipalities can make their own changes.
@@ -69,9 +69,8 @@ in the Lei Complementar 116/2003, but municipalities can make their own changes.
 For further details on the list of possible codes, see:
 
 * https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm
-
-### Opting for “Simples Nacional” regime
-Key: <code>br-nfse-simples</code>	
+</Accordion>
+<Accordion description="Key: br-nfse-simples" title="Opting for “Simples Nacional” regime">	
 
 Indicates whether a party is opting for the “Simples Nacional” (Regime Especial
 Unificado de Arrecadação de Tributos e Contribuições devidos pelas Microempresas e
@@ -86,9 +85,8 @@ List of codes from the national NFSe ABRASF (v2.04) model:
 | ---- | ---- |
 | <code>1</code> | Opt-in |
 | <code>2</code> | Opt-out |
-
-### Special Tax Regime
-Key: <code>br-nfse-special-regime</code>	
+</Accordion>
+<Accordion description="Key: br-nfse-special-regime" title="Special Tax Regime">	
 
 Indicates a special tax regime that a party is subject to.
 
@@ -105,3 +103,4 @@ List of codes from the national NFSe ABRASF (v2.04) model:
 | <code>4</code> | Cooperative |
 | <code>5</code> | Single micro-entrepreneur (MEI) |
 | <code>6</code> | Micro-enterprise or Small Business (ME EPP) |
+</Accordion></AccordionGroup>	

@@ -9,17 +9,17 @@ import (
 	"github.com/invopop/gobl/tax"
 )
 
-type addonGenerator struct {
+type catalogueGenerator struct {
 	generator
-	addon *tax.AddonDef
+	catalogue *tax.CatalogueDef
 }
 
-func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
-	g := &addonGenerator{
+func newCatalogueGenerator(d *tax.CatalogueDef) *catalogueGenerator {
+	g := &catalogueGenerator{
 		generator: generator{
 			buf: new(bytes.Buffer),
 		},
-		addon: a,
+		catalogue: d,
 	}
 	g.tmpl = template.New("base")
 	g.tmpl.Funcs(template.FuncMap{
@@ -32,35 +32,29 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 	return g
 }
 
-func (g *addonGenerator) generate() error {
+func (g *catalogueGenerator) generate() error {
 	if err := g.base(); err != nil {
 		return err
 	}
-	if err := g.preceding(g.addon.Corrections); err != nil {
-		return err
-	}
-	if err := g.extensions(g.addon.Extensions); err != nil {
+	if err := g.extensions(g.catalogue.Extensions); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *addonGenerator) base() error {
+func (g *catalogueGenerator) base() error {
 	return g.process(here.Doc(`
 		---
 		title: {{t .Name}}
 		---
 
-		Key: <code>{{ .Key }}</code>
-
 		{{- if .Description}}
-
 		{{t .Description}}
 		{{- end}}
 
 	`))
 }
 
-func (g *addonGenerator) process(doc string) error {
-	return g.generator.process(doc, g.addon)
+func (g *catalogueGenerator) process(doc string) error {
+	return g.generator.process(doc, g.catalogue)
 }

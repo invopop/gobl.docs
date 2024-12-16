@@ -107,7 +107,7 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 
 		## Extensions
 
-		The following extensions are supported.
+		<AccordionGroup>
 	`), nil); err != nil {
 		return err
 	}
@@ -117,6 +117,11 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 			return err
 		}
 	}
+	if err := g.process(here.Doc(`
+		</AccordionGroup>	
+	`), nil); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -124,13 +129,11 @@ func (g *generator) extension(kd *cbc.Definition) error {
 
 	return g.process(here.Doc(`
 
+		<Accordion description="Key: {{ .Key }}" title="{{t .Name}}">
 
-		### {{t .Name}}
-		
-		{{- if .Key }}
-		Key: <code>{{ .Key }}</code>
-		{{- else }}
-		Code: <code>{{ .Code }}</code>
+		{{- if .Pattern }}
+
+		Pattern: <code>{{ .Pattern }}</code>
 		{{- end }}
 
 		{{- if .Desc }}	
@@ -144,9 +147,14 @@ func (g *generator) extension(kd *cbc.Definition) error {
 		| Code | Name |
 		| ---- | ---- |
 		{{- range .Values }}
+		{{- if .Key }}
+		| <code>{{ .Key }}</code> | {{t .Name }} |
+		{{- else }}
 		| <code>{{ .Code }}</code> | {{t .Name }} |
 		{{- end }}
 		{{- end }}
+		{{- end }}
+		</Accordion>
 
 	`), kd)
 }

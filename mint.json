@@ -113,6 +113,16 @@
       ]
     },
     {
+      "group": "Catalogues",
+      "pages": [
+        "catalogues/overview",
+        {
+          "group": "Definitions",
+          "pages": ["catalogues/cef", "catalogues/iso", "catalogues/untdid"]
+        }
+      ]
+    },
+    {
       "group": "Schemas (Draft 0)",
       "pages": [
         "draft-0",
@@ -129,7 +139,6 @@
             "draft-0/bill/line_charge",
             "draft-0/bill/line_discount",
             "draft-0/bill/ordering",
-            "draft-0/bill/outlay",
             "draft-0/bill/payment",
             "draft-0/bill/tax",
             "draft-0/bill/totals"

@@ -1,0 +1,1839 @@
+---
+title: UN/EDIFACT Data Elements
+---
+
+## Extensions
+
+<AccordionGroup>
+<Accordion description="Key: untdid-document-type" title="UNTDID 1001 Document Type">	
+
+UNTDID 1001 code used to describe the type of document. Ths list is based on the [EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
+values table which focusses on invoices and payments.
+
+Other tax regimes and addons may use their own subset of codes.
+
+| Code | Name |
+| ---- | ---- |
+| <code>71</code> | Request for payment |
+| <code>80</code> | Debit note related to goods or services |
+| <code>81</code> | Credit note related to goods or services |
+| <code>82</code> | Metered services invoice |
+| <code>83</code> | Credit note related to financial adjustments |
+| <code>84</code> | Debit note related to financial adjustments |
+| <code>102</code> | Tax notification |
+| <code>130</code> | Invoicing data sheet |
+| <code>202</code> | Direct payment valuation |
+| <code>203</code> | Provisional payment valuation |
+| <code>204</code> | Payment valuation |
+| <code>211</code> | Interim application for payment |
+| <code>218</code> | Final payment request based on completion of work |
+| <code>219</code> | Payment request for completed units |
+| <code>261</code> | Self billed credit note |
+| <code>262</code> | Consolidated credit note - goods and services |
+| <code>295</code> | Price variation invoice |
+| <code>296</code> | Credit note for price variation |
+| <code>308</code> | Delcredere credit note |
+| <code>325</code> | Proforma invoice |
+| <code>326</code> | Partial invoice |
+| <code>380</code> | Standard Invoice |
+| <code>381</code> | Credit note |
+| <code>382</code> | Commission note |
+| <code>383</code> | Debit note |
+| <code>384</code> | Corrected invoice |
+| <code>385</code> | Consolidated invoice |
+| <code>386</code> | Prepayment invoice |
+| <code>387</code> | Hire invoice |
+| <code>388</code> | Tax invoice |
+| <code>389</code> | Self-billed invoice |
+| <code>390</code> | Delcredere invoice |
+| <code>393</code> | Factored invoice |
+| <code>394</code> | Lease invoice |
+| <code>395</code> | Consignment invoice |
+| <code>396</code> | Factored credit note |
+| <code>420</code> | Optical Character Reading (OCR) payment credit note |
+| <code>456</code> | Debit advice |
+| <code>457</code> | Reversal of debit |
+| <code>458</code> | Reversal of credit |
+| <code>527</code> | Self billed debit note |
+| <code>532</code> | Forwarder's credit note |
+| <code>553</code> | Forwarder's invoice discrepancy report |
+| <code>575</code> | Insurer's invoice |
+| <code>623</code> | Forwarder's invoice |
+| <code>633</code> | Port charges documents |
+| <code>751</code> | Invoice information for accounting purposes |
+| <code>780</code> | Freight invoice |
+| <code>817</code> | Claim notification |
+| <code>870</code> | Consular invoice |
+| <code>875</code> | Partial construction invoice |
+| <code>876</code> | Partial final construction invoice |
+| <code>877</code> | Final construction invoice |
+| <code>935</code> | Customs invoice |
+</Accordion>
+<Accordion description="Key: untdid-reference" title="UNTDID 1153 Reference Code Qualifier">	
+
+UNTDID 1153 code used to describe the reference code qualifier. This list is based on the
+[EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
+values table which focusses on invoices and payments.
+
+| Code | Name |
+| ---- | ---- |
+| <code>AAA</code> | Order acknowledgement document identifier |
+| <code>AAB</code> | Proforma invoice document identifier |
+| <code>AAC</code> | Documentary credit identifier |
+| <code>AAD</code> | Contract document addendum identifier |
+| <code>AAE</code> | Goods declaration number |
+| <code>AAF</code> | Debit card number |
+| <code>AAG</code> | Offer number |
+| <code>AAH</code> | Bank's batch interbank transaction reference number |
+| <code>AAI</code> | Bank's individual interbank transaction reference number |
+| <code>AAJ</code> | Delivery order number |
+| <code>AAK</code> | Despatch advice number |
+| <code>AAL</code> | Drawing number |
+| <code>AAM</code> | Waybill number |
+| <code>AAN</code> | Delivery schedule number |
+| <code>AAO</code> | Consignment identifier, consignee assigned |
+| <code>AAP</code> | Partial shipment identifier |
+| <code>AAQ</code> | Transport equipment identifier |
+| <code>AAR</code> | Municipality assigned business registry number |
+| <code>AAS</code> | Transport contract document identifier |
+| <code>AAT</code> | Master label number |
+| <code>AAU</code> | Despatch note document identifier |
+| <code>AAV</code> | Enquiry number |
+| <code>AAW</code> | Docket number |
+| <code>AAX</code> | Civil action number |
+| <code>AAY</code> | Carrier's agent reference number |
+| <code>AAZ</code> | Standard Carrier Alpha Code (SCAC) number |
+| <code>ABA</code> | Customs valuation decision number |
+| <code>ABB</code> | End use authorization number |
+| <code>ABC</code> | Anti-dumping case number |
+| <code>ABD</code> | Customs tariff number |
+| <code>ABE</code> | Declarant's reference number |
+| <code>ABF</code> | Repair estimate number |
+| <code>ABG</code> | Customs decision request number |
+| <code>ABH</code> | Sub-house bill of lading number |
+| <code>ABI</code> | Tax payment identifier |
+| <code>ABJ</code> | Quota number |
+| <code>ABK</code> | Transit (onward carriage) guarantee (bond) number |
+| <code>ABL</code> | Customs guarantee number |
+| <code>ABM</code> | Replacing part number |
+| <code>ABN</code> | Seller's catalogue number |
+| <code>ABO</code> | Originator's reference |
+| <code>ABP</code> | Declarant's Customs identity number |
+| <code>ABQ</code> | Importer reference number |
+| <code>ABR</code> | Export clearance instruction reference number |
+| <code>ABS</code> | Import clearance instruction reference number |
+| <code>ABT</code> | Goods declaration document identifier, Customs |
+| <code>ABU</code> | Article number |
+| <code>ABV</code> | Intra-plant routing |
+| <code>ABW</code> | Stock keeping unit number |
+| <code>ABX</code> | Text Element Identifier deletion reference |
+| <code>ABY</code> | Allotment identification (Air) |
+| <code>ABZ</code> | Vehicle licence number |
+| <code>AC</code> | Air cargo transfer manifest |
+| <code>ACA</code> | Cargo acceptance order reference number |
+| <code>ACB</code> | US government agency number |
+| <code>ACC</code> | Shipping unit identification |
+| <code>ACD</code> | Additional reference number |
+| <code>ACE</code> | Related document number |
+| <code>ACF</code> | Addressee reference |
+| <code>ACG</code> | ATA carnet number |
+| <code>ACH</code> | Packaging unit identification |
+| <code>ACI</code> | Outerpackaging unit identification |
+| <code>ACJ</code> | Customer material specification number |
+| <code>ACK</code> | Bank reference |
+| <code>ACL</code> | Principal reference number |
+| <code>ACN</code> | Collection advice document identifier |
+| <code>ACO</code> | Iron charge number |
+| <code>ACP</code> | Hot roll number |
+| <code>ACQ</code> | Cold roll number |
+| <code>ACR</code> | Railway wagon number |
+| <code>ACT</code> | Unique claims reference number of the sender |
+| <code>ACU</code> | Loss/event number |
+| <code>ACV</code> | Estimate order reference number |
+| <code>ACW</code> | Reference number to previous message |
+| <code>ACX</code> | Banker's acceptance |
+| <code>ACY</code> | Duty memo number |
+| <code>ACZ</code> | Equipment transport charge number |
+| <code>ADA</code> | Buyer's item number |
+| <code>ADB</code> | Matured certificate of deposit |
+| <code>ADC</code> | Loan |
+| <code>ADD</code> | Analysis number/test number |
+| <code>ADE</code> | Account number |
+| <code>ADF</code> | Treaty number |
+| <code>ADG</code> | Catastrophe number |
+| <code>ADI</code> | Bureau signing (statement reference) |
+| <code>ADJ</code> | Company / syndicate reference 1 |
+| <code>ADK</code> | Company / syndicate reference 2 |
+| <code>ADL</code> | Ordering customer consignment reference number |
+| <code>ADM</code> | Shipowner's authorization number |
+| <code>ADN</code> | Inland transport order number |
+| <code>ADO</code> | Container work order reference number |
+| <code>ADP</code> | Statement number |
+| <code>ADQ</code> | Unique market reference |
+| <code>ADT</code> | Group accounting |
+| <code>ADU</code> | Broker reference 1 |
+| <code>ADV</code> | Broker reference 2 |
+| <code>ADW</code> | Lloyd's claims office reference |
+| <code>ADX</code> | Secure delivery terms and conditions agreement reference |
+| <code>ADY</code> | Report number |
+| <code>ADZ</code> | Trader account number |
+| <code>AE</code> | Authorization for expense (AFE) number |
+| <code>AEA</code> | Government agency reference number |
+| <code>AEB</code> | Assembly number |
+| <code>AEC</code> | Symbol number |
+| <code>AED</code> | Commodity number |
+| <code>AEE</code> | Eur 1 certificate number |
+| <code>AEF</code> | Customer process specification number |
+| <code>AEG</code> | Customer specification number |
+| <code>AEH</code> | Applicable instructions or standards |
+| <code>AEI</code> | Registration number of previous Customs declaration |
+| <code>AEJ</code> | Post-entry reference |
+| <code>AEK</code> | Payment order number |
+| <code>AEL</code> | Delivery number (transport) |
+| <code>AEM</code> | Transport route |
+| <code>AEN</code> | Customer's unit inventory number |
+| <code>AEO</code> | Product reservation number |
+| <code>AEP</code> | Project number |
+| <code>AEQ</code> | Drawing list number |
+| <code>AER</code> | Project specification number |
+| <code>AES</code> | Primary reference |
+| <code>AET</code> | Request for cancellation number |
+| <code>AEU</code> | Supplier's control number |
+| <code>AEV</code> | Shipping note number |
+| <code>AEW</code> | Empty container bill number |
+| <code>AEX</code> | Non-negotiable maritime transport document number |
+| <code>AEY</code> | Substitute air waybill number |
+| <code>AEZ</code> | Despatch note (post parcels) number |
+| <code>AF</code> | Airlines flight identification number |
+| <code>AFA</code> | Through bill of lading number |
+| <code>AFB</code> | Cargo manifest number |
+| <code>AFC</code> | Bordereau number |
+| <code>AFD</code> | Customs item number |
+| <code>AFE</code> | Export Control Commodity number (ECCN) |
+| <code>AFF</code> | Marking/label reference |
+| <code>AFG</code> | Tariff number |
+| <code>AFH</code> | Replenishment purchase order number |
+| <code>AFI</code> | Immediate transportation no. for in bond movement |
+| <code>AFJ</code> | Transportation exportation no. for in bond movement |
+| <code>AFK</code> | Immediate exportation no. for in bond movement |
+| <code>AFL</code> | Associated invoices |
+| <code>AFM</code> | Secondary Customs reference |
+| <code>AFN</code> | Account party's reference |
+| <code>AFO</code> | Beneficiary's reference |
+| <code>AFP</code> | Second beneficiary's reference |
+| <code>AFQ</code> | Applicant's bank reference |
+| <code>AFR</code> | Issuing bank's reference |
+| <code>AFS</code> | Beneficiary's bank reference |
+| <code>AFT</code> | Direct payment valuation number |
+| <code>AFU</code> | Direct payment valuation request number |
+| <code>AFV</code> | Quantity valuation number |
+| <code>AFW</code> | Quantity valuation request number |
+| <code>AFX</code> | Bill of quantities number |
+| <code>AFY</code> | Payment valuation number |
+| <code>AFZ</code> | Situation number |
+| <code>AGA</code> | Agreement to pay number |
+| <code>AGB</code> | Contract party reference number |
+| <code>AGC</code> | Account party's bank reference |
+| <code>AGD</code> | Agent's bank reference |
+| <code>AGE</code> | Agent's reference |
+| <code>AGF</code> | Applicant's reference |
+| <code>AGG</code> | Dispute number |
+| <code>AGH</code> | Credit rating agency's reference number |
+| <code>AGI</code> | Request number |
+| <code>AGJ</code> | Single transaction sequence number |
+| <code>AGK</code> | Application reference number |
+| <code>AGL</code> | Delivery verification certificate |
+| <code>AGM</code> | Number of temporary importation document |
+| <code>AGN</code> | Reference number quoted on statement |
+| <code>AGO</code> | Sender's reference to the original message |
+| <code>AGP</code> | Company issued equipment ID |
+| <code>AGQ</code> | Domestic flight number |
+| <code>AGR</code> | International flight number |
+| <code>AGS</code> | Employer identification number of service bureau |
+| <code>AGT</code> | Service group identification number |
+| <code>AGU</code> | Member number |
+| <code>AGV</code> | Previous member number |
+| <code>AGW</code> | Scheme/plan number |
+| <code>AGX</code> | Previous scheme/plan number |
+| <code>AGY</code> | Receiving party's member identification |
+| <code>AGZ</code> | Payroll number |
+| <code>AHA</code> | Packaging specification number |
+| <code>AHB</code> | Authority issued equipment identification |
+| <code>AHC</code> | Training flight number |
+| <code>AHD</code> | Fund code number |
+| <code>AHE</code> | Signal code number |
+| <code>AHF</code> | Major force program number |
+| <code>AHG</code> | Nomination number |
+| <code>AHH</code> | Laboratory registration number |
+| <code>AHI</code> | Transport contract reference number |
+| <code>AHJ</code> | Payee's reference number |
+| <code>AHK</code> | Payer's reference number |
+| <code>AHL</code> | Creditor's reference number |
+| <code>AHM</code> | Debtor's reference number |
+| <code>AHN</code> | Joint venture reference number |
+| <code>AHO</code> | Chamber of Commerce registration number |
+| <code>AHP</code> | Tax registration number |
+| <code>AHQ</code> | Wool identification number |
+| <code>AHR</code> | Wool tax reference number |
+| <code>AHS</code> | Meat processing establishment registration number |
+| <code>AHT</code> | Quarantine/treatment status reference number |
+| <code>AHU</code> | Request for quote number |
+| <code>AHV</code> | Manual processing authority number |
+| <code>AHX</code> | Rate note number |
+| <code>AHY</code> | Freight Forwarder number |
+| <code>AHZ</code> | Customs release code |
+| <code>AIA</code> | Compliance code number |
+| <code>AIB</code> | Department of transportation bond number |
+| <code>AIC</code> | Export establishment number |
+| <code>AID</code> | Certificate of conformity |
+| <code>AIE</code> | Ministerial certificate of homologation |
+| <code>AIF</code> | Previous delivery instruction number |
+| <code>AIG</code> | Passport number |
+| <code>AIH</code> | Common transaction reference number |
+| <code>AII</code> | Bank's common transaction reference number |
+| <code>AIJ</code> | Customer's individual transaction reference number |
+| <code>AIK</code> | Bank's individual transaction reference number |
+| <code>AIL</code> | Customer's common transaction reference number |
+| <code>AIM</code> | Individual transaction reference number |
+| <code>AIN</code> | Product sourcing agreement number |
+| <code>AIO</code> | Customs transhipment number |
+| <code>AIP</code> | Customs preference inquiry number |
+| <code>AIQ</code> | Packing plant number |
+| <code>AIR</code> | Original certificate number |
+| <code>AIS</code> | Processing plant number |
+| <code>AIT</code> | Slaughter plant number |
+| <code>AIU</code> | Charge card account number |
+| <code>AIV</code> | Event reference number |
+| <code>AIW</code> | Transport section reference number |
+| <code>AIX</code> | Referred product for mechanical analysis |
+| <code>AIY</code> | Referred product for chemical analysis |
+| <code>AIZ</code> | Consolidated invoice number |
+| <code>AJA</code> | Part reference indicator in a drawing |
+| <code>AJB</code> | U.S. Code of Federal Regulations (CFR) |
+| <code>AJC</code> | Purchasing activity clause number |
+| <code>AJD</code> | U.S. Defense Federal Acquisition Regulation Supplement |
+| <code>AJE</code> | Agency clause number |
+| <code>AJF</code> | Circular publication number |
+| <code>AJG</code> | U.S. Federal Acquisition Regulation |
+| <code>AJH</code> | U.S. General Services Administration Regulation |
+| <code>AJI</code> | U.S. Federal Information Resources Management Regulation |
+| <code>AJJ</code> | Paragraph |
+| <code>AJK</code> | Special instructions number |
+| <code>AJL</code> | Site specific procedures, terms, and conditions number |
+| <code>AJM</code> | Master solicitation procedures, terms, and conditions |
+| <code>AJN</code> | U.S. Department of Veterans Affairs Acquisition Regulation |
+| <code>AJO</code> | Military Interdepartmental Purchase Request (MIPR) number |
+| <code>AJP</code> | Foreign military sales number |
+| <code>AJQ</code> | Defense priorities allocation system priority rating |
+| <code>AJR</code> | Wage determination number |
+| <code>AJS</code> | Agreement number |
+| <code>AJT</code> | Standard Industry Classification (SIC) number |
+| <code>AJU</code> | End item number |
+| <code>AJV</code> | Federal supply schedule item number |
+| <code>AJW</code> | Technical document number |
+| <code>AJX</code> | Technical order number |
+| <code>AJY</code> | Suffix |
+| <code>AJZ</code> | Transportation account number |
+| <code>AKA</code> | Container disposition order reference number |
+| <code>AKB</code> | Container prefix |
+| <code>AKC</code> | Transport equipment return reference |
+| <code>AKD</code> | Transport equipment survey reference |
+| <code>AKE</code> | Transport equipment survey report number |
+| <code>AKF</code> | Transport equipment stuffing order |
+| <code>AKG</code> | Vehicle Identification Number (VIN) |
+| <code>AKH</code> | Government bill of lading |
+| <code>AKI</code> | Ordering customer's second reference number |
+| <code>AKJ</code> | Direct debit reference |
+| <code>AKK</code> | Meter reading at the beginning of the delivery |
+| <code>AKL</code> | Meter reading at the end of delivery |
+| <code>AKM</code> | Replenishment purchase order range start number |
+| <code>AKN</code> | Third bank's reference |
+| <code>AKO</code> | Action authorization number |
+| <code>AKP</code> | Appropriation number |
+| <code>AKQ</code> | Product change authority number |
+| <code>AKR</code> | General cargo consignment reference number |
+| <code>AKS</code> | Catalogue sequence number |
+| <code>AKT</code> | Forwarding order number |
+| <code>AKU</code> | Transport equipment survey reference number |
+| <code>AKV</code> | Lease contract reference |
+| <code>AKW</code> | Transport costs reference number |
+| <code>AKX</code> | Transport equipment stripping order |
+| <code>AKY</code> | Prior policy number |
+| <code>AKZ</code> | Policy number |
+| <code>ALA</code> | Procurement budget number |
+| <code>ALB</code> | Domestic inventory management code |
+| <code>ALC</code> | Customer reference number assigned to previous balance of |
+| <code>ALD</code> | Previous credit advice reference number |
+| <code>ALE</code> | Reporting form number |
+| <code>ALF</code> | Authorization number for exception to dangerous goods |
+| <code>ALG</code> | Dangerous goods security number |
+| <code>ALH</code> | Dangerous goods transport licence number |
+| <code>ALI</code> | Previous rental agreement number |
+| <code>ALJ</code> | Next rental agreement reason number |
+| <code>ALK</code> | Consignee's invoice number |
+| <code>ALL</code> | Message batch number |
+| <code>ALM</code> | Previous delivery schedule number |
+| <code>ALN</code> | Physical inventory recount reference number |
+| <code>ALO</code> | Receiving advice number |
+| <code>ALP</code> | Returnable container reference number |
+| <code>ALQ</code> | Returns notice number |
+| <code>ALR</code> | Sales forecast number |
+| <code>ALS</code> | Sales report number |
+| <code>ALT</code> | Previous tax control number |
+| <code>ALU</code> | AGERD (Aerospace Ground Equipment Requirement Data) number |
+| <code>ALV</code> | Registered capital reference |
+| <code>ALW</code> | Standard number of inspection document |
+| <code>ALX</code> | Model |
+| <code>ALY</code> | Financial management reference |
+| <code>ALZ</code> | NOTIfication for COLlection number (NOTICOL) |
+| <code>AMA</code> | Previous request for metered reading reference number |
+| <code>AMB</code> | Next rental agreement number |
+| <code>AMC</code> | Reference number of a request for metered reading |
+| <code>AMD</code> | Hastening number |
+| <code>AME</code> | Repair data request number |
+| <code>AMF</code> | Consumption data request number |
+| <code>AMG</code> | Profile number |
+| <code>AMH</code> | Case number |
+| <code>AMI</code> | Government quality assurance and control level Number |
+| <code>AMJ</code> | Payment plan reference |
+| <code>AMK</code> | Replaced meter unit number |
+| <code>AML</code> | Replenishment purchase order range end number |
+| <code>AMM</code> | Insurer assigned reference number |
+| <code>AMN</code> | Canadian excise entry number |
+| <code>AMO</code> | Premium rate table |
+| <code>AMP</code> | Advise through bank's reference |
+| <code>AMQ</code> | US, Department of Transportation bond surety code |
+| <code>AMR</code> | US, Food and Drug Administration establishment indicator |
+| <code>AMS</code> | US, Federal Communications Commission (FCC) import |
+| <code>AMT</code> | Goods and Services Tax identification number |
+| <code>AMU</code> | Integrated logistic support cross reference number |
+| <code>AMV</code> | Department number |
+| <code>AMW</code> | Buyer's catalogue number |
+| <code>AMX</code> | Financial settlement party's reference number |
+| <code>AMY</code> | Standard's version number |
+| <code>AMZ</code> | Pipeline number |
+| <code>ANA</code> | Account servicing bank's reference number |
+| <code>ANB</code> | Completed units payment request reference |
+| <code>ANC</code> | Payment in advance request reference |
+| <code>AND</code> | Parent file |
+| <code>ANE</code> | Sub file |
+| <code>ANF</code> | CAD file layer convention |
+| <code>ANG</code> | Technical regulation |
+| <code>ANH</code> | Plot file |
+| <code>ANI</code> | File conversion journal |
+| <code>ANJ</code> | Authorization number |
+| <code>ANK</code> | Reference number assigned by third party |
+| <code>ANL</code> | Deposit reference number |
+| <code>ANM</code> | Named bank's reference |
+| <code>ANN</code> | Drawee's reference |
+| <code>ANO</code> | Case of need party's reference |
+| <code>ANP</code> | Collecting bank's reference |
+| <code>ANQ</code> | Remitting bank's reference |
+| <code>ANR</code> | Principal's bank reference |
+| <code>ANS</code> | Presenting bank's reference |
+| <code>ANT</code> | Consignee's reference |
+| <code>ANU</code> | Financial transaction reference number |
+| <code>ANV</code> | Credit reference number |
+| <code>ANW</code> | Receiving bank's authorization number |
+| <code>ANX</code> | Clearing reference |
+| <code>ANY</code> | Sending bank's reference number |
+| <code>AOA</code> | Documentary payment reference |
+| <code>AOD</code> | Accounting file reference |
+| <code>AOE</code> | Sender's file reference number |
+| <code>AOF</code> | Receiver's file reference number |
+| <code>AOG</code> | Source document internal reference |
+| <code>AOH</code> | Principal's reference |
+| <code>AOI</code> | Debit reference number |
+| <code>AOJ</code> | Calendar |
+| <code>AOK</code> | Work shift |
+| <code>AOL</code> | Work breakdown structure |
+| <code>AOM</code> | Organisation breakdown structure |
+| <code>AON</code> | Work task charge number |
+| <code>AOO</code> | Functional work group |
+| <code>AOP</code> | Work team |
+| <code>AOQ</code> | Department |
+| <code>AOR</code> | Statement of work |
+| <code>AOS</code> | Work package |
+| <code>AOT</code> | Planning package |
+| <code>AOU</code> | Cost account |
+| <code>AOV</code> | Work order |
+| <code>AOW</code> | Transportation Control Number (TCN) |
+| <code>AOX</code> | Constraint notation |
+| <code>AOY</code> | ETERMS reference |
+| <code>AOZ</code> | Implementation version number |
+| <code>AP</code> | Accounts receivable number |
+| <code>APA</code> | Incorporated legal reference |
+| <code>APB</code> | Payment instalment reference number |
+| <code>APC</code> | Equipment owner reference number |
+| <code>APD</code> | Cedent's claim number |
+| <code>APE</code> | Reinsurer's claim number |
+| <code>APF</code> | Price/sales catalogue response reference number |
+| <code>APG</code> | General purpose message reference number |
+| <code>APH</code> | Invoicing data sheet reference number |
+| <code>API</code> | Inventory report reference number |
+| <code>APJ</code> | Ceiling formula reference number |
+| <code>APK</code> | Price variation formula reference number |
+| <code>APL</code> | Reference to account servicing bank's message |
+| <code>APM</code> | Party sequence number |
+| <code>APN</code> | Purchaser's request reference |
+| <code>APO</code> | Contractor request reference |
+| <code>APP</code> | Accident reference number |
+| <code>APQ</code> | Commercial account summary reference number |
+| <code>APR</code> | Contract breakdown reference |
+| <code>APS</code> | Contractor registration number |
+| <code>APT</code> | Applicable coefficient identification number |
+| <code>APU</code> | Special budget account number |
+| <code>APV</code> | Authorisation for repair reference |
+| <code>APW</code> | Manufacturer defined repair rates reference |
+| <code>APX</code> | Original submitter log number |
+| <code>APY</code> | Original submitter, parent Data Maintenance Request (DMR) |
+| <code>APZ</code> | Original submitter, child Data Maintenance Request (DMR) |
+| <code>AQA</code> | Entry point assessment log number |
+| <code>AQB</code> | Entry point assessment log number, parent DMR |
+| <code>AQC</code> | Entry point assessment log number, child DMR |
+| <code>AQD</code> | Data structure tag |
+| <code>AQE</code> | Central secretariat log number |
+| <code>AQF</code> | Central secretariat log number, parent Data Maintenance |
+| <code>AQG</code> | Central secretariat log number, child Data Maintenance |
+| <code>AQH</code> | International assessment log number |
+| <code>AQI</code> | International assessment log number, parent Data |
+| <code>AQJ</code> | International assessment log number, child Data Maintenance |
+| <code>AQK</code> | Status report number |
+| <code>AQL</code> | Message design group number |
+| <code>AQM</code> | US Customs Service (USCS) entry code |
+| <code>AQN</code> | Beginning job sequence number |
+| <code>AQO</code> | Sender's clause number |
+| <code>AQP</code> | Dun and Bradstreet Canada's 8 digit Standard Industrial |
+| <code>AQQ</code> | Activite Principale Exercee (APE) identifier |
+| <code>AQR</code> | Dun and Bradstreet US 8 digit Standard Industrial |
+| <code>AQS</code> | Nomenclature Activity Classification Economy (NACE) |
+| <code>AQT</code> | Norme Activite Francaise (NAF) identifier |
+| <code>AQU</code> | Registered contractor activity type |
+| <code>AQV</code> | Statistic Bundes Amt (SBA) identifier |
+| <code>AQW</code> | State or province assigned entity identification |
+| <code>AQX</code> | Institute of Security and Future Market Development (ISFMD) |
+| <code>AQY</code> | File identification number |
+| <code>AQZ</code> | Bankruptcy procedure number |
+| <code>ARA</code> | National government business identification number |
+| <code>ARB</code> | Prior Data Universal Number System (DUNS) number |
+| <code>ARC</code> | Companies Registry Office (CRO) number |
+| <code>ARD</code> | Costa Rican judicial number |
+| <code>ARE</code> | Numero de Identificacion Tributaria (NIT) |
+| <code>ARF</code> | Patron number |
+| <code>ARG</code> | Registro Informacion Fiscal (RIF) number |
+| <code>ARH</code> | Registro Unico de Contribuyente (RUC) number |
+| <code>ARI</code> | Tokyo SHOKO Research (TSR) business identifier |
+| <code>ARJ</code> | Personal identity card number |
+| <code>ARK</code> | Systeme Informatique pour le Repertoire des ENtreprises |
+| <code>ARL</code> | Systeme Informatique pour le Repertoire des ETablissements |
+| <code>ARM</code> | Publication issue number |
+| <code>ARN</code> | Original filing number |
+| <code>ARO</code> | Document page identifier |
+| <code>ARP</code> | Public filing registration number |
+| <code>ARQ</code> | Regiristo Federal de Contribuyentes |
+| <code>ARR</code> | Social security number |
+| <code>ARS</code> | Document volume number |
+| <code>ART</code> | Book number |
+| <code>ARU</code> | Stock exchange company identifier |
+| <code>ARV</code> | Imputation account |
+| <code>ARW</code> | Financial phase reference |
+| <code>ARX</code> | Technical phase reference |
+| <code>ARY</code> | Prior contractor registration number |
+| <code>ARZ</code> | Stock adjustment number |
+| <code>ASA</code> | Dispensation reference |
+| <code>ASB</code> | Investment reference number |
+| <code>ASC</code> | Assuming company |
+| <code>ASD</code> | Budget chapter |
+| <code>ASE</code> | Duty free products security number |
+| <code>ASF</code> | Duty free products receipt authorisation number |
+| <code>ASG</code> | Party information message reference |
+| <code>ASH</code> | Formal statement reference |
+| <code>ASI</code> | Proof of delivery reference number |
+| <code>ASJ</code> | Supplier's credit claim reference number |
+| <code>ASK</code> | Picture of actual product |
+| <code>ASL</code> | Picture of a generic product |
+| <code>ASM</code> | Trading partner identification number |
+| <code>ASN</code> | Prior trading partner identification number |
+| <code>ASO</code> | Password |
+| <code>ASP</code> | Formal report number |
+| <code>ASQ</code> | Fund account number |
+| <code>ASR</code> | Safe custody number |
+| <code>ASS</code> | Master account number |
+| <code>AST</code> | Group reference number |
+| <code>ASU</code> | Accounting transmission number |
+| <code>ASV</code> | Product data file number |
+| <code>ASW</code> | Cadastro Geral do Contribuinte (CGC) |
+| <code>ASX</code> | Foreign resident identification number |
+| <code>ASY</code> | CD-ROM |
+| <code>ASZ</code> | Physical medium |
+| <code>ATA</code> | Financial cancellation reference number |
+| <code>ATB</code> | Purchase for export Customs agreement number |
+| <code>ATC</code> | Judgment number |
+| <code>ATD</code> | Secretariat number |
+| <code>ATE</code> | Previous banking status message reference |
+| <code>ATF</code> | Last received banking status message reference |
+| <code>ATG</code> | Bank's documentary procedure reference |
+| <code>ATH</code> | Customer's documentary procedure reference |
+| <code>ATI</code> | Safe deposit box number |
+| <code>ATJ</code> | Receiving Bankgiro number |
+| <code>ATK</code> | Sending Bankgiro number |
+| <code>ATL</code> | Bankgiro reference |
+| <code>ATM</code> | Guarantee number |
+| <code>ATN</code> | Collection instrument number |
+| <code>ATO</code> | Converted Postgiro number |
+| <code>ATP</code> | Cost centre alignment number |
+| <code>ATQ</code> | Kamer Van Koophandel (KVK) number |
+| <code>ATR</code> | Institut Belgo-Luxembourgeois de Codification (IBLC) number |
+| <code>ATS</code> | External object reference |
+| <code>ATT</code> | Exceptional transport authorisation number |
+| <code>ATU</code> | Clave Unica de Identificacion Tributaria (CUIT) |
+| <code>ATV</code> | Registro Unico Tributario (RUT) |
+| <code>ATW</code> | Flat rack container bundle identification number |
+| <code>ATX</code> | Transport equipment acceptance order reference |
+| <code>ATY</code> | Transport equipment release order reference |
+| <code>ATZ</code> | Ship's stay reference number |
+| <code>AU</code> | Authorization to meet competition number |
+| <code>AUA</code> | Place of positioning reference |
+| <code>AUB</code> | Party reference |
+| <code>AUC</code> | Issued prescription identification |
+| <code>AUD</code> | Collection reference |
+| <code>AUE</code> | Travel service |
+| <code>AUF</code> | Consignment stock contract |
+| <code>AUG</code> | Importer's letter of credit reference |
+| <code>AUH</code> | Performed prescription identification |
+| <code>AUI</code> | Image reference |
+| <code>AUJ</code> | Proposed purchase order reference number |
+| <code>AUK</code> | Application for financial support reference number |
+| <code>AUL</code> | Manufacturing quality agreement number |
+| <code>AUM</code> | Software editor reference |
+| <code>AUN</code> | Software reference |
+| <code>AUO</code> | Software quality reference |
+| <code>AUP</code> | Consolidated orders' reference |
+| <code>AUQ</code> | Customs binding ruling number |
+| <code>AUR</code> | Customs non-binding ruling number |
+| <code>AUS</code> | Delivery route reference |
+| <code>AUT</code> | Net area supplier reference |
+| <code>AUU</code> | Time series reference |
+| <code>AUV</code> | Connecting point to central grid |
+| <code>AUW</code> | Marketing plan identification number (MPIN) |
+| <code>AUX</code> | Entity reference number, previous |
+| <code>AUY</code> | International Standard Industrial Classification (ISIC) |
+| <code>AUZ</code> | Customs pre-approval ruling number |
+| <code>AV</code> | Account payable number |
+| <code>AVA</code> | First financial institution's transaction reference |
+| <code>AVB</code> | Product characteristics directory |
+| <code>AVC</code> | Supplier's customer reference number |
+| <code>AVD</code> | Inventory report request number |
+| <code>AVE</code> | Metering point |
+| <code>AVF</code> | Passenger reservation number |
+| <code>AVG</code> | Slaughterhouse approval number |
+| <code>AVH</code> | Meat cutting plant approval number |
+| <code>AVI</code> | Customer travel service identifier |
+| <code>AVJ</code> | Export control classification number |
+| <code>AVK</code> | Broker reference 3 |
+| <code>AVL</code> | Consignment information |
+| <code>AVM</code> | Goods item information |
+| <code>AVN</code> | Dangerous Goods information |
+| <code>AVO</code> | Pilotage services exemption number |
+| <code>AVP</code> | Person registration number |
+| <code>AVQ</code> | Place of packing approval number |
+| <code>AVR</code> | Original Mandate Reference |
+| <code>AVS</code> | Mandate Reference |
+| <code>AVT</code> | Reservation station indentifier |
+| <code>AVU</code> | Unique goods shipment identifier |
+| <code>AVV</code> | Framework Agreement Number |
+| <code>AVW</code> | Hash value |
+| <code>AVX</code> | Movement reference number |
+| <code>AVY</code> | Economic Operators Registration and Identification Number |
+| <code>AVZ</code> | Local Reference Number |
+| <code>AWA</code> | Rate code number |
+| <code>AWB</code> | Air waybill number |
+| <code>AWC</code> | Documentary credit amendment number |
+| <code>AWD</code> | Advising bank's reference |
+| <code>AWE</code> | Cost centre |
+| <code>AWF</code> | Work item quantity determination |
+| <code>AWG</code> | Internal data process number |
+| <code>AWH</code> | Category of work reference |
+| <code>AWI</code> | Policy form number |
+| <code>AWJ</code> | Net area |
+| <code>AWK</code> | Service provider |
+| <code>AWL</code> | Error position |
+| <code>AWM</code> | Service category reference |
+| <code>AWN</code> | Connected location |
+| <code>AWO</code> | Related party |
+| <code>AWP</code> | Latest accounting entry record reference |
+| <code>AWQ</code> | Accounting entry |
+| <code>AWR</code> | Document reference, original |
+| <code>AWS</code> | Hygienic Certificate number, national |
+| <code>AWT</code> | Administrative Reference Code |
+| <code>AWU</code> | Pick-up sheet number |
+| <code>AWV</code> | Phone number |
+| <code>AWW</code> | Buyer's fund number |
+| <code>AWX</code> | Company trading account number |
+| <code>AWY</code> | Reserved goods identifier |
+| <code>AWZ</code> | Handling and movement reference number |
+| <code>AXA</code> | Instruction to despatch reference number |
+| <code>AXB</code> | Instruction for returns number |
+| <code>AXC</code> | Metered services consumption report number |
+| <code>AXD</code> | Order status enquiry number |
+| <code>AXE</code> | Firm booking reference number |
+| <code>AXF</code> | Product inquiry number |
+| <code>AXG</code> | Split delivery number |
+| <code>AXH</code> | Service relation number |
+| <code>AXI</code> | Serial shipping container code |
+| <code>AXJ</code> | Test specification number |
+| <code>AXK</code> | Transport status report number |
+| <code>AXL</code> | Tooling contract number |
+| <code>AXM</code> | Formula reference number |
+| <code>AXN</code> | Pre-agreement number |
+| <code>AXO</code> | Product certification number |
+| <code>AXP</code> | Consignment contract number |
+| <code>AXQ</code> | Product specification reference number |
+| <code>AXR</code> | Payroll deduction advice reference |
+| <code>AXS</code> | TRACES party identification |
+| <code>BA</code> | Beginning meter reading actual |
+| <code>BC</code> | Buyer's contract number |
+| <code>BD</code> | Bid number |
+| <code>BE</code> | Beginning meter reading estimated |
+| <code>BH</code> | House bill of lading number |
+| <code>BM</code> | Bill of lading number |
+| <code>BN</code> | Consignment identifier, carrier assigned |
+| <code>BO</code> | Blanket order number |
+| <code>BR</code> | Broker or sales office number |
+| <code>BT</code> | Batch number/lot number |
+| <code>BTP</code> | Battery and accumulator producer registration number |
+| <code>BW</code> | Blended with number |
+| <code>CAS</code> | IATA Cargo Agent CASS Address number |
+| <code>CAT</code> | Matching of entries, balanced |
+| <code>CAU</code> | Entry flagging |
+| <code>CAV</code> | Matching of entries, unbalanced |
+| <code>CAW</code> | Document reference, internal |
+| <code>CAX</code> | European Value Added Tax identification |
+| <code>CAY</code> | Cost accounting document |
+| <code>CAZ</code> | Grid operator's customer reference number |
+| <code>CBA</code> | Ticket control number |
+| <code>CBB</code> | Order shipment grouping reference |
+| <code>CD</code> | Credit note number |
+| <code>CEC</code> | Ceding company |
+| <code>CED</code> | Debit letter number |
+| <code>CFE</code> | Consignee's further order |
+| <code>CFF</code> | Animal farm licence number |
+| <code>CFO</code> | Consignor's further order |
+| <code>CG</code> | Consignee's order number |
+| <code>CH</code> | Customer catalogue number |
+| <code>CK</code> | Cheque number |
+| <code>CKN</code> | Checking number |
+| <code>CM</code> | Credit memo number |
+| <code>CMR</code> | Road consignment note number |
+| <code>CN</code> | Carrier's reference number |
+| <code>CNO</code> | Charges note document attachment indicator |
+| <code>COF</code> | Call off order number |
+| <code>CP</code> | Condition of purchase document number |
+| <code>CR</code> | Customer reference number |
+| <code>CRN</code> | Transport means journey identifier |
+| <code>CS</code> | Condition of sale document number |
+| <code>CST</code> | Team assignment number |
+| <code>CT</code> | Contract number |
+| <code>CU</code> | Consignment identifier, consignor assigned |
+| <code>CV</code> | Container operators reference number |
+| <code>CW</code> | Package number |
+| <code>CZ</code> | Cooperation contract number |
+| <code>DA</code> | Deferment approval number |
+| <code>DAN</code> | Debit account number |
+| <code>DB</code> | Buyer's debtor number |
+| <code>DI</code> | Distributor invoice number |
+| <code>DL</code> | Debit note number |
+| <code>DM</code> | Document identifier |
+| <code>DQ</code> | Delivery note number |
+| <code>DR</code> | Dock receipt number |
+| <code>EA</code> | Ending meter reading actual |
+| <code>EB</code> | Embargo permit number |
+| <code>ED</code> | Export declaration |
+| <code>EE</code> | Ending meter reading estimated |
+| <code>EEP</code> | Electrical and electronic equipment producer registration |
+| <code>EI</code> | Employer's identification number |
+| <code>EN</code> | Embargo number |
+| <code>EQ</code> | Equipment number |
+| <code>ER</code> | Container/equipment receipt number |
+| <code>ERN</code> | Exporter's reference number |
+| <code>ET</code> | Excess transportation number |
+| <code>EX</code> | Export permit identifier |
+| <code>FC</code> | Fiscal number |
+| <code>FF</code> | Consignment identifier, freight forwarder assigned |
+| <code>FI</code> | File line identifier |
+| <code>FLW</code> | Flow reference number |
+| <code>FN</code> | Freight bill number |
+| <code>FO</code> | Foreign exchange |
+| <code>FS</code> | Final sequence number |
+| <code>FT</code> | Free zone identifier |
+| <code>FV</code> | File version number |
+| <code>FX</code> | Foreign exchange contract number |
+| <code>GA</code> | Standard's number |
+| <code>GC</code> | Government contract number |
+| <code>GD</code> | Standard's code number |
+| <code>GDN</code> | General declaration number |
+| <code>GN</code> | Government reference number |
+| <code>HS</code> | Harmonised system number |
+| <code>HWB</code> | House waybill number |
+| <code>IA</code> | Internal vendor number |
+| <code>IB</code> | In bond number |
+| <code>ICA</code> | IATA cargo agent code number |
+| <code>ICE</code> | Insurance certificate reference number |
+| <code>ICO</code> | Insurance contract reference number |
+| <code>II</code> | Initial sample inspection report number |
+| <code>IL</code> | Internal order number |
+| <code>INB</code> | Intermediary broker |
+| <code>INN</code> | Interchange number new |
+| <code>INO</code> | Interchange number old |
+| <code>IP</code> | Import permit identifier |
+| <code>IS</code> | Invoice number suffix |
+| <code>IT</code> | Internal customer number |
+| <code>IV</code> | Invoice document identifier |
+| <code>JB</code> | Job number |
+| <code>JE</code> | Ending job sequence number |
+| <code>LA</code> | Shipping label serial number |
+| <code>LAN</code> | Loading authorisation identifier |
+| <code>LAR</code> | Lower number in range |
+| <code>LB</code> | Lockbox |
+| <code>LC</code> | Letter of credit number |
+| <code>LI</code> | Document line identifier |
+| <code>LO</code> | Load planning number |
+| <code>LRC</code> | Reservation office identifier |
+| <code>LS</code> | Bar coded label serial number |
+| <code>MA</code> | Ship notice/manifest number |
+| <code>MB</code> | Master bill of lading number |
+| <code>MF</code> | Manufacturer's part number |
+| <code>MG</code> | Meter unit number |
+| <code>MH</code> | Manufacturing order number |
+| <code>MR</code> | Message recipient |
+| <code>MRN</code> | Mailing reference number |
+| <code>MS</code> | Message sender |
+| <code>MSS</code> | Manufacturer's material safety data sheet number |
+| <code>MWB</code> | Master air waybill number |
+| <code>NA</code> | North American hazardous goods classification number |
+| <code>NF</code> | Nota Fiscal |
+| <code>OH</code> | Current invoice number |
+| <code>OI</code> | Previous invoice number |
+| <code>ON</code> | Order document identifier, buyer assigned |
+| <code>OP</code> | Original purchase order |
+| <code>OR</code> | General order number |
+| <code>PB</code> | Payer's financial institution account number |
+| <code>PC</code> | Production code |
+| <code>PD</code> | Promotion deal number |
+| <code>PE</code> | Plant number |
+| <code>PF</code> | Prime contractor contract number |
+| <code>PI</code> | Price list version number |
+| <code>PK</code> | Packing list number |
+| <code>PL</code> | Price list number |
+| <code>POR</code> | Purchase order response number |
+| <code>PP</code> | Purchase order change number |
+| <code>PQ</code> | Payment reference |
+| <code>PR</code> | Price quote number |
+| <code>PS</code> | Purchase order number suffix |
+| <code>PW</code> | Prior purchase order number |
+| <code>PY</code> | Payee's financial institution account number |
+| <code>RA</code> | Remittance advice number |
+| <code>RC</code> | Rail/road routing code |
+| <code>RCN</code> | Railway consignment note number |
+| <code>RE</code> | Release number |
+| <code>REN</code> | Consignment receipt identifier |
+| <code>RF</code> | Export reference number |
+| <code>RR</code> | Payer's financial institution transit routing No.(ACH |
+| <code>RT</code> | Payee's financial institution transit routing No. |
+| <code>SA</code> | Sales person number |
+| <code>SB</code> | Sales region number |
+| <code>SD</code> | Sales department number |
+| <code>SE</code> | Serial number |
+| <code>SEA</code> | Allocated seat |
+| <code>SF</code> | Ship from |
+| <code>SH</code> | Previous highest schedule number |
+| <code>SI</code> | SID (Shipper's identifying number for shipment) |
+| <code>SM</code> | Sales office number |
+| <code>SN</code> | Transport equipment seal identifier |
+| <code>SP</code> | Scan line |
+| <code>SQ</code> | Equipment sequence number |
+| <code>SRN</code> | Shipment reference number |
+| <code>SS</code> | Sellers reference number |
+| <code>STA</code> | Station reference number |
+| <code>SW</code> | Swap order number |
+| <code>SZ</code> | Specification number |
+| <code>TB</code> | Trucker's bill of lading |
+| <code>TCR</code> | Terminal operator's consignment reference |
+| <code>TE</code> | Telex message number |
+| <code>TF</code> | Transfer number |
+| <code>TI</code> | TIR carnet number |
+| <code>TIN</code> | Transport instruction number |
+| <code>TL</code> | Tax exemption licence number |
+| <code>TN</code> | Transaction reference number |
+| <code>TP</code> | Test report number |
+| <code>UAR</code> | Upper number of range |
+| <code>UC</code> | Ultimate customer's reference number |
+| <code>UCN</code> | Unique consignment reference number |
+| <code>UN</code> | United Nations Dangerous Goods identifier |
+| <code>UO</code> | Ultimate customer's order number |
+| <code>URI</code> | Uniform Resource Identifier |
+| <code>VA</code> | VAT registration number |
+| <code>VC</code> | Vendor contract number |
+| <code>VGR</code> | Transport equipment gross mass verification reference |
+| <code>VM</code> | Vessel identifier |
+| <code>VN</code> | Order number (vendor) |
+| <code>VON</code> | Voyage number |
+| <code>VOR</code> | Transport equipment gross mass verification order reference |
+| <code>VP</code> | Vendor product number |
+| <code>VR</code> | Vendor ID number |
+| <code>VS</code> | Vendor order number suffix |
+| <code>VT</code> | Motor vehicle identification number |
+| <code>VV</code> | Voucher number |
+| <code>WE</code> | Warehouse entry number |
+| <code>WM</code> | Weight agreement number |
+| <code>WN</code> | Well number |
+| <code>WR</code> | Warehouse receipt number |
+| <code>WS</code> | Warehouse storage location number |
+| <code>WY</code> | Rail waybill number |
+| <code>XA</code> | Company/place registration number |
+| <code>XC</code> | Cargo control number |
+| <code>XP</code> | Previous cargo control number |
+| <code>ZZZ</code> | Mutually defined reference number |
+</Accordion>
+<Accordion description="Key: untdid-text-subject" title="UNTDID 4451 Text Subject Qualifier">	
+
+Code specifying subject of a free text.
+
+| Code | Name |
+| ---- | ---- |
+| <code>AAA</code> | Goods item description |
+| <code>AAB</code> | Payment term |
+| <code>AAC</code> | Dangerous goods additional information |
+| <code>AAD</code> | Dangerous goods technical name |
+| <code>AAE</code> | Acknowledgement description |
+| <code>AAF</code> | Rate additional information |
+| <code>AAG</code> | Party instructions |
+| <code>AAI</code> | General information |
+| <code>AAJ</code> | Additional conditions of sale/purchase |
+| <code>AAK</code> | Price conditions |
+| <code>AAL</code> | Goods dimensions in characters |
+| <code>AAM</code> | Equipment re-usage restrictions |
+| <code>AAN</code> | Handling restriction |
+| <code>AAO</code> | Error description (free text) |
+| <code>AAP</code> | Response (free text) |
+| <code>AAQ</code> | Package content's description |
+| <code>AAR</code> | Terms of delivery |
+| <code>AAS</code> | Bill of lading remarks |
+| <code>AAT</code> | Mode of settlement information |
+| <code>AAU</code> | Consignment invoice information |
+| <code>AAV</code> | Clearance invoice information |
+| <code>AAW</code> | Letter of credit information |
+| <code>AAX</code> | License information |
+| <code>AAY</code> | Certification statements |
+| <code>AAZ</code> | Additional export information |
+| <code>ABA</code> | Tariff statements |
+| <code>ABB</code> | Medical history |
+| <code>ABC</code> | Conditions of sale or purchase |
+| <code>ABD</code> | Contract document type |
+| <code>ABE</code> | Additional terms and/or conditions (documentary credit) |
+| <code>ABF</code> | Instructions or information about standby documentary |
+| <code>ABG</code> | Instructions or information about partial shipment(s) |
+| <code>ABH</code> | Instructions or information about transhipment(s) |
+| <code>ABI</code> | Additional handling instructions documentary credit |
+| <code>ABJ</code> | Domestic routing information |
+| <code>ABK</code> | Chargeable category of equipment |
+| <code>ABL</code> | Government information |
+| <code>ABM</code> | Onward routing information |
+| <code>ABN</code> | Accounting information |
+| <code>ABO</code> | Discrepancy information |
+| <code>ABP</code> | Confirmation instructions |
+| <code>ABQ</code> | Method of issuance |
+| <code>ABR</code> | Documents delivery instructions |
+| <code>ABS</code> | Additional conditions |
+| <code>ABT</code> | Information/instructions about additional amounts covered |
+| <code>ABU</code> | Deferred payment termed additional |
+| <code>ABV</code> | Acceptance terms additional |
+| <code>ABW</code> | Negotiation terms additional |
+| <code>ABX</code> | Document name and documentary requirements |
+| <code>ABZ</code> | Instructions/information about revolving documentary credit |
+| <code>ACA</code> | Documentary requirements |
+| <code>ACB</code> | Additional information |
+| <code>ACC</code> | Factor assignment clause |
+| <code>ACD</code> | Reason |
+| <code>ACE</code> | Dispute |
+| <code>ACF</code> | Additional attribute information |
+| <code>ACG</code> | Absence declaration |
+| <code>ACH</code> | Aggregation statement |
+| <code>ACI</code> | Compilation statement |
+| <code>ACJ</code> | Definitional exception |
+| <code>ACK</code> | Privacy statement |
+| <code>ACL</code> | Quality statement |
+| <code>ACM</code> | Statistical description |
+| <code>ACN</code> | Statistical definition |
+| <code>ACO</code> | Statistical name |
+| <code>ACP</code> | Statistical title |
+| <code>ACQ</code> | Off-dimension information |
+| <code>ACR</code> | Unexpected stops information |
+| <code>ACS</code> | Principles |
+| <code>ACT</code> | Terms and definition |
+| <code>ACU</code> | Segment name |
+| <code>ACV</code> | Simple data element name |
+| <code>ACW</code> | Scope |
+| <code>ACX</code> | Message type name |
+| <code>ACY</code> | Introduction |
+| <code>ACZ</code> | Glossary |
+| <code>ADA</code> | Functional definition |
+| <code>ADB</code> | Examples |
+| <code>ADC</code> | Cover page |
+| <code>ADD</code> | Dependency (syntax) notes |
+| <code>ADE</code> | Code value name |
+| <code>ADF</code> | Code list name |
+| <code>ADG</code> | Clarification of usage |
+| <code>ADH</code> | Composite data element name |
+| <code>ADI</code> | Field of application |
+| <code>ADJ</code> | Type of assets and liabilities |
+| <code>ADK</code> | Promotion information |
+| <code>ADL</code> | Meter condition |
+| <code>ADM</code> | Meter reading information |
+| <code>ADN</code> | Type of transaction reason |
+| <code>ADO</code> | Type of survey question |
+| <code>ADP</code> | Carrier's agent counter information |
+| <code>ADQ</code> | Description of work item on equipment |
+| <code>ADR</code> | Message definition |
+| <code>ADS</code> | Booked item information |
+| <code>ADT</code> | Source of document |
+| <code>ADU</code> | Note |
+| <code>ADV</code> | Fixed part of segment clarification text |
+| <code>ADW</code> | Characteristics of goods |
+| <code>ADX</code> | Additional discharge instructions |
+| <code>ADY</code> | Container stripping instructions |
+| <code>ADZ</code> | CSC (Container Safety Convention) plate information |
+| <code>AEA</code> | Cargo remarks |
+| <code>AEB</code> | Temperature control instructions |
+| <code>AEC</code> | Text refers to expected data |
+| <code>AED</code> | Text refers to received data |
+| <code>AEE</code> | Section clarification text |
+| <code>AEF</code> | Information to the beneficiary |
+| <code>AEG</code> | Information to the applicant |
+| <code>AEH</code> | Instructions to the beneficiary |
+| <code>AEI</code> | Instructions to the applicant |
+| <code>AEJ</code> | Controlled atmosphere |
+| <code>AEK</code> | Take off annotation |
+| <code>AEL</code> | Price variation narrative |
+| <code>AEM</code> | Documentary credit amendment instructions |
+| <code>AEN</code> | Standard method narrative |
+| <code>AEO</code> | Project narrative |
+| <code>AEP</code> | Radioactive goods, additional information |
+| <code>AEQ</code> | Bank-to-bank information |
+| <code>AER</code> | Reimbursement instructions |
+| <code>AES</code> | Reason for amending a message |
+| <code>AET</code> | Instructions to the paying and/or accepting and/or |
+| <code>AEU</code> | Interest instructions |
+| <code>AEV</code> | Agent commission |
+| <code>AEW</code> | Remitting bank instructions |
+| <code>AEX</code> | Instructions to the collecting bank |
+| <code>AEY</code> | Collection amount instructions |
+| <code>AEZ</code> | Internal auditing information |
+| <code>AFA</code> | Constraint |
+| <code>AFB</code> | Comment |
+| <code>AFC</code> | Semantic note |
+| <code>AFD</code> | Help text |
+| <code>AFE</code> | Legend |
+| <code>AFF</code> | Batch code structure |
+| <code>AFG</code> | Product application |
+| <code>AFH</code> | Customer complaint |
+| <code>AFI</code> | Probable cause of fault |
+| <code>AFJ</code> | Defect description |
+| <code>AFK</code> | Repair description |
+| <code>AFL</code> | Review comments |
+| <code>AFM</code> | Title |
+| <code>AFN</code> | Description of amount |
+| <code>AFO</code> | Responsibilities |
+| <code>AFP</code> | Supplier |
+| <code>AFQ</code> | Purchase region |
+| <code>AFR</code> | Affiliation |
+| <code>AFS</code> | Borrower |
+| <code>AFT</code> | Line of business |
+| <code>AFU</code> | Financial institution |
+| <code>AFV</code> | Business founder |
+| <code>AFW</code> | Business history |
+| <code>AFX</code> | Banking arrangements |
+| <code>AFY</code> | Business origin |
+| <code>AFZ</code> | Brand names' description |
+| <code>AGA</code> | Business financing details |
+| <code>AGB</code> | Competition |
+| <code>AGC</code> | Construction process details |
+| <code>AGD</code> | Construction specialty |
+| <code>AGE</code> | Contract information |
+| <code>AGF</code> | Corporate filing |
+| <code>AGG</code> | Customer information |
+| <code>AGH</code> | Copyright notice |
+| <code>AGI</code> | Contingent debt |
+| <code>AGJ</code> | Conviction details |
+| <code>AGK</code> | Equipment |
+| <code>AGL</code> | Workforce description |
+| <code>AGM</code> | Exemption |
+| <code>AGN</code> | Future plans |
+| <code>AGO</code> | Interviewee conversation information |
+| <code>AGP</code> | Intangible asset |
+| <code>AGQ</code> | Inventory |
+| <code>AGR</code> | Investment |
+| <code>AGS</code> | Intercompany relations information |
+| <code>AGT</code> | Joint venture |
+| <code>AGU</code> | Loan |
+| <code>AGV</code> | Long term debt |
+| <code>AGW</code> | Location |
+| <code>AGX</code> | Current legal structure |
+| <code>AGY</code> | Marital contract |
+| <code>AGZ</code> | Marketing activities |
+| <code>AHA</code> | Merger |
+| <code>AHB</code> | Marketable securities |
+| <code>AHC</code> | Business debt |
+| <code>AHD</code> | Original legal structure |
+| <code>AHE</code> | Employee sharing arrangements |
+| <code>AHF</code> | Organization details |
+| <code>AHG</code> | Public record details |
+| <code>AHH</code> | Price range |
+| <code>AHI</code> | Qualifications |
+| <code>AHJ</code> | Registered activity |
+| <code>AHK</code> | Criminal sentence |
+| <code>AHL</code> | Sales method |
+| <code>AHM</code> | Educational institution information |
+| <code>AHN</code> | Status details |
+| <code>AHO</code> | Sales |
+| <code>AHP</code> | Spouse information |
+| <code>AHQ</code> | Educational degree information |
+| <code>AHR</code> | Shareholding information |
+| <code>AHS</code> | Sales territory |
+| <code>AHT</code> | Accountant's comments |
+| <code>AHU</code> | Exemption law location |
+| <code>AHV</code> | Share classifications |
+| <code>AHW</code> | Forecast |
+| <code>AHX</code> | Event location |
+| <code>AHY</code> | Facility occupancy |
+| <code>AHZ</code> | Import and export details |
+| <code>AIA</code> | Additional facility information |
+| <code>AIB</code> | Inventory value |
+| <code>AIC</code> | Education |
+| <code>AID</code> | Event |
+| <code>AIE</code> | Agent |
+| <code>AIF</code> | Domestically agreed financial statement details |
+| <code>AIG</code> | Other current asset description |
+| <code>AIH</code> | Other current liability description |
+| <code>AII</code> | Former business activity |
+| <code>AIJ</code> | Trade name use |
+| <code>AIK</code> | Signing authority |
+| <code>AIL</code> | Guarantee |
+| <code>AIM</code> | Holding company operation |
+| <code>AIN</code> | Consignment routing |
+| <code>AIO</code> | Letter of protest |
+| <code>AIP</code> | Question |
+| <code>AIQ</code> | Party information |
+| <code>AIR</code> | Area boundaries description |
+| <code>AIS</code> | Advertisement information |
+| <code>AIT</code> | Financial statement details |
+| <code>AIU</code> | Access instructions |
+| <code>AIV</code> | Liquidity |
+| <code>AIW</code> | Credit line |
+| <code>AIX</code> | Warranty terms |
+| <code>AIY</code> | Division description |
+| <code>AIZ</code> | Reporting instruction |
+| <code>AJA</code> | Examination result |
+| <code>AJB</code> | Laboratory result |
+| <code>ALC</code> | Allowance/charge information |
+| <code>ALD</code> | X-ray result |
+| <code>ALE</code> | Pathology result |
+| <code>ALF</code> | Intervention description |
+| <code>ALG</code> | Summary of admittance |
+| <code>ALH</code> | Medical treatment course detail |
+| <code>ALI</code> | Prognosis |
+| <code>ALJ</code> | Instruction to patient |
+| <code>ALK</code> | Instruction to physician |
+| <code>ALL</code> | All documents |
+| <code>ALM</code> | Medicine treatment |
+| <code>ALN</code> | Medicine dosage and administration |
+| <code>ALO</code> | Availability of patient |
+| <code>ALP</code> | Reason for service request |
+| <code>ALQ</code> | Purpose of service |
+| <code>ARR</code> | Arrival conditions |
+| <code>ARS</code> | Service requester's comment |
+| <code>AUT</code> | Authentication |
+| <code>AUU</code> | Requested location description |
+| <code>AUV</code> | Medicine administration condition |
+| <code>AUW</code> | Patient information |
+| <code>AUX</code> | Precautionary measure |
+| <code>AUY</code> | Service characteristic |
+| <code>AUZ</code> | Planned event comment |
+| <code>AVA</code> | Expected delay comment |
+| <code>AVB</code> | Transport requirements comment |
+| <code>AVC</code> | Temporary approval condition |
+| <code>AVD</code> | Customs Valuation Information |
+| <code>AVE</code> | Value Added Tax (VAT) margin scheme |
+| <code>AVF</code> | Maritime Declaration of Health |
+| <code>BAG</code> | Passenger baggage information |
+| <code>BAH</code> | Maritime Declaration of Health |
+| <code>BAI</code> | Additional product information address |
+| <code>BAJ</code> | Information to be printed on despatch advice |
+| <code>BAK</code> | Missing goods remarks |
+| <code>BAL</code> | Non-acceptance information |
+| <code>BAM</code> | Returns information |
+| <code>BAN</code> | Sub-line item information |
+| <code>BAO</code> | Test information |
+| <code>BAP</code> | External link |
+| <code>BAQ</code> | VAT exemption reason |
+| <code>BAR</code> | Processing Instructions |
+| <code>BAS</code> | Relay Instructions |
+| <code>BAT</code> | SIMA applicable |
+| <code>BAU</code> | Appeals program code |
+| <code>BAV</code> | SIMA subject |
+| <code>BAW</code> | Surtax applicable |
+| <code>BAX</code> | SIMA security bond |
+| <code>BAY</code> | Surtax subject |
+| <code>BAZ</code> | Safeguard applicable |
+| <code>BBA</code> | Safeguard applicable |
+| <code>BBB</code> | Safeguard subject |
+| <code>BLC</code> | Transport contract document clause |
+| <code>BLD</code> | Instruction to prepare the patient |
+| <code>BLE</code> | Medicine treatment comment |
+| <code>BLF</code> | Examination result comment |
+| <code>BLG</code> | Service request comment |
+| <code>BLH</code> | Prescription reason |
+| <code>BLI</code> | Prescription comment |
+| <code>BLJ</code> | Clinical investigation comment |
+| <code>BLK</code> | Medicinal specification comment |
+| <code>BLL</code> | Economic contribution comment |
+| <code>BLM</code> | Status of a plan |
+| <code>BLN</code> | Random sample test information |
+| <code>BLO</code> | Period of time |
+| <code>BLP</code> | Legislation |
+| <code>BLQ</code> | Security measures requested |
+| <code>BLR</code> | Transport contract document remark |
+| <code>BLS</code> | Previous port of call security information |
+| <code>BLT</code> | Security information |
+| <code>BLU</code> | Waste information |
+| <code>BLV</code> | B2C marketing information, short description |
+| <code>BLW</code> | B2B marketing information, long description |
+| <code>BLX</code> | B2C marketing information, long description |
+| <code>BLY</code> | Product ingredients |
+| <code>BLZ</code> | Location short name |
+| <code>BMA</code> | Packaging material information |
+| <code>BMB</code> | Filler material information |
+| <code>BMC</code> | Ship-to-ship activity information |
+| <code>BMD</code> | Package material description |
+| <code>BME</code> | Consumer level package marking |
+| <code>BMF</code> | SIMA measure in force |
+| <code>BMG</code> | Pre-CARM |
+| <code>BMH</code> | SIMA measure type |
+| <code>CCI</code> | Customs clearance instructions |
+| <code>CCJ</code> | Sub Type Code |
+| <code>CCK</code> | SIMA information |
+| <code>CCL</code> | Time limit end |
+| <code>CCM</code> | Time limit start |
+| <code>CCN</code> | Warehouse time limit |
+| <code>CCO</code> | Value for duty information |
+| <code>CEX</code> | Customs clearance instructions export |
+| <code>CHG</code> | Change information |
+| <code>CIP</code> | Customs clearance instruction import |
+| <code>CLP</code> | Clearance place requested |
+| <code>CLR</code> | Loading remarks |
+| <code>COI</code> | Order information |
+| <code>CUR</code> | Customer remarks |
+| <code>CUS</code> | Customs declaration information |
+| <code>DAR</code> | Damage remarks |
+| <code>DCL</code> | Document issuer declaration |
+| <code>DEL</code> | Delivery information |
+| <code>DIN</code> | Delivery instructions |
+| <code>DOC</code> | Documentation instructions |
+| <code>DUT</code> | Duty declaration |
+| <code>EUR</code> | Effective used routing |
+| <code>FBC</code> | First block to be printed on the transport contract |
+| <code>GBL</code> | Government bill of lading information |
+| <code>GEN</code> | Entire transaction set |
+| <code>GS7</code> | Further information concerning GGVS par. 7 |
+| <code>HAN</code> | Consignment handling instruction |
+| <code>HAZ</code> | Hazard information |
+| <code>ICN</code> | Consignment information for consignee |
+| <code>IIN</code> | Insurance instructions |
+| <code>IMI</code> | Invoice mailing instructions |
+| <code>IND</code> | Commercial invoice item description |
+| <code>INS</code> | Insurance information |
+| <code>INV</code> | Invoice instruction |
+| <code>IRP</code> | Information for railway purpose |
+| <code>ITR</code> | Inland transport details |
+| <code>ITS</code> | Testing instructions |
+| <code>LAN</code> | Location Alias |
+| <code>LIN</code> | Line item |
+| <code>LOI</code> | Loading instruction |
+| <code>MCO</code> | Miscellaneous charge order |
+| <code>MDH</code> | Maritime Declaration of Health |
+| <code>MKS</code> | Additional marks/numbers information |
+| <code>ORI</code> | Order instruction |
+| <code>OSI</code> | Other service information |
+| <code>PAC</code> | Packing/marking information |
+| <code>PAI</code> | Payment instructions information |
+| <code>PAY</code> | Payables information |
+| <code>PKG</code> | Packaging information |
+| <code>PKT</code> | Packaging terms information |
+| <code>PMD</code> | Payment detail/remittance information |
+| <code>PMT</code> | Payment information |
+| <code>PRD</code> | Product information |
+| <code>PRF</code> | Price calculation formula |
+| <code>PRI</code> | Priority information |
+| <code>PUR</code> | Purchasing information |
+| <code>QIN</code> | Quarantine instructions |
+| <code>QQD</code> | Quality demands/requirements |
+| <code>QUT</code> | Quotation instruction/information |
+| <code>RAH</code> | Risk and handling information |
+| <code>REG</code> | Regulatory information |
+| <code>RET</code> | Return to origin information |
+| <code>REV</code> | Receivables |
+| <code>RQR</code> | Consignment route |
+| <code>SAF</code> | Safety information |
+| <code>SIC</code> | Consignment documentary instruction |
+| <code>SIN</code> | Special instructions |
+| <code>SLR</code> | Ship line requested |
+| <code>SPA</code> | Special permission for transport, generally |
+| <code>SPG</code> | Special permission concerning the goods to be transported |
+| <code>SPH</code> | Special handling |
+| <code>SPP</code> | Special permission concerning package |
+| <code>SPT</code> | Special permission concerning transport means |
+| <code>SRN</code> | Subsidiary risk number (IATA/DGR) |
+| <code>SSR</code> | Special service request |
+| <code>SUR</code> | Supplier remarks |
+| <code>TCA</code> | Consignment tariff |
+| <code>TDT</code> | Consignment transport |
+| <code>TRA</code> | Transportation information |
+| <code>TRR</code> | Requested tariff |
+| <code>TXD</code> | Tax declaration |
+| <code>WHI</code> | Warehouse instruction/information |
+| <code>ZZZ</code> | Mutually defined |
+</Accordion>
+<Accordion description="Key: untdid-payment-means" title="UNTDID 4461 Payment Means">	
+
+UNTDID 4461 code used to describe the means of payment. This list is based on the
+[EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
+values table which focusses on invoices and payments.
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Instrument not defined |
+| <code>2</code> | Automated clearing house credit |
+| <code>3</code> | Automated clearing house debit |
+| <code>4</code> | ACH demand debit reversal |
+| <code>5</code> | ACH demand credit reversal |
+| <code>6</code> | ACH demand credit |
+| <code>7</code> | ACH demand debit |
+| <code>8</code> | Hold |
+| <code>9</code> | National or regional clearing |
+| <code>10</code> | In cash |
+| <code>11</code> | ACH savings credit reversal |
+| <code>12</code> | ACH savings debit reversal |
+| <code>13</code> | ACH savings credit |
+| <code>14</code> | ACH savings debit |
+| <code>15</code> | Bookentry credit |
+| <code>16</code> | Bookentry debit |
+| <code>17</code> | ACH demand cash concentration/disbursement (CCD) credit |
+| <code>18</code> | ACH demand cash concentration/disbursement (CCD) debit |
+| <code>19</code> | ACH demand corporate trade payment (CTP) credit |
+| <code>20</code> | Cheque |
+| <code>21</code> | Banker's draft |
+| <code>22</code> | Certified banker's draft |
+| <code>23</code> | Bank cheque (issued by a banking or similar establishment) |
+| <code>24</code> | Bill of exchange awaiting acceptance |
+| <code>25</code> | Certified cheque |
+| <code>26</code> | Local cheque |
+| <code>27</code> | ACH demand corporate trade payment (CTP) debit |
+| <code>28</code> | ACH demand corporate trade exchange (CTX) credit |
+| <code>29</code> | ACH demand corporate trade exchange (CTX) debit |
+| <code>30</code> | Credit transfer |
+| <code>31</code> | Debit transfer |
+| <code>32</code> | ACH demand cash concentration/disbursement plus (CCD+) |
+| <code>33</code> | ACH demand cash concentration/disbursement plus (CCD+) |
+| <code>34</code> | ACH prearranged payment and deposit (PPD) |
+| <code>35</code> | ACH savings cash concentration/disbursement (CCD) credit |
+| <code>36</code> | ACH savings cash concentration/disbursement (CCD) debit |
+| <code>37</code> | ACH savings corporate trade payment (CTP) credit |
+| <code>38</code> | ACH savings corporate trade payment (CTP) debit |
+| <code>39</code> | ACH savings corporate trade exchange (CTX) credit |
+| <code>40</code> | ACH savings corporate trade exchange (CTX) debit |
+| <code>41</code> | ACH savings cash concentration/disbursement plus (CCD+) |
+| <code>42</code> | Payment to bank account |
+| <code>43</code> | ACH savings cash concentration/disbursement plus (CCD+) |
+| <code>44</code> | Accepted bill of exchange |
+| <code>45</code> | Referenced home-banking credit transfer |
+| <code>46</code> | Interbank debit transfer |
+| <code>47</code> | Home-banking debit transfer |
+| <code>48</code> | Bank card |
+| <code>49</code> | Direct debit |
+| <code>50</code> | Payment by postgiro |
+| <code>51</code> | FR, norme 6 97-Telereglement CFONB (French Organisation for |
+| <code>52</code> | Urgent commercial payment |
+| <code>53</code> | Urgent Treasury Payment |
+| <code>54</code> | Credit card |
+| <code>55</code> | Debit card |
+| <code>56</code> | Bankgiro |
+| <code>57</code> | Standing agreement |
+| <code>58</code> | SEPA credit transfer |
+| <code>59</code> | SEPA direct debit |
+| <code>60</code> | Promissory note |
+| <code>61</code> | Promissory note signed by the debtor |
+| <code>62</code> | Promissory note signed by the debtor and endorsed by a bank |
+| <code>63</code> | Promissory note signed by the debtor and endorsed by a |
+| <code>64</code> | Promissory note signed by a bank |
+| <code>65</code> | Promissory note signed by a bank and endorsed by another |
+| <code>66</code> | Promissory note signed by a third party |
+| <code>67</code> | Promissory note signed by a third party and endorsed by a |
+| <code>68</code> | Online payment service |
+| <code>69</code> | Transfer Advice |
+| <code>70</code> | Bill drawn by the creditor on the debtor |
+| <code>74</code> | Bill drawn by the creditor on a bank |
+| <code>75</code> | Bill drawn by the creditor, endorsed by another bank |
+| <code>76</code> | Bill drawn by the creditor on a bank and endorsed by a |
+| <code>77</code> | Bill drawn by the creditor on a third party |
+| <code>78</code> | Bill drawn by creditor on third party, accepted and |
+| <code>91</code> | Not transferable banker's draft |
+| <code>92</code> | Not transferable local cheque |
+| <code>93</code> | Reference giro |
+| <code>94</code> | Urgent giro |
+| <code>95</code> | Free format giro |
+| <code>96</code> | Requested method for payment was not used |
+| <code>97</code> | Clearing between partners |
+| <code>98</code> | JP, Electronically Recorded Monetary Claims |
+| <code>ZZZ</code> | Mutually defined |
+</Accordion>
+<Accordion description="Key: untdid-allowance" title="UNTDID 5189 Allowance">	
+
+UNTDID 5189 code used to describe the allowance type. This list is based on the
+[EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
+values table which focusses on invoices and payments.
+
+| Code | Name |
+| ---- | ---- |
+| <code>41</code> | Bonus for works ahead of schedule |
+| <code>42</code> | Other bonus |
+| <code>60</code> | Manufacturer’s consumer discount |
+| <code>62</code> | Due to military status |
+| <code>63</code> | Due to work accident |
+| <code>64</code> | Special agreement |
+| <code>65</code> | Production error discount |
+| <code>66</code> | New outlet discount |
+| <code>67</code> | Sample discount |
+| <code>68</code> | End-of-range discount |
+| <code>70</code> | Incoterm discount |
+| <code>71</code> | Point of sales threshold allowance |
+| <code>88</code> | Material surcharge/deduction |
+| <code>95</code> | Discount |
+| <code>100</code> | Special rebate |
+| <code>102</code> | Fixed long term |
+| <code>103</code> | Temporary |
+| <code>104</code> | Standard |
+| <code>105</code> | Yearly turnover |
+</Accordion>
+<Accordion description="Key: untdid-tax-category" title="UNTDID 3505 Tax Category">	
+
+UNTDID 5305 code used to describe the applicable duty/tax/fee category. There are
+multiple versions and subsets of this table so regimes and addons may need to filter
+options for a specific subset of values.
+
+Data from https://unece.org/fileadmin/DAM/trade/untdid/d16b/tred/tred5305.htm.
+
+| Code | Name |
+| ---- | ---- |
+| <code>A</code> | Mixed tax rate |
+| <code>AA</code> | Lower rate |
+| <code>AB</code> | Exempt for resale |
+| <code>AC</code> | Exempt for resale |
+| <code>AD</code> | Value Added Tax (VAT) due from a previous invoice |
+| <code>AE</code> | VAT Reverse Charge |
+| <code>B</code> | Transferred (VAT) |
+| <code>C</code> | Duty paid by supplier |
+| <code>D</code> | Value Added Tax (VAT) margin scheme - travel agents |
+| <code>E</code> | Exempt from tax |
+| <code>F</code> | Value Added Tax (VAT) margin scheme - second-hand goods |
+| <code>G</code> | Free export item, tax not charged |
+| <code>H</code> | Higher rate |
+| <code>I</code> | Value Added Tax (VAT) margin scheme - works of art |
+| <code>J</code> | Value Added Tax (VAT) margin scheme - collector's items and antiques |
+| <code>K</code> | VAT exempt for EEA intra-community supply of goods and services |
+| <code>L</code> | Canary Islands general indirect tax |
+| <code>M</code> | Tax for production, services and importation in Ceuta and Melilla |
+| <code>O</code> | Services outside scope of tax |
+| <code>S</code> | Standard Rate |
+| <code>Z</code> | Zero rated goods |
+</Accordion>
+<Accordion description="Key: untdid-item-type" title="UNTDID 7143 Item Type Identification Code">	
+
+
+
+| Code | Name |
+| ---- | ---- |
+| <code>AA</code> | Product version number |
+| <code>AB</code> | Assembly |
+| <code>AC</code> | HIBC (Health Industry Bar Code) |
+| <code>AD</code> | Cold roll number |
+| <code>AE</code> | Hot roll number |
+| <code>AF</code> | Slab number |
+| <code>AG</code> | Software revision number |
+| <code>AH</code> | UPC (Universal Product Code) Consumer package code (1-5-5) |
+| <code>AI</code> | UPC (Universal Product Code) Consumer package code (1-5-5-1) |
+| <code>AJ</code> | Sample number |
+| <code>AK</code> | Pack number |
+| <code>AL</code> | UPC (Universal Product Code) Shipping container code (1-2-5-5) |
+| <code>AM</code> | UPC (Universal Product Code)/EAN (European article number) Shipping container code (1-2-5-5-1) |
+| <code>AN</code> | UPC (Universal Product Code) suffix |
+| <code>AO</code> | State label code |
+| <code>AP</code> | Heat number |
+| <code>AQ</code> | Coupon number |
+| <code>AR</code> | Resource number |
+| <code>AS</code> | Work task number |
+| <code>AT</code> | Price look up number |
+| <code>AU</code> | NSN (North Atlantic Treaty Organization Stock Number) |
+| <code>AV</code> | Refined product code |
+| <code>AW</code> | Exhibit |
+| <code>AX</code> | End item |
+| <code>AY</code> | Federal supply classification |
+| <code>AZ</code> | Engineering data list |
+| <code>BA</code> | Milestone event number |
+| <code>BB</code> | Lot number |
+| <code>BC</code> | National drug code 4-4-2 format |
+| <code>BD</code> | National drug code 5-3-2 format |
+| <code>BE</code> | National drug code 5-4-1 format |
+| <code>BF</code> | National drug code 5-4-2 format |
+| <code>BG</code> | National drug code |
+| <code>BH</code> | Part number |
+| <code>BI</code> | Local Stock Number (LSN) |
+| <code>BJ</code> | Next higher assembly number |
+| <code>BK</code> | Data category |
+| <code>BL</code> | Control number |
+| <code>BM</code> | Special material identification code |
+| <code>BN</code> | Locally assigned control number |
+| <code>BO</code> | Buyer's colour |
+| <code>BP</code> | Buyer's part number |
+| <code>BQ</code> | Variable measure product code |
+| <code>BR</code> | Financial phase |
+| <code>BS</code> | Contract breakdown |
+| <code>BT</code> | Technical phase |
+| <code>BU</code> | Dye lot number |
+| <code>BV</code> | Daily statement of activities |
+| <code>BW</code> | Periodical statement of activities within a bilaterally agreed time period |
+| <code>BX</code> | Calendar week statement of activities |
+| <code>BY</code> | Calendar month statement of activities |
+| <code>BZ</code> | Original equipment number |
+| <code>CC</code> | Industry commodity code |
+| <code>CG</code> | Commodity grouping |
+| <code>CL</code> | Colour number |
+| <code>CR</code> | Contract number |
+| <code>CV</code> | Customs article number |
+| <code>DR</code> | Drawing revision number |
+| <code>DW</code> | Drawing |
+| <code>EC</code> | Engineering change level |
+| <code>EF</code> | Material code |
+| <code>EMD</code> | EMDN (European Medical Device Nomenclature) |
+| <code>EN</code> | International Article Numbering Association (EAN) |
+| <code>FS</code> | Fish species |
+| <code>GB</code> | Buyer's internal product group code |
+| <code>GMN</code> | Global model number |
+| <code>GN</code> | National product group code |
+| <code>GS</code> | General specification number |
+| <code>HS</code> | Harmonised system |
+| <code>IB</code> | ISBN (International Standard Book Number) |
+| <code>IN</code> | Buyer's item number |
+| <code>IS</code> | ISSN (International Standard Serial Number) |
+| <code>IT</code> | Buyer's style number |
+| <code>IZ</code> | Buyer's size code |
+| <code>MA</code> | Machine number |
+| <code>MF</code> | Manufacturer's (producer's) article number |
+| <code>MN</code> | Model number |
+| <code>MP</code> | Product/service identification number |
+| <code>NB</code> | Batch number |
+| <code>ON</code> | Customer order number |
+| <code>PD</code> | Part number description |
+| <code>PL</code> | Purchaser's order line number |
+| <code>PO</code> | Purchase order number |
+| <code>PV</code> | Promotional variant number |
+| <code>QS</code> | Buyer's qualifier for size |
+| <code>RC</code> | Returnable container number |
+| <code>RN</code> | Release number |
+| <code>RU</code> | Run number |
+| <code>RY</code> | Record keeping of model year |
+| <code>SA</code> | Supplier's article number |
+| <code>SG</code> | Standard group of products (mixed assortment) |
+| <code>SK</code> | SKU (Stock keeping unit) |
+| <code>SN</code> | Serial number |
+| <code>SRS</code> | RSK number |
+| <code>SRT</code> | IFLS (Institut Francais du Libre Service) 5 digit product |
+| <code>SRU</code> | IFLS (Institut Francais du Libre Service) 9 digit product |
+| <code>SRV</code> | GS1 Global Trade Item Number |
+| <code>SRW</code> | EDIS (Energy Data Identification System) |
+| <code>SRX</code> | Slaughter number |
+| <code>SRY</code> | Official animal number |
+| <code>SRZ</code> | Harmonized tariff schedule |
+| <code>SS</code> | Supplier's supplier article number |
+| <code>SSA</code> | 46 Level DOT Code |
+| <code>SSB</code> | Airline Tariff 6D |
+| <code>SSC</code> | Title 49 Code of Federal Regulations |
+| <code>SSD</code> | International Civil Aviation Administration code |
+| <code>SSE</code> | Hazardous Materials ID DOT |
+| <code>SSF</code> | Endorsement |
+| <code>SSG</code> | Air Force Regulation 71-4 |
+| <code>SSH</code> | Breed |
+| <code>SSI</code> | Chemical Abstract Service (CAS) registry number |
+| <code>SSJ</code> | Engine model designation |
+| <code>SSK</code> | Institutional Meat Purchase Specifications (IMPS) Number |
+| <code>SSL</code> | Price Look-Up code (PLU) |
+| <code>SSM</code> | International Maritime Organization (IMO) Code |
+| <code>SSN</code> | Bureau of Explosives 600-A (rail) |
+| <code>SSO</code> | United Nations Dangerous Goods List |
+| <code>SSP</code> | International Code of Botanical Nomenclature (ICBN) |
+| <code>SSQ</code> | International Code of Zoological Nomenclature (ICZN) |
+| <code>SSR</code> | International Code of Nomenclature for Cultivated Plants |
+| <code>SSS</code> | Distributor’s article identifier |
+| <code>SST</code> | Norwegian Classification system ENVA |
+| <code>SSU</code> | Supplier assigned classification |
+| <code>SSV</code> | Mexican classification system AMECE |
+| <code>SSW</code> | German classification system CCG |
+| <code>SSX</code> | Finnish classification system EANFIN |
+| <code>SSY</code> | Canadian classification system ICC |
+| <code>SSZ</code> | French classification system IFLS5 |
+| <code>ST</code> | Style number |
+| <code>STA</code> | Dutch classification system CBL |
+| <code>STB</code> | Japanese classification system JICFS |
+| <code>STC</code> | European Union dairy subsidy eligibility classification |
+| <code>STD</code> | GS1 Spain classification system |
+| <code>STE</code> | GS1 Poland classification system |
+| <code>STF</code> | Federal Agency on Technical Regulating and Metrology of the |
+| <code>STG</code> | Efficient Consumer Response (ECR) Austria classification |
+| <code>STH</code> | GS1 Italy classification system |
+| <code>STI</code> | CPV (Common Procurement Vocabulary) |
+| <code>STJ</code> | IFDA (International Foodservice Distributors Association) |
+| <code>STK</code> | AHFS (American Hospital Formulary Service) pharmacologic - |
+| <code>STL</code> | ATC (Anatomical Therapeutic Chemical) classification system |
+| <code>STM</code> | CLADIMED (Classification des Dispositifs Médicaux) |
+| <code>STN</code> | CMDR (Canadian Medical Device Regulations) classification |
+| <code>STO</code> | CNDM (Classificazione Nazionale dei Dispositivi Medici) |
+| <code>STP</code> | UK DM&D (Dictionary of Medicines & Devices) standard coding |
+| <code>STQ</code> | eCl@ss |
+| <code>STR</code> | EDMA (European Diagnostic Manufacturers Association) |
+| <code>STS</code> | EGAR (European Generic Article Register) |
+| <code>STT</code> | GMDN (Global Medical Devices Nomenclature) |
+| <code>STU</code> | GPI (Generic Product Identifier) |
+| <code>STV</code> | HCPCS (Healthcare Common Procedure Coding System) |
+| <code>STW</code> | ICPS (International Classification for Patient Safety) |
+| <code>STX</code> | MedDRA (Medical Dictionary for Regulatory Activities) |
+| <code>STY</code> | Medical Columbus |
+| <code>STZ</code> | NAPCS (North American Product Classification System) |
+| <code>SUA</code> | NHS (National Health Services) eClass |
+| <code>SUB</code> | US FDA (Food and Drug Administration) Product Code |
+| <code>SUC</code> | SNOMED CT (Systematized Nomenclature of Medicine-Clinical |
+| <code>SUD</code> | UMDNS (Universal Medical Device Nomenclature System) |
+| <code>SUE</code> | GS1 Global Returnable Asset Identifier, non-serialised |
+| <code>SUF</code> | IMEI |
+| <code>SUG</code> | Waste Type (EMSA) |
+| <code>SUH</code> | Ship's store classification type |
+| <code>SUI</code> | Emergency fire code |
+| <code>SUJ</code> | Emergency spillage code |
+| <code>SUK</code> | IMDG packing group |
+| <code>SUL</code> | MARPOL Code IBC |
+| <code>SUM</code> | IMDG subsidiary risk class |
+| <code>TG</code> | Transport group number |
+| <code>TSN</code> | Taxonomic Serial Number |
+| <code>TSO</code> | IMDG main hazard class |
+| <code>TSP</code> | EU Combined Nomenclature |
+| <code>TSQ</code> | Therapeutic classification number |
+| <code>TSR</code> | European Waste Catalogue |
+| <code>TSS</code> | Price grouping code |
+| <code>TST</code> | UNSPSC |
+| <code>TSU</code> | EU RoHS Directive |
+| <code>UA</code> | Ultimate customer's article number |
+| <code>UP</code> | UPC (Universal product code) |
+| <code>VN</code> | Vendor item number |
+| <code>VP</code> | Vendor's (seller's) part number |
+| <code>VS</code> | Vendor's supplemental item number |
+| <code>VX</code> | Vendor specification number |
+| <code>ZZZ</code> | Mutually defined |
+</Accordion>
+<Accordion description="Key: untdid-charge" title="UNTDID 7161 Charge">	
+
+UNTDID 7161 code used to describe the charge. List is based on the
+EN16931 code lists with extensions for taxes and duties.
+
+| Code | Name |
+| ---- | ---- |
+| <code>AA</code> | Advertising |
+| <code>AAA</code> | Telecommunication |
+| <code>AAC</code> | Technical modification |
+| <code>AAD</code> | Job-order production |
+| <code>AAE</code> | Outlays |
+| <code>AAF</code> | Off-premises |
+| <code>AAH</code> | Additional processing |
+| <code>AAI</code> | Attesting |
+| <code>AAS</code> | Acceptance |
+| <code>AAT</code> | Rush delivery |
+| <code>AAV</code> | Special construction |
+| <code>AAY</code> | Airport facilities |
+| <code>AAZ</code> | Concession |
+| <code>ABA</code> | Compulsory storage |
+| <code>ABB</code> | Fuel removal |
+| <code>ABC</code> | Into plane |
+| <code>ABD</code> | Overtime |
+| <code>ABF</code> | Tooling |
+| <code>ABK</code> | Miscellaneous |
+| <code>ABL</code> | Additional packaging |
+| <code>ABN</code> | Dunnage |
+| <code>ABR</code> | Containerisation |
+| <code>ABS</code> | Carton packing |
+| <code>ABT</code> | Hessian wrapped |
+| <code>ABU</code> | Polyethylene wrap packing |
+| <code>ABW</code> | Customs duty charge |
+| <code>ACF</code> | Miscellaneous treatment |
+| <code>ACG</code> | Enamelling treatment |
+| <code>ACH</code> | Heat treatment |
+| <code>ACI</code> | Plating treatment |
+| <code>ACJ</code> | Painting |
+| <code>ACK</code> | Polishing |
+| <code>ACL</code> | Priming |
+| <code>ACM</code> | Preservation treatment |
+| <code>ACS</code> | Fitting |
+| <code>ADC</code> | Consolidation |
+| <code>ADE</code> | Bill of lading |
+| <code>ADJ</code> | Airbag |
+| <code>ADK</code> | Transfer |
+| <code>ADL</code> | Slipsheet |
+| <code>ADM</code> | Binding |
+| <code>ADN</code> | Repair or replacement of broken returnable package |
+| <code>ADO</code> | Efficient logistics |
+| <code>ADP</code> | Merchandising |
+| <code>ADQ</code> | Product mix |
+| <code>ADR</code> | Other services |
+| <code>ADT</code> | Pick-up |
+| <code>ADW</code> | Chronic illness |
+| <code>ADY</code> | New product introduction |
+| <code>ADZ</code> | Direct delivery |
+| <code>AEA</code> | Diversion |
+| <code>AEB</code> | Disconnect |
+| <code>AEC</code> | Distribution |
+| <code>AED</code> | Handling of hazardous cargo |
+| <code>AEF</code> | Rents and leases |
+| <code>AEH</code> | Location differential |
+| <code>AEI</code> | Aircraft refueling |
+| <code>AEJ</code> | Fuel shipped into storage |
+| <code>AEK</code> | Cash on delivery |
+| <code>AEL</code> | Small order processing service |
+| <code>AEM</code> | Clerical or administrative services |
+| <code>AEN</code> | Guarantee |
+| <code>AEO</code> | Collection and recycling |
+| <code>AEP</code> | Copyright fee collection |
+| <code>AES</code> | Veterinary inspection service |
+| <code>AET</code> | Pensioner service |
+| <code>AEU</code> | Medicine free pass holder |
+| <code>AEV</code> | Environmental protection service |
+| <code>AEW</code> | Environmental clean-up service |
+| <code>AEX</code> | National cheque processing service outside account area |
+| <code>AEY</code> | National payment service outside account area |
+| <code>AEZ</code> | National payment service within account area |
+| <code>AJ</code> | Adjustments |
+| <code>AU</code> | Authentication |
+| <code>CA</code> | Cataloguing |
+| <code>CAB</code> | Cartage |
+| <code>CAD</code> | Certification |
+| <code>CAE</code> | Certificate of conformance |
+| <code>CAF</code> | Certificate of origin |
+| <code>CAI</code> | Cutting |
+| <code>CAJ</code> | Consular service |
+| <code>CAK</code> | Customer collection |
+| <code>CAL</code> | Payroll payment service |
+| <code>CAM</code> | Cash transportation |
+| <code>CAN</code> | Home banking service |
+| <code>CAO</code> | Bilateral agreement service |
+| <code>CAP</code> | Insurance brokerage service |
+| <code>CAQ</code> | Cheque generation |
+| <code>CAR</code> | Preferential merchandising location |
+| <code>CAS</code> | Crane |
+| <code>CAT</code> | Special colour service |
+| <code>CAU</code> | Sorting |
+| <code>CAV</code> | Battery collection and recycling |
+| <code>CAW</code> | Product take back fee |
+| <code>CAX</code> | Quality control released |
+| <code>CAY</code> | Quality control held |
+| <code>CAZ</code> | Quality control embargo |
+| <code>CD</code> | Car loading |
+| <code>CG</code> | Cleaning |
+| <code>CS</code> | Cigarette stamping |
+| <code>CT</code> | Count and recount |
+| <code>DAB</code> | Layout/design |
+| <code>DAC</code> | Assortment allowance |
+| <code>DAD</code> | Driver assigned unloading |
+| <code>DAF</code> | Debtor bound |
+| <code>DAG</code> | Dealer allowance |
+| <code>DAH</code> | Allowance transferable to the consumer |
+| <code>DAI</code> | Growth of business |
+| <code>DAJ</code> | Introduction allowance |
+| <code>DAK</code> | Multi-buy promotion |
+| <code>DAL</code> | Partnership |
+| <code>DAM</code> | Return handling |
+| <code>DAN</code> | Minimum order not fulfilled charge |
+| <code>DAO</code> | Point of sales threshold allowance |
+| <code>DAP</code> | Wholesaling discount |
+| <code>DAQ</code> | Documentary credits transfer commission |
+| <code>DL</code> | Delivery |
+| <code>EG</code> | Engraving |
+| <code>EP</code> | Expediting |
+| <code>ER</code> | Exchange rate guarantee |
+| <code>FAA</code> | Fabrication |
+| <code>FAB</code> | Freight equalization |
+| <code>FAC</code> | Freight extraordinary handling |
+| <code>FC</code> | Freight service |
+| <code>FH</code> | Filling/handling |
+| <code>FI</code> | Financing |
+| <code>GAA</code> | Grinding |
+| <code>HAA</code> | Hose |
+| <code>HD</code> | Handling |
+| <code>HH</code> | Hoisting and hauling |
+| <code>IAA</code> | Installation |
+| <code>IAB</code> | Installation and warranty |
+| <code>ID</code> | Inside delivery |
+| <code>IF</code> | Inspection |
+| <code>IN</code> | Insurance |
+| <code>IR</code> | Installation and training |
+| <code>IS</code> | Invoicing |
+| <code>KO</code> | Koshering |
+| <code>L1</code> | Carrier count |
+| <code>LA</code> | Labelling |
+| <code>LAA</code> | Labour |
+| <code>LAB</code> | Repair and return |
+| <code>LF</code> | Legalisation |
+| <code>MAE</code> | Mounting |
+| <code>MI</code> | Mail invoice |
+| <code>ML</code> | Mail invoice to each location |
+| <code>NAA</code> | Non-returnable containers |
+| <code>OA</code> | Outside cable connectors |
+| <code>PA</code> | Invoice with shipment |
+| <code>PAA</code> | Phosphatizing (steel treatment) |
+| <code>PC</code> | Packing |
+| <code>PL</code> | Palletizing |
+| <code>PRV</code> | Price variation |
+| <code>RAB</code> | Repacking |
+| <code>RAC</code> | Repair |
+| <code>RAD</code> | Returnable container |
+| <code>RAF</code> | Restocking |
+| <code>RE</code> | Re-delivery |
+| <code>RF</code> | Refurbishing |
+| <code>RH</code> | Rail wagon hire |
+| <code>RV</code> | Loading |
+| <code>SA</code> | Salvaging |
+| <code>SAA</code> | Shipping and handling |
+| <code>SAD</code> | Special packaging |
+| <code>SAE</code> | Stamping |
+| <code>SAI</code> | Consignee unload |
+| <code>SG</code> | Shrink-wrap |
+| <code>SH</code> | Special handling |
+| <code>SM</code> | Special finish |
+| <code>ST</code> | Stamp duties |
+| <code>SU</code> | Set-up |
+| <code>TAB</code> | Tank renting |
+| <code>TAC</code> | Testing |
+| <code>TT</code> | Transportation - third party billing |
+| <code>TV</code> | Transportation by vendor |
+| <code>TX</code> | Tax |
+| <code>V1</code> | Drop yard |
+| <code>V2</code> | Drop dock |
+| <code>WH</code> | Warehousing |
+| <code>XAA</code> | Combine all same day shipment |
+| <code>YY</code> | Split pick-up |
+| <code>ZZZ</code> | Mutually defined |
+</Accordion></AccordionGroup>	

@@ -2,6 +2,8 @@
 title: Spain FacturaE
 ---
 
+Key: <code>es-facturae-v3</code>
+
 ## Correction Definitions
 
 Auto-generation of corrective invoices or credit and debit notes is
@@ -15,19 +17,16 @@ options. See the [Extensions](#extensions) section for possible values.
 
 ## Extensions
 
-The following extensions are supported.
-
-### FacturaE: Document Type
-Key: <code>es-facturae-doc-type</code>
+<AccordionGroup>
+<Accordion description="Key: es-facturae-doc-type" title="FacturaE: Document Type">
 
 | Code | Name |
 | ---- | ---- |
 | <code>FC</code> | Commercial Invoice |
 | <code>FA</code> | Simplified Invoice |
 | <code>AF</code> | Self-billed Invoice |
-
-### FacturaE: Invoice Class
-Key: <code>es-facturae-invoice-class</code>
+</Accordion>
+<Accordion description="Key: es-facturae-invoice-class" title="FacturaE: Invoice Class">
 
 | Code | Name |
 | ---- | ---- |
@@ -37,9 +36,8 @@ Key: <code>es-facturae-invoice-class</code>
 | <code>CO</code> | Copy of the Original |
 | <code>CR</code> | Copy of the Corrective |
 | <code>CC</code> | Copy of the Summary |
-
-### FacturaE Change
-Key: <code>es-facturae-correction</code>	
+</Accordion>
+<Accordion description="Key: es-facturae-correction" title="FacturaE Change">	
 
 FacturaE requires a specific and single code that explains why the previous invoice is being corrected.
 
@@ -67,3 +65,4 @@ FacturaE requires a specific and single code that explains why the previous invo
 | <code>83</code> | Taxable Base modified due to discounts and rebates |
 | <code>84</code> | Taxable Base modified due to firm court ruling or administrative decision |
 | <code>85</code> | Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings |
+</Accordion></AccordionGroup>	

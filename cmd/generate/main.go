@@ -33,4 +33,16 @@ func main() {
 		}
 		fmt.Printf("Wrote %s\n", name)
 	}
+
+	for _, d := range tax.AllCatalogueDefs() {
+		g := newCatalogueGenerator(d)
+		if err := g.generate(); err != nil {
+			panic(err)
+		}
+		name := fmt.Sprintf("./catalogues/%s.mdx", d.Key)
+		if err := os.WriteFile(name, g.bytes(), 0664); err != nil {
+			panic(err)
+		}
+		fmt.Printf("Wrote %s\n", name)
+	}
 }
