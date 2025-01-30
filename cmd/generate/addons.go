@@ -58,6 +58,14 @@ func (g *addonGenerator) base() error {
 		{{t .Description}}
 		{{- end}}
 
+		{{- if .Sources}}
+
+		## Sources
+
+		{{- range .Sources}}
+		- [{{t .Title}}]({{ .URL }})
+		{{- end}}
+		{{- end}}
 	`))
 }
 

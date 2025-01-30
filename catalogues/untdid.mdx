@@ -3,14 +3,14 @@ title: UN/EDIFACT Data Elements
 ---
 
 ## Extensions
-
-<AccordionGroup>
-<Accordion description="Key: untdid-document-type" title="UNTDID 1001 Document Type">	
+### UNTDID 1001 Document Type	
 
 UNTDID 1001 code used to describe the type of document. Ths list is based on the [EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
 values table which focusses on invoices and payments.
 
 Other tax regimes and addons may use their own subset of codes.
+
+<Accordion title="untdid-document-type">
 
 | Code | Name |
 | ---- | ---- |
@@ -69,11 +69,13 @@ Other tax regimes and addons may use their own subset of codes.
 | <code>877</code> | Final construction invoice |
 | <code>935</code> | Customs invoice |
 </Accordion>
-<Accordion description="Key: untdid-reference" title="UNTDID 1153 Reference Code Qualifier">	
+### UNTDID 1153 Reference Code Qualifier	
 
 UNTDID 1153 code used to describe the reference code qualifier. This list is based on the
 [EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
 values table which focusses on invoices and payments.
+
+<Accordion title="untdid-reference">
 
 | Code | Name |
 | ---- | ---- |
@@ -895,9 +897,11 @@ values table which focusses on invoices and payments.
 | <code>XP</code> | Previous cargo control number |
 | <code>ZZZ</code> | Mutually defined reference number |
 </Accordion>
-<Accordion description="Key: untdid-text-subject" title="UNTDID 4451 Text Subject Qualifier">	
+### UNTDID 4451 Text Subject Qualifier	
 
 Code specifying subject of a free text.
+
+<Accordion title="untdid-text-subject">
 
 | Code | Name |
 | ---- | ---- |
@@ -1303,11 +1307,13 @@ Code specifying subject of a free text.
 | <code>WHI</code> | Warehouse instruction/information |
 | <code>ZZZ</code> | Mutually defined |
 </Accordion>
-<Accordion description="Key: untdid-payment-means" title="UNTDID 4461 Payment Means">	
+### UNTDID 4461 Payment Means	
 
 UNTDID 4461 code used to describe the means of payment. This list is based on the
 [EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
 values table which focusses on invoices and payments.
+
+<Accordion title="untdid-payment-means">
 
 | Code | Name |
 | ---- | ---- |
@@ -1396,11 +1402,13 @@ values table which focusses on invoices and payments.
 | <code>98</code> | JP, Electronically Recorded Monetary Claims |
 | <code>ZZZ</code> | Mutually defined |
 </Accordion>
-<Accordion description="Key: untdid-allowance" title="UNTDID 5189 Allowance">	
+### UNTDID 5189 Allowance	
 
 UNTDID 5189 code used to describe the allowance type. This list is based on the
 [EN16931 code list](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Registry+of+supporting+artefacts+to+implement+EN16931#RegistryofsupportingartefactstoimplementEN16931-Codelists)
 values table which focusses on invoices and payments.
+
+<Accordion title="untdid-allowance">
 
 | Code | Name |
 | ---- | ---- |
@@ -1424,13 +1432,15 @@ values table which focusses on invoices and payments.
 | <code>104</code> | Standard |
 | <code>105</code> | Yearly turnover |
 </Accordion>
-<Accordion description="Key: untdid-tax-category" title="UNTDID 3505 Tax Category">	
+### UNTDID 3505 Tax Category	
 
 UNTDID 5305 code used to describe the applicable duty/tax/fee category. There are
 multiple versions and subsets of this table so regimes and addons may need to filter
 options for a specific subset of values.
 
 Data from https://unece.org/fileadmin/DAM/trade/untdid/d16b/tred/tred5305.htm.
+
+<Accordion title="untdid-tax-category">
 
 | Code | Name |
 | ---- | ---- |
@@ -1456,9 +1466,11 @@ Data from https://unece.org/fileadmin/DAM/trade/untdid/d16b/tred/tred5305.htm.
 | <code>S</code> | Standard Rate |
 | <code>Z</code> | Zero rated goods |
 </Accordion>
-<Accordion description="Key: untdid-item-type" title="UNTDID 7143 Item Type Identification Code">	
+### UNTDID 7143 Item Type Identification Code	
 
 
+
+<Accordion title="untdid-item-type">
 
 | Code | Name |
 | ---- | ---- |
@@ -1647,10 +1659,12 @@ Data from https://unece.org/fileadmin/DAM/trade/untdid/d16b/tred/tred5305.htm.
 | <code>VX</code> | Vendor specification number |
 | <code>ZZZ</code> | Mutually defined |
 </Accordion>
-<Accordion description="Key: untdid-charge" title="UNTDID 7161 Charge">	
+### UNTDID 7161 Charge	
 
 UNTDID 7161 code used to describe the charge. List is based on the
 EN16931 code lists with extensions for taxes and duties.
+
+<Accordion title="untdid-charge">
 
 | Code | Name |
 | ---- | ---- |
@@ -1836,4 +1850,4 @@ EN16931 code lists with extensions for taxes and duties.
 | <code>XAA</code> | Combine all same day shipment |
 | <code>YY</code> | Split pick-up |
 | <code>ZZZ</code> | Mutually defined |
-</Accordion></AccordionGroup>	
+</Accordion>

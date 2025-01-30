@@ -7,17 +7,19 @@ Note represents a free text of additional information that may be added to a doc
 
 ## Schema ID
 
-`https://gobl.org/draft-0/cbc/note`
+`https://gobl.org/draft-0/org/note`
 
 ## Properties
 
-| Title  | Property | Type                          | Req. | Description                                                              |
-|--------|----------|-------------------------------|------|--------------------------------------------------------------------------|
-| Key    | `key`    | [cbc.Key](/draft-0/cbc/key)   |      | Key specifying subject of the text                                       |
-| Code   | `code`   | [cbc.Code](/draft-0/cbc/code) |      | Code used for additional data that may be required to identify the note. |
-| Source | `src`    | [cbc.Key](/draft-0/cbc/key)   |      | Source of this note, especially useful when auto-generated.              |
-| Text   | `text`   | string                        | true | The contents of the note                                                 |
-| Meta   | `meta`   | [cbc.Meta](/draft-0/cbc/meta) |      | Additional information about the note                                    |
+| Title      | Property | Type                                      | Req. | Description                                                              |
+|------------|----------|-------------------------------------------|------|--------------------------------------------------------------------------|
+| UUID       | `uuid`   | string                                    |      | Universally Unique Identifier.                                           |
+| Key        | `key`    | [cbc.Key](/draft-0/cbc/key)               |      | Key specifying subject of the text                                       |
+| Code       | `code`   | [cbc.Code](/draft-0/cbc/code)             |      | Code used for additional data that may be required to identify the note. |
+| Source     | `src`    | [cbc.Key](/draft-0/cbc/key)               |      | Source of this note, especially useful when auto-generated.              |
+| Text       | `text`   | string                                    | true | The contents of the note                                                 |
+| Meta       | `meta`   | [cbc.Meta](/draft-0/cbc/meta)             |      | Additional information about the note                                    |
+| Extensions | `ext`    | [tax.Extensions](/draft-0/tax/extensions) |      | Extension data                                                           |
 
 ## Key Values
 
@@ -48,4 +50,5 @@ Note represents a free text of additional information that may be added to a doc
 | `delivery`        | Delivery information                              |
 | `quarantine`      | Quarantine information                            |
 | `tax`             | Tax declaration                                   |
+| `other`           | Mutually defined                                  |
 

@@ -107,7 +107,6 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 
 		## Extensions
 
-		<AccordionGroup>
 	`), nil); err != nil {
 		return err
 	}
@@ -117,11 +116,7 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 			return err
 		}
 	}
-	if err := g.process(here.Doc(`
-		</AccordionGroup>	
-	`), nil); err != nil {
-		return err
-	}
+
 	return nil
 }
 
@@ -129,18 +124,21 @@ func (g *generator) extension(kd *cbc.Definition) error {
 
 	return g.process(here.Doc(`
 
-		<Accordion description="Key: {{ .Key }}" title="{{t .Name}}">
-
-		{{- if .Pattern }}
-
-		Pattern: <code>{{ .Pattern }}</code>
-		{{- end }}
+		### {{t .Name }}
 
 		{{- if .Desc }}	
 
 		{{t .Desc }}
 
 		{{- end }}
+
+		<Accordion title="{{ .Key }}">
+
+		{{- if .Pattern }}
+
+		Pattern: <code>{{ .Pattern }}</code>
+		{{- end }}
+
 
  		{{- if .Values }}
 

@@ -16,13 +16,13 @@ options. See the [Extensions](#extensions) section for possible values.
 - <code>es-tbai-correction</code>
 
 ## Extensions
-
-<AccordionGroup>
-<Accordion description="Key: es-tbai-region" title="TicketBAI Region Code">	
+### TicketBAI Region Code	
 
 Region codes are used by TicketBAI to differentiate between the different
 subdivisions of the Basque Country. This is used to determine the correct
 API endpoint to use when submitting documents.
+
+<Accordion title="es-tbai-region">
 
 | Code | Name |
 | ---- | ---- |
@@ -30,7 +30,7 @@ API endpoint to use when submitting documents.
 | <code>BI</code> | Bizkaia |
 | <code>SS</code> | Gipuzkoa |
 </Accordion>
-<Accordion description="Key: es-tbai-product" title="TicketBAI Product Key">	
+### TicketBAI Product Key	
 
 Product keys are used by TicketBAI to differentiate between -exported- goods
 and services. It may be useful to classify all products regardless of wether
@@ -40,18 +40,22 @@ There is an additional exception case for goods that are resold without modifica
 when the supplier is in the simplified tax regime. For must purposes this special
 case can be ignored.
 
+<Accordion title="es-tbai-product">
+
 | Code | Name |
 | ---- | ---- |
 | <code>goods</code> | Delivery of goods |
 | <code>services</code> | Provision of services |
 | <code>resale</code> | Resale of goods without modification by vendor in the simplified regime |
 </Accordion>
-<Accordion description="Key: es-tbai-exemption" title="TicketBAI Exemption code">	
+### TicketBAI Exemption code	
 
 Codes used by TicketBAI for both "exempt", "not-subject", and reverse
 charge transactions. In the TicketBAI format these are separated,
 but in order to simplify GOBL and be more closely aligned with
 other countries we've combined them into one.
+
+<Accordion title="es-tbai-exemption">
 
 | Code | Name |
 | ---- | ---- |
@@ -67,11 +71,13 @@ other countries we've combined them into one.
 | <code>IE</code> | Not subject in the TAI due to localization rules, but foreign tax, IPS/IGIC or VAT from another EU member state is passed on |
 | <code>S2</code> | Subject and not exempt: with reverse charge |
 </Accordion>
-<Accordion description="Key: es-tbai-correction" title="TicketBAI Rectification Type Code">	
+### TicketBAI Rectification Type Code	
 
 Corrected or rectified invoices that need to be sent in the TicketBAI format
 require a specific type code to be defined alongside the preceding invoice
 data.
+
+<Accordion title="es-tbai-correction">
 
 | Code | Name |
 | ---- | ---- |
@@ -80,4 +86,4 @@ data.
 | <code>R3</code> | Rectified invoice: error based on law and Article 80 Four of the Provincial Tax Law of VAT |
 | <code>R4</code> | Rectified invoice: Other |
 | <code>R5</code> | Rectified invoice: simplified invoices |
-</Accordion></AccordionGroup>	
+</Accordion>

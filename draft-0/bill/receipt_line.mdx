@@ -1,0 +1,25 @@
+---
+title: ReceiptLine
+comment: 
+---
+
+ReceiptLine defines the details of a line required in an invoice.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/receipt#/$defs/ReceiptLine`
+
+## Properties
+
+| Title    | Property   | Type                                         | Req. | Description                                                                                               |
+|----------|------------|----------------------------------------------|------|-----------------------------------------------------------------------------------------------------------|
+| UUID     | `uuid`     | string                                       |      | Universally Unique Identifier.                                                                            |
+| Index    | `i`        | integer                                      |      | Line number inside the parent (calculated)                                                                |
+| Document | `document` | [org.DocumentRef](/draft-0/org/document_ref) |      | The document reference related to the payment.                                                            |
+| Currency | `currency` | [currency.Code](/draft-0/currency/code)      |      | Currency used for the payment if different from the document currency.                                    |
+| Debit    | `debit`    | [num.Amount](/draft-0/num/amount)            |      | Amount received by the supplier for ordinary payments.                                                    |
+| Credit   | `credit`   | [num.Amount](/draft-0/num/amount)            |      | Amount received by the customer in case of refunds.                                                       |
+| Tax      | `tax`      | [tax.Total](/draft-0/tax/total)              |      | Tax total breakdown from the original document, only if required by a specific tax regime or addon.       |
+| Total    | `total`    | [num.Amount](/draft-0/num/amount)            |      | Total balance to be paid for this line from the customer to the supplier in the currency of the document. |
+| Notes    | `notes`    | array of [org.Note](/draft-0/org/note)       |      | Set of specific notes for this line that may be required for clarification.                               |
+

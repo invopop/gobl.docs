@@ -1,0 +1,20 @@
+---
+title: Source
+comment: 
+---
+
+Source is used to identify a specific source of data.
+
+## Schema ID
+
+`https://gobl.org/draft-0/cbc/source`
+
+## Properties
+
+| Title        | Property       | Type                                   | Req. | Description                                            |
+|--------------|----------------|----------------------------------------|------|--------------------------------------------------------|
+| Title        | `title`        | [i18n.String](/draft-0/i18n/string)    |      | Title stores the name of the source of information.    |
+| URL          | `url`          | string                                 | true | URL is the location of the source of information.      |
+| Content Type | `content_type` | string                                 |      | ContentType of the information expected at the URL.    |
+| At           | `at`           | [cal.DateTime](/draft-0/cal/date_time) |      | At is the date and time the information was retrieved. |
+
