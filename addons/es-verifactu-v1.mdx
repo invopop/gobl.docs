@@ -16,13 +16,13 @@ options. See the [Extensions](#extensions) section for possible values.
 - <code>es-verifactu-doc-type</code>
 
 ## Extensions
-
-<AccordionGroup>
-<Accordion description="Key: es-verifactu-doc-type" title="Verifactu Invoice Type Code - L2">	
+### Verifactu Invoice Type Code - L2	
 
 Invoice type code used to identify the type of invoice being sent.
 Source: VeriFactu Ministerial Order:
  * https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-22138
+
+<Accordion title="es-verifactu-doc-type">
 
 | Code | Name |
 | ---- | ---- |
@@ -35,18 +35,20 @@ Source: VeriFactu Ministerial Order:
 | <code>R4</code> | Rectified invoice: Other |
 | <code>R5</code> | Rectified invoice: simplified invoices |
 </Accordion>
-<Accordion description="Key: es-verifactu-correction-type" title="Verifactu Correction Type Code - L3">	
+### Verifactu Correction Type Code - L3	
 
 Correction type code used to identify the type of correction being made.
 This value will be determined automatically according to the invoice type.
 Corrective invoices will be marked as "S", while credit and debit notes as "I".
+
+<Accordion title="es-verifactu-correction-type">
 
 | Code | Name |
 | ---- | ---- |
 | <code>S</code> | Substitution |
 | <code>I</code> | Differences |
 </Accordion>
-<Accordion description="Key: es-verifactu-op-class" title="Verifactu Operation Classification/Exemption Code - L9">	
+### Verifactu Operation Classification/Exemption Code - L9	
 
 Operation classification code used to identify if taxes should be applied to the line.
 Source: VeriFactu Ministerial Order:
@@ -55,6 +57,8 @@ For details on how best to use and apply these and other codes, see the
 AEAT FAQ:
  * https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/iva/iva-libros-registro-iva-traves-aeat/preguntas-frecuentes/3-libro-registro-facturas-expedidas.html?faqId=b5556c3d02bc9510VgnVCM100000dc381e0aRCRD
 
+<Accordion title="es-verifactu-op-class">
+
 | Code | Name |
 | ---- | ---- |
 | <code>S1</code> | Subject and Not Exempt - Without reverse charge |
@@ -62,9 +66,11 @@ AEAT FAQ:
 | <code>N1</code> | Not Subject - Articles 7, 14, others |
 | <code>N2</code> | Not Subject - Due to location rules |
 </Accordion>
-<Accordion description="Key: es-verifactu-exempt" title="Verifactu Exemption Code - L10">	
+### Verifactu Exemption Code - L10	
 
 Exemption code used to explain why the operation is exempt from taxes.
+
+<Accordion title="es-verifactu-exempt">
 
 | Code | Name |
 | ---- | ---- |
@@ -75,9 +81,11 @@ Exemption code used to explain why the operation is exempt from taxes.
 | <code>E5</code> | Exempt: pursuant to Article 25. Exemptions in the delivery of goods destined to another Member State. |
 | <code>E6</code> | Exempt: pursuant to other reasons |
 </Accordion>
-<Accordion description="Key: es-verifactu-regime" title="VAT/IGIC Regime Code - L8A/B">	
+### VAT/IGIC Regime Code - L8A/B	
 
 Identify the type of VAT or IGIC regime applied to the operation. This list combines lists L8A which include values for VAT, and L8B for IGIC.
+
+<Accordion title="es-verifactu-regime">
 
 | Code | Name |
 | ---- | ---- |
@@ -98,4 +106,4 @@ Identify the type of VAT or IGIC regime applied to the operation. This list comb
 | <code>18</code> | Equivalence surcharge (VAT) / Special regime for small traders or retailers (IGIC) |
 | <code>19</code> | Operations included in the Special Regime for Agriculture, Livestock and Fisheries |
 | <code>20</code> | Simplified regime (VAT only) |
-</Accordion></AccordionGroup>	
+</Accordion>

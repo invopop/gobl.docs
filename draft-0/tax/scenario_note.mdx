@@ -1,0 +1,21 @@
+---
+title: ScenarioNote
+comment: 
+---
+
+ScenarioNote represents the structure of the note that needs to be added to the document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime-def#/$defs/ScenarioNote`
+
+## Properties
+
+| Title      | Property | Type                                      | Req. | Description                                                              |
+|------------|----------|-------------------------------------------|------|--------------------------------------------------------------------------|
+| Key        | `key`    | [cbc.Key](/draft-0/cbc/key)               |      | Key specifying subject of the text                                       |
+| Code       | `code`   | [cbc.Code](/draft-0/cbc/code)             |      | Code used for additional data that may be required to identify the note. |
+| Source     | `src`    | [cbc.Key](/draft-0/cbc/key)               |      | Source of this note, especially useful when auto-generated.              |
+| Text       | `text`   | string                                    | true | The contents of the note                                                 |
+| Extensions | `ext`    | [tax.Extensions](/draft-0/tax/extensions) |      | Extension data                                                           |
+
