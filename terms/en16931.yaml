@@ -608,7 +608,6 @@ terms:
         name: Payment means type code
         paths:
           - $.doc.payment.instructions.key
-          - $.doc.payment.advances[*].key
         notes: |-
           Mapping of GOBL payment means key to UNTDID 4461 codes is provided
           in library will update extensions.
@@ -617,9 +616,7 @@ terms:
         name: Payment means text
         paths:
           - $.doc.payment.instructions.key
-          - $.doc.payment.advances[*].key
           - $.doc.payment.instructions.detail
-          - $.doc.payment.advances[*].desription
         notes: |-
           In GOBL, payment means keys are self-descriptive, but if additional
           details are required, they can be provided in the detail or description
@@ -942,4 +939,119 @@ terms:
       - id: BT-128
         name: "Invoice line object identifier"
         paths:
-          - $.doc.lines[*].
+          - $.doc.lines[*].identifier
+        notes: |-
+          Use the `untdid-reference` extension if required for greater precision.
+      - id: BT-129
+        name: "Invoiced Quantity"
+        paths:
+          - $.doc.lines[*].quantity
+      - id: BT-130
+        name: "Invoiced Quantity unit of measure"
+        paths:
+          - $.doc.lines[*].item.unit
+        notes: |-
+          GOBL supports either internal keys (lower-case words) which are mapped to
+          UNTDID code by the EN16931 addon, or UNTDID codes directly.
+      - id: BT-131
+        name: "Invoice line net amount"
+        paths:
+          - $.doc.lines[*].total
+        notes: |-
+          Reflects the net amount of the line, after applying discounts or charges.
+          GOBL also supports the `tax_included` property which when used implies that
+          the prices are tax-inclusive. In this case, its important to use the 
+          "Remove Included Taxes" function of GOBL when converting.
+      - id: BT-132
+        name: "Referenced purchase order line reference"
+        paths:
+          - $.doc.lines[*].order
+      - id: BT-133
+        name: "Invoice line buyer accounting reference"
+        paths:
+          - $.doc.lines[*].cost
+
+      - id: BG-26
+        name: "INVOICE LINE PERIOD"
+        paths:
+          - $.doc.lines[*].period
+        terms:
+          - id: BT-134
+            name: "Invoice line period start date"
+            paths:
+              - $.doc.lines[*].period.start
+          - id: BT-135
+            name: "Invoice line period end date"
+            paths:
+              - $.doc.lines[*].period.end
+
+      - id: BG-27
+        name: "INVOICE LINE ALLOWANCES"
+        paths:
+          - $.doc.lines[*].discounts[*]
+        terms:
+          - id: BT-136
+            name: "Invoice line allowance amount"
+            paths:
+              - $.doc.lines[*].discounts[*].amount
+          - id: BT-137
+            name: "Invoice line allowance base amount"
+            paths:
+              - $.doc.lines[*].discounts[*].base
+          - id: BT-138
+            name: "Invoice line allowance percentage"
+            paths:
+              - $.doc.lines[*].discounts[*].percent
+            notes: |-
+              Be sure to remove the "%" symbol used by GOBL when converting
+              to alternative formats.
+          - id: BT-139
+            name: "Invoice line allowance reason"
+            paths:
+              - $.doc.lines[*].discounts[*].reason
+          - id: BT-140
+            name: "Invoice line allowance reason code"
+            paths:
+              - $.doc.lines[*].discounts[*].key
+              - $.doc.lines[*].discounts[*].ext['untdid-allowance']
+            notes: |-
+              Discount keys are mapped automatically to UNTDID 5189 allowance
+              codes or can be set manually if required.
+
+      - id: BG-28
+        name: "INVOICE LINE CHARGES"
+        paths:
+          - $.doc.lines[*].charges[*]
+        terms:
+          - id: BT-141
+            name: "Invoice line charge amount"
+            paths:
+              - $.doc.lines[*].charges[*].amount
+          - id: BT-142
+            name: "Invoice line charge base amount"
+            paths:
+              - $.doc.lines[*].charges[*].base
+          - id: BT-143
+            name: "Invoice line charge percentage"
+            paths:
+              - $.doc.lines[*].charges[*].percent
+            notes: |-
+              Be sure to remove the "%" symbol used by GOBL when converting
+              to alternative formats.
+          - id: BT-144
+            name: "Invoice line charge reason"
+            paths:
+              - $.doc.lines[*].charges[*].reason
+          - id: BT-145
+            name: "Invoice line charge reason code"
+            paths:
+              - $.doc.lines[*].charges[*].key
+              - $.doc.lines[*].charges[*].ext['untdid-charge']
+            notes: |-
+              Charge keys are mapped automatically to UNTDID 7161 charge
+              codes or can be set manually if required.
+
+      - id: BG-29
+        name: "PRICE DETAILS"
+        paths:
+          - $.doc.lines[*].item
