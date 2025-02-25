@@ -7,9 +7,7 @@ Rounding in business documents can be surprisingly complex. Although it seems si
 GOBL aims to minimize rounding errors by focusing on three key areas:
 
 * General number rounding.
-
 * Generating totals.
-
 * Calculating taxes.
 
 We'll explore each area below, but first, let's discuss precision.
@@ -21,14 +19,12 @@ Effective rounding requires knowing the level of precision. GOBL uses the [num p
 For example, `1.10` has two decimal places, while `1.1020` has four. Precision significantly impacts calculations. Consider removing 21% from a price of 10 with two decimal places, then re-adding it:
 
 * `10.00` ÷ `1.21` = `8.26`
+* `8.26` × `1.21` = `9.99` (one cent loss)
 
-* `8.26` × `1.21` = `9.99`
-
-We've lost 1 cent! Now with 4 decimal places:
+We've lost one cent! Now with four decimal places:
 
 * `10.0000` ÷ `1.21` = `8.2645`
-
-* `8.2645` × `1.21` = `10.0000`
+* `8.2645` × `1.21` = `10.0000` (no loss)
 
 This example shows how precision can prevent compounding errors.
 
@@ -37,9 +33,7 @@ This example shows how precision can prevent compounding errors.
 Rounding reduces a number's precision by trimming excess digits. A simple method is truncation, where `8.2556` becomes `8.25`, but this can cause calculation errors. A better approach is rounding to the nearest number. If the excess digits are 0.50 or higher, round up; otherwise, round down. For example:
 
 * `8.2551` becomes `8.26`.
-
 * `8.2550` becomes `8.26`.
-
 * `8.2549` becomes `8.25`.
 
 While other [rounding techniques](https://en.wikipedia.org/wiki/Rounding) exist, GOBL uses this common method for consistency.
