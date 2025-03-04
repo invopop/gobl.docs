@@ -138,17 +138,21 @@
             "draft-0/bill/charge",
             "draft-0/bill/correction_options",
             "draft-0/bill/delivery",
+            "draft-0/bill/delivery_details",
             "draft-0/bill/discount",
             "draft-0/bill/invoice",
             "draft-0/bill/line",
             "draft-0/bill/line_charge",
             "draft-0/bill/line_discount",
+            "draft-0/bill/order",
             "draft-0/bill/ordering",
             "draft-0/bill/payment",
-            "draft-0/bill/receipt",
-            "draft-0/bill/receipt_line",
+            "draft-0/bill/payment_line",
+            "draft-0/bill/payment_details",
+            "draft-0/bill/sub_line",
             "draft-0/bill/tax",
-            "draft-0/bill/totals"
+            "draft-0/bill/totals",
+            "draft-0/bill/tracking"
           ]
         },
         {
@@ -214,6 +218,7 @@
           "group": "Org",
           "pages": [
             "draft-0/org/address",
+            "draft-0/org/attachment",
             "draft-0/org/coordinates",
             "draft-0/org/document_ref",
             "draft-0/org/email",

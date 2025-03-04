@@ -11,18 +11,18 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 
 ## Properties
 
-| Title     | Property    | Type                                          | Req. | Description                                |
-|-----------|-------------|-----------------------------------------------|------|--------------------------------------------|
-| Key       | `key`       | [cbc.Key](/draft-0/cbc/key)                   |      | Type of terms to be applied.               |
-| Detail    | `detail`    | string                                        |      | Text detail of the chosen payment terms.   |
-| Due Dates | `due_dates` | array of [pay.DueDate](/draft-0/pay/due_date) |      | Set of dates for agreed payments.          |
-| Notes     | `notes`     | string                                        |      | Description of the conditions for payment. |
+| Title      | Property    | Type                                          | Req. | Description                                |
+|------------|-------------|-----------------------------------------------|------|--------------------------------------------|
+| Key        | `key`       | [cbc.Key](/draft-0/cbc/key)                   |      | Type of terms to be applied.               |
+| Detail     | `detail`    | string                                        |      | Text detail of the chosen payment terms.   |
+| Due Dates  | `due_dates` | array of [pay.DueDate](/draft-0/pay/due_date) |      | Set of dates for agreed payments.          |
+| Notes      | `notes`     | string                                        |      | Description of the conditions for payment. |
+| Extensions | `ext`       | [tax.Extensions](/draft-0/tax/extensions)     |      | Extensions to the terms for local codes.   |
 
 ## Key Values
 
 | Value          | Description                                    |
 |----------------|------------------------------------------------|
-|                | Not yet defined                                |
 | `end-of-month` | End of month                                   |
 | `due-date`     | Due on a specific date                         |
 | `deferred`     | Deferred until after the due date              |
@@ -32,4 +32,5 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 | `pending`      | Seller to advise buyer in separate transaction |
 | `advanced`     | Payment made in advance                        |
 | `delivery`     | Payment on Delivery                            |
+| `undefined`    | Not yet defined                                |
 
