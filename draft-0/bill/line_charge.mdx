@@ -7,18 +7,22 @@ LineCharge represents an amount added to the line, and will be applied before ta
 
 ## Schema ID
 
-`https://gobl.org/draft-0/bill/order#/$defs/LineCharge`
+`https://gobl.org/draft-0/bill/line#/$defs/LineCharge`
 
 ## Properties
 
-| Title      | Property  | Type                                      | Req. | Description                                                                                                                                                         |
-|------------|-----------|-------------------------------------------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Key        | `key`     | [cbc.Key](/draft-0/cbc/key)               |      | Key for grouping or identifying charges for tax purposes. A suggested list of keys is provided, but these are for reference only and may be extended by the issuer. |
-| Code       | `code`    | [cbc.Code](/draft-0/cbc/code)             |      | Reference or ID for this charge defined by the issuer                                                                                                               |
-| Reason     | `reason`  | string                                    |      | Text description as to why the charge was applied                                                                                                                   |
-| Percent    | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage if fixed amount not applied                                                                                                                              |
-| Amount     | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed or resulting charge amount to apply (calculated if percent present).                                                                                          |
-| Extensions | `ext`     | [tax.Extensions](/draft-0/tax/extensions) |      | Extension codes that apply to the charge                                                                                                                            |
+| Title      | Property   | Type                                      | Req. | Description                                                                                                                                                         |
+|------------|------------|-------------------------------------------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Key        | `key`      | [cbc.Key](/draft-0/cbc/key)               |      | Key for grouping or identifying charges for tax purposes. A suggested list of keys is provided, but these are for reference only and may be extended by the issuer. |
+| Code       | `code`     | [cbc.Code](/draft-0/cbc/code)             |      | Reference or ID for this charge defined by the issuer                                                                                                               |
+| Reason     | `reason`   | string                                    |      | Text description as to why the charge was applied                                                                                                                   |
+| Base       | `base`     | [num.Amount](/draft-0/num/amount)         |      | Base for percent calculations instead of the line's sum                                                                                                             |
+| Percent    | `percent`  | [num.Percentage](/draft-0/num/percentage) |      | Percentage of base or parent line's sum                                                                                                                             |
+| Quantity   | `quantity` | [num.Amount](/draft-0/num/amount)         |      | Quantity of units to apply the charge to when using the rate instead of the line's quantity.                                                                        |
+| Unit       | `unit`     | [org.Unit](/draft-0/org/unit)             |      | Unit to associate with the quantity when using the rate.                                                                                                            |
+| Rate       | `rate`     | [num.Amount](/draft-0/num/amount)         |      | Rate defines a price per unit to use instead of the percentage.                                                                                                     |
+| Amount     | `amount`   | [num.Amount](/draft-0/num/amount)         |      | Fixed or resulting charge amount to apply (calculated if percent present).                                                                                          |
+| Extensions | `ext`      | [tax.Extensions](/draft-0/tax/extensions) |      | Extension codes that apply to the charge                                                                                                                            |
 
 ## Key Values
 
