@@ -11,18 +11,19 @@ Totals contains the summaries of all calculations for the invoice.
 
 ## Properties
 
-| Title          | Property         | Type                              | Req. | Description                                                                                      |
-|----------------|------------------|-----------------------------------|------|--------------------------------------------------------------------------------------------------|
-| Sum            | `sum`            | [num.Amount](/draft-0/num/amount) | true | Sum of all line item sums                                                                        |
-| Discount       | `discount`       | [num.Amount](/draft-0/num/amount) |      | Sum of all document level discounts                                                              |
-| Charge         | `charge`         | [num.Amount](/draft-0/num/amount) |      | Sum of all document level charges                                                                |
-| Tax Included   | `tax_included`   | [num.Amount](/draft-0/num/amount) |      | If prices include tax, this is the total tax included in the price.                              |
-| Total          | `total`          | [num.Amount](/draft-0/num/amount) | true | Sum of all line sums minus the discounts, plus the charges, without tax.                         |
-| Tax Totals     | `taxes`          | [tax.Total](/draft-0/tax/total)   |      | Summary of all the taxes included in the invoice.                                                |
-| Tax            | `tax`            | [num.Amount](/draft-0/num/amount) |      | Total amount of tax to apply to the invoice.                                                     |
-| Total with Tax | `total_with_tax` | [num.Amount](/draft-0/num/amount) | true | Grand total after all taxes have been applied.                                                   |
-| Rounding       | `rounding`       | [num.Amount](/draft-0/num/amount) |      | Rounding amount to apply to the invoice in case the total and payable amounts don't quite match. |
-| Payable        | `payable`        | [num.Amount](/draft-0/num/amount) | true | Total amount to be paid after applying taxes and outlays.                                        |
-| Advance        | `advance`        | [num.Amount](/draft-0/num/amount) |      | Total amount already paid in advance.                                                            |
-| Due            | `due`            | [num.Amount](/draft-0/num/amount) |      | How much actually needs to be paid now.                                                          |
+| Title          | Property         | Type                              | Req. | Description                                                                             |
+|----------------|------------------|-----------------------------------|------|-----------------------------------------------------------------------------------------|
+| Sum            | `sum`            | [num.Amount](/draft-0/num/amount) | true | Total of all line item amounts.                                                         |
+| Discount       | `discount`       | [num.Amount](/draft-0/num/amount) |      | Total of all discounts applied at the document level.                                   |
+| Charge         | `charge`         | [num.Amount](/draft-0/num/amount) |      | Total of all charges applied at the document level.                                     |
+| Tax Included   | `tax_included`   | [num.Amount](/draft-0/num/amount) |      | Total tax amount included in the prices, if prices are tax-inclusive.                   |
+| Total          | `total`          | [num.Amount](/draft-0/num/amount) | true | Net total amount after subtracting discounts and adding charges, excluding tax.         |
+| Tax Totals     | `taxes`          | [tax.Total](/draft-0/tax/total)   |      | Detailed breakdown of all taxes applied to the invoice.                                 |
+| Tax            | `tax`            | [num.Amount](/draft-0/num/amount) |      | Total indirect tax amount to be applied to the invoice.                                 |
+| Total with Tax | `total_with_tax` | [num.Amount](/draft-0/num/amount) | true | Final total amount after applying indirect taxes.                                       |
+| Retained Tax   | `retained_tax`   | [num.Amount](/draft-0/num/amount) |      | Total tax amount retained or withheld by the customer to be paid to the tax authority.  |
+| Rounding       | `rounding`       | [num.Amount](/draft-0/num/amount) |      | Adjustment amount applied to the invoice totals to meet rounding rules or expectations. |
+| Payable        | `payable`        | [num.Amount](/draft-0/num/amount) | true | Final amount to be paid after retained taxes and rounding adjustments.                  |
+| Advance        | `advance`        | [num.Amount](/draft-0/num/amount) |      | Total amount already paid in advance by the customer.                                   |
+| Due            | `due`            | [num.Amount](/draft-0/num/amount) |      | Remaining amount that needs to be paid.                                                 |
 

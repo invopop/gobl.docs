@@ -196,7 +196,7 @@ terms:
       Seller details in GOBL are represented by the `supplier` property and `org.Party`
       type.
 
-      If required, the supplier may delegate tax liabilty to the tax representative stored
+      If required, the supplier may delegate tax liability to the tax representative stored
       in the `ordering.seller` property. In this scenario, the tax regime of the document
       should be set explicitly to ensure that the correct tax calculations and regional
       requirements are met.
@@ -250,6 +250,10 @@ terms:
         notes: |-
           Electronic addresses are known as "inboxes" in GOBL, and may use the extensions
           property to define the Scheme Identifier.
+
+          In EN16931 electronic endpoints have a cardinality of 0..1, but GOBL allows for
+          multiple inboxes. During conversion, we assume **the first** inbox with a scheme
+          and code will be used by default.
 
       - id: "BG-5"
         name: "SELLER POSTAL ADDRESS"
@@ -363,6 +367,10 @@ terms:
         notes: |-
           Electronic addresses are known as "inboxes" in GOBL, and may use the extensions
           property to define the Scheme Identifier.
+
+          In EN16931 electronic endpoints have a cardinality of 0..1, but GOBL allows for
+          multiple inboxes. During conversion, we assume **the first** inbox with a scheme
+          and code will be used.
 
       - id: "BG-8"
         name: "BUYER POSTAL ADDRESS"
