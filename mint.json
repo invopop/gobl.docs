@@ -161,7 +161,7 @@
           "pages": [
             "draft-0/cal/date",
             "draft-0/cal/date_time",
-            "draft-0/cal/period"
+            "draft-0/cal/period",
             "draft-0/cal/time"
           ]
         },
