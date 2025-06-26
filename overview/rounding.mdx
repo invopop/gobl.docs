@@ -6,9 +6,9 @@ Rounding in business documents can be surprisingly complex. Although it seems si
 
 GOBL aims to minimize rounding errors by focusing on three key areas:
 
-- General number rounding.
-- Generating totals.
-- Calculating taxes.
+* General number rounding.
+* Generating totals.
+* Calculating taxes.
 
 We'll explore each area below, but first, let's discuss precision.
 
@@ -16,15 +16,15 @@ We'll explore each area below, but first, let's discuss precision.
 
 Effective rounding requires knowing the level of precision. GOBL uses the [num package](https://github.com/invopop/gobl/tree/main/num), as detailed in the [numbers section](/overview/numbers), to ensure every number has a fixed number of decimal places.
 
-For example, `1.10` has 2 decimal places, while `1.1020` has 4. Precision significantly impacts calculations. Consider removing 21% from a price of 10 with 2 decimal places, then re-adding it:
+For example, `1.10` has two decimal places, while `1.1020` has four. Precision significantly impacts calculations. Consider removing 21% from a price of 10 with two decimal places, then re-adding it:
 
-- `10.00` ÷ `1.21` = `8.26`
-- `8.26` × `1.21` = `9.99`
+* `10.00` ÷ `1.21` = `8.26`
+* `8.26` × `1.21` = `9.99` (one cent loss)
 
-We've lost 1 cent! Now with 4 decimal places:
+We've lost one cent! Now with four decimal places:
 
-- `10.0000` ÷ `1.21` = `8.2645`
-- `8.2645` × `1.21` = `10.0000`
+* `10.0000` ÷ `1.21` = `8.2645`
+* `8.2645` × `1.21` = `10.0000` (no loss)
 
 This example shows how precision can prevent compounding errors.
 
@@ -32,23 +32,28 @@ This example shows how precision can prevent compounding errors.
 
 Rounding reduces a number's precision by trimming excess digits. A simple method is truncation, where `8.2556` becomes `8.25`, but this can cause calculation errors. A better approach is rounding to the nearest number. If the excess digits are 0.50 or higher, round up; otherwise, round down. For example:
 
-- `8.2551` becomes `8.26`.
-- `8.2550` becomes `8.26`.
-- `8.2549` becomes `8.25`.
+* `8.2551` becomes `8.26`.
+* `8.2550` becomes `8.26`.
+* `8.2549` becomes `8.25`.
 
 While other [rounding techniques](https://en.wikipedia.org/wiki/Rounding) exist, GOBL uses this common method for consistency.
 
-## Totals
+## Total Calculations
 
-When a document like an invoice contains a set of line amounts and references to other details such as payments and advances, by default GOBL ensures that all calculations are made using the currency's base precision plus 2 decimal places. If the lines in the document are defined with even greater precision, this will be maintained in all further calculations.
+Totals in GOBL will **always** be presented using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage. The way the calulations are made is important.
 
-For example, if you're dealing with Euros or US Dollars, the final precision for calculations would be 4. The Japanese Yen (YEN) or Chile's Peso (CLP) whose currencies do not use cents, would only have 2 decimal places added.
+When a document like an invoice contains a set of line amounts and references to other details such as payments and advances, GOBL offers two specific rounding techniques for making calculations:
 
-Totals in GOBL will **always** be presented using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage.
+* `precise` - the default, with two additional decimal places, and,
+* `currency` - use the precision of the currency.
 
-GOBL by default uses a rounding method called `sum-then-round` when calculating a document's final totals. This implies that all calculations are made with the maximum amount of precision, before rounding in the output.
+### Precise Model
 
-An unexpected consequence of this however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
+When using the "precise" model and the lines in the document are defined with even greater precision, it will be maintained in all further calculations.
+
+For example, if you're dealing with Euros or US Dollars, the final precision for calculations would be four. The Japanese Yen (YEN) or Chile's Peso (CLP) whose currencies do not use cents, would only have two decimal places added.
+
+An often unexpected consequence of the "preciese" rounding method however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
 
 ```json
 [
@@ -75,7 +80,7 @@ An unexpected consequence of this however is that sometimes the presented number
 ]
 ```
 
-When that data is plugged into a GOBL invoice the final sum of the invoice is `122.61` not `122.62` as would be expected by summing the line totals. We can see why if we add a `0` to each item's price:
+When that data is plugged into a GOBL invoice the final sum of the invoice is `122.61`, not `122.62` as would be expected by summing the line totals – we can see why if we add a `0` to each item's price:
 
 ```json
 [
@@ -114,14 +119,18 @@ When that data is plugged into a GOBL invoice the final sum of the invoice is `1
 ]
 ```
 
-GOBL supports a second rounding method called `round-then-sum` which as the name suggests, will first round the numbers to the expected precision before making the totals calculations. This ensures that the presented totals can always be recalculated independently, but may result in unexpected final amounts if the original prices were presented including tax.
+### Currency Rounding
 
-When converting GOBL into to other formats, you may need to override the default to align with expectations from clients. Some tax regimes like Greece (`EL`) require th rounding method and it will be chosen automatically. While we don't recommend this, it is possible in some document types to override the default. To apply the `round-then-sum` rounding method, update the document's tax object with:
+GOBL optioanlly supports "currency" rounding, which will first round the numbers to the currency's precision before making the totals calculations. This ensures that the presented totals can always be recalculated independently, but may result in unexpected final amounts if the original prices were presented including tax.
+
+This rounding method is required by the [European Norm 16931-1:2017](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Obtaining+a+copy+of+the+European+standard+on+eInvoicing) standard.
+
+When converting GOBL into to other formats, you may need to override the default to align with expectations from clients. Some tax regimes like Greece (`EL`) require the rounding method and it will be chosen automatically. To apply the currency rounding method, update the document's tax object with:
 
 ```json
 {
   "tax": {
-    "rounding": "round-then-sum"
+    "rounding": "currency"
   }
 }
 ```
@@ -130,10 +139,12 @@ When converting GOBL into to other formats, you may need to override the default
 
 When adding sales tax or VAT to an invoice, you need to decide where the taxes should be applied. There are three main options:
 
-- **Per Item**: Calculate the tax for each item before considering quantity or discounts.
-- **Per Line**: Calculate the tax for each line's total, a method commonly endorsed by many countries.
-- **On Total**: Group all line totals by tax category and rate, then calculate the tax. This method, recommended by EN 16931, provides the greatest precision.
+* **Per Item**: Calculate the tax for each item before considering quantity or discounts.
+
+* **Per Line**: Calculate the tax for each line's total, a method commonly endorsed by many countries.
+
+* **On Total**: Group all line totals by tax category and rate, then calculate the tax. This method, recommended by EN 16931, provides the greatest precision.
 
 GOBL **only calculates tax amounts on totals** to minimize rounding errors. In practice, as long as calculations use sufficient precision, there is little difference between the line and total methods.
 
-As with other total calculations, taxes are calculated with a precision of at least the currency's base number of decimal places plus 2.
+As with other total calculations, taxes will be calculated using the rounding method selected for the document.
