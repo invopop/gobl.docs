@@ -36,14 +36,14 @@ In GOBL, an Invoice is represented by [bill.Invoice](/draft-0/bill/invoice).
 
 There are some basic universal sections you'll need to be aware about for any invoice:
 
-- _Type_ - is this is standard invoice, proforma, credit note, etc.
-- _Issue Date_ - an issue date shows when the invoice was sent, and there may also be "value" and "operation" dates.
-- _Code_ - a single unique code that identifies the invoice, possibly also with an associated _series_ to help group documents together. Most countries require codes to be generated consecutively.
-- _Supplier_ - the party responsible for issuing the invoice, supplying the services, and requesting payment. Essential data would include the name, address, contact details, and most importantly, a country specific Tax Identity.
-- _Customer_ - similar to the supplier, this is the party responsible for receiving the invoice, goods or services, and subsequently paying. A _customer_ may not be required if issuing a simplified invoice.
-- _Lines_ & _Item_ - descriptions of what exactly is being sold, including their price, discounts, and any taxes that need to be applied.
-- _Payment_ - not strictly necessary, but often included, these are instructions that help customers know how they need to send payment, or perhaps indications of what was already paid.
-- _Totals_ - summary of the line item totals and taxes.
+- **Type** - is this is standard invoice, proforma, credit note, etc.
+- **Issue Date** - an issue date shows when the invoice was sent, and there may also be "value" and "operation" dates.
+- **Code** - a single unique code that identifies the invoice, possibly also with an associated _series_ to help group documents together. Most countries require codes to be generated consecutively.
+- **Supplier** - the party responsible for issuing the invoice, supplying the services, and requesting payment. Essential data would include the name, address, contact details, and most importantly, a country specific Tax Identity.
+- **Customer** - similar to the supplier, this is the party responsible for receiving the invoice, goods or services, and subsequently paying. A _customer_ may not be required if issuing a simplified invoice.
+- **Lines & Item** - descriptions of what exactly is being sold, including their price, discounts, and any taxes that need to be applied.
+- **Payment** - not strictly necessary, but often included, these are instructions that help customers know how they need to send payment, or perhaps indications of what was already paid.
+- **Totals** - summary of the line item totals and taxes.
 
 Of course, there are many more fields that can be added to an invoice document, but these are the basics.
 
@@ -70,8 +70,8 @@ GOBL defines a specific set of common [types](/draft-0/bill/invoice#type-values)
 
 - `standard` - a regular commercial invoice between a supplier and customer.
 - `proforma` - used to send a "preview" of the final invoice to a customer for their approval. If a customer approves a proforma invoice, they're effectively entering into a contract with the supplier for the services or goods to be supplied, so while tax agencies don't consider this an essential type for tax collection, they can have legal consequences.
-- `corrective` - indicates that this invoice performs corrections to a previous invoice identified in the `preceding` property defined as a [bill.Preceding](/draft-0/bill/preceding).
-- `credit-note` - traditional and most frequently used type when a supplier needs to issue a refund or cancel part of a [preceding](/draft-0/bill/preceding) invoice.
+- `corrective` - indicates that this invoice performs corrections to a previous invoice identified in the `preceding` property which is defined as an array of [Org.DocumentRef](/draft-0/org/document_ref).
+- `credit-note` - traditional and most frequently used type when a supplier needs to issue a refund or cancel part of a preceding invoice.
 - `debit-note` - indicates that the preceding invoice was incomplete and there are now some additional costs. Most companies will just issue a new invoice to complement the previous one as opposed to issuing a specific debit note.
 
 Not every country will have support for all these types. Spain for example doesn't have support for credit-notes, and instead requires corrective invoices, more details below.
