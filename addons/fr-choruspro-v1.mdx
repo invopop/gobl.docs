@@ -1,0 +1,69 @@
+---
+title: Chorus Pro
+---
+
+Key: <code>fr-choruspro-v1</code>
+
+Support for the French Chorus Pro platform for B2G (Business-to-Government) electronic invoicing.
+This addon provides the necessary structures and validations to ensure compliance with the
+Chorus Pro specifications.
+
+It requires the EN16931 addon as it expands on the European standard with French-specific
+requirements for public sector invoicing.
+
+## Sources
+- [Chorus Pro Specifications](https://communaute.chorus-pro.gouv.fr/wp-content/uploads/2018/11/External_Specifications_EDI_Appendix_V4.10.pdf)
+
+## Extensions
+### General Information Framework	
+
+The general information framework is used to provide additional context
+about the entity submitting the document. If no value is provided, it will
+default to "A1" (Submission by a supplier of an invoice), the most common
+use-case.
+
+This extension's value is not deterministic, meaning that it will not be
+replaced by GOBL during normalization.
+
+<Accordion title="fr-choruspro-framework">
+
+| Code | Name |
+| ---- | ---- |
+| <code>A1</code> | Submission by a supplier of an invoice |
+| <code>A2</code> | Submission by a supplier of an invoice already paid |
+| <code>A3</code> | Submission by a supplier of a Memorandum on Justice Costs |
+| <code>A4</code> | Submission by a supplier of a draft monthly statement |
+| <code>A5</code> | Submission by a supplier of an account statement |
+| <code>A6</code> | Work invoice document sent to a financial service |
+| <code>A7</code> | Submission by a supplier of a draft final statement |
+| <code>A8</code> | Submission by a supplier of a general and definitive statement |
+| <code>A9</code> | Submission by a subcontractor of an invoice |
+| <code>A10</code> | Submission by a subcontractor of a draft monthly statement |
+| <code>A12</code> | Submission by a joint contractor of an invoice |
+| <code>A13</code> | Submission by a joint contractor of a draft monthly statement |
+| <code>A14</code> | Submission by a joint contractor of a draft final statement |
+| <code>A15</code> | Submission by a project manager of an account statement |
+| <code>A16</code> | Submission by a project manager of a validated account statement |
+| <code>A17</code> | Submission by a project manager of a draft general statement |
+| <code>A18</code> | Submission by a project manager of a general statement |
+| <code>A19</code> | Submission by a contracting authority of a validated account statement |
+| <code>A20</code> | Submission by a contracting authority of a general statement |
+| <code>A21</code> | Submission by a beneficiary of an ICT reimbursement request |
+| <code>A22</code> | Submission by a supplier or an authorised representative of a draft general statement as part of a tacit procedure |
+| <code>A23</code> | Submission by a supplier or an authorised representative of a tacit general and final statement |
+| <code>A24</code> | Submission by an authorised representative of a tacit general and final statement |
+| <code>A25</code> | Submission by an authorised representative of a general and final statement as part of a tacit procedure |
+</Accordion>
+### Scheme
+
+<Accordion title="fr-choruspro-scheme">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Third party with SIRET |
+| <code>2</code> | European structure outside France |
+| <code>3</code> | Structure outside the EU |
+| <code>4</code> | RIDET |
+| <code>5</code> | Tahiti Number |
+| <code>6</code> | Other |
+</Accordion>

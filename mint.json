@@ -108,6 +108,7 @@
             "addons/es-tbai-v1",
             "addons/es-verifactu-v1",
             "addons/eu-en16931-v2017",
+	    "addons/fr-choruspro-v1",
             "addons/fr-facturx-v1",
             "addons/gr-mydata-v1",
             "addons/it-sdi-v1",

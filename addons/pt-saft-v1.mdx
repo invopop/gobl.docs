@@ -23,6 +23,16 @@ SAF-T's `InvoiceType` (Tipo de documento) specifies the type of a sales invoice.
 this type can be set using the `pt-saft-invoice-type` extension in the tax section. GOBL
 will set the extension for you based on the type and the tax tags you set in your invoice.
 
+The table below shows how this mapping is done:
+
+| Code | Name                | GOBL Type     | GOBL Tax Tag    |
+| ---- | ------------------- | ------------- | --------------- |
+| `FT` | Standard Invoice    | `standard`    |                 |
+| `FS` | Simplified Invoice  | `standard`    | `simplified`    |
+| `FR` | Invoice-Receipt     | `standard`    | `invoice-receipt` |
+| `ND` | Debit Note          | `debit-note`  |                 |
+| `NC` | Credit Note         | `credit-note` |                 |
+
 Example:
 
 ```js
@@ -125,7 +135,7 @@ For example, you could define an invoice line exempt of tax as follows:
 	"lines": [
 		{
 			// ...
-			"item": {
+		"item": {
 				"name": "Some service exempt of tax",
 				"price": "25.00"
 			},
@@ -149,30 +159,32 @@ For example, you could define an invoice line exempt of tax as follows:
 | Code | Name |
 | ---- | ---- |
 | <code>M01</code> | Article 16, No. 6 of the VAT code |
-| <code>M02</code> | Article 6 of the Decree-Law 198/90 of 19th June |
-| <code>M04</code> | Exempt pursuant to article 13 of the VAT code |
-| <code>M05</code> | Exempt pursuant to article 14 of the VAT code |
-| <code>M06</code> | Exempt pursuant to article 15 of the VAT code |
-| <code>M07</code> | Exempt pursuant to article 9 of the VAT code |
-| <code>M09</code> | VAT - does not confer right to deduct / Article 62 paragraph b) of the VAT code |
+| <code>M02</code> | Article 6 of Decree-Law No. 198/90 of 19th June |
+| <code>M04</code> | Exempt pursuant to Article 13 of the VAT code |
+| <code>M05</code> | Exempt pursuant to Article 14 of the VAT code |
+| <code>M06</code> | Exempt pursuant to Article 15 of the VAT code |
+| <code>M07</code> | Exempt pursuant to Article 9 of the VAT code |
+| <code>M09</code> | VAT - does not confer right to deduction / Article 62 paragraph b) of the VAT code |
 | <code>M10</code> | VAT - exemption scheme / Article 57 of the VAT code |
 | <code>M11</code> | Special scheme for tobacco / Decree-Law No. 346/85 of 23rd August |
 | <code>M12</code> | Margin scheme - Travel agencies / Decree-Law No. 221/85 of 3rd July |
 | <code>M13</code> | Margin scheme - Second-hand goods / Decree-Law No. 199/96 of 18th October |
 | <code>M14</code> | Margin scheme - Works of art / Decree-Law No. 199/96 of 18th October |
-| <code>M15</code> | Margin scheme - Collector’s items and antiques / Decree-Law No. 199/96 of 18th October |
+| <code>M15</code> | Margin scheme - Collector's items and antiques / Decree-Law No. 199/96 of 18th October |
 | <code>M16</code> | Exempt pursuant to Article 14 of the RITI |
-| <code>M19</code> | Other exemptions - Temporary exemptions determined by specific legislation |
+| <code>M19</code> | Other exemptions |
 | <code>M20</code> | VAT - flat-rate scheme / Article 59-D No. 2 of the VAT code |
-| <code>M21</code> | VAT - does not confer right to deduct (or similar) - Article 72 No. 4 of the VAT code |
-| <code>M25</code> | Consignment goods - Article 38 No. 1 paragraph a) of the VAT code |
+| <code>M21</code> | VAT - does not confer right to deduction (or similar) / Article 72 No. 4 of the VAT code |
+| <code>M25</code> | Consignment goods / Article 38 No. 1 paragraph a) of the VAT code |
+| <code>M26</code> | VAT exemption with right to deduction in food basket / Law No. 17/2023 of 14th April |
 | <code>M30</code> | VAT - reverse charge / Article 2 No. 1 paragraph i) of the VAT code |
 | <code>M31</code> | VAT - reverse charge / Article 2 No. 1 paragraph j) of the VAT code |
 | <code>M32</code> | VAT - reverse charge / Article 2 No. 1 paragraph l) of the VAT code |
 | <code>M33</code> | VAT - reverse charge / Article 2 No. 1 paragraph m) of the VAT code |
+| <code>M34</code> | VAT - reverse charge / Article 2 No. 1 paragraph n) of the VAT code |
 | <code>M40</code> | VAT - reverse charge / Article 6 No. 6 paragraph a) of the VAT code, to the contrary |
 | <code>M41</code> | VAT - reverse charge / Article 8 No. 3 of the RITI |
-| <code>M42</code> | VAT - reverse charge / Decree-Law No. 21/2007 of 29 January |
+| <code>M42</code> | VAT - reverse charge / Decree-Law No. 21/2007 of 29th January |
 | <code>M43</code> | VAT - reverse charge / Decree-Law No. 362/99 of 16th September |
 | <code>M99</code> | Not subject to tax or not taxed |
 </Accordion>
@@ -214,11 +226,86 @@ Example:
 | <code>E</code> | Excise Duties |
 | <code>I</code> | Taxes/Fees |
 </Accordion>
+### Document Type	
+
+SAF-T's `WorkType` (Tipo de documento de conferência) specifies the type of a working
+document. In GOBL, this type can be set using the `pt-saft-work-type` extension in either
+`bill.Invoice` or `bill.Order` documents. GOBL will set the extension for you based on the
+document type in some cases.
+
+The table below shows the supported work type codes and their compatibility with GOBL objects:
+
+| Code   | Name                            | GOBL Doc | GOBL Type  |
+| ------ | ------------------------------- | -------- | ---------- |
+| `PF`   | Pró-forma                       | Invoice  | `proforma` |
+| `FC`   | Fatura de consignação           | Invoice  |            |
+| `CC`   | Credito de consignação          | Invoice  |            |
+| `CM`   | Consultas de mesa               | Order    |            |
+| `FO`   | Folhas de obra                  | Order    |            |
+| `NE`   | Nota de Encomenda               | Order    | `purchase` |
+| `OU`   | Outros                          | Order    |            |
+| `OR`   | Orçamentos                      | Order    | `quote`    |
+| `DC`   | Documentos de conferência       | Order    |            |
+| `RP`   | Prémio ou recibo de prémio      | Order    |            |
+| `RE`   | Estorno ou recibo de estorno    | Order    |            |
+| `CS`   | Imputação a co-seguradoras      | Order    |            |
+| `LD`   | Imputação a co-seguradora líder | Order    |            |
+| `RA`   | Resseguro aceite                | Order    |            |
+
+Example for a proforma invoice:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	"type": "proforma",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-work-type": "PF"
+		}
+	},
+	// ...
+```
+
+Example for a purchase order:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/order",
+	"type": "purchase",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-work-type": "NE"
+		}
+	},
+	// ...
+```
+
+<Accordion title="pt-saft-work-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>CM</code> | Table orders |
+| <code>CC</code> | Consignment credit note |
+| <code>FC</code> | VAT-compliant consignment invoice (Article 38) |
+| <code>FO</code> | Work orders |
+| <code>NE</code> | Purchase order |
+| <code>OU</code> | Other documents |
+| <code>OR</code> | Quotations |
+| <code>PF</code> | Pro forma invoice |
+| <code>DC</code> | Delivery verification documents |
+| <code>RP</code> | Premium Receipt |
+| <code>RE</code> | Chargeback Receipt |
+| <code>CS</code> | Co-insurers Allocation |
+| <code>LD</code> | Lead Co-insurer Allocation |
+| <code>RA</code> | Accepted Reinsurance |
+</Accordion>
 ### Payment Means	
 
 The SAF-T's `PaymentMechanism` (Meios de pagamento) field specifies the payment means in a
 sales invoice or payment. GOBL provides the `pt-saft-payment-means` extension to set this
-value in your `bill.Invoice` advances or in you `bill.Receipt` method. GOBL maps certain
+value in your `bill.Invoice` advances or in you `bill.Payment` method. GOBL maps certain
 payment mean keys automatically to this extension:
 
 | Code | Name                                               | GOBL Payment Means                                    |
@@ -279,6 +366,7 @@ For example, in a GOBL receipt:
 	},
 	// ...
 }
+```
 
 <Accordion title="pt-saft-payment-means">
 
@@ -298,4 +386,42 @@ For example, in a GOBL receipt:
 | <code>PR</code> | Barter |
 | <code>TB</code> | Bank transfer or direct debit |
 | <code>TR</code> | Supplementary compensation |
+</Accordion>
+### Movement Type	
+
+SAF-T's `MovementType` (Tipo de documento de movimentação de mercadorias) specifies the type of
+a delivery document. In GOBL,this type can be set using the `pt-saft-movement-type` extension.
+If not provided explicitly, GOBL will set the extension for you based on the type of your delivery
+document.
+
+The table below shows how this mapping is done:
+
+| Code | Name                | GOBL Type     |
+| ---- | ------------------- | ------------- |
+| `GR` | Delivery note       | `note`        |
+| `GT` | Waybill             | `waybill`     |
+
+Example:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/delivery",
+	// ...
+	"type": "note",
+	// ...
+	"ext": {
+		"pt-saft-movement-type": "GR"
+	},
+	// ...
+```
+
+<Accordion title="pt-saft-movement-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>GR</code> | Delivery note |
+| <code>GT</code> | Waybill |
+| <code>GA</code> | Guide to the movement own fixed assets |
+| <code>GC</code> | Consignment note |
+| <code>GD</code> | Returns slip or note |
 </Accordion>
