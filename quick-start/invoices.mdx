@@ -2,7 +2,7 @@
 title: "Invoices"
 ---
 
-For this guide, we assume you already have already successfully followed in the steps in the CLI Quick Start.
+For this guide, we assume you already have already successfully followed in the steps in the [CLI Quick Start](/quick-start/cli).
 
 Creating an invoice is one of the most useful features of GOBL as it demonstrates the full power of the library. For the sake of the examples on this page, we're using Spain as the base region, but everything here should be supported with minor modifications in any other supported country.
 
@@ -197,7 +197,7 @@ And open it either from the command line if supported by your system, or directl
 open output.pdf
 ```
 
-You'll notice that the resulting PDF has a big "DRAFT" message in the middle. If you want to remove this, you'll have to sign the document with:
+The resulting PDF will have a large "DRAFT" watermark on all pages. To remove this, sign the document with:
 
 ```bash
 gobl sign -i invoice.yaml > invoice.json
