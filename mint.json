@@ -29,6 +29,11 @@
       "name": "GitHub",
       "icon": "github",
       "url": "https://github.com/invopop/gobl"
+    },
+    {
+      "name": "Community",
+      "icon": "comments",
+      "url": "https://community.invopop.com/c/gobl/"
     }
   ],
   "topbarCtaButton": {
