@@ -221,10 +221,11 @@ For example:
 Greece invoices can be exempt of VAT for different causes and the tax authority
 require a specific cause code to be provided.
 
-In a GOBL invoice, the `rate` of a line's tax need to be set to `exempt`, and
-the `ext` map's `gr-mydata-exemption` property needs to be set.
+GOBL will try to automatically map the tax combo `key` to an appropriate exemption
+code, but given the number of options you will no doubt need to consult with
+a tax professional to determine the correct code for your case.
 
-For example:
+Example usage:
 
 ```js
 "lines": [
@@ -239,9 +240,9 @@ For example:
 		"taxes": [
 			{
 				"cat": "VAT",
-				"rate": "exempt",
+				"key": "exempt",
 				"ext": {
-					"gr-mydata-exemption": "30"
+					"gr-mydata-exemption": "3"
 				}
 			}
 		],
@@ -249,6 +250,10 @@ For example:
 	}
 ]
 ```
+
+Note that descriptions provided in the `gr-mydata-exemption` extension are
+generated using AI and may not be 100% accurate. Always consult with a tax
+professional to ensure you're choosing the correct code.
 
 <Accordion title="gr-mydata-exemption">
 

@@ -1,0 +1,59 @@
+---
+title: Polish KSeF FA_VAT v2.x
+---
+
+Key: <code>pl-favat-v2</code>
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+A reason is required in the <code>reason</code> field
+when submitting the correction options.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+
+### Stamp Keys
+
+Stamp keys from the previous invoice that need to be referenced:
+- <code>favat-id</code>
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>pl-favat-effective-date</code>
+
+## Extensions
+### Special VAT Extensions for KSeF
+
+<Accordion title="pl-favat-vat-special">
+
+| Code | Name |
+| ---- | ---- |
+| <code>taxi</code> | Taxi Rate |
+</Accordion>
+### Zero VAT Extensions for KSeF
+
+<Accordion title="pl-favat-vat-zero">
+
+| Code | Name |
+| ---- | ---- |
+| <code>wdt</code> | WDT |
+| <code>domestic</code> | Domestic |
+| <code>export</code> | Export |
+</Accordion>
+### Effective date code.
+
+<Accordion title="pl-favat-effective-date">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Original |
+| <code>2</code> | Correction |
+| <code>3</code> | Other |
+</Accordion>
