@@ -1063,3 +1063,86 @@ terms:
         name: "PRICE DETAILS"
         paths:
           - $.doc.lines[*].item
+        terms:
+          - id: BT-146
+            name: "Item net price"
+            paths:
+              - $.doc.lines[*].item.net_price
+          - id: BT-147
+            name: "Item price discount"
+            paths:
+              - $.doc.lines[*].item.discount
+          - id: BT-148
+            name: "Item gross price"
+            paths:
+              - $.doc.lines[*].item.gross_price
+          - id: BT-149
+            name: "Item price base quantity"
+            paths:
+              - $.doc.lines[*].item.quantity
+          - id: BT-150
+            name: "Item price base quantity unit of measure code"
+            paths:
+              - $.doc.lines[*].item.unit
+
+      - id: BG-30
+        name: "LINE VAT INFORMATION"
+        paths:
+          - $.doc.lines[*].taxes
+        terms:
+          - id: BT-151
+            name: "Invoiced item VAT category code"
+            paths:
+              - $.doc.lines[*].taxes.categories[code='VAT'].key
+          - id: BT-152
+            name: "Invoice line VAT category tax amount"
+            paths:
+              - $.doc.lines[*].taxes.categories[code='VAT'].percent
+
+      - id: BG-31
+        name: "ITEM INFORMATION"
+        paths:
+          - $.doc.lines[*].item
+        terms:
+          - id: BT-153
+            name: "Item name"
+            paths:
+              - $.doc.lines[*].item.name
+          - id: BT-154
+            name: "Item description"
+            paths:
+              - $.doc.lines[*].item.description
+          - id: BT-155
+            name: "Item Seller's identifier"
+            paths:
+              - $.doc.lines[*].item.identities[type='seller']
+          - id: BT-156
+            name: "Item Buyers's identifier"
+            paths:
+              - $.doc.lines[*].item.identities[type='buyers']
+          - id: BT-157
+            name: "Item Standard identifier"
+            paths:
+              - $.doc.lines[*].item.identities[type='standard']
+          - id: BT-158
+            name: "Item classification identifier"
+            paths:
+              - $.doc.lines[*].item.identities[type='classification']
+          - id: BT-159
+            name: "Item country of origin"
+            paths:
+              - $.doc.lines[*].item.origin
+
+      - id: BG-32
+        name: "ITEM ATTRIBUTES"
+        paths:
+          - $.doc.lines[*].item.location
+        terms:
+          - id: BT-160
+            name: "Item attribute name"
+            paths:
+              - $.doc.lines[*].item.Meta[*].key
+          - id: BT-161
+            name: "Item attribute value"
+            paths:
+              - $.doc.lines[*].item.Meta[*].value
