@@ -3,7 +3,7 @@ title: PaymentLine
 comment: 
 ---
 
-PaymentLine defines the details of a line required in an invoice.
+PaymentLine defines the details of a line item in a payment document.
 
 ## Schema ID
 
@@ -11,14 +11,18 @@ PaymentLine defines the details of a line required in an invoice.
 
 ## Properties
 
-| Title    | Property   | Type                                         | Req. | Description                                                                                               |
-|----------|------------|----------------------------------------------|------|-----------------------------------------------------------------------------------------------------------|
-| UUID     | `uuid`     | string                                       |      | Universally Unique Identifier.                                                                            |
-| Index    | `i`        | integer                                      |      | Line number inside the parent (calculated)                                                                |
-| Document | `document` | [org.DocumentRef](/draft-0/org/document_ref) |      | The document reference related to the payment.                                                            |
-| Currency | `currency` | [currency.Code](/draft-0/currency/code)      |      | Currency used for the payment if different from the document currency.                                    |
-| Debit    | `debit`    | [num.Amount](/draft-0/num/amount)            |      | Amount received by the supplier for ordinary payments.                                                    |
-| Credit   | `credit`   | [num.Amount](/draft-0/num/amount)            |      | Amount received by the customer in case of refunds.                                                       |
-| Total    | `total`    | [num.Amount](/draft-0/num/amount)            |      | Total balance to be paid for this line from the customer to the supplier in the currency of the document. |
-| Notes    | `notes`    | array of [org.Note](/draft-0/org/note)       |      | Set of specific notes for this line that may be required for clarification.                               |
+| Title       | Property      | Type                                         | Req. | Description                                                                                                                                                                           |
+|-------------|---------------|----------------------------------------------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| UUID        | `uuid`        | string                                       |      | Universally Unique Identifier.                                                                                                                                                        |
+| Index       | `i`           | integer                                      |      | Line number within the parent document (automatically calculated)                                                                                                                     |
+| Refund      | `refund`      | boolean                                      |      | Indicates whether this payment is a refund of a previous payment, effectively reversing the flow of funds between the supplier and customer or their representatives.                 |
+| Document    | `document`    | [org.DocumentRef](/draft-0/org/document_ref) |      | Reference to the document being paid                                                                                                                                                  |
+| Installment | `installment` | integer                                      |      | When making multiple payments for a single document, this specifies the installment number for this payment line.                                                                     |
+| Description | `description` | string                                       |      | Additional human readable description of the payment line which may be useful for explaining the purpose or special conditions. Notes should be used for more formal comments.        |
+| Payable     | `payable`     | [num.Amount](/draft-0/num/amount)            |      | Payable reflects the amount of the document that is payable. This will be calculated from the embedded document's amount automatically and converted to the currency of the document. |
+| Advances    | `advances`    | [num.Amount](/draft-0/num/amount)            |      | Amount already paid in previous installments, which may be required by some tax regimes or specific use cases.                                                                        |
+| Amount      | `amount`      | [num.Amount](/draft-0/num/amount)            | true | Amount of the total payment allocated to the referenced document.                                                                                                                     |
+| Due         | `due`         | [num.Amount](/draft-0/num/amount)            |      | Due reflects how much still needs to be paid                                                                                                                                          |
+| Tax         | `tax`         | [tax.Total](/draft-0/tax/total)              |      | Tax contains a breakdown of the taxes that will be applied to this payment line after taking into account currency conversion and the relative amounts.                               |
+| Notes       | `notes`       | array of [org.Note](/draft-0/org/note)       |      | Additional notes specific to this line item for clarification purposes                                                                                                                |
 

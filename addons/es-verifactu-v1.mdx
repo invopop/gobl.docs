@@ -1,8 +1,11 @@
 ---
-title: Spain Verifactu V1
+title: Spain VERI*FACTU V1
 ---
 
 Key: <code>es-verifactu-v1</code>
+
+## Sources
+- [VERI*FACTU error response code list](https://prewww2.aeat.es/static_files/common/internet/dep/aplicaciones/es/aeat/tikeV1.0/cont/ws/errores.properties)
 
 ## Correction Definitions
 
@@ -16,11 +19,16 @@ options. See the [Extensions](#extensions) section for possible values.
 - <code>es-verifactu-doc-type</code>
 
 ## Extensions
-### Verifactu Invoice Type Code - L2	
+### Invoice Type Code	
 
-Invoice type code used to identify the type of invoice being sent.
-Source: VeriFactu Ministerial Order:
- * https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-22138
+Code used to identify the type of invoice being sent. This will be
+determined automatically by GOBL during normalization according
+to the scenario definitions.
+
+The codes `R2`, `R3`, and `R4` are not covered by GOBL's scenarios
+and will need to be set manually if needed.
+
+Values correspond to L2 list.
 
 <Accordion title="es-verifactu-doc-type">
 
@@ -28,18 +36,25 @@ Source: VeriFactu Ministerial Order:
 | ---- | ---- |
 | <code>F1</code> | Invoice (Article 6, 7.2 and 7.3 of RD 1619/2012) |
 | <code>F2</code> | Simplified invoice (Article 6.1.d) of RD 1619/2012) |
-| <code>F3</code> | Invoice issued as a replacement for simplified invoices that have been billed and declared. |
-| <code>R1</code> | Rectified invoice: error based on law and Article 80 One, Two and Six LIVA |
-| <code>R2</code> | Rectified invoice: error based on law and Article 80.3 |
-| <code>R3</code> | Rectified invoice: error based on law and Article 80.4 |
-| <code>R4</code> | Rectified invoice: Other |
+| <code>F3</code> | Invoice issued as replacement of simplified invoice |
+| <code>R1</code> | Rectified invoice: articles 80.1, 80.2, and 80.6 |
+| <code>R2</code> | Rectified invoice: article 80.3 |
+| <code>R3</code> | Rectified invoice: article 80.4 |
+| <code>R4</code> | Rectified invoice: other |
 | <code>R5</code> | Rectified invoice: simplified invoices |
 </Accordion>
-### Verifactu Correction Type Code - L3	
+### Verifactu Correction Type Code	
 
-Correction type code used to identify the type of correction being made.
-This value will be determined automatically according to the invoice type.
-Corrective invoices will be marked as "S", while credit and debit notes as "I".
+Correction type code used to identify the type of correction being
+made. Values map to L3 list.
+
+Code is determined automatically according to the invoice type:
+
+| Invoice Type		| Code |
+|-------------------|------|
+| `corrective`		| `S`  |
+| `credit-note`		| `I`  |
+| `debit-note`		| `I`  |
 
 <Accordion title="es-verifactu-correction-type">
 
@@ -48,13 +63,24 @@ Corrective invoices will be marked as "S", while credit and debit notes as "I".
 | <code>S</code> | Substitution |
 | <code>I</code> | Differences |
 </Accordion>
-### Verifactu Operation Classification/Exemption Code - L9	
+### Subject and Not Exempt Operation Class Code	
 
-Operation classification code used to identify if taxes should be applied to the line.
-Source: VeriFactu Ministerial Order:
- * https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-22138
-For details on how best to use and apply these and other codes, see the
-AEAT FAQ:
+Classification code for operations that are subject to tax and not exempt, or for operations not subject to tax.
+
+GOBL will attempt to automatically assign operation class codes based on tax key, but if your workflow requires more control, you may prefer to let users select the appropriate operation class and exemption code for each case.
+
+Automatic mapping of tax combo keys to operation classes:
+
+| Operation Class | Tax Key                |
+|-----------------|-------------------------|
+| `S1`            | `standard`, `reduced`, `super-reduced`, `zero` |
+| `S2`            | `reverse-charge`                |
+| `N1`            | `outside-scope` |
+| `N2`            | `outside-scope` (default) |
+
+This extension maps to the `CalificacionOperacion` field and must not be used together with the `es-verifactu-exempt` extension. Values correspond to the L9 list.
+
+For further guidance on applying these codes, refer to the AEAT FAQ:
  * https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/iva/iva-libros-registro-iva-traves-aeat/preguntas-frecuentes/3-libro-registro-facturas-expedidas.html?faqId=b5556c3d02bc9510VgnVCM100000dc381e0aRCRD
 
 <Accordion title="es-verifactu-op-class">
@@ -66,9 +92,21 @@ AEAT FAQ:
 | <code>N1</code> | Not Subject - Articles 7, 14, others |
 | <code>N2</code> | Not Subject - Due to location rules |
 </Accordion>
-### Verifactu Exemption Code - L10	
+### Verifactu Exemption Code	
 
 Exemption code used to explain why the operation is exempt from taxes.
+
+This extension maps to the field `OperacionExenta`, and **cannot** be provided
+alongside the `es-verifactu-op-class` extension. Values correspond to the
+L10 list.
+
+The follow mappings will be made automatically by GOBL during normalization.
+
+| Tax Key           | Exemption Codes            |
+|-------------------|----------------------------|
+| `exempt`          | `E1` (default), `E6`       |
+| `export`          | `E2` (default), `E3`, `E4` |
+| `intra-community` | `E5`                       |
 
 <Accordion title="es-verifactu-exempt">
 
@@ -81,9 +119,22 @@ Exemption code used to explain why the operation is exempt from taxes.
 | <code>E5</code> | Exempt: pursuant to Article 25. Exemptions in the delivery of goods destined to another Member State. |
 | <code>E6</code> | Exempt: pursuant to other reasons |
 </Accordion>
-### VAT/IGIC Regime Code - L8A/B	
+### VAT/IGIC Regime Code	
 
-Identify the type of VAT or IGIC regime applied to the operation. This list combines lists L8A which include values for VAT, and L8B for IGIC.
+Identify the type of VAT or IGIC regime applied to the operation. This list combines
+lists L8A which include values for VAT, and L8B for IGIC.
+
+Maps to the field `ClaveRegimen`, and is required for all VAT and IGIC operations.
+Values correspond to L8A (VAT) and L8B (IGIC) lists.
+
+The regime code must be assigned for each tax combo. If no regime code is provided,
+GOBL will try to assign a code from the following tax combo contexts:
+
+| Combo Context				| Regime Code |
+|---------------------------|-------------|
+| Key `standard`			| `01`        |
+| Key `export`			    | `02`        |
+| Has surcharge				| `18`        |
 
 <Accordion title="es-verifactu-regime">
 
@@ -106,4 +157,111 @@ Identify the type of VAT or IGIC regime applied to the operation. This list comb
 | <code>18</code> | Equivalence surcharge (VAT) / Special regime for small traders or retailers (IGIC) |
 | <code>19</code> | Operations included in the Special Regime for Agriculture, Livestock and Fisheries |
 | <code>20</code> | Simplified regime (VAT only) |
+</Accordion>
+### Identity Type Code	
+
+Identity code used to identify the type of identity document used by the customer
+defined in the L7 list.
+
+The regular Party Tax Identity is preferred over using a specific identity type
+code, and will be mapped automatically as follows:
+
+- Spanish Tax IDs will be mapped to the `NIF` field.
+- EU Tax IDs will be mapped to the `IDOtro` field with code `02`.
+- Non-EU Tax IDs will be mapped to the `IDOtro` field with code `04`.
+
+VERI*FACTU will perform validation on both Spanish and EU Tax IDs, so it is important
+to provide the correct details.
+
+The following identity `key` values will be mapped automatically to an extension by the 
+addon for the following keys:
+
+- `passport`: `03`
+- `foreign`: `04`
+- `resident`: `05`
+- `other`: `06`
+
+The `07` "not registered in census" code is not mapped automatically, but
+can be provided directly if needed.
+
+Example identity of a UK passport:
+
+```
+{
+	"identities": [
+		{
+			"key": "passport",
+			"country": "GB",
+			"code": "123456789"
+		}
+	]
+}
+```
+
+Will be normalized to:
+
+```
+{
+	"identities": [
+		{
+			"key": "passport",
+			"country": "GB",
+			"code": "123456789",
+			"ext": {
+				"es-verifactu-identity-type": "03"
+			}
+		}
+	]
+}
+```
+
+<Accordion title="es-verifactu-identity-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>02</code> | NIF-VAT Identity (VIES) |
+| <code>03</code> | Passport |
+| <code>04</code> | Foreign Identity Document |
+| <code>05</code> | Residential Certificate |
+| <code>06</code> | Other Identity Document |
+| <code>07</code> | Not registered in census |
+</Accordion>
+### Simplified Invoice Art. 7.2 and 7.3, RD 1619/2012	
+
+This extensions covers a specific use-case when the customer specifically
+requests that the invoice includes their fiscal details, but they are
+not registered for tax.
+
+Maps to the `FacturaSimplificadaArt7273` field in Verifactu documents.
+
+Can only be true when the invoice type (`TipoFactura`) is one of: `F1`,
+`F3`, `R1`, `R2`, `R3`, or `R4`.
+
+<Accordion title="es-verifactu-simplified-art7273">
+
+| Code | Name |
+| ---- | ---- |
+| <code>S</code> | Yes |
+| <code>N</code> | No |
+</Accordion>
+### Issuer Type Code	
+
+Indicates whether the invoice is issued by a third party or by the customer
+themselves.
+
+Mapped to the field `EmitidaPorTerceroODestinatario` in Verifactu documents,
+with list L6.
+
+The `self-billed` tag will automatically be set this extension in the invoice
+to `D`.
+
+If the `issuer` field is set in the invoice's ordering section, then this
+extension will be set to `T`.
+
+<Accordion title="es-verifactu-issuer-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>T</code> | Issued by Third Party |
+| <code>D</code> | Issued by Customer |
 </Accordion>

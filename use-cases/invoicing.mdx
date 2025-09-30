@@ -70,8 +70,8 @@ GOBL defines a specific set of common [types](/draft-0/bill/invoice#type-values)
 
 - `standard` - a regular commercial invoice between a supplier and customer.
 - `proforma` - used to send a "preview" of the final invoice to a customer for their approval. If a customer approves a proforma invoice, they're effectively entering into a contract with the supplier for the services or goods to be supplied, so while tax agencies don't consider this an essential type for tax collection, they can have legal consequences.
-- `corrective` - indicates that this invoice performs corrections to a previous invoice identified in the `preceding` property defined as a [bill.Preceding](/draft-0/bill/preceding).
-- `credit-note` - traditional and most frequently used type when a supplier needs to issue a refund or cancel part of a [preceding](/draft-0/bill/preceding) invoice.
+- `corrective` - indicates that this invoice performs corrections to a previous invoice through a preceding definition with an [org.DocumentRef](/draft-0/org/document_ref) schema.
+- `credit-note` - traditional and most frequently used type when a supplier needs to issue a refund or cancel part of an invoice through a [preceding definition](/draft-0/org/document_ref).
 - `debit-note` - indicates that the preceding invoice was incomplete and there are now some additional costs. Most companies will just issue a new invoice to complement the previous one as opposed to issuing a specific debit note.
 
 Not every country will have support for all these types. Spain for example doesn't have support for credit-notes, and instead requires corrective invoices, more details below.

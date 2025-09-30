@@ -11,14 +11,17 @@ Person represents a human, and how to contact them electronically.
 
 ## Properties
 
-| Title             | Property     | Type                                             | Req. | Description                                                                                                                          |
-|-------------------|--------------|--------------------------------------------------|------|--------------------------------------------------------------------------------------------------------------------------------------|
-| UUID              | `uuid`       | string                                           |      | Universally Unique Identifier.                                                                                                       |
-| Label             | `label`      | string                                           |      | Label can be used to identify the person in a given context in a single language, for example "Attn", "Contact", "Responsible", etc. |
-| Name              | `name`       | [org.Name](/draft-0/org/name)                    | true | Complete details on the name of the person                                                                                           |
-| Role              | `role`       | string                                           |      | What they do within an organization                                                                                                  |
-| Email Addresses   | `emails`     | array of [org.Email](/draft-0/org/email)         |      | Electronic mail addresses that belong to the person.                                                                                 |
-| Telephone Numbers | `telephones` | array of [org.Telephone](/draft-0/org/telephone) |      | Regular phone or mobile numbers                                                                                                      |
-| Avatars           | `avatars`    | array of [org.Image](/draft-0/org/image)         |      | Avatars provider links to images or photos or the person.                                                                            |
-| Meta              | `meta`       | [cbc.Meta](/draft-0/cbc/meta)                    |      | Data about the data.                                                                                                                 |
+| Title             | Property     | Type                                             | Req. | Description                                                                                                                                     |
+|-------------------|--------------|--------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| UUID              | `uuid`       | string                                           |      | Universally Unique Identifier.                                                                                                                  |
+| Label             | `label`      | string                                           |      | Label can be used to identify the person in a given context in a single language, for example "Attn", "Contact", "Responsible", etc.            |
+| Key               | `key`        | [cbc.Key](/draft-0/cbc/key)                      |      | Key used to identify the role of the person inside the context of the object.                                                                   |
+| Name              | `name`       | [org.Name](/draft-0/org/name)                    | true | Complete details on the name of the person.                                                                                                     |
+| Role              | `role`       | string                                           |      | Role or job title of the responsibilities of the person within an organization.                                                                 |
+| Identities        | `identities` | array of [org.Identity](/draft-0/org/identity)   |      | Set of codes used to identify the person, such as ID numbers, social security, driving licenses, etc. that can be attributed to the individual. |
+| Postal Addresses  | `addresses`  | array of [org.Address](/draft-0/org/address)     |      | Regular post addresses for where information should be sent if needed.                                                                          |
+| Email Addresses   | `emails`     | array of [org.Email](/draft-0/org/email)         |      | Electronic mail addresses that belong to the person.                                                                                            |
+| Telephone Numbers | `telephones` | array of [org.Telephone](/draft-0/org/telephone) |      | Regular phone or mobile numbers                                                                                                                 |
+| Avatars           | `avatars`    | array of [org.Image](/draft-0/org/image)         |      | Avatars provider links to images or photos or the person.                                                                                       |
+| Meta              | `meta`       | [cbc.Meta](/draft-0/cbc/meta)                    |      | Data about the data.                                                                                                                            |
 

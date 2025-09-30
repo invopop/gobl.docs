@@ -116,10 +116,10 @@ func (g *regimeGenerator) taxCategory(tc *tax.CategoryDef) error {
 
 		{{- if .Rates }}
 
-		| Key | Name | Percents | Description |
-		| --- | ---- | -------- | ----------- |
+		| Rate | Keys | Name | Percents | Description |
+		| ---- | ---- | ---- | -------- | ----------- |
 		{{- range .Rates }}
-		| <code>{{ .Key }}</code> | {{t .Name }} | {{ rate . }} | {{t .Description }} |
+		| <code>{{ .Rate }}</code> | {{ joinKeys .Keys }} | {{t .Name }} | {{ rate . }} | {{t .Description }} |
 		{{- end }}
 		{{- else }}
 		No rates defined.

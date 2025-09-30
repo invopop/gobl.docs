@@ -40,7 +40,7 @@ While other [rounding techniques](https://en.wikipedia.org/wiki/Rounding) exist,
 
 ## Total Calculations
 
-Totals in GOBL will **always** be presented using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage. The way the calulations are made is important.
+Totals in GOBL will **always** be presented using the currency's default precision. This is important as most tax agencies do not recognize a level of precision that cannot be dealt with using the local coinage. The way the calculations are made is important.
 
 When a document like an invoice contains a set of line amounts and references to other details such as payments and advances, GOBL offers two specific rounding techniques for making calculations:
 
@@ -53,7 +53,7 @@ When using the "precise" model and the lines in the document are defined with ev
 
 For example, if you're dealing with Euros or US Dollars, the final precision for calculations would be four. The Japanese Yen (YEN) or Chile's Peso (CLP) whose currencies do not use cents, would only have two decimal places added.
 
-An often unexpected consequence of the "preciese" rounding method however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
+An often unexpected consequence of the "precise" rounding method however is that sometimes the presented numbers might not add up and be a few cents out. For example, take the following invoice lines:
 
 ```json
 [
@@ -121,7 +121,7 @@ When that data is plugged into a GOBL invoice the final sum of the invoice is `1
 
 ### Currency Rounding
 
-GOBL optioanlly supports "currency" rounding, which will first round the numbers to the currency's precision before making the totals calculations. This ensures that the presented totals can always be recalculated independently, but may result in unexpected final amounts if the original prices were presented including tax.
+GOBL optionally supports "currency" rounding, which will first round the numbers to the currency's precision before making the totals calculations. This ensures that the presented totals can always be recalculated independently, but may result in unexpected final amounts if the original prices were presented including tax.
 
 This rounding method is required by the [European Norm 16931-1:2017](https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Obtaining+a+copy+of+the+European+standard+on+eInvoicing) standard.
 

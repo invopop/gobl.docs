@@ -38,10 +38,33 @@ options. See the [Extensions](#extensions) section for possible values.
 
 The municipality code as defined by the DIAN.
 
-For further details on the list of possible codes, see:
+Set the 5-digit code for the municipality where the issuer is located in both
+the supplier and customer:
 
- * https://www.dian.gov.co/atencionciudadano/formulariosinstructivos/Formularios/2007/Codigos_municipios_2007.pdf
- * https://github.com/ALAxHxC/MunicipiosDane
+```js
+"supplier": {
+	"name": "EXAMPLE SUPPLIER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": {
+		"co-dian-municipality": "11001" // Bogotá, D.C.
+	},
+	// [...]
+},
+"customer": {
+	"name": "EXAMPLE CUSTOMER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514805"
+	},
+	"ext": {
+		"co-dian-municipality": "05001" // Medellín
+	},
+	// [...]
+},
+```
 
 <Accordion title="co-dian-municipality">
 
@@ -49,7 +72,35 @@ Pattern: <code>^\d{5}$</code>
 </Accordion>
 ### Credit Code	
 
-DIAN correction code for credit notes
+The DIAN correction code is required when issuing credit notes in Colombia
+and is not automatically assigned by GOBL. It must be be included inside the
+`preceding` document references.
+
+The extension will be offered as an option in the invoice correction process.
+
+Usage example:
+
+```js
+"preceding": [
+	{
+		"uuid": "0190e063-7676-7000-8c58-2db7172a4e58",
+		"type": "standard",
+		"series": "SETT",
+		"code": "1010006",
+		"issue_date": "2024-07-23",
+		"reason": "Reason",
+		"stamps": [
+			{
+				"prv": "dian-cude",
+				"val": "57601dd1ab69213ccf8cfd5894f2e9fbfe23643f3a24e2f2526a5bb88d058a0842fffcb339694b6704dc105a9d813327"
+			}
+		],
+		"ext": {
+			"co-dian-credit-code": "3"
+		}
+	}
+],
+```
 
 <Accordion title="co-dian-credit-code">
 
@@ -63,7 +114,10 @@ DIAN correction code for credit notes
 </Accordion>
 ### Debit Code	
 
-DIAN correction code for debit notes
+The DIAN correction code is required when issuing debit notes in Colombia
+and is not automatically assigned by GOBL.
+
+The extension will be offered as an option in the invoice correction process.
 
 <Accordion title="co-dian-debit-code">
 
@@ -73,4 +127,46 @@ DIAN correction code for debit notes
 | <code>2</code> | Pending charges |
 | <code>3</code> | Change in value |
 | <code>4</code> | Other |
+</Accordion>
+### Fiscal Responsibility Code	
+
+The fiscal responsibility code as defined by the DIAN for Colombian electronic invoicing.
+Maps to the UBL's `TaxLevelCode` field.
+
+The DIAN requires that Colombian invoices specify the fiscal responsibilities of the
+supplier or customer using specific codes. If no value is provided, GOBL will
+automatically set `R-99-PN` as the default.
+
+| Code    | Description                   |
+| ------- | ----------------------------- |
+| O-13    | Gran contribuyente            |
+| O-15    | Autorretenedor                |
+| O-23    | Agente de retención IVA       |
+| O-47    | Régimen simple de tributación |
+| R-99-PN | No aplica - Otros             |
+
+For example:
+
+```js
+"customer": {
+	"name": "EXAMPLE CUSTOMER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": {
+		"co-dian-fiscal-responsibility": "O-13"
+	}
+}
+```
+
+<Accordion title="co-dian-fiscal-responsibility">
+
+| Code | Name |
+| ---- | ---- |
+| <code>O-13</code> | Major taxpayer |
+| <code>O-15</code> | Self-withholder |
+| <code>O-23</code> | VAT withholding agent |
+| <code>O-47</code> | Simple tax regime |
+| <code>R-99-PN</code> | Not applicable – Others |
 </Accordion>
