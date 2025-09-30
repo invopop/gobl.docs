@@ -11,12 +11,11 @@ RateValueDef contains a percentage rate or fixed amount for a given date range.
 
 ## Properties
 
-| Title      | Property    | Type                                      | Req. | Description                                                                  |
-|------------|-------------|-------------------------------------------|------|------------------------------------------------------------------------------|
-| Tags       | `tags`      | array of [cbc.Key](/draft-0/cbc/key)      |      | Only apply this rate if one of the tags is present in the invoice.           |
-| Extensions | `ext`       | [tax.Extensions](/draft-0/tax/extensions) |      | Ext map of keys that can be used to filter to determine if the rate applies. |
-| Since      | `since`     | [cal.Date](/draft-0/cal/date)             |      | Date from which this value should be applied.                                |
-| Percent    | `percent`   | [num.Percentage](/draft-0/num/percentage) | true | Percent rate that should be applied                                          |
-| Surcharge  | `surcharge` | [num.Percentage](/draft-0/num/percentage) |      | An additional surcharge to apply.                                            |
-| Disabled   | `disabled`  | boolean                                   |      | When true, this value should no longer be used.                              |
+| Title      | Property    | Type                                      | Req. | Description                                                                                                                                                                                                    |
+|------------|-------------|-------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Extensions | `ext`       | [tax.Extensions](/draft-0/tax/extensions) |      | Only apply this rate if one of the tags is present in the invoice. Tags []cbc.Key `json:"tags,omitempty" jsonschema:"title=Tags"` Ext map of keys that can be used to filter to determine if the rate applies. |
+| Since      | `since`     | [cal.Date](/draft-0/cal/date)             |      | Date from which this value should be applied.                                                                                                                                                                  |
+| Percent    | `percent`   | [num.Percentage](/draft-0/num/percentage) | true | Percent rate that should be applied                                                                                                                                                                            |
+| Surcharge  | `surcharge` | [num.Percentage](/draft-0/num/percentage) |      | An additional surcharge to apply.                                                                                                                                                                              |
+| Disabled   | `disabled`  | boolean                                   |      | When true, this value should no longer be used.                                                                                                                                                                |
 

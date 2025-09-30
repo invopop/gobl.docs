@@ -18,65 +18,8 @@ title: Poland
 
 ### VAT Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>standard</code> | Standard Rate | 23.0% |  |
-| <code>reduced</code> | First Reduced Rate | 8.0% |  |
-| <code>super-reduced</code> | Second Reduced Rate | 5.0% |  |
-| <code>zero</code> | Zero Rate | 0.0% |  |
-| <code>exempt</code> | Exempt |  |  |
-| <code>special</code> | Special Rate |  |  |
-
-## Correction Definitions
-
-Auto-generation of corrective invoices or credit and debit notes is
-supported.
-
-A reason is required in the <code>reason</code> field
-when submitting the correction options.
-
-### Invoice Types
-
-The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-
-### Stamp Keys
-
-Stamp keys from the previous invoice that need to be referenced:
-- <code>ksef-id</code>
-
-### Extension Keys
-
-One or all of the following extensions may be required as part of the correction
-options. See the [Extensions](#extensions) section for possible values.
-- <code>pl-ksef-effective-date</code>
-
-## Extensions
-### Special VAT Extensions for KSeF
-
-<Accordion title="pl-ksef-vat-special">
-
-| Code | Name |
-| ---- | ---- |
-| <code>taxi</code> | Taxi Rate |
-</Accordion>
-### Zero VAT Extensions for KSeF
-
-<Accordion title="pl-ksef-vat-zero">
-
-| Code | Name |
-| ---- | ---- |
-| <code>wdt</code> | WDT |
-| <code>domestic</code> | Domestic |
-| <code>export</code> | Export |
-</Accordion>
-### Effective date code.
-
-<Accordion title="pl-ksef-effective-date">
-
-| Code | Name |
-| ---- | ---- |
-| <code>1</code> | Original |
-| <code>2</code> | Correction |
-| <code>3</code> | Other |
-</Accordion>
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| <code>general</code> | <code>standard</code> | General Rate | 23.0% |  |
+| <code>reduced</code> | <code>standard</code> | First Reduced Rate | 8.0% |  |
+| <code>super-reduced</code> | <code>standard</code> | Second Reduced Rate | 5.0% |  |
