@@ -1,0 +1,347 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "GOBL",
+  "logo": {
+    "light": "static/logo_long_dark.svg",
+    "dark": "static/logo_long_light.svg"
+  },
+  "favicon": "static/favicon.svg",
+  "colors": {
+    "primary": "#15c6f6",
+    "light": "#15c6f6",
+    "dark": "#15c6f6"
+  },
+  "integrations": {
+    "plausible": {
+      "domain": "docs.gobl.org"
+    }
+  },
+  "styling": {
+    "codeblocks": "system"
+  },
+  "navigation": {
+    "anchors": [
+      {
+        "anchor": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "introduction",
+              "overview/components",
+              "overview/tools",
+              "overview/versions",
+              "overview/schemas",
+              "overview/numbers",
+              "overview/rounding",
+              "overview/canonicalization",
+              "overview/support",
+              "overview/inside"
+            ]
+          },
+          {
+            "group": "Use Cases",
+            "pages": [
+              "use-cases/invoicing"
+            ]
+          },
+          {
+            "group": "Quick Start",
+            "pages": [
+              "quick-start/builder",
+              "quick-start/cli",
+              "quick-start/invoices"
+            ]
+          },
+          {
+            "group": "Tax Regimes",
+            "pages": [
+              "regimes/overview",
+              {
+                "group": "Countries",
+                "pages": [
+                  "regimes/ae",
+                  "regimes/at",
+                  "regimes/be",
+                  "regimes/br",
+                  "regimes/ca",
+                  "regimes/ch",
+                  "regimes/co",
+                  "regimes/de",
+                  "regimes/el",
+                  "regimes/es",
+                  "regimes/fr",
+                  "regimes/gb",
+                  "regimes/in",
+                  "regimes/it",
+                  "regimes/mx",
+                  "regimes/nl",
+                  "regimes/pl",
+                  "regimes/pt",
+                  "regimes/us"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Addons",
+            "pages": [
+              "addons/overview",
+              {
+                "group": "Definitions",
+                "pages": [
+                  "addons/br-nfse-v1",
+                  "addons/co-dian-v2",
+                  "addons/de-xrechnung-v3",
+                  "addons/de-zugferd-v2",
+                  "addons/es-facturae-v3",
+                  "addons/es-tbai-v1",
+                  "addons/es-verifactu-v1",
+                  "addons/eu-en16931-v2017",
+                  "addons/fr-choruspro-v1",
+                  "addons/fr-facturx-v1",
+                  "addons/gr-mydata-v1",
+                  "addons/it-sdi-v1",
+                  "addons/it-ticket-v1",
+                  "addons/mx-cfdi-v4",
+                  "addons/pt-saft-v1"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Catalogues",
+            "pages": [
+              "catalogues/overview",
+              {
+                "group": "Definitions",
+                "pages": [
+                  "catalogues/cef",
+                  "catalogues/iso",
+                  "catalogues/untdid"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Schemas (Draft 0)",
+            "pages": [
+              "draft-0",
+              "draft-0/envelope",
+              {
+                "group": "Bill",
+                "pages": [
+                  "draft-0/bill/charge",
+                  "draft-0/bill/correction_options",
+                  "draft-0/bill/delivery",
+                  "draft-0/bill/delivery_details",
+                  "draft-0/bill/discount",
+                  "draft-0/bill/invoice",
+                  "draft-0/bill/line",
+                  "draft-0/bill/line_charge",
+                  "draft-0/bill/line_discount",
+                  "draft-0/bill/order",
+                  "draft-0/bill/ordering",
+                  "draft-0/bill/payment",
+                  "draft-0/bill/payment_line",
+                  "draft-0/bill/payment_details",
+                  "draft-0/bill/sub_line",
+                  "draft-0/bill/tax",
+                  "draft-0/bill/totals",
+                  "draft-0/bill/tracking"
+                ]
+              },
+              {
+                "group": "Cal",
+                "pages": [
+                  "draft-0/cal/date",
+                  "draft-0/cal/date_time",
+                  "draft-0/cal/period",
+                  "draft-0/cal/time"
+                ]
+              },
+              {
+                "group": "CBC",
+                "pages": [
+                  "draft-0/cbc/code",
+                  "draft-0/cbc/code_map",
+                  "draft-0/cbc/definition",
+                  "draft-0/cbc/key",
+                  "draft-0/cbc/meta",
+                  "draft-0/cbc/source"
+                ]
+              },
+              {
+                "group": "Currency",
+                "pages": [
+                  "draft-0/currency/amount",
+                  "draft-0/currency/code",
+                  "draft-0/currency/exchange_rate"
+                ]
+              },
+              {
+                "group": "DSig",
+                "pages": [
+                  "draft-0/dsig/digest",
+                  "draft-0/dsig/signature"
+                ]
+              },
+              {
+                "group": "Head",
+                "pages": [
+                  "draft-0/head/header",
+                  "draft-0/head/link",
+                  "draft-0/head/stamp"
+                ]
+              },
+              {
+                "group": "I18n",
+                "pages": [
+                  "draft-0/i18n/string"
+                ]
+              },
+              {
+                "group": "L10n",
+                "pages": [
+                  "draft-0/l10n/code",
+                  "draft-0/l10n/iso_country_code",
+                  "draft-0/l10n/tax_country_code"
+                ]
+              },
+              {
+                "group": "Note",
+                "pages": [
+                  "draft-0/note/message"
+                ]
+              },
+              {
+                "group": "Num",
+                "pages": [
+                  "draft-0/num/amount",
+                  "draft-0/num/percentage"
+                ]
+              },
+              {
+                "group": "Org",
+                "pages": [
+                  "draft-0/org/address",
+                  "draft-0/org/attachment",
+                  "draft-0/org/coordinates",
+                  "draft-0/org/document_ref",
+                  "draft-0/org/email",
+                  "draft-0/org/identity",
+                  "draft-0/org/image",
+                  "draft-0/org/inbox",
+                  "draft-0/org/item",
+                  "draft-0/org/name",
+                  "draft-0/org/note",
+                  "draft-0/org/party",
+                  "draft-0/org/person",
+                  "draft-0/org/registration",
+                  "draft-0/org/telephone",
+                  "draft-0/org/unit",
+                  "draft-0/org/website"
+                ]
+              },
+              {
+                "group": "Pay",
+                "pages": [
+                  "draft-0/pay/advance",
+                  "draft-0/pay/card",
+                  "draft-0/pay/credit_transfer",
+                  "draft-0/pay/direct_debit",
+                  "draft-0/pay/due_date",
+                  "draft-0/pay/instructions",
+                  "draft-0/pay/online",
+                  "draft-0/pay/terms"
+                ]
+              },
+              {
+                "group": "Addons",
+                "pages": [
+                  {
+                    "group": "MX",
+                    "pages": [
+                      "draft-0/regimes/mx/food_vouchers",
+                      "draft-0/regimes/mx/food_vouchers_employee",
+                      "draft-0/regimes/mx/food_vouchers_line",
+                      "draft-0/regimes/mx/fuel_account_balance",
+                      "draft-0/regimes/mx/fuel_account_item",
+                      "draft-0/regimes/mx/fuel_account_line",
+                      "draft-0/regimes/mx/fuel_account_tax"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Schema",
+                "pages": [
+                  "draft-0/schema/object"
+                ]
+              },
+              {
+                "group": "Tax",
+                "pages": [
+                  "draft-0/tax/addon_def",
+                  "draft-0/tax/catalogue_def",
+                  "draft-0/tax/category_def",
+                  "draft-0/tax/category_total",
+                  "draft-0/tax/combo",
+                  "draft-0/tax/correction_definition",
+                  "draft-0/tax/correction_set",
+                  "draft-0/tax/extensions",
+                  "draft-0/tax/identity",
+                  "draft-0/tax/rate_def",
+                  "draft-0/tax/rate_total",
+                  "draft-0/tax/rate_total_surcharge",
+                  "draft-0/tax/rate_value_def",
+                  "draft-0/tax/regime_def",
+                  "draft-0/tax/scenario",
+                  "draft-0/tax/scenario_note",
+                  "draft-0/tax/scenario_set",
+                  "draft-0/tax/set",
+                  "draft-0/tax/tag_set",
+                  "draft-0/tax/total"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Builder",
+          "href": "https://build.gobl.org",
+          "icon": "gear"
+        },
+        {
+          "anchor": "GitHub",
+          "href": "https://github.com/invopop/gobl",
+          "icon": "github"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://community.invopop.com/c/gobl/",
+          "icon": "comments"
+        }
+      ]
+    }
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/invopop/gobl"
+    }
+  },
+  "footer": {
+    "socials": {
+      "twitter": "https://twitter.com/goInvopop",
+      "linkedin": "https://www.linkedin.com/company/invopop/",
+      "github": "https://github.com/invopop/gobl"
+    }
+  },
+  "theme": "mint"
+}
