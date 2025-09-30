@@ -8,6 +8,7 @@ import (
 	"text/template"
 
 	_ "github.com/invopop/gobl"
+	"github.com/invopop/gobl/cal"
 	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/i18n"
 	"github.com/invopop/gobl/pkg/here"
@@ -242,6 +243,7 @@ func (g *regimeGenerator) getExtensionKeys(tc *tax.CategoryDef) []cbc.Key {
 // getRateRows converts tax rates into individual rows for the table
 func (g *regimeGenerator) getRateRows(tc *tax.CategoryDef) []*RateRow {
 	var rows []*RateRow
+	today := cal.Today()
 
 	for _, rate := range tc.Rates {
 		if len(rate.Values) == 0 {
@@ -252,51 +254,32 @@ func (g *regimeGenerator) getRateRows(tc *tax.CategoryDef) []*RateRow {
 			continue
 		}
 
-		// Group values by extension signature, keeping only the most recent for each
-		groups := make(map[string]*tax.RateValueDef)
-		for _, value := range rate.Values {
-			sig := g.extSignature(value.Ext)
-			if _, exists := groups[sig]; !exists {
-				groups[sig] = value
-			}
-		}
-
-		// Separate default and extension values
-		var defaultVal *tax.RateValueDef
-		var extVals []*tax.RateValueDef
-		for sig, val := range groups {
-			if sig == "default" {
-				defaultVal = val
-			} else {
-				extVals = append(extVals, val)
-			}
-		}
-
-		// Sort extensions by key for consistency
-		sort.Slice(extVals, func(i, j int) bool {
-			for k1 := range extVals[i].Ext {
-				for k2 := range extVals[j].Ext {
-					return string(k1) < string(k2)
-				}
-			}
-			return false
-		})
+		// Collect all unique extension combinations
+		extCombinations := g.getExtensionCombinations(rate)
 
 		// Build combined row
 		var percents []string
 		combinedExt := make(map[cbc.Key]string)
+		extKeyVals := make(map[cbc.Key][]string)
 
-		// Add default first
+		// Add default value first (no extensions)
+		defaultVal := rate.Value(today, nil)
 		if defaultVal != nil {
 			percents = append(percents, g.formatPercent(defaultVal))
 		}
 
-		// Add extensions
-		extKeyVals := make(map[cbc.Key][]string)
-		for _, val := range extVals {
-			percents = append(percents, g.formatPercent(val))
-			for key, extVal := range val.Ext {
-				extKeyVals[key] = append(extKeyVals[key], extVal.String())
+		// Sort extension combinations for consistent ordering
+		sort.Slice(extCombinations, func(i, j int) bool {
+			return g.extSignature(extCombinations[i]) < g.extSignature(extCombinations[j])
+		})
+
+		// Add extension values
+		for _, ext := range extCombinations {
+			if val := rate.Value(today, ext); val != nil {
+				percents = append(percents, g.formatPercent(val))
+				for key, extVal := range ext {
+					extKeyVals[key] = append(extKeyVals[key], extVal.String())
+				}
 			}
 		}
 
@@ -316,6 +299,27 @@ func (g *regimeGenerator) getRateRows(tc *tax.CategoryDef) []*RateRow {
 	}
 
 	return rows
+}
+
+// getExtensionCombinations extracts all unique extension combinations from a rate
+func (g *regimeGenerator) getExtensionCombinations(rate *tax.RateDef) []tax.Extensions {
+	seen := make(map[string]tax.Extensions)
+
+	for _, value := range rate.Values {
+		if len(value.Ext) > 0 { // Skip default values (no extensions)
+			sig := g.extSignature(value.Ext)
+			if _, exists := seen[sig]; !exists {
+				seen[sig] = value.Ext
+			}
+		}
+	}
+
+	combinations := make([]tax.Extensions, 0, len(seen))
+	for _, ext := range seen {
+		combinations = append(combinations, ext)
+	}
+
+	return combinations
 }
 
 // extSignature creates a unique signature for extension combinations
