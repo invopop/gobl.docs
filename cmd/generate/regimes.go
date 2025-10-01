@@ -3,9 +3,13 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"sort"
+	"strings"
 	"text/template"
 
 	_ "github.com/invopop/gobl"
+	"github.com/invopop/gobl/cal"
+	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/i18n"
 	"github.com/invopop/gobl/pkg/here"
 	"github.com/invopop/gobl/tax"
@@ -14,6 +18,16 @@ import (
 type regimeGenerator struct {
 	generator
 	regime *tax.RegimeDef
+}
+
+// RateRow represents a single row in the tax rates table
+type RateRow struct {
+	Rate        cbc.Key
+	Keys        []cbc.Key
+	Name        i18n.String
+	Description i18n.String
+	Percent     string
+	Extensions  map[cbc.Key]string // extension key -> extension value
 }
 
 func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
@@ -28,9 +42,12 @@ func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
-		"rate":     g.taxRateValue,
-		"joinKeys": joinKeys,
-		"codeMap":  codeMap,
+		"rate":          g.taxRateValue,
+		"extension":     g.taxRateExtension,
+		"extensionKeys": g.getExtensionKeys,
+		"rateRows":      g.getRateRows,
+		"joinKeys":      joinKeys,
+		"codeMap":       codeMap,
 	})
 	return g
 }
@@ -115,11 +132,13 @@ func (g *regimeGenerator) taxCategory(tc *tax.CategoryDef) error {
 		{{- end }}
 
 		{{- if .Rates }}
+		{{- $extKeys := extensionKeys . }}
+		{{- $rows := rateRows . }}
 
-		| Rate | Keys | Name | Percents | Description |
-		| ---- | ---- | ---- | -------- | ----------- |
-		{{- range .Rates }}
-		| <code>{{ .Rate }}</code> | {{ joinKeys .Keys }} | {{t .Name }} | {{ rate . }} | {{t .Description }} |
+		| Rate | Keys | Name |{{- range $extKeys }} {{.}} |{{- end }} Percents | Description |
+		| ---- | ---- | ---- |{{- range $extKeys }} --------- |{{- end }} -------- | ----------- |
+		{{- range $row := $rows }}
+		| <code>{{ $row.Rate }}</code> | {{ joinKeys $row.Keys }} | {{t $row.Name }} |{{- range $extKeys }} {{ index $row.Extensions . }} |{{- end }} {{ $row.Percent }} | {{t $row.Description }} |
 		{{- end }}
 		{{- else }}
 		No rates defined.
@@ -131,12 +150,198 @@ func (g *regimeGenerator) taxRateValue(tr *tax.RateDef) string {
 	if len(tr.Values) == 0 {
 		return ""
 	}
+
+	// First, try to find a value without extensions (default case)
+	for _, v := range tr.Values {
+		if len(v.Ext) == 0 {
+			item := v.Percent.String()
+			if v.Surcharge != nil {
+				item = fmt.Sprintf("%s (+%s)", item, v.Surcharge.String())
+			}
+			return item
+		}
+	}
+
+	// If no value without extensions found, use the first one
 	v := tr.Values[0]
 	item := v.Percent.String()
 	if v.Surcharge != nil {
 		item = fmt.Sprintf("%s (+%s)", item, v.Surcharge.String())
 	}
 	return item
+}
+
+func (g *regimeGenerator) taxRateExtension(tr *tax.RateDef) string {
+	if len(tr.Values) == 0 {
+		return ""
+	}
+
+	// Check if there are any values with extensions
+	hasExtensions := false
+	for _, v := range tr.Values {
+		if len(v.Ext) > 0 {
+			hasExtensions = true
+			break
+		}
+	}
+
+	if !hasExtensions {
+		return ""
+	}
+
+	// If there are extensions, show them
+	extensions := make([]string, 0)
+	for _, v := range tr.Values {
+		if len(v.Ext) > 0 {
+			for key, value := range v.Ext {
+				extInfo := fmt.Sprintf("%s: %s (%s)", key, value, v.Percent.String())
+				extensions = append(extensions, extInfo)
+			}
+		}
+	}
+
+	if len(extensions) == 0 {
+		return ""
+	}
+
+	// Join all extensions with line breaks for better readability
+	result := ""
+	for i, ext := range extensions {
+		if i > 0 {
+			result += "<br/>"
+		}
+		result += ext
+	}
+	return result
+}
+
+// getExtensionKeys returns all unique extension keys used in a tax category
+func (g *regimeGenerator) getExtensionKeys(tc *tax.CategoryDef) []cbc.Key {
+	keySet := make(map[cbc.Key]bool)
+
+	for _, rate := range tc.Rates {
+		for _, value := range rate.Values {
+			for key := range value.Ext {
+				keySet[key] = true
+			}
+		}
+	}
+
+	keys := make([]cbc.Key, 0, len(keySet))
+	for key := range keySet {
+		keys = append(keys, key)
+	}
+
+	// Sort keys for consistent output
+	sort.Slice(keys, func(i, j int) bool {
+		return string(keys[i]) < string(keys[j])
+	})
+
+	return keys
+}
+
+// getRateRows converts tax rates into individual rows for the table
+func (g *regimeGenerator) getRateRows(tc *tax.CategoryDef) []*RateRow {
+	var rows []*RateRow
+	today := cal.Today()
+
+	for _, rate := range tc.Rates {
+		if len(rate.Values) == 0 {
+			rows = append(rows, &RateRow{
+				Rate: rate.Rate, Keys: rate.Keys, Name: rate.Name, Description: rate.Description,
+				Percent: "", Extensions: make(map[cbc.Key]string),
+			})
+			continue
+		}
+
+		// Collect all unique extension combinations
+		extCombinations := g.getExtensionCombinations(rate)
+
+		// Build combined row
+		var percents []string
+		combinedExt := make(map[cbc.Key]string)
+		extKeyVals := make(map[cbc.Key][]string)
+
+		// Add default value first (no extensions)
+		defaultVal := rate.Value(today, nil)
+		if defaultVal != nil {
+			percents = append(percents, g.formatPercent(defaultVal))
+		}
+
+		// Sort extension combinations for consistent ordering
+		sort.Slice(extCombinations, func(i, j int) bool {
+			return g.extSignature(extCombinations[i]) < g.extSignature(extCombinations[j])
+		})
+
+		// Add extension values
+		for _, ext := range extCombinations {
+			if val := rate.Value(today, ext); val != nil {
+				percents = append(percents, g.formatPercent(val))
+				for key, extVal := range ext {
+					extKeyVals[key] = append(extKeyVals[key], extVal.String())
+				}
+			}
+		}
+
+		// Format extension columns
+		for key, vals := range extKeyVals {
+			prefix := ""
+			if defaultVal != nil {
+				prefix = "<br/>"
+			}
+			combinedExt[key] = prefix + strings.Join(vals, "<br/>")
+		}
+
+		rows = append(rows, &RateRow{
+			Rate: rate.Rate, Keys: rate.Keys, Name: rate.Name, Description: rate.Description,
+			Percent: strings.Join(percents, " <br/>"), Extensions: combinedExt,
+		})
+	}
+
+	return rows
+}
+
+// getExtensionCombinations extracts all unique extension combinations from a rate
+func (g *regimeGenerator) getExtensionCombinations(rate *tax.RateDef) []tax.Extensions {
+	seen := make(map[string]tax.Extensions)
+
+	for _, value := range rate.Values {
+		if len(value.Ext) > 0 { // Skip default values (no extensions)
+			sig := g.extSignature(value.Ext)
+			if _, exists := seen[sig]; !exists {
+				seen[sig] = value.Ext
+			}
+		}
+	}
+
+	combinations := make([]tax.Extensions, 0, len(seen))
+	for _, ext := range seen {
+		combinations = append(combinations, ext)
+	}
+
+	return combinations
+}
+
+// extSignature creates a unique signature for extension combinations
+func (g *regimeGenerator) extSignature(ext tax.Extensions) string {
+	if len(ext) == 0 {
+		return "default"
+	}
+	var keys []string
+	for k, v := range ext {
+		keys = append(keys, fmt.Sprintf("%s:%s", k, v.String()))
+	}
+	sort.Strings(keys)
+	return strings.Join(keys, "|")
+}
+
+// formatPercent formats a percentage with optional surcharge
+func (g *regimeGenerator) formatPercent(val *tax.RateValueDef) string {
+	percent := val.Percent.String()
+	if val.Surcharge != nil {
+		percent = fmt.Sprintf("%s (+%s)", percent, val.Surcharge.String())
+	}
+	return percent
 }
 
 func (g *regimeGenerator) scenarios() error {
