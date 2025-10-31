@@ -19,7 +19,9 @@ Tax identification in Brazil is provided either through a CNPJ for businesses or
 | <code>ICMS</code> | ICMS | State value-added tax |
 | <code>IPI</code> | IPI | Federal value-added Tax |
 | <code>PIS</code> | PIS | Social Integration Program |
+| <code>PISRet</code> | PIS (Retained) | Social Integration Program Retained |
 | <code>COFINS</code> | COFINS | Contribution for the Financing of Social Security |
+| <code>COFINSRet</code> | COFINS (Retained) | Contribution for the Financing of Social Security Retained |
 | <code>CSLL</code> | CSLL | Social Contribution on Net Profit |
 | <code>INSS</code> | INSS | National Social Security Institute Withholding |
 | <code>IRRF</code> | IRRF | Income Tax Withheld at Source |
@@ -33,3 +35,14 @@ supported.
 
 The types of invoices that can be created with a preceding definition:
 - <code>credit-note</code>
+
+## Extensions
+### IBGE Municipality Code	
+
+The municipality code as defined by the IBGE (Brazilian Institute of Geography and
+Statistics).
+
+<Accordion title="br-ibge-municipality">
+
+Pattern: <code>^\d{7}$</code>
+</Accordion>

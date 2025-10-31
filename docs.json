@@ -79,6 +79,8 @@
                   "regimes/nl",
                   "regimes/pl",
                   "regimes/pt",
+                  "regimes/se",
+                  "regimes/sg",
                   "regimes/us"
                 ]
               }
@@ -91,6 +93,7 @@
               {
                 "group": "Definitions",
                 "pages": [
+                  "addons/br-nfe-v4",
                   "addons/br-nfse-v1",
                   "addons/co-dian-v2",
                   "addons/de-xrechnung-v3",
