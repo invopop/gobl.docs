@@ -1,0 +1,112 @@
+---
+title: Brazil NF-e 4.00
+---
+
+Key: <code>br-nfe-v4</code>
+
+## Extensions
+### Fiscal Document Model Code	
+
+Code used to identify the fiscal document model. It will be
+determined automatically by GOBL during normalization according to
+the scenario definitions.
+
+<Accordion title="br-nfe-model">
+
+| Code | Name |
+| ---- | ---- |
+| <code>55</code> | NF-e |
+| <code>65</code> | NFC-e |
+</Accordion>
+### Buyer Presence Indicator	
+
+Indicator of the buyer's presence at the commercial establishment
+at the time of the operation. This field is used to classify the
+type of commercial transaction according to Brazilian tax regulations.
+
+<Accordion title="br-nfe-presence">
+
+| Code | Name |
+| ---- | ---- |
+| <code>0</code> | Not applicable |
+| <code>1</code> | In-person operation |
+| <code>2</code> | Non-in-person operation, via Internet |
+| <code>3</code> | Non-in-person operation, Tele-service |
+| <code>4</code> | NFC-e in operation with home delivery |
+| <code>5</code> | In-person operation, outside establishment |
+| <code>9</code> | Non-in-person operation, others |
+</Accordion>
+### Payment Method	
+
+Code used to identify the payment method used for the transaction.
+
+<Accordion title="br-nfe-payment-means">
+
+| Code | Name |
+| ---- | ---- |
+| <code>01</code> | Cash |
+| <code>02</code> | Check |
+| <code>03</code> | Credit Card |
+| <code>04</code> | Debit Card |
+| <code>05</code> | Store Credit |
+| <code>10</code> | Food Voucher |
+| <code>11</code> | Meal Voucher |
+| <code>12</code> | Gift Voucher |
+| <code>13</code> | Fuel Voucher |
+| <code>15</code> | Bank Slip (Boleto) |
+| <code>16</code> | Bank Deposit |
+| <code>17</code> | Instant Payment (PIX) |
+| <code>18</code> | Bank Transfer, Digital Wallet |
+| <code>19</code> | Loyalty Program, Cashback, Virtual Credit |
+| <code>90</code> | No Payment |
+| <code>99</code> | Others |
+</Accordion>
+### CFOP (Fiscal Operations and Services Code)	
+
+Four-digit code that classifies the nature of goods movements and service
+provisions for ICMS purposes in Brazil. The first digit indicates the
+operation origin/destination (1–3 for entries; 5–7 for exits), and the
+remaining digits identify the specific type of operation.
+
+<Accordion title="br-nfe-cfop">
+
+Pattern: <code>^[1-7]\d{3}$</code>
+</Accordion>
+### Fiscal Incentive Indicator	
+
+Indicates whether a party benefits from a fiscal incentive.
+
+<Accordion title="br-nfe-fiscal-incentive">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Has incentive |
+| <code>2</code> | Does not have incentive |
+</Accordion>
+### Tax Regime Code	
+
+Indicates the tax regime that a party is subject to.
+
+<Accordion title="br-nfe-regime">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Simples Nacional |
+| <code>2</code> | Simples Nacional, Excess |
+| <code>3</code> | Normal |
+</Accordion>
+### Special Tax Regime Code	
+
+Indicates a special tax regime that a party is subject to.
+
+<Accordion title="br-nfe-special-regime">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Municipal micro-enterprise |
+| <code>2</code> | Estimated |
+| <code>3</code> | Professional Society |
+| <code>4</code> | Cooperative |
+| <code>5</code> | Single micro-entrepreneur (MEI) |
+| <code>6</code> | Micro-enterprise or Small Business (ME EPP) |
+</Accordion>
