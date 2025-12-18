@@ -1,0 +1,293 @@
+---
+title: Spain SII V1.x
+---
+
+Key: <code>es-sii-v1</code>
+
+## Sources
+- [Suministro Inmediato de Información (SII) at AEAT portal](https://sede.agenciatributaria.gob.es/Sede/iva/suministro-inmediato-informacion.html)
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>es-sii-doc-type</code>
+
+## Extensions
+### Invoice Type	
+
+Code used to identify the type of invoice being sent or received. This will be determined
+automatically by GOBL during normalization according to the scenario definitions.
+
+The following codes are not covered by GOBL's scenarios and will need to be set manually if
+needed: `F4`, `F5`, `F6`, `R2`, `R3`, `R4`, `AJ`, `LC`.
+
+Maps to the `TipoFactura` field. Values correspond to the L2_EMI (issued invoices) and
+L2_RECI (received invoices) lists.
+
+<Accordion title="es-sii-doc-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>F1</code> | Invoice (Article 6, 7.2 and 7.3 of RD 1619/2012) |
+| <code>F2</code> | Simplified invoice (Article 6.1.d) of RD 1619/2012) |
+| <code>F3</code> | Invoice issued as replacement of simplified invoice |
+| <code>F4</code> | Summary entry of invoices |
+| <code>F5</code> | Imports (DUA) |
+| <code>F6</code> | Accounting justifications |
+| <code>R1</code> | Rectified invoice: articles 80.1, 80.2, and 80.6 |
+| <code>R2</code> | Rectified invoice: article 80.3 |
+| <code>R3</code> | Rectified invoice: article 80.4 |
+| <code>R4</code> | Rectified invoice: other |
+| <code>R5</code> | Rectified invoice: simplified invoices |
+| <code>AJ</code> | Profit margin adjustment |
+| <code>LC</code> | Customs - Complementary settlement |
+</Accordion>
+### Corrective Invoice Type	
+
+Correction type code used to identify the type of correction being made.
+
+Code is determined automatically according to the invoice type:
+
+| Invoice Type  | Code |
+| ------------- | ---- |
+| `corrective`  | `S`  |
+| `credit-note` | `I`  |
+| `debit-note`  | `I`  |
+
+Maps to the `TipoRectificativa` field. Values correspond to the L5 list.
+
+<Accordion title="es-sii-correction-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>S</code> | Substitution |
+| <code>I</code> | Differences |
+</Accordion>
+### Exemption Reason	
+
+Exemption code used to explain why the operation is exempt from taxes.
+
+The follow mappings will be made automatically by GOBL during normalization:
+
+| Tax Key           | Exemption Codes            |
+|-------------------|----------------------------|
+| `exempt`          | `E1` (default), `E6`       |
+| `export`          | `E2` (default), `E3`, `E4` |
+| `intra-community` | `E5`                       |
+
+Maps to the field `CausaExencion`. Values correspond to the L9 list.
+
+Note: This extension is **mutually exclusive** with `es-sii-outside-scope`.
+
+<Accordion title="es-sii-exempt">
+
+| Code | Name |
+| ---- | ---- |
+| <code>E1</code> | Exempt pursuant to Art. 20 (internal operations). |
+| <code>E2</code> | Exempt pursuant to Art. 21 (exports of goods). |
+| <code>E3</code> | Exempt pursuant to Art. 22 (operations asimilated to exports). |
+| <code>E4</code> | Exempt pursuant to Art. 23 and 24 (temporary deposit, customs and fiscal regimes, and other situations). |
+| <code>E5</code> | Exempt pursuant to Art. 25 (delivery of goods destined to another Member State). |
+| <code>E6</code> | Exempt pursuant to other reasons |
+</Accordion>
+### Type of Operation Outside Scope	
+
+Type of operation not subject to VAT.
+
+This extension is used to determine which tax amount field should be reported in the SII
+payload:
+
+- `other` will set the `ImportePorArticulos7_14_Otros` field.
+- `location` will set the `ImporteTAIReglasLocalizacion` field.
+
+GOBL will attempt to automatically assign operation type codes based on tax key:
+
+| Operation Type | Tax Key                   |
+| -------------- | ------------------------- |
+| `other`        | `outside-scope`           |
+| `location`     | `outside-scope` (default) |
+
+Doesn't map directly to any field. Used internally to determine how to report the tax amount.
+
+Note: This extension is **mutually exclusive** with `es-sii-exempt`.
+
+<Accordion title="es-sii-outside-scope">
+
+| Code | Name |
+| ---- | ---- |
+| <code>other</code> | Outside scope - Articles 7, 14, others |
+| <code>location</code> | Outside scope - Due to location rules |
+</Accordion>
+### Special Regime or Relevance Key	
+
+Identify the regime applied to the operation.
+
+The regime key must be assigned for each tax combo. If no regime key is provided, GOBL will
+try to assign a code from the following tax combo contexts:
+
+| Combo Context  | Regime Code |
+| -------------- | ----------- |
+| Key `standard` | `01`        |
+| Key `export`   | `02`        |
+
+Maps to the field `ClaveRegimenEspecialOTrascendencia`. Values correspond to the L3.1
+(issued invoices) and L3.2 (received invoices) lists.
+
+<Accordion title="es-sii-regime">
+
+| Code | Name |
+| ---- | ---- |
+| <code>01</code> | General regime operation |
+| <code>02</code> | Export (L3.1) / Operations for which businesses pay compensation in acquisitions from individuals under the special regime for agriculture, livestock, and fishing (L3.2) |
+| <code>03</code> | Special regime for used goods, art objects, antiques and collectibles |
+| <code>04</code> | Special regime for investment gold |
+| <code>05</code> | Special regime for travel agencies |
+| <code>06</code> | Special regime for VAT/IGIC groups (Advanced Level) |
+| <code>07</code> | Special cash accounting regime |
+| <code>08</code> | Operations subject to IPSI / IGIC (Tax on Production, Services and Imports / Canary Islands General Indirect Tax) |
+| <code>09</code> | Billing of travel agency services acting as mediators in name and on behalf of others |
+| <code>10</code> | Collection of professional fees or rights on behalf of third parties |
+| <code>11</code> | Business premises rental operations |
+| <code>12</code> | Business premises rental operations not subject to withholding |
+| <code>13</code> | Business premises rental operations subject and not subject to withholding (L3.1) / Invoice corresponding to an import (reported without being associated with a DUA) (L3.2) |
+| <code>14</code> | Invoice with pending VAT/IGIC accrual in work certifications for Public Administration (L3.1) / First half of 2017 and other invoices prior to inclusion in the SII (L3.2) |
+| <code>15</code> | Invoice with pending VAT/IGIC accrual in successive tract operations |
+| <code>16</code> | First half of 2017 and other invoices prior to inclusion in the SII |
+| <code>17</code> | Operation covered by one of the regimes provided for in Chapter XI of Title IX (OSS and IOSS) |
+</Accordion>
+### Identification Type	
+
+Identity code used to identify the type of identity document used by the customer.
+
+The regular Party Tax Identity is preferred over using a specific identity type code, and
+will be mapped automatically as follows:
+
+- Spanish Tax IDs will be mapped to the `NIF` field.
+- EU Tax IDs will be mapped to the `IDOtro\IDType` field with code `02`.
+- Non-EU Tax IDs will be mapped to the `IDOtro\IDType` field with code `04`.
+
+SII will perform validation on both Spanish and EU Tax IDs, so it is important to provide
+the correct details.
+
+The following identity `key` values will be mapped automatically to an extension by the
+addon:
+
+| Identity Key | Code |
+| ------------ | ---- |
+| `passport`   | `03` |
+| `foreign`    | `04` |
+| `resident`   | `05` |
+| `other`      | `06` |
+
+The `07` "not registered in census" code is not mapped automatically, but can be provided
+directly if needed.
+
+Example identity of a UK passport:
+
+```
+{
+	"identities": [
+		{
+			"key": "passport",
+			"country": "GB",
+			"code": "123456789"
+		}
+	]
+}
+```
+
+Will be normalized to:
+
+```
+{
+	"identities": [
+		{
+			"key": "passport",
+			"country": "GB",
+			"code": "123456789",
+			"ext": {
+				"es-sii-identity-type": "03"
+			}
+		}
+	]
+}
+```
+
+Maps to the field `IDOtro\IDType`. Values correspond to the L4 list.
+
+<Accordion title="es-sii-identity-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>02</code> | NIF-VAT Identity (VIES) |
+| <code>03</code> | Passport |
+| <code>04</code> | Foreign Identity Document |
+| <code>05</code> | Residential Certificate |
+| <code>06</code> | Other Identity Document |
+| <code>07</code> | Not registered in census |
+</Accordion>
+### Simplified Invoice Art. 7.2 and 7.3, RD 1619/2012	
+
+This extension covers a specific use-case when the customer specifically requests that the
+invoice includes their fiscal details, but they are not registered for tax.
+
+Can only be true when the invoice type (`TipoFactura`) is one of: `F1`, `F3`, `R1`, `R2`,
+`R3`, or `R4`.
+
+Maps to the `FacturaSimplificadaArticulos7.2_7.3` field. Values correspond to the L26 list.
+
+<Accordion title="es-sii-simplified-art7273">
+
+| Code | Name |
+| ---- | ---- |
+| <code>S</code> | Yes |
+| <code>N</code> | No |
+</Accordion>
+### Issued by Third Party or Recipient	
+
+Indicates whether the invoice is issued by a third party or by the customer themselves.
+
+The default value is `N` (No).
+
+The `self-billed` tag will automatically set this extension in the invoice to `S` (Yes).
+
+If the `issuer` field is set in the invoice's ordering section, then this extension will be
+set to `S` (Yes) too.
+
+Maps to the field `EmitidaPorTercerosODestinatario`. Values correspond to the L10 list.
+
+<Accordion title="es-sii-third-party-issuer">
+
+| Code | Name |
+| ---- | ---- |
+| <code>S</code> | Yes |
+| <code>N</code> | No |
+</Accordion>
+### Product Type	
+
+Product type code used to differentiate between goods and services for the purpose of
+reporting breakdowns in the SII format.
+
+This extension is used to determine the type of operation breakdown when generating the SII
+report. When provided, the value will be used to generate the `DesgloseTipoOperacion` field,
+selecting between `PrestacionServices` (provision of services) or `Entrega` (delivery of
+goods).
+
+This extension is optional; if not provided, the breakdown will use `DesgloseFactura` instead
+of `DesgloseTipoOperacion`.
+
+Doesn't map directly to any field. Used internally to structure the breakdown data.
+
+<Accordion title="es-sii-product">
+
+| Code | Name |
+| ---- | ---- |
+| <code>goods</code> | Delivery of goods |
+| <code>services</code> | Provision of services |
+</Accordion>

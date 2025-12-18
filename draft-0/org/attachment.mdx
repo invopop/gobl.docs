@@ -16,9 +16,9 @@ An Attachment provides a structure to be used to attach documents inside a GOBL 
 | UUID        | `uuid`        | string                              |      | Universally Unique Identifier.                                                         |
 | Key         | `key`         | [cbc.Key](/draft-0/cbc/key)         |      | Key used to identify the attachment inside the document.                               |
 | Code        | `code`        | [cbc.Code](/draft-0/cbc/code)       |      | Code used to identify the payload of the attachment.                                   |
-| Name        | `name`        | string                              | true | Filename of the attachment.                                                            |
+| Name        | `name`        | string                              |      | Filename of the attachment, will override name retrieved from URL.                     |
 | Description | `description` | string                              |      | Details of why the attachment is being included and details on what it contains.       |
-| URL         | `url`         | string                              |      | URL of where to find the attachment. Prefer using this field over the Data field.      |
+| URL         | `url`         | string                              | true | URL of where to find the attachment.                                                   |
 | Digest      | `digest`      | [dsig.Digest](/draft-0/dsig/digest) |      | Digest is used to verify the integrity of the attachment when downloaded from the URL. |
 | MIME Type   | `mime`        | string                              |      | MIME type of the attachment.                                                           |
 
