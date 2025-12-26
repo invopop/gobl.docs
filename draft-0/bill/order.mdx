@@ -13,8 +13,8 @@ Order documents are used for the initial part of a order-to-invoice process wher
 
 | Title             | Property         | Type                                                              | Req. | Description                                                                                                                                                                                                                                                                                                                                            |
 |-------------------|------------------|-------------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tax Regime        | `$regime`        | [l10n.TaxCountryCode](/draft-0/l10n/tax_country_code)             |      |                                                                                                                                                                                                                                                                                                                                                        |
-| Addons            | `$addons`        | array of [cbc.Key](/draft-0/cbc/key)                              |      | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document.                                                                                                                                                                                                             |
+| Tax Regime        | `$regime`        | [tax.RegimeCode](/draft-0/tax/regime_code)                        |      |                                                                                                                                                                                                                                                                                                                                                        |
+| Addons            | `$addons`        | [tax.AddonList](/draft-0/tax/addon_list)                          |      | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document.                                                                                                                                                                                                             |
 | Tags              | `$tags`          | array of [cbc.Key](/draft-0/cbc/key)                              |      | Tags are used to help identify specific tax scenarios or requirements that may apply changes to the contents of the document or imply a specific meaning. Converters may use tags to help identify specific situations that do not have a specific extension, for example; self-billed or partial invoices may be identified by their respective tags. |
 | UUID              | `uuid`           | string                                                            |      | Universally Unique Identifier.                                                                                                                                                                                                                                                                                                                         |
 | Type              | `type`           | [cbc.Key](/draft-0/cbc/key)                                       |      | Type of the order.                                                                                                                                                                                                                                                                                                                                     |
@@ -45,34 +45,6 @@ Order documents are used for the initial part of a order-to-invoice process wher
 | Complements       | `complements`    | array of [schema.Object](/draft-0/schema/object)                  |      | Additional complementary objects that add relevant information to the order.                                                                                                                                                                                                                                                                           |
 | Meta              | `meta`           | [cbc.Meta](/draft-0/cbc/meta)                                     |      | Additional semi-structured data that doesn't fit into the body of the order.                                                                                                                                                                                                                                                                           |
 | Attachments       | `attachments`    | array of [org.Attachment](/draft-0/org/attachment)                |      | Attachments provide additional information or supporting documents that are not included in the main document. It is important that attachments are not used for alternative versions of the PDF, for that, see "links" inside the envelope headers.                                                                                                   |
-
-## Tax Regime Values
-
-| Value | Description              |
-|-------|--------------------------|
-| `AE`  | United Arab Emirates     |
-| `AR`  | Argentina                |
-| `AT`  | Austria                  |
-| `BE`  | Belgium                  |
-| `BR`  | Brazil                   |
-| `CA`  | Canada                   |
-| `CH`  | Switzerland              |
-| `CO`  | Colombia                 |
-| `DE`  | Germany                  |
-| `EL`  | Greece                   |
-| `ES`  | Spain                    |
-| `FR`  | France                   |
-| `GB`  | United Kingdom           |
-| `IE`  | Ireland                  |
-| `IN`  | India                    |
-| `IT`  | Italy                    |
-| `MX`  | Mexico                   |
-| `NL`  | The Netherlands          |
-| `PL`  | Poland                   |
-| `PT`  | Portugal                 |
-| `SE`  | Sweden                   |
-| `SG`  | Singapore                |
-| `US`  | United States of America |
 
 ## Type Values
 

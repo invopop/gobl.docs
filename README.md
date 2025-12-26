@@ -21,7 +21,7 @@ mintlify dev
 There are two sources:
 
  * Internal script for catalagues, addons, and regime definitions.
- * Ruby generate tool (`gobl.generate`) for transforming schemas.
+ * Ruby generator tool (`gobl.generator`) for transforming schemas.
 
 For the Ruby Generate tool, see that repo directly for details.
 
@@ -30,4 +30,6 @@ For the internal scripts, simply run:
 ```bash
 go build ./cmd/generate && ./generate
 ```
+
+After running any generation script, you'll need to double check that everything is linked to from the `docs.json` file.
 
