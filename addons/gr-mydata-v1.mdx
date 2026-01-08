@@ -15,7 +15,7 @@ generate the myDATA XML reporting files.
 ## Extensions
 ### VAT rate	
 
-Greece has three VAT rates: standard, reduced and super-reduced. Each of these rates are reduced by 
+Greece has three VAT rates: standard, reduced and super-reduced. Each of these rates are reduced by
 30% on the islands of Leros, Lesbos, Kos, Samos and Chios. The tax authority identifies each rate
 with a specific VAT category.
 
@@ -58,7 +58,7 @@ Please, note that GOBL will automatically set the proper `gr-mydata-vat-rate` co
 		}
 	],
 }
-```				
+```
 
 <Accordion title="gr-mydata-vat-rate">
 
@@ -99,7 +99,7 @@ IAPR MyDATA invoice type code:
 | `11.3` | Simplified Invoice                              | `standard`    | `simplified`               |
 | `11.4` | Retail Sales Credit Note                        | `credit-note` | `simplified`               |
 | `11.5` | Retail Sales Receipt on Behalf of Third Parties | `credit-note` | `goods`, `simplified`, `self-billed` |
-			
+
 For example, this is how you set the IAPR invoice type explicitly:
 
 ```json
@@ -375,11 +375,99 @@ See the Income Classification Category for more information.
 | <code>E3_598_001</code> | Sales of goods belonging to excise duty |
 | <code>E3_598_003</code> | Sales on behalf of farmers through an agricultural cooperative e.t.c. |
 </Accordion>
+### Tax type	
+
+Greek invoices may contain charges or allowances for taxes and fees different from VAT. The
+`gr-mydata-tax-type` extension at charge level must be used to specify the tax type.
+
+GOBL will attempt to automatically set the `gr-mydata-tax-type` extension. The following
+table shows the mappings used: first, GOBL will check the charge's `key` field; if that
+does not match, it will then check for the presence of the related extension:
+
+| Code | Name       | GOBL Charge Key | Extension              |
+| ---- | ---------- | --------------- | ---------------------- |
+| `2`  | Fee        |                 | `gr-mydata-fee`        |
+| `3`  | Other Tax  | `tax`           | `gr-mydata-other-tax`  |
+| `4`  | Stamp Duty | `stamp-duty`    | `gr-mydata-stamp-duty` |
+
+For example (manual):
+
+```json
+"charges": [
+	{
+		"amount": "10.00",
+		"reason": "Stamp duty fee",
+		"ext": {
+			"gr-mydata-tax-type": "2",
+			"gr-mydata-fee": "13",
+		}
+	}
+]
+```
+
+<Accordion title="gr-mydata-tax-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Withholding Tax |
+| <code>2</code> | Fee |
+| <code>3</code> | Other Tax |
+| <code>4</code> | Stamp Duty |
+| <code>5</code> | Deduction |
+</Accordion>
+### Fee category	
+
+Greek invoices may contain charges for different types of fees. In GOBL, you must use
+the `gr-mydata-fee` extension at charge level to specify the specific fee category
+for the charge.
+
+For example:
+
+```json
+"charges": [
+	{
+		"amount": "10.00",
+		"reason": "Subscription fee",
+		"ext": {
+			"gr-mydata-tax-type": "2",
+			"gr-mydata-fee": "13",
+		}
+	}
+]
+```
+
+<Accordion title="gr-mydata-fee">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Monthly account up to 50 euros 12% |
+| <code>2</code> | Monthly account from 50.01 to 100 euros 15% |
+| <code>3</code> | Monthly account from 100.01 to 150 euros 18% |
+| <code>4</code> | Monthly account from 150.01 euros and above 20% |
+| <code>5</code> | Mobile telephony fee based on call time value (12%) |
+| <code>6</code> | Subscription television fee 10% |
+| <code>7</code> | Fixed-line subscription fee 5% |
+| <code>8</code> | Environmental fee & plastic bag v. 2339/2001 art. 6a 0.07 euros per item |
+| <code>9</code> | Postal service contribution 2% |
+| <code>10</code> | Other fees |
+| <code>11</code> | Petroleum fees |
+| <code>12</code> | Postal service contribution |
+| <code>13</code> | Monthly account per connection (10%) |
+| <code>14</code> | Mobile and mobile telephony fee based on call time value (10%) |
+| <code>15</code> | Mobile and mobile telephony fee for natural persons aged 15 to 29 years (0%) |
+| <code>16</code> | Environmental protection contribution for plastic products 0.04 cents per item [article 4 v. 4736/2020] |
+| <code>17</code> | Recycling fee 0.08 cents per item [article 80 v. 4819/2021] |
+| <code>18</code> | Accommodation fee |
+| <code>19</code> | Fee on gross revenues of restaurants and related establishments |
+| <code>20</code> | Fee on gross revenues of entertainment centers |
+| <code>21</code> | Fee on gross revenues of casinos |
+| <code>22</code> | Other fees on gross revenues |
+</Accordion>
 ### Other taxes category	
 
-Certain myDATA invoice types (_e.g._, 8.2 for the accommodation tax) require a category
-for other taxes to be provided. In GOBL, you can use the `gr-mydata-other-tax` extension
-at charge level.
+Greek invoices may contain charges for different taxes other than VAT. The
+`gr-mydata-other-tax` extension at charge level must be used to specify the specific
+other tax category for the charge.
 
 For example:
 
@@ -387,8 +475,9 @@ For example:
 "charges": [
 	{
 		"amount": "3.00",
-		"reason": "Accommodation tax",
+		"reason": "Climate Crisis Fee",
 		"ext": {
+			"gr-mydata-tax-type": "3",
 			"gr-mydata-other-tax": "8",
 		}
 	}
@@ -399,23 +488,64 @@ For example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | a1) 20% fire insurance premiums |
-| <code>2</code> | a2) 20% fire insurance premiums |
-| <code>3</code> | b) 4% life insurance premiums |
-| <code>4</code> | c) 15% other insurance premiums |
-| <code>5</code> | d) 0% tax-exempt insurance premiums |
-| <code>6</code> | Hotels 1-2 stars 0,50 € |
-| <code>7</code> | Hotels 3 stars 1,50 € |
-| <code>8</code> | Hotels 4 stars 3,00 € |
-| <code>9</code> | Hotels 5 stars 4,00 € |
-| <code>10</code> | Rental rooms - Furnished rooms - Apartments 0,50 € |
-| <code>11</code> | Special 5% tax on tv-broadcast commercials (EFTD) |
-| <code>12</code> | 10% luxury tax on the taxable value of intra-community acquired goods and those imported from third countries |
-| <code>13</code> | 10% luxury tax on the selling price before VAT for domestically produced goods |
-| <code>14</code> | 80% Public fees on the admission ticket price for casinos |
-| <code>15</code> | Fire industry insurance premiums 20% |
-| <code>16</code> | Customs duties- Taxes |
+| <code>1</code> | a1) fire insurance premiums 20% |
+| <code>2</code> | a2) fire insurance premiums 20% |
+| <code>3</code> | b) life insurance premiums 4% |
+| <code>4</code> | c) insurance premiums for other branches 15% |
+| <code>5</code> | d) tax-exempt insurance premiums 0% |
+| <code>6</code> | Hotels 1-2 stars 0.50 € |
+| <code>7</code> | Hotels 3 stars 1.50 € |
+| <code>8</code> | Hotels 4 stars 3.00 € |
+| <code>9</code> | Hotels 4 stars 4.00 € |
+| <code>10</code> | Rented - furnished rooms - apartments 0.50 € |
+| <code>11</code> | Special tax on advertisements broadcast on television (EFTD) 5% |
+| <code>12</code> | 3.1 Luxury tax 10% on the taxable value for intra-Community acquisitions and imported from third countries 10% |
+| <code>13</code> | 3.2 Luxury tax 10% on the selling price before VAT for domestically produced goods 10% |
+| <code>14</code> | State rights on casino tickets (80% on the ticket) |
+| <code>15</code> | Fire insurance premiums 20% |
+| <code>16</code> | Other Customs Duties-Taxes |
 | <code>17</code> | Other Taxes |
-| <code>18</code> | Charges of other Taxes |
-| <code>19</code> | Special consumption tax |
+| <code>18</code> | Charges of Other Taxes |
+| <code>19</code> | EFK |
+| <code>20</code> | Hotels 1-2 stars 1.50€ (per Room/Night) |
+| <code>21</code> | Hotels 3 stars 3.00€ (per Room/Night) |
+| <code>22</code> | Hotels 4 stars 7.00€ (per Room/Night) |
+| <code>23</code> | Hotels 5 stars 10.00€ (per Room/Night) |
+| <code>24</code> | Rented furnished rooms – apartments 1.50€ (per Room/Night) |
+| <code>25</code> | Short-term rental properties 1.50€ |
+| <code>26</code> | Short-term rental properties detached houses over 80 sq.m. 10.00€ |
+| <code>27</code> | Self-catering accommodation – tourist furnished villas (villas) 10.00€ |
+| <code>28</code> | Short-term rental properties 0.50€ |
+| <code>29</code> | Short-term rental properties detached houses over 80 sq.m. 4.00€ |
+| <code>30</code> | Self-catering accommodation – tourist furnished villas (villas) 4.00€ |
+</Accordion>
+### Stamp duty coefficient category	
+
+Greek invoices may contain charges for stamp duty. The `gr-mydata-stamp-duty` extension
+at charge level must be used to specify the specific stamp duty coefficient category
+for the charge.
+
+For example:
+
+```json
+"charges": [
+	{
+		"amount": "12.00",
+		"reason": "Stamp duty",
+		"ext": {
+			"gr-mydata-tax-type": "4",
+			"gr-mydata-stamp-duty": "1"
+		}
+	}
+]
+```
+
+<Accordion title="gr-mydata-stamp-duty">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Coefficient 1.2% |
+| <code>2</code> | Coefficient 2.4% |
+| <code>3</code> | Coefficient 3.6% |
+| <code>4</code> | Other cases |
 </Accordion>

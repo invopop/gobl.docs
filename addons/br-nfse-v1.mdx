@@ -88,3 +88,48 @@ Indicates a special tax regime that a party is subject to.
 | <code>5</code> | Single micro-entrepreneur (MEI) |
 | <code>6</code> | Micro-enterprise or Small Business (ME EPP) |
 </Accordion>
+### Operation Indicator	
+
+Indicates the operation type for the determination of the IBS and CBS taxes by the
+tax authorities.
+
+Maps to the `cIndOp` field in the NFS-e national layout.
+
+List of possible values:
+
+* https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/rtc/anexovii-indop_ibscbs_v1-00-00.xlsx
+
+<Accordion title="br-nfse-operation">
+
+Pattern: <code>^\d{6}$</code>
+</Accordion>
+### Tax Status Code (CST)	
+
+Indicates the tax status of the operation for the determination of the IBS and CBS
+taxes by the tax authorities.
+
+Maps to the `CST` field in the NFS-e national layout.
+
+List of possible values:
+
+* https://dfe-portal.svrs.rs.gov.br/DFE/ClassificacaoTributaria
+
+<Accordion title="br-nfse-tax-status">
+
+Pattern: <code>^\d{3}$</code>
+</Accordion>
+### Tax Classification Code	
+
+Indicates the tax classification code for the determination of the IBS and CBS taxes
+by the tax authorities.
+
+Maps to the `cClassTrib` field in the NFS-e national layout.
+
+List of possible values:
+
+* https://dfe-portal.svrs.rs.gov.br/DFE/ClassificacaoTributaria
+
+<Accordion title="br-nfse-tax-class">
+
+Pattern: <code>^\d{6}$</code>
+</Accordion>
