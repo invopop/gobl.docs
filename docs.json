@@ -95,6 +95,7 @@
               {
                 "group": "Definitions",
                 "pages": [
+                  "addons/ar-arca-v4",
                   "addons/br-nfe-v4",
                   "addons/br-nfse-v1",
                   "addons/co-dian-v2",
