@@ -1,0 +1,316 @@
+---
+title: Argentina ARCA V4
+---
+
+Key: <code>ar-arca-v4</code>
+
+Support for the Argentina ARCA v4 standard for electronic invoicing.
+
+## Sources
+- [Argentina ARCA V4](https://www.afip.gob.ar/ws/documentacion/manuales/manual-desarrollador-ARCA-COMPG-v4-0.pdf)
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+- <code>debit-note</code>
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- <code>ar-arca-doc-type</code>
+
+## Extensions
+### Argentina ARCA Document Type	
+
+Code used to identify the type of document being issued.
+
+This can always be set directly. If not provided, GOBL will automatically determine it during
+normalization based on the following rules:
+
+Type C (Simplified Tax Scheme / Monotributo supplier): If the invoice has the
+`monotax` tag set, the document type will be `11` (Invoice C), `13` (Credit Note C),
+or `12` (Debit Note C).
+
+Type A (B2B with VAT-registered customers): If the customer's `ar-arca-vat-status` extension
+is one of `1` (Registered Company), `6` (Monotributo Responsible), `13` (Social Monotributista),
+or `16` (Promoted Independent Worker), the document type will be `1` (Invoice A), `3` (Credit
+Note A), or `2` (Debit Note A).
+
+Type B (B2C or other scenarios): For all other cases (final consumers, foreign customers,
+exempt entities, or when no customer is provided), the document type will be `6` (Invoice B),
+`8` (Credit Note B), or `7` (Debit Note B).
+
+For other document types the value must be set manually.
+
+<Accordion title="ar-arca-doc-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Invoice A |
+| <code>2</code> | Debit Note A |
+| <code>3</code> | Credit Note A |
+| <code>4</code> | Receipt A |
+| <code>5</code> | Cash Sales Note A |
+| <code>6</code> | Invoice B |
+| <code>7</code> | Debit Note B |
+| <code>8</code> | Credit Note B |
+| <code>9</code> | Receipt B |
+| <code>10</code> | Cash Sales Note B |
+| <code>11</code> | Invoice C |
+| <code>12</code> | Debit Note C |
+| <code>13</code> | Credit Note C |
+| <code>15</code> | Receipt C |
+| <code>34</code> | Invoices A per Annex I, Section A, subsection f), R.G. No. 1415 |
+| <code>35</code> | Vouchers B per Annex I, Section A, subsection f), R.G. No. 1415 |
+| <code>39</code> | Other Vouchers A compliant with R.G. No. 1415 |
+| <code>40</code> | Other Vouchers B compliant with R.G. No. 1415 |
+| <code>49</code> | Used Goods Purchase Invoice to Final Consumer |
+| <code>51</code> | Invoice A with Legend 'Subject to Withholding' |
+| <code>52</code> | Debit Note A with Legend 'Subject to Withholding' |
+| <code>53</code> | Credit Note A with Legend 'Subject to Withholding' |
+| <code>54</code> | Receipt A with Legend 'Subject to Withholding' |
+| <code>60</code> | Sales Account and Product Settlement A |
+| <code>61</code> | Sales Account and Product Settlement B |
+| <code>63</code> | Settlement A |
+| <code>64</code> | Settlement B |
+| <code>201</code> | MiPyMEs Electronic Credit Invoice (FCE) A |
+| <code>202</code> | MiPyMEs Electronic Debit Note (FCE) A |
+| <code>203</code> | MiPyMEs Electronic Credit Note (FCE) A |
+| <code>206</code> | MiPyMEs Electronic Credit Invoice (FCE) B |
+| <code>207</code> | MiPyMEs Electronic Debit Note (FCE) B |
+| <code>208</code> | MiPyMEs Electronic Credit Note (FCE) B |
+| <code>211</code> | MiPyMEs Electronic Credit Invoice (FCE) C |
+| <code>212</code> | MiPyMEs Electronic Debit Note (FCE) C |
+| <code>213</code> | MiPyMEs Electronic Credit Note (FCE) C |
+</Accordion>
+### Argentina ARCA Concept (Goods, services, or both)	
+
+Code used to identify the invoice concept, indicating whether the invoice covers
+goods, services, or both.
+
+This extension is automatically determined by GOBL based on the `key` field of each
+line item:
+
+- `1` (Products): All line items have `key` set to `goods`.
+- `2` (Services): All line items have `key` empty, unset, or set to any value other than `goods`.
+- `3` (Products and Services): The invoice contains a mix of both goods and services.
+
+When the concept is `2` (Services) or `3` (Products and Services), the invoice must
+include an ordering period and payment terms with due dates.
+
+<Accordion title="ar-arca-concept">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Goods |
+| <code>2</code> | Services |
+| <code>3</code> | Goods and services |
+</Accordion>
+### Argentina ARCA Tax Type	
+
+Code used to identify the type of tax applied as a charge. This is used for taxes other than
+VAT that need to be included in the invoice (national taxes, provincial taxes, withholdings, etc.).
+
+These taxes must be added as invoice charges (not in line items) with the charge `key` set
+to `tax`, a `percent` value (required, amounts are not accepted), and this extension to
+specify the tax type.
+
+Example - Tax applied to invoice total:
+
+```json
+"charges": [
+	{
+		"key": "tax",
+		"percent": "3%",
+		"ext": {
+			"ar-arca-tax-type": "1"
+		}
+	}
+]
+```
+
+Example - Tax applied to a specific base:
+
+```json
+"charges": [
+	{
+		"key": "tax",
+		"percent": "3%",
+		"base": "1000.00",
+		"ext": {
+			"ar-arca-tax-type": "1"
+		}
+	}
+]
+```
+
+Validation rules:
+
+- When a charge has `key: tax`, this extension is required.
+- The `percent` field is required when this extension is present.
+- When using code `99` (Other), the charge `reason` field is required to describe the tax.
+
+<Accordion title="ar-arca-tax-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | National Taxes |
+| <code>2</code> | Provincial Taxes |
+| <code>3</code> | Municipal Taxes |
+| <code>4</code> | Internal Taxes |
+| <code>5</code> | Gross Income Tax |
+| <code>6</code> | VAT Prepayment |
+| <code>7</code> | Gross Income Tax Prepayment |
+| <code>8</code> | Municipal Taxes Prepayment |
+| <code>9</code> | Other Prepayments |
+| <code>13</code> | VAT Not Categorized Prepayment |
+| <code>99</code> | Other |
+</Accordion>
+### Argentina ARCA VAT Rate	
+
+Code used to identify the VAT rate applied to line items.
+
+This extension is automatically determined by GOBL based on the tax rate key defined in
+the Argentine tax regime:
+
+- `zero` rate (0%) → code `3`
+- `reduced` rate (10.5%) → code `4`
+- `standard` rate (21%) → code `5`
+- `increased` rate (27%) → code `6`
+
+For the special reduced rates of 5% and 2.5%, the extension must be set manually on the
+line tax as these are not covered by the standard rate keys:
+
+- 5% → code `8`
+- 2.5% → code `9`
+
+<Accordion title="ar-arca-vat-rate">
+
+| Code | Name |
+| ---- | ---- |
+| <code>3</code> | 0% |
+| <code>4</code> | 10.5% |
+| <code>5</code> | 21% |
+| <code>6</code> | 27% |
+| <code>8</code> | 5% |
+| <code>9</code> | 2.5% |
+</Accordion>
+### Argentina ARCA Customer Identity Type	
+
+Code used to identify the type of identity document in the customer's `identities` field.
+
+This extension is typically only needed for B2C operations where the customer needs to
+provide an identification number but does not have a tax ID. Common examples include
+DNI (code `96`), passport, or provincial identity cards.
+
+When the customer has a CUIT, CUIL, or a valid foreign tax identification number,
+these should be included in the `tax_id` field instead, and this extension is not required.
+
+Example usage for a final consumer with DNI:
+
+```json
+"customer": {
+	"name": "John Doe",
+	"identities": [
+		{
+			"code": "12345678",
+			"ext": {
+				"ar-arca-identity-type": "96"
+			}
+		}
+	],
+	"ext": {
+		"ar-arca-vat-status": "5"
+	}
+}
+```
+
+<Accordion title="ar-arca-identity-type">
+
+| Code | Name |
+| ---- | ---- |
+| <code>00</code> | CI Capital Federal |
+| <code>01</code> | CI Buenos Aires |
+| <code>02</code> | CI Catamarca |
+| <code>03</code> | CI Córdoba |
+| <code>04</code> | CI Corrientes |
+| <code>05</code> | CI Entre Ríos |
+| <code>06</code> | CI Jujuy |
+| <code>07</code> | CI Mendoza |
+| <code>08</code> | CI La Rioja |
+| <code>09</code> | CI Salta |
+| <code>10</code> | CI San Juan |
+| <code>11</code> | CI San Luis |
+| <code>12</code> | CI Santa Fe |
+| <code>13</code> | CI Santiago del Estero |
+| <code>14</code> | CI Tucumán |
+| <code>16</code> | CI Chaco |
+| <code>17</code> | CI Chubut |
+| <code>18</code> | CI Formosa |
+| <code>19</code> | CI Misiones |
+| <code>20</code> | CI Neuquén |
+| <code>21</code> | CI La Pampa |
+| <code>22</code> | CI Río Negro |
+| <code>23</code> | CI Santa Cruz |
+| <code>24</code> | CI Tierra del Fuego |
+| <code>80</code> | CUIT (Unique Tax Identification Number) |
+| <code>86</code> | CUIL (Unique Labor Identification Number) |
+| <code>87</code> | CDI |
+| <code>89</code> | LE |
+| <code>90</code> | LC |
+| <code>91</code> | Foreign CI |
+| <code>92</code> | In Process |
+| <code>93</code> | Birth Certificate |
+| <code>94</code> | Passport |
+| <code>95</code> | CI Bs. As. RNP |
+| <code>96</code> | DNI |
+| <code>99</code> | Final Consumer |
+</Accordion>
+### Customer VAT Status	
+
+Code used to identify the VAT status of the customer. This extension must be included
+in the customer's `ext` field when the customer is required.
+
+GOBL will automatically normalize this value based on the customer's tax identification:
+
+Customer without tax ID (final consumers): Defaults to `5` (Final Consumer). Also
+accepts `4` (Exempt Subject), `7` (Uncategorized), `10` (VAT Exempt Law 19640),
+or `15` (VAT Not Applicable).
+
+Customer with foreign tax ID: Defaults to `9` (Foreign Customer). Also accepts
+`8` (Foreign Supplier).
+
+Customer with Argentine tax ID (CUIT/CUIL): Defaults to `1` (Registered VAT Company).
+Also accepts `6` (Monotributo), `13` (Social Monotributista), `16` (Promoted Independent
+Worker), `4` (Exempt Subject), `7` (Uncategorized), `10` (VAT Exempt Law 19640),
+or `15` (VAT Not Applicable).
+
+The VAT status is validated against the document type:
+
+- Type A documents (`1`, `2`, `3`, etc.): Require VAT status `1`, `6`, `13`, or `16`.
+- Type B documents (`6`, `7`, `8`, etc.): Cannot have VAT status `1`, `6`, `13`, or `16`.
+- Document type `49` (Used Goods Purchase Invoice): Requires VAT status `5` (Final Consumer).
+
+<Accordion title="ar-arca-vat-status">
+
+| Code | Name |
+| ---- | ---- |
+| <code>1</code> | Registered VAT Company |
+| <code>4</code> | VAT Exempt Subject |
+| <code>5</code> | Final Consumer |
+| <code>6</code> | Monotributo Responsible |
+| <code>7</code> | Uncategorized Subject |
+| <code>8</code> | Foreign Supplier |
+| <code>9</code> | Foreign Customer |
+| <code>10</code> | VAT Exempt - Law N° 19.640 |
+| <code>13</code> | Social Monotributista |
+| <code>15</code> | VAT Not Applicable |
+| <code>16</code> | Promoted Independent Worker Monotributista |
+</Accordion>
