@@ -922,12 +922,6 @@ terms:
         name: "External document location"
         paths:
           - $.doc.attachments[*].uri
-      - id: BT-125
-        name: "Attached document"
-        paths:
-          - $.doc.attachments[*].data
-          - $.doc.attachments[*].mime
-          - $.doc.attachments[*].name
 
   - id: BG-25
     name: "INVOICE LINE"
@@ -968,7 +962,7 @@ terms:
         notes: |-
           Reflects the net amount of the line, after applying discounts or charges.
           GOBL also supports the `tax_included` property which when used implies that
-          the prices are tax-inclusive. In this case, its important to use the 
+          the prices are tax-inclusive. In this case, its important to use the
           "Remove Included Taxes" function of GOBL when converting.
       - id: BT-132
         name: "Referenced purchase order line reference"
@@ -1063,3 +1057,66 @@ terms:
         name: "PRICE DETAILS"
         paths:
           - $.doc.lines[*].item
+        terms:
+          - id: BT-146
+            name: "Item net price"
+            paths:
+              - $.doc.lines[*].item.price
+
+      - id: BG-30
+        name: "LINE VAT INFORMATION"
+        paths:
+          - $.doc.lines[*].taxes[cat='VAT']
+        terms:
+          - id: BT-151
+            name: "Invoiced item VAT category code"
+            paths:
+              - $.doc.lines[*].taxes[cat='VAT'].key
+              - $.doc.lines[*].taxes[cat='VAT'].ext['untdid-tax-category']
+            notes: |-
+              Taxes keys are mapped automatically to UNTDID 3505 tax category
+              codes or can be set manually if required.
+          - id: BT-152
+            name: "Invoiced item VAT rate"
+            paths:
+              - $.doc.lines[*].taxes[cat='VAT'].percent
+
+      - id: BG-31
+        name: "ITEM INFORMATION"
+        paths:
+          - $.doc.lines[*].item
+        terms:
+          - id: BT-153
+            name: "Item name"
+            paths:
+              - $.doc.lines[*].item.name
+          - id: BT-154
+            name: "Item description"
+            paths:
+              - $.doc.lines[*].item.description
+          - id: BT-155
+            name: "Item Seller's identifier"
+            paths:
+              - $.doc.lines[*].item.ref
+          - id: BT-156
+            name: "Item Buyer's identifier"
+            paths:
+              - $.doc.lines[*].item.identities[*].code
+          - id: BT-157
+            name: "Item standard identifier"
+            paths:
+              - $.doc.lines[*].item.identities[*].code
+              - $.doc.lines[*].item.identities[*].ext['iso-scheme-id']
+      - id: BR-32
+        name: "ITEM ATTRIBUTES"
+        paths:
+          - $.doc.lines[*].item.meta
+        terms:
+          - id: BT-160
+            name: "Item attribute name"
+            paths:
+              - $.doc.lines[*].item.meta.key
+          - id: BT-161
+            name: "Item attribute value"
+            paths:
+              - $.doc.lines[*].item.meta[key].value
