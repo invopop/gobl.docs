@@ -306,6 +306,7 @@
                   "draft-0/tax/rate_total_surcharge",
                   "draft-0/tax/rate_value_def",
                   "draft-0/tax/regime_def",
+                  "draft-0/tax/regime_code",
                   "draft-0/tax/scenario",
                   "draft-0/tax/scenario_note",
                   "draft-0/tax/scenario_set",
