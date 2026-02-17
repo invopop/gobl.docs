@@ -23,7 +23,12 @@ There are two sources:
  * Internal script for catalagues, addons, and regime definitions.
  * Ruby generator tool (`gobl.generator`) for transforming schemas.
 
-For the Ruby Generate tool, see that repo directly for details.
+For the Ruby Generate tool, see that repo directly for details. Generally, you can run:
+
+```bash
+rm -rf ./draft-0
+../gobl.generator/bin/generate -l markdown -i ../gobl/data/schemas -o ./draft-0
+```
 
 For the internal scripts, simply run:
 
