@@ -1,0 +1,58 @@
+---
+title: France CTC Flow 2
+---
+
+Key: <code>fr-ctc-flow2-v1</code>
+
+Support for the French CTC (Continuous Transaction Control) Flow 2 B2B
+e-invoicing requirements from the French electronic invoicing reform.
+
+This addon provides the necessary structures and validations to ensure compliance
+with the French CTC specifications for B2B electronic invoicing.
+
+It requires the EN16931 addon as it extends the European standard with French-specific
+requirements for the e-invoicing reform.
+
+This addon is required for regulated invoice. This refers to invoices between two parties 
+registered for VAT in France. This addon should not be used for invoices which should be reported.
+
+Note on currency conversion (BR-FR-CO-12): When an invoice is issued in a non-EUR
+currency, the gobl.ubl library will automatically handle the conversion to EUR and
+present the invoice with both the original currency and EUR equivalents for tax
+amounts, ensuring compliance with French accounting requirements.
+
+## Sources
+- [External Specifications](https://www.impots.gouv.fr/specifications-externes-b2b)
+
+## Extensions
+### Billing Mode	
+
+Code used to describe the billing framework of the invoice. The billing mode
+indicates the nature of goods/services and the payment context.
+
+Code prefixes indicate the invoice nature:
+- "B": Goods invoice (Biens)
+- "S": Services invoice
+- "M": Mixed/dual invoice (goods and services that are not accessory to each other)
+
+The numeric suffix indicates the payment type (1=deposit, 2=already paid,
+4=final after down payment, 5=subcontractor, 6=co-contractor, 7=e-reporting).
+
+<Accordion title="fr-ctc-billing-mode">
+
+| Code | Name |
+| ---- | ---- |
+| <code>B1</code> | Goods - Deposit invoice |
+| <code>B2</code> | Goods - Already paid invoice |
+| <code>B4</code> | Goods - Final invoice (after down payment) |
+| <code>B7</code> | Goods - E-reporting (VAT already collected) |
+| <code>S1</code> | Services - Deposit invoice |
+| <code>S2</code> | Services - Already paid invoice |
+| <code>S4</code> | Services - Final invoice (after down payment) |
+| <code>S5</code> | Services - Subcontractor invoice |
+| <code>S6</code> | Services - Co-contractor invoice |
+| <code>S7</code> | Services - E-reporting (VAT already collected) |
+| <code>M1</code> | Mixed - Deposit invoice |
+| <code>M2</code> | Mixed - Already paid invoice |
+| <code>M4</code> | Mixed - Final invoice (after down payment) |
+</Accordion>
