@@ -15,29 +15,17 @@ e-reporting (for example, B2C or cross-border transactions).
 ## Billing Mode
 
 Every invoice must carry a **billing mode** extension (`fr-ctc-billing-mode`) that
-describes the nature of the supply and the payment context. The code is made up of
-a letter prefix and a numeric suffix:
-
-| Prefix | Meaning |
-|--------|---------|
-| B | Goods (Biens) |
-| S | Services |
-| M | Mixed (goods and services that are not accessory to each other) |
-
-| Suffix | Meaning |
-|--------|---------|
-| 1 | Standard deposit invoice |
-| 2 | Already-paid invoice (payable amount = 0) |
-| 4 | Final invoice after one or more advance payments |
-| 5 | Subcontractor invoice (services only) |
-| 6 | Co-contractor invoice (services only) |
-| 7 | E-reporting invoice (VAT already collected) |
+describes the nature of the supply and the payment context. See the extension
+definition for the full list of accepted values.
 
 ## Identities
 
 A **SIREN** identity (9 digits) must be present on both the supplier and the customer
 for B2B invoices. The **SIRET** (14 digits) is optional; if provided without a SIREN,
 the addon will automatically derive the SIREN from the first nine digits of the SIRET.
+
+Note that the SIREN is not currently derived from the party's VAT number; it must
+be supplied explicitly as a separate identity. This may be added in a future release.
 
 The SIREN is automatically assigned the `legal` scope when no other identity on
 the party already carries that scope.
@@ -55,16 +43,17 @@ automatically.
 
 ## Required Notes
 
-Three invoice-level notes with specific UNTDID text-subject codes are mandatory:
+Every invoice must include at least three notes (BG-1) with the following
+UNTDID text-subject codes (BT-21):
 
-| Code | Purpose |
-|------|---------|
-| `PMT` | Payment terms |
-| `PMD` | Payment means |
-| `AAB` | Buyer accounting reference (BAR) |
+- `PMT`: A mandatory mention of the 40 EUR flat-fee penalty for recovery costs
+  that applies to late payments (BT-22).
+- `PMD`: The late-payment penalty conditions that apply to each individual
+  company's payment terms (BT-22).
+- `AAB`: A mention of any early-payment discount offered, or an explicit
+  statement that no discount applies (BT-22).
 
-The BAR note must contain one of the following treatment values: `B2B`, `B2BINT`,
-`B2C`, `OUTOFSCOPE`, or `ARCHIVEONLY`.
+The AAB note text must be one of: `B2B`, `B2BINT`, `B2C`, `OUTOFSCOPE`, or `ARCHIVEONLY`.
 
 ## Invoice Code
 
@@ -93,6 +82,10 @@ Code prefixes indicate the invoice nature:
 
 The numeric suffix indicates the payment type (1=deposit, 2=already paid,
 4=final after down payment, 5=subcontractor, 6=co-contractor, 7=e-reporting).
+
+The value is currently trusted as provided and is not normalised from other invoice
+fields. Automatic inference from document type and payment context may be added in
+a future release.
 
 <Accordion title="fr-ctc-billing-mode">
 
