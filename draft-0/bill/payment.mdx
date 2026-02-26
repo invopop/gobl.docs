@@ -13,8 +13,8 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 
 | Title             | Property         | Type                                                              | Req. | Description                                                                                                                                                                                                                                                                                                                                            |
 |-------------------|------------------|-------------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tax Regime        | `$regime`        | [l10n.TaxCountryCode](/draft-0/l10n/tax_country_code)             |      |                                                                                                                                                                                                                                                                                                                                                        |
-| Addons            | `$addons`        | array of [cbc.Key](/draft-0/cbc/key)                              |      | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document.                                                                                                                                                                                                             |
+| Tax Regime        | `$regime`        | [tax.RegimeCode](/draft-0/tax/regime_code)                        |      | Country code that identifies the tax regime applicable to the document. It determines which country-specific tax rules, normalizations, and validations are applied. It may be determined automatically via normalization of a supplier or issuer tax identity country code.                                                                           |
+| Addons            | `$addons`        | [tax.AddonList](/draft-0/tax/addon_list)                          |      | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document.                                                                                                                                                                                                             |
 | Tags              | `$tags`          | array of [cbc.Key](/draft-0/cbc/key)                              |      | Tags are used to help identify specific tax scenarios or requirements that may apply changes to the contents of the document or imply a specific meaning. Converters may use tags to help identify specific situations that do not have a specific extension, for example; self-billed or partial invoices may be identified by their respective tags. |
 | UUID              | `uuid`           | string                                                            |      | Universally Unique Identifier.                                                                                                                                                                                                                                                                                                                         |
 | Type              | `type`           | [cbc.Key](/draft-0/cbc/key)                                       |      | Type of payment document being issued.                                                                                                                                                                                                                                                                                                                 |
@@ -37,34 +37,6 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 | Notes             | `notes`          | array of [org.Note](/draft-0/org/note)                            |      | Unstructured information that is relevant to the payment, such as correction or additional legal details.                                                                                                                                                                                                                                              |
 | Complements       | `complements`    | array of [schema.Object](/draft-0/schema/object)                  |      | Additional complementary objects that add relevant information to the payment.                                                                                                                                                                                                                                                                         |
 | Meta              | `meta`           | [cbc.Meta](/draft-0/cbc/meta)                                     |      | Additional semi-structured data that doesn't fit into the body of the invoice.                                                                                                                                                                                                                                                                         |
-
-## Tax Regime Values
-
-| Value | Description              |
-|-------|--------------------------|
-| `AE`  | United Arab Emirates     |
-| `AR`  | Argentina                |
-| `AT`  | Austria                  |
-| `BE`  | Belgium                  |
-| `BR`  | Brazil                   |
-| `CA`  | Canada                   |
-| `CH`  | Switzerland              |
-| `CO`  | Colombia                 |
-| `DE`  | Germany                  |
-| `EL`  | Greece                   |
-| `ES`  | Spain                    |
-| `FR`  | France                   |
-| `GB`  | United Kingdom           |
-| `IE`  | Ireland                  |
-| `IN`  | India                    |
-| `IT`  | Italy                    |
-| `MX`  | Mexico                   |
-| `NL`  | The Netherlands          |
-| `PL`  | Poland                   |
-| `PT`  | Portugal                 |
-| `SE`  | Sweden                   |
-| `SG`  | Singapore                |
-| `US`  | United States of America |
 
 ## Type Values
 

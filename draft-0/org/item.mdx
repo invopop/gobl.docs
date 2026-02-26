@@ -21,10 +21,17 @@ Item is used to describe a single product or service.
 | Description        | `description` | string                                                |      | Detailed description of the item.                                                                                                        |
 | Images             | `images`      | array of [org.Image](/draft-0/org/image)              |      | Images associated with the item.                                                                                                         |
 | Currency           | `currency`    | [currency.Code](/draft-0/currency/code)               |      | Currency used for the item's price.                                                                                                      |
-| Price              | `price`       | [num.Amount](/draft-0/num/amount)                     |      | Base price of a single unit to be sold.                                                                                                  |
+| Price              | `price`       | [num.Amount](/draft-0/num/amount)                     |      | Base price of a single unit to be sold. Must be either zero or positive.                                                                 |
 | Alternative Prices | `alt_prices`  | array of [currency.Amount](/draft-0/currency/amount)  |      | AltPrices defines a list of prices with their currencies that may be used as an alternative to the item's base price.                    |
 | Unit               | `unit`        | [org.Unit](/draft-0/org/unit)                         |      | Unit of measure.                                                                                                                         |
 | Country of Origin  | `origin`      | [l10n.ISOCountryCode](/draft-0/l10n/iso_country_code) |      | Country code of where this item was from originally.                                                                                     |
 | Extensions         | `ext`         | [tax.Extensions](/draft-0/tax/extensions)             |      | Extension code map for any additional regime specific codes that may be required.                                                        |
 | Meta               | `meta`        | [cbc.Meta](/draft-0/cbc/meta)                         |      | Additional meta information that may be useful                                                                                           |
+
+## Key Values
+
+| Value      | Description |
+|------------|-------------|
+| `goods`    | Goods       |
+| `services` | Services    |
 

@@ -95,21 +95,25 @@
               {
                 "group": "Definitions",
                 "pages": [
+                  "addons/ar-arca-v4",
                   "addons/br-nfe-v4",
                   "addons/br-nfse-v1",
                   "addons/co-dian-v2",
                   "addons/de-xrechnung-v3",
                   "addons/de-zugferd-v2",
                   "addons/es-facturae-v3",
+                  "addons/es-sii-v1",
                   "addons/es-tbai-v1",
                   "addons/es-verifactu-v1",
                   "addons/eu-en16931-v2017",
                   "addons/fr-choruspro-v1",
+                  "addons/fr-ctc-flow2-v1",
                   "addons/fr-facturx-v1",
                   "addons/gr-mydata-v1",
                   "addons/it-sdi-v1",
                   "addons/it-ticket-v1",
                   "addons/mx-cfdi-v4",
+                  "addons/pl-favat-v3",
                   "addons/pt-saft-v1"
                 ]
               }
@@ -289,6 +293,7 @@
                 "group": "Tax",
                 "pages": [
                   "draft-0/tax/addon_def",
+                  "draft-0/tax/addon_list",
                   "draft-0/tax/catalogue_def",
                   "draft-0/tax/category_def",
                   "draft-0/tax/category_total",
