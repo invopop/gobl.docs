@@ -65,7 +65,7 @@ terms:
   - id: "BT-9"
     name: "Payment due date"
     paths:
-      - $.doc.payment.terms[*].due_dates
+      - $.doc.payment.terms.due_dates[*].date
     notes: |-
       Forms part of the general payment details.
 
@@ -73,10 +73,6 @@ terms:
     name: "Buyer reference"
     paths:
       - $.doc.ordering.code
-      - $.doc.ordering.identities[*].code
-    notes: |-
-      Additional codes defined with types or keys are available in the ordering identities
-      array.
 
   - id: "BT-11"
     name: "Project reference"
@@ -115,14 +111,12 @@ terms:
 
   - id: "BT-18"
     name: "Invoiced object identifier"
-    path:
-      - $.doc.ordering.code
+    paths:
       - $.doc.ordering.identities[*].code
       - $.doc.ordering.identities[*].ext['untdid-reference']
     notes: |-
-      GOBL supports multiple identifiers. If schema is important for the identifier
-      and the regular code cannot be used, assume the **first** identifier should be mapped
-      to the `BT-18` term.
+      Mapped to the first ordering identity. The scheme identifier (BT-18-1) is
+      stored in the `untdid-reference` extension when present.
 
   - id: "BT-19"
     name: "Buyer accounting reference"
@@ -133,7 +127,7 @@ terms:
   - id: "BT-20"
     name: "Payment terms"
     paths:
-      - $.doc.payment.terms
+      - $.doc.payment.terms.notes
 
   - id: "BG-1"
     name: "INVOICE NOTE"
@@ -179,7 +173,8 @@ terms:
       - id: "BT-25"
         name: "Preceding invoice reference"
         paths:
-          - $.doc.preceding
+          - $.doc.preceding[*].series
+          - $.doc.preceding[*].code
 
       - id: "BT-26"
         name: "Preceding invoice issue date"
@@ -214,17 +209,22 @@ terms:
       - id: "BT-29"
         name: "Seller identifier"
         paths:
-          - $.doc.supplier.uuid
-          - $.doc.supplier.identities
+          - $.doc.supplier.identities[*].code
+          - $.doc.supplier.identities[*].ext['iso-scheme-id']
         notes: |-
-          Supplier UUID is designed for use with internal systems of the document issuer.
-          dentifier schemes may be defined using extensions according to the standard
-          in use.
+          Identities without a scope and without `ext['iso-scheme-id']` map to the
+          plain party identifier. Identities with `ext['iso-scheme-id']` but no scope
+          map to the global identifier with a scheme.
 
       - id: "BT-30"
         name: "Seller legal registration identifier"
         paths:
-          - $.doc.supplier.identities
+          - $.doc.supplier.identities[*].code
+          - $.doc.supplier.identities[*].scope
+          - $.doc.supplier.identities[*].ext['iso-scheme-id']
+        notes: |-
+          Uses identities where `scope` is `"legal"`. The scheme identifier is
+          stored in `ext['iso-scheme-id']` when present.
 
       - id: "BT-31"
         name: "Seller VAT identifier"
@@ -234,9 +234,11 @@ terms:
       - id: "BT-32"
         name: "Seller tax registration identifier"
         paths:
-          - $.doc.supplier.identities
+          - $.doc.supplier.identities[*].code
+          - $.doc.supplier.identities[*].scope
         notes: |-
-          All non-VAT tax registration details can be defined in the `identities` array.
+          Uses identities where `scope` is `"tax"`. The tax scheme type is
+          stored in the identity `type` field.
 
       - id: "BT-33"
         name: "Seller additional legal information"
@@ -343,17 +345,22 @@ terms:
       - id: "BT-46"
         name: "Buyer identifier"
         paths:
-          - $.doc.customer.uuid
-          - $.doc.customer.identities
+          - $.doc.customer.identities[*].code
+          - $.doc.customer.identities[*].ext['iso-scheme-id']
         notes: |-
-          Customer UUID is designed for use with internal systems of the document issuer.
-          Identifier schemes may be defined using extensions according to the standard
-          in use.
+          Identities without a scope and without `ext['iso-scheme-id']` map to the
+          plain party identifier. Identities with `ext['iso-scheme-id']` but no scope
+          map to the global identifier with a scheme.
 
       - id: "BT-47"
         name: "Buyer legal registration identifier"
         paths:
-          - $.doc.customer.identities
+          - $.doc.customer.identities[*].code
+          - $.doc.customer.identities[*].scope
+          - $.doc.customer.identities[*].ext['iso-scheme-id']
+        notes: |-
+          Uses identities where `scope` is `"legal"`. The scheme identifier is
+          stored in `ext['iso-scheme-id']` when present.
 
       - id: "BT-48"
         name: "Buyer VAT identifier"
@@ -453,20 +460,21 @@ terms:
       - id: "BT-60"
         name: "Payee identifier"
         paths:
-          - $.doc.payment.payee.uuid
-          - $.doc.payment.payee.identities
+          - $.doc.payment.payee.identities[*].code
+          - $.doc.payment.payee.identities[*].ext['iso-scheme-id']
         notes: |-
-          Payee UUID is designed for use with internal systems of the document issuer.
-          Identifier schemes may be defined using extensions according to the standard
-          in use.
+          Identities without a scope map to the payee identifier. The scheme
+          identifier is stored in `ext['iso-scheme-id']` when present.
 
       - id: "BT-61"
         name: "Payee legal registration identifier"
         paths:
-          - $.doc.payment.payee.tax_id
-          - $.doc.payment.payee.identities
+          - $.doc.payment.payee.identities[*].code
+          - $.doc.payment.payee.identities[*].scope
+          - $.doc.payment.payee.identities[*].ext['iso-scheme-id']
         notes: |-
-          The payee's VAT ID may be provided as the primary legal registration identifier.
+          Uses identities where `scope` is `"legal"`. The scheme identifier is
+          stored in `ext['iso-scheme-id']` when present.
 
   - id: "BG-11"
     name: "SELLER TAX REPRESENTATIVE PARTY"
@@ -543,11 +551,9 @@ terms:
       - id: BT-71
         name: Deliver to location identifier
         paths:
-          - $.doc.delivery.receiver.uuid
-          - $.doc.delivery.receiver.identities
-          - $.doc.delivery.receiver.tax_id
+          - $.doc.delivery.identities
         notes: |-
-          Extensions in identities may be used to determine the scheme identifier if required.
+          Delivery location identifiers are stored in the delivery identities array, not on the receiver party. The identity label holds the scheme identifier if present.
       - id: BT-72
         name: "Actual delivery date"
         paths:
@@ -570,7 +576,7 @@ terms:
       - id: BG-15
         name: DELIVER TO ADDRESS
         paths:
-          - $.doc.delivery.address
+          - $.doc.delivery.receiver.addresses
         terms:
           - id: BT-75
             name: Deliver to address line 1
@@ -584,7 +590,7 @@ terms:
           - id: BT-76
             name: Deliver to address line 2
             paths:
-              - $.doc.delivery.reveiver.addresses[0].street_extra
+              - $.doc.delivery.receiver.addresses[0].street_extra
           - id: BT-165
             name: Deliver to address line 3
             paths: []
@@ -597,7 +603,7 @@ terms:
           - id: BT-78
             name: Deliver to postal code
             paths:
-              - $.doc.delivery.reveiver.addresses[0].code
+              - $.doc.delivery.receiver.addresses[0].code
           - id: BT-79
             name: Deliver to country subdivision
             paths:
@@ -615,20 +621,19 @@ terms:
       - id: BT-81
         name: Payment means type code
         paths:
-          - $.doc.payment.instructions.key
+          - $.doc.payment.instructions.ext["untdid-payment-means"]
         notes: |-
-          Mapping of GOBL payment means key to UNTDID 4461 codes is provided
-          in library will update extensions.
+          The UNTDID 4461 payment means code is stored in the extension.
+          The GOBL payment instructions key (e.g. "credit-transfer") is
+          mapped bidirectionally to the code by the libraries.
 
       - id: BT-82
         name: Payment means text
         paths:
-          - $.doc.payment.instructions.key
           - $.doc.payment.instructions.detail
         notes: |-
-          In GOBL, payment means keys are self-descriptive, but if additional
-          details are required, they can be provided in the detail or description
-          fields provided.
+          The libraries map the detail field directly to the payment means
+          text/information field in CII and UBL.
 
       - id: BT-83
         name: Remittance information
@@ -656,9 +661,11 @@ terms:
             name: Payment account name
             paths:
               - $.doc.payment.instructions.credit_transfer[*].name
+            notes: |-
+              CII conversion intentionally omits the account name output.
 
           - id: BT-86
-            name: Payment serivce provider identifier
+            name: Payment service provider identifier
             paths:
               - $.doc.payment.instructions.credit_transfer[*].bic
 
@@ -670,15 +677,15 @@ terms:
           - id: BT-87
             name: Payment card primary account number
             paths:
-              - $.doc.payment.instructions.card.first6
               - $.doc.payment.instructions.card.last4
             notes: |-
-              The first 6 and last 4 digits of the card number are split between two
-              fields to ensure that the full number is not stored in a single location.
+              Only the last 4 digits are mapped. The libraries extract the
+              last 4 digits when parsing a full PAN from XML.
+
           - id: BT-88
             name: Payment card holder name
             paths:
-              - $.doc.payment.instructions.card.name
+              - $.doc.payment.instructions.card.holder
 
       - id: BG-19
         name: DIRECT DEBIT
@@ -693,6 +700,9 @@ terms:
             name: Bank assigned creditor identifier
             paths:
               - $.doc.payment.instructions.direct_debit.creditor
+            notes: |-
+              In UBL, this is stored as a SEPA PartyIdentification on
+              the payee party (or supplier if no payee exists).
           - id: BT-91
             name: Debited account identifier
             paths:
@@ -862,7 +872,10 @@ terms:
       - id: "BT-115"
         name: "Amount due for payment"
         paths:
+          - $.doc.totals.payable
           - $.doc.totals.due
+        notes: |-
+          Libraries use `payable` by default, overridden by `due` if present.
 
   - id: "BG-23"
     name: "VAT BREAKDOWN"
@@ -872,15 +885,15 @@ terms:
       - id: "BT-116"
         name: "VAT category taxable amount"
         paths:
-          - $.doc.totals.taxes.categories[code='VAT'].base
+          - $.doc.totals.taxes.categories[code='VAT'].rates[*].base
       - id: "BT-117"
         name: "VAT category tax amount"
         paths:
-          - $.doc.totals.taxes.categories[code='VAT'].amount
+          - $.doc.totals.taxes.categories[code='VAT'].rates[*].amount
       - id: "BT-118"
         name: "VAT category code"
         paths:
-          - $.doc.totals.taxes.categories[code='VAT'].ext['untdid-tax-category']
+          - $.doc.totals.taxes.categories[code='VAT'].rates[*].ext['untdid-tax-category']
         notes: |-
           Specific tax category codes can be added in the extensions
           using the `untdid-tax-category` extension key defined in the
@@ -888,18 +901,15 @@ terms:
       - id: BT-119
         name: "VAT category rate"
         paths:
-          - $.doc.totals.taxes.categories[code='VAT'].percent
+          - $.doc.totals.taxes.categories[code='VAT'].rates[*].percent
       - id: "BT-120"
         name: "VAT exemption reason text"
-        paths:
-          - $.doc.notes[key='legal'].text
         notes: |-
-          Exemption reasons are added to the list of legal notes included in the
-          invoice as opposed to being stored in the tax breakdown.
+          Mapping may change in the future.
       - id: "BT-121"
         name: "VAT exemption reason code"
         paths:
-          - $.doc.totals.taxes.categories[code='VAT'].ext['cef-vatex']
+          - $.doc.totals.taxes.categories[code='VAT'].rates[*].ext['cef-vatex']
         notes: |-
           Specific exemption codes can be added in the extensions
           using the `cef-vatex` extension key defined in the
@@ -921,7 +931,12 @@ terms:
       - id: BT-124
         name: "External document location"
         paths:
-          - $.doc.attachments[*].uri
+          - $.doc.attachments[*].url
+      - id: BT-125
+        name: "Attached document"
+        notes: |-
+          Binary content is handled via the AddBinaryAttachment and
+          ExtractBinaryAttachments API methods in both CII and UBL.
 
   - id: BG-25
     name: "INVOICE LINE"
@@ -932,6 +947,8 @@ terms:
         name: "Invoice line identifier"
         paths:
           - $.doc.lines[*].i
+        notes: |-
+          Auto-generated from the line index. Not user-provided.
       - id: BT-127
         name: "Invoice line note"
         paths:
@@ -941,9 +958,11 @@ terms:
       - id: BT-128
         name: "Invoice line object identifier"
         paths:
-          - $.doc.lines[*].identifier
+          - $.doc.lines[*].identifier.code
+          - $.doc.lines[*].identifier.ext['untdid-reference']
         notes: |-
-          Use the `untdid-reference` extension if required for greater precision.
+          The reference type code (UNTDID 1153) is stored in the
+          untdid-reference extension when present.
       - id: BT-129
         name: "Invoiced Quantity"
         paths:
@@ -1063,6 +1082,34 @@ terms:
             paths:
               - $.doc.lines[*].item.price
 
+          - id: BT-147
+            name: "Item price discount"
+            paths: []
+            notes: |-
+              Not directly supported. GOBL stores net prices only.
+
+          - id: BT-148
+            name: "Item gross price"
+            paths: []
+            notes: |-
+              Not directly supported. GOBL stores net prices only.
+              When parsing, the gross price is used to derive the net price.
+
+          - id: BT-149
+            name: "Item price base quantity"
+            paths:
+              - $.doc.lines[*].item.price
+            notes: |-
+              When parsing, the base quantity is used to normalize the unit price
+              by dividing. The original base quantity value is not preserved.
+
+          - id: BT-150
+            name: "Item price base quantity unit of measure code"
+            paths:
+              - $.doc.lines[*].item.unit
+            notes: |-
+              Same unit as the invoiced quantity. Not separately stored.
+
       - id: BG-30
         name: "LINE VAT INFORMATION"
         paths:
@@ -1102,12 +1149,31 @@ terms:
             name: "Item Buyer's identifier"
             paths:
               - $.doc.lines[*].item.identities[*].code
+            notes: |-
+              Identity without ext['iso-scheme-id'] or label. First
+              plain identity is used as the buyer's item identifier.
           - id: BT-157
             name: "Item standard identifier"
             paths:
               - $.doc.lines[*].item.identities[*].code
               - $.doc.lines[*].item.identities[*].ext['iso-scheme-id']
-      - id: BR-32
+
+          - id: BT-158
+            name: "Item classification identifier"
+            paths:
+              - $.doc.lines[*].item.identities[*].code
+              - $.doc.lines[*].item.identities[*].label
+            notes: |-
+              Classification identifiers use the identity label to store the
+              scheme identifier (listID). This distinguishes them from standard
+              identifiers which use ext['iso-scheme-id'].
+
+          - id: BT-159
+            name: "Item classification identifier scheme identifier"
+            paths:
+              - $.doc.lines[*].item.identities[*].label
+
+      - id: BG-32
         name: "ITEM ATTRIBUTES"
         paths:
           - $.doc.lines[*].item.meta
