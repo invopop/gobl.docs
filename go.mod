@@ -5,7 +5,7 @@ go 1.24.0
 toolchain go1.24.3
 
 require (
-	github.com/invopop/gobl v0.308.1-0.20260326084442-9d94de442376
+	github.com/invopop/gobl v0.308.1-0.20260327141640-5fb0bd1e3340
 	github.com/wk8/go-ordered-map/v2 v2.1.8
 )
 
