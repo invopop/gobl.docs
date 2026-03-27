@@ -18,6 +18,49 @@ One or all of the following extensions may be required as part of the correction
 options. See the [Extensions](#extensions) section for possible values.
 - <code>es-sii-doc-type</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="Standard Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+
+**Output:**
+- **Extensions:** <code>es-sii-doc-type:F1</code>
+</Accordion>
+
+<Accordion title="Simplified Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>es-sii-doc-type:F2</code>
+</Accordion>
+
+<Accordion title="Replacement Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>replacement</code>
+
+**Output:**
+- **Extensions:** <code>es-sii-doc-type:F3</code>
+</Accordion>
+
+<Accordion title="Simplified Corrective Invoice">
+
+**Filters:**
+- **Types:** <code>corrective</code>, <code>credit-note</code>, <code>debit-note</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>es-sii-doc-type:R5</code>
+</Accordion>
+
 ## Extensions
 ### Invoice Type	
 
@@ -291,3 +334,36 @@ Doesn't map directly to any field. Used internally to structure the breakdown da
 | <code>goods</code> | Delivery of goods |
 | <code>services</code> | Provision of services |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-01</code> | preceding | invoice type in [corrective]; present | preceding documents are required for corrective invoices |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-02</code> | preceding[*].issue_date | present | preceding issue date is required |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-03</code> | preceding[*].tax | invoice type in [corrective]; present | preceding invoice tax data is required for corrective invoices |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-04</code> | customer | not simplified; present | customer is required |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-05</code> | customer | not simplified; has tax_id or identity | must have a tax_id, or an identity with ext 'es-sii-identity-type' |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-06</code> | customer.tax_id.code | not simplified; present | customer tax ID must have a code |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-07</code> | tax | present | tax object is required with extensions |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-08</code> | tax.ext | ext require [es-sii-doc-type] | tax extension 'es-sii-doc-type' is required |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-09</code> | tax.ext | ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5]; ext require [es-sii-correction-type] | tax extension 'es-sii-correction-type' is required |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-10</code> | tax.ext | invoice type in [standard]; ext 'es-sii-doc-type' in [F1, F2, F3] | tax extension 'es-sii-doc-type' for standard invoices must be F1, F2, or F3 |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-11</code> | tax.ext | invoice type in [corrective, credit-note, debit-note]; ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5] | doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-12</code> | notes[*].text | general note; length between 0 and 500 | general note text must be 500 characters or less |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-13</code> | lines | consistent product | 'es-sii-product' must be present in all tax combos or none |
+| <code>GOBL-ES-SII-V1-BILL-INVOICE-14</code> | lines | same regime | 'es-sii-regime' must be the same in all tax combos |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-SII-V1-TAX-COMBO-01</code> | ext | sii vat/igic; ext require [es-sii-regime] | extension 'es-sii-regime' is required |
+| <code>GOBL-ES-SII-V1-TAX-COMBO-03</code> | ext | has outside scope; ext exclude [es-sii-exempt] | extension 'es-sii-exempt' must not be set when 'es-sii-outside-scope' is set |
+| <code>GOBL-ES-SII-V1-TAX-COMBO-04</code> | ext | ext 'es-sii-regime' in [01]; ext 'es-sii-exempt' not in [E2, E3] | exempt codes E2 and E3 not allowed with 'es-sii-regime' 01 |
+| <code>GOBL-ES-SII-V1-TAX-COMBO-02</code> | ext | has percent; ext exclude [es-sii-exempt] | extension 'es-sii-exempt' must not be set when percent is set |
+</Accordion>
+</AccordionGroup>

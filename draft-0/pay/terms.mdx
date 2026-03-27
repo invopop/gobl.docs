@@ -11,25 +11,31 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 
 ## Properties
 
-| Title      | Property    | Type                                          | Req. | Description                                |
-|------------|-------------|-----------------------------------------------|------|--------------------------------------------|
-| Key        | `key`       | [cbc.Key](/draft-0/cbc/key)                   |      | Type of terms to be applied.               |
-| Due Dates  | `due_dates` | array of [pay.DueDate](/draft-0/pay/due_date) |      | Set of dates for agreed payments.          |
-| Notes      | `notes`     | string                                        |      | Description of the conditions for payment. |
-| Extensions | `ext`       | [tax.Extensions](/draft-0/tax/extensions)     |      | Extensions to the terms for local codes.   |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Type of terms to be applied. |
+| Due Dates | `due_dates` | array of [pay.DueDate](/draft-0/pay/due_date) | Set of dates for agreed payments. |
+| Notes | `notes` | string | Description of the conditions for payment. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions to the terms for local codes. |
 
 ## Key Values
 
-| Value          | Description                                    |
-|----------------|------------------------------------------------|
-| `end-of-month` | End of month                                   |
-| `due-date`     | Due on a specific date                         |
-| `deferred`     | Deferred until after the due date              |
-| `proximo`      | Month after the present                        |
-| `instant`      | On receipt of invoice                          |
-| `elective`     | Chosen by the buyer                            |
-| `pending`      | Seller to advise buyer in separate transaction |
-| `advanced`     | Payment made in advance                        |
-| `delivery`     | Payment on Delivery                            |
-| `undefined`    | Not yet defined                                |
+| Value | Description |
+|-------|-------------|
+| `end-of-month` | End of month |
+| `due-date` | Due on a specific date |
+| `deferred` | Deferred until after the due date |
+| `proximo` | Month after the present |
+| `instant` | On receipt of invoice |
+| `elective` | Chosen by the buyer |
+| `pending` | Seller to advise buyer in separate transaction |
+| `advanced` | Payment made in advance |
+| `delivery` | Payment on Delivery |
+| `undefined` | Not yet defined |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PAY-TERMS-01</code> | key | one of [end-of-month, due-date, deferred, proximo, instant, elective, pending, advanced, delivery, undefined] | key must be valid |

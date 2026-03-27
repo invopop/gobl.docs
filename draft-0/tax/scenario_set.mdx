@@ -7,12 +7,19 @@ ScenarioSet is a collection of tax scenarios for a given schema that can be used
 
 ## Schema ID
 
-`https://gobl.org/draft-0/tax/regime-def#/$defs/ScenarioSet`
+`https://gobl.org/draft-0/tax/addon-def#/$defs/ScenarioSet`
 
 ## Properties
 
-| Title  | Property | Type                                           | Req. | Description                                          |
-|--------|----------|------------------------------------------------|------|------------------------------------------------------|
-| Schema | `schema` | string                                         | true | Partial or complete schema URL for the document type |
-| List   | `list`   | array of [tax.Scenario](/draft-0/tax/scenario) | true | List of scenarios for the schema                     |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Schema | `schema` | string | Partial or complete schema URL for the document type |
+| List | `list` | array of [tax.Scenario](/draft-0/tax/scenario) | List of scenarios for the schema |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-TAX-SCENARIOSET-01</code> | schema | present | schema is required |
+| <code>GOBL-TAX-SCENARIOSET-02</code> | list | present | at least one scenario is required |

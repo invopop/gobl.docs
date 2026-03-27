@@ -18,6 +18,49 @@ One or all of the following extensions may be required as part of the correction
 options. See the [Extensions](#extensions) section for possible values.
 - <code>es-verifactu-doc-type</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="Standard Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+
+**Output:**
+- **Extensions:** <code>es-verifactu-doc-type:F1</code>
+</Accordion>
+
+<Accordion title="Simplified Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>es-verifactu-doc-type:F2</code>
+</Accordion>
+
+<Accordion title="Replacement Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>replacement</code>
+
+**Output:**
+- **Extensions:** <code>es-verifactu-doc-type:F3</code>
+</Accordion>
+
+<Accordion title="Simplified Corrective Invoice">
+
+**Filters:**
+- **Types:** <code>corrective</code>, <code>credit-note</code>, <code>debit-note</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>es-verifactu-doc-type:R5</code>
+</Accordion>
+
 ## Extensions
 ### Invoice Type Code	
 
@@ -269,3 +312,37 @@ extension will be set to `T`.
 | <code>T</code> | Issued by Third Party |
 | <code>D</code> | Issued by Customer |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-01</code> | preceding | invoice type in [corrective]; present | preceding documents are required for corrective invoices |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-02</code> | preceding[*].issue_date | not nil; present | issue date is required |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-03</code> | preceding[*].tax | not nil; present | preceding invoice tax data is required for corrective invoices |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-05</code> | customer | simplified; no identity type ext | customer identity type extension not allowed for simplified invoices |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-04</code> | customer.tax_id | simplified; nil | customer tax ID must not be set for simplified invoices |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-06</code> | customer | not simplified; present | customer is required |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-07</code> | customer | not simplified; has tax_id or identity | must have a tax_id or an identity with ext 'es-verifactu-v1-identity-type' |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-08</code> | customer.tax_id.code | not simplified; present | tax ID must have a code |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-09</code> | tax | present | tax is required |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-10</code> | tax.ext | ext require [es-verifactu-doc-type] | doc type is required |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-13</code> | tax.ext | ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]; ext require [es-verifactu-correction-type] | correction type extension is required |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-11</code> | tax.ext | invoice type in [standard]; ext 'es-verifactu-doc-type' in [F1, F2, F3] | doc type extension for standard invoices must be F1, F2, or F3 |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-12</code> | tax.ext | invoice type in [corrective, credit-note, debit-note]; ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5] | doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-14</code> | notes[*].text | general note; length between 0 and 500 | general note text must be 500 characters or less |
+| <code>GOBL-ES-VERIFACTU-V1-BILL-INVOICE-15</code> | lines[*].taxes | one of [VAT, IGIC, IPSI] | must include at least one of VAT, IGIC, or IPSI |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-VERIFACTU-V1-TAX-COMBO-01</code> | ext | verifactu vat/igic; ext require [es-verifactu-regime] | extension 'es-verifactu-regime' is required |
+| <code>GOBL-ES-VERIFACTU-V1-TAX-COMBO-03</code> | ext | verifactu vat/igic; ext allow one of [es-verifactu-op-class, es-verifactu-exempt] | cannot use both 'es-verifactu-op-class' and 'es-verifactu-exempt' at the same time |
+| <code>GOBL-ES-VERIFACTU-V1-TAX-COMBO-02</code> | ext | ext 'es-verifactu-regime' in [01]; ext 'es-verifactu-exempt' not in [E2, E3] | exempt codes E2 and E3 not allowed with 'es-verifactu-regime' 01 |
+| <code>GOBL-ES-VERIFACTU-V1-TAX-COMBO-04</code> | ext | has percent; ext require [es-verifactu-op-class] | extension 'es-verifactu-op-class' is required for taxed operations |
+</Accordion>
+</AccordionGroup>

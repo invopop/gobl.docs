@@ -11,9 +11,15 @@ Online provides the details required to make a payment online using a website
 
 ## Properties
 
-| Title | Property | Type                        | Req. | Description                                    |
-|-------|----------|-----------------------------|------|------------------------------------------------|
-| Key   | `key`    | [cbc.Key](/draft-0/cbc/key) |      | Key identifier for this online payment method. |
-| Label | `label`  | string                      |      | Descriptive label for the online provider.     |
-| URL   | `url`    | string                      | true | URL to be used for payment.                    |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key identifier for this online payment method. |
+| Label | `label` | string | Descriptive label for the online provider. |
+| URL | `url` | string | URL to be used for payment. |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PAY-ONLINE-01</code> | url | present; url | URL is required and must be valid |

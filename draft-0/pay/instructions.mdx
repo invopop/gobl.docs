@@ -11,35 +11,42 @@ Instructions determine how the payment has or should be made.
 
 ## Properties
 
-| Title           | Property          | Type                                                        | Req. | Description                                                                                      |
-|-----------------|-------------------|-------------------------------------------------------------|------|--------------------------------------------------------------------------------------------------|
-| Key             | `key`             | [cbc.Key](/draft-0/cbc/key)                                 | true | The payment means expected or that have been arranged to be used to make the payment.            |
-| Detail          | `detail`          | string                                                      |      | Optional text description of the payment method                                                  |
-| Reference       | `ref`             | [cbc.Code](/draft-0/cbc/code)                               |      | Remittance information or concept, a code value used to link the payment with the invoice.       |
-| Credit Transfer | `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) |      | Instructions for sending payment via a bank transfer.                                            |
-| Card            | `card`            | [pay.Card](/draft-0/pay/card)                               |      | Details of the payment that will be made via a credit or debit card.                             |
-| Direct Debit    | `direct_debit`    | [pay.DirectDebit](/draft-0/pay/direct_debit)                |      | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
-| Online          | `online`          | array of [pay.Online](/draft-0/pay/online)                  |      | Array of online payment options                                                                  |
-| Notes           | `notes`           | string                                                      |      | Any additional instructions that may be required to make the payment.                            |
-| Extensions      | `ext`             | [tax.Extensions](/draft-0/tax/extensions)                   |      | Extension key-pairs values defined by a tax regime.                                              |
-| Meta            | `meta`            | [cbc.Meta](/draft-0/cbc/meta)                               |      | Non-structured additional data that may be useful.                                               |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | The payment means expected or that have been arranged to be used to make the payment. |
+| Detail | `detail` | string | Optional text description of the payment method |
+| Reference | `ref` | [cbc.Code](/draft-0/cbc/code) | Remittance information or concept, a code value used to link the payment with the invoice. |
+| Credit Transfer | `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) | Instructions for sending payment via a bank transfer. |
+| Card | `card` | [pay.Card](/draft-0/pay/card) | Details of the payment that will be made via a credit or debit card. |
+| Direct Debit | `direct_debit` | [pay.DirectDebit](/draft-0/pay/direct_debit) | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
+| Online | `online` | array of [pay.Online](/draft-0/pay/online) | Array of online payment options |
+| Notes | `notes` | string | Any additional instructions that may be required to make the payment. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension key-pairs values defined by a tax regime. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Non-structured additional data that may be useful. |
 
 ## Key Values
 
-| Value                  | Description                                            |
-|------------------------|--------------------------------------------------------|
-| `any`                  | Any method available, no preference.                   |
-| `card`                 | Payment card.                                          |
-| `credit-transfer`      | Sender initiated bank or wire transfer.                |
-| `credit-transfer+sepa` | Sender initiated bank or wire transfer via SEPA.       |
-| `debit-transfer`       | Receiver initiated bank or wire transfer.              |
-| `cash`                 | Cash in hand.                                          |
-| `cheque`               | Cheque from bank.                                      |
-| `bank-draft`           | Bankers Draft or Bank Cheque.                          |
-| `direct-debit`         | Direct debit from the customers bank account.          |
-| `direct-debit+sepa`    | Direct debit from the customers bank account via SEPA. |
-| `online`               | Online or web payment.                                 |
-| `promissory-note`      | Promissory note contract.                              |
-| `netting`              | Intercompany clearing or clearing between partners.    |
-| `other`                | Other or mutually defined means of payment.            |
+| Value | Description |
+|-------|-------------|
+| `any` | Any method available, no preference. |
+| `card` | Payment card. |
+| `credit-transfer` | Sender initiated bank or wire transfer. |
+| `credit-transfer+sepa` | Sender initiated bank or wire transfer via SEPA. |
+| `debit-transfer` | Receiver initiated bank or wire transfer. |
+| `cash` | Cash in hand. |
+| `cheque` | Cheque from bank. |
+| `bank-draft` | Bankers Draft or Bank Cheque. |
+| `direct-debit` | Direct debit from the customers bank account. |
+| `direct-debit+sepa` | Direct debit from the customers bank account via SEPA. |
+| `online` | Online or web payment. |
+| `promissory-note` | Promissory note contract. |
+| `netting` | Intercompany clearing or clearing between partners. |
+| `other` | Other or mutually defined means of payment. |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PAY-INSTRUCTIONS-01</code> | key | present | key is required |
+| <code>GOBL-PAY-INSTRUCTIONS-02</code> | key | be or starts with one of [any, card, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other] | key must be valid |

@@ -4,6 +4,29 @@ title: Brazil NF-e 4.00
 
 Key: <code>br-nfe-v4</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="standard, credit-note, debit-note">
+
+**Filters:**
+- **Types:** <code>standard</code>, <code>credit-note</code>, <code>debit-note</code>
+
+**Output:**
+- **Extensions:** <code>br-nfe-model:55</code>
+</Accordion>
+
+<Accordion title="standard, credit-note, debit-note, #simplified">
+
+**Filters:**
+- **Types:** <code>standard</code>, <code>credit-note</code>, <code>debit-note</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>br-nfe-model:65</code>
+</Accordion>
+
 ## Extensions
 ### Fiscal Document Model Code	
 
@@ -110,3 +133,66 @@ Indicates a special tax regime that a party is subject to.
 | <code>5</code> | Single micro-entrepreneur (MEI) |
 | <code>6</code> | Micro-enterprise or Small Business (ME EPP) |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-30</code> |  | has reason note | a note with key 'reason' is required to describe the nature of the operation (natOp) |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-01</code> | supplier.tax_id | present | supplier tax ID is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-02</code> | supplier.tax_id.code | present | supplier tax ID code is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-03</code> | supplier.addresses[*] | present | supplier address must not be empty |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-04</code> | supplier.addresses[*].street | present | supplier address requires a street |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-05</code> | supplier.addresses[*].num | present | supplier address requires a number |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-06</code> | supplier.addresses[*].locality | present | supplier address requires a locality |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-07</code> | supplier.addresses[*].state | present | supplier address requires a state |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-08</code> | supplier.addresses[*].code | present | supplier address requires a postal code |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-09</code> | supplier.ext | has addresses; ext require [br-ibge-municipality] | supplier requires 'br-ibge-municipality' extension when addresses are present |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-10</code> | supplier.name | present | supplier name is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-11</code> | supplier.addresses | present | supplier must have at least one address |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-12</code> | customer | invoice is NFe; present | customer is required for NF-e invoices |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-13</code> | customer.addresses | invoice is NFe; present | customer must have at least one address for NF-e invoices |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-14</code> | customer.tax_id | present | customer tax ID is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-15</code> | customer.tax_id.code | present | customer tax ID code is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-16</code> | customer.addresses[*] | present | customer address must not be empty |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-17</code> | customer.addresses[*].street | present | customer address requires a street |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-18</code> | customer.addresses[*].num | present | customer address requires a number |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-19</code> | customer.addresses[*].locality | present | customer address requires a locality |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-20</code> | customer.addresses[*].state | present | customer address requires a state |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-21</code> | customer.addresses[*].code | present | customer address requires a postal code |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-22</code> | customer.ext | has addresses; ext require [br-ibge-municipality] | customer requires 'br-ibge-municipality' extension when addresses are present |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-23</code> | series | present | series is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-24</code> | series | matches ^(?:0|[1-9]{1}[0-9]{0,2})$ | series format is invalid; must be 0 or 1-999 |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-25</code> | tax | present | tax is required |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-26</code> | tax.ext | ext require [br-nfe-model, br-nfe-presence] | tax requires 'br-nfe-model' and 'br-nfe-presence' extensions |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-27</code> | tax.ext | NFe model; ext 'br-nfe-presence' not in [4] | NF-e invoices do not support '4' for 'br-nfe-presence' |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-28</code> | tax.ext | NFCe model; ext 'br-nfe-presence' in [1, 4] | NFC-e invoices require in-person or delivery for 'br-nfe-presence' |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-29</code> | notes[*].text | reason note; length between 1 and 60 | reason note text must be between 1 and 60 characters |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-31</code> | payment | invoice not paid; present | payment is required when invoice is unpaid |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-32</code> | payment.instructions | invoice not paid; present | payment instructions are required when invoice is unpaid |
+| <code>GOBL-BR-NFE-V4-BILL-INVOICE-33</code> | totals.due | zero or positive | due amount must not be negative |
+</Accordion>
+<Accordion title="bill.Line">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-BR-NFE-V4-BILL-LINE-01</code> |  | line has tax category ICMS | line taxes must include the ICMS category |
+| <code>GOBL-BR-NFE-V4-BILL-LINE-02</code> |  | line has tax category PIS | line taxes must include the PIS category |
+| <code>GOBL-BR-NFE-V4-BILL-LINE-03</code> |  | line has tax category COFINS | line taxes must include the COFINS category |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-BR-NFE-V4-PAY-INSTRUCTIONS-01</code> | ext | ext require [br-nfe-payment-means] | payment instructions require 'br-nfe-payment-means' extension |
+</Accordion>
+<Accordion title="pay.Advance">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-BR-NFE-V4-PAY-ADVANCE-01</code> | ext | ext require [br-nfe-payment-means] | payment advance requires 'br-nfe-payment-means' extension |
+</Accordion>
+</AccordionGroup>

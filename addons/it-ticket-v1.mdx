@@ -65,3 +65,27 @@ Reference code provided by the AdE to be able to identify the specific line in c
 
 <Accordion title="it-ticket-line-ref">
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-01</code> | tax | present | tax is required |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-02</code> | tax.prices_include | present | prices_include is required |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-03</code> | tax.prices_include | one of [VAT] | prices_include must be VAT |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-04</code> | supplier.tax_id | present | supplier tax ID is required |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-05</code> | preceding | invoice type in [corrective]; present | preceding documents are required for corrective invoices |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-06</code> | lines[*] | line has tax category VAT | line taxes must include VAT category |
+| <code>GOBL-IT-TICKET-V1-BILL-INVOICE-07</code> | lines[*].ext | invoice type in [corrective]; ext require [it-ticket-line-ref] | corrective invoice lines require 'it-ticket-line-ref' extension |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-TICKET-V1-TAX-COMBO-01</code> | ext | VAT without percent; ext require [it-ticket-exempt] | exempt VAT combo requires 'it-ticket-exempt' extension |
+| <code>GOBL-IT-TICKET-V1-TAX-COMBO-02</code> | percent | is VAT; valid percentage | must be a valid value |
+</Accordion>
+</AccordionGroup>

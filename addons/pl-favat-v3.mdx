@@ -19,6 +19,78 @@ The types of invoices that can be created with a preceding definition:
 Stamp keys from the previous invoice that need to be referenced:
 - <code>favat-ksef-number</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="Regular Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:VAT</code>
+</Accordion>
+
+<Accordion title="Prepayment Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>partial</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:ZAL</code>
+</Accordion>
+
+<Accordion title="Settlement Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>settlement</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:ROZ</code>
+</Accordion>
+
+<Accordion title="Simplified Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:UPR</code>
+</Accordion>
+
+<Accordion title="Credit note">
+
+**Filters:**
+- **Types:** <code>credit-note</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:KOR</code>
+</Accordion>
+
+<Accordion title="Prepayment credit note">
+
+**Filters:**
+- **Types:** <code>credit-note</code>
+- **Tags:** <code>partial</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:KOR_ZAL</code>
+</Accordion>
+
+<Accordion title="Settlement credit note">
+
+**Filters:**
+- **Types:** <code>credit-note</code>
+- **Tags:** <code>settlement</code>
+
+**Output:**
+- **Extensions:** <code>pl-favat-invoice-type:KOR_ROZ</code>
+</Accordion>
+
 ## Extensions
 ### Tax categories for KSeF	
 
@@ -672,3 +744,39 @@ Example of a credit note effective on correction date:
 | <code>2</code> | Correction |
 | <code>3</code> | Other |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-11</code> |  | JST identity | customer requires identity with role '8' and code for JST |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-12</code> |  | GroupVAT identity | customer requires identity with role '10' and code for GroupVAT |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-13</code> |  | exemption note present | missing exemption note |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-14</code> |  | single exemption note | too many exemption notes |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-01</code> | type | one of [standard, credit-note] | invoice type must be standard or credit-note |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-02</code> | preceding[*].issue_date | present | preceding issue date is required |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-03</code> | preceding[*].code | present | preceding code is required |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-04</code> | supplier | present | supplier is required |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-05</code> | supplier.name | present | supplier name is required |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-06</code> | supplier.addresses | present | supplier addresses are required |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-07</code> | supplier.addresses | first address country | supplier first address must have a country |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-08</code> | supplier.addresses | first address street | supplier first address must have a street |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-09</code> | customer | not simplified; present | customer is required |
+| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-10</code> | customer.tax_id | not simplified; present | customer tax ID is required |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PL-FAVAT-V3-TAX-COMBO-01</code> | ext | ext require [pl-favat-tax-category] | tax combo requires 'pl-favat-tax-category' extension |
+</Accordion>
+<Accordion title="pay.Advance">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PL-FAVAT-V3-PAY-ADVANCE-01</code> | date | present | advance payment date is required |
+</Accordion>
+</AccordionGroup>

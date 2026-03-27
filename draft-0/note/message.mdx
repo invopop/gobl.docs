@@ -11,10 +11,16 @@ Message represents a simple message object with a title and some content meant.
 
 ## Properties
 
-| Title     | Property  | Type                          | Req. | Description                                                |
-|-----------|-----------|-------------------------------|------|------------------------------------------------------------|
-| UUID      | `uuid`    | string                        |      | Universally Unique Identifier.                             |
-| Title     | `title`   | string                        |      | Summary of the message content                             |
-| Content   | `content` | string                        | true | Details of what exactly this message wants to communicate. |
-| Meta Data | `meta`    | [cbc.Meta](/draft-0/cbc/meta) |      | Any additional semi-structured data that might be useful.  |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Title | `title` | string | Summary of the message content |
+| Content | `content` | string | Details of what exactly this message wants to communicate. |
+| Meta Data | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional semi-structured data that might be useful. |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-NOTE-MESSAGE-01</code> | content | present | message content is required |

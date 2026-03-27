@@ -9,3 +9,10 @@ Text identifier to be used instead of a code for a more verbose but readable ide
 
 `https://gobl.org/draft-0/cbc/key`
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-CBC-KEY-01</code> |  | length between 1 and 64 | key must be between 1 and 64 characters long |
+| <code>GOBL-CBC-KEY-02</code> |  | matches ^(?:[a-z]|[a-z0-9][a-z0-9-+]*[a-z0-9])$ | key must match the required pattern |

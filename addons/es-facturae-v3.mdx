@@ -15,6 +15,94 @@ One or all of the following extensions may be required as part of the correction
 options. See the [Extensions](#extensions) section for possible values.
 - <code>es-facturae-correction</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="standard, corrective, credit-note, debit-note">
+
+**Filters:**
+- **Types:** <code>standard</code>, <code>corrective</code>, <code>credit-note</code>, <code>debit-note</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-doc-type:FC</code>
+</Accordion>
+
+<Accordion title="#simplified">
+
+**Filters:**
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-doc-type:FA</code>
+</Accordion>
+
+<Accordion title="#self-billed">
+
+**Filters:**
+- **Tags:** <code>self-billed</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-doc-type:AF</code>
+</Accordion>
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** <code>standard</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-invoice-class:OO</code>
+</Accordion>
+
+<Accordion title="corrective, credit-note, debit-note">
+
+**Filters:**
+- **Types:** <code>corrective</code>, <code>credit-note</code>, <code>debit-note</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-invoice-class:OR</code>
+</Accordion>
+
+<Accordion title="#summary">
+
+**Filters:**
+- **Tags:** <code>summary</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-invoice-class:OC</code>
+</Accordion>
+
+<Accordion title="standard, #copy">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>copy</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-invoice-class:CO</code>
+</Accordion>
+
+<Accordion title="corrective, #copy">
+
+**Filters:**
+- **Types:** <code>corrective</code>
+- **Tags:** <code>copy</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-invoice-class:CR</code>
+</Accordion>
+
+<Accordion title="standard, #copy, #summary">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>copy</code>, <code>summary</code>
+
+**Output:**
+- **Extensions:** <code>es-facturae-invoice-class:CC</code>
+</Accordion>
+
 ## Extensions
 ### FacturaE: Document Type
 
@@ -70,3 +158,19 @@ FacturaE requires a specific and single code that explains why the previous invo
 | <code>84</code> | Taxable Base modified due to firm court ruling or administrative decision |
 | <code>85</code> | Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-01</code> | customer.tax_id.code | code in [ES]; present | customer tax ID code is required for Spanish customers |
+| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-02</code> | tax | present | tax object is required with ext document type and invoice classes |
+| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-03</code> | tax.ext | ext require [es-facturae-doc-type, es-facturae-invoice-class] | tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions |
+| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-04</code> | preceding | invoice type in [credit-note, corrective, debit-note]; present | preceding document reference is required for credit-note, corrective, debit-note invoices |
+| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-05</code> | preceding[*].issue_date | invoice type in [credit-note, corrective, debit-note]; present | preceding document issue date is required |
+| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-06</code> | preceding[*].ext | invoice type in [credit-note, corrective, debit-note]; ext require [es-facturae-correction] | preceding document ext require 'es-facturae-correction' extension |
+</Accordion>
+</AccordionGroup>

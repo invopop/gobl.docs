@@ -4,6 +4,245 @@ title: Italy SDI FatturaPA v1.x
 
 Key: <code>it-sdi-v1</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="Private Invoice">
+
+**Filters:**
+- *(none)*
+
+**Output:**
+- **Extensions:** <code>it-sdi-format:FPR12</code>
+</Accordion>
+
+<Accordion title="Government Invoice">
+
+**Filters:**
+- **Tags:** <code>b2g</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-format:FPA12</code>
+</Accordion>
+
+<Accordion title="Regular Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD01</code>
+</Accordion>
+
+<Accordion title="Advance or down payment on invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>partial</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD02</code>
+</Accordion>
+
+<Accordion title="Credit Note">
+
+**Filters:**
+- **Types:** <code>credit-note</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD04</code>
+</Accordion>
+
+<Accordion title="Debit Note">
+
+**Filters:**
+- **Types:** <code>debit-note</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD05</code>
+</Accordion>
+
+<Accordion title="Freelancer invoice with retained taxes">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>freelance</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD06</code>
+</Accordion>
+
+<Accordion title="Advance or down payment on freelance invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>partial</code>, <code>freelance</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD03</code>
+</Accordion>
+
+<Accordion title="Simplified Invoice">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD07</code>
+</Accordion>
+
+<Accordion title="Simplified Credit Note">
+
+**Filters:**
+- **Types:** <code>credit-note</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD08</code>
+</Accordion>
+
+<Accordion title="Simplified Debit Note">
+
+**Filters:**
+- **Types:** <code>debit-note</code>
+- **Tags:** <code>simplified</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD09</code>
+</Accordion>
+
+<Accordion title="Self-billed for self consumption or for free transfer without recourse">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD27</code>
+</Accordion>
+
+<Accordion title="Reverse charge">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>reverse-charge</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD16</code>
+</Accordion>
+
+<Accordion title="Self-billed Import">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>import</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD17</code>
+</Accordion>
+
+<Accordion title="Self-billed EU Goods Import">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>import</code>, <code>goods-eu</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD18</code>
+</Accordion>
+
+<Accordion title="Self-billed Goods Import">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>import</code>, <code>goods</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD19</code>
+</Accordion>
+
+<Accordion title="Self-billed Regularization">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>regularization</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD20</code>
+</Accordion>
+
+<Accordion title="Self-billed invoice when ceiling exceeded">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>ceiling-exceeded</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD21</code>
+</Accordion>
+
+<Accordion title="Self-billed for goods extracted from VAT warehouse">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>goods-extracted</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD22</code>
+</Accordion>
+
+<Accordion title="Self-billed for goods extracted from VAT warehouse with VAT payment">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>goods-with-tax</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD23</code>
+</Accordion>
+
+<Accordion title="Deferred invoice ex art.21, c.4, lett. a) DPR 633/72">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>deferred</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD24</code>
+</Accordion>
+
+<Accordion title="Deferred invoice ex art.21, c.4, third period lett. b) DPR 633/72">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>deferred</code>, <code>third-period</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD25</code>
+</Accordion>
+
+<Accordion title="Sale of depreciable assets and for internal transfers (ex art.36 DPR 633/72">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>depreciable-assets</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD26</code>
+</Accordion>
+
+<Accordion title="Purchases from San Marino with VAT (paper invoice)">
+
+**Filters:**
+- **Types:** <code>standard</code>
+- **Tags:** <code>self-billed</code>, <code>san-marino-paper</code>
+
+**Output:**
+- **Extensions:** <code>it-sdi-document-type:TD28</code>
+</Accordion>
+
 ## Extensions
 ### SDI Transmission Format	
 
@@ -214,3 +453,77 @@ used to determine the correct schema to use when validating the document.
 | <code>TC21</code> | National pension and welfare board for psychologists (ENPAP) |
 | <code>TC22</code> | National Social Security Institute (INPS) |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-13</code> |  | customer name check | customer name is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-14</code> |  | customer people check | customer people are required when name is empty |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-21</code> |  | payment instructions check | payment instructions are required when terms with due dates are present |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-01</code> | tax | present | tax is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-02</code> | tax.ext | ext require [it-sdi-format, it-sdi-document-type] | tax requires 'it-sdi-document-type' and 'it-sdi-format' extensions |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-03</code> | supplier.name | latin1 | supplier name must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-04</code> | supplier.addresses | present | supplier addresses are required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-30</code> | supplier.addresses[*] | street or postbox | address either street or post office box must be set |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-31</code> | supplier.addresses[*].street | latin1 | address street must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-32</code> | supplier.addresses[*].po_box | latin1 | address post office box must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-33</code> | supplier.addresses[*].country | present | address country is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-34</code> | supplier.addresses[*].locality | present | address locality is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-35</code> | supplier.addresses[*].locality | latin1 | address locality must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-36</code> | supplier.addresses[*].code | Italian address; present | Italian address code is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-37</code> | supplier.addresses[*].code | Italian address; matches ^\d{5}$ | Italian address code must be 5 digits |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-05</code> | supplier.ext | ext require [it-sdi-fiscal-regime] | supplier requires 'it-sdi-fiscal-regime' extension |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-06</code> | supplier.registration.entry | present | supplier registration entry is required when registration is present |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-07</code> | supplier.registration.office | present | supplier registration office is required when registration is present |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-08</code> | supplier.telephones[*].num | supplier is Italian; length between 5 and 12 | Italian telephone number length must be between 5 and 12 |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-09</code> | customer | present | customer is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-10</code> | customer.name | latin1 | customer name must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-11</code> | customer.tax_id | present | customer tax ID is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-12</code> | customer.addresses | present | customer addresses are required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-30</code> | customer.addresses[*] | street or postbox | address either street or post office box must be set |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-31</code> | customer.addresses[*].street | latin1 | address street must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-32</code> | customer.addresses[*].po_box | latin1 | address post office box must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-33</code> | customer.addresses[*].country | present | address country is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-34</code> | customer.addresses[*].locality | present | address locality is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-35</code> | customer.addresses[*].locality | latin1 | address locality must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-36</code> | customer.addresses[*].code | Italian address; present | Italian address code is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-37</code> | customer.addresses[*].code | Italian address; matches ^\d{5}$ | Italian address code must be 5 digits |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-15</code> | customer.tax_id.code | Italian customer without fiscal code; present | customer tax ID code is required for Italian parties without fiscal code |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-16</code> | customer.identities | Italian customer without tax ID code; has fiscal code | customer requires identity with key 'it-fiscal-code' |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-17</code> | lines[*] | line has tax category VAT | line must have VAT tax category |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-18</code> | lines[*].item.name | latin1 | item name must use Latin-1 characters |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-19</code> | ordering.despatch[*].issue_date | has deferred tag; present | despatch issue date is required |
+| <code>GOBL-IT-SDI-V1-BILL-INVOICE-20</code> | ordering.despatch | no deferred tag; empty | despatch can only be set when invoice has deferred tag |
+</Accordion>
+<Accordion title="bill.Charge">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-SDI-V1-BILL-CHARGE-01</code> | percent | is fund contribution; present | fund contribution charge requires a percentage |
+| <code>GOBL-IT-SDI-V1-BILL-CHARGE-02</code> | ext | is fund contribution; ext require [it-sdi-fund-type] | fund contribution charge requires 'it-sdi-fund-type' extension |
+| <code>GOBL-IT-SDI-V1-BILL-CHARGE-03</code> | taxes | is fund contribution; all of [VAT] | fund contribution charge must have VAT tax category |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-SDI-V1-TAX-COMBO-01</code> | ext | VAT without percent; ext require [it-sdi-exempt] | VAT tax combo without percent requires 'it-sdi-exempt' extension |
+| <code>GOBL-IT-SDI-V1-TAX-COMBO-02</code> | ext | is retained tax; ext require [it-sdi-retained] | retained tax combo requires 'it-sdi-retained' extension |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-SDI-V1-PAY-INSTRUCTIONS-01</code> | ext | ext require [it-sdi-payment-means] | payment instructions require 'it-sdi-payment-means' extension |
+</Accordion>
+<Accordion title="pay.Advance">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IT-SDI-V1-PAY-ADVANCE-01</code> | ext | ext require [it-sdi-payment-means] | payment advance requires 'it-sdi-payment-means' extension |
+</Accordion>
+</AccordionGroup>

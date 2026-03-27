@@ -42,12 +42,14 @@ func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
-		"rate":          g.taxRateValue,
-		"extension":     g.taxRateExtension,
-		"extensionKeys": g.getExtensionKeys,
-		"rateRows":      g.getRateRows,
-		"joinKeys":      joinKeys,
-		"codeMap":       codeMap,
+		"rate":           g.taxRateValue,
+		"extension":      g.taxRateExtension,
+		"extensionKeys":  g.getExtensionKeys,
+		"rateRows":       g.getRateRows,
+		"joinKeys":       joinKeys,
+		"codeMap":        codeMap,
+		"extMap":         extMap,
+		"scenarioTitle":  scenarioTitle,
 	})
 	return g
 }
@@ -62,15 +64,25 @@ func (g *regimeGenerator) generate() error {
 	if err := g.preceding(g.regime.Corrections); err != nil {
 		return err
 	}
-	/*
-		if err := g.scenarios(); err != nil {
-			return err
-		}
-	*/
+	if err := g.scenarios(); err != nil {
+		return err
+	}
 	if err := g.extensions(g.regime.Extensions); err != nil {
 		return err
 	}
+	if err := g.validationRules(g.getRegimeRuleSections()); err != nil {
+		return err
+	}
 	return nil
+}
+
+func (g *regimeGenerator) getRegimeRuleSections() []RuleSection {
+	name := strings.ToLower(g.regime.Country.String())
+	topSet := findSetByName(name)
+	if topSet == nil {
+		return nil
+	}
+	return ruleSections(topSet)
 }
 
 func (g *regimeGenerator) base() error {
@@ -354,14 +366,51 @@ func (g *regimeGenerator) scenarios() error {
 		## Scenarios
 
 		{{- range .Scenarios }}
-		For <code>{{ .Schema }}</code>:
 
-		| Types | Tags | Name | Note Applied |
-		| ----- | ---- | ---- | ------------ |
+		### {{ .Schema }}
+
 		{{- range .List }}
-		| {{ joinKeys .Types }} | {{ joinKeys .Tags }} | {{t .Name }} | {{ if .Note }}{{ .Note.Text }}{{ end }} |
-		{{- end}}
-		{{- end}}
+
+		<Accordion title="{{ scenarioTitle . }}">
+
+		**Filters:**
+
+		{{- if .Types }}
+		- **Types:** {{ joinKeys .Types }}
+		{{- end }}
+		{{- if .Tags }}
+		- **Tags:** {{ joinKeys .Tags }}
+		{{- end }}
+		{{- if .ExtKey }}
+		- **Extension Key:** <code>{{ .ExtKey }}</code>
+		{{- end }}
+		{{- if .ExtCode }}
+		- **Extension Code:** <code>{{ .ExtCode }}</code>
+		{{- end }}
+		{{- if .Filter }}
+		- **Filter:** *(custom)*
+		{{- end }}
+		{{- if not .Types }}{{ if not .Tags }}{{ if not .ExtKey }}{{ if not .Filter }}
+		- *(none)*
+		{{- end }}{{ end }}{{ end }}{{ end }}
+
+		**Output:**
+
+		{{- if .Note }}
+		- **Note:** {{ .Note.Text }}{{ if .Note.Key }} ({{ .Note.Key }}){{ end }}
+		{{- end }}
+		{{- if .Codes }}
+		- **Codes:** {{ codeMap .Codes }}
+		{{- end }}
+		{{- if .Ext }}
+		- **Extensions:** {{ extMap .Ext }}
+		{{- end }}
+		{{- if not .Note }}{{ if not .Codes }}{{ if not .Ext }}
+		- *(none)*
+		{{- end }}{{ end }}{{ end }}
+		</Accordion>
+		{{- end }}
+		{{- end }}
 
 	`))
 }

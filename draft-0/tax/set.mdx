@@ -3,6 +3,17 @@ title: Set
 comment: 
 ---
 
+Set defines a list of tax categories and their rates to be used alongside taxable items.
+
 An array of [tax.Combo](/draft-0/tax/combo)
 
-Set defines a list of tax categories and their rates to be used alongside taxable items.
+## Schema ID
+
+`https://gobl.org/draft-0/tax/set`
+
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-TAX-SET-01</code> |  | no duplicate categories | all tax categories in a set must be unique |

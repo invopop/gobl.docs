@@ -11,11 +11,11 @@ CreditTransfer contains fields that can be used for making payments via a bank t
 
 ## Properties
 
-| Title  | Property | Type                                | Req. | Description                                            |
-|--------|----------|-------------------------------------|------|--------------------------------------------------------|
-| IBAN   | `iban`   | string                              |      | International Bank Account Number                      |
-| BIC    | `bic`    | string                              |      | Bank Identifier Code used for international transfers. |
-| Number | `number` | string                              |      | Account number, if IBAN not available.                 |
-| Name   | `name`   | string                              |      | Name of the bank.                                      |
-| Branch | `branch` | [org.Address](/draft-0/org/address) |      | Bank office branch address, not normally required.     |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| IBAN | `iban` | string | International Bank Account Number |
+| BIC | `bic` | string | Bank Identifier Code used for international transfers. |
+| Number | `number` | string | Account number, if IBAN not available. |
+| Name | `name` | string | Name of the bank. |
+| Branch | `branch` | [org.Address](/draft-0/org/address) | Bank office branch address, not normally required. |
 

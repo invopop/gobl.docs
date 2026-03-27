@@ -10,3 +10,43 @@ XRechnung is based on the European Norm (EN) 16931 and is mandatory for business
 ensure compliance with the XRechnung specifications.
 
 For more information on XRechnung, visit [www.xrechnung.de](https://www.xrechnung.de/).
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-01</code> | tax.ext | ext 'untdid-tax-category' in [326, 380, 384, 389, 381, 875, 876, 877] | tax ext must have a valid UNTDID document type code (BR-DE-17) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-02</code> | preceding | invoice type in [corrective, credit-note]; present | preceding documents are required for corrective and credit note invoices (BR-DE-26) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-03</code> | supplier | present | supplier is required |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-09</code> | supplier | has telephones | either party.telephones or party.people[0].telephones is required (BR-DE-6) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-10</code> | supplier | has emails | either party.emails or party.people[0].emails is required (BR-DE-7) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-04</code> | supplier.people | present | supplier people is required (BR-DE-5) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-05</code> | supplier.addresses | present | supplier addresses is required (BR-DE-2) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-06</code> | supplier.addresses | has locality | supplier first address must have a locality (BR-DE-3) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-07</code> | supplier.addresses | has code | supplier first address must have a postal code (BR-DE-4) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-08</code> | supplier.inboxes | present | supplier inboxes are required (PEPPOL-EN16931-R020) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-11</code> | customer | present | customer is required |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-12</code> | customer.addresses | present | customer addresses are required (BR-DE-8) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-13</code> | customer.addresses | has locality | customer first address must have a locality (BR-DE-9) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-14</code> | customer.addresses | has code | customer first address must have a postal code (BR-DE-10) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-15</code> | customer.inboxes | present | customer inboxes are required (PEPPOL-EN16931-R010) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-16</code> | payment | present | payment is required (BR-DE-1) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-17</code> | payment.instructions | present | payment instructions are required (BR-DE-1) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-18</code> | payment.instructions.credit_transfer | has credit-transfer key; present | credit transfer is required for credit-transfer payments (BR-DE-23) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-19</code> | payment.instructions.credit_transfer[*].number | no IBAN; present | account number is required when IBAN is not provided (BR-DE-19) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-20</code> | payment.instructions.card | has card key; present | card details are required for card payments (BR-DE-24) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-21</code> | payment.instructions.direct_debit | has direct-debit key; present | direct debit details are required for direct-debit payments (BR-DE-25) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-22</code> | payment.instructions.direct_debit.ref | has direct-debit key; present | direct debit mandate reference is required (BR-DE-29) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-23</code> | payment.instructions.direct_debit.creditor | has direct-debit key; present | direct debit creditor identifier is required (BR-DE-30) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-24</code> | payment.instructions.direct_debit.account | has direct-debit key; present | direct debit account is required (BR-DE-31) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-25</code> | delivery.receiver | present | delivery receiver is required |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-26</code> | delivery.receiver.addresses | present | delivery receiver addresses are required |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-27</code> | delivery.receiver.addresses | has locality | delivery receiver first address must have a locality (BR-DE-11) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-28</code> | delivery.receiver.addresses | has code | delivery receiver first address must have a postal code (BR-DE-12) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-29</code> | ordering | present | ordering is required (BR-DE-15) |
+| <code>GOBL-DE-XRECHNUNG-V3-BILL-INVOICE-30</code> | ordering.code | present | ordering code is required (BR-DE-15) |
+</Accordion>
+</AccordionGroup>

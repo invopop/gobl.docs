@@ -4,6 +4,48 @@ title: Mexican SAT CFDI v4.X
 
 Key: <code>mx-cfdi-v4</code>
 
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** <code>standard</code>
+
+**Output:**
+- **Extensions:** <code>mx-cfdi-doc-type:I</code>
+</Accordion>
+
+<Accordion title="credit-note">
+
+**Filters:**
+- **Types:** <code>credit-note</code>
+
+**Output:**
+- **Extensions:** <code>mx-cfdi-doc-type:E</code>, <code>mx-cfdi-rel-type:01</code>
+</Accordion>
+
+<Accordion title="standard, credit-note">
+
+**Filters:**
+- **Types:** <code>standard</code>, <code>credit-note</code>
+- **Filter:** *(custom)*
+
+**Output:**
+- **Extensions:** <code>mx-cfdi-payment-method:PUE</code>
+</Accordion>
+
+<Accordion title="standard, credit-note">
+
+**Filters:**
+- **Types:** <code>standard</code>, <code>credit-note</code>
+- **Filter:** *(custom)*
+
+**Output:**
+- **Extensions:** <code>mx-cfdi-payment-method:PPD</code>
+</Accordion>
+
 ## Extensions
 ### Document Type
 
@@ -207,3 +249,110 @@ Specific month or month range for the global invoice.
 
 Pattern: <code>\d{4}</code>
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-01</code> | tax.ext | ext require [mx-cfdi-doc-type, mx-cfdi-issue-place, mx-cfdi-payment-method] | tax requires 'mx-cfdi-doc-type', 'mx-cfdi-issue-place', and 'mx-cfdi-payment-method' extensions |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-02</code> | tax.ext | has global tag; ext require [mx-cfdi-global-period, mx-cfdi-global-month, mx-cfdi-global-year] | global invoices require 'mx-cfdi-global-period', 'mx-cfdi-global-month', and 'mx-cfdi-global-year' extensions |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-03</code> | customer | has global tag; empty | cannot be set with global tag |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-04</code> | payment | has global tag; present | payment is required for global invoices |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-05</code> | payment.advances | has global tag; present | advances must be set with global tag |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-06</code> | lines[*].item.ref | has global tag; present | must be set with global tag |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-07</code> | tax.ext | no global tag; ext require all or none of [mx-cfdi-global-period, mx-cfdi-global-month, mx-cfdi-global-year] | 'mx-cfdi-global-period', 'mx-cfdi-global-month', and 'mx-cfdi-global-year' extensions must all be present or all absent |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-08</code> | customer.tax_id | no global tag; present | customer tax ID is required |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-09</code> | customer.tax_id.code | no global tag; present | customer tax ID code is required |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-10</code> | customer.ext | customer is Mexican; ext require [mx-cfdi-fiscal-regime, mx-cfdi-use] | Mexican customer requires 'mx-cfdi-fiscal-regime' and 'mx-cfdi-use' extensions |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-11</code> | customer.addresses | customer is Mexican; present | Mexican customer must have at least one address |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-12</code> | customer.addresses[*].code | customer is Mexican; present | customer address postal code is required |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-13</code> | customer.addresses[*].code | customer is Mexican; matches ^[0-9]{5}$ | customer address postal code format is invalid |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-14</code> | lines[*].item.ext | no global tag; ext require [mx-cfdi-prod-serv] | item requires 'mx-cfdi-prod-serv' extension |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-15</code> | lines[*].item.ext | no global tag; valid prod-serv | product/service code must have 8 digits |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-16</code> | tax.ext | has preceding; ext require [mx-cfdi-rel-type] | tax requires 'mx-cfdi-rel-type' extension when preceding documents are present |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-17</code> | preceding[*].stamps | stamps have sat-uuid | preceding row is missing 'sat-uuid' stamp |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-18</code> | supplier.tax_id | present | supplier tax ID is required |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-19</code> | supplier.tax_id.code | present | supplier tax ID code is required |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-20</code> | supplier.ext | ext require [mx-cfdi-fiscal-regime] | supplier requires 'mx-cfdi-fiscal-regime' extension |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-21</code> | lines[*].quantity | min 0 | line quantity must be greater than 0 |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-22</code> | lines[*].item.price | present | line item price is required |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-23</code> | lines[*].item.price | min 0 | line item price must be greater than 0 |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-24</code> | lines[*].total | min 0 | line total must not be negative |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-25</code> | discounts | empty | document level discounts are not supported, use line discounts instead |
+| <code>GOBL-MX-CFDI-V4-BILL-INVOICE-26</code> | charges | empty | document level charges are not supported |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-MX-CFDI-V4-PAY-INSTRUCTIONS-01</code> | ext | ext require [mx-cfdi-payment-means] | payment instructions require 'mx-cfdi-payment-means' extension |
+</Accordion>
+<Accordion title="pay.Advance">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-MX-CFDI-V4-PAY-ADVANCE-01</code> | ext | ext require [mx-cfdi-payment-means] | payment advance requires 'mx-cfdi-payment-means' extension |
+</Accordion>
+<Accordion title="pay.Terms">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-MX-CFDI-V4-PAY-TERMS-01</code> | notes | length between 0 and 1000 | notes length must be no more than 1000 |
+</Accordion>
+<Accordion title="cfdi.FoodVouchers">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-01</code> | employer_registration | length between 0 and 20 | employer registration must be no more than 20 characters |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-02</code> | account_number | present | account number is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-03</code> | account_number | length between 0 and 20 | account number must be no more than 20 characters |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-04</code> | total | present | total is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-05</code> | lines | present | lines are required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-06</code> | lines[*].e_wallet_id | present | line e-wallet ID is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-07</code> | lines[*].e_wallet_id | length between 0 and 20 | line e-wallet ID must be no more than 20 characters |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-08</code> | lines[*].issue_date_time | not zero | line issue date and time is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-09</code> | lines[*].employee | present | line employee is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-10</code> | lines[*].employee.tax_code | present | employee tax code (RFC) is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-11</code> | lines[*].employee.tax_code | valid RFC | employee tax code (RFC) must be valid |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-12</code> | lines[*].employee.curp | present | employee CURP is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-13</code> | lines[*].employee.curp | matches ^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B,C,D,F,G,H,J,K,L,M,N,Ñ,P,Q,R,S,T,V,W,X,Y,Z]{3}[0-9,A-Z][0-9]$ | employee CURP format must be valid |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-14</code> | lines[*].employee.name | present | employee name is required |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-15</code> | lines[*].employee.name | length between 0 and 100 | employee name must be no more than 100 characters |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-16</code> | lines[*].employee.social_security | matches ^[0-9]{11}$ | employee social security number format is invalid |
+| <code>GOBL-MX-CFDI-V4-FOODVOUCHERS-17</code> | lines[*].amount | present | line amount is required |
+</Accordion>
+<Accordion title="cfdi.FuelAccountBalance">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-01</code> | account_number | present | account number is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-02</code> | account_number | length between 1 and 50 | account number must be between 1 and 50 characters |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-03</code> | subtotal | present | subtotal is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-04</code> | total | present | total is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-05</code> | lines | present | lines are required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-20</code> | lines[*] | valid line total | line total must be quantity x unit_price |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-06</code> | lines[*].e_wallet_id | present | line e-wallet ID is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-07</code> | lines[*].purchase_date_time | not zero | line purchase date and time is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-08</code> | lines[*].vendor_tax_code | present | line vendor tax code is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-09</code> | lines[*].vendor_tax_code | valid RFC | line vendor tax identity code is invalid |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-10</code> | lines[*].service_station_code | present | line service station code is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-11</code> | lines[*].service_station_code | length between 1 and 20 | line service station code must be between 1 and 20 characters |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-12</code> | lines[*].quantity | min 0 | line quantity must be greater than 0 |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-13</code> | lines[*].item | present | line item is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-14</code> | lines[*].item.type | present | line item type is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-15</code> | lines[*].item.name | present | line item name is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-16</code> | lines[*].item.name | length between 1 and 300 | line item name must be between 1 and 300 characters |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-17</code> | lines[*].item.price | min 0 | line item price must be greater than 0 |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-18</code> | lines[*].purchase_code | present | line purchase code is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-19</code> | lines[*].purchase_code | length between 1 and 50 | line purchase code must be between 1 and 50 characters |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-21</code> | lines[*].taxes | present | line taxes are required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-22</code> | lines[*].taxes[*].cat | present | line tax category is required |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-23</code> | lines[*].taxes[*].cat | one of [VAT, IEPS] | line tax category must be a valid value |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-24</code> | lines[*].taxes[*].rate | no percent; present | line tax rate is required when percent is not set |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-25</code> | lines[*].taxes[*].rate | min 0 | line tax rate must be greater than 0 |
+| <code>GOBL-MX-CFDI-V4-FUELACCOUNTBALANCE-26</code> | lines[*].taxes[*].amount | min 0 | line tax amount must be greater than 0 |
+</Accordion>
+</AccordionGroup>

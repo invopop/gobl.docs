@@ -1,6 +1,22 @@
 ---
 title: The Netherlands
 ---
+The Netherlands' tax system is administered by the Belastingdienst (Tax and
+Customs Administration). As an EU member state, the Netherlands follows the
+EU VAT Directive with locally adapted rates.
+
+BTW (Belasting over de Toegevoegde Waarde) applies at standard and reduced
+rates. The reduced rate covers food, water, pharmaceuticals, books, passenger
+transport, hotel accommodation, and cultural and sporting events.
+
+Businesses are identified by their BTW-nummer (VAT number) in the format NL
+followed by 9 digits, the letter B, and 2 check digits (e.g.
+NL123456789B01). The KVK (Kamer van Koophandel) number is the commercial
+register number.
+
+The Netherlands supports credit notes for invoice corrections. E-invoicing
+via PEPPOL is commonly used, and is mandatory for B2G transactions with the
+central government.
 
 ## Base Details
 
@@ -32,3 +48,40 @@ supported.
 
 The types of invoices that can be created with a preceding definition:
 - <code>credit-note</code>
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** <code>reverse-charge</code>
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (legal)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-NL-BILL-INVOICE-01</code> | supplier | context: regime in [NL]; has tax ID code or KVK/OIN identity | invoice supplier must have a tax ID code or a KVK/OIN identity |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-NL-ORG-IDENTITY-01</code> | code | type in [KVK]; length between 8 and 8 | identity code for type KVK must be valid |
+| <code>GOBL-NL-ORG-IDENTITY-02</code> | code | type in [OIN]; matches ^0{6}(0[1-9]|10|99)\d{9}0{3}$ | identity code for type OIN must be valid |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-NL-TAX-IDENTITY-01</code> | code | code in [NL]; valid | invalid Dutch VAT identity code |
+</Accordion>
+</AccordionGroup>

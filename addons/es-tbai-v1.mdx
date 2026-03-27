@@ -99,3 +99,26 @@ data.
 | <code>R4</code> | Rectified invoice: Other |
 | <code>R5</code> | Rectified invoice: simplified invoices |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-01</code> | tax | present | tax is required |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-02</code> | tax.ext | ext require [es-tbai-region] | extension 'es-tbai-region' is required |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-03</code> | customer.tax_id | present | customer tax ID is required |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-04</code> | preceding | invoice type in [credit-note, corrective, debit-note]; present | preceding documents are required for credit-note, corrective, debit-note invoices |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-05</code> | preceding[*].issue_date | present | preceding issue date is required |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-06</code> | preceding[*].ext | ext require [es-tbai-correction] | preceding ext 'es-tbai-correction' is required |
+| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-07</code> | notes | has general note | with key 'general' missing |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-TBAI-V1-TAX-COMBO-01</code> | ext | exempt vat/igic; ext require [es-tbai-exemption] | extension 'es-tbai-exemption' is required for exempt tax combos |
+</Accordion>
+</AccordionGroup>

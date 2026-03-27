@@ -11,46 +11,53 @@ Note represents a free text of additional information that may be added to a doc
 
 ## Properties
 
-| Title      | Property | Type                                      | Req. | Description                                                              |
-|------------|----------|-------------------------------------------|------|--------------------------------------------------------------------------|
-| UUID       | `uuid`   | string                                    |      | Universally Unique Identifier.                                           |
-| Key        | `key`    | [cbc.Key](/draft-0/cbc/key)               |      | Key specifying subject of the text                                       |
-| Code       | `code`   | [cbc.Code](/draft-0/cbc/code)             |      | Code used for additional data that may be required to identify the note. |
-| Source     | `src`    | [cbc.Key](/draft-0/cbc/key)               |      | Source of this note, especially useful when auto-generated.              |
-| Text       | `text`   | string                                    | true | The contents of the note                                                 |
-| Meta       | `meta`   | [cbc.Meta](/draft-0/cbc/meta)             |      | Additional information about the note                                    |
-| Extensions | `ext`    | [tax.Extensions](/draft-0/tax/extensions) |      | Extension data                                                           |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key specifying subject of the text |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code used for additional data that may be required to identify the note. |
+| Source | `src` | [cbc.Key](/draft-0/cbc/key) | Source of this note, especially useful when auto-generated. |
+| Text | `text` | string | The contents of the note |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional information about the note |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension data |
 
 ## Key Values
 
-| Value             | Description                                       |
-|-------------------|---------------------------------------------------|
-| `goods`           | Goods Description                                 |
-| `payment`         | Terms of Payment                                  |
-| `payment-method`  | Payment method or remittance information          |
-| `payment-term`    | Payment term details                              |
-| `legal`           | Legal or regulatory information                   |
-| `dangerous-goods` | Dangerous goods additional information            |
-| `ack`             | Acknowledgement Description                       |
-| `rate`            | Rate additional information                       |
-| `reason`          | Explanation of something relevant to the document |
-| `dispute`         | Details on a dispute.                             |
-| `customer`        | Customer remarks                                  |
-| `glossary`        | Glossary of terms                                 |
-| `customs`         | Customs declaration information                   |
-| `general`         | General information                               |
-| `handling`        | Handling instructions                             |
-| `packaging`       | Packaging information                             |
-| `loading`         | Loading instructions                              |
-| `price`           | Price conditions                                  |
-| `priority`        | Priority information                              |
-| `regulatory`      | Regulatory information                            |
-| `safety`          | Safety instructions                               |
-| `ship-line`       | Ship line                                         |
-| `supplier`        | Supplier remarks                                  |
-| `transport`       | Transportation information                        |
-| `delivery`        | Delivery information                              |
-| `quarantine`      | Quarantine information                            |
-| `tax`             | Tax declaration                                   |
-| `other`           | Mutually defined                                  |
+| Value | Description |
+|-------|-------------|
+| `goods` | Goods Description |
+| `payment` | Terms of Payment |
+| `payment-method` | Payment method or remittance information |
+| `payment-term` | Payment term details |
+| `legal` | Legal or regulatory information |
+| `dangerous-goods` | Dangerous goods additional information |
+| `ack` | Acknowledgement Description |
+| `rate` | Rate additional information |
+| `reason` | Explanation of something relevant to the document |
+| `dispute` | Details on a dispute. |
+| `customer` | Customer remarks |
+| `glossary` | Glossary of terms |
+| `customs` | Customs declaration information |
+| `general` | General information |
+| `handling` | Handling instructions |
+| `packaging` | Packaging information |
+| `loading` | Loading instructions |
+| `price` | Price conditions |
+| `priority` | Priority information |
+| `regulatory` | Regulatory information |
+| `safety` | Safety instructions |
+| `ship-line` | Ship line |
+| `supplier` | Supplier remarks |
+| `transport` | Transportation information |
+| `delivery` | Delivery information |
+| `quarantine` | Quarantine information |
+| `tax` | Tax declaration |
+| `other` | Mutually defined |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ORG-NOTE-01</code> | text | present | note text is required |
+| <code>GOBL-ORG-NOTE-02</code> | key | one of [goods, payment, payment-method, payment-term, legal, dangerous-goods, ack, rate, reason, dispute, customer, glossary, customs, general, handling, packaging, loading, price, priority, regulatory, safety, ship-line, supplier, transport, delivery, quarantine, tax, other] | note key must be a valid value |

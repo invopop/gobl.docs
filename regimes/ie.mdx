@@ -1,6 +1,19 @@
 ---
 title: Ireland
 ---
+Ireland's tax system is administered by the Revenue Commissioners (Na
+Coimisinéirí Ioncaim). As an EU member state, Ireland follows the EU VAT
+Directive with locally adapted rates.
+
+VAT applies at standard, reduced, second reduced, livestock, and zero rates.
+Zero-rated supplies include food, children's clothing, oral medicines, and
+exports.
+
+Businesses are identified by their VAT registration number in the format IE
+followed by 7 digits and 1-2 letters.
+
+Ireland supports credit notes for invoice corrections. E-invoicing via
+PEPPOL is supported for B2G transactions.
 
 ## Base Details
 
@@ -24,3 +37,27 @@ title: Ireland
 | <code>reduced</code> | <code>standard</code> | First Reduced Rate | 13.5% |  |
 | <code>super-reduced</code> | <code>standard</code> | Second Reduced Rate | 9.0% |  |
 | <code>special</code> | <code>standard</code> | Livestock Rate | 4.8% |  |
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** <code>reverse-charge</code>
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (legal)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-IE-TAX-IDENTITY-01</code> | code | code in [IE]; valid | invalid Irish VAT identity code |
+</Accordion>
+</AccordionGroup>

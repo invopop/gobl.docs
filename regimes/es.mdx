@@ -1,6 +1,26 @@
 ---
 title: Spain
 ---
+Spain's tax system is administered by the Agencia Tributaria (AEAT). As an
+EU member state, Spain follows the EU VAT Directive with locally adapted rates.
+
+IVA (Impuesto sobre el Valor Añadido) applies at general, reduced, and
+super-reduced rates. The Canary Islands use IGIC (Impuesto General Indirecto
+Canario) instead of IVA, while Ceuta and Melilla use IPSI (Impuesto sobre la
+Producción, los Servicios y la Importación).
+
+Businesses are identified by their NIF (Número de Identificación Fiscal) or
+CIF for companies. IRPF (Impuesto sobre la Renta de las Personas Físicas)
+retention taxes apply to freelancer invoices at varying rates.
+
+According to Real Decreto 1619/2012, only rectified (rectificativa) invoices
+are recognized in Spanish law. GOBL maps corrective invoices to "rectificación
+modelo íntegro" (complete replacement) and credit notes to "rectificación por
+diferencias" (correction by differences, with quantities inverted during
+conversion). The FacturaE format is used for B2G e-invoicing, with TicketBAI
+required in the Basque Country, VeriFactu being rolled out nationally, and the
+SII (Suministro Inmediato de Información) system providing near-real-time
+reporting of invoicing data to the AEAT.
 
 ## Base Details
 
@@ -63,3 +83,98 @@ The types of invoices that can be created with a preceding definition:
 - <code>credit-note</code>
 - <code>corrective</code>
 - <code>debit-note</code>
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** <code>reverse-charge</code>
+
+**Output:**
+- **Note:** Reverse Charge / Inversión del sujeto pasivo. (legal)
+</Accordion>
+
+<Accordion title="#simplified-scheme">
+
+**Filters:**
+- **Tags:** <code>simplified-scheme</code>
+
+**Output:**
+- **Note:** Factura expedida por contribuyente en régimen simplificado. (legal)
+</Accordion>
+
+<Accordion title="#self-billed">
+
+**Filters:**
+- **Tags:** <code>self-billed</code>
+
+**Output:**
+- **Note:** Facturación por el destinatario. (legal)
+</Accordion>
+
+<Accordion title="#travel-agency">
+
+**Filters:**
+- **Tags:** <code>travel-agency</code>
+
+**Output:**
+- **Note:** Régimen especial de las agencias de viajes. (legal)
+</Accordion>
+
+<Accordion title="#second-hand-goods">
+
+**Filters:**
+- **Tags:** <code>second-hand-goods</code>
+
+**Output:**
+- **Note:** Régimen especial de los bienes usados. (legal)
+</Accordion>
+
+<Accordion title="#art">
+
+**Filters:**
+- **Tags:** <code>art</code>
+
+**Output:**
+- **Note:** Régimen especial de los objetos de arte. (legal)
+</Accordion>
+
+<Accordion title="#antiques">
+
+**Filters:**
+- **Tags:** <code>antiques</code>
+
+**Output:**
+- **Note:** Régimen especial de las antigüedades y objetos de colección. (legal)
+</Accordion>
+
+<Accordion title="#cash-basis">
+
+**Filters:**
+- **Tags:** <code>cash-basis</code>
+
+**Output:**
+- **Note:** Régimen especial del criterio de caja. (legal)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-BILL-INVOICE-01</code> | supplier | context: regime in [ES]; present | invoice supplier in Spain is required |
+| <code>GOBL-ES-BILL-INVOICE-02</code> | supplier.tax_id | context: regime in [ES]; present | invoice supplier tax ID in Spain is required |
+| <code>GOBL-ES-BILL-INVOICE-03</code> | supplier.tax_id.code | context: regime in [ES]; present | invoice supplier tax ID code in Spain is required |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ES-TAX-IDENTITY-01</code> | code | code in [ES]; valid | invalid Spanish VAT identity code format or checksum |
+</Accordion>
+</AccordionGroup>

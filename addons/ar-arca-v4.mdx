@@ -314,3 +314,50 @@ The VAT status is validated against the document type:
 | <code>15</code> | VAT Not Applicable |
 | <code>16</code> | Promoted Independent Worker Monotributista |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-05</code> |  | type matches doc type credit note | invoice type is credit-note but ar-arca-doc-type is not a credit note |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-06</code> |  | type matches doc type debit note | invoice type is debit-note but ar-arca-doc-type is not a debit note |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-07</code> |  | doc type credit note matches type | ar-arca-doc-type is a credit note but invoice type is not credit-note |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-08</code> |  | doc type debit note matches type | doc type is a debit note but invoice type is not debit-note |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-12</code> |  | doc type 49 vat status | document type 49 (Used Goods Purchase Invoice) requires customer VAT status to be 5 (Final Consumer) |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-13</code> |  | doc type A vat status | document type A requires customer VAT status to be one of [1 6 13 16] |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-14</code> |  | doc type B vat status | document type B cannot have customer VAT status [1 6 13 16] |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-01</code> | series | present | series is required |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-02</code> | series | valid series | series must be a valid number between 1 and 99998 |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-03</code> | tax | present | tax is required |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-04</code> | tax.ext | ext require [ar-arca-doc-type] | tax requires 'ar-arca-doc-type' extension |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-09</code> | customer | customer required; present | customer is required |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-10</code> | customer | has tax ID or identity | must have a tax_id, or an identity with ext 'ar-arca-identity-type' |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-11</code> | customer.ext | ext require [ar-arca-vat-status] | customer requires 'ar-arca-vat-status' extension |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-15</code> | ordering | concept is services; present | ordering is required for services |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-16</code> | ordering.period | concept is services; present | ordering period is required for services |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-17</code> | payment | concept is services; present | payment is required for services |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-18</code> | payment.terms | concept is services; present | payment terms are required for services |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-19</code> | payment.terms.due_dates | concept is services; present | payment due dates are required for services |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-20</code> | payment.terms.due_dates | concept is goods; empty | payment due dates must not be set for goods |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-21</code> | preceding | invoice type in [credit-note, debit-note]; present | preceding documents are required for credit/debit notes |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-22</code> | preceding[*].ext | ext require [ar-arca-doc-type] | preceding document requires 'ar-arca-doc-type' extension |
+| <code>GOBL-AR-ARCA-V4-BILL-INVOICE-23</code> | lines[*].taxes | doc type is C; empty | type C invoices (simplified tax scheme) must not have taxes on lines |
+</Accordion>
+<Accordion title="bill.Charge">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-AR-ARCA-V4-BILL-CHARGE-01</code> | ext | key is tax; ext require [ar-arca-tax-type] | tax charge requires 'ar-arca-tax-type' extension |
+| <code>GOBL-AR-ARCA-V4-BILL-CHARGE-02</code> | percent | has tax type ext; present | percent is required when tax type is set |
+| <code>GOBL-AR-ARCA-V4-BILL-CHARGE-03</code> | reason | tax type is other; present | reason is required when tax type is 'other' |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-AR-ARCA-V4-TAX-COMBO-01</code> | ext | category is VAT; ext require [ar-arca-vat-rate] | VAT combo requires 'ar-arca-vat-rate' extension |
+</Accordion>
+</AccordionGroup>

@@ -1,29 +1,38 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "GOBL",
-  "logo": {
-    "light": "static/logo_long_dark.svg",
-    "dark": "static/logo_long_light.svg"
+  "colors": {
+    "dark": "#15c6f6",
+    "light": "#15c6f6",
+    "primary": "#15c6f6"
   },
   "favicon": "static/favicon.svg",
-  "colors": {
-    "primary": "#15c6f6",
-    "light": "#15c6f6",
-    "dark": "#15c6f6"
+  "footer": {
+    "socials": {
+      "github": "https://github.com/invopop/gobl",
+      "linkedin": "https://www.linkedin.com/company/invopop/",
+      "twitter": "https://twitter.com/goInvopop"
+    }
   },
   "integrations": {
     "plausible": {
       "domain": "docs.gobl.org"
     }
   },
-  "styling": {
-    "codeblocks": "system"
+  "logo": {
+    "dark": "static/logo_long_light.svg",
+    "light": "static/logo_long_dark.svg"
+  },
+  "name": "GOBL",
+  "navbar": {
+    "primary": {
+      "href": "https://github.com/invopop/gobl",
+      "type": "github"
+    }
   },
   "navigation": {
     "anchors": [
       {
         "anchor": "Documentation",
-        "icon": "book-open",
         "groups": [
           {
             "group": "Overview",
@@ -153,8 +162,8 @@
                   "draft-0/bill/order",
                   "draft-0/bill/ordering",
                   "draft-0/bill/payment",
-                  "draft-0/bill/payment_line",
                   "draft-0/bill/payment_details",
+                  "draft-0/bill/payment_line",
                   "draft-0/bill/sub_line",
                   "draft-0/bill/tax",
                   "draft-0/bill/totals",
@@ -302,10 +311,12 @@
                   "draft-0/tax/correction_set",
                   "draft-0/tax/extensions",
                   "draft-0/tax/identity",
+                  "draft-0/tax/key_def",
                   "draft-0/tax/rate_def",
                   "draft-0/tax/rate_total",
                   "draft-0/tax/rate_total_surcharge",
                   "draft-0/tax/rate_value_def",
+                  "draft-0/tax/regime_code",
                   "draft-0/tax/regime_def",
                   "draft-0/tax/scenario",
                   "draft-0/tax/scenario_note",
@@ -317,7 +328,8 @@
               }
             ]
           }
-        ]
+        ],
+        "icon": "book-open"
       }
     ],
     "global": {
@@ -340,18 +352,8 @@
       ]
     }
   },
-  "navbar": {
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/invopop/gobl"
-    }
-  },
-  "footer": {
-    "socials": {
-      "twitter": "https://twitter.com/goInvopop",
-      "linkedin": "https://www.linkedin.com/company/invopop/",
-      "github": "https://github.com/invopop/gobl"
-    }
+  "styling": {
+    "codeblocks": "system"
   },
   "theme": "mint"
 }

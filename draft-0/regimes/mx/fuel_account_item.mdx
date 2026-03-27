@@ -11,10 +11,10 @@ FuelAccountItem provides the details of a fuel purchase.
 
 ## Properties
 
-| Title | Property | Type                              | Req. | Description                                                                      |
-|-------|----------|-----------------------------------|------|----------------------------------------------------------------------------------|
-| Type  | `type`   | [cbc.Code](/draft-0/cbc/code)     | true | Type of fuel (one of `c_ClaveTipoCombustible` codes, maps to `TipoCombustible`). |
-| Unit  | `unit`   | [org.Unit](/draft-0/org/unit)     |      | Reference unit of measure used in the price and the quantity (maps to `Unidad`). |
-| Name  | `name`   | string                            | true | Name of the fuel (maps to `NombreCombustible`).                                  |
-| Price | `price`  | [num.Amount](/draft-0/num/amount) | true | Base price of a single unit of the fuel without taxes (maps to `ValorUnitario`). |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Type | `type` | [cbc.Code](/draft-0/cbc/code) | Type of fuel (one of `c_ClaveTipoCombustible` codes, maps to `TipoCombustible`). |
+| Unit | `unit` | [org.Unit](/draft-0/org/unit) | Reference unit of measure used in the price and the quantity (maps to `Unidad`). |
+| Name | `name` | string | Name of the fuel (maps to `NombreCombustible`). |
+| Price | `price` | [num.Amount](/draft-0/num/amount) | Base price of a single unit of the fuel without taxes (maps to `ValorUnitario`). |
 

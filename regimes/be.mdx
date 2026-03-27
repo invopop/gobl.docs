@@ -1,6 +1,19 @@
 ---
 title: Belgium
 ---
+Belgium's tax system is administered by the Federal Public Service Finance
+(Service Public Fédéral Finances / Federale Overheidsdienst Financiën).
+As an EU member state, Belgium follows the EU VAT Directive.
+
+VAT (Taxe sur la Valeur Ajoutée, TVA / Belasting over de Toegevoegde Waarde,
+BTW) applies at standard, intermediate, and reduced rates. The intermediate
+rate covers certain goods including social housing, restaurant services, and
+some food products, while the reduced rate applies to basic necessities such
+as food, water, pharmaceuticals, books, and passenger transport.
+
+Businesses are identified by their VAT number (Numéro de TVA / BTW-nummer)
+in the format BE followed by 10 digits. Belgium supports credit notes for
+invoice corrections.
 
 ## Base Details
 
@@ -33,3 +46,35 @@ supported.
 
 The types of invoices that can be created with a preceding definition:
 - <code>credit-note</code>
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** <code>reverse-charge</code>
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (legal)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-BE-TAX-IDENTITY-01</code> | code | code in [BE]; valid | invalid Belgian VAT identity code |
+</Accordion>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-BE-BILL-INVOICE-01</code> | supplier.tax_id | no BCE identity; present | supplier tax ID required for Belgian regime |
+| <code>GOBL-BE-BILL-INVOICE-02</code> | supplier.tax_id.code | no BCE identity; present | supplier tax ID code required for Belgian regime |
+| <code>GOBL-BE-BILL-INVOICE-03</code> | supplier.identities | no tax ID code; has BCE type | supplier identities must include BCE type |
+</Accordion>
+</AccordionGroup>

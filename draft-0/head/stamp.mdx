@@ -11,8 +11,15 @@ Stamp defines an official seal of approval from a third party like a governmenta
 
 ## Properties
 
-| Title    | Property | Type                        | Req. | Description                                                                     |
-|----------|----------|-----------------------------|------|---------------------------------------------------------------------------------|
-| Provider | `prv`    | [cbc.Key](/draft-0/cbc/key) | true | Identity of the agency used to create the stamp usually defined by each region. |
-| Value    | `val`    | string                      | true | The serialized stamp value generated for or by the external agency              |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Provider | `prv` | [cbc.Key](/draft-0/cbc/key) | Identity of the agency used to create the stamp usually defined by each region. |
+| Value | `val` | string | The serialized stamp value generated for or by the external agency |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-HEAD-STAMP-01</code> | prv | present | stamp provider is required |
+| <code>GOBL-HEAD-STAMP-02</code> | val | present | stamp value is required |

@@ -120,6 +120,32 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 	return nil
 }
 
+func (g *generator) validationRules(sections []RuleSection) error {
+	if len(sections) == 0 {
+		return nil
+	}
+
+	return g.process(here.Doc(`
+
+
+		## Validation Rules
+
+		<AccordionGroup>
+		{{- range .}}
+		<Accordion title="{{.Name}}">
+
+		| Code | Field | Test | Description |
+		| ---- | ----- | ---- | ----------- |
+		{{- range .Rows}}
+		| <code>{{.Code}}</code> | {{.Field}} | {{.Test}} | {{.Desc}} |
+		{{- end}}
+		</Accordion>
+		{{- end}}
+		</AccordionGroup>
+
+	`), sections)
+}
+
 func (g *generator) extension(kd *cbc.Definition) error {
 
 	return g.process(here.Doc(`

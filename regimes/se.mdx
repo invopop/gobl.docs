@@ -1,6 +1,27 @@
 ---
 title: Sweden
 ---
+Sweden's tax system is administered by the Swedish Tax Agency
+(Skatteverket). As an EU member state, Sweden follows the EU VAT Directive
+with locally adapted rates.
+
+Moms (Mervärdesskatt) applies at standard, reduced, and heavily reduced
+rates. Exports and certain financial and healthcare services are exempt.
+
+Businesses are identified by their Organisationsnummer (organization number),
+a 10-digit number validated with the Luhn algorithm. The Swedish VAT number
+uses the format SE followed by the 10-digit organization number plus "01" as
+check digits. Individuals may be identified by their Personnummer (personal
+identity number, format YYMMDD-XXXX) or Samordningsnummer (coordination
+number for non-residents, where the day component is offset by 60). Sole
+proprietorships use the owner's personal number as their organization number.
+
+E-invoicing via PEPPOL BIS Billing 3.0 is mandatory for all B2G transactions
+since April 2019. F-tax (F-skatt) registration indicates that a business
+handles its own tax payments, exempting customers from withholding obligations.
+Reverse charge applies in specific sectors (construction, metals, waste) and
+for cross-border transactions within the EU. Simplified invoices may be used
+for transactions up to 4000 SEK.
 
 ## Base Details
 
@@ -23,3 +44,42 @@ title: Sweden
 | <code>general</code> | <code>standard</code> | General Rate | 25.0% |  |
 | <code>reduced</code> | <code>standard</code> | First Reduced Rate | 12.0% |  |
 | <code>super-reduced</code> | <code>standard</code> | Second Reduced Rate | 6.0% |  |
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** <code>reverse-charge</code>
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (legal)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-SE-TAX-IDENTITY-01</code> | code | code in [SE]; valid | invalid Swedish VAT identity code |
+</Accordion>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-SE-BILL-INVOICE-01</code> | supplier | context: regime in [SE]; has tax ID code or identity with type in [ON, PN, CN] | invoice SE supplier must have either tax ID code or identity with ON, PN, or CN type |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-SE-ORG-IDENTITY-01</code> | code | type in [ON]; valid org number | invalid organization number format |
+| <code>GOBL-SE-ORG-IDENTITY-02</code> | code | type in [ON]; luhn checksum | invalid checksum |
+| <code>GOBL-SE-ORG-IDENTITY-03</code> | code | type in [PN, CN]; valid individual number | invalid person or coordination number format |
+| <code>GOBL-SE-ORG-IDENTITY-04</code> | code | type in [PN, CN]; luhn checksum | invalid checksum |
+</Accordion>
+</AccordionGroup>

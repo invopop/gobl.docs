@@ -11,22 +11,22 @@ Address defines a globally acceptable set of attributes that describes a postal 
 
 ## Properties
 
-| Title           | Property       | Type                                                  | Req. | Description                                                                                    |
-|-----------------|----------------|-------------------------------------------------------|------|------------------------------------------------------------------------------------------------|
-| UUID            | `uuid`         | string                                                |      | Universally Unique Identifier.                                                                 |
-| Label           | `label`        | string                                                |      | Useful identifier, such as home, work, etc.                                                    |
-| Post Office Box | `po_box`       | string                                                |      | Box number or code for the post office box located at the address.                             |
-| Number          | `num`          | string                                                |      | House or building number in the street.                                                        |
-| Floor           | `floor`        | string                                                |      | Floor number within the building.                                                              |
-| Block           | `block`        | string                                                |      | Block number within the building.                                                              |
-| Door            | `door`         | string                                                |      | Door number within the building.                                                               |
-| Street          | `street`       | string                                                |      | First line of street.                                                                          |
-| Extended Street | `street_extra` | string                                                |      | Additional street address details.                                                             |
-| Locality        | `locality`     | string                                                |      | Name of a village, town, district, or city, typically inside a region.                         |
-| Region          | `region`       | string                                                |      | Name of a city, province, county, or state, inside a country.                                  |
-| State           | `state`        | [cbc.Code](/draft-0/cbc/code)                         |      | State or province code for countries that require it.                                          |
-| Code            | `code`         | [cbc.Code](/draft-0/cbc/code)                         |      | Post or ZIP code.                                                                              |
-| Country         | `country`      | [l10n.ISOCountryCode](/draft-0/l10n/iso_country_code) |      | ISO country code.                                                                              |
-| Coordinates     | `coords`       | [org.Coordinates](/draft-0/org/coordinates)           |      | When the postal address is not sufficient, coordinates help locate the address more precisely. |
-| Meta            | `meta`         | [cbc.Meta](/draft-0/cbc/meta)                         |      | Any additional semi-structure details about the address.                                       |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Label | `label` | string | Useful identifier, such as home, work, etc. |
+| Post Office Box | `po_box` | string | Box number or code for the post office box located at the address. |
+| Number | `num` | string | House or building number in the street. |
+| Floor | `floor` | string | Floor number within the building. |
+| Block | `block` | string | Block number within the building. |
+| Door | `door` | string | Door number within the building. |
+| Street | `street` | string | First line of street. |
+| Extended Street | `street_extra` | string | Additional street address details. |
+| Locality | `locality` | string | Name of a village, town, district, or city, typically inside a region. |
+| Region | `region` | string | Name of a city, province, county, or state, inside a country. |
+| State | `state` | [cbc.Code](/draft-0/cbc/code) | State or province code for countries that require it. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Post or ZIP code. |
+| Country | `country` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | ISO country code. |
+| Coordinates | `coords` | [org.Coordinates](/draft-0/org/coordinates) | When the postal address is not sufficient, coordinates help locate the address more precisely. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional semi-structure details about the address. |
 

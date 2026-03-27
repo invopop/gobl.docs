@@ -11,10 +11,16 @@ Website describes what is expected for a web address.
 
 ## Properties
 
-| Title | Property | Type   | Req. | Description                                                            |
-|-------|----------|--------|------|------------------------------------------------------------------------|
-| UUID  | `uuid`   | string |      | Universally Unique Identifier.                                         |
-| Label | `label`  | string |      | Label for the website to show alongside the URL.                       |
-| Title | `title`  | string |      | Title of the website to help distinguish between this and other links. |
-| URL   | `url`    | string | true | URL for the website.                                                   |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Label | `label` | string | Label for the website to show alongside the URL. |
+| Title | `title` | string | Title of the website to help distinguish between this and other links. |
+| URL | `url` | string | URL for the website. |
 
+
+## Validation Rules
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-ORG-WEBSITE-01</code> | url | present; url | website URL is required and must be valid |

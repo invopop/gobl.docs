@@ -1,6 +1,23 @@
 ---
 title: Portugal
 ---
+Portugal's tax system is administered by the Autoridade Tributária e Aduaneira
+(AT). As an EU member state, Portugal follows the EU VAT Directive with
+locally adapted rates that vary by region.
+
+IVA (Imposto sobre o Valor Acrescentado) applies at standard, intermediate,
+and reduced rates on the mainland. The autonomous regions of Açores and
+Madeira apply their own reduced rates.
+
+Businesses are identified by their NIF (Número de Identificação Fiscal), a
+9-digit number. The Portuguese VAT number uses the format PT followed by the
+NIF.
+
+Portugal requires all invoicing software to be certified by the AT and
+invoices must include a unique document identifier (ATCUD) and a hash chain
+linking sequential documents. The SAF-T (Standard Audit File for Tax Purposes)
+format is used for tax reporting. Both credit notes and debit notes are
+supported for invoice corrections.
 
 ## Base Details
 
@@ -337,3 +354,37 @@ For example:
 | <code>ZM</code> | Zambia |
 | <code>ZW</code> | Zimbabwe |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PT-BILL-INVOICE-11</code> |  | context: regime in [PT]; value date not after issue date | value date must not be after issue date |
+| <code>GOBL-PT-BILL-INVOICE-12</code> |  | context: regime in [PT]; operation date not after issue date | operation date must not be after issue date |
+| <code>GOBL-PT-BILL-INVOICE-13</code> |  | context: regime in [PT]; preceding dates not after issue date | preceding document issue dates must not be after invoice issue date |
+| <code>GOBL-PT-BILL-INVOICE-14</code> |  | context: regime in [PT]; advance dates not after issue date | advance payment dates must not be after invoice issue date |
+| <code>GOBL-PT-BILL-INVOICE-15</code> |  | context: regime in [PT]; due dates not before issue date | payment due dates must not be before invoice issue date |
+| <code>GOBL-PT-BILL-INVOICE-01</code> | type | context: regime in [PT]; one of [standard, credit-note, debit-note, proforma, other] | invoice type is not valid for Portugal |
+| <code>GOBL-PT-BILL-INVOICE-02</code> | preceding | invoice type in [credit-note, debit-note]; present | preceding is required for credit and debit notes |
+| <code>GOBL-PT-BILL-INVOICE-03</code> | supplier.tax_id | context: regime in [PT]; present | supplier tax ID is required |
+| <code>GOBL-PT-BILL-INVOICE-04</code> | supplier.tax_id.code | context: regime in [PT]; present | supplier tax ID code is required |
+| <code>GOBL-PT-BILL-INVOICE-05</code> | lines[*].quantity | context: regime in [PT]; min 0 | line quantity must be zero or positive |
+| <code>GOBL-PT-BILL-INVOICE-06</code> | lines[*].item.price | context: regime in [PT]; min 0 | item price must be zero or positive |
+| <code>GOBL-PT-BILL-INVOICE-07</code> | totals.due | context: regime in [PT]; min 0 | due amount must be zero or positive |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PT-TAX-COMBO-01</code> | ext | string(Category) == "VAT"; ext require [pt-region] | pt-region extension is required for VAT |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Code | Field | Test | Description |
+| ---- | ----- | ---- | ----------- |
+| <code>GOBL-PT-TAX-IDENTITY-01</code> | code | code in [PT]; valid | invalid Portuguese NIF tax identity code |
+</Accordion>
+</AccordionGroup>
