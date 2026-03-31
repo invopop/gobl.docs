@@ -161,26 +161,26 @@ Any other tax category defaults to UNTDID 5305 code **O** (Outside Scope).
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-V2017-BILL-DISCOUNT-02`<br />Either a reason or an allowance type extension is required (BR-33) |
+| <small>Discount</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-V2017-BILL-DISCOUNT-02`<br />Either a reason or an allowance type extension is required (BR-33) |
 | <code>taxes</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-DISCOUNT-01`<br />Taxes are required (BR-32) |
 </Accordion>
 <Accordion title="bill.LineDiscount">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-V2017-BILL-LINEDISCOUNT-01`<br />Either a reason or an allowance type extension is required (BR-41) |
+| <small>LineDiscount</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-V2017-BILL-LINEDISCOUNT-01`<br />Either a reason or an allowance type extension is required (BR-41) |
 </Accordion>
 <Accordion title="bill.Charge">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-V2017-BILL-CHARGE-01`<br />Either a reason or a charge type extension is required (BR-36) |
+| <small>Charge</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-V2017-BILL-CHARGE-01`<br />Either a reason or a charge type extension is required (BR-36) |
 </Accordion>
 <Accordion title="bill.LineCharge">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-V2017-BILL-LINECHARGE-01`<br />Either a reason or a charge type extension is required (BR-44) |
+| <small>LineCharge</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-V2017-BILL-LINECHARGE-01`<br />Either a reason or a charge type extension is required (BR-44) |
 </Accordion>
 <Accordion title="pay.Instructions">
 
@@ -192,7 +192,7 @@ Any other tax category defaults to UNTDID 5305 code **O** (Outside Scope).
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Has due dates or notes</li></ul> | `GOBL-EU-EN16931-V2017-PAY-TERMS-01`<br />Either due_dates or notes must be provided (BR-CO-25) |
+| <small>Terms</small> | <ul class="gobl-test"><li>Has due dates or notes</li></ul> | `GOBL-EU-EN16931-V2017-PAY-TERMS-01`<br />Either due_dates or notes must be provided (BR-CO-25) |
 </Accordion>
 <Accordion title="org.Item">
 
@@ -216,8 +216,8 @@ Any other tax category defaults to UNTDID 5305 code **O** (Outside Scope).
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Scheme required with code</li></ul> | `GOBL-EU-EN16931-V2017-ORG-INBOX-01`<br />Scheme cannot be blank when code is set (BR-62, BR-63) |
-| <small>document</small> | <ul class="gobl-test"><li>Code required with scheme</li></ul> | `GOBL-EU-EN16931-V2017-ORG-INBOX-02`<br />Code cannot be blank when scheme is set |
+| <small>Inbox</small> | <ul class="gobl-test"><li>Scheme required with code</li></ul> | `GOBL-EU-EN16931-V2017-ORG-INBOX-01`<br />Scheme cannot be blank when code is set (BR-62, BR-63) |
+| <small>Inbox</small> | <ul class="gobl-test"><li>Code required with scheme</li></ul> | `GOBL-EU-EN16931-V2017-ORG-INBOX-02`<br />Code cannot be blank when scheme is set |
 </Accordion>
 <Accordion title="org.Address">
 

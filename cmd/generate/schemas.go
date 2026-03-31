@@ -296,8 +296,9 @@ func (sg *schemaGenerator) writeValidationRules(buf *bytes.Buffer, sections []Ru
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 {{- range .}}
+{{- $sec := .}}
 {{- range .Rows}}
-| {{fieldCell .Field .Calculated}} | {{testList .Tests .Calculated}} | {{codeMessage .Code .Desc}} |
+| {{fieldCell .Field .Calculated $sec.Name}} | {{testList .Tests .Calculated}} | {{codeMessage .Code .Desc}} |
 {{- end}}
 {{- end}}
 `))

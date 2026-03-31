@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"strings"
 
 	"github.com/invopop/gobl/cbc"
@@ -39,13 +40,30 @@ func sentenceCase(s string) string {
 	return strings.ToUpper(s[:1]) + s[1:]
 }
 
-func fieldCell(field string, calculated bool) string {
+// rootTypeLabel returns the short type name for display when a rule has no field path
+// (e.g. "bill.Invoice" → "Invoice", "tax.Combo" → "Combo").
+func rootTypeLabel(qualifiedName string) string {
+	if qualifiedName == "" {
+		return ""
+	}
+	if i := strings.LastIndex(qualifiedName, "."); i >= 0 {
+		return qualifiedName[i+1:]
+	}
+	return qualifiedName
+}
+
+func fieldCell(field string, calculated bool, qualifiedTypeName string) string {
 	calcLabel := "<small class=\"gobl-field-calculated\">Calculated</small>"
 	if field == "" {
-		if calculated {
-			return "<small>document</small><br />" + calcLabel
+		label := rootTypeLabel(qualifiedTypeName)
+		if label == "" {
+			label = "document"
 		}
-		return "<small>document</small>"
+		esc := html.EscapeString(label)
+		if calculated {
+			return "<small>" + esc + "</small><br />" + calcLabel
+		}
+		return "<small>" + esc + "</small>"
 	}
 	if calculated {
 		return fmt.Sprintf("<code>%s</code><br />%s", field, calcLabel)

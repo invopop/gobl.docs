@@ -31,8 +31,8 @@ PaymentLine defines the details of a line item in a payment document.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Advances within payable</li></ul> | `GOBL-BILL-PAYMENTLINE-11`<br />Advances must not exceed payable |
-| <small>document</small> | <ul class="gobl-test"><li>Amount within limit</li></ul> | `GOBL-BILL-PAYMENTLINE-12`<br />Amount must not exceed payable less advances |
+| <small>PaymentLine</small> | <ul class="gobl-test"><li>Advances within payable</li></ul> | `GOBL-BILL-PAYMENTLINE-11`<br />Advances must not exceed payable |
+| <small>PaymentLine</small> | <ul class="gobl-test"><li>Amount within limit</li></ul> | `GOBL-BILL-PAYMENTLINE-12`<br />Amount must not exceed payable less advances |
 | <code>installment</code> | <ul class="gobl-test"><li>At least 1</li><li>At most 999</li></ul> | `GOBL-BILL-PAYMENTLINE-01`<br />Installment must be between 1 and 999 |
 | <code>payable</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-BILL-PAYMENTLINE-02`<br />Payable must be positive |
 | <code>advances</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-BILL-PAYMENTLINE-03`<br />Advances must be zero or positive |

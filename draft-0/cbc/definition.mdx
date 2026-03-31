@@ -28,6 +28,6 @@ Definition defines properties of a key, code, or other value that has a specific
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>String(Code) != '' \|\| string(Key) != ''</li></ul> | `GOBL-CBC-DEFINITION-02`<br />Definition must have either a key or a code, and not both |
+| <small>Definition</small> | <ul class="gobl-test"><li>String(Code) != '' \|\| string(Key) != ''</li></ul> | `GOBL-CBC-DEFINITION-02`<br />Definition must have either a key or a code, and not both |
 | <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-CBC-DEFINITION-01`<br />Name is required |
 | <code>pattern</code> | <ul class="gobl-test"><li>Is a regexp</li></ul> | `GOBL-CBC-DEFINITION-03`<br />Pattern must be a valid regular expression |

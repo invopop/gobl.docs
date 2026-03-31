@@ -64,7 +64,7 @@ The numeric suffix indicates the payment type (1=deposit, 2=already paid,
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Valid invoice code</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-01`<br />Must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Valid invoice code</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-01`<br />Must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
 | <code>preceding[*]</code> | <ul class="gobl-test"><li>Valid preceding code</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-02`<br />Preceding code must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
 | <code>preceding</code> | <ul class="gobl-test"><li>Corrective invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-03`<br />Corrective invoices must have exactly one preceding invoice reference (BR-FR-CO-04) |
 | <code>preceding</code> | <ul class="gobl-test"><li>Corrective invoice</li><li>Length between 1 and 1</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-04`<br />Corrective invoices must have exactly one preceding invoice reference (BR-FR-CO-04) |
@@ -91,7 +91,7 @@ The numeric suffix indicates the payment type (1=deposit, 2=already paid,
 | <code>ordering.contracts</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li>Length between 1 and 0</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-25`<br />At least one contract reference is required in ordering details for consolidated credit notes (BR-FR-CO-03) |
 | <code>delivery</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-26`<br />Delivery details are required for consolidated credit notes (BR-FR-CO-03) |
 | <code>delivery.period</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-27`<br />Delivery period is required for consolidated credit notes (BR-FR-CO-03) |
-| <small>document</small> | <ul class="gobl-test"><li>Not advance or final</li><li>Due dates valid</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-28`<br />Due dates must not be before invoice issue date (BR-FR-CO-07) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Not advance or final</li><li>Due dates valid</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-28`<br />Due dates must not be before invoice issue date (BR-FR-CO-07) |
 | <code>payment</code> | <ul class="gobl-test"><li>Final invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-29`<br />Payment details are required for final invoices (BR-FR-CO-09) |
 | <code>payment.terms</code> | <ul class="gobl-test"><li>Final invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-30`<br />Payment terms required for final invoices (BR-FR-CO-09) |
 | <code>payment.terms.due_dates</code> | <ul class="gobl-test"><li>Final invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-31`<br />At least one due date required for final invoices (BR-FR-CO-09) |

@@ -141,7 +141,7 @@ Indicates a special tax regime that a party is subject to.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Has reason note</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-30`<br />A note with key 'reason' is required to describe the nature of the operation (natOp) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Has reason note</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-30`<br />A note with key 'reason' is required to describe the nature of the operation (natOp) |
 | <code>supplier.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-01`<br />Supplier tax ID is required |
 | <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-02`<br />Supplier tax ID code is required |
 | <code>supplier.addresses[*]</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-03`<br />Supplier address must not be empty |
@@ -179,9 +179,9 @@ Indicates a special tax regime that a party is subject to.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Line has tax category ICMS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-01`<br />Line taxes must include the ICMS category |
-| <small>document</small> | <ul class="gobl-test"><li>Line has tax category PIS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-02`<br />Line taxes must include the PIS category |
-| <small>document</small> | <ul class="gobl-test"><li>Line has tax category COFINS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-03`<br />Line taxes must include the COFINS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ICMS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-01`<br />Line taxes must include the ICMS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category PIS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-02`<br />Line taxes must include the PIS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category COFINS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-03`<br />Line taxes must include the COFINS category |
 </Accordion>
 <Accordion title="pay.Instructions">
 

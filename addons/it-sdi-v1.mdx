@@ -461,9 +461,9 @@ used to determine the correct schema to use when validating the document.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Customer name check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-13`<br />Customer name is required |
-| <small>document</small> | <ul class="gobl-test"><li>Customer people check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-14`<br />Customer people are required when name is empty |
-| <small>document</small> | <ul class="gobl-test"><li>Payment instructions check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-21`<br />Payment instructions are required when terms with due dates are present |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Customer name check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-13`<br />Customer name is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Customer people check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-14`<br />Customer people are required when name is empty |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Payment instructions check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-21`<br />Payment instructions are required when terms with due dates are present |
 | <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-01`<br />Tax is required |
 | <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [it-sdi-format, it-sdi-document-type]</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-02`<br />Tax requires 'it-sdi-document-type' and 'it-sdi-format' extensions |
 | <code>supplier.name</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-03`<br />Supplier name must use Latin-1 characters |

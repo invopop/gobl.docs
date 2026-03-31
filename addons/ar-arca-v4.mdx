@@ -322,13 +322,13 @@ The VAT status is validated against the document type:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>document</small> | <ul class="gobl-test"><li>Type matches doc type credit note</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-05`<br />Invoice type is credit-note but ar-arca-doc-type is not a credit note |
-| <small>document</small> | <ul class="gobl-test"><li>Type matches doc type debit note</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-06`<br />Invoice type is debit-note but ar-arca-doc-type is not a debit note |
-| <small>document</small> | <ul class="gobl-test"><li>Doc type credit note matches type</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-07`<br />Ar-arca-doc-type is a credit note but invoice type is not credit-note |
-| <small>document</small> | <ul class="gobl-test"><li>Doc type debit note matches type</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-08`<br />Doc type is a debit note but invoice type is not debit-note |
-| <small>document</small> | <ul class="gobl-test"><li>Doc type 49 vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-12`<br />Document type 49 (Used Goods Purchase Invoice) requires customer VAT status to be 5 (Final Consumer) |
-| <small>document</small> | <ul class="gobl-test"><li>Doc type A vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-13`<br />Document type A requires customer VAT status to be one of [1 6 13 16] |
-| <small>document</small> | <ul class="gobl-test"><li>Doc type B vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-14`<br />Document type B cannot have customer VAT status [1 6 13 16] |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type credit note</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-05`<br />Invoice type is credit-note but ar-arca-doc-type is not a credit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type debit note</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-06`<br />Invoice type is debit-note but ar-arca-doc-type is not a debit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type credit note matches type</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-07`<br />Ar-arca-doc-type is a credit note but invoice type is not credit-note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type debit note matches type</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-08`<br />Doc type is a debit note but invoice type is not debit-note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type 49 vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-12`<br />Document type 49 (Used Goods Purchase Invoice) requires customer VAT status to be 5 (Final Consumer) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type A vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-13`<br />Document type A requires customer VAT status to be one of [1 6 13 16] |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type B vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-14`<br />Document type B cannot have customer VAT status [1 6 13 16] |
 | <code>series</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-01`<br />Series is required |
 | <code>series</code> | <ul class="gobl-test"><li>Valid series</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-02`<br />Series must be a valid number between 1 and 99998 |
 | <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-03`<br />Tax is required |
