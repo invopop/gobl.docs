@@ -164,13 +164,13 @@ FacturaE requires a specific and single code that explains why the previous invo
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-01</code> | customer.tax_id.code | code in [ES]; present | customer tax ID code is required for Spanish customers |
-| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-02</code> | tax | present | tax object is required with ext document type and invoice classes |
-| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-03</code> | tax.ext | ext require [es-facturae-doc-type, es-facturae-invoice-class] | tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions |
-| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-04</code> | preceding | invoice type in [credit-note, corrective, debit-note]; present | preceding document reference is required for credit-note, corrective, debit-note invoices |
-| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-05</code> | preceding[*].issue_date | invoice type in [credit-note, corrective, debit-note]; present | preceding document issue date is required |
-| <code>GOBL-ES-FACTURAE-v3-BILL-INVOICE-06</code> | preceding[*].ext | invoice type in [credit-note, corrective, debit-note]; ext require [es-facturae-correction] | preceding document ext require 'es-facturae-correction' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>customer.tax_id.code</code> | <ul class="gobl-test"><li>Code in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-v3-BILL-INVOICE-01`<br />Customer tax ID code is required for Spanish customers |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-v3-BILL-INVOICE-02`<br />Tax object is required with ext document type and invoice classes |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [es-facturae-doc-type, es-facturae-invoice-class]</li></ul> | `GOBL-ES-FACTURAE-v3-BILL-INVOICE-03`<br />Tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions |
+| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-v3-BILL-INVOICE-04`<br />Preceding document reference is required for credit-note, corrective, debit-note invoices |
+| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-v3-BILL-INVOICE-05`<br />Preceding document issue date is required |
+| <code>preceding[*].ext</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li>Ext require [es-facturae-correction]</li></ul> | `GOBL-ES-FACTURAE-v3-BILL-INVOICE-06`<br />Preceding document ext require 'es-facturae-correction' extension |
 </Accordion>
 </AccordionGroup>

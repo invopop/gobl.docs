@@ -44,14 +44,14 @@ E-invoicing via PEPPOL is used for cross-border and B2G transactions.
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PL-BILL-INVOICE-01</code> | supplier.tax_id.code | context: regime in [PL]; present | supplier tax ID code required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li>Context: regime in [PL]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-BILL-INVOICE-01`<br />Supplier tax ID code required |
 </Accordion>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PL-TAX-IDENTITY-01</code> | code | code in [PL]; valid | invalid Polish VAT identity code |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [PL]</li><li>Valid</li></ul> | `GOBL-PL-TAX-IDENTITY-01`<br />Invalid Polish VAT identity code |
 </Accordion>
 </AccordionGroup>

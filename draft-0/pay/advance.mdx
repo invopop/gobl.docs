@@ -49,7 +49,7 @@ Advance represents a single payment that has been made already, such as a deposi
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PAY-ADVANCE-01</code> | description | present | description is required |
-| <code>GOBL-PAY-ADVANCE-02</code> | key | be or starts with one of [any, card, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other] | key must be valid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>description</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PAY-ADVANCE-01`<br />Description is required |
+| <code>key</code> | <ul class="gobl-test"><li>Be or starts with one of [any, card, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other]</li></ul> | `GOBL-PAY-ADVANCE-02`<br />Key must be valid |

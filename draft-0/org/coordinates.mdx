@@ -21,8 +21,8 @@ Coordinates describes an exact geographical location in the world.
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ORG-COORDINATES-01</code> | lat | at least -90; at most 90 | coordinate lattude must be between -90.0 and 90.0 |
-| <code>GOBL-ORG-COORDINATES-02</code> | lon | at least -180; at most 180 | coordinate longitude must be between -180.0 and 180.0 |
-| <code>GOBL-ORG-COORDINATES-03</code> | w3w | matches ^/*(?:(?:\p{L}\p{M}*)+[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+|(?:\p{L}\p{M}*)+([  ](?:\p{L}\p{M}*)+){1,3}[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+([  ](?:\p{L}\p{M}*)+){1,3}[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+([  ](?:\p{L}\p{M}*)+){1,3})$ | what3words coordinate must be valid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>lat</code> | <ul class="gobl-test"><li>At least -90</li><li>At most 90</li></ul> | `GOBL-ORG-COORDINATES-01`<br />Coordinate lattude must be between -90.0 and 90.0 |
+| <code>lon</code> | <ul class="gobl-test"><li>At least -180</li><li>At most 180</li></ul> | `GOBL-ORG-COORDINATES-02`<br />Coordinate longitude must be between -180.0 and 180.0 |
+| <code>w3w</code> | <ul class="gobl-test"><li>Matches ^/*(?:(?:\p{L}\p{M}*)+[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+\|(?:\p{L}\p{M}*)+([  ](?:\p{L}\p{M}*)+){1,3}[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+([  ](?:\p{L}\p{M}*)+){1,3}[.｡。･・︒។։။۔።।](?:\p{L}\p{M}*)+([  ](?:\p{L}\p{M}*)+){1,3})$</li></ul> | `GOBL-ORG-COORDINATES-03`<br />What3words coordinate must be valid |

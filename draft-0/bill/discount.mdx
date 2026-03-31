@@ -47,6 +47,6 @@ Discount represents an allowance applied to the complete document independent fr
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BILL-DISCOUNT-01</code> | percent | Base != nil; present | percent is required when base is set |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>percent</code> | <ul class="gobl-test"><li>Base != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DISCOUNT-01`<br />Percent is required when base is set |

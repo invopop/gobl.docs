@@ -29,12 +29,12 @@ PaymentLine defines the details of a line item in a payment document.
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BILL-PAYMENTLINE-11</code> |  | advances within payable | advances must not exceed payable |
-| <code>GOBL-BILL-PAYMENTLINE-12</code> |  | amount within limit | amount must not exceed payable less advances |
-| <code>GOBL-BILL-PAYMENTLINE-01</code> | installment | at least 1; at most 999 | installment must be between 1 and 999 |
-| <code>GOBL-BILL-PAYMENTLINE-02</code> | payable | min 0 | payable must be positive |
-| <code>GOBL-BILL-PAYMENTLINE-03</code> | advances | min 0 | advances must be zero or positive |
-| <code>GOBL-BILL-PAYMENTLINE-04</code> | amount | min 0 | amount must be positive |
-| <code>GOBL-BILL-PAYMENTLINE-05</code> | due | min 0 | due must be zero or positive |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>document</small> | <ul class="gobl-test"><li>Advances within payable</li></ul> | `GOBL-BILL-PAYMENTLINE-11`<br />Advances must not exceed payable |
+| <small>document</small> | <ul class="gobl-test"><li>Amount within limit</li></ul> | `GOBL-BILL-PAYMENTLINE-12`<br />Amount must not exceed payable less advances |
+| <code>installment</code> | <ul class="gobl-test"><li>At least 1</li><li>At most 999</li></ul> | `GOBL-BILL-PAYMENTLINE-01`<br />Installment must be between 1 and 999 |
+| <code>payable</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-BILL-PAYMENTLINE-02`<br />Payable must be positive |
+| <code>advances</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-BILL-PAYMENTLINE-03`<br />Advances must be zero or positive |
+| <code>amount</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-BILL-PAYMENTLINE-04`<br />Amount must be positive |
+| <code>due</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-BILL-PAYMENTLINE-05`<br />Due must be zero or positive |

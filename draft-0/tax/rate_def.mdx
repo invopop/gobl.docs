@@ -23,9 +23,9 @@ RateDef defines a single rate inside a category
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-TAX-RATEDEF-01</code> | rate | present | rate is required |
-| <code>GOBL-TAX-RATEDEF-02</code> | name | present | name is required |
-| <code>GOBL-TAX-RATEDEF-03</code> | values | date order | rate values must be in descending chronological order |
-| <code>GOBL-TAX-RATEDEF-01</code> | values[*].percent | present | rate value percent is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>rate</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-RATEDEF-01`<br />Rate is required |
+| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-RATEDEF-02`<br />Name is required |
+| <code>values</code> | <ul class="gobl-test"><li>Date order</li></ul> | `GOBL-TAX-RATEDEF-03`<br />Rate values must be in descending chronological order |
+| <code>values[*].percent</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-RATEDEF-01`<br />Rate value percent is required |

@@ -176,20 +176,20 @@ For example:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-01</code> |  | invoice type in [standard, credit-note, debit-note, proforma] | invoice type must be one of standard, credit-note, debit-note, or proforma |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-02</code> | supplier.addresses | colombian supplier; length between 1 and 0 | at least one address is required for Colombian suppliers |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-03</code> | supplier.ext | colombian supplier with code; ext require [co-dian-municipality] | extension 'co-dian-municipality' is required |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-04</code> | supplier.ext | colombian supplier; ext require [co-dian-fiscal-responsibility] | extension 'co-dian-fiscal-responsibility' is required |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-05</code> | customer.tax_id | not simplified; present | customer tax ID is required |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-06</code> | customer.addresses | colombian customer; length between 1 and 0 | at least one address is required for Colombian customers |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-07</code> | customer.ext | colombian customer with code; ext require [co-dian-municipality] | extension 'co-dian-municipality' is required |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-08</code> | customer.ext | colombian customer; ext require [co-dian-fiscal-responsibility] | extension 'co-dian-fiscal-responsibility' is required |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-09</code> | preceding | invoice type in [credit-note, debit-note]; present | preceding documents are required for credit and debit notes |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-10</code> | preceding[*].ext | invoice type in [credit-note]; ext require [co-dian-credit-code] | extension 'co-dian-credit-code' is required for credit notes |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-12</code> | preceding[*].reason | invoice type in [credit-note]; present | preceding reason is required |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-11</code> | preceding[*].ext | invoice type in [debit-note]; ext require [co-dian-debit-code] | extension 'co-dian-debit-code' is required for debit notes |
-| <code>GOBL-CO-DIAN-V2-BILL-INVOICE-12</code> | preceding[*].reason | invoice type in [debit-note]; present | preceding reason is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>document</small> | <ul class="gobl-test"><li>Invoice type in [standard, credit-note, debit-note, proforma]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-01`<br />Invoice type must be one of standard, credit-note, debit-note, or proforma |
+| <code>supplier.addresses</code> | <ul class="gobl-test"><li>Colombian supplier</li><li>Length between 1 and 0</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-02`<br />At least one address is required for Colombian suppliers |
+| <code>supplier.ext</code> | <ul class="gobl-test"><li>Colombian supplier with code</li><li>Ext require [co-dian-municipality]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-03`<br />Extension 'co-dian-municipality' is required |
+| <code>supplier.ext</code> | <ul class="gobl-test"><li>Colombian supplier</li><li>Ext require [co-dian-fiscal-responsibility]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-04`<br />Extension 'co-dian-fiscal-responsibility' is required |
+| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-05`<br />Customer tax ID is required |
+| <code>customer.addresses</code> | <ul class="gobl-test"><li>Colombian customer</li><li>Length between 1 and 0</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-06`<br />At least one address is required for Colombian customers |
+| <code>customer.ext</code> | <ul class="gobl-test"><li>Colombian customer with code</li><li>Ext require [co-dian-municipality]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-07`<br />Extension 'co-dian-municipality' is required |
+| <code>customer.ext</code> | <ul class="gobl-test"><li>Colombian customer</li><li>Ext require [co-dian-fiscal-responsibility]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-08`<br />Extension 'co-dian-fiscal-responsibility' is required |
+| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-09`<br />Preceding documents are required for credit and debit notes |
+| <code>preceding[*].ext</code> | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li>Ext require [co-dian-credit-code]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-10`<br />Extension 'co-dian-credit-code' is required for credit notes |
+| <code>preceding[*].reason</code> | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-12`<br />Preceding reason is required |
+| <code>preceding[*].ext</code> | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li>Ext require [co-dian-debit-code]</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-11`<br />Extension 'co-dian-debit-code' is required for debit notes |
+| <code>preceding[*].reason</code> | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-V2-BILL-INVOICE-12`<br />Preceding reason is required |
 </Accordion>
 </AccordionGroup>

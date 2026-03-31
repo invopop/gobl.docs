@@ -57,10 +57,10 @@ Delivery document used to describe the delivery of goods or potentially also ser
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BILL-DELIVERY-01</code> | type | present | type is required |
-| <code>GOBL-BILL-DELIVERY-02</code> | type | one of [advice, note, waybill, receipt] | type is not valid |
-| <code>GOBL-BILL-DELIVERY-03</code> | issue_date | present | issue date is required |
-| <code>GOBL-BILL-DELIVERY-04</code> | supplier | present | supplier is required |
-| <code>GOBL-BILL-DELIVERY-05</code> | lines | present | lines are required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>type</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DELIVERY-01`<br />Type is required |
+| <code>type</code> | <ul class="gobl-test"><li>One of [advice, note, waybill, receipt]</li></ul> | `GOBL-BILL-DELIVERY-02`<br />Type is not valid |
+| <code>issue_date</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-DELIVERY-03`<br />Issue date is required |
+| <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DELIVERY-04`<br />Supplier is required |
+| <code>lines</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DELIVERY-05`<br />Lines are required |

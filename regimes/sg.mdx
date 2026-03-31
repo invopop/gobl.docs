@@ -53,20 +53,20 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-SG-BILL-INVOICE-01</code> | supplier | context: regime in [SG]; has GST tax ID code or UEN identity | invoice supplier in Singapore must have a GST tax ID code or a UEN identity |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>supplier</code> | <ul class="gobl-test"><li>Context: regime in [SG]</li><li>Has GST tax ID code or UEN identity</li></ul> | `GOBL-SG-BILL-INVOICE-01`<br />Invoice supplier in Singapore must have a GST tax ID code or a UEN identity |
 </Accordion>
 <Accordion title="org.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-SG-ORG-IDENTITY-01</code> | code | type in [UEN]; valid UEN | identity code for type UEN must be valid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Type in [UEN]</li><li>Valid UEN</li></ul> | `GOBL-SG-ORG-IDENTITY-01`<br />Identity code for type UEN must be valid |
 </Accordion>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-SG-TAX-IDENTITY-01</code> | code | code in [SG]; valid | invalid Singaporean tax identity code |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [SG]</li><li>Valid</li></ul> | `GOBL-SG-TAX-IDENTITY-01`<br />Invalid Singaporean tax identity code |
 </Accordion>
 </AccordionGroup>

@@ -286,14 +286,18 @@ func (sg *schemaGenerator) writeTopLevelEnumTable(buf *bytes.Buffer, entries []*
 // Since this is the struct's own page, the table is rendered directly
 // without an accordion wrapper.
 func (sg *schemaGenerator) writeValidationRules(buf *bytes.Buffer, sections []RuleSection) {
-	tmpl := template.Must(template.New("rules").Parse(`
+	tmpl := template.Must(template.New("rules").Funcs(template.FuncMap{
+		"codeMessage": codeMessage,
+		"testList":    testList,
+		"fieldCell":   fieldCell,
+	}).Parse(`
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
 {{- range .}}
 {{- range .Rows}}
-| <code>{{.Code}}</code> | {{.Field}} | {{.Test}} | {{.Desc}} |
+| {{fieldCell .Field .Calculated}} | {{testList .Tests .Calculated}} | {{codeMessage .Code .Desc}} |
 {{- end}}
 {{- end}}
 `))

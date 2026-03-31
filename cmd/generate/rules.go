@@ -7,12 +7,17 @@ import (
 	"github.com/invopop/gobl/tax"
 )
 
+// calculatedLookup maps "pkg.Type.field" to true for calculated properties.
+// Populated once from the schema store in main().
+var calculatedLookup map[string]bool
+
 // RuleRow is a single flattened assertion for display in a documentation table.
 type RuleRow struct {
-	Code  string // e.g. "GOBL-FR-BILL-INVOICE-01"
-	Field string // dot-path, e.g. "supplier.tax_id.code", empty = object-level
-	Test  string // combined guard condition + assertion tests
-	Desc  string // human-readable assertion description
+	Code       string   // e.g. "GOBL-FR-BILL-INVOICE-01"
+	Field      string   // dot-path, e.g. "supplier.tax_id.code", empty = object-level
+	Tests      []string // individual guard condition + assertion tests
+	Desc       string   // human-readable assertion description
+	Calculated bool     // true when the field is auto-populated during calculate
 }
 
 // RuleSection groups rows by struct name for a regime/addon page.
@@ -46,6 +51,7 @@ func ruleSections(topSet *rules.Set) []RuleSection {
 			Rows: rows,
 		})
 	}
+	annotateCalculated(sections)
 	return sections
 }
 
@@ -77,6 +83,7 @@ func coreRuleSectionsForStruct(structName string) []RuleSection {
 			}
 		}
 	}
+	annotateCalculated(sections)
 	return sections
 }
 
@@ -121,11 +128,10 @@ func flattenAssertions(s *rules.Set, field, cond string) []RuleRow {
 
 	// Emit a row for each assertion on this set.
 	for _, a := range s.Assert {
-		test := buildTestString(cond, a)
 		rows = append(rows, RuleRow{
 			Code:  string(a.ID),
 			Field: field,
-			Test:  test,
+			Tests: buildTestParts(cond, a),
 			Desc:  a.Desc,
 		})
 	}
@@ -138,9 +144,52 @@ func flattenAssertions(s *rules.Set, field, cond string) []RuleRow {
 	return rows
 }
 
-// buildTestString combines the guard condition with the assertion's own
-// tests into a single human-readable string.
-func buildTestString(cond string, a *rules.Assertion) string {
+// buildCalculatedLookup iterates all schemas and populates calculatedLookup
+// with entries like "bill.Invoice.totals" → true for every property that has
+// "calculated": true in the JSON Schema.
+func buildCalculatedLookup(store *schemaStore) {
+	calculatedLookup = make(map[string]bool)
+	for _, schema := range store.schemas {
+		if schema.Defs == nil {
+			continue
+		}
+		pkg := schemaIDPackage(schema.ID)
+		for defName, def := range schema.Defs {
+			if def.Properties == nil {
+				continue
+			}
+			structName := pkg + "." + defName
+			for pair := def.Properties.Oldest(); pair != nil; pair = pair.Next() {
+				if pair.Value.Calculated {
+					calculatedLookup[structName+"."+pair.Key] = true
+				}
+			}
+		}
+	}
+}
+
+// isCalculatedField checks whether the top-level field in a given struct is calculated.
+func isCalculatedField(structName, fieldPath string) bool {
+	if fieldPath == "" {
+		return false
+	}
+	topField := strings.SplitN(fieldPath, ".", 2)[0]
+	topField = strings.TrimSuffix(topField, "[*]")
+	return calculatedLookup[structName+"."+topField]
+}
+
+// annotateCalculated fills in the Calculated flag on each row
+// using the schema-derived lookup.
+func annotateCalculated(sections []RuleSection) {
+	for i, sec := range sections {
+		for j, row := range sec.Rows {
+			sections[i].Rows[j].Calculated = isCalculatedField(sec.Name, row.Field)
+		}
+	}
+}
+
+// buildTestParts returns individual test strings (sentence-cased, pipe-escaped).
+func buildTestParts(cond string, a *rules.Assertion) []string {
 	var parts []string
 	if cond != "" {
 		parts = append(parts, cond)
@@ -151,5 +200,8 @@ func buildTestString(cond string, a *rules.Assertion) string {
 			parts = append(parts, ts)
 		}
 	}
-	return strings.Join(parts, "; ")
+	for i, p := range parts {
+		parts[i] = sentenceCase(strings.ReplaceAll(p, "|", "\\|"))
+	}
+	return parts
 }

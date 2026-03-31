@@ -44,6 +44,6 @@ Charge represents a surchange applied to the complete document independent from 
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BILL-CHARGE-01</code> | percent | Base != nil; present | percent is required when base is set |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>percent</code> | <ul class="gobl-test"><li>Base != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-CHARGE-01`<br />Percent is required when base is set |

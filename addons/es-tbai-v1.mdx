@@ -105,20 +105,20 @@ data.
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-01</code> | tax | present | tax is required |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-02</code> | tax.ext | ext require [es-tbai-region] | extension 'es-tbai-region' is required |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-03</code> | customer.tax_id | present | customer tax ID is required |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-04</code> | preceding | invoice type in [credit-note, corrective, debit-note]; present | preceding documents are required for credit-note, corrective, debit-note invoices |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-05</code> | preceding[*].issue_date | present | preceding issue date is required |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-06</code> | preceding[*].ext | ext require [es-tbai-correction] | preceding ext 'es-tbai-correction' is required |
-| <code>GOBL-ES-TBAI-V1-BILL-INVOICE-07</code> | notes | has general note | with key 'general' missing |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-01`<br />Tax is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [es-tbai-region]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-02`<br />Extension 'es-tbai-region' is required |
+| <code>customer.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03`<br />Customer tax ID is required |
+| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-04`<br />Preceding documents are required for credit-note, corrective, debit-note invoices |
+| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-05`<br />Preceding issue date is required |
+| <code>preceding[*].ext</code> | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |
+| <code>notes</code> | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-07`<br />With key 'general' missing |
 </Accordion>
 <Accordion title="tax.Combo">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-TBAI-V1-TAX-COMBO-01</code> | ext | exempt vat/igic; ext require [es-tbai-exemption] | extension 'es-tbai-exemption' is required for exempt tax combos |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Exempt vat/igic</li><li>Ext require [es-tbai-exemption]</li></ul> | `GOBL-ES-TBAI-V1-TAX-COMBO-01`<br />Extension 'es-tbai-exemption' is required for exempt tax combos |
 </Accordion>
 </AccordionGroup>

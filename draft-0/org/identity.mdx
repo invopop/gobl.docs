@@ -33,8 +33,8 @@ Identity is used to define a code for a specific context.
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ORG-IDENTITY-03</code> |  | key and type must not be used together | identity must have either a key or type defined, but not both |
-| <code>GOBL-ORG-IDENTITY-01</code> | code | present | identity code must be provided |
-| <code>GOBL-ORG-IDENTITY-02</code> | scope | one of [tax, legal] | identity scope when provided must be either 'tax' or 'legal' |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>document</small> | <ul class="gobl-test"><li>Key and type must not be used together</li></ul> | `GOBL-ORG-IDENTITY-03`<br />Identity must have either a key or type defined, but not both |
+| <code>code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-IDENTITY-01`<br />Identity code must be provided |
+| <code>scope</code> | <ul class="gobl-test"><li>One of [tax, legal]</li></ul> | `GOBL-ORG-IDENTITY-02`<br />Identity scope when provided must be either 'tax' or 'legal' |

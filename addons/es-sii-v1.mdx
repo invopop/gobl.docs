@@ -340,30 +340,30 @@ Doesn't map directly to any field. Used internally to structure the breakdown da
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-01</code> | preceding | invoice type in [corrective]; present | preceding documents are required for corrective invoices |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-02</code> | preceding[*].issue_date | present | preceding issue date is required |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-03</code> | preceding[*].tax | invoice type in [corrective]; present | preceding invoice tax data is required for corrective invoices |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-04</code> | customer | not simplified; present | customer is required |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-05</code> | customer | not simplified; has tax_id or identity | must have a tax_id, or an identity with ext 'es-sii-identity-type' |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-06</code> | customer.tax_id.code | not simplified; present | customer tax ID must have a code |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-07</code> | tax | present | tax object is required with extensions |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-08</code> | tax.ext | ext require [es-sii-doc-type] | tax extension 'es-sii-doc-type' is required |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-09</code> | tax.ext | ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5]; ext require [es-sii-correction-type] | tax extension 'es-sii-correction-type' is required |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-10</code> | tax.ext | invoice type in [standard]; ext 'es-sii-doc-type' in [F1, F2, F3] | tax extension 'es-sii-doc-type' for standard invoices must be F1, F2, or F3 |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-11</code> | tax.ext | invoice type in [corrective, credit-note, debit-note]; ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5] | doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-12</code> | notes[*].text | general note; length between 0 and 500 | general note text must be 500 characters or less |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-13</code> | lines | consistent product | 'es-sii-product' must be present in all tax combos or none |
-| <code>GOBL-ES-SII-V1-BILL-INVOICE-14</code> | lines | same regime | 'es-sii-regime' must be the same in all tax combos |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-01`<br />Preceding documents are required for corrective invoices |
+| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-02`<br />Preceding issue date is required |
+| <code>preceding[*].tax</code> | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-03`<br />Preceding invoice tax data is required for corrective invoices |
+| <code>customer</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-04`<br />Customer is required |
+| <code>customer</code> | <ul class="gobl-test"><li>Not simplified</li><li>Has tax_id or identity</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-05`<br />Must have a tax_id, or an identity with ext 'es-sii-identity-type' |
+| <code>customer.tax_id.code</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-06`<br />Customer tax ID must have a code |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-07`<br />Tax object is required with extensions |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [es-sii-doc-type]</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-08`<br />Tax extension 'es-sii-doc-type' is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-sii-correction-type]</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-09`<br />Tax extension 'es-sii-correction-type' is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-sii-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-10`<br />Tax extension 'es-sii-doc-type' for standard invoices must be F1, F2, or F3 |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-11`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
+| <code>notes[*].text</code> | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-12`<br />General note text must be 500 characters or less |
+| <code>lines</code> | <ul class="gobl-test"><li>Consistent product</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-13`<br />'es-sii-product' must be present in all tax combos or none |
+| <code>lines</code> | <ul class="gobl-test"><li>Same regime</li></ul> | `GOBL-ES-SII-V1-BILL-INVOICE-14`<br />'es-sii-regime' must be the same in all tax combos |
 </Accordion>
 <Accordion title="tax.Combo">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-SII-V1-TAX-COMBO-01</code> | ext | sii vat/igic; ext require [es-sii-regime] | extension 'es-sii-regime' is required |
-| <code>GOBL-ES-SII-V1-TAX-COMBO-03</code> | ext | has outside scope; ext exclude [es-sii-exempt] | extension 'es-sii-exempt' must not be set when 'es-sii-outside-scope' is set |
-| <code>GOBL-ES-SII-V1-TAX-COMBO-04</code> | ext | ext 'es-sii-regime' in [01]; ext 'es-sii-exempt' not in [E2, E3] | exempt codes E2 and E3 not allowed with 'es-sii-regime' 01 |
-| <code>GOBL-ES-SII-V1-TAX-COMBO-02</code> | ext | has percent; ext exclude [es-sii-exempt] | extension 'es-sii-exempt' must not be set when percent is set |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Sii vat/igic</li><li>Ext require [es-sii-regime]</li></ul> | `GOBL-ES-SII-V1-TAX-COMBO-01`<br />Extension 'es-sii-regime' is required |
+| <code>ext</code> | <ul class="gobl-test"><li>Has outside scope</li><li>Ext exclude [es-sii-exempt]</li></ul> | `GOBL-ES-SII-V1-TAX-COMBO-03`<br />Extension 'es-sii-exempt' must not be set when 'es-sii-outside-scope' is set |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext 'es-sii-regime' in [01]</li><li>Ext 'es-sii-exempt' not in [E2, E3]</li></ul> | `GOBL-ES-SII-V1-TAX-COMBO-04`<br />Exempt codes E2 and E3 not allowed with 'es-sii-regime' 01 |
+| <code>ext</code> | <ul class="gobl-test"><li>Has percent</li><li>Ext exclude [es-sii-exempt]</li></ul> | `GOBL-ES-SII-V1-TAX-COMBO-02`<br />Extension 'es-sii-exempt' must not be set when percent is set |
 </Accordion>
 </AccordionGroup>

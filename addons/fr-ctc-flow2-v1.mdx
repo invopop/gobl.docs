@@ -62,76 +62,76 @@ The numeric suffix indicates the payment type (1=deposit, 2=already paid,
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-01</code> |  | valid invoice code | must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-02</code> | preceding[*] | valid preceding code | preceding code must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-03</code> | preceding | corrective invoice; present | corrective invoices must have exactly one preceding invoice reference (BR-FR-CO-04) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-04</code> | preceding | corrective invoice; length between 1 and 1 | corrective invoices must have exactly one preceding invoice reference (BR-FR-CO-04) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-05</code> | preceding | credit note; present | credit notes must have at least one preceding invoice reference (BR-FR-CO-05) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-06</code> | tax | present | tax is required |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-07</code> | tax.ext | ext 'untdid-document-type' in [380, 389, 393, 501, 386, 500, 384, 471, 472, 473, 261, 262, 381, 396, 502, 503] | UNTDID document type must be valid (BR-FR-04) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-08</code> | tax.ext | ext require [fr-ctc-billing-mode] | billing mode extension is required |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-09</code> | tax.ext | factoring mode; ext 'untdid-document-type' not in [386, 500, 503] | advance payment document types not allowed for factoring billing modes (BR-FR-CO-08) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-10</code> | supplier.inboxes | present | seller electronic address required for French B2B invoices (BR-FR-13) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-11</code> | supplier.identities | has SIREN | SIREN identity required for French parties with scheme 0002 and scope legal (BR-FR-10/11) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-12</code> | supplier | B2B non-self-billed; has SIREN inbox | party must have endpoint ID with scheme 0225 (SIREN) (BR-FR-21/22) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-13</code> | customer.inboxes | present | buyer electronic address required for French B2B invoices (BR-FR-13) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-14</code> | customer.identities | B2B transaction; has SIREN | SIREN identity required for French parties with scheme 0002 and scope legal (BR-FR-10/11) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-15</code> | customer | B2B self-billed; has SIREN inbox | party must have endpoint ID with scheme 0225 (SIREN) (BR-FR-21/22) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-16</code> | ordering.identities | no dup AFL | only one ordering identity with UNTDID reference 'AFL' is allowed (BR-FR-30) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-17</code> | ordering.identities | no dup AWW | only one ordering identity with UNTDID reference 'AWW' is allowed (BR-FR-30) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-18</code> | ordering | supplier STC; present | ordering with seller is required when supplier is under STC scheme (BR-FR-CO-15) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-19</code> | ordering.seller | supplier STC; present | seller is required when supplier is under STC scheme (BR-FR-CO-15) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-20</code> | ordering.seller.tax_id | supplier STC; present | tax ID is required when supplier is under STC scheme (BR-FR-CO-15) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-21</code> | ordering.seller.tax_id.code | supplier STC; present | code is required when supplier is under STC scheme (BR-FR-CO-15) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-22</code> | notes | supplier STC; has TXD note | for sellers with STC scheme (0231), a note with code 'TXD' and text 'MEMBRE_ASSUJETTI_UNIQUE' is required (BR-FR-CO-14) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-23</code> | ordering | consolidated credit note; present | ordering with contracts is required for consolidated credit notes (BR-FR-CO-03) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-24</code> | ordering.contracts | consolidated credit note; present | at least one contract reference is required in ordering details for consolidated credit notes (BR-FR-CO-03) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-25</code> | ordering.contracts | consolidated credit note; length between 1 and 0 | at least one contract reference is required in ordering details for consolidated credit notes (BR-FR-CO-03) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-26</code> | delivery | consolidated credit note; present | delivery details are required for consolidated credit notes (BR-FR-CO-03) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-27</code> | delivery.period | consolidated credit note; present | delivery period is required for consolidated credit notes (BR-FR-CO-03) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-28</code> |  | not advance or final; due dates valid | due dates must not be before invoice issue date (BR-FR-CO-07) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-29</code> | payment | final invoice; present | payment details are required for final invoices (BR-FR-CO-09) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-30</code> | payment.terms | final invoice; present | payment terms required for final invoices (BR-FR-CO-09) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-31</code> | payment.terms.due_dates | final invoice; present | at least one due date required for final invoices (BR-FR-CO-09) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-33</code> | totals | final invoice; advances match | advance amount must equal total with tax for final invoices (BR-FR-CO-09) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-34</code> | totals | final invoice; payable zero | payable amount must be zero for final invoices (BR-FR-CO-09) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-32</code> | totals.advance | final invoice; present | advance amount is required for already-paid invoices (BR-FR-CO-09) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-35</code> | notes | present | notes are required for French CTC invoices (BR-FR-05) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-36</code> | notes | has required notes | missing required note codes (BR-FR-05) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-37</code> | notes | no duplicate notes | duplicate note codes found (BR-FR-06/BR-FR-30) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-38</code> | notes | valid BAR text | BAR note text must be one of: B2B, B2BINT, B2C, OUTOFSCOPE, ARCHIVEONLY |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-41</code> | attachments | unique LISIBLE | only one attachment with description 'LISIBLE' is allowed per invoice (BR-FR-18) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-39</code> | attachments[*].description | present | must be one of the allowed attachment descriptions (BR-FR-17) |
-| <code>GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-40</code> | attachments[*].description | one of [RIB, LISIBLE, FEUILLE_DE_STYLE, PJA, BON_LIVRAISON, BON_COMMANDE, DOCUMENT_ANNEXE, BORDEREAU_SUIVI, BORDEREAU_SUIVI_VALIDATION, ETAT_ACOMPTE, FACTURE_PAIEMENT_DIRECT, RECAPITULATIF_COTRAITANCE] | must be one of the allowed attachment descriptions (BR-FR-17) |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>document</small> | <ul class="gobl-test"><li>Valid invoice code</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-01`<br />Must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
+| <code>preceding[*]</code> | <ul class="gobl-test"><li>Valid preceding code</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-02`<br />Preceding code must be 1-35 characters, alphanumeric plus -+_/ (BR-FR-01/02), including the series |
+| <code>preceding</code> | <ul class="gobl-test"><li>Corrective invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-03`<br />Corrective invoices must have exactly one preceding invoice reference (BR-FR-CO-04) |
+| <code>preceding</code> | <ul class="gobl-test"><li>Corrective invoice</li><li>Length between 1 and 1</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-04`<br />Corrective invoices must have exactly one preceding invoice reference (BR-FR-CO-04) |
+| <code>preceding</code> | <ul class="gobl-test"><li>Credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-05`<br />Credit notes must have at least one preceding invoice reference (BR-FR-CO-05) |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-06`<br />Tax is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext 'untdid-document-type' in [380, 389, 393, 501, 386, 500, 384, 471, 472, 473, 261, 262, 381, 396, 502, 503]</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-07`<br />UNTDID document type must be valid (BR-FR-04) |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [fr-ctc-billing-mode]</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-08`<br />Billing mode extension is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Factoring mode</li><li>Ext 'untdid-document-type' not in [386, 500, 503]</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-09`<br />Advance payment document types not allowed for factoring billing modes (BR-FR-CO-08) |
+| <code>supplier.inboxes</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-10`<br />Seller electronic address required for French B2B invoices (BR-FR-13) |
+| <code>supplier.identities</code> | <ul class="gobl-test"><li>Has SIREN</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-11`<br />SIREN identity required for French parties with scheme 0002 and scope legal (BR-FR-10/11) |
+| <code>supplier</code> | <ul class="gobl-test"><li>B2B non-self-billed</li><li>Has SIREN inbox</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-12`<br />Party must have endpoint ID with scheme 0225 (SIREN) (BR-FR-21/22) |
+| <code>customer.inboxes</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-13`<br />Buyer electronic address required for French B2B invoices (BR-FR-13) |
+| <code>customer.identities</code> | <ul class="gobl-test"><li>B2B transaction</li><li>Has SIREN</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-14`<br />SIREN identity required for French parties with scheme 0002 and scope legal (BR-FR-10/11) |
+| <code>customer</code> | <ul class="gobl-test"><li>B2B self-billed</li><li>Has SIREN inbox</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-15`<br />Party must have endpoint ID with scheme 0225 (SIREN) (BR-FR-21/22) |
+| <code>ordering.identities</code> | <ul class="gobl-test"><li>No dup AFL</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-16`<br />Only one ordering identity with UNTDID reference 'AFL' is allowed (BR-FR-30) |
+| <code>ordering.identities</code> | <ul class="gobl-test"><li>No dup AWW</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-17`<br />Only one ordering identity with UNTDID reference 'AWW' is allowed (BR-FR-30) |
+| <code>ordering</code> | <ul class="gobl-test"><li>Supplier STC</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-18`<br />Ordering with seller is required when supplier is under STC scheme (BR-FR-CO-15) |
+| <code>ordering.seller</code> | <ul class="gobl-test"><li>Supplier STC</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-19`<br />Seller is required when supplier is under STC scheme (BR-FR-CO-15) |
+| <code>ordering.seller.tax_id</code> | <ul class="gobl-test"><li>Supplier STC</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-20`<br />Tax ID is required when supplier is under STC scheme (BR-FR-CO-15) |
+| <code>ordering.seller.tax_id.code</code> | <ul class="gobl-test"><li>Supplier STC</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-21`<br />Code is required when supplier is under STC scheme (BR-FR-CO-15) |
+| <code>notes</code> | <ul class="gobl-test"><li>Supplier STC</li><li>Has TXD note</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-22`<br />For sellers with STC scheme (0231), a note with code 'TXD' and text 'MEMBRE_ASSUJETTI_UNIQUE' is required (BR-FR-CO-14) |
+| <code>ordering</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-23`<br />Ordering with contracts is required for consolidated credit notes (BR-FR-CO-03) |
+| <code>ordering.contracts</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-24`<br />At least one contract reference is required in ordering details for consolidated credit notes (BR-FR-CO-03) |
+| <code>ordering.contracts</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li>Length between 1 and 0</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-25`<br />At least one contract reference is required in ordering details for consolidated credit notes (BR-FR-CO-03) |
+| <code>delivery</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-26`<br />Delivery details are required for consolidated credit notes (BR-FR-CO-03) |
+| <code>delivery.period</code> | <ul class="gobl-test"><li>Consolidated credit note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-27`<br />Delivery period is required for consolidated credit notes (BR-FR-CO-03) |
+| <small>document</small> | <ul class="gobl-test"><li>Not advance or final</li><li>Due dates valid</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-28`<br />Due dates must not be before invoice issue date (BR-FR-CO-07) |
+| <code>payment</code> | <ul class="gobl-test"><li>Final invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-29`<br />Payment details are required for final invoices (BR-FR-CO-09) |
+| <code>payment.terms</code> | <ul class="gobl-test"><li>Final invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-30`<br />Payment terms required for final invoices (BR-FR-CO-09) |
+| <code>payment.terms.due_dates</code> | <ul class="gobl-test"><li>Final invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-31`<br />At least one due date required for final invoices (BR-FR-CO-09) |
+| <code>totals</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Final invoice</li><li>Advances match</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-33`<br />Advance amount must equal total with tax for final invoices (BR-FR-CO-09) |
+| <code>totals</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Final invoice</li><li>Payable zero</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-34`<br />Payable amount must be zero for final invoices (BR-FR-CO-09) |
+| <code>totals.advance</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Final invoice</li><li>Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-32`<br />Advance amount is required for already-paid invoices (BR-FR-CO-09) |
+| <code>notes</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-35`<br />Notes are required for French CTC invoices (BR-FR-05) |
+| <code>notes</code> | <ul class="gobl-test"><li>Has required notes</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-36`<br />Missing required note codes (BR-FR-05) |
+| <code>notes</code> | <ul class="gobl-test"><li>No duplicate notes</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-37`<br />Duplicate note codes found (BR-FR-06/BR-FR-30) |
+| <code>notes</code> | <ul class="gobl-test"><li>Valid BAR text</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-38`<br />BAR note text must be one of: B2B, B2BINT, B2C, OUTOFSCOPE, ARCHIVEONLY |
+| <code>attachments</code> | <ul class="gobl-test"><li>Unique LISIBLE</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-41`<br />Only one attachment with description 'LISIBLE' is allowed per invoice (BR-FR-18) |
+| <code>attachments[*].description</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-39`<br />Must be one of the allowed attachment descriptions (BR-FR-17) |
+| <code>attachments[*].description</code> | <ul class="gobl-test"><li>One of [RIB, LISIBLE, FEUILLE_DE_STYLE, PJA, BON_LIVRAISON, BON_COMMANDE, DOCUMENT_ANNEXE, BORDEREAU_SUIVI, BORDEREAU_SUIVI_VALIDATION, ETAT_ACOMPTE, FACTURE_PAIEMENT_DIRECT, RECAPITULATIF_COTRAITANCE]</li></ul> | `GOBL-FR-CTC-FLOW2-V1-BILL-INVOICE-40`<br />Must be one of the allowed attachment descriptions (BR-FR-17) |
 </Accordion>
 <Accordion title="org.Party">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-PARTY-01</code> | identities | SIRET/SIREN coherent | SIRET and SIREN must be coherent (BR-FR-09/10) |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-PARTY-02</code> | identities | valid scheme format | identity scheme format invalid (BR-FR-CO-10) |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-PARTY-03</code> | inboxes[*] | valid inbox | inbox code format invalid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>identities</code> | <ul class="gobl-test"><li>SIRET/SIREN coherent</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-PARTY-01`<br />SIRET and SIREN must be coherent (BR-FR-09/10) |
+| <code>identities</code> | <ul class="gobl-test"><li>Valid scheme format</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-PARTY-02`<br />Identity scheme format invalid (BR-FR-CO-10) |
+| <code>inboxes[*]</code> | <ul class="gobl-test"><li>Valid inbox</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-PARTY-03`<br />Inbox code format invalid |
 </Accordion>
 <Accordion title="org.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-IDENTITY-01</code> | code | scheme 0224; length between 0 and 100 | must be no more than 100 characters long |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-IDENTITY-02</code> | code | scheme 0224; matches ^[A-Za-z0-9\-\+_/]+$ | must be in a valid format |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Scheme 0224</li><li>Length between 0 and 100</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-IDENTITY-01`<br />Must be no more than 100 characters long |
+| <code>code</code> | <ul class="gobl-test"><li>Scheme 0224</li><li>Matches ^[A-Za-z0-9\-\+_/]+$</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-IDENTITY-02`<br />Must be in a valid format |
 </Accordion>
 <Accordion title="org.Inbox">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-INBOX-01</code> | code | scheme 0225; length between 0 and 125 | the length must be between 0 and 125 |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-INBOX-02</code> | code | scheme 0225; matches ^[A-Za-z0-9\-\+_/]+$ | must be in a valid format |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Scheme 0225</li><li>Length between 0 and 125</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-INBOX-01`<br />The length must be between 0 and 125 |
+| <code>code</code> | <ul class="gobl-test"><li>Scheme 0225</li><li>Matches ^[A-Za-z0-9\-\+_/]+$</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-INBOX-02`<br />Must be in a valid format |
 </Accordion>
 <Accordion title="org.Item">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-CTC-FLOW2-V1-ORG-ITEM-01</code> | meta | no blank meta | meta values cannot be blank (BR-FR-28) |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>meta</code> | <ul class="gobl-test"><li>No blank meta</li></ul> | `GOBL-FR-CTC-FLOW2-V1-ORG-ITEM-01`<br />Meta values cannot be blank (BR-FR-28) |
 </Accordion>
 </AccordionGroup>

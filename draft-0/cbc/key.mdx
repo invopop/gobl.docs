@@ -12,7 +12,7 @@ Text identifier to be used instead of a code for a more verbose but readable ide
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-CBC-KEY-01</code> |  | length between 1 and 64 | key must be between 1 and 64 characters long |
-| <code>GOBL-CBC-KEY-02</code> |  | matches ^(?:[a-z]|[a-z0-9][a-z0-9-+]*[a-z0-9])$ | key must match the required pattern |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>document</small> | <ul class="gobl-test"><li>Length between 1 and 64</li></ul> | `GOBL-CBC-KEY-01`<br />Key must be between 1 and 64 characters long |
+| <small>document</small> | <ul class="gobl-test"><li>Matches ^(?:[a-z]\|[a-z0-9][a-z0-9-+]*[a-z0-9])$</li></ul> | `GOBL-CBC-KEY-02`<br />Key must match the required pattern |

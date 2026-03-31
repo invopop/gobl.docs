@@ -72,16 +72,16 @@ Pattern: <code>^\d{7}$</code>
 <AccordionGroup>
 <Accordion title="org.Party">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BR-ORG-PARTY-01</code> | ext | is Brazilian party; ext 'br-ibge-municipality' matches pattern '^\d{7}$' | Brazilian party ext must define a valid 'br-ibge-municipality' code |
-| <code>GOBL-BR-ORG-PARTY-02</code> | addresses[*].state | string(Country) in ['','BR']; code in [AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO] | Brazilian state must be one of the valid states |
-| <code>GOBL-BR-ORG-PARTY-03</code> | addresses[*].code | string(Country) in ['','BR']; matches ^\d{5}-?\d{3}$ | Brazilian postal code must match the valid format |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Is Brazilian party</li><li>Ext 'br-ibge-municipality' matches pattern '^\d{7}$'</li></ul> | `GOBL-BR-ORG-PARTY-01`<br />Brazilian party ext must define a valid 'br-ibge-municipality' code |
+| <code>addresses[*].state</code> | <ul class="gobl-test"><li>String(Country) in ['','BR']</li><li>Code in [AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO]</li></ul> | `GOBL-BR-ORG-PARTY-02`<br />Brazilian state must be one of the valid states |
+| <code>addresses[*].code</code> | <ul class="gobl-test"><li>String(Country) in ['','BR']</li><li>Matches ^\d{5}-?\d{3}$</li></ul> | `GOBL-BR-ORG-PARTY-03`<br />Brazilian postal code must match the valid format |
 </Accordion>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BR-TAX-IDENTITY-01</code> | code | code in [BR]; valid | invalid Brazilian tax identity code |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [BR]</li><li>Valid</li></ul> | `GOBL-BR-TAX-IDENTITY-01`<br />Invalid Brazilian tax identity code |
 </Accordion>
 </AccordionGroup>

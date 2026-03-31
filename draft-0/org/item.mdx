@@ -38,7 +38,7 @@ Item is used to describe a single product or service.
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ORG-ITEM-01</code> | name | present | item name is required |
-| <code>GOBL-ORG-ITEM-02</code> | price | min 0 | item price must be zero or positive |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-ITEM-01`<br />Item name is required |
+| <code>price</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-02`<br />Item price must be zero or positive |

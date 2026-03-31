@@ -15,6 +15,7 @@ func main() {
 	if err != nil {
 		panic(fmt.Errorf("loading schemas: %w", err))
 	}
+	buildCalculatedLookup(store)
 	if err := generateSchemaPages(store, "./draft-0"); err != nil {
 		panic(fmt.Errorf("generating schema pages: %w", err))
 	}

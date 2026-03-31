@@ -67,21 +67,21 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-NL-BILL-INVOICE-01</code> | supplier | context: regime in [NL]; has tax ID code or KVK/OIN identity | invoice supplier must have a tax ID code or a KVK/OIN identity |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>supplier</code> | <ul class="gobl-test"><li>Context: regime in [NL]</li><li>Has tax ID code or KVK/OIN identity</li></ul> | `GOBL-NL-BILL-INVOICE-01`<br />Invoice supplier must have a tax ID code or a KVK/OIN identity |
 </Accordion>
 <Accordion title="org.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-NL-ORG-IDENTITY-01</code> | code | type in [KVK]; length between 8 and 8 | identity code for type KVK must be valid |
-| <code>GOBL-NL-ORG-IDENTITY-02</code> | code | type in [OIN]; matches ^0{6}(0[1-9]|10|99)\d{9}0{3}$ | identity code for type OIN must be valid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Type in [KVK]</li><li>Length between 8 and 8</li></ul> | `GOBL-NL-ORG-IDENTITY-01`<br />Identity code for type KVK must be valid |
+| <code>code</code> | <ul class="gobl-test"><li>Type in [OIN]</li><li>Matches ^0{6}(0[1-9]\|10\|99)\d{9}0{3}$</li></ul> | `GOBL-NL-ORG-IDENTITY-02`<br />Identity code for type OIN must be valid |
 </Accordion>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-NL-TAX-IDENTITY-01</code> | code | code in [NL]; valid | invalid Dutch VAT identity code |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [NL]</li><li>Valid</li></ul> | `GOBL-NL-TAX-IDENTITY-01`<br />Invalid Dutch VAT identity code |
 </Accordion>
 </AccordionGroup>

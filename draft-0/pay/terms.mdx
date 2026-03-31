@@ -36,6 +36,6 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PAY-TERMS-01</code> | key | one of [end-of-month, due-date, deferred, proximo, instant, elective, pending, advanced, delivery, undefined] | key must be valid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>key</code> | <ul class="gobl-test"><li>One of [end-of-month, due-date, deferred, proximo, instant, elective, pending, advanced, delivery, undefined]</li></ul> | `GOBL-PAY-TERMS-01`<br />Key must be valid |

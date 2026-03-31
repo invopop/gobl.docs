@@ -65,16 +65,16 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BE-TAX-IDENTITY-01</code> | code | code in [BE]; valid | invalid Belgian VAT identity code |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [BE]</li><li>Valid</li></ul> | `GOBL-BE-TAX-IDENTITY-01`<br />Invalid Belgian VAT identity code |
 </Accordion>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BE-BILL-INVOICE-01</code> | supplier.tax_id | no BCE identity; present | supplier tax ID required for Belgian regime |
-| <code>GOBL-BE-BILL-INVOICE-02</code> | supplier.tax_id.code | no BCE identity; present | supplier tax ID code required for Belgian regime |
-| <code>GOBL-BE-BILL-INVOICE-03</code> | supplier.identities | no tax ID code; has BCE type | supplier identities must include BCE type |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>supplier.tax_id</code> | <ul class="gobl-test"><li>No BCE identity</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-01`<br />Supplier tax ID required for Belgian regime |
+| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li>No BCE identity</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-02`<br />Supplier tax ID code required for Belgian regime |
+| <code>supplier.identities</code> | <ul class="gobl-test"><li>No tax ID code</li><li>Has BCE type</li></ul> | `GOBL-BE-BILL-INVOICE-03`<br />Supplier identities must include BCE type |
 </Accordion>
 </AccordionGroup>

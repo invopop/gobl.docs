@@ -32,6 +32,47 @@ func extMap(m tax.Extensions) string {
 	return strings.Join(s, ", ")
 }
 
+func sentenceCase(s string) string {
+	if s == "" {
+		return s
+	}
+	return strings.ToUpper(s[:1]) + s[1:]
+}
+
+func fieldCell(field string, calculated bool) string {
+	calcLabel := "<small class=\"gobl-field-calculated\">Calculated</small>"
+	if field == "" {
+		if calculated {
+			return "<small>document</small><br />" + calcLabel
+		}
+		return "<small>document</small>"
+	}
+	if calculated {
+		return fmt.Sprintf("<code>%s</code><br />%s", field, calcLabel)
+	}
+	return fmt.Sprintf("<code>%s</code>", field)
+}
+
+func codeMessage(code, desc string) string {
+	return fmt.Sprintf("`%s`<br />%s", code, sentenceCase(desc))
+}
+
+func testList(parts []string, calculated bool) string {
+	var buf strings.Builder
+	buf.WriteString("<ul class=\"gobl-test\">")
+	for _, p := range parts {
+		if p == "Present" && !calculated {
+			buf.WriteString("<li class=\"gobl-test-present\">")
+		} else {
+			buf.WriteString("<li>")
+		}
+		buf.WriteString(p)
+		buf.WriteString("</li>")
+	}
+	buf.WriteString("</ul>")
+	return buf.String()
+}
+
 // scenarioTitle builds a concise title for a scenario accordion.
 func scenarioTitle(sc *tax.Scenario) string {
 	if sc.Name != nil {

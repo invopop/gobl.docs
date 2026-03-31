@@ -35,10 +35,10 @@ RegimeDef defines the holding structure for the definitions of taxes inside a co
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-TAX-REGIMEDEF-01</code> | country | present | country code is required |
-| <code>GOBL-TAX-REGIMEDEF-02</code> | name | present | name is required |
-| <code>GOBL-TAX-REGIMEDEF-03</code> | time_zone | present | time zone is required |
-| <code>GOBL-TAX-REGIMEDEF-04</code> | time_zone | valid time zone | time zone must be valid |
-| <code>GOBL-TAX-REGIMEDEF-05</code> | categories | length between 1 and 0 | at least one category is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>country</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-01`<br />Country code is required |
+| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-02`<br />Name is required |
+| <code>time_zone</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-03`<br />Time zone is required |
+| <code>time_zone</code> | <ul class="gobl-test"><li>Valid time zone</li></ul> | `GOBL-TAX-REGIMEDEF-04`<br />Time zone must be valid |
+| <code>categories</code> | <ul class="gobl-test"><li>Length between 1 and 0</li></ul> | `GOBL-TAX-REGIMEDEF-05`<br />At least one category is required |
