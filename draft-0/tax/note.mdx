@@ -1,0 +1,20 @@
+---
+title: Note
+comment: 
+---
+
+Note represents a tax-related note, typically used for exemption reasons or other tax-specific explanations that need to be associated with a particular tax category.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/note`
+
+## Properties
+
+| Title      | Property | Type                                      | Req. | Description                                                                                                                                                      |
+|------------|----------|-------------------------------------------|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Category   | `cat`    | [cbc.Code](/draft-0/cbc/code)             |      | Tax category code from those available inside a region.                                                                                                          |
+| Key        | `key`    | [cbc.Key](/draft-0/cbc/key)               |      | Key usually identifies the tax rate key this note applies to (e.g. "exempt", "reverse-charge"), but may also be used for other identifiers depending on context. |
+| Text       | `text`   | string                                    | true | Text contains the exemption reason or explanation.                                                                                                               |
+| Extensions | `ext`    | [tax.Extensions](/draft-0/tax/extensions) |      | Extensions for additional structured data.                                                                                                                       |
+
