@@ -459,71 +459,71 @@ used to determine the correct schema to use when validating the document.
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-13</code> |  | customer name check | customer name is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-14</code> |  | customer people check | customer people are required when name is empty |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-21</code> |  | payment instructions check | payment instructions are required when terms with due dates are present |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-01</code> | tax | present | tax is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-02</code> | tax.ext | ext require [it-sdi-format, it-sdi-document-type] | tax requires 'it-sdi-document-type' and 'it-sdi-format' extensions |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-03</code> | supplier.name | latin1 | supplier name must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-04</code> | supplier.addresses | present | supplier addresses are required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-30</code> | supplier.addresses[*] | street or postbox | address either street or post office box must be set |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-31</code> | supplier.addresses[*].street | latin1 | address street must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-32</code> | supplier.addresses[*].po_box | latin1 | address post office box must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-33</code> | supplier.addresses[*].country | present | address country is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-34</code> | supplier.addresses[*].locality | present | address locality is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-35</code> | supplier.addresses[*].locality | latin1 | address locality must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-36</code> | supplier.addresses[*].code | Italian address; present | Italian address code is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-37</code> | supplier.addresses[*].code | Italian address; matches ^\d{5}$ | Italian address code must be 5 digits |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-05</code> | supplier.ext | ext require [it-sdi-fiscal-regime] | supplier requires 'it-sdi-fiscal-regime' extension |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-06</code> | supplier.registration.entry | present | supplier registration entry is required when registration is present |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-07</code> | supplier.registration.office | present | supplier registration office is required when registration is present |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-08</code> | supplier.telephones[*].num | supplier is Italian; length between 5 and 12 | Italian telephone number length must be between 5 and 12 |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-09</code> | customer | present | customer is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-10</code> | customer.name | latin1 | customer name must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-11</code> | customer.tax_id | present | customer tax ID is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-12</code> | customer.addresses | present | customer addresses are required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-30</code> | customer.addresses[*] | street or postbox | address either street or post office box must be set |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-31</code> | customer.addresses[*].street | latin1 | address street must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-32</code> | customer.addresses[*].po_box | latin1 | address post office box must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-33</code> | customer.addresses[*].country | present | address country is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-34</code> | customer.addresses[*].locality | present | address locality is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-35</code> | customer.addresses[*].locality | latin1 | address locality must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-36</code> | customer.addresses[*].code | Italian address; present | Italian address code is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-37</code> | customer.addresses[*].code | Italian address; matches ^\d{5}$ | Italian address code must be 5 digits |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-15</code> | customer.tax_id.code | Italian customer without fiscal code; present | customer tax ID code is required for Italian parties without fiscal code |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-16</code> | customer.identities | Italian customer without tax ID code; has fiscal code | customer requires identity with key 'it-fiscal-code' |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-17</code> | lines[*] | line has tax category VAT | line must have VAT tax category |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-18</code> | lines[*].item.name | latin1 | item name must use Latin-1 characters |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-19</code> | ordering.despatch[*].issue_date | has deferred tag; present | despatch issue date is required |
-| <code>GOBL-IT-SDI-V1-BILL-INVOICE-20</code> | ordering.despatch | no deferred tag; empty | despatch can only be set when invoice has deferred tag |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Customer name check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-13`<br />Customer name is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Customer people check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-14`<br />Customer people are required when name is empty |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Payment instructions check</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-21`<br />Payment instructions are required when terms with due dates are present |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-01`<br />Tax is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [it-sdi-format, it-sdi-document-type]</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-02`<br />Tax requires 'it-sdi-document-type' and 'it-sdi-format' extensions |
+| <code>supplier.name</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-03`<br />Supplier name must use Latin-1 characters |
+| <code>supplier.addresses</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-04`<br />Supplier addresses are required |
+| <code>supplier.addresses[*]</code> | <ul class="gobl-test"><li>Street or postbox</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-30`<br />Address either street or post office box must be set |
+| <code>supplier.addresses[*].street</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-31`<br />Address street must use Latin-1 characters |
+| <code>supplier.addresses[*].po_box</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-32`<br />Address post office box must use Latin-1 characters |
+| <code>supplier.addresses[*].country</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-33`<br />Address country is required |
+| <code>supplier.addresses[*].locality</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-34`<br />Address locality is required |
+| <code>supplier.addresses[*].locality</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-35`<br />Address locality must use Latin-1 characters |
+| <code>supplier.addresses[*].code</code> | <ul class="gobl-test"><li>Italian address</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-36`<br />Italian address code is required |
+| <code>supplier.addresses[*].code</code> | <ul class="gobl-test"><li>Italian address</li><li>Matches ^\d{5}$</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-37`<br />Italian address code must be 5 digits |
+| <code>supplier.ext</code> | <ul class="gobl-test"><li>Ext require [it-sdi-fiscal-regime]</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-05`<br />Supplier requires 'it-sdi-fiscal-regime' extension |
+| <code>supplier.registration.entry</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-06`<br />Supplier registration entry is required when registration is present |
+| <code>supplier.registration.office</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-07`<br />Supplier registration office is required when registration is present |
+| <code>supplier.telephones[*].num</code> | <ul class="gobl-test"><li>Supplier is Italian</li><li>Length between 5 and 12</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-08`<br />Italian telephone number length must be between 5 and 12 |
+| <code>customer</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-09`<br />Customer is required |
+| <code>customer.name</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-10`<br />Customer name must use Latin-1 characters |
+| <code>customer.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-11`<br />Customer tax ID is required |
+| <code>customer.addresses</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-12`<br />Customer addresses are required |
+| <code>customer.addresses[*]</code> | <ul class="gobl-test"><li>Street or postbox</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-30`<br />Address either street or post office box must be set |
+| <code>customer.addresses[*].street</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-31`<br />Address street must use Latin-1 characters |
+| <code>customer.addresses[*].po_box</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-32`<br />Address post office box must use Latin-1 characters |
+| <code>customer.addresses[*].country</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-33`<br />Address country is required |
+| <code>customer.addresses[*].locality</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-34`<br />Address locality is required |
+| <code>customer.addresses[*].locality</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-35`<br />Address locality must use Latin-1 characters |
+| <code>customer.addresses[*].code</code> | <ul class="gobl-test"><li>Italian address</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-36`<br />Italian address code is required |
+| <code>customer.addresses[*].code</code> | <ul class="gobl-test"><li>Italian address</li><li>Matches ^\d{5}$</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-37`<br />Italian address code must be 5 digits |
+| <code>customer.tax_id.code</code> | <ul class="gobl-test"><li>Italian customer without fiscal code</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-15`<br />Customer tax ID code is required for Italian parties without fiscal code |
+| <code>customer.identities</code> | <ul class="gobl-test"><li>Italian customer without tax ID code</li><li>Has fiscal code</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-16`<br />Customer requires identity with key 'it-fiscal-code' |
+| <code>lines[*]</code> | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-17`<br />Line must have VAT tax category |
+| <code>lines[*].item.name</code> | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-18`<br />Item name must use Latin-1 characters |
+| <code>ordering.despatch[*].issue_date</code> | <ul class="gobl-test"><li>Has deferred tag</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-19`<br />Despatch issue date is required |
+| <code>ordering.despatch</code> | <ul class="gobl-test"><li>No deferred tag</li><li>Empty</li></ul> | `GOBL-IT-SDI-V1-BILL-INVOICE-20`<br />Despatch can only be set when invoice has deferred tag |
 </Accordion>
 <Accordion title="bill.Charge">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-SDI-V1-BILL-CHARGE-01</code> | percent | is fund contribution; present | fund contribution charge requires a percentage |
-| <code>GOBL-IT-SDI-V1-BILL-CHARGE-02</code> | ext | is fund contribution; ext require [it-sdi-fund-type] | fund contribution charge requires 'it-sdi-fund-type' extension |
-| <code>GOBL-IT-SDI-V1-BILL-CHARGE-03</code> | taxes | is fund contribution; all of [VAT] | fund contribution charge must have VAT tax category |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>percent</code> | <ul class="gobl-test"><li>Is fund contribution</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-V1-BILL-CHARGE-01`<br />Fund contribution charge requires a percentage |
+| <code>ext</code> | <ul class="gobl-test"><li>Is fund contribution</li><li>Ext require [it-sdi-fund-type]</li></ul> | `GOBL-IT-SDI-V1-BILL-CHARGE-02`<br />Fund contribution charge requires 'it-sdi-fund-type' extension |
+| <code>taxes</code> | <ul class="gobl-test"><li>Is fund contribution</li><li>All of [VAT]</li></ul> | `GOBL-IT-SDI-V1-BILL-CHARGE-03`<br />Fund contribution charge must have VAT tax category |
 </Accordion>
 <Accordion title="tax.Combo">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-SDI-V1-TAX-COMBO-01</code> | ext | VAT without percent; ext require [it-sdi-exempt] | VAT tax combo without percent requires 'it-sdi-exempt' extension |
-| <code>GOBL-IT-SDI-V1-TAX-COMBO-02</code> | ext | is retained tax; ext require [it-sdi-retained] | retained tax combo requires 'it-sdi-retained' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-sdi-exempt]</li></ul> | `GOBL-IT-SDI-V1-TAX-COMBO-01`<br />VAT tax combo without percent requires 'it-sdi-exempt' extension |
+| <code>ext</code> | <ul class="gobl-test"><li>Is retained tax</li><li>Ext require [it-sdi-retained]</li></ul> | `GOBL-IT-SDI-V1-TAX-COMBO-02`<br />Retained tax combo requires 'it-sdi-retained' extension |
 </Accordion>
 <Accordion title="pay.Instructions">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-SDI-V1-PAY-INSTRUCTIONS-01</code> | ext | ext require [it-sdi-payment-means] | payment instructions require 'it-sdi-payment-means' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [it-sdi-payment-means]</li></ul> | `GOBL-IT-SDI-V1-PAY-INSTRUCTIONS-01`<br />Payment instructions require 'it-sdi-payment-means' extension |
 </Accordion>
 <Accordion title="pay.Advance">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-SDI-V1-PAY-ADVANCE-01</code> | ext | ext require [it-sdi-payment-means] | payment advance requires 'it-sdi-payment-means' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [it-sdi-payment-means]</li></ul> | `GOBL-IT-SDI-V1-PAY-ADVANCE-01`<br />Payment advance requires 'it-sdi-payment-means' extension |
 </Accordion>
 </AccordionGroup>

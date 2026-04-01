@@ -22,9 +22,9 @@ ExchangeRate contains data on the rate to be used when converting amounts from o
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-CURRENCY-EXCHANGERATE-01</code> | from | present | from currency is required |
-| <code>GOBL-CURRENCY-EXCHANGERATE-02</code> | to | present | to currency is required |
-| <code>GOBL-CURRENCY-EXCHANGERATE-03</code> | at | not zero | date/time must not be zero |
-| <code>GOBL-CURRENCY-EXCHANGERATE-04</code> | amount | min 0 | amount must be positive |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>from</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-CURRENCY-EXCHANGERATE-01`<br />From currency is required |
+| <code>to</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-CURRENCY-EXCHANGERATE-02`<br />To currency is required |
+| <code>at</code> | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-CURRENCY-EXCHANGERATE-03`<br />Date/time must not be zero |
+| <code>amount</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-CURRENCY-EXCHANGERATE-04`<br />Amount must be positive |

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"strings"
 
 	"github.com/invopop/gobl/cbc"
@@ -30,6 +31,64 @@ func extMap(m tax.Extensions) string {
 		s = append(s, fmt.Sprintf("<code>%s:%s</code>", k, v))
 	}
 	return strings.Join(s, ", ")
+}
+
+func sentenceCase(s string) string {
+	if s == "" {
+		return s
+	}
+	return strings.ToUpper(s[:1]) + s[1:]
+}
+
+// rootTypeLabel returns the short type name for display when a rule has no field path
+// (e.g. "bill.Invoice" → "Invoice", "tax.Combo" → "Combo").
+func rootTypeLabel(qualifiedName string) string {
+	if qualifiedName == "" {
+		return ""
+	}
+	if i := strings.LastIndex(qualifiedName, "."); i >= 0 {
+		return qualifiedName[i+1:]
+	}
+	return qualifiedName
+}
+
+func fieldCell(field string, calculated bool, qualifiedTypeName string) string {
+	calcLabel := "<small class=\"gobl-field-calculated\">Calculated</small>"
+	if field == "" {
+		label := rootTypeLabel(qualifiedTypeName)
+		if label == "" {
+			label = "document"
+		}
+		esc := html.EscapeString(label)
+		if calculated {
+			return "<small>" + esc + "</small><br />" + calcLabel
+		}
+		return "<small>" + esc + "</small>"
+	}
+	if calculated {
+		return fmt.Sprintf("<code>%s</code><br />%s", field, calcLabel)
+	}
+	return fmt.Sprintf("<code>%s</code>", field)
+}
+
+func codeMessage(code, desc string) string {
+	return fmt.Sprintf("`%s`<br />%s", code, sentenceCase(desc))
+}
+
+func testList(parts []string, calculated bool) string {
+	var buf strings.Builder
+	buf.WriteString("<ul class=\"gobl-test\">")
+	for _, p := range parts {
+		if p == "Present" && !calculated {
+			buf.WriteString("<li class=\"gobl-test-present\">")
+		} else {
+			buf.WriteString("<li>")
+		}
+		buf.WriteString(p)
+		buf.WriteString("</li>")
+	}
+	buf.WriteString("</ul>")
+	return buf.String()
 }
 
 // scenarioTitle builds a concise title for a scenario accordion.

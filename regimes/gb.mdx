@@ -66,10 +66,10 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-GB-TAX-IDENTITY-01</code> | code | code in [GB]; matches ^(\d{9}|\d{12}|GD\d{3}|HA\d{3})$ | invalid UK VAT identity format |
-| <code>GOBL-GB-TAX-IDENTITY-02</code> | code | code in [GB]; not-zeros | all-zero UK VAT identity codes are not allowed |
-| <code>GOBL-GB-TAX-IDENTITY-03</code> | code | code in [GB]; checksum | UK VAT identity checksum mismatch |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [GB]</li><li>Matches ^(\d{9}\|\d{12}\|GD\d{3}\|HA\d{3})$</li></ul> | `GOBL-GB-TAX-IDENTITY-01`<br />Invalid UK VAT identity format |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [GB]</li><li>Not-zeros</li></ul> | `GOBL-GB-TAX-IDENTITY-02`<br />All-zero UK VAT identity codes are not allowed |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [GB]</li><li>Checksum</li></ul> | `GOBL-GB-TAX-IDENTITY-03`<br />UK VAT identity checksum mismatch |
 </Accordion>
 </AccordionGroup>

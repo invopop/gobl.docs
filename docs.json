@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "colors": {
     "dark": "#15c6f6",
-    "light": "#15c6f6",
+    "light": "#24abd0",
     "primary": "#15c6f6"
   },
   "favicon": "static/favicon.svg",
@@ -46,7 +46,8 @@
               "overview/rounding",
               "overview/canonicalization",
               "overview/support",
-              "overview/inside"
+              "overview/inside",
+              "overview/validation"
             ]
           },
           {

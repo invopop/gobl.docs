@@ -586,101 +586,101 @@ Example:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-01</code> |  | has doc type | either 'pt-saft-work-type' or 'pt-saft-invoice-type' must be set |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-02</code> |  | not both doc types | either 'pt-saft-work-type' or 'pt-saft-invoice-type' must be set, but not both |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-03</code> |  | valid invoice work type | invoice work type is not valid |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-04</code> |  | series format | series format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-05</code> |  | code format | code format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-12</code> |  | tax has source | tax requires 'pt-saft-source' extension |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-14</code> |  | source ref format | source ref format is invalid |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-06</code> | value_date | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-07</code> | lines[*] | line has tax category VAT | line taxes must include VAT category |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-08</code> | payment.advances[*].date | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-09</code> | totals.payable | min 0 | must be no less than 0 |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-10</code> | totals.due | is invoice-receipt; equals 0 | must be equal to 0 |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-11</code> | preceding | length between 0 and 1 | the length must be no more than 1 |
-| <code>GOBL-PT-SAFT-V1-BILL-INVOICE-13</code> |  | source not produced; tax has source ref | tax requires 'pt-saft-source-ref' extension when source is not produced |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Has doc type</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-01`<br />Either 'pt-saft-work-type' or 'pt-saft-invoice-type' must be set |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Not both doc types</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-02`<br />Either 'pt-saft-work-type' or 'pt-saft-invoice-type' must be set, but not both |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Valid invoice work type</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-03`<br />Invoice work type is not valid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-04`<br />Series format must be valid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-05`<br />Code format must be valid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Tax has source</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-12`<br />Tax requires 'pt-saft-source' extension |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-14`<br />Source ref format is invalid |
+| <code>value_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-06`<br />Cannot be blank |
+| <code>lines[*]</code> | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-07`<br />Line taxes must include VAT category |
+| <code>payment.advances[*].date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-08`<br />Cannot be blank |
+| <code>totals.payable</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-09`<br />Must be no less than 0 |
+| <code>totals.due</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-10`<br />Must be equal to 0 |
+| <code>preceding</code> | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-11`<br />The length must be no more than 1 |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-13`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
 </Accordion>
 <Accordion title="bill.Payment">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-01</code> |  | series format | series format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-02</code> |  | code format | code format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-06</code> |  | source ref format | source ref format is invalid |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-09</code> |  | customer name present | customer name is required when customer has tax ID code |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-03</code> | ext | ext require [pt-saft-payment-type] | 'pt-saft-payment-type' extension is required |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-04</code> | ext | ext require [pt-saft-source] | 'pt-saft-source' extension is required |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-05</code> | ext | source not produced; ext require [pt-saft-source-ref] | 'pt-saft-source-ref' extension is required when source is not produced |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-07</code> | supplier.tax_id | present | supplier tax ID is required |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-08</code> | supplier.tax_id.code | present | supplier tax ID code is required |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENT-10</code> | total | min 0 | must be no less than 0 |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Payment</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-01`<br />Series format must be valid |
+| <small>Payment</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-02`<br />Code format must be valid |
+| <small>Payment</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-06`<br />Source ref format is invalid |
+| <small>Payment</small> | <ul class="gobl-test"><li>Customer name present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-09`<br />Customer name is required when customer has tax ID code |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [pt-saft-payment-type]</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-03`<br />'pt-saft-payment-type' extension is required |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [pt-saft-source]</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-04`<br />'pt-saft-source' extension is required |
+| <code>ext</code> | <ul class="gobl-test"><li>Source not produced</li><li>Ext require [pt-saft-source-ref]</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-05`<br />'pt-saft-source-ref' extension is required when source is not produced |
+| <code>supplier.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-07`<br />Supplier tax ID is required |
+| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-08`<br />Supplier tax ID code is required |
+| <code>total</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENT-10`<br />Must be no less than 0 |
 </Accordion>
 <Accordion title="bill.Delivery">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-BILL-DELIVERY-01</code> |  | has movement type | tax requires 'pt-saft-movement-type' extension |
-| <code>GOBL-PT-SAFT-V1-BILL-DELIVERY-02</code> |  | series format | series format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-DELIVERY-03</code> |  | code format | code format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-DELIVERY-04</code> | supplier.tax_id | present | supplier tax ID is required |
-| <code>GOBL-PT-SAFT-V1-BILL-DELIVERY-05</code> | supplier.tax_id.code | present | supplier tax ID code is required |
-| <code>GOBL-PT-SAFT-V1-BILL-DELIVERY-06</code> | despatch_date | present | cannot be blank |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Has movement type</li></ul> | `GOBL-PT-SAFT-V1-BILL-DELIVERY-01`<br />Tax requires 'pt-saft-movement-type' extension |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-V1-BILL-DELIVERY-02`<br />Series format must be valid |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-V1-BILL-DELIVERY-03`<br />Code format must be valid |
+| <code>supplier.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-DELIVERY-04`<br />Supplier tax ID is required |
+| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-DELIVERY-05`<br />Supplier tax ID code is required |
+| <code>despatch_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-DELIVERY-06`<br />Cannot be blank |
 </Accordion>
 <Accordion title="bill.Order">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-BILL-ORDER-01</code> |  | has work type | tax requires 'pt-saft-work-type' extension |
-| <code>GOBL-PT-SAFT-V1-BILL-ORDER-02</code> |  | order work type valid | work type must not be an invoice work type |
-| <code>GOBL-PT-SAFT-V1-BILL-ORDER-03</code> |  | series format | series format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-ORDER-04</code> |  | code format | code format must be valid |
-| <code>GOBL-PT-SAFT-V1-BILL-ORDER-05</code> | value_date | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-BILL-ORDER-06</code> | lines[*] | line has tax category VAT | line taxes must include VAT category |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Order</small> | <ul class="gobl-test"><li>Has work type</li></ul> | `GOBL-PT-SAFT-V1-BILL-ORDER-01`<br />Tax requires 'pt-saft-work-type' extension |
+| <small>Order</small> | <ul class="gobl-test"><li>Order work type valid</li></ul> | `GOBL-PT-SAFT-V1-BILL-ORDER-02`<br />Work type must not be an invoice work type |
+| <small>Order</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-V1-BILL-ORDER-03`<br />Series format must be valid |
+| <small>Order</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-V1-BILL-ORDER-04`<br />Code format must be valid |
+| <code>value_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-ORDER-05`<br />Cannot be blank |
+| <code>lines[*]</code> | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-V1-BILL-ORDER-06`<br />Line taxes must include VAT category |
 </Accordion>
 <Accordion title="tax.Combo">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-TAX-COMBO-01</code> | ext | is VAT; ext require [pt-region, pt-saft-tax-rate] | region and tax rate are required |
-| <code>GOBL-PT-SAFT-V1-TAX-COMBO-02</code> | ext | is VAT; exempt requires exemption | exemption is required when tax rate is exempt |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Is VAT</li><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-V1-TAX-COMBO-01`<br />Region and tax rate are required |
+| <code>ext</code> | <ul class="gobl-test"><li>Is VAT</li><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-V1-TAX-COMBO-02`<br />Exemption is required when tax rate is exempt |
 </Accordion>
 <Accordion title="org.Item">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-ORG-ITEM-01</code> | unit | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-ORG-ITEM-02</code> | ext | ext require [pt-saft-product-type] | product type is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>unit</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-ORG-ITEM-01`<br />Cannot be blank |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [pt-saft-product-type]</li></ul> | `GOBL-PT-SAFT-V1-ORG-ITEM-02`<br />Product type is required |
 </Accordion>
 <Accordion title="org.Note">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-ORG-NOTE-01</code> | text | legal exemption note; length between 6 and 60 | the length must be between 6 and 60 |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>text</code> | <ul class="gobl-test"><li>Legal exemption note</li><li>Length between 6 and 60</li></ul> | `GOBL-PT-SAFT-V1-ORG-NOTE-01`<br />The length must be between 6 and 60 |
 </Accordion>
 <Accordion title="bill.Line">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-BILL-LINE-05</code> |  | exemption notes | exemption notes invalid |
-| <code>GOBL-PT-SAFT-V1-BILL-LINE-01</code> | quantity | min 0 | must be greater than 0 |
-| <code>GOBL-PT-SAFT-V1-BILL-LINE-02</code> | sum | min 0 | must be no less than 0 |
-| <code>GOBL-PT-SAFT-V1-BILL-LINE-03</code> | total | min 0 | must be no less than 0 |
-| <code>GOBL-PT-SAFT-V1-BILL-LINE-04</code> | discounts[*].amount | min 0 | must be no less than 0 |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Line</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-05`<br />Exemption notes invalid |
+| <code>quantity</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-01`<br />Must be greater than 0 |
+| <code>sum</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-02`<br />Must be no less than 0 |
+| <code>total</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-03`<br />Must be no less than 0 |
+| <code>discounts[*].amount</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-04`<br />Must be no less than 0 |
 </Accordion>
 <Accordion title="bill.PaymentLine">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-06</code> |  | exemption notes | exemption notes invalid |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-01</code> | document | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-02</code> | document.issue_date | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-03</code> | tax | present | cannot be blank |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-04</code> | tax | has VAT category | missing category VAT |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-05</code> | tax.categories[*].rates | length between 0 and 1 | only one rate allowed per line |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-01</code> | tax.categories[*].rates[*].ext | ext require [pt-region, pt-saft-tax-rate] | region and tax rate are required |
-| <code>GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-02</code> | tax.categories[*].rates[*].ext | exempt requires exemption | exemption is required when tax rate is exempt |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>PaymentLine</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-06`<br />Exemption notes invalid |
+| <code>document</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-01`<br />Cannot be blank |
+| <code>document.issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-02`<br />Cannot be blank |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-03`<br />Cannot be blank |
+| <code>tax</code> | <ul class="gobl-test"><li>Has VAT category</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-04`<br />Missing category VAT |
+| <code>tax.categories[*].rates</code> | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-05`<br />Only one rate allowed per line |
+| <code>tax.categories[*].rates[*].ext</code> | <ul class="gobl-test"><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-01`<br />Region and tax rate are required |
+| <code>tax.categories[*].rates[*].ext</code> | <ul class="gobl-test"><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-02`<br />Exemption is required when tax rate is exempt |
 </Accordion>
 </AccordionGroup>

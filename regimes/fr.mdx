@@ -72,21 +72,21 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-BILL-INVOICE-01</code> | supplier | context: regime in [FR]; has tax ID code or SIREN/SIRET identity | invoice supplier must have a tax ID code or a SIREN/SIRET identity |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>supplier</code> | <ul class="gobl-test"><li>Context: regime in [FR]</li><li>Has tax ID code or SIREN/SIRET identity</li></ul> | `GOBL-FR-BILL-INVOICE-01`<br />Invoice supplier must have a tax ID code or a SIREN/SIRET identity |
 </Accordion>
 <Accordion title="org.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-ORG-IDENTITY-01</code> | code | has a type in [SIREN]; matches ^\d{9}$ | identity code for type SIREN must be valid |
-| <code>GOBL-FR-ORG-IDENTITY-02</code> | code | has a type in [SIRET]; matches ^\d{14}$ | identity code for type SIRET must be valid |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Has a type in [SIREN]</li><li>Matches ^\d{9}$</li></ul> | `GOBL-FR-ORG-IDENTITY-01`<br />Identity code for type SIREN must be valid |
+| <code>code</code> | <ul class="gobl-test"><li>Has a type in [SIRET]</li><li>Matches ^\d{14}$</li></ul> | `GOBL-FR-ORG-IDENTITY-02`<br />Identity code for type SIRET must be valid |
 </Accordion>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-FR-TAX-IDENTITY-01</code> | code | code in [FR]; valid | invalid French VAT identity code format or checksum |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [FR]</li><li>Valid</li></ul> | `GOBL-FR-TAX-IDENTITY-01`<br />Invalid French VAT identity code format or checksum |
 </Accordion>
 </AccordionGroup>

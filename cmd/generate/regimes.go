@@ -50,6 +50,9 @@ func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
 		"codeMap":        codeMap,
 		"extMap":         extMap,
 		"scenarioTitle":  scenarioTitle,
+		"codeMessage":    codeMessage,
+		"testList":       testList,
+		"fieldCell":      fieldCell,
 	})
 	return g
 }

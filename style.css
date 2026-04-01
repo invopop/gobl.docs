@@ -1,0 +1,42 @@
+/* inline code in tables doesn't wrap and is positioned to align with sibling text */
+.prose table tr td code {
+  white-space: nowrap;
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  margin: 0 0 0.4em -0.5em;
+}
+
+/* repurpose bullets in test lists to indicate required vs conditional */
+.prose table tr td ul.gobl-test li {
+  padding-left: 1em !important;
+}
+
+.prose table tr td ul.gobl-test li:before {
+  top: calc(.6em);
+  left: 0;
+  background-color: #aaa;
+  width: .3em;
+  height: .3em;
+  box-shadow: 0 0 0 2px #99999922;
+}
+
+.prose table tr td ul.gobl-test li.gobl-test-present:only-child:before {
+  background-color: #15c6f6;
+  box-shadow: 0 0 0 2px #15c6f622;
+}
+
+/* grayed out text in tables is done through the small tag */
+.prose table tr td small {
+  font-size: 100%;
+  color: #aaa;
+  }
+
+.prose table tr td small.gobl-field-calculated {
+  color: #15c6f6;
+  font-size: 12px
+}
+
+/* mintlify's min is 150px and this improves table layout throughout gobl.docs */
+.prose table tr td  {
+  min-width: 120px !important;
+}

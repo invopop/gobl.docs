@@ -57,11 +57,11 @@ Order documents are used for the initial part of a order-to-invoice process wher
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-BILL-ORDER-01</code> | type | present | type is required |
-| <code>GOBL-BILL-ORDER-02</code> | type | one of [purchase, sale, quote] | type is not valid |
-| <code>GOBL-BILL-ORDER-03</code> | issue_date | present | issue date is required |
-| <code>GOBL-BILL-ORDER-04</code> | currency | present | currency is required |
-| <code>GOBL-BILL-ORDER-05</code> | supplier | present | supplier is required |
-| <code>GOBL-BILL-ORDER-06</code> | lines | present | lines are required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>type</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-ORDER-01`<br />Type is required |
+| <code>type</code> | <ul class="gobl-test"><li>One of [purchase, sale, quote]</li></ul> | `GOBL-BILL-ORDER-02`<br />Type is not valid |
+| <code>issue_date</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-ORDER-03`<br />Issue date is required |
+| <code>currency</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-ORDER-04`<br />Currency is required |
+| <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-ORDER-05`<br />Supplier is required |
+| <code>lines</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-ORDER-06`<br />Lines are required |

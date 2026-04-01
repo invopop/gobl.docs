@@ -80,16 +80,16 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-TAX-IDENTITY-01</code> | code | code in [IT]; valid | invalid Italian VAT identity code |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [IT]</li><li>Valid</li></ul> | `GOBL-IT-TAX-IDENTITY-01`<br />Invalid Italian VAT identity code |
 </Accordion>
 <Accordion title="org.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-IT-ORG-IDENTITY-01</code> | code | key in [it-fiscal-code]; present | fiscal code is required |
-| <code>GOBL-IT-ORG-IDENTITY-02</code> | code | key in [it-fiscal-code]; valid format | invalid fiscal code format |
-| <code>GOBL-IT-ORG-IDENTITY-03</code> | code | key in [it-fiscal-code]; valid checksum | invalid fiscal code check digit |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-ORG-IDENTITY-01`<br />Fiscal code is required |
+| <code>code</code> | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li>Valid format</li></ul> | `GOBL-IT-ORG-IDENTITY-02`<br />Invalid fiscal code format |
+| <code>code</code> | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li>Valid checksum</li></ul> | `GOBL-IT-ORG-IDENTITY-03`<br />Invalid fiscal code check digit |
 </Accordion>
 </AccordionGroup>

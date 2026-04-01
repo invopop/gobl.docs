@@ -697,56 +697,56 @@ For example:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-01</code> | series | present | series is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-02</code> | tax | present | tax is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-03</code> | tax.ext | ext require [gr-mydata-invoice-type] | tax requires 'gr-mydata-invoice-type' extension |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-04</code> | supplier.tax_id | present | supplier tax ID is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-18</code> | supplier.tax_id.code | present | supplier tax ID code is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-05</code> | customer | requires customer; present | customer is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-06</code> | customer.tax_id | requires customer; present | customer tax ID is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-07</code> | customer.addresses | requires customer; present | customer addresses are required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-08</code> | customer.addresses[*].locality | requires customer; present | customer address locality is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-09</code> | customer.addresses[*].code | requires customer; present | customer address code is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-10</code> | lines[*].total | min 0 | line total must be positive |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-11</code> | lines[*].total | not zero | line total must not be zero |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-12</code> | lines[*].item.ext | income ext pair | item income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-13</code> | discounts | empty | discounts are not supported by mydata |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-14</code> | payment | present | payment is required |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-15</code> | payment | has instructions or advances | payment instructions are required when no advances |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-16</code> | preceding | invoice type in [credit-note]; present | preceding documents are required for credit notes |
-| <code>GOBL-GR-MYDATA-V1-BILL-INVOICE-17</code> | preceding[*].stamps | stamps have iapr-mark | preceding document requires 'iapr-mark' stamp |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>series</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-01`<br />Series is required |
+| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-02`<br />Tax is required |
+| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [gr-mydata-invoice-type]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-03`<br />Tax requires 'gr-mydata-invoice-type' extension |
+| <code>supplier.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
+| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-18`<br />Supplier tax ID code is required |
+| <code>customer</code> | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-05`<br />Customer is required |
+| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-06`<br />Customer tax ID is required |
+| <code>customer.addresses</code> | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-07`<br />Customer addresses are required |
+| <code>customer.addresses[*].locality</code> | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-08`<br />Customer address locality is required |
+| <code>customer.addresses[*].code</code> | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-09`<br />Customer address code is required |
+| <code>lines[*].total</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-10`<br />Line total must be positive |
+| <code>lines[*].total</code> | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-11`<br />Line total must not be zero |
+| <code>lines[*].item.ext</code> | <ul class="gobl-test"><li>Income ext pair</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-12`<br />Item income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| <code>discounts</code> | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-13`<br />Discounts are not supported by mydata |
+| <code>payment</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-14`<br />Payment is required |
+| <code>payment</code> | <ul class="gobl-test"><li>Has instructions or advances</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-15`<br />Payment instructions are required when no advances |
+| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-16`<br />Preceding documents are required for credit notes |
+| <code>preceding[*].stamps</code> | <ul class="gobl-test"><li>Stamps have iapr-mark</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-17`<br />Preceding document requires 'iapr-mark' stamp |
 </Accordion>
 <Accordion title="bill.Charge">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-GR-MYDATA-V1-BILL-CHARGE-01</code> | ext | ext allow one of [gr-mydata-fee, gr-mydata-other-tax, gr-mydata-stamp-duty] | only one of fee, other-tax, or stamp-duty allowed |
-| <code>GOBL-GR-MYDATA-V1-BILL-CHARGE-02</code> | ext | tax type is fee; ext require [gr-mydata-fee] | charge with fee tax type requires 'gr-mydata-fee' extension |
-| <code>GOBL-GR-MYDATA-V1-BILL-CHARGE-03</code> | ext | tax type is other tax; ext require [gr-mydata-other-tax] | charge with other-tax type requires 'gr-mydata-other-tax' extension |
-| <code>GOBL-GR-MYDATA-V1-BILL-CHARGE-04</code> | ext | tax type is stamp duty; ext require [gr-mydata-stamp-duty] | charge with stamp-duty type requires 'gr-mydata-stamp-duty' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext allow one of [gr-mydata-fee, gr-mydata-other-tax, gr-mydata-stamp-duty]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-01`<br />Only one of fee, other-tax, or stamp-duty allowed |
+| <code>ext</code> | <ul class="gobl-test"><li>Tax type is fee</li><li>Ext require [gr-mydata-fee]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-02`<br />Charge with fee tax type requires 'gr-mydata-fee' extension |
+| <code>ext</code> | <ul class="gobl-test"><li>Tax type is other tax</li><li>Ext require [gr-mydata-other-tax]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-03`<br />Charge with other-tax type requires 'gr-mydata-other-tax' extension |
+| <code>ext</code> | <ul class="gobl-test"><li>Tax type is stamp duty</li><li>Ext require [gr-mydata-stamp-duty]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-04`<br />Charge with stamp-duty type requires 'gr-mydata-stamp-duty' extension |
 </Accordion>
 <Accordion title="tax.Combo">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-GR-MYDATA-V1-TAX-COMBO-01</code> | ext | category is VAT; ext require [gr-mydata-vat-rate] | VAT combo requires 'gr-mydata-vat-rate' extension |
-| <code>GOBL-GR-MYDATA-V1-TAX-COMBO-02</code> | ext | VAT with no percent; ext require [gr-mydata-exemption] | exempt VAT combo requires 'gr-mydata-exemption' extension |
-| <code>GOBL-GR-MYDATA-V1-TAX-COMBO-03</code> | ext | VAT with income ext; ext require [gr-mydata-income-cat, gr-mydata-income-type] | income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [gr-mydata-vat-rate]</li></ul> | `GOBL-GR-MYDATA-V1-TAX-COMBO-01`<br />VAT combo requires 'gr-mydata-vat-rate' extension |
+| <code>ext</code> | <ul class="gobl-test"><li>VAT with no percent</li><li>Ext require [gr-mydata-exemption]</li></ul> | `GOBL-GR-MYDATA-V1-TAX-COMBO-02`<br />Exempt VAT combo requires 'gr-mydata-exemption' extension |
+| <code>ext</code> | <ul class="gobl-test"><li>VAT with income ext</li><li>Ext require [gr-mydata-income-cat, gr-mydata-income-type]</li></ul> | `GOBL-GR-MYDATA-V1-TAX-COMBO-03`<br />Income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
 </Accordion>
 <Accordion title="pay.Instructions">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-GR-MYDATA-V1-PAY-INSTRUCTIONS-01</code> | key | present | payment instructions key is required |
-| <code>GOBL-GR-MYDATA-V1-PAY-INSTRUCTIONS-02</code> | ext | ext require [gr-mydata-payment-means] | payment instructions require 'gr-mydata-payment-means' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>key</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-PAY-INSTRUCTIONS-01`<br />Payment instructions key is required |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [gr-mydata-payment-means]</li></ul> | `GOBL-GR-MYDATA-V1-PAY-INSTRUCTIONS-02`<br />Payment instructions require 'gr-mydata-payment-means' extension |
 </Accordion>
 <Accordion title="pay.Advance">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-GR-MYDATA-V1-PAY-ADVANCE-01</code> | key | present | payment advance key is required |
-| <code>GOBL-GR-MYDATA-V1-PAY-ADVANCE-02</code> | ext | ext require [gr-mydata-payment-means] | payment advance requires 'gr-mydata-payment-means' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>key</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-PAY-ADVANCE-01`<br />Payment advance key is required |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [gr-mydata-payment-means]</li></ul> | `GOBL-GR-MYDATA-V1-PAY-ADVANCE-02`<br />Payment advance requires 'gr-mydata-payment-means' extension |
 </Accordion>
 </AccordionGroup>

@@ -30,6 +30,9 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"codeMap":       codeMap,
 		"extMap":        extMap,
 		"scenarioTitle": scenarioTitle,
+		"codeMessage":   codeMessage,
+		"testList":      testList,
+		"fieldCell":     fieldCell,
 	})
 	return g
 }

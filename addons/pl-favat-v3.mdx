@@ -750,33 +750,33 @@ Example of a credit note effective on correction date:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-11</code> |  | JST identity | customer requires identity with role '8' and code for JST |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-12</code> |  | GroupVAT identity | customer requires identity with role '10' and code for GroupVAT |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-13</code> |  | exemption note present | missing exemption note |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-14</code> |  | single exemption note | too many exemption notes |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-01</code> | type | one of [standard, credit-note] | invoice type must be standard or credit-note |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-02</code> | preceding[*].issue_date | present | preceding issue date is required |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-03</code> | preceding[*].code | present | preceding code is required |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-04</code> | supplier | present | supplier is required |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-05</code> | supplier.name | present | supplier name is required |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-06</code> | supplier.addresses | present | supplier addresses are required |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-07</code> | supplier.addresses | first address country | supplier first address must have a country |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-08</code> | supplier.addresses | first address street | supplier first address must have a street |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-09</code> | customer | not simplified; present | customer is required |
-| <code>GOBL-PL-FAVAT-V3-BILL-INVOICE-10</code> | customer.tax_id | not simplified; present | customer tax ID is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>JST identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-11`<br />Customer requires identity with role '8' and code for JST |
+| <small>Invoice</small> | <ul class="gobl-test"><li>GroupVAT identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-12`<br />Customer requires identity with role '10' and code for GroupVAT |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Exemption note present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-13`<br />Missing exemption note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Single exemption note</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-14`<br />Too many exemption notes |
+| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
+| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-02`<br />Preceding issue date is required |
+| <code>preceding[*].code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-03`<br />Preceding code is required |
+| <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-04`<br />Supplier is required |
+| <code>supplier.name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-05`<br />Supplier name is required |
+| <code>supplier.addresses</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-06`<br />Supplier addresses are required |
+| <code>supplier.addresses</code> | <ul class="gobl-test"><li>First address country</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-07`<br />Supplier first address must have a country |
+| <code>supplier.addresses</code> | <ul class="gobl-test"><li>First address street</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-08`<br />Supplier first address must have a street |
+| <code>customer</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-09`<br />Customer is required |
+| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-10`<br />Customer tax ID is required |
 </Accordion>
 <Accordion title="tax.Combo">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PL-FAVAT-V3-TAX-COMBO-01</code> | ext | ext require [pl-favat-tax-category] | tax combo requires 'pl-favat-tax-category' extension |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>ext</code> | <ul class="gobl-test"><li>Ext require [pl-favat-tax-category]</li></ul> | `GOBL-PL-FAVAT-V3-TAX-COMBO-01`<br />Tax combo requires 'pl-favat-tax-category' extension |
 </Accordion>
 <Accordion title="pay.Advance">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-PL-FAVAT-V3-PAY-ADVANCE-01</code> | date | present | advance payment date is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-PAY-ADVANCE-01`<br />Advance payment date is required |
 </Accordion>
 </AccordionGroup>

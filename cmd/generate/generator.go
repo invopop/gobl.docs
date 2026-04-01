@@ -132,12 +132,13 @@ func (g *generator) validationRules(sections []RuleSection) error {
 
 		<AccordionGroup>
 		{{- range .}}
+		{{- $sec := .}}
 		<Accordion title="{{.Name}}">
 
-		| Code | Field | Test | Description |
-		| ---- | ----- | ---- | ----------- |
+		| Field | Test | Validation Code / Message |
+		| ----- | ---- | ------------------------- |
 		{{- range .Rows}}
-		| <code>{{.Code}}</code> | {{.Field}} | {{.Test}} | {{.Desc}} |
+		| {{fieldCell .Field .Calculated $sec.Name}} | {{testList .Tests .Calculated}} | {{codeMessage .Code .Desc}} |
 		{{- end}}
 		</Accordion>
 		{{- end}}

@@ -30,9 +30,9 @@ CategoryDef contains the definition of a general type of tax inside a region.
 
 ## Validation Rules
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-TAX-CATEGORYDEF-04</code> |  | !Retained || !Informative | category def cannot be retained and informative |
-| <code>GOBL-TAX-CATEGORYDEF-01</code> | code | present | category def code is required |
-| <code>GOBL-TAX-CATEGORYDEF-02</code> | name | present | category def name is required |
-| <code>GOBL-TAX-CATEGORYDEF-03</code> | title | present | category def title is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>CategoryDef</small> | <ul class="gobl-test"><li>!Retained \|\| !Informative</li></ul> | `GOBL-TAX-CATEGORYDEF-04`<br />Category def cannot be retained and informative |
+| <code>code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-CATEGORYDEF-01`<br />Category def code is required |
+| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-CATEGORYDEF-02`<br />Category def name is required |
+| <code>title</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-CATEGORYDEF-03`<br />Category def title is required |

@@ -165,16 +165,16 @@ The types of invoices that can be created with a preceding definition:
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-BILL-INVOICE-01</code> | supplier | context: regime in [ES]; present | invoice supplier in Spain is required |
-| <code>GOBL-ES-BILL-INVOICE-02</code> | supplier.tax_id | context: regime in [ES]; present | invoice supplier tax ID in Spain is required |
-| <code>GOBL-ES-BILL-INVOICE-03</code> | supplier.tax_id.code | context: regime in [ES]; present | invoice supplier tax ID code in Spain is required |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>supplier</code> | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-01`<br />Invoice supplier in Spain is required |
+| <code>supplier.tax_id</code> | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-02`<br />Invoice supplier tax ID in Spain is required |
+| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-03`<br />Invoice supplier tax ID code in Spain is required |
 </Accordion>
 <Accordion title="tax.Identity">
 
-| Code | Field | Test | Description |
-| ---- | ----- | ---- | ----------- |
-| <code>GOBL-ES-TAX-IDENTITY-01</code> | code | code in [ES]; valid | invalid Spanish VAT identity code format or checksum |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [ES]</li><li>Valid</li></ul> | `GOBL-ES-TAX-IDENTITY-01`<br />Invalid Spanish VAT identity code format or checksum |
 </Accordion>
 </AccordionGroup>
