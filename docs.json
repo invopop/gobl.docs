@@ -339,7 +339,8 @@
           {
             "group": "Overview",
             "pages": [
-              "api/introduction"
+              "api/introduction",
+              "api/mcp"
             ]
           },
           {
