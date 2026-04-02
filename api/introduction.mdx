@@ -1,0 +1,57 @@
+---
+title: "GOBL API"
+description: "Build, validate, sign, and query tax-aware business documents via REST"
+icon: "info"
+---
+
+The [GOBL API](https://gobl.dev) provides a hosted REST service for working with GOBL documents without needing to install or run any libraries locally. It's ideal for integrations in any language.
+
+Base URL:
+
+```
+https://gobl.dev/v0
+```
+
+## Endpoints
+
+The API is organized into three groups:
+
+- **Documents** — [Build](/api/documents/build), [validate](/api/documents/validate), [correct](/api/documents/correct), and [replicate](/api/documents/replicate) GOBL documents.
+- **Signing** — [Sign](/api/signing/sign) and [verify](/api/signing/verify) envelopes, or [generate key pairs](/api/signing/keygen).
+- **Reference** — Query available [JSON schemas](/api/reference/list-schemas), [tax regimes](/api/reference/list-regimes), and [addons](/api/reference/list-addons).
+
+## Quick Example
+
+Build and validate an invoice in a single request:
+
+```bash
+curl -X POST https://gobl.dev/v0/build \
+  -H "Content-Type: application/json" \
+  -d '{
+    "data": {
+      "$schema": "https://gobl.org/draft-0/bill/invoice",
+      "series": "EXAMPLE",
+      "currency": "USD",
+      "issue_date": "2024-01-15",
+      "supplier": {
+        "name": "Seller Co.",
+        "tax_id": { "country": "US" }
+      },
+      "customer": {
+        "name": "Buyer Inc.",
+        "tax_id": { "country": "US" }
+      },
+      "lines": [
+        {
+          "quantity": "1",
+          "item": {
+            "name": "Service",
+            "price": "100.00"
+          }
+        }
+      ]
+    }
+  }'
+```
+
+No authentication is required. The API is free to use.
