@@ -42,17 +42,17 @@ func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
-		"rate":           g.taxRateValue,
-		"extension":      g.taxRateExtension,
-		"extensionKeys":  g.getExtensionKeys,
-		"rateRows":       g.getRateRows,
-		"joinKeys":       joinKeys,
-		"codeMap":        codeMap,
-		"extMap":         extMap,
-		"scenarioTitle":  scenarioTitle,
-		"codeMessage":    codeMessage,
-		"testList":       testList,
-		"fieldCell":      fieldCell,
+		"rate":          g.taxRateValue,
+		"extension":     g.taxRateExtension,
+		"extensionKeys": g.getExtensionKeys,
+		"rateRows":      g.getRateRows,
+		"joinKeys":      joinKeys,
+		"codeMap":       codeMap,
+		"extMap":        extMap,
+		"scenarioTitle": scenarioTitle,
+		"codeMessage":   codeMessage,
+		"testList":      testList,
+		"fieldCell":     fieldCell,
 	})
 	return g
 }
@@ -102,9 +102,9 @@ func (g *regimeGenerator) base() error {
 
 		| Key | Value |
 		| --- | ----- |
-		| Tax Country Code | <code>{{.Country}}</code> |
-		| Currency | <code>{{.Currency}}</code> |
-		| Base Time Zone | <code>{{.TimeZone}}</code> |
+		| Tax Country Code | ~{{.Country}}~ |
+		| Currency | ~{{.Currency}}~ |
+		| Base Time Zone | ~{{.TimeZone}}~ |
 	`))
 }
 
@@ -117,7 +117,7 @@ func (g *regimeGenerator) taxCategories() error {
 		| Code | Name | Title |
 		| ---- | ---- | ----- |
 		{{- range .Categories }}
-		| <code>{{ .Code }}</code> | {{t .Name }} | {{t .Title }} |
+		| ~{{ .Code }}~ | {{t .Name }} | {{t .Title }} |
 		{{- end}}
 
 
@@ -141,7 +141,7 @@ func (g *regimeGenerator) taxCategory(tc *tax.CategoryDef) error {
 
 
 		### {{t .Name}} Rates
-		{{- if .Description }}	
+		{{- if .Description }}
 
 		{{t .Description }}
 		{{- end }}
@@ -153,7 +153,7 @@ func (g *regimeGenerator) taxCategory(tc *tax.CategoryDef) error {
 		| Rate | Keys | Name |{{- range $extKeys }} {{.}} |{{- end }} Percents | Description |
 		| ---- | ---- | ---- |{{- range $extKeys }} --------- |{{- end }} -------- | ----------- |
 		{{- range $row := $rows }}
-		| <code>{{ $row.Rate }}</code> | {{ joinKeys $row.Keys }} | {{t $row.Name }} |{{- range $extKeys }} {{ index $row.Extensions . }} |{{- end }} {{ $row.Percent }} | {{t $row.Description }} |
+		| ~{{ $row.Rate }}~ | {{ joinKeys $row.Keys }} | {{t $row.Name }} |{{- range $extKeys }} {{ index $row.Extensions . }} |{{- end }} {{ $row.Percent }} | {{t $row.Description }} |
 		{{- end }}
 		{{- else }}
 		No rates defined.
@@ -385,10 +385,10 @@ func (g *regimeGenerator) scenarios() error {
 		- **Tags:** {{ joinKeys .Tags }}
 		{{- end }}
 		{{- if .ExtKey }}
-		- **Extension Key:** <code>{{ .ExtKey }}</code>
+		- **Extension Key:** ~{{ .ExtKey }}~
 		{{- end }}
 		{{- if .ExtCode }}
-		- **Extension Code:** <code>{{ .ExtCode }}</code>
+		- **Extension Code:** ~{{ .ExtCode }}~
 		{{- end }}
 		{{- if .Filter }}
 		- **Filter:** *(custom)*

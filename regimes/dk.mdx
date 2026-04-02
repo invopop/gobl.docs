@@ -19,21 +19,21 @@ for all B2G transactions.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>DK</code> |
-| Currency | <code>DKK</code> |
-| Base Time Zone | <code>Europe/Copenhagen</code> |
+| Tax Country Code | `DK` |
+| Currency | `DKK` |
+| Base Time Zone | `Europe/Copenhagen` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 25.0% |  |
+| `general` | `standard` | General Rate | 25.0% |  |
 
 ## Correction Definitions
 
@@ -43,7 +43,7 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
 
 ## Validation Rules
 
@@ -52,18 +52,18 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>supplier</code> | <ul class="gobl-test"><li>Context: regime in [DK]</li><li>Has tax ID code or identity with 'CVR' type</li></ul> | `GOBL-DK-BILL-INVOICE-01`<br />Invoice DK supplier must have either tax ID code or identity with 'CVR' type |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [DK]</li><li>Has tax ID code or identity with 'CVR' type</li></ul> | `GOBL-DK-BILL-INVOICE-01`<br />Invoice DK supplier must have either tax ID code or identity with 'CVR' type |
 </Accordion>
 <Accordion title="org.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Is CVR</li><li>Valid</li></ul> | `GOBL-DK-ORG-IDENTITY-01`<br />Invalid Danish CVR identity code |
+| `code` | <ul class="gobl-test"><li>Is CVR</li><li>Valid</li></ul> | `GOBL-DK-ORG-IDENTITY-01`<br />Invalid Danish CVR identity code |
 </Accordion>
 <Accordion title="tax.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [DK]</li><li>Valid</li></ul> | `GOBL-DK-TAX-IDENTITY-01`<br />Invalid Danish VAT identity code |
+| `code` | <ul class="gobl-test"><li>Code in [DK]</li><li>Valid</li></ul> | `GOBL-DK-TAX-IDENTITY-01`<br />Invalid Danish VAT identity code |
 </Accordion>
 </AccordionGroup>

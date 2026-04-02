@@ -58,14 +58,14 @@ Invoice represents a payment claim for goods or services supplied under conditio
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-INVOICE-01`<br />Invoice type is required |
-| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, proforma, corrective, credit-note, debit-note, other]</li></ul> | `GOBL-BILL-INVOICE-02`<br />Invoice type is not valid |
-| <code>issue_date</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-BILL-INVOICE-03`<br />Invoice issue date is required |
-| <code>currency</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-INVOICE-04`<br />Invoice currency is required |
-| <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-05`<br />Invoice supplier is required |
-| <code>supplier.name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-06`<br />Invoice supplier name is required |
-| <code>value_date</code> | <ul class="gobl-test"><li>Has tax point</li><li>Empty</li></ul> | `GOBL-BILL-INVOICE-11`<br />Value date cannot be set when tax point is set |
-| <code>customer.name</code> | <ul class="gobl-test"><li>Has tax ID code</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-07`<br />Invoice customer name required when tax ID is set |
-| <code>lines[*].item.price</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-08`<br />Invoice line item price is required |
-| <code>totals</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-INVOICE-09`<br />Invoice totals are required |
-| <code>lines</code> | <ul class="gobl-test"><li>No discounts or charges</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-10`<br />Invoice lines are required without discounts or charges |
+| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-INVOICE-01`<br />Invoice type is required |
+| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, proforma, corrective, credit-note, debit-note, other]</li></ul> | `GOBL-BILL-INVOICE-02`<br />Invoice type is not valid |
+| `issue_date`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-BILL-INVOICE-03`<br />Invoice issue date is required |
+| `currency`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-INVOICE-04`<br />Invoice currency is required |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-05`<br />Invoice supplier is required |
+| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-06`<br />Invoice supplier name is required |
+| `value_date` | <ul class="gobl-test"><li>Has tax point</li><li>Empty</li></ul> | `GOBL-BILL-INVOICE-11`<br />Value date cannot be set when tax point is set |
+| `customer.name` | <ul class="gobl-test"><li>Has tax ID code</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-07`<br />Invoice customer name required when tax ID is set |
+| `lines[*].item.price` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-08`<br />Invoice line item price is required |
+| `totals`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-INVOICE-09`<br />Invoice totals are required |
+| `lines` | <ul class="gobl-test"><li>No discounts or charges</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-INVOICE-10`<br />Invoice lines are required without discounts or charges |

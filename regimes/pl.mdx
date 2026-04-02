@@ -21,23 +21,23 @@ E-invoicing via PEPPOL is used for cross-border and B2G transactions.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>PL</code> |
-| Currency | <code>PLN</code> |
-| Base Time Zone | <code>Europe/Warsaw</code> |
+| Tax Country Code | `PL` |
+| Currency | `PLN` |
+| Base Time Zone | `Europe/Warsaw` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 23.0% |  |
-| <code>reduced</code> | <code>standard</code> | First Reduced Rate | 8.0% |  |
-| <code>super-reduced</code> | <code>standard</code> | Second Reduced Rate | 5.0% |  |
+| `general` | `standard` | General Rate | 23.0% |  |
+| `reduced` | `standard` | First Reduced Rate | 8.0% |  |
+| `super-reduced` | `standard` | Second Reduced Rate | 5.0% |  |
 
 ## Validation Rules
 
@@ -46,12 +46,12 @@ E-invoicing via PEPPOL is used for cross-border and B2G transactions.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li>Context: regime in [PL]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-BILL-INVOICE-01`<br />Supplier tax ID code required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li>Context: regime in [PL]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-BILL-INVOICE-01`<br />Supplier tax ID code required |
 </Accordion>
 <Accordion title="tax.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [PL]</li><li>Valid</li></ul> | `GOBL-PL-TAX-IDENTITY-01`<br />Invalid Polish VAT identity code |
+| `code` | <ul class="gobl-test"><li>Code in [PL]</li><li>Valid</li></ul> | `GOBL-PL-TAX-IDENTITY-01`<br />Invalid Polish VAT identity code |
 </Accordion>
 </AccordionGroup>

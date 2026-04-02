@@ -70,7 +70,7 @@ func (g *addonGenerator) base() error {
 		title: {{t .Name}}
 		---
 
-		Key: <code>{{ .Key }}</code>
+		Key: ~{{ .Key }}~
 
 		{{- if .Description}}
 
@@ -114,10 +114,10 @@ func (g *addonGenerator) scenarios() error {
 		- **Tags:** {{ joinKeys .Tags }}
 		{{- end }}
 		{{- if .ExtKey }}
-		- **Extension Key:** <code>{{ .ExtKey }}</code>
+		- **Extension Key:** ~{{ .ExtKey }}~
 		{{- end }}
 		{{- if .ExtCode }}
-		- **Extension Code:** <code>{{ .ExtCode }}</code>
+		- **Extension Code:** ~{{ .ExtCode }}~
 		{{- end }}
 		{{- if .Filter }}
 		- **Filter:** *(custom)*

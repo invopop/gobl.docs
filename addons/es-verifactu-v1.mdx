@@ -2,7 +2,7 @@
 title: Spain VERI*FACTU V1
 ---
 
-Key: <code>es-verifactu-v1</code>
+Key: `es-verifactu-v1`
 
 ## Sources
 - [VERI*FACTU error response code list](https://prewww2.aeat.es/static_files/common/internet/dep/aplicaciones/es/aeat/tikeV1.0/cont/ws/errores.properties)
@@ -16,7 +16,7 @@ supported.
 
 One or all of the following extensions may be required as part of the correction
 options. See the [Extensions](#extensions) section for possible values.
-- <code>es-verifactu-doc-type</code>
+- `es-verifactu-doc-type`
 
 ## Scenarios
 
@@ -25,44 +25,44 @@ options. See the [Extensions](#extensions) section for possible values.
 <Accordion title="Standard Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
+- **Types:** `standard`
 
 **Output:**
-- **Extensions:** <code>es-verifactu-doc-type:F1</code>
+- **Extensions:** `es-verifactu-doc-type:F1`
 </Accordion>
 
 <Accordion title="Simplified Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
-- **Tags:** <code>simplified</code>
+- **Types:** `standard`
+- **Tags:** `simplified`
 
 **Output:**
-- **Extensions:** <code>es-verifactu-doc-type:F2</code>
+- **Extensions:** `es-verifactu-doc-type:F2`
 </Accordion>
 
 <Accordion title="Replacement Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
-- **Tags:** <code>replacement</code>
+- **Types:** `standard`
+- **Tags:** `replacement`
 
 **Output:**
-- **Extensions:** <code>es-verifactu-doc-type:F3</code>
+- **Extensions:** `es-verifactu-doc-type:F3`
 </Accordion>
 
 <Accordion title="Simplified Corrective Invoice">
 
 **Filters:**
-- **Types:** <code>corrective</code>, <code>credit-note</code>, <code>debit-note</code>
-- **Tags:** <code>simplified</code>
+- **Types:** `corrective`, `credit-note`, `debit-note`
+- **Tags:** `simplified`
 
 **Output:**
-- **Extensions:** <code>es-verifactu-doc-type:R5</code>
+- **Extensions:** `es-verifactu-doc-type:R5`
 </Accordion>
 
 ## Extensions
-### Invoice Type Code	
+### Invoice Type Code
 
 Code used to identify the type of invoice being sent. This will be
 determined automatically by GOBL during normalization according
@@ -77,16 +77,16 @@ Values correspond to L2 list.
 
 | Code | Name |
 | ---- | ---- |
-| <code>F1</code> | Invoice (Article 6, 7.2 and 7.3 of RD 1619/2012) |
-| <code>F2</code> | Simplified invoice (Article 6.1.d) of RD 1619/2012) |
-| <code>F3</code> | Invoice issued as replacement of simplified invoice |
-| <code>R1</code> | Rectified invoice: articles 80.1, 80.2, and 80.6 |
-| <code>R2</code> | Rectified invoice: article 80.3 |
-| <code>R3</code> | Rectified invoice: article 80.4 |
-| <code>R4</code> | Rectified invoice: other |
-| <code>R5</code> | Rectified invoice: simplified invoices |
+| `F1` | Invoice (Article 6, 7.2 and 7.3 of RD 1619/2012) |
+| `F2` | Simplified invoice (Article 6.1.d) of RD 1619/2012) |
+| `F3` | Invoice issued as replacement of simplified invoice |
+| `R1` | Rectified invoice: articles 80.1, 80.2, and 80.6 |
+| `R2` | Rectified invoice: article 80.3 |
+| `R3` | Rectified invoice: article 80.4 |
+| `R4` | Rectified invoice: other |
+| `R5` | Rectified invoice: simplified invoices |
 </Accordion>
-### Verifactu Correction Type Code	
+### Verifactu Correction Type Code
 
 Correction type code used to identify the type of correction being
 made. Values map to L3 list.
@@ -103,10 +103,10 @@ Code is determined automatically according to the invoice type:
 
 | Code | Name |
 | ---- | ---- |
-| <code>S</code> | Substitution |
-| <code>I</code> | Differences |
+| `S` | Substitution |
+| `I` | Differences |
 </Accordion>
-### Subject and Not Exempt Operation Class Code	
+### Subject and Not Exempt Operation Class Code
 
 Classification code for operations that are subject to tax and not exempt, or for operations not subject to tax.
 
@@ -131,12 +131,12 @@ For further guidance on applying these codes, refer to the AEAT FAQ:
 
 | Code | Name |
 | ---- | ---- |
-| <code>S1</code> | Subject and Not Exempt - Without reverse charge |
-| <code>S2</code> | Subject and Not Exempt - With reverse charge |
-| <code>N1</code> | Not Subject - Articles 7, 14, others |
-| <code>N2</code> | Not Subject - Due to location rules |
+| `S1` | Subject and Not Exempt - Without reverse charge |
+| `S2` | Subject and Not Exempt - With reverse charge |
+| `N1` | Not Subject - Articles 7, 14, others |
+| `N2` | Not Subject - Due to location rules |
 </Accordion>
-### Verifactu Exemption Code	
+### Verifactu Exemption Code
 
 Exemption code used to explain why the operation is exempt from taxes.
 
@@ -157,14 +157,14 @@ The follow mappings will be made automatically by GOBL during normalization.
 
 | Code | Name |
 | ---- | ---- |
-| <code>E1</code> | Exempt: pursuant to Article 20. Exemptions in internal operations. |
-| <code>E2</code> | Exempt: pursuant to Article 21. Exemptions in exports of goods. |
-| <code>E3</code> | Exempt: pursuant to Article 22. Exemptions in operations asimilated to exports. |
-| <code>E4</code> | Exempt: pursuant to Articles 23 and 24. Exemptions related to temporary deposit, customs and fiscal regimes, and other situations. |
-| <code>E5</code> | Exempt: pursuant to Article 25. Exemptions in the delivery of goods destined to another Member State. |
-| <code>E6</code> | Exempt: pursuant to other reasons |
+| `E1` | Exempt: pursuant to Article 20. Exemptions in internal operations. |
+| `E2` | Exempt: pursuant to Article 21. Exemptions in exports of goods. |
+| `E3` | Exempt: pursuant to Article 22. Exemptions in operations asimilated to exports. |
+| `E4` | Exempt: pursuant to Articles 23 and 24. Exemptions related to temporary deposit, customs and fiscal regimes, and other situations. |
+| `E5` | Exempt: pursuant to Article 25. Exemptions in the delivery of goods destined to another Member State. |
+| `E6` | Exempt: pursuant to other reasons |
 </Accordion>
-### VAT/IGIC Regime Code	
+### VAT/IGIC Regime Code
 
 Identify the type of VAT or IGIC regime applied to the operation. This list combines
 lists L8A which include values for VAT, and L8B for IGIC.
@@ -185,25 +185,25 @@ GOBL will try to assign a code from the following tax combo contexts:
 
 | Code | Name |
 | ---- | ---- |
-| <code>01</code> | General regime operation |
-| <code>02</code> | Export |
-| <code>03</code> | Special regime for used goods, art objects, antiques and collectibles |
-| <code>04</code> | Special regime for investment gold |
-| <code>05</code> | Special regime for travel agencies |
-| <code>06</code> | Special regime for VAT/IGIC groups (Advanced Level) |
-| <code>07</code> | Special cash accounting regime |
-| <code>08</code> | Operations subject to a different regime |
-| <code>09</code> | Billing of travel agency services acting as mediators in name and on behalf of others |
-| <code>10</code> | Collection of professional fees or rights on behalf of third parties |
-| <code>11</code> | Business premises rental operations |
-| <code>14</code> | Invoice with pending VAT/IGIC accrual in work certifications for Public Administration |
-| <code>15</code> | Invoice with pending VAT/IGIC accrual in successive tract operations |
-| <code>17</code> | Operation under OSS and IOSS regimes (VAT) / Special regime for retail traders. (IGIC) |
-| <code>18</code> | Equivalence surcharge (VAT) / Special regime for small traders or retailers (IGIC) |
-| <code>19</code> | Operations included in the Special Regime for Agriculture, Livestock and Fisheries |
-| <code>20</code> | Simplified regime (VAT only) |
+| `01` | General regime operation |
+| `02` | Export |
+| `03` | Special regime for used goods, art objects, antiques and collectibles |
+| `04` | Special regime for investment gold |
+| `05` | Special regime for travel agencies |
+| `06` | Special regime for VAT/IGIC groups (Advanced Level) |
+| `07` | Special cash accounting regime |
+| `08` | Operations subject to a different regime |
+| `09` | Billing of travel agency services acting as mediators in name and on behalf of others |
+| `10` | Collection of professional fees or rights on behalf of third parties |
+| `11` | Business premises rental operations |
+| `14` | Invoice with pending VAT/IGIC accrual in work certifications for Public Administration |
+| `15` | Invoice with pending VAT/IGIC accrual in successive tract operations |
+| `17` | Operation under OSS and IOSS regimes (VAT) / Special regime for retail traders. (IGIC) |
+| `18` | Equivalence surcharge (VAT) / Special regime for small traders or retailers (IGIC) |
+| `19` | Operations included in the Special Regime for Agriculture, Livestock and Fisheries |
+| `20` | Simplified regime (VAT only) |
 </Accordion>
-### Identity Type Code	
+### Identity Type Code
 
 Identity code used to identify the type of identity document used by the customer
 defined in the L7 list.
@@ -266,14 +266,14 @@ Will be normalized to:
 
 | Code | Name |
 | ---- | ---- |
-| <code>02</code> | NIF-VAT Identity (VIES) |
-| <code>03</code> | Passport |
-| <code>04</code> | Foreign Identity Document |
-| <code>05</code> | Residential Certificate |
-| <code>06</code> | Other Identity Document |
-| <code>07</code> | Not registered in census |
+| `02` | NIF-VAT Identity (VIES) |
+| `03` | Passport |
+| `04` | Foreign Identity Document |
+| `05` | Residential Certificate |
+| `06` | Other Identity Document |
+| `07` | Not registered in census |
 </Accordion>
-### Simplified Invoice Art. 7.2 and 7.3, RD 1619/2012	
+### Simplified Invoice Art. 7.2 and 7.3, RD 1619/2012
 
 This extensions covers a specific use-case when the customer specifically
 requests that the invoice includes their fiscal details, but they are
@@ -288,10 +288,10 @@ Can only be true when the invoice type (`TipoFactura`) is one of: `F1`,
 
 | Code | Name |
 | ---- | ---- |
-| <code>S</code> | Yes |
-| <code>N</code> | No |
+| `S` | Yes |
+| `N` | No |
 </Accordion>
-### Issuer Type Code	
+### Issuer Type Code
 
 Indicates whether the invoice is issued by a third party or by the customer
 themselves.
@@ -309,8 +309,8 @@ extension will be set to `T`.
 
 | Code | Name |
 | ---- | ---- |
-| <code>T</code> | Issued by Third Party |
-| <code>D</code> | Issued by Customer |
+| `T` | Issued by Third Party |
+| `D` | Issued by Customer |
 </Accordion>
 
 ## Validation Rules
@@ -320,29 +320,29 @@ extension will be set to `T`.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-01`<br />Preceding documents are required for corrective invoices |
-| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-02`<br />Issue date is required |
-| <code>preceding[*].tax</code> | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-03`<br />Preceding invoice tax data is required for corrective invoices |
-| <code>customer</code> | <ul class="gobl-test"><li>Simplified</li><li>No identity type ext</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-05`<br />Customer identity type extension not allowed for simplified invoices |
-| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Simplified</li><li>Nil</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-04`<br />Customer tax ID must not be set for simplified invoices |
-| <code>customer</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-06`<br />Customer is required |
-| <code>customer</code> | <ul class="gobl-test"><li>Not simplified</li><li>Has tax_id or identity</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-07`<br />Must have a tax_id or an identity with ext 'es-verifactu-v1-identity-type' |
-| <code>customer.tax_id.code</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-08`<br />Tax ID must have a code |
-| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-09`<br />Tax is required |
-| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [es-verifactu-doc-type]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-10`<br />Doc type is required |
-| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-verifactu-correction-type]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-13`<br />Correction type extension is required |
-| <code>tax.ext</code> | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-verifactu-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-11`<br />Doc type extension for standard invoices must be F1, F2, or F3 |
-| <code>tax.ext</code> | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-12`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
-| <code>notes[*].text</code> | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-14`<br />General note text must be 500 characters or less |
-| <code>lines[*].taxes</code> | <ul class="gobl-test"><li>One of [VAT, IGIC, IPSI]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-15`<br />Must include at least one of VAT, IGIC, or IPSI |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-01`<br />Preceding documents are required for corrective invoices |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-02`<br />Issue date is required |
+| `preceding[*].tax` | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-03`<br />Preceding invoice tax data is required for corrective invoices |
+| `customer` | <ul class="gobl-test"><li>Simplified</li><li>No identity type ext</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-05`<br />Customer identity type extension not allowed for simplified invoices |
+| `customer.tax_id` | <ul class="gobl-test"><li>Simplified</li><li>Nil</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-04`<br />Customer tax ID must not be set for simplified invoices |
+| `customer` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-06`<br />Customer is required |
+| `customer` | <ul class="gobl-test"><li>Not simplified</li><li>Has tax_id or identity</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-07`<br />Must have a tax_id or an identity with ext 'es-verifactu-v1-identity-type' |
+| `customer.tax_id.code` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-08`<br />Tax ID must have a code |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-09`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-verifactu-doc-type]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-10`<br />Doc type is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-verifactu-correction-type]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-13`<br />Correction type extension is required |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-verifactu-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-11`<br />Doc type extension for standard invoices must be F1, F2, or F3 |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-12`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
+| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-14`<br />General note text must be 500 characters or less |
+| `lines[*].taxes` | <ul class="gobl-test"><li>One of [VAT, IGIC, IPSI]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-15`<br />Must include at least one of VAT, IGIC, or IPSI |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>ext</code> | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext require [es-verifactu-regime]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-01`<br />Extension 'es-verifactu-regime' is required |
-| <code>ext</code> | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext allow one of [es-verifactu-op-class, es-verifactu-exempt]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-03`<br />Cannot use both 'es-verifactu-op-class' and 'es-verifactu-exempt' at the same time |
-| <code>ext</code> | <ul class="gobl-test"><li>Ext 'es-verifactu-regime' in [01]</li><li>Ext 'es-verifactu-exempt' not in [E2, E3]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-02`<br />Exempt codes E2 and E3 not allowed with 'es-verifactu-regime' 01 |
-| <code>ext</code> | <ul class="gobl-test"><li>Has percent</li><li>Ext require [es-verifactu-op-class]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-04`<br />Extension 'es-verifactu-op-class' is required for taxed operations |
+| `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext require [es-verifactu-regime]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-01`<br />Extension 'es-verifactu-regime' is required |
+| `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext allow one of [es-verifactu-op-class, es-verifactu-exempt]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-03`<br />Cannot use both 'es-verifactu-op-class' and 'es-verifactu-exempt' at the same time |
+| `ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-regime' in [01]</li><li>Ext 'es-verifactu-exempt' not in [E2, E3]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-02`<br />Exempt codes E2 and E3 not allowed with 'es-verifactu-regime' 01 |
+| `ext` | <ul class="gobl-test"><li>Has percent</li><li>Ext require [es-verifactu-op-class]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-04`<br />Extension 'es-verifactu-op-class' is required for taxed operations |
 </Accordion>
 </AccordionGroup>

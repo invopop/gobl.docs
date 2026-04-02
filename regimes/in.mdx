@@ -26,18 +26,18 @@ invoice corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>IN</code> |
-| Currency | <code>INR</code> |
-| Base Time Zone | <code>Asia/Kolkata</code> |
+| Tax Country Code | `IN` |
+| Currency | `INR` |
+| Base Time Zone | `Asia/Kolkata` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>CGST</code> | CGST | Central Goods and Services Tax |
-| <code>SGST</code> | SGST | State Goods and Services Tax |
-| <code>IGST</code> | IGST | Integrated Goods and Services Tax |
-| <code>UTGST</code> | UTGST | Union Territory Goods and Services Tax |
+| `CGST` | CGST | Central Goods and Services Tax |
+| `SGST` | SGST | State Goods and Services Tax |
+| `IGST` | IGST | Integrated Goods and Services Tax |
+| `UTGST` | UTGST | Union Territory Goods and Services Tax |
 
 ## Correction Definitions
 
@@ -47,8 +47,8 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
 
 ## Scenarios
 
@@ -57,7 +57,7 @@ The types of invoices that can be created with a preceding definition:
 <Accordion title="#reverse-charge">
 
 **Filters:**
-- **Tags:** <code>reverse-charge</code>
+- **Tags:** `reverse-charge`
 
 **Output:**
 - **Note:** Reverse Charge (reverse-charge)
@@ -66,7 +66,7 @@ The types of invoices that can be created with a preceding definition:
 <Accordion title="#simplified">
 
 **Filters:**
-- **Tags:** <code>simplified</code>
+- **Tags:** `simplified`
 
 **Output:**
 - **Note:** Simplified Tax Invoice (simplified)
@@ -79,19 +79,19 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Type in [PAN]</li><li>Matches ^[A-Z]{5}[0-9]{4}[A-Z]$</li></ul> | `GOBL-IN-ORG-IDENTITY-01`<br />Identity code must be a valid PAN format |
-| <code>code</code> | <ul class="gobl-test"><li>Type in [HSN]</li><li>Matches ^(?:\d{4}\|\d{6}\|\d{8})$</li></ul> | `GOBL-IN-ORG-IDENTITY-02`<br />Identity code must be a valid HSN format |
+| `code` | <ul class="gobl-test"><li>Type in [PAN]</li><li>Matches ^[A-Z]{5}[0-9]{4}[A-Z]$</li></ul> | `GOBL-IN-ORG-IDENTITY-01`<br />Identity code must be a valid PAN format |
+| `code` | <ul class="gobl-test"><li>Type in [HSN]</li><li>Matches ^(?:\d{4}\|\d{6}\|\d{8})$</li></ul> | `GOBL-IN-ORG-IDENTITY-02`<br />Identity code must be a valid HSN format |
 </Accordion>
 <Accordion title="org.Item">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>identities</code> | <ul class="gobl-test"><li>Context: regime in [IN]</li><li>Has a type in [HSN]</li></ul> | `GOBL-IN-ORG-ITEM-01`<br />All items must have an HSN identity code |
+| `identities` | <ul class="gobl-test"><li>Context: regime in [IN]</li><li>Has a type in [HSN]</li></ul> | `GOBL-IN-ORG-ITEM-01`<br />All items must have an HSN identity code |
 </Accordion>
 <Accordion title="tax.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [IN]</li><li>Valid</li></ul> | `GOBL-IN-TAX-IDENTITY-01`<br />Invalid Indian tax identity code |
+| `code` | <ul class="gobl-test"><li>Code in [IN]</li><li>Valid</li></ul> | `GOBL-IN-TAX-IDENTITY-01`<br />Invalid Indian tax identity code |
 </Accordion>
 </AccordionGroup>

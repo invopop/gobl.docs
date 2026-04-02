@@ -15,23 +15,23 @@ credit notes for invoice corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>AT</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Vienna</code> |
+| Tax Country Code | `AT` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Vienna` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 20.0% |  |
-| <code>intermediate</code> | <code>standard</code> | Intermediate Rate | 13.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 10.0% |  |
+| `general` | `standard` | General Rate | 20.0% |  |
+| `intermediate` | `standard` | Intermediate Rate | 13.0% |  |
+| `reduced` | `standard` | Reduced Rate | 10.0% |  |
 
 ## Correction Definitions
 
@@ -41,7 +41,7 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
 
 ## Scenarios
 
@@ -50,7 +50,7 @@ The types of invoices that can be created with a preceding definition:
 <Accordion title="#reverse-charge">
 
 **Filters:**
-- **Tags:** <code>reverse-charge</code>
+- **Tags:** `reverse-charge`
 
 **Output:**
 - **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
@@ -63,6 +63,6 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [AT]</li><li>Valid</li></ul> | `GOBL-AT-TAX-IDENTITY-01`<br />Invalid Austrian VAT identity code |
+| `code` | <ul class="gobl-test"><li>Code in [AT]</li><li>Valid</li></ul> | `GOBL-AT-TAX-IDENTITY-01`<br />Invalid Austrian VAT identity code |
 </Accordion>
 </AccordionGroup>

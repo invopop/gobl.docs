@@ -19,24 +19,24 @@ PEPPOL is supported for B2G transactions.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>IE</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Dublin</code> |
+| Tax Country Code | `IE` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Dublin` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | Standard Rate | 23.0% |  |
-| <code>reduced</code> | <code>standard</code> | First Reduced Rate | 13.5% |  |
-| <code>super-reduced</code> | <code>standard</code> | Second Reduced Rate | 9.0% |  |
-| <code>special</code> | <code>standard</code> | Livestock Rate | 4.8% |  |
+| `general` | `standard` | Standard Rate | 23.0% |  |
+| `reduced` | `standard` | First Reduced Rate | 13.5% |  |
+| `super-reduced` | `standard` | Second Reduced Rate | 9.0% |  |
+| `special` | `standard` | Livestock Rate | 4.8% |  |
 
 ## Scenarios
 
@@ -45,7 +45,7 @@ PEPPOL is supported for B2G transactions.
 <Accordion title="#reverse-charge">
 
 **Filters:**
-- **Tags:** <code>reverse-charge</code>
+- **Tags:** `reverse-charge`
 
 **Output:**
 - **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
@@ -58,6 +58,6 @@ PEPPOL is supported for B2G transactions.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [IE]</li><li>Valid</li></ul> | `GOBL-IE-TAX-IDENTITY-01`<br />Invalid Irish VAT identity code |
+| `code` | <ul class="gobl-test"><li>Code in [IE]</li><li>Valid</li></ul> | `GOBL-IE-TAX-IDENTITY-01`<br />Invalid Irish VAT identity code |
 </Accordion>
 </AccordionGroup>

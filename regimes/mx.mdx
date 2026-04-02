@@ -27,26 +27,26 @@ food vouchers among others.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>MX</code> |
-| Currency | <code>MXN</code> |
-| Base Time Zone | <code>America/Mexico_City</code> |
+| Tax Country Code | `MX` |
+| Currency | `MXN` |
+| Base Time Zone | `America/Mexico_City` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
-| <code>RVAT</code> | Retained VAT | Retained Value Added Tax |
-| <code>IEPS</code> | IEPS | Special Tax on Production and Services |
-| <code>RIEPS</code> | Retained IEPS | Retained Special Tax on Production and Services |
-| <code>ISR</code> | ISR | Income Tax |
+| `VAT` | VAT | Value Added Tax |
+| `RVAT` | Retained VAT | Retained Value Added Tax |
+| `IEPS` | IEPS | Special Tax on Production and Services |
+| `RIEPS` | Retained IEPS | Retained Special Tax on Production and Services |
+| `ISR` | ISR | Income Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 16.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced (Border) Rate | 8.0% |  |
+| `general` | `standard` | General Rate | 16.0% |  |
+| `reduced` | `standard` | Reduced (Border) Rate | 8.0% |  |
 
 ## Correction Definitions
 
@@ -56,12 +56,12 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
 
 ### Stamp Keys
 
 Stamp keys from the previous invoice that need to be referenced:
-- <code>sat-uuid</code>
+- `sat-uuid`
 
 ## Validation Rules
 
@@ -70,6 +70,6 @@ Stamp keys from the previous invoice that need to be referenced:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [MX]</li><li>Valid RFC</li></ul> | `GOBL-MX-TAX-IDENTITY-01`<br />Invalid Mexican RFC tax identity code |
+| `code` | <ul class="gobl-test"><li>Code in [MX]</li><li>Valid RFC</li></ul> | `GOBL-MX-TAX-IDENTITY-01`<br />Invalid Mexican RFC tax identity code |
 </Accordion>
 </AccordionGroup>

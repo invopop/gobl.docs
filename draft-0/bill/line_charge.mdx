@@ -45,8 +45,8 @@ LineCharge represents an amount added to the line, and will be applied before ta
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>percent</code> | <ul class="gobl-test"><li>Base != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-LINECHARGE-01`<br />Percent is required when base is set |
-| <code>quantity</code> | <ul class="gobl-test"><li>Base != nil \|\| Percent != nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-02`<br />Quantity must be blank with base or percent |
-| <code>rate</code> | <ul class="gobl-test"><li>Base != nil \|\| Percent != nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-03`<br />Rate must be blank with base or percent |
-| <code>unit</code> | <ul class="gobl-test"><li>Quantity == nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-04`<br />Unit must be blank without quantity |
-| <code>rate</code> | <ul class="gobl-test"><li>Quantity != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-LINECHARGE-05`<br />Rate is required when quantity is set |
+| `percent` | <ul class="gobl-test"><li>Base != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-LINECHARGE-01`<br />Percent is required when base is set |
+| `quantity` | <ul class="gobl-test"><li>Base != nil \|\| Percent != nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-02`<br />Quantity must be blank with base or percent |
+| `rate` | <ul class="gobl-test"><li>Base != nil \|\| Percent != nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-03`<br />Rate must be blank with base or percent |
+| `unit` | <ul class="gobl-test"><li>Quantity == nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-04`<br />Unit must be blank without quantity |
+| `rate` | <ul class="gobl-test"><li>Quantity != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-LINECHARGE-05`<br />Rate is required when quantity is set |

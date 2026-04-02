@@ -2,7 +2,7 @@
 title: Polish KSeF FA_VAT FA(3)
 ---
 
-Key: <code>pl-favat-v3</code>
+Key: `pl-favat-v3`
 
 ## Correction Definitions
 
@@ -12,12 +12,12 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
 
 ### Stamp Keys
 
 Stamp keys from the previous invoice that need to be referenced:
-- <code>favat-ksef-number</code>
+- `favat-ksef-number`
 
 ## Scenarios
 
@@ -26,73 +26,73 @@ Stamp keys from the previous invoice that need to be referenced:
 <Accordion title="Regular Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
+- **Types:** `standard`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:VAT</code>
+- **Extensions:** `pl-favat-invoice-type:VAT`
 </Accordion>
 
 <Accordion title="Prepayment Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
-- **Tags:** <code>partial</code>
+- **Types:** `standard`
+- **Tags:** `partial`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:ZAL</code>
+- **Extensions:** `pl-favat-invoice-type:ZAL`
 </Accordion>
 
 <Accordion title="Settlement Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
-- **Tags:** <code>settlement</code>
+- **Types:** `standard`
+- **Tags:** `settlement`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:ROZ</code>
+- **Extensions:** `pl-favat-invoice-type:ROZ`
 </Accordion>
 
 <Accordion title="Simplified Invoice">
 
 **Filters:**
-- **Types:** <code>standard</code>
-- **Tags:** <code>simplified</code>
+- **Types:** `standard`
+- **Tags:** `simplified`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:UPR</code>
+- **Extensions:** `pl-favat-invoice-type:UPR`
 </Accordion>
 
 <Accordion title="Credit note">
 
 **Filters:**
-- **Types:** <code>credit-note</code>
+- **Types:** `credit-note`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:KOR</code>
+- **Extensions:** `pl-favat-invoice-type:KOR`
 </Accordion>
 
 <Accordion title="Prepayment credit note">
 
 **Filters:**
-- **Types:** <code>credit-note</code>
-- **Tags:** <code>partial</code>
+- **Types:** `credit-note`
+- **Tags:** `partial`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:KOR_ZAL</code>
+- **Extensions:** `pl-favat-invoice-type:KOR_ZAL`
 </Accordion>
 
 <Accordion title="Settlement credit note">
 
 **Filters:**
-- **Types:** <code>credit-note</code>
-- **Tags:** <code>settlement</code>
+- **Types:** `credit-note`
+- **Tags:** `settlement`
 
 **Output:**
-- **Extensions:** <code>pl-favat-invoice-type:KOR_ROZ</code>
+- **Extensions:** `pl-favat-invoice-type:KOR_ROZ`
 </Accordion>
 
 ## Extensions
-### Tax categories for KSeF	
+### Tax categories for KSeF
 
 The `pl-favat-tax-category` extension specifies tax categories for Polish FA_VAT/KSeF invoices.
 Each category corresponds to a field in the FA_VAT XML schema (P_13_*, P_14_*, etc.).
@@ -151,21 +151,21 @@ The ones that are not automatically mapped can be set manually.
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Base rate |
-| <code>2</code> | First reduced rate |
-| <code>3</code> | Second reduced rate |
-| <code>4</code> | Taxi Rate |
-| <code>5</code> | OSS (one stop shop) |
-| <code>6.1</code> | 0% VAT |
-| <code>6.2</code> | 0% VAT for intra-community supply of goods |
-| <code>6.3</code> | 0% VAT for export |
-| <code>7</code> | Exempt |
-| <code>8</code> | Foreign sales outside scope of Polish VAT |
-| <code>9</code> | EU Reverse Charge |
-| <code>10</code> | Domestic Reverse charge |
-| <code>11</code> | Margin scheme |
+| `1` | Base rate |
+| `2` | First reduced rate |
+| `3` | Second reduced rate |
+| `4` | Taxi Rate |
+| `5` | OSS (one stop shop) |
+| `6.1` | 0% VAT |
+| `6.2` | 0% VAT for intra-community supply of goods |
+| `6.3` | 0% VAT for export |
+| `7` | Exempt |
+| `8` | Foreign sales outside scope of Polish VAT |
+| `9` | EU Reverse Charge |
+| `10` | Domestic Reverse charge |
+| `11` | Margin scheme |
 </Accordion>
-### Invoice type code for KSeF	
+### Invoice type code for KSeF
 
 The `pl-favat-invoice-type` extension specifies the type of invoice for Polish FA_VAT/KSeF.
 This extension is used in the **invoice tax section** (`tax.ext`) and is automatically
@@ -205,15 +205,15 @@ Example of an advance invoice:
 
 | Code | Name |
 | ---- | ---- |
-| <code>VAT</code> | Regular Invoice |
-| <code>ZAL</code> | Advance Invoice |
-| <code>ROZ</code> | Settlement Invoice |
-| <code>UPR</code> | Simplified Invoice |
-| <code>KOR</code> | Credit note |
-| <code>KOR_ZAL</code> | advance credit note |
-| <code>KOR_ROZ</code> | Settlement credit note |
+| `VAT` | Regular Invoice |
+| `ZAL` | Advance Invoice |
+| `ROZ` | Settlement Invoice |
+| `UPR` | Simplified Invoice |
+| `KOR` | Credit note |
+| `KOR_ZAL` | advance credit note |
+| `KOR_ROZ` | Settlement credit note |
 </Accordion>
-### Cash accounting flag for KSeF	
+### Cash accounting flag for KSeF
 
 The `pl-favat-cash-accounting` extension indicates whether an invoice uses cash accounting
 for VAT purposes (kasowa metoda rozliczenia VAT). This extension is used in the **invoice
@@ -247,10 +247,10 @@ Example with cash accounting:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Cash accounting |
-| <code>2</code> | No cash accounting |
+| `1` | Cash accounting |
+| `2` | No cash accounting |
 </Accordion>
-### Self-invoicing flag for KSeF	
+### Self-invoicing flag for KSeF
 
 The `pl-favat-self-billing` extension indicates whether an invoice is self-billed
 (samofakturowanie), where the buyer issues the invoice on behalf of the supplier.
@@ -288,10 +288,10 @@ Example of a self-billed invoice:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Self-invoicing |
-| <code>2</code> | Not self-invoicing |
+| `1` | Self-invoicing |
+| `2` | Not self-invoicing |
 </Accordion>
-### Reverse charge code for KSeF	
+### Reverse charge code for KSeF
 
 The `pl-favat-reverse-charge` extension indicates whether the reverse charge mechanism
 applies to an invoice. This extension is used in the **invoice tax section** (`tax.ext`).
@@ -346,10 +346,10 @@ Example of an EU reverse charge invoice:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Reverse charge |
-| <code>2</code> | No reverse charge |
+| `1` | Reverse charge |
+| `2` | No reverse charge |
 </Accordion>
-### Split payment mechanism flag for KSeF	
+### Split payment mechanism flag for KSeF
 
 The `pl-favat-split-payment-mechanism` extension indicates whether the mandatory split
 payment mechanism (mechanizm podzielonej płatności, MPP) applies to an invoice.
@@ -397,10 +397,10 @@ Example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Split payment mechanism |
-| <code>2</code> | No split payment mechanism |
+| `1` | Split payment mechanism |
+| `2` | No split payment mechanism |
 </Accordion>
-### Tax exemption code for KSeF	
+### Tax exemption code for KSeF
 
 Extension used to indicate the type of reason for tax exemption code for KSeF. When the `exempt` tag
 is used in the invoice, having `ext` map's `pl-favat-exemption` property is required. Also, it is
@@ -435,11 +435,11 @@ In notes, code must match the code from the extension.
 
 | Code | Name |
 | ---- | ---- |
-| <code>A</code> | Law or act issued under the Polish law |
-| <code>B</code> | Directive 2006/112/EC |
-| <code>C</code> | Other legal basis |
+| `A` | Law or act issued under the Polish law |
+| `B` | Directive 2006/112/EC |
+| `C` | Other legal basis |
 </Accordion>
-### Margin scheme code for KSeF	
+### Margin scheme code for KSeF
 
 The `pl-favat-margin-scheme` extension specifies the type of margin scheme (procedura
 marży) applied to an invoice. This extension is used in the **invoice tax section**
@@ -477,12 +477,12 @@ Example for a travel agency:
 
 | Code | Name |
 | ---- | ---- |
-| <code>2</code> | Travel agency |
-| <code>3.1</code> | Second-hand goods |
-| <code>3.2</code> | Works of art |
-| <code>3.3</code> | Antiques and collectibles |
+| `2` | Travel agency |
+| `3.1` | Second-hand goods |
+| `3.2` | Works of art |
+| `3.3` | Antiques and collectibles |
 </Accordion>
-### Payment method code for KSeF	
+### Payment method code for KSeF
 
 The `pl-favat-payment-means` extension specifies the payment method used in an invoice.
 This extension is used in **payment instructions** (`payment.instructions.ext`) or
@@ -530,15 +530,15 @@ Example with bank transfer payment:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Cash |
-| <code>2</code> | Card |
-| <code>3</code> | Coupon |
-| <code>4</code> | Cheque |
-| <code>5</code> | Loan |
-| <code>6</code> | Wire Transfer |
-| <code>7</code> | Mobile |
+| `1` | Cash |
+| `2` | Card |
+| `3` | Coupon |
+| `4` | Cheque |
+| `5` | Loan |
+| `6` | Wire Transfer |
+| `7` | Mobile |
 </Accordion>
-### Subordinate Local Government Unit flag	
+### Subordinate Local Government Unit flag
 
 The `pl-favat-jst` extension indicates whether the customer is a Subordinate Local
 Government Unit (Jednostka Samorządu Terytorialnego - JST). This extension is used
@@ -586,10 +586,10 @@ Example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Customer is a Subordinate Local Government Unit |
-| <code>2</code> | Customer is not a Subordinate Local Government Unit |
+| `1` | Customer is a Subordinate Local Government Unit |
+| `2` | Customer is not a Subordinate Local Government Unit |
 </Accordion>
-### Group VAT member flag	
+### Group VAT member flag
 
 The `pl-favat-group-vat` extension indicates whether the customer is a member of a VAT
 group (Grupa VAT - GV). This extension is used in the **customer party section**
@@ -639,10 +639,10 @@ Example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Customer is a Group VAT member |
-| <code>2</code> | Customer is not a Group VAT member |
+| `1` | Customer is a Group VAT member |
+| `2` | Customer is not a Group VAT member |
 </Accordion>
-### Third party role	
+### Third party role
 
 The `pl-favat-third-party-role` extension specifies the role of a third party or
 additional entity in an invoice transaction. This extension is used in **party
@@ -686,19 +686,19 @@ Example with JST customer:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Factor |
-| <code>2</code> | Recipient |
-| <code>3</code> | Original entity |
-| <code>4</code> | Additional Purchaser |
-| <code>5</code> | Invoice Issuer |
-| <code>6</code> | Payer |
-| <code>7</code> | Local Government Unit (LGU) - issuer |
-| <code>8</code> | Local Government Unit (LGU) - recipient |
-| <code>9</code> | GV member - issuer |
-| <code>10</code> | GV member - recipient |
-| <code>11</code> | Employee |
+| `1` | Factor |
+| `2` | Recipient |
+| `3` | Original entity |
+| `4` | Additional Purchaser |
+| `5` | Invoice Issuer |
+| `6` | Payer |
+| `7` | Local Government Unit (LGU) - issuer |
+| `8` | Local Government Unit (LGU) - recipient |
+| `9` | GV member - issuer |
+| `10` | GV member - recipient |
+| `11` | Employee |
 </Accordion>
-### Effective date code	
+### Effective date code
 
 The `pl-favat-effective-date` extension specifies when a correction invoice (credit note)
 becomes effective for VAT purposes. This extension is used in **credit note tax section**
@@ -744,9 +744,9 @@ Example of a credit note effective on correction date:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Original |
-| <code>2</code> | Correction |
-| <code>3</code> | Other |
+| `1` | Original |
+| `2` | Correction |
+| `3` | Other |
 </Accordion>
 
 ## Validation Rules
@@ -760,27 +760,27 @@ Example of a credit note effective on correction date:
 | <small>Invoice</small> | <ul class="gobl-test"><li>GroupVAT identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-12`<br />Customer requires identity with role '10' and code for GroupVAT |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Exemption note present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-13`<br />Missing exemption note |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Single exemption note</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-14`<br />Too many exemption notes |
-| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
-| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-02`<br />Preceding issue date is required |
-| <code>preceding[*].code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-03`<br />Preceding code is required |
-| <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-04`<br />Supplier is required |
-| <code>supplier.name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-05`<br />Supplier name is required |
-| <code>supplier.addresses</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-06`<br />Supplier addresses are required |
-| <code>supplier.addresses</code> | <ul class="gobl-test"><li>First address country</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-07`<br />Supplier first address must have a country |
-| <code>supplier.addresses</code> | <ul class="gobl-test"><li>First address street</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-08`<br />Supplier first address must have a street |
-| <code>customer</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-09`<br />Customer is required |
-| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-10`<br />Customer tax ID is required |
+| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-02`<br />Preceding issue date is required |
+| `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-03`<br />Preceding code is required |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-04`<br />Supplier is required |
+| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-05`<br />Supplier name is required |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-06`<br />Supplier addresses are required |
+| `supplier.addresses` | <ul class="gobl-test"><li>First address country</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-07`<br />Supplier first address must have a country |
+| `supplier.addresses` | <ul class="gobl-test"><li>First address street</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-08`<br />Supplier first address must have a street |
+| `customer` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-09`<br />Customer is required |
+| `customer.tax_id` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-10`<br />Customer tax ID is required |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>ext</code> | <ul class="gobl-test"><li>Ext require [pl-favat-tax-category]</li></ul> | `GOBL-PL-FAVAT-V3-TAX-COMBO-01`<br />Tax combo requires 'pl-favat-tax-category' extension |
+| `ext` | <ul class="gobl-test"><li>Ext require [pl-favat-tax-category]</li></ul> | `GOBL-PL-FAVAT-V3-TAX-COMBO-01`<br />Tax combo requires 'pl-favat-tax-category' extension |
 </Accordion>
 <Accordion title="pay.Advance">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-PAY-ADVANCE-01`<br />Advance payment date is required |
+| `date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-PAY-ADVANCE-01`<br />Advance payment date is required |
 </Accordion>
 </AccordionGroup>

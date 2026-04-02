@@ -24,24 +24,24 @@ CTC (Continuous Transaction Controls) framework.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>FR</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Paris</code> |
+| Tax Country Code | `FR` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Paris` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General rate | 20% | For the majority of sales of goods and services: it applies to all products or services for which no other rate is expressly provided. |
-| <code>intermediate</code> | <code>standard</code> | Intermediate rate | 10% | Applicable in particular to unprocessed agricultural products, firewood, housing improvement works which do not benefit from the 5.5% rate, to certain accommodation and camping services, to fairs and exhibitions, fairground games and rides, to entrance fees to museums, zoos, monuments, to passenger transport, to the processing of waste, restoration. |
-| <code>reduced</code> | <code>standard</code> | Reduced rate | 5.5% | Concerns most food products, feminine hygiene protection products, equipment and services for the disabled, books on any medium, gas and electricity subscriptions, supply of heat from renewable energies, supply of meals in school canteens, ticketing for live shows and cinemas, certain imports and deliveries of works of art, improvement works the energy quality of housing, social or emergency housing, home ownership. |
-| <code>super-reduced</code> | <code>standard</code> | Super reduced rate | 2.1% | Reserved for medicines reimbursable by social security, sales of live animals for slaughter and charcuterie to non-taxable persons, the television license fee, certain shows and press publications registered with the Joint Commission for Publications and Press Agencies. |
+| `general` | `standard` | General rate | 20% | For the majority of sales of goods and services: it applies to all products or services for which no other rate is expressly provided. |
+| `intermediate` | `standard` | Intermediate rate | 10% | Applicable in particular to unprocessed agricultural products, firewood, housing improvement works which do not benefit from the 5.5% rate, to certain accommodation and camping services, to fairs and exhibitions, fairground games and rides, to entrance fees to museums, zoos, monuments, to passenger transport, to the processing of waste, restoration. |
+| `reduced` | `standard` | Reduced rate | 5.5% | Concerns most food products, feminine hygiene protection products, equipment and services for the disabled, books on any medium, gas and electricity subscriptions, supply of heat from renewable energies, supply of meals in school canteens, ticketing for live shows and cinemas, certain imports and deliveries of works of art, improvement works the energy quality of housing, social or emergency housing, home ownership. |
+| `super-reduced` | `standard` | Super reduced rate | 2.1% | Reserved for medicines reimbursable by social security, sales of live animals for slaughter and charcuterie to non-taxable persons, the television license fee, certain shows and press publications registered with the Joint Commission for Publications and Press Agencies. |
 
 ## Correction Definitions
 
@@ -51,8 +51,8 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>corrective</code>
+- `credit-note`
+- `corrective`
 
 ## Scenarios
 
@@ -61,7 +61,7 @@ The types of invoices that can be created with a preceding definition:
 <Accordion title="#reverse-charge">
 
 **Filters:**
-- **Tags:** <code>reverse-charge</code>
+- **Tags:** `reverse-charge`
 
 **Output:**
 - **Note:** Reverse Charge / Autoliquidation de la TVA - Article 283-1 du CGI. Le client est redevable de la TVA. (reverse-charge)
@@ -74,19 +74,19 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>supplier</code> | <ul class="gobl-test"><li>Context: regime in [FR]</li><li>Has tax ID code or SIREN/SIRET identity</li></ul> | `GOBL-FR-BILL-INVOICE-01`<br />Invoice supplier must have a tax ID code or a SIREN/SIRET identity |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [FR]</li><li>Has tax ID code or SIREN/SIRET identity</li></ul> | `GOBL-FR-BILL-INVOICE-01`<br />Invoice supplier must have a tax ID code or a SIREN/SIRET identity |
 </Accordion>
 <Accordion title="org.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Has a type in [SIREN]</li><li>Matches ^\d{9}$</li></ul> | `GOBL-FR-ORG-IDENTITY-01`<br />Identity code for type SIREN must be valid |
-| <code>code</code> | <ul class="gobl-test"><li>Has a type in [SIRET]</li><li>Matches ^\d{14}$</li></ul> | `GOBL-FR-ORG-IDENTITY-02`<br />Identity code for type SIRET must be valid |
+| `code` | <ul class="gobl-test"><li>Has a type in [SIREN]</li><li>Matches ^\d{9}$</li></ul> | `GOBL-FR-ORG-IDENTITY-01`<br />Identity code for type SIREN must be valid |
+| `code` | <ul class="gobl-test"><li>Has a type in [SIRET]</li><li>Matches ^\d{14}$</li></ul> | `GOBL-FR-ORG-IDENTITY-02`<br />Identity code for type SIRET must be valid |
 </Accordion>
 <Accordion title="tax.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [FR]</li><li>Valid</li></ul> | `GOBL-FR-TAX-IDENTITY-01`<br />Invalid French VAT identity code format or checksum |
+| `code` | <ul class="gobl-test"><li>Code in [FR]</li><li>Valid</li></ul> | `GOBL-FR-TAX-IDENTITY-01`<br />Invalid French VAT identity code format or checksum |
 </Accordion>
 </AccordionGroup>

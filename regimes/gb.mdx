@@ -21,22 +21,22 @@ corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>GB</code> |
-| Currency | <code>GBP</code> |
-| Base Time Zone | <code>Europe/London</code> |
+| Tax Country Code | `GB` |
+| Currency | `GBP` |
+| Base Time Zone | `Europe/London` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 20.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 5.0% |  |
+| `general` | `standard` | General Rate | 20.0% |  |
+| `reduced` | `standard` | Reduced Rate | 5.0% |  |
 
 ## Correction Definitions
 
@@ -46,7 +46,7 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
 
 ## Scenarios
 
@@ -55,7 +55,7 @@ The types of invoices that can be created with a preceding definition:
 <Accordion title="#reverse-charge">
 
 **Filters:**
-- **Tags:** <code>reverse-charge</code>
+- **Tags:** `reverse-charge`
 
 **Output:**
 - **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
@@ -68,8 +68,8 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [GB]</li><li>Matches ^(\d{9}\|\d{12}\|GD\d{3}\|HA\d{3})$</li></ul> | `GOBL-GB-TAX-IDENTITY-01`<br />Invalid UK VAT identity format |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [GB]</li><li>Not-zeros</li></ul> | `GOBL-GB-TAX-IDENTITY-02`<br />All-zero UK VAT identity codes are not allowed |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [GB]</li><li>Checksum</li></ul> | `GOBL-GB-TAX-IDENTITY-03`<br />UK VAT identity checksum mismatch |
+| `code` | <ul class="gobl-test"><li>Code in [GB]</li><li>Matches ^(\d{9}\|\d{12}\|GD\d{3}\|HA\d{3})$</li></ul> | `GOBL-GB-TAX-IDENTITY-01`<br />Invalid UK VAT identity format |
+| `code` | <ul class="gobl-test"><li>Code in [GB]</li><li>Not-zeros</li></ul> | `GOBL-GB-TAX-IDENTITY-02`<br />All-zero UK VAT identity codes are not allowed |
+| `code` | <ul class="gobl-test"><li>Code in [GB]</li><li>Checksum</li></ul> | `GOBL-GB-TAX-IDENTITY-03`<br />UK VAT identity checksum mismatch |
 </Accordion>
 </AccordionGroup>

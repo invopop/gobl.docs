@@ -36,17 +36,17 @@ Exento (exempt from IVA), and Consumidor Final (no tax ID required).
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>AR</code> |
-| Currency | <code>ARS</code> |
-| Base Time Zone | <code>America/Argentina/Buenos_Aires</code> |
+| Tax Country Code | `AR` |
+| Currency | `ARS` |
+| Base Time Zone | `America/Argentina/Buenos_Aires` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
-### VAT Rates	
+### VAT Rates
 
 Known in Spanish as "Impuesto al Valor Agregado" (IVA), Argentina's VAT is a
 consumption tax applied to the sale of goods and services. The standard rate is 21%,
@@ -55,9 +55,9 @@ exports and specific categories.
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>increased</code> | <code>standard</code> | Increased Rate | 27.0% | Applies to the sale of gas, electricity and water regulated by meter and other services stated in the points 4, 5 and 6 of the inciso e) of the article 3. |
-| <code>general</code> | <code>standard</code> | General Rate | 21.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 10.5% | Applies to the sale of construction work, medicine, public transportation, livestock and agricultural products for food, etc. |
+| `increased` | `standard` | Increased Rate | 27.0% | Applies to the sale of gas, electricity and water regulated by meter and other services stated in the points 4, 5 and 6 of the inciso e) of the article 3. |
+| `general` | `standard` | General Rate | 21.0% |  |
+| `reduced` | `standard` | Reduced Rate | 10.5% | Applies to the sale of construction work, medicine, public transportation, livestock and agricultural products for food, etc. |
 
 ## Correction Definitions
 
@@ -67,8 +67,8 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
 
 ## Validation Rules
 
@@ -77,12 +77,12 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>supplier.tax_id</code> | <ul class="gobl-test"><li>Context: regime in [AR]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-BILL-INVOICE-01`<br />Invoice supplier tax ID required for Argentine regime |
+| `supplier.tax_id` | <ul class="gobl-test"><li>Context: regime in [AR]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-BILL-INVOICE-01`<br />Invoice supplier tax ID required for Argentine regime |
 </Accordion>
 <Accordion title="tax.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>code</code> | <ul class="gobl-test"><li>Code in [AR]</li><li>Valid</li></ul> | `GOBL-AR-TAX-IDENTITY-01`<br />Invalid Argentine tax identity code |
+| `code` | <ul class="gobl-test"><li>Code in [AR]</li><li>Valid</li></ul> | `GOBL-AR-TAX-IDENTITY-01`<br />Invalid Argentine tax identity code |
 </Accordion>
 </AccordionGroup>

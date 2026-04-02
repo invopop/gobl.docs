@@ -12,7 +12,7 @@ import (
 func joinKeys(keys []cbc.Key) string {
 	var s []string
 	for _, k := range keys {
-		s = append(s, fmt.Sprintf("<code>%s</code>", k.String()))
+		s = append(s, fmt.Sprintf("`%s`", k.String()))
 	}
 	return strings.Join(s, ", ")
 }
@@ -20,7 +20,7 @@ func joinKeys(keys []cbc.Key) string {
 func codeMap(m cbc.CodeMap) string {
 	var s []string
 	for k, v := range m {
-		s = append(s, fmt.Sprintf("<code>%s:%s</code>", k, v))
+		s = append(s, fmt.Sprintf("`%s:%s`", k, v))
 	}
 	return strings.Join(s, ", ")
 }
@@ -28,7 +28,7 @@ func codeMap(m cbc.CodeMap) string {
 func extMap(m tax.Extensions) string {
 	var s []string
 	for k, v := range m {
-		s = append(s, fmt.Sprintf("<code>%s:%s</code>", k, v))
+		s = append(s, fmt.Sprintf("`%s:%s`", k, v))
 	}
 	return strings.Join(s, ", ")
 }
@@ -66,9 +66,9 @@ func fieldCell(field string, calculated bool, qualifiedTypeName string) string {
 		return "<small>" + esc + "</small>"
 	}
 	if calculated {
-		return fmt.Sprintf("<code>%s</code><br />%s", field, calcLabel)
+		return fmt.Sprintf("`%s`<br />%s", field, calcLabel)
 	}
-	return fmt.Sprintf("<code>%s</code>", field)
+	return fmt.Sprintf("`%s`", field)
 }
 
 func codeMessage(code, desc string) string {

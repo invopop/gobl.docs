@@ -2,7 +2,7 @@
 title: Italy AdE ticket v1.x
 ---
 
-Key: <code>it-ticket-v1</code>
+Key: `it-ticket-v1`
 
 ## Sources
 - [Italian AdE Cassetto Fiscale](https://www.agenziaentrate.gov.it/portale/schede/comunicazioni/fatture-e-corrispettivi)
@@ -16,12 +16,12 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>corrective</code>
+- `corrective`
 
 ### Stamp Keys
 
 Stamp keys from the previous invoice that need to be referenced:
-- <code>ade-ref</code>
+- `ade-ref`
 
 ## Extensions
 ### Exemption Code
@@ -30,14 +30,14 @@ Stamp keys from the previous invoice that need to be referenced:
 
 | Code | Name |
 | ---- | ---- |
-| <code>N1</code> | Excluded pursuant to Art. 15, DPR 633/72 |
-| <code>N2</code> | Not subject |
-| <code>N3</code> | Not taxable |
-| <code>N4</code> | Exempt |
-| <code>N5</code> | Margin regime / VAT not exposed |
-| <code>N6</code> | Reverse charge |
+| `N1` | Excluded pursuant to Art. 15, DPR 633/72 |
+| `N2` | Not subject |
+| `N3` | Not taxable |
+| `N4` | Exempt |
+| `N5` | Margin regime / VAT not exposed |
+| `N6` | Reverse charge |
 </Accordion>
-### AdE CF Product Key	
+### AdE CF Product Key
 
 Product keys are used by AdE CF to differentiate between goods
 and services.
@@ -46,10 +46,10 @@ and services.
 
 | Code | Name |
 | ---- | ---- |
-| <code>goods</code> | Delivery of goods |
-| <code>services</code> | Provision of services |
+| `goods` | Delivery of goods |
+| `services` | Provision of services |
 </Accordion>
-### AdE Lottery Code	
+### AdE Lottery Code
 
 Lottery key is used to identify the lottery number (Codice lotteria). 
 This lottery code is provided by the customer at the time of purchase. 
@@ -57,9 +57,9 @@ It is used to identify the customer in the lottery system provided by the Agenzi
 
 <Accordion title="it-ticket-lottery">
 
-Pattern: <code>^[A-Z0-9]{8}$</code>
+Pattern: `^[A-Z0-9]{8}$`
 </Accordion>
-### AdE Line Reference	
+### AdE Line Reference
 
 Reference code provided by the AdE to be able to identify the specific line in credit notes.
 
@@ -73,19 +73,19 @@ Reference code provided by the AdE to be able to identify the specific line in c
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-01`<br />Tax is required |
-| <code>tax.prices_include</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-02`<br />Prices_include is required |
-| <code>tax.prices_include</code> | <ul class="gobl-test"><li>One of [VAT]</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-03`<br />Prices_include must be VAT |
-| <code>supplier.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
-| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-05`<br />Preceding documents are required for corrective invoices |
-| <code>lines[*]</code> | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-06`<br />Line taxes must include VAT category |
-| <code>lines[*].ext</code> | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li>Ext require [it-ticket-line-ref]</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-07`<br />Corrective invoice lines require 'it-ticket-line-ref' extension |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-01`<br />Tax is required |
+| `tax.prices_include` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-02`<br />Prices_include is required |
+| `tax.prices_include` | <ul class="gobl-test"><li>One of [VAT]</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-03`<br />Prices_include must be VAT |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-05`<br />Preceding documents are required for corrective invoices |
+| `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-06`<br />Line taxes must include VAT category |
+| `lines[*].ext` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li>Ext require [it-ticket-line-ref]</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-07`<br />Corrective invoice lines require 'it-ticket-line-ref' extension |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>ext</code> | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-ticket-exempt]</li></ul> | `GOBL-IT-TICKET-V1-TAX-COMBO-01`<br />Exempt VAT combo requires 'it-ticket-exempt' extension |
-| <code>percent</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is VAT</li><li>Valid percentage</li></ul> | `GOBL-IT-TICKET-V1-TAX-COMBO-02`<br />Must be a valid value |
+| `ext` | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-ticket-exempt]</li></ul> | `GOBL-IT-TICKET-V1-TAX-COMBO-01`<br />Exempt VAT combo requires 'it-ticket-exempt' extension |
+| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is VAT</li><li>Valid percentage</li></ul> | `GOBL-IT-TICKET-V1-TAX-COMBO-02`<br />Must be a valid value |
 </Accordion>
 </AccordionGroup>

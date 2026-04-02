@@ -2,7 +2,7 @@
 title: Spain TicketBAI
 ---
 
-Key: <code>es-tbai-v1</code>
+Key: `es-tbai-v1`
 
 ## Correction Definitions
 
@@ -13,10 +13,10 @@ supported.
 
 One or all of the following extensions may be required as part of the correction
 options. See the [Extensions](#extensions) section for possible values.
-- <code>es-tbai-correction</code>
+- `es-tbai-correction`
 
 ## Extensions
-### TicketBAI Region Code	
+### TicketBAI Region Code
 
 Region codes are used by TicketBAI to differentiate between the different
 subdivisions of the Basque Country. This is used to determine the correct
@@ -26,11 +26,11 @@ API endpoint to use when submitting documents.
 
 | Code | Name |
 | ---- | ---- |
-| <code>VI</code> | Araba |
-| <code>BI</code> | Bizkaia |
-| <code>SS</code> | Gipuzkoa |
+| `VI` | Araba |
+| `BI` | Bizkaia |
+| `SS` | Gipuzkoa |
 </Accordion>
-### TicketBAI Product Key	
+### TicketBAI Product Key
 
 Product keys are used by TicketBAI to differentiate between -exported- goods
 and services. It may be useful to classify all products regardless of wether
@@ -46,11 +46,11 @@ If no product key is provided, the default is "services".
 
 | Code | Name |
 | ---- | ---- |
-| <code>goods</code> | Delivery of goods |
-| <code>services</code> | Provision of services |
-| <code>resale</code> | Resale of goods without modification by vendor in the simplified regime |
+| `goods` | Delivery of goods |
+| `services` | Provision of services |
+| `resale` | Resale of goods without modification by vendor in the simplified regime |
 </Accordion>
-### TicketBAI Exemption code	
+### TicketBAI Exemption code
 
 Codes used by TicketBAI for both "exempt", "not-subject", and reverse
 charge transactions. In the TicketBAI format these are separated,
@@ -71,19 +71,19 @@ The follow mappings will be made automatically by GOBL during normalization.
 
 | Code | Name |
 | ---- | ---- |
-| <code>E1</code> | Exempt: pursuant to Article 20 of the Foral VAT Law |
-| <code>E2</code> | Exempt: pursuant to Article 21 of the Foral VAT Law |
-| <code>E3</code> | Exempt: pursuant to Article 22 of the Foral VAT Law |
-| <code>E4</code> | Exempt: pursuant to Articles 23 and 24 of the Foral VAT Law |
-| <code>E5</code> | Exempt: pursuant to Article 25 of the Foral VAT law |
-| <code>E6</code> | Exempt: pursuant to other reasons |
-| <code>OT</code> | Not subject: pursuant to Article 7 of the VAT Law - other cases of non-subject |
-| <code>RL</code> | Not subject: pursuant to localization rules |
-| <code>VT</code> | Not subject: sales made on behalf of third parties (amount not computable for VAT or IRPF purposes) |
-| <code>IE</code> | Not subject in the TAI due to localization rules, but foreign tax, IPS/IGIC or VAT from another EU member state is passed on |
-| <code>S2</code> | Subject and not exempt: with reverse charge |
+| `E1` | Exempt: pursuant to Article 20 of the Foral VAT Law |
+| `E2` | Exempt: pursuant to Article 21 of the Foral VAT Law |
+| `E3` | Exempt: pursuant to Article 22 of the Foral VAT Law |
+| `E4` | Exempt: pursuant to Articles 23 and 24 of the Foral VAT Law |
+| `E5` | Exempt: pursuant to Article 25 of the Foral VAT law |
+| `E6` | Exempt: pursuant to other reasons |
+| `OT` | Not subject: pursuant to Article 7 of the VAT Law - other cases of non-subject |
+| `RL` | Not subject: pursuant to localization rules |
+| `VT` | Not subject: sales made on behalf of third parties (amount not computable for VAT or IRPF purposes) |
+| `IE` | Not subject in the TAI due to localization rules, but foreign tax, IPS/IGIC or VAT from another EU member state is passed on |
+| `S2` | Subject and not exempt: with reverse charge |
 </Accordion>
-### TicketBAI Rectification Type Code	
+### TicketBAI Rectification Type Code
 
 Corrected or rectified invoices that need to be sent in the TicketBAI format
 require a specific type code to be defined alongside the preceding invoice
@@ -93,11 +93,11 @@ data.
 
 | Code | Name |
 | ---- | ---- |
-| <code>R1</code> | Rectified invoice: error based on law and Article 80 One, Two and Six of the Provincial Tax Law of VAT |
-| <code>R2</code> | Rectified invoice: error based on law and Article 80 Three of the Provincial Tax Law of VAT |
-| <code>R3</code> | Rectified invoice: error based on law and Article 80 Four of the Provincial Tax Law of VAT |
-| <code>R4</code> | Rectified invoice: Other |
-| <code>R5</code> | Rectified invoice: simplified invoices |
+| `R1` | Rectified invoice: error based on law and Article 80 One, Two and Six of the Provincial Tax Law of VAT |
+| `R2` | Rectified invoice: error based on law and Article 80 Three of the Provincial Tax Law of VAT |
+| `R3` | Rectified invoice: error based on law and Article 80 Four of the Provincial Tax Law of VAT |
+| `R4` | Rectified invoice: Other |
+| `R5` | Rectified invoice: simplified invoices |
 </Accordion>
 
 ## Validation Rules
@@ -107,19 +107,19 @@ data.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-01`<br />Tax is required |
-| <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [es-tbai-region]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-02`<br />Extension 'es-tbai-region' is required |
-| <code>customer</code> | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03`<br />Customer is required for non-simplified invoices |
-| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03a`<br />Customer tax ID is required |
-| <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-04`<br />Preceding documents are required for credit-note, corrective, debit-note invoices |
-| <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-05`<br />Preceding issue date is required |
-| <code>preceding[*].ext</code> | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |
-| <code>notes</code> | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-07`<br />With key 'general' missing |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-01`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-tbai-region]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-02`<br />Extension 'es-tbai-region' is required |
+| `customer` | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03`<br />Customer is required for non-simplified invoices |
+| `customer.tax_id` | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03a`<br />Customer tax ID is required |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-04`<br />Preceding documents are required for credit-note, corrective, debit-note invoices |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-05`<br />Preceding issue date is required |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |
+| `notes` | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-07`<br />With key 'general' missing |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <code>ext</code> | <ul class="gobl-test"><li>Exempt vat/igic</li><li>Ext require [es-tbai-exemption]</li></ul> | `GOBL-ES-TBAI-V1-TAX-COMBO-01`<br />Extension 'es-tbai-exemption' is required for exempt tax combos |
+| `ext` | <ul class="gobl-test"><li>Exempt vat/igic</li><li>Ext require [es-tbai-exemption]</li></ul> | `GOBL-ES-TBAI-V1-TAX-COMBO-01`<br />Extension 'es-tbai-exemption' is required for exempt tax combos |
 </Accordion>
 </AccordionGroup>
