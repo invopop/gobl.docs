@@ -26,6 +26,7 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
+		"bt":       backtick,
 		"joinKeys": joinKeys,
 		"codeMap":  codeMap,
 	})

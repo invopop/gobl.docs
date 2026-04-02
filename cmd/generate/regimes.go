@@ -46,8 +46,9 @@ func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
 		"extension":     g.taxRateExtension,
 		"extensionKeys": g.getExtensionKeys,
 		"rateRows":      g.getRateRows,
-		"joinKeys":      joinKeys,
-		"codeMap":       codeMap,
+		"bt":       backtick,
+		"joinKeys": joinKeys,
+		"codeMap":  codeMap,
 	})
 	return g
 }

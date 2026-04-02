@@ -136,7 +136,7 @@ func (g *generator) extension(kd *cbc.Definition) error {
 
 		{{- if .Pattern }}
 
-		Pattern: <code>{{ .Pattern }}</code>
+		Pattern: {{bt}}{{ .Pattern }}{{bt}}
 		{{- end }}
 
 

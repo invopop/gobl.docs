@@ -7,6 +7,12 @@ import (
 	"github.com/invopop/gobl/cbc"
 )
 
+// backtick returns a literal backtick character for use in templates
+// where the surrounding Go raw string literal prevents using backticks directly.
+func backtick() string {
+	return "`"
+}
+
 func joinKeys(keys []cbc.Key) string {
 	var s []string
 	for _, k := range keys {

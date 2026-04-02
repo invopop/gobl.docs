@@ -26,6 +26,7 @@ func newCatalogueGenerator(d *tax.CatalogueDef) *catalogueGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
+		"bt":       backtick,
 		"joinKeys": joinKeys,
 		"codeMap":  codeMap,
 	})
