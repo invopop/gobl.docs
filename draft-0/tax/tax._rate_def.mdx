@@ -1,0 +1,22 @@
+---
+title: tax.RateDef
+comment: 
+---
+
+RateDef defines a single rate inside a category
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/regime-def#/$defs/tax.RateDef`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Rate | `rate` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Rate defines the key for which this rate applies. |
+| Keys | `keys` | array of [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Keys identifies the set of tax keys defined in the category that this rate can be used with. |
+| Name | `name` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Human name of the rate |
+| Description | `desc` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Useful description of the rate. |
+| Values | `values` | array of [tax.tax.RateValueDef](/draft-0/tax/tax._rate_value_def) | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
+| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Meta contains additional information about the rate that is relevant for local frequently used implementations. |
+

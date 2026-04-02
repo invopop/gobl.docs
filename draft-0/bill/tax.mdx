@@ -1,5 +1,5 @@
 ---
-title: Tax
+title: bill.Tax
 comment: 
 ---
 
@@ -13,10 +13,12 @@ Tax defines a summary of the taxes which may be applied to an invoice.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Prices Include | `prices_include` | [cbc.Code](/draft-0/cbc/code) | Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax. |
-| Rounding Model | `rounding` | [cbc.Key](/draft-0/cbc/key) | Rounding model used to perform tax calculations on the invoice. This will be configured automatically based on the tax regime, or `sum-then-round` by default, but you can override here if needed. Use with caution, as some conversion tools may make assumptions about the rounding model used. |
-| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Additional extensions that are applied to the invoice as a whole as opposed to specific sections. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional data that may be required for processing, but should never be relied upon by recipients. |
+| Prices Include | `prices_include` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax. |
+| Rounding Model | `rounding` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Rounding model used to perform tax calculations on the invoice. This will be configured automatically based on the tax regime, or `sum-then-round` by default, but you can override here if needed. Use with caution, as some conversion tools may make assumptions about the rounding model used. |
+| Point | `point` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Point is a code that identifies the event which triggers the tax liability, such as invoice issuance, delivery of goods, or receipt of payment. |
+| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Additional extensions that are applied to the invoice as a whole as opposed to specific sections. |
+| Notes | `notes` | array of [tax.tax.Note](/draft-0/tax/tax._note) | Notes contains tax-related notes, typically used for exemption reasons or other tax-specific explanations associated with particular tax categories. |
+| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Any additional data that may be required for processing, but should never be relied upon by recipients. |
 
 ## Rounding Model Values
 
@@ -25,9 +27,11 @@ Tax defines a summary of the taxes which may be applied to an invoice.
 | `precise` | The default method of calculating the totals in GOBL, and provides the best results for most cases as the precision is maintained to the maximum amount possible. The tradeoff however is that sometimes the totals may not sum exactly based on what is visible. |
 | `currency` | The alternative method of calculating the totals that will first round all the amounts to the currency's precision before making the sums. Totals using this approach can always be recalculated using the amounts presented, but can lead to rounding errors in the case of pre-payments and when line item prices include tax. |
 
+## Point Values
 
-## Validation Rules
+| Value | Description |
+|-------|-------------|
+| `issue` | Tax point is the invoice issue date. Corresponds to UNCL 2005 code 3. |
+| `delivery` | Tax point is the actual delivery date. Corresponds to UNCL 2005 code 35. |
+| `payment` | Tax point is the date on which payment is made. Corresponds to UNCL 2005 code 432. |
 
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>rounding</code> | <ul class="gobl-test"><li>One of [precise, currency]</li></ul> | `GOBL-BILL-TAX-01`<br />Rounding model is not valid |

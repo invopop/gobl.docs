@@ -1,0 +1,23 @@
+---
+title: tax.Combo
+comment: 
+---
+
+Combo represents the tax combination of a category code and rate key.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/set#/$defs/tax.Combo`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Category | `cat` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Tax category code from those available inside a region. |
+| Country | `country` | [l10n.l10n.TaxCountryCode](/draft-0/l10n/l10n._tax_country_code) | Country code override when issuing with taxes applied from different countries. |
+|  | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Key helps determine the tax situation within the category. |
+| Rate | `rate` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Rate within a category and for a given key to apply. |
+| Percent | `percent` | [num.num.Percentage](/draft-0/num/num._percentage) | Percent defines the percentage set manually or determined from the key. A nil percent implies that this tax combo is either exempt or not-subject. |
+| Surcharge | `surcharge` | [num.num.Percentage](/draft-0/num/num._percentage) | Some countries require an additional surcharge (may be determined if key present). |
+| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Local codes that apply for a given rate or percentage that need to be identified and validated. |
+

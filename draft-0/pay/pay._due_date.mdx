@@ -1,0 +1,21 @@
+---
+title: pay.DueDate
+comment: 
+---
+
+DueDate contains an amount that should be paid by the given date.
+
+## Schema ID
+
+`https://gobl.org/draft-0/pay/terms#/$defs/pay.DueDate`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Date | `date` | [cal.cal.Date](/draft-0/cal/cal._date) | When the payment is due. |
+| Notes | `notes` | string | Other details to take into account for the due date. |
+| Amount | `amount` | [num.num.Amount](/draft-0/num/num._amount) | How much needs to be paid by the date. |
+| Percent | `percent` | [num.num.Percentage](/draft-0/num/num._percentage) | Percentage of the total that should be paid by the date. |
+| Currency | `currency` | [currency.currency.Code](/draft-0/currency/currency._code) | If different from the parent document's base currency. |
+

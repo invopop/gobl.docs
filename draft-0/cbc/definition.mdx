@@ -1,5 +1,5 @@
 ---
-title: Definition
+title: cbc.Definition
 comment: 
 ---
 
@@ -13,21 +13,13 @@ Definition defines properties of a key, code, or other value that has a specific
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key being defined. |
-| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code this definition represents. |
-| Name | `name` | [i18n.String](/draft-0/i18n/string) | Short name for the key. |
-| Description | `desc` | [i18n.String](/draft-0/i18n/string) | Description offering more details about when the key should be used. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Meta defines any additional details that may be useful or associated with the key. |
-| Sources | `sources` | array of [cbc.Source](/draft-0/cbc/source) | Where the information was sourced from and where it can be reviewed for updates in the future. |
-| Values | `values` | array of [cbc.Definition](/draft-0/cbc/definition) | Values defines the possible values associated with the key, which themselves will either be keys or codes depending on the context. |
+| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Key being defined. |
+| Code | `code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Code this definition represents. |
+| Name | `name` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Short name for the key. |
+| Description | `desc` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Description offering more details about when the key should be used. |
+| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Meta defines any additional details that may be useful or associated with the key. |
+| Sources | `sources` | array of [cbc.cbc.Source](/draft-0/cbc/cbc._source) | Where the information was sourced from and where it can be reviewed for updates in the future. |
+| Values | `values` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | Values defines the possible values associated with the key, which themselves will either be keys or codes depending on the context. |
 | Pattern | `pattern` | string | Pattern is used to validate the key value instead of using a fixed value from the code or key definitions. |
-| Code Map | `map` | [cbc.CodeMap](/draft-0/cbc/code_map) | Map helps map local keys to specific codes, useful for converting the described key into a local code. |
+| Code Map | `map` | [cbc.cbc.CodeMap](/draft-0/cbc/cbc._code_map) | Map helps map local keys to specific codes, useful for converting the described key into a local code. |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <small>Definition</small> | <ul class="gobl-test"><li>String(Code) != '' \|\| string(Key) != ''</li></ul> | `GOBL-CBC-DEFINITION-02`<br />Definition must have either a key or a code, and not both |
-| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-CBC-DEFINITION-01`<br />Name is required |
-| <code>pattern</code> | <ul class="gobl-test"><li>Is a regexp</li></ul> | `GOBL-CBC-DEFINITION-03`<br />Pattern must be a valid regular expression |

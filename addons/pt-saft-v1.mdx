@@ -16,6 +16,20 @@ the AT.
 - [Portaria n.o 195/2020 – Especificações Técnicas Código QR](https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Novas_regras_faturacao/Documents/Especificacoes_Tecnicas_Codigo_QR.pdf)
 - [Comunicação dos elementos dos documentos de faturação à AT, por webservice](https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Fatcorews/Documents/Comunicacao_dos_elementos_dos_documentos_de_faturacao.pdf)
 
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+A reason is required in the <code>reason</code> field
+when submitting the correction options.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- <code>credit-note</code>
+- <code>debit-note</code>
+
 ## Scenarios
 
 ### bill/invoice
@@ -598,8 +612,8 @@ Example:
 | <code>value_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-06`<br />Cannot be blank |
 | <code>lines[*]</code> | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-07`<br />Line taxes must include VAT category |
 | <code>payment.advances[*].date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-08`<br />Cannot be blank |
-| <code>totals.payable</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-09`<br />Must be no less than 0 |
-| <code>totals.due</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-10`<br />Must be equal to 0 |
+| <code>totals.payable</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-09`<br />Must be no less than 0 |
+| <code>totals.due</code> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-10`<br />Must be equal to 0 |
 | <code>preceding</code> | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-11`<br />The length must be no more than 1 |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-V1-BILL-INVOICE-13`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
 </Accordion>
@@ -666,8 +680,8 @@ Example:
 | ----- | ---- | ------------------------- |
 | <small>Line</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-05`<br />Exemption notes invalid |
 | <code>quantity</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-01`<br />Must be greater than 0 |
-| <code>sum</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-02`<br />Must be no less than 0 |
-| <code>total</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-03`<br />Must be no less than 0 |
+| <code>sum</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-02`<br />Must be no less than 0 |
+| <code>total</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-03`<br />Must be no less than 0 |
 | <code>discounts[*].amount</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-V1-BILL-LINE-04`<br />Must be no less than 0 |
 </Accordion>
 <Accordion title="bill.PaymentLine">

@@ -1,5 +1,5 @@
 ---
-title: AddonDef
+title: tax.AddonDef
 comment: 
 ---
 
@@ -13,22 +13,15 @@ AddonDef is an interface that defines the methods that a tax add-on must impleme
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key that defines how to uniquely idenitfy the add-on. |
-| Requires | `requires` | array of [cbc.Key](/draft-0/cbc/key) | Requires defines any additional addons that this one depends on to operate correctly. |
-| Name | `name` | [i18n.String](/draft-0/i18n/string) | Name of the add-on |
-| Description | `description` | [i18n.String](/draft-0/i18n/string) | Description of the add-on |
-| Sources | `sources` | array of [cbc.Source](/draft-0/cbc/source) | Sources is a list of sources that are used to provide the data for the add-on. |
-| Extensions | `extensions` | array of [cbc.Definition](/draft-0/cbc/definition) | Extensions defines the list of extensions that are associated with an add-on. |
-| Tags | `tags` | array of [tax.TagSet](/draft-0/tax/tag_set) | Tags is slice of tag sets that define what can be assigned to each document schema. |
-| Scenarios | `scenarios` | array of [tax.ScenarioSet](/draft-0/tax/scenario_set) | Scenarios are applied to documents after normalization and before validation to ensure that form specific extensions have been added to the document. |
-| Identities | `identities` | array of [cbc.Definition](/draft-0/cbc/definition) | Identities that are specific for the add-on and may be validated against or used during conversion processes. |
-| Inboxes | `inboxes` | array of [cbc.Definition](/draft-0/cbc/definition) | Inboxes is a list of keys that are used to identify where copies of documents can be sent. |
-| Corrections | `corrections` | [tax.CorrectionSet](/draft-0/tax/correction_set) | Corrections is used to provide a map of correction definitions that are supported by the add-on. |
+| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Key that defines how to uniquely identify the add-on. |
+| Requires | `requires` | array of [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Requires defines any additional addons that this one depends on to operate correctly. |
+| Name | `name` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Name of the add-on |
+| Description | `description` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Description of the add-on |
+| Sources | `sources` | array of [cbc.cbc.Source](/draft-0/cbc/cbc._source) | Sources is a list of sources that are used to provide the data for the add-on. |
+| Extensions | `extensions` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | Extensions defines the list of extensions that are associated with an add-on. |
+| Tags | `tags` | array of [tax.tax.TagSet](/draft-0/tax/tax._tag_set) | Tags is slice of tag sets that define what can be assigned to each document schema. |
+| Scenarios | `scenarios` | array of [tax.tax.ScenarioSet](/draft-0/tax/tax._scenario_set) | Scenarios are applied to documents after normalization and before validation to ensure that form specific extensions have been added to the document. |
+| Identities | `identities` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | Identities that are specific for the add-on and may be validated against or used during conversion processes. |
+| Inboxes | `inboxes` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | Inboxes is a list of keys that are used to identify where copies of documents can be sent. |
+| Corrections | `corrections` | [tax.tax.CorrectionSet](/draft-0/tax/tax._correction_set) | Corrections is used to provide a map of correction definitions that are supported by the add-on. |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>key</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-ADDONDEF-01`<br />Addon must have a key |
-| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-ADDONDEF-02`<br />Addon must have a name |

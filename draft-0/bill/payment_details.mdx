@@ -1,5 +1,5 @@
 ---
-title: PaymentDetails
+title: bill.PaymentDetails
 comment: 
 ---
 
@@ -13,8 +13,8 @@ PaymentDetails contains details as to how the invoice should be paid.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Payee | `payee` | [org.Party](/draft-0/org/party) | The party responsible for receiving payment of the invoice, if not the supplier. |
-| Terms | `terms` | [pay.Terms](/draft-0/pay/terms) | Payment terms or conditions. |
-| Advances | `advances` | array of [pay.Advance](/draft-0/pay/advance) | Any amounts that have been paid in advance and should be deducted from the amount due. |
-| Instructions | `instructions` | [pay.Instructions](/draft-0/pay/instructions) | Details on how payment should be made. |
+| Payee | `payee` | [org.org.Party](/draft-0/org/org._party) | The party responsible for receiving payment of the invoice, if not the supplier. |
+| Terms | `terms` | [pay.pay.Terms](/draft-0/pay/pay._terms) | Payment terms or conditions. |
+| Advances | `advances` | array of [pay.pay.Advance](/draft-0/pay/pay._advance) | Any amounts that have been paid in advance and should be deducted from the amount due. |
+| Instructions | `instructions` | [pay.pay.Instructions](/draft-0/pay/pay._instructions) | Details on how payment should be made. |
 

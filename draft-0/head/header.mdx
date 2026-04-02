@@ -1,5 +1,5 @@
 ---
-title: Header
+title: head.Header
 comment: 
 ---
 
@@ -14,19 +14,10 @@ Header defines the metadata of the body.
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | UUID | `uuid` | string | Unique UUIDv1 identifier for the envelope. |
-| Digest | `dig` | [dsig.Digest](/draft-0/dsig/digest) | Digest of the canonical JSON body. |
-| Stamps | `stamps` | array of [head.Stamp](/draft-0/head/stamp) | Seals of approval from other organisations that can only be added to non-draft envelopes. |
-| Links | `links` | array of [head.Link](/draft-0/head/link) | Links provide URLs to other resources that are related to this envelope and unlike stamps can be added even in the draft state. |
+| Digest | `dig` | [dsig.dsig.Digest](/draft-0/dsig/dsig._digest) | Digest of the canonical JSON body. |
+| Stamps | `stamps` | array of [head.head.Stamp](/draft-0/head/head._stamp) | Seals of approval from other organisations that can only be added to non-draft envelopes. |
+| Links | `links` | array of [head.head.Link](/draft-0/head/head._link) | Links provide URLs to other resources that are related to this envelope and unlike stamps can be added even in the draft state. |
 | Tags | `tags` | array of string | Set of labels that describe but have no influence on the data. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional semi-structured information about this envelope. |
+| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Additional semi-structured information about this envelope. |
 | Notes | `notes` | string | Any information that may be relevant to other humans about this envelope |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>uuid</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Has timestamp</li></ul> | `GOBL-HEAD-HEADER-01`<br />Header must contain a UUID v1 or v7 with timestamp |
-| <code>dig</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-HEAD-HEADER-02`<br />Header must have a digest |
-| <code>stamps</code> | <ul class="gobl-test"><li>No duplicate stamps</li></ul> | `GOBL-HEAD-HEADER-03`<br />Duplicate stamp providers are not allowed |
-| <code>links</code> | <ul class="gobl-test"><li>No duplicate links</li></ul> | `GOBL-HEAD-HEADER-04`<br />Duplicate link keys are not allowed |

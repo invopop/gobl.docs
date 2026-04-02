@@ -1,5 +1,5 @@
 ---
-title: FoodVouchers
+title: cfdi.FoodVouchers
 comment: 
 ---
 
@@ -15,6 +15,6 @@ FoodVouchers carries the data to produce a CFDI's "Complemento de Vales de Despe
 |-------|----------|------|-------------|
 | Employer Registration | `employer_registration` | string | Customer's employer registration number (maps to `registroPatronal`). |
 | Account Number | `account_number` | string | Customer's account number (maps to `numeroDeCuenta`). |
-| Total | `total` | [num.Amount](/draft-0/num/amount) | Sum of all line amounts (calculated, maps to `total`). |
-| Lines | `lines` | array of [regimes.mx.FoodVouchersLine](/draft-0/regimes/mx/food_vouchers_line) | List of food vouchers issued to the customer's employees (maps to `Conceptos`). |
+| Total | `total` | [num.num.Amount](/draft-0/num/num._amount) | Sum of all line amounts (calculated, maps to `total`). |
+| Lines | `lines` | array of [regimes.mx.cfdi.FoodVouchersLine](/draft-0/regimes/mx/cfdi._food_vouchers_line) | List of food vouchers issued to the customer's employees (maps to `Conceptos`). |
 

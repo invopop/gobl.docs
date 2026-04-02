@@ -1,0 +1,21 @@
+---
+title: cfdi.FoodVouchersLine
+comment: 
+---
+
+FoodVouchersLine represents a single food voucher issued to the e-wallet of one of the customer's employees.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/food-vouchers#/$defs/cfdi.FoodVouchersLine`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Index | `i` | integer | Line number starting from 1 (calculated). |
+| E-wallet Identifier | `e_wallet_id` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Identifier of the e-wallet that received the food voucher (maps to `Identificador`). |
+| Issue Date and Time | `issue_date_time` | [cal.cal.DateTime](/draft-0/cal/cal._date_time) | Date and time of the food voucher's issue (maps to `Fecha`). |
+| Employee | `employee` | [regimes.mx.cfdi.FoodVouchersEmployee](/draft-0/regimes/mx/cfdi._food_vouchers_employee) | Employee that received the food voucher. |
+| Amount | `amount` | [num.num.Amount](/draft-0/num/num._amount) | Amount of the food voucher (maps to `importe`). |
+

@@ -354,8 +354,6 @@
       },
       {
         "anchor": "API Reference",
-        "icon": "code",
-        "openapi": "openapi/v0.json",
         "groups": [
           {
             "group": "Overview",
@@ -397,7 +395,9 @@
               "GET /"
             ]
           }
-        ]
+        ],
+        "icon": "code",
+        "openapi": "openapi/v0.json"
       }
     ],
     "global": {

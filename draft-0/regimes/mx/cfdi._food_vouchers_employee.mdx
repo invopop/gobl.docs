@@ -1,0 +1,20 @@
+---
+title: cfdi.FoodVouchersEmployee
+comment: 
+---
+
+FoodVouchersEmployee represents an employee that received a food voucher.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/food-vouchers#/$defs/cfdi.FoodVouchersEmployee`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Employee's Tax Identity Code | `tax_code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Employee's tax identity code (maps to `rfc`). |
+| Employee's CURP | `curp` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Employee's CURP ("Clave Única de Registro de Población", maps to `curp`). |
+| Employee's Name | `name` | string | Employee's name (maps to `nombre`). |
+| Employee's Social Security Number | `social_security` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Employee's Social Security Number (maps to `numSeguridadSocial`). |
+

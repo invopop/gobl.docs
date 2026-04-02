@@ -367,13 +367,13 @@ For example:
 | <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Preceding dates not after issue date</li></ul> | `GOBL-PT-BILL-INVOICE-13`<br />Preceding document issue dates must not be after invoice issue date |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Advance dates not after issue date</li></ul> | `GOBL-PT-BILL-INVOICE-14`<br />Advance payment dates must not be after invoice issue date |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Due dates not before issue date</li></ul> | `GOBL-PT-BILL-INVOICE-15`<br />Payment due dates must not be before invoice issue date |
-| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>One of [standard, credit-note, debit-note, proforma, other]</li></ul> | `GOBL-PT-BILL-INVOICE-01`<br />Invoice type is not valid for Portugal |
+| <code>type</code> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>One of [standard, credit-note, debit-note, proforma, other]</li></ul> | `GOBL-PT-BILL-INVOICE-01`<br />Invoice type is not valid for Portugal |
 | <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-BILL-INVOICE-02`<br />Preceding is required for credit and debit notes |
 | <code>supplier.tax_id</code> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-BILL-INVOICE-03`<br />Supplier tax ID is required |
 | <code>supplier.tax_id.code</code> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-BILL-INVOICE-04`<br />Supplier tax ID code is required |
 | <code>lines[*].quantity</code> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-05`<br />Line quantity must be zero or positive |
 | <code>lines[*].item.price</code> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-06`<br />Item price must be zero or positive |
-| <code>totals.due</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-07`<br />Due amount must be zero or positive |
+| <code>totals.due</code> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-07`<br />Due amount must be zero or positive |
 </Accordion>
 <Accordion title="tax.Combo">
 

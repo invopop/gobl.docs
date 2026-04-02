@@ -1,5 +1,5 @@
 ---
-title: Attachment
+title: org.Attachment
 comment: 
 ---
 
@@ -14,18 +14,11 @@ An Attachment provides a structure to be used to attach documents inside a GOBL 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | UUID | `uuid` | string | Universally Unique Identifier. |
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key used to identify the attachment inside the document. |
-| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code used to identify the payload of the attachment. |
+| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Key used to identify the attachment inside the document. |
+| Code | `code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Code used to identify the payload of the attachment. |
 | Name | `name` | string | Filename of the attachment, will override name retrieved from URL. |
 | Description | `description` | string | Details of why the attachment is being included and details on what it contains. |
 | URL | `url` | string | URL of where to find the attachment. |
-| Digest | `digest` | [dsig.Digest](/draft-0/dsig/digest) | Digest is used to verify the integrity of the attachment when downloaded from the URL. |
+| Digest | `digest` | [dsig.dsig.Digest](/draft-0/dsig/dsig._digest) | Digest is used to verify the integrity of the attachment when downloaded from the URL. |
 | MIME Type | `mime` | string | MIME type of the attachment. |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>url</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Url</li></ul> | `GOBL-ORG-ATTACHMENT-01`<br />Attachment URL must be valid |
-| <code>mime</code> | <ul class="gobl-test"><li>One of [application/pdf, image/jpeg, image/png, text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.oasis.opendocument.spreadsheet]</li></ul> | `GOBL-ORG-ATTACHMENT-02`<br />Attachment MIME type must be of an expected types defined in EN16931-1:2017 |

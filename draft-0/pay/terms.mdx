@@ -1,5 +1,5 @@
 ---
-title: Terms
+title: pay.Terms
 comment: 
 ---
 
@@ -13,10 +13,10 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Type of terms to be applied. |
-| Due Dates | `due_dates` | array of [pay.DueDate](/draft-0/pay/due_date) | Set of dates for agreed payments. |
+| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Type of terms to be applied. |
+| Due Dates | `due_dates` | array of [pay.pay.DueDate](/draft-0/pay/pay._due_date) | Set of dates for agreed payments. |
 | Notes | `notes` | string | Description of the conditions for payment. |
-| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions to the terms for local codes. |
+| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Extensions to the terms for local codes. |
 
 ## Key Values
 
@@ -33,9 +33,3 @@ Terms defines when we expect the customer to pay, or have paid, for the contents
 | `delivery` | Payment on Delivery |
 | `undefined` | Not yet defined |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>key</code> | <ul class="gobl-test"><li>One of [end-of-month, due-date, deferred, proximo, instant, elective, pending, advanced, delivery, undefined]</li></ul> | `GOBL-PAY-TERMS-01`<br />Key must be valid |

@@ -98,10 +98,13 @@ The `pl-favat-tax-category` extension specifies tax categories for Polish FA_VAT
 Each category corresponds to a field in the FA_VAT XML schema (P_13_*, P_14_*, etc.).
 
 This extension is used at the **line tax level** (`lines[].taxes[]`) and is automatically
-normalized by GOBL based on the tax combo `key` and `rate` fields. The extension is required
-for all line items.
+normalized by GOBL based on the tax combo `key`, `rate`, and `country` fields. The extension
+is required for all line items.
 
-Automatic mapping from GOBL tax combos:
+If the tax combo has a `country` set to a value other than `PL`, the category is
+automatically set to **8** (outside scope), regardless of the `key` and `rate` values.
+
+Automatic mapping from GOBL tax combos (when country is `PL` or empty):
 
 | GOBL Tax Key          | GOBL Rate        | FA_VAT Category | VAT % |
 | --------------------- | ---------------- | --------------- | ----- |
@@ -114,6 +117,7 @@ Automatic mapping from GOBL tax combos:
 | `exempt`              | -                | 7               | -     |
 | `outside-scope`       | -                | 8               | -     |
 | `reverse-charge`      | -                | 9               | -     |
+| *(non-PL country)*    | *(any)*          | 8               | -     |
 
 Example:
 
@@ -756,7 +760,7 @@ Example of a credit note effective on correction date:
 | <small>Invoice</small> | <ul class="gobl-test"><li>GroupVAT identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-12`<br />Customer requires identity with role '10' and code for GroupVAT |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Exemption note present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-13`<br />Missing exemption note |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Single exemption note</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-14`<br />Too many exemption notes |
-| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
+| <code>type</code> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
 | <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-02`<br />Preceding issue date is required |
 | <code>preceding[*].code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-03`<br />Preceding code is required |
 | <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-04`<br />Supplier is required |

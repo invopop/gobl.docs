@@ -1,5 +1,5 @@
 ---
-title: DeliveryDetails
+title: bill.DeliveryDetails
 comment: 
 ---
 
@@ -13,9 +13,9 @@ DeliveryDetails covers the details of the destination for the products described
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Receiver | `receiver` | [org.Party](/draft-0/org/party) | The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes. |
-| Identities | `identities` | array of [org.Identity](/draft-0/org/identity) | Identities is used to define specific codes or IDs that may be used to identify the delivery. |
-| Date | `date` | [cal.Date](/draft-0/cal/date) | When the goods should be expected. |
-| Period | `period` | [cal.Period](/draft-0/cal/period) | Period of time in which to expect delivery if a specific date is not available. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional custom data. |
+| Receiver | `receiver` | [org.org.Party](/draft-0/org/org._party) | The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes. |
+| Identities | `identities` | array of [org.org.Identity](/draft-0/org/org._identity) | Identities is used to define specific codes or IDs that may be used to identify the delivery. |
+| Date | `date` | [cal.cal.Date](/draft-0/cal/cal._date) | When the goods should be expected. |
+| Period | `period` | [cal.cal.Period](/draft-0/cal/cal._period) | Period of time in which to expect delivery if a specific date is not available. |
+| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Additional custom data. |
 

@@ -109,7 +109,8 @@ data.
 | ----- | ---- | ------------------------- |
 | <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-01`<br />Tax is required |
 | <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [es-tbai-region]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-02`<br />Extension 'es-tbai-region' is required |
-| <code>customer.tax_id</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03`<br />Customer tax ID is required |
+| <code>customer</code> | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03`<br />Customer is required for non-simplified invoices |
+| <code>customer.tax_id</code> | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-03a`<br />Customer tax ID is required |
 | <code>preceding</code> | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-04`<br />Preceding documents are required for credit-note, corrective, debit-note invoices |
 | <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-05`<br />Preceding issue date is required |
 | <code>preceding[*].ext</code> | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-V1-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |

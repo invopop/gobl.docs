@@ -33,6 +33,19 @@ The following tables show how GOBL tax keys/categories are mapped to UNTDID 5305
 For Spanish special territories, **IGIC** (Canary Islands) maps to code **L** and **IPSI** (Ceuta and Melilla) maps to code **M**.
 Any other tax category defaults to UNTDID 5305 code **O** (Outside Scope).
 
+## Exemption Notes
+
+Exempt tax categories (E, AE, K, G, O) require either a CEF VATEX code
+(`cef-vatex`) on the tax combo, or an exemption note in `tax.notes`.
+
+Exemption notes use the `tax.Note` struct with `cat`, `key`, and `text` fields.
+During normalization, the note's `key` is mapped to the corresponding
+`untdid-tax-category` extension (e.g. `exempt` → `E`,
+`reverse-charge` → `AE`).
+
+Each exempt tax category without a VATEX code must have at least one
+exemption note covering it.
+
 ## Scenarios
 
 ### bill/invoice
@@ -149,6 +162,7 @@ Any other tax category defaults to UNTDID 5305 code **O** (Outside Scope).
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-08`<br />Exempt tax categories require either a VATEX code or an exemption note |
 | <code>tax</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-01`<br />Tax details are required with ext and UNTDID document type |
 | <code>tax.ext</code> | <ul class="gobl-test"><li>Ext require [untdid-document-type]</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-02`<br />Document type extension is required |
 | <code>lines</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-03`<br />At least one line is required (BR-16) |
@@ -235,5 +249,6 @@ Any other tax category defaults to UNTDID 5305 code **O** (Outside Scope).
 | <code>ext</code> | <ul class="gobl-test"><li>Is IPSI</li><li>Ext 'untdid-tax-category' in [M]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-04`<br />Must use IPSI category code |
 | <code>ext</code> | <ul class="gobl-test"><li>Is outside scope</li><li>Ext 'untdid-tax-category' in [O]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-05`<br />Must use outside scope category code |
 | <code>ext</code> | <ul class="gobl-test"><li>Is exempt</li><li>Ext require [cef-vatex]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-06`<br />VATEX extension is required for exempt tax (BR-E-10) |
+| <code>ext</code> | <ul class="gobl-test"><li>Is non-exempt</li><li>Ext exclude [cef-vatex]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-07`<br />VATEX extension must not be set for standard, zero, IGIC, or IPSI categories (BR-S-10, BR-Z-10) |
 </Accordion>
 </AccordionGroup>

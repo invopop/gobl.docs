@@ -1,5 +1,5 @@
 ---
-title: RegimeDef
+title: tax.RegimeDef
 comment: 
 ---
 
@@ -13,32 +13,22 @@ RegimeDef defines the holding structure for the definitions of taxes inside a co
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Name | `name` | [i18n.String](/draft-0/i18n/string) | Name of the tax regime. |
-| Description | `description` | [i18n.String](/draft-0/i18n/string) | Introductory details about the regime. |
-| Sources | `sources` | array of [cbc.Source](/draft-0/cbc/source) | Sources is a list of references to tax authority or other relevant documentation that can be used to validate the regime's data and be used in the future to check for updates and changes. |
+| Name | `name` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Name of the tax regime. |
+| Description | `description` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Introductory details about the regime. |
+| Sources | `sources` | array of [cbc.cbc.Source](/draft-0/cbc/cbc._source) | Sources is a list of references to tax authority or other relevant documentation that can be used to validate the regime's data and be used in the future to check for updates and changes. |
 | Time Zone | `time_zone` | string | Location name for the country's central time zone. Accepted values from IANA Time Zone Database (https://iana.org/time-zones). If a country has multiple time zones, the most common or central one should be used. |
-| Code | `country` | [l10n.TaxCountryCode](/draft-0/l10n/tax_country_code) | Country code for tax purposes which usually coincides with the ISO 3166-1 alpha-2 code, but not always. |
-| Alternative Country Codes | `alt_country_codes` | array of [l10n.Code](/draft-0/l10n/code) | Alternative localization codes that may be used to identify the tax regime in specific circumstances. |
-| Zone | `zone` | [l10n.Code](/draft-0/l10n/code) | Specific Locality, region, city, province, county, or similar code inside the country, if needed. |
-| Currency | `currency` | [currency.Code](/draft-0/currency/code) | Currency used by the country. |
-| Tax Scheme | `tax_scheme` | [cbc.Code](/draft-0/cbc/code) | TaxScheme defines the principal scheme of consumption tax that should be applied to the regime and associated with Tax IDs in some export formats such as UBL or CII. Some regimes may not have a Tax Scheme and as a consequence will not use tax identities, like the US. |
-| Calculator Rounding Rule | `calculator_rounding_rule` | [cbc.Key](/draft-0/cbc/key) | Rounding rule to use when calculating the tax totals. See the RoundingRule constants for more details. If not provided, the default is RoundingRulePrecise. |
-| Tags | `tags` | array of [tax.TagSet](/draft-0/tax/tag_set) | Tags that can be applied at the document level to identify additional considerations. |
-| Extensions | `extensions` | array of [cbc.Definition](/draft-0/cbc/definition) | Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates. |
-| Identities | `identities` | array of [cbc.Definition](/draft-0/cbc/definition) | Identities used in addition to regular tax identities and specific for the regime that may be validated against. |
-| Payment Means Keys | `payment_means_keys` | array of [cbc.Definition](/draft-0/cbc/definition) | PaymentMeansKeys specific for the regime that extend the original base payment means keys. |
-| Inbox Keys | `inbox_keys` | array of [cbc.Definition](/draft-0/cbc/definition) | InboxKeys specific to the regime that can be used to identify where a document should be forwarded to. |
-| Scenarios | `scenarios` | array of [tax.ScenarioSet](/draft-0/tax/scenario_set) | Scenarios are used to describe a specific set of conditions and rules that apply to a specific document schema. These provide a more generic solution for normalization and validation of documents in regimes with specific requirements. |
-| Corrections | `corrections` | [tax.CorrectionSet](/draft-0/tax/correction_set) | Configuration details for corrections to be used with correction options. |
-| Categories | `categories` | array of [tax.CategoryDef](/draft-0/tax/category_def) | List of tax categories. |
+| Code | `country` | [l10n.l10n.TaxCountryCode](/draft-0/l10n/l10n._tax_country_code) | Country code for tax purposes which usually coincides with the ISO 3166-1 alpha-2 code, but not always. |
+| Alternative Country Codes | `alt_country_codes` | array of [l10n.l10n.Code](/draft-0/l10n/l10n._code) | Alternative localization codes that may be used to identify the tax regime in specific circumstances. |
+| Zone | `zone` | [l10n.l10n.Code](/draft-0/l10n/l10n._code) | Specific Locality, region, city, province, county, or similar code inside the country, if needed. |
+| Currency | `currency` | [currency.currency.Code](/draft-0/currency/currency._code) | Currency used by the country. |
+| Tax Scheme | `tax_scheme` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | TaxScheme defines the principal scheme of consumption tax that should be applied to the regime and associated with Tax IDs in some export formats such as UBL or CII. Some regimes may not have a Tax Scheme and as a consequence will not use tax identities, like the US. |
+| Calculator Rounding Rule | `calculator_rounding_rule` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Rounding rule to use when calculating the tax totals. See the RoundingRule constants for more details. If not provided, the default is RoundingRulePrecise. |
+| Tags | `tags` | array of [tax.tax.TagSet](/draft-0/tax/tax._tag_set) | Tags that can be applied at the document level to identify additional considerations. |
+| Extensions | `extensions` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates. |
+| Identities | `identities` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | Identities used in addition to regular tax identities and specific for the regime that may be validated against. |
+| Payment Means Keys | `payment_means_keys` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | PaymentMeansKeys specific for the regime that extend the original base payment means keys. |
+| Inbox Keys | `inbox_keys` | array of [cbc.cbc.Definition](/draft-0/cbc/cbc._definition) | InboxKeys specific to the regime that can be used to identify where a document should be forwarded to. |
+| Scenarios | `scenarios` | array of [tax.tax.ScenarioSet](/draft-0/tax/tax._scenario_set) | Scenarios are used to describe a specific set of conditions and rules that apply to a specific document schema. These provide a more generic solution for normalization and validation of documents in regimes with specific requirements. |
+| Corrections | `corrections` | [tax.tax.CorrectionSet](/draft-0/tax/tax._correction_set) | Configuration details for corrections to be used with correction options. |
+| Categories | `categories` | array of [tax.tax.CategoryDef](/draft-0/tax/tax._category_def) | List of tax categories. |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>country</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-01`<br />Country code is required |
-| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-02`<br />Name is required |
-| <code>time_zone</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-03`<br />Time zone is required |
-| <code>time_zone</code> | <ul class="gobl-test"><li>Valid time zone</li></ul> | `GOBL-TAX-REGIMEDEF-04`<br />Time zone must be valid |
-| <code>categories</code> | <ul class="gobl-test"><li>Length between 1 and 0</li></ul> | `GOBL-TAX-REGIMEDEF-05`<br />At least one category is required |

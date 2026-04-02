@@ -1,0 +1,20 @@
+---
+title: cfdi.FuelAccountTax
+comment: 
+---
+
+FuelAccountTax represents a single tax applied to a fuel purchase.
+
+## Schema ID
+
+`https://gobl.org/draft-0/regimes/mx/fuel-account-balance#/$defs/cfdi.FuelAccountTax`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Category | `cat` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Category that identifies the tax ("VAT" or "IEPS", maps to `Impuesto`) |
+| Percent | `percent` | [num.num.Percentage](/draft-0/num/num._percentage) | Percent applicable to the line total (tasa) to use instead of Rate (maps to `TasaoCuota`) |
+| Rate | `rate` | [num.num.Amount](/draft-0/num/num._amount) | Rate is a fixed fee to apply to the line quantity (cuota) (maps to `TasaOCuota`) |
+| Amount | `amount` | [num.num.Amount](/draft-0/num/num._amount) | Total amount of the tax once the percent or rate has been applied (maps to `Importe`). |
+

@@ -1,5 +1,5 @@
 ---
-title: Name
+title: org.Name
 comment: 
 ---
 
@@ -21,12 +21,5 @@ Name represents what a human is called.
 | Surname | `surname` | string | Second or Family name. |
 | Second Surname | `surname2` | string | Additional second of family name. |
 | Suffix | `suffix` | string | Titles to include after the name. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional useful data. |
+| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Any additional useful data. |
 
-
-## Validation Rules
-
-| Field | Test | Validation Code / Message |
-| ----- | ---- | ------------------------- |
-| <code>given</code> | <ul class="gobl-test"><li>Surname == ""</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-NAME-01`<br />Given name is required when surname is absent |
-| <code>surname</code> | <ul class="gobl-test"><li>Given == ""</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-NAME-02`<br />Surname is required when given name is absent |

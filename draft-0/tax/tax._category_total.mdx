@@ -1,0 +1,22 @@
+---
+title: tax.CategoryTotal
+comment: 
+---
+
+CategoryTotal groups together all rates inside a given category.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/total#/$defs/tax.CategoryTotal`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Code | `code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) |  |
+| Retained | `retained` | boolean |  |
+| Informative | `informative` | boolean |  |
+| Rates | `rates` | array of [tax.tax.RateTotal](/draft-0/tax/tax._rate_total) |  |
+| Amount | `amount` | [num.num.Amount](/draft-0/num/num._amount) |  |
+| Surcharge | `surcharge` | [num.num.Amount](/draft-0/num/num._amount) |  |
+
