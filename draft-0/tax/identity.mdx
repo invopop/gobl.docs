@@ -1,5 +1,5 @@
 ---
-title: tax.Identity
+title: Identity
 comment: 
 ---
 
@@ -13,8 +13,16 @@ Identity stores the details required to identify an entity for tax purposes in a
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Country Code | `country` | [l10n.l10n.TaxCountryCode](/draft-0/l10n/l10n._tax_country_code) | Tax country code for Where the tax identity was issued. |
-| Code | `code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Normalized code shown on the original identity document. |
-| Scheme | `scheme` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Scheme is an optional field that may be used to override the tax regime's default tax scheme. Many electronic formats such as UBL or CII define an equivalent field. Examples: `VAT`, `GST`, `ST`, etc. |
-| Type | `type` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Type is set according to the requirements of each regime, some have a single tax document type code, others require a choice to be made. Deprecated: Tax Identities should only be used for VAT or similar codes for companies. Use the identities array for other types of identification. |
+| Country Code | `country` | [l10n.TaxCountryCode](/draft-0/l10n/tax_country_code) | Tax country code for Where the tax identity was issued. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Normalized code shown on the original identity document. |
+| Scheme | `scheme` | [cbc.Code](/draft-0/cbc/code) | Scheme is an optional field that may be used to override the tax regime's default tax scheme. Many electronic formats such as UBL or CII define an equivalent field. Examples: `VAT`, `GST`, `ST`, etc. |
+| Type | `type` | [cbc.Key](/draft-0/cbc/key) | Type is set according to the requirements of each regime, some have a single tax document type code, others require a choice to be made. Deprecated: Tax Identities should only be used for VAT or similar codes for companies. Use the identities array for other types of identification. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>country</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-IDENTITY-01`<br />Tax id country code is always required |
+| <code>code</code> | <ul class="gobl-test"><li>Matches ^[A-Z0-9Ñ\&]+$</li></ul> | `GOBL-TAX-IDENTITY-02`<br />Tax id code must have a valid format |
+| <code>code</code> | <ul class="gobl-test"><li>Code in [EL]</li><li>Valid</li></ul> | `GOBL-GR-TAX-IDENTITY-01`<br />Invalid Greek VAT identity code |

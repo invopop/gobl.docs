@@ -173,7 +173,7 @@ Indicates a special tax regime that a party is subject to.
 | <code>notes[*].text</code> | <ul class="gobl-test"><li>Reason note</li><li>Length between 1 and 60</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-29`<br />Reason note text must be between 1 and 60 characters |
 | <code>payment</code> | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-31`<br />Payment is required when invoice is unpaid |
 | <code>payment.instructions</code> | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-32`<br />Payment instructions are required when invoice is unpaid |
-| <code>totals.due</code> | <ul class="gobl-test"><li>Zero or positive</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-33`<br />Due amount must not be negative |
+| <code>totals.due</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Zero or positive</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-33`<br />Due amount must not be negative |
 </Accordion>
 <Accordion title="bill.Line">
 

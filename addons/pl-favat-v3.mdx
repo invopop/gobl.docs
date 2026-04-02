@@ -760,7 +760,7 @@ Example of a credit note effective on correction date:
 | <small>Invoice</small> | <ul class="gobl-test"><li>GroupVAT identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-12`<br />Customer requires identity with role '10' and code for GroupVAT |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Exemption note present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-13`<br />Missing exemption note |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Single exemption note</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-14`<br />Too many exemption notes |
-| <code>type</code> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
+| <code>type</code><br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
 | <code>preceding[*].issue_date</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-02`<br />Preceding issue date is required |
 | <code>preceding[*].code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-03`<br />Preceding code is required |
 | <code>supplier</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-04`<br />Supplier is required |

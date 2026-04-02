@@ -1,5 +1,5 @@
 ---
-title: org.Image
+title: Image
 comment: 
 ---
 
@@ -22,6 +22,14 @@ Image describes a logo or photo that represents an entity.
 | Alt | `alt` | string | Alternative text if the image cannot be shown. |
 | Height | `height` | integer | Height of the image in pixels. |
 | Width | `width` | integer | Width of the image in pixels. |
-| Digest | `digest` | [dsig.dsig.Digest](/draft-0/dsig/dsig._digest) | Digest can be used to ensure the image contained at the URL is the same one as originally intended. |
-| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Meta contains additional information about the image. |
+| Digest | `digest` | [dsig.Digest](/draft-0/dsig/digest) | Digest can be used to ensure the image contained at the URL is the same one as originally intended. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Meta contains additional information about the image. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>url</code> | <ul class="gobl-test"><li>Url</li></ul> | `GOBL-ORG-IMAGE-01`<br />Image URL must be valid |
+| <code>height</code> | <ul class="gobl-test"><li>At least 64</li><li>At most 2048</li></ul> | `GOBL-ORG-IMAGE-02`<br />Image height must be between 64 and 2048 pixels |
+| <code>width</code> | <ul class="gobl-test"><li>At least 64</li><li>At most 2048</li></ul> | `GOBL-ORG-IMAGE-03`<br />Image width must be between 64 and 2048 pixels |

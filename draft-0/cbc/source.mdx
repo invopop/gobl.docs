@@ -1,5 +1,5 @@
 ---
-title: cbc.Source
+title: Source
 comment: 
 ---
 
@@ -13,8 +13,14 @@ Source is used to identify a specific source of data.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Title | `title` | [i18n.i18n.String](/draft-0/i18n/i18n._string) | Title stores the name of the source of information. |
+| Title | `title` | [i18n.String](/draft-0/i18n/string) | Title stores the name of the source of information. |
 | URL | `url` | string | URL is the location of the source of information. |
 | Content Type | `content_type` | string | ContentType of the information expected at the URL. |
-| At | `at` | [cal.cal.DateTime](/draft-0/cal/cal._date_time) | At is the date and time the information was retrieved. |
+| At | `at` | [cal.DateTime](/draft-0/cal/date_time) | At is the date and time the information was retrieved. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>url</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Url</li></ul> | `GOBL-CBC-SOURCE-01`<br />Url is required and must be a URL |

@@ -1,5 +1,5 @@
 ---
-title: org.Telephone
+title: Telephone
 comment: 
 ---
 
@@ -17,3 +17,9 @@ Telephone describes what is expected for a telephone number.
 | Label | `label` | string | Identifier for this number. |
 | Number | `num` | string | Free-text string that represents the telephone number. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>num</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-TELEPHONE-01`<br />Telephone number is required |

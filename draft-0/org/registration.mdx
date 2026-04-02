@@ -1,5 +1,5 @@
 ---
-title: org.Registration
+title: Registration
 comment: 
 ---
 
@@ -15,8 +15,8 @@ Registration is used in countries that require additional information to be asso
 |-------|----------|------|-------------|
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Label | `label` | string |  |
-| Capital | `capital` | [num.num.Amount](/draft-0/num/num._amount) |  |
-| Currency | `currency` | [currency.currency.Code](/draft-0/currency/currency._code) |  |
+| Capital | `capital` | [num.Amount](/draft-0/num/amount) |  |
+| Currency | `currency` | [currency.Code](/draft-0/currency/code) |  |
 | Office | `office` | string |  |
 | Book | `book` | string |  |
 | Volume | `volume` | string |  |
@@ -26,3 +26,9 @@ Registration is used in countries that require additional information to be asso
 | Entry | `entry` | string |  |
 | Other | `other` | string |  |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>currency</code> | <ul class="gobl-test"><li>Is valid currency</li></ul> | `GOBL-ORG-REGISTRATION-01`<br />Registration currency must be a valid ISO 4217 code |

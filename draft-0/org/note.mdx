@@ -1,5 +1,5 @@
 ---
-title: org.Note
+title: Note
 comment: 
 ---
 
@@ -14,12 +14,12 @@ Note represents a free text of additional information that may be added to a doc
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | UUID | `uuid` | string | Universally Unique Identifier. |
-| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Key specifying subject of the text |
-| Code | `code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Code used for additional data that may be required to identify the note. |
-| Source | `src` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Source of this note, especially useful when auto-generated. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key specifying subject of the text |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code used for additional data that may be required to identify the note. |
+| Source | `src` | [cbc.Key](/draft-0/cbc/key) | Source of this note, especially useful when auto-generated. |
 | Text | `text` | string | The contents of the note |
-| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Additional information about the note |
-| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Extension data |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional information about the note |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension data |
 
 ## Key Values
 
@@ -54,3 +54,10 @@ Note represents a free text of additional information that may be added to a doc
 | `tax` | Tax declaration |
 | `other` | Mutually defined |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>text</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-NOTE-01`<br />Note text is required |
+| <code>key</code> | <ul class="gobl-test"><li>One of [goods, payment, payment-method, payment-term, legal, dangerous-goods, ack, rate, reason, dispute, customer, glossary, customs, general, handling, packaging, loading, price, priority, regulatory, safety, ship-line, supplier, transport, delivery, quarantine, tax, other]</li></ul> | `GOBL-ORG-NOTE-02`<br />Note key must be a valid value |

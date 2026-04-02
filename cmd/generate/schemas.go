@@ -92,7 +92,12 @@ func generateSchemaPages(store *schemaStore, outDir string) error {
 		// Determine which def is the primary (referenced by $ref)
 		primaryDef := refDefName(schema.Ref)
 
-		for defName, def := range schema.Defs {
+		for rawDefName, def := range schema.Defs {
+			// Strip package prefix (e.g. "bill.Invoice" → "Invoice")
+			defName := rawDefName
+			if idx := strings.LastIndex(defName, "."); idx >= 0 {
+				defName = defName[idx+1:]
+			}
 			sg := &schemaGenerator{
 				store:      store,
 				schemaID:   schema.ID,
@@ -341,9 +346,12 @@ func (sg *schemaGenerator) typeString(prop *JSONSchema) string {
 
 // refTypeString converts a $ref URL to a linked type string.
 func (sg *schemaGenerator) refTypeString(ref string) string {
-	// Local reference: #/$defs/Name
+	// Local reference: #/$defs/Name or #/$defs/pkg.Name
 	if strings.HasPrefix(ref, "#/$defs/") {
 		defName := ref[len("#/$defs/"):]
+		if idx := strings.LastIndex(defName, "."); idx >= 0 {
+			defName = defName[idx+1:]
+		}
 		pkg := schemaIDPackage(sg.schemaID)
 		path := schemaIDToDocPath(sg.schemaID, defName, false)
 		return fmt.Sprintf("[%s.%s](%s)", pkg, defName, path)
@@ -374,10 +382,15 @@ func (sg *schemaGenerator) refTypeString(ref string) string {
 	return ref
 }
 
-// refDefName extracts "Invoice" from "#/$defs/Invoice".
+// refDefName extracts the type name from "#/$defs/Invoice" or "#/$defs/bill.Invoice",
+// stripping any package prefix.
 func refDefName(ref string) string {
 	if strings.HasPrefix(ref, "#/$defs/") {
-		return ref[len("#/$defs/"):]
+		name := ref[len("#/$defs/"):]
+		if idx := strings.LastIndex(name, "."); idx >= 0 {
+			name = name[idx+1:]
+		}
+		return name
 	}
 	return ""
 }

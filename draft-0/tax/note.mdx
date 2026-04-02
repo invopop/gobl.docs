@@ -1,5 +1,5 @@
 ---
-title: tax.Note
+title: Note
 comment: 
 ---
 
@@ -13,8 +13,14 @@ Note represents a tax-related note, typically used for exemption reasons or othe
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Category | `cat` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Tax category code from those available inside a region. |
-| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Key usually identifies the tax rate key this note applies to (e.g. "exempt", "reverse-charge"), but may also be used for other identifiers depending on context. |
+| Category | `cat` | [cbc.Code](/draft-0/cbc/code) | Tax category code from those available inside a region. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key usually identifies the tax rate key this note applies to (e.g. "exempt", "reverse-charge"), but may also be used for other identifiers depending on context. |
 | Text | `text` | string | Text contains the exemption reason or explanation. |
-| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Extensions for additional structured data. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for additional structured data. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>text</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-NOTE-01`<br />Tax note text is required |

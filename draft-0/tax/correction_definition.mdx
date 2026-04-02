@@ -1,5 +1,5 @@
 ---
-title: tax.CorrectionDefinition
+title: CorrectionDefinition
 comment: 
 ---
 
@@ -14,9 +14,15 @@ CorrectionDefinition contains details about what can be defined in .
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Schema | `schema` | string | Partial or complete schema URL for the document type supported by correction. |
-| Types | `types` | array of [cbc.cbc.Key](/draft-0/cbc/cbc._key) | The types of sub-documents supported by the regime |
-| Extensions | `extensions` | array of [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Extension keys that can be included |
+| Types | `types` | array of [cbc.Key](/draft-0/cbc/key) | The types of sub-documents supported by the regime |
+| Extensions | `extensions` | array of [cbc.Key](/draft-0/cbc/key) | Extension keys that can be included |
 | Reason Required | `reason_required` | boolean | ReasonRequired when true implies that a reason must be provided |
-| Stamps | `stamps` | array of [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Stamps that must be copied from the preceding document. |
+| Stamps | `stamps` | array of [cbc.Key](/draft-0/cbc/key) | Stamps that must be copied from the preceding document. |
 | Copy Tax Totals | `copy_tax` | boolean | Copy tax from the preceding document to the document ref. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>schema</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-CORRECTIONDEFINITION-01`<br />Schema is required |

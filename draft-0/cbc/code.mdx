@@ -1,5 +1,5 @@
 ---
-title: cbc.Code
+title: Code
 comment: 
 ---
 
@@ -9,3 +9,10 @@ Alphanumerical text identifier with upper-case letters and limits on using speci
 
 `https://gobl.org/draft-0/cbc/code`
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Code</small> | <ul class="gobl-test"><li>Length between 0 and 64</li></ul> | `GOBL-CBC-CODE-01`<br />Codes must be no longer than 64 characters |
+| <small>Code</small> | <ul class="gobl-test"><li>Matches ^[A-ZÑa-z0-9]+([.\-:/,_& ]?[A-ZÑa-z0-9]+)*$</li></ul> | `GOBL-CBC-CODE-02`<br />Codes must only contain letters, numbers, and optionally separated by .-:/,_& or space |

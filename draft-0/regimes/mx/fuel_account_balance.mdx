@@ -1,5 +1,5 @@
 ---
-title: cfdi.FuelAccountBalance
+title: FuelAccountBalance
 comment: 
 ---
 
@@ -14,7 +14,7 @@ FuelAccountBalance carries the data to produce a CFDI's "Complemento de Estado d
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Account Number | `account_number` | string | Customer's account number (maps to `NumeroDeCuenta`). |
-| Subtotal | `subtotal` | [num.num.Amount](/draft-0/num/num._amount) | Sum of all line totals (i.e. taxes not included) (calculated, maps to `SubTotal`). |
-| Total | `total` | [num.num.Amount](/draft-0/num/num._amount) | Grand total after taxes have been applied (calculated, maps to `Total`). |
-| Lines | `lines` | array of [regimes.mx.cfdi.FuelAccountLine](/draft-0/regimes/mx/cfdi._fuel_account_line) | List of fuel purchases made with the customer's e-wallets (maps to `Conceptos`). |
+| Subtotal | `subtotal` | [num.Amount](/draft-0/num/amount) | Sum of all line totals (i.e. taxes not included) (calculated, maps to `SubTotal`). |
+| Total | `total` | [num.Amount](/draft-0/num/amount) | Grand total after taxes have been applied (calculated, maps to `Total`). |
+| Lines | `lines` | array of [regimes.mx.FuelAccountLine](/draft-0/regimes/mx/fuel_account_line) | List of fuel purchases made with the customer's e-wallets (maps to `Conceptos`). |
 

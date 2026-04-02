@@ -151,11 +151,6 @@
               {
                 "group": "Bill",
                 "pages": [
-                  "draft-0/bill/bill._line_charge",
-                  "draft-0/bill/bill._line_discount",
-                  "draft-0/bill/bill._payment_line",
-                  "draft-0/bill/bill._sub_line",
-                  "draft-0/bill/bill._tracking",
                   "draft-0/bill/charge",
                   "draft-0/bill/correction_options",
                   "draft-0/bill/delivery",
@@ -278,7 +273,6 @@
                   "draft-0/pay/due_date",
                   "draft-0/pay/instructions",
                   "draft-0/pay/online",
-                  "draft-0/pay/pay._due_date",
                   "draft-0/pay/terms"
                 ]
               },
@@ -288,11 +282,6 @@
                   {
                     "group": "MX",
                     "pages": [
-                      "draft-0/regimes/mx/cfdi._food_vouchers_employee",
-                      "draft-0/regimes/mx/cfdi._food_vouchers_line",
-                      "draft-0/regimes/mx/cfdi._fuel_account_item",
-                      "draft-0/regimes/mx/cfdi._fuel_account_line",
-                      "draft-0/regimes/mx/cfdi._fuel_account_tax",
                       "draft-0/regimes/mx/food_vouchers",
                       "draft-0/regimes/mx/food_vouchers_employee",
                       "draft-0/regimes/mx/food_vouchers_line",
@@ -336,14 +325,6 @@
                   "draft-0/tax/scenario_set",
                   "draft-0/tax/set",
                   "draft-0/tax/tag_set",
-                  "draft-0/tax/tax._category_def",
-                  "draft-0/tax/tax._category_total",
-                  "draft-0/tax/tax._combo",
-                  "draft-0/tax/tax._key_def",
-                  "draft-0/tax/tax._rate_def",
-                  "draft-0/tax/tax._rate_total",
-                  "draft-0/tax/tax._rate_total_surcharge",
-                  "draft-0/tax/tax._rate_value_def",
                   "draft-0/tax/total"
                 ]
               }

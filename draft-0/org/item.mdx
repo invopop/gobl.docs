@@ -1,5 +1,5 @@
 ---
-title: org.Item
+title: Item
 comment: 
 ---
 
@@ -14,19 +14,19 @@ Item is used to describe a single product or service.
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | UUID | `uuid` | string | Universally Unique Identifier. |
-| Ref | `ref` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property. |
-| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Special key used to classify the item sometimes required by some regimes. |
+| Ref | `ref` | [cbc.Code](/draft-0/cbc/code) | Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Special key used to classify the item sometimes required by some regimes. |
 | Name | `name` | string | Brief name of the item |
-| Identities | `identities` | array of [org.org.Identity](/draft-0/org/org._identity) | List of additional codes, IDs, or SKUs which can be used to identify the item. They should be agreed upon between supplier and customer. |
+| Identities | `identities` | array of [org.Identity](/draft-0/org/identity) | List of additional codes, IDs, or SKUs which can be used to identify the item. They should be agreed upon between supplier and customer. |
 | Description | `description` | string | Detailed description of the item. |
-| Images | `images` | array of [org.org.Image](/draft-0/org/org._image) | Images associated with the item. |
-| Currency | `currency` | [currency.currency.Code](/draft-0/currency/currency._code) | Currency used for the item's price. |
-| Price | `price` | [num.num.Amount](/draft-0/num/num._amount) | Base price of a single unit to be sold. Must be either zero or positive. |
-| Alternative Prices | `alt_prices` | array of [currency.currency.Amount](/draft-0/currency/currency._amount) | AltPrices defines a list of prices with their currencies that may be used as an alternative to the item's base price. |
-| Unit | `unit` | [org.org.Unit](/draft-0/org/org._unit) | Unit of measure. |
-| Country of Origin | `origin` | [l10n.l10n.ISOCountryCode](/draft-0/l10n/l10n._i_s_o_country_code) | Country code of where this item was from originally. |
-| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Extension code map for any additional regime specific codes that may be required. |
-| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Additional meta information that may be useful |
+| Images | `images` | array of [org.Image](/draft-0/org/image) | Images associated with the item. |
+| Currency | `currency` | [currency.Code](/draft-0/currency/code) | Currency used for the item's price. |
+| Price | `price` | [num.Amount](/draft-0/num/amount) | Base price of a single unit to be sold. Must be either zero or positive. |
+| Alternative Prices | `alt_prices` | array of [currency.Amount](/draft-0/currency/amount) | AltPrices defines a list of prices with their currencies that may be used as an alternative to the item's base price. |
+| Unit | `unit` | [org.Unit](/draft-0/org/unit) | Unit of measure. |
+| Country of Origin | `origin` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | Country code of where this item was from originally. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension code map for any additional regime specific codes that may be required. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional meta information that may be useful |
 
 ## Key Values
 
@@ -35,3 +35,10 @@ Item is used to describe a single product or service.
 | `goods` | Goods |
 | `services` | Services |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>name</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-ITEM-01`<br />Item name is required |
+| <code>price</code> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-02`<br />Item price must be zero or positive |

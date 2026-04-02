@@ -1,5 +1,5 @@
 ---
-title: pay.Instructions
+title: Instructions
 comment: 
 ---
 
@@ -13,16 +13,16 @@ Instructions determine how the payment has or should be made.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | The payment means expected or that have been arranged to be used to make the payment. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | The payment means expected or that have been arranged to be used to make the payment. |
 | Detail | `detail` | string | Optional text description of the payment method |
-| Reference | `ref` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | Remittance information or concept, a code value used to link the payment with the invoice. |
-| Credit Transfer | `credit_transfer` | array of [pay.pay.CreditTransfer](/draft-0/pay/pay._credit_transfer) | Instructions for sending payment via a bank transfer. |
-| Card | `card` | [pay.pay.Card](/draft-0/pay/pay._card) | Details of the payment that will be made via a credit or debit card. |
-| Direct Debit | `direct_debit` | [pay.pay.DirectDebit](/draft-0/pay/pay._direct_debit) | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
-| Online | `online` | array of [pay.pay.Online](/draft-0/pay/pay._online) | Array of online payment options |
+| Reference | `ref` | [cbc.Code](/draft-0/cbc/code) | Remittance information or concept, a code value used to link the payment with the invoice. |
+| Credit Transfer | `credit_transfer` | array of [pay.CreditTransfer](/draft-0/pay/credit_transfer) | Instructions for sending payment via a bank transfer. |
+| Card | `card` | [pay.Card](/draft-0/pay/card) | Details of the payment that will be made via a credit or debit card. |
+| Direct Debit | `direct_debit` | [pay.DirectDebit](/draft-0/pay/direct_debit) | A group of terms that can be used by the customer or payer to consolidate direct debit payments. |
+| Online | `online` | array of [pay.Online](/draft-0/pay/online) | Array of online payment options |
 | Notes | `notes` | string | Any additional instructions that may be required to make the payment. |
-| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Extension key-pairs values defined by a tax regime. |
-| Meta | `meta` | [cbc.cbc.Meta](/draft-0/cbc/cbc._meta) | Non-structured additional data that may be useful. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension key-pairs values defined by a tax regime. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Non-structured additional data that may be useful. |
 
 ## Key Values
 
@@ -43,3 +43,10 @@ Instructions determine how the payment has or should be made.
 | `netting` | Intercompany clearing or clearing between partners. |
 | `other` | Other or mutually defined means of payment. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>key</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PAY-INSTRUCTIONS-01`<br />Key is required |
+| <code>key</code> | <ul class="gobl-test"><li>Be or starts with one of [any, card, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other]</li></ul> | `GOBL-PAY-INSTRUCTIONS-02`<br />Key must be valid |

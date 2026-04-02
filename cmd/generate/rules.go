@@ -154,9 +154,14 @@ func buildCalculatedLookup(store *schemaStore) {
 			continue
 		}
 		pkg := schemaIDPackage(schema.ID)
-		for defName, def := range schema.Defs {
+		for rawDefName, def := range schema.Defs {
 			if def.Properties == nil {
 				continue
+			}
+			// Strip package prefix (e.g. "bill.Invoice" → "Invoice")
+			defName := rawDefName
+			if idx := strings.LastIndex(defName, "."); idx >= 0 {
+				defName = defName[idx+1:]
 			}
 			structName := pkg + "." + defName
 			for pair := def.Properties.Oldest(); pair != nil; pair = pair.Next() {

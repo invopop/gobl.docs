@@ -1,5 +1,5 @@
 ---
-title: org.Website
+title: Website
 comment: 
 ---
 
@@ -18,3 +18,9 @@ Website describes what is expected for a web address.
 | Title | `title` | string | Title of the website to help distinguish between this and other links. |
 | URL | `url` | string | URL for the website. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>url</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Url</li></ul> | `GOBL-ORG-WEBSITE-01`<br />Website URL is required and must be valid |

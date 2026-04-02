@@ -1,5 +1,5 @@
 ---
-title: tax.ScenarioSet
+title: ScenarioSet
 comment: 
 ---
 
@@ -14,5 +14,12 @@ ScenarioSet is a collection of tax scenarios for a given schema that can be used
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Schema | `schema` | string | Partial or complete schema URL for the document type |
-| List | `list` | array of [tax.tax.Scenario](/draft-0/tax/tax._scenario) | List of scenarios for the schema |
+| List | `list` | array of [tax.Scenario](/draft-0/tax/scenario) | List of scenarios for the schema |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <code>schema</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-SCENARIOSET-01`<br />Schema is required |
+| <code>list</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-SCENARIOSET-02`<br />At least one scenario is required |

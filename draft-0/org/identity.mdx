@@ -1,5 +1,5 @@
 ---
-title: org.Identity
+title: Identity
 comment: 
 ---
 
@@ -15,13 +15,13 @@ Identity is used to define a code for a specific context.
 |-------|----------|------|-------------|
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Label | `label` | string | Optional label useful for non-standard identities to give a bit more context. |
-| Scope | `scope` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Scope defines the context in which this identity is meant to be used. |
-| Country | `country` | [l10n.l10n.ISOCountryCode](/draft-0/l10n/l10n._i_s_o_country_code) | Country from which the identity was issued. |
-| Key | `key` | [cbc.cbc.Key](/draft-0/cbc/cbc._key) | Uniquely classify this identity using a key instead of a Type. |
-| Type | `type` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | The type of Code being represented and usually specific for a particular context, country, or tax regime, and cannot be used alongside the key. |
-| Code | `code` | [cbc.cbc.Code](/draft-0/cbc/cbc._code) | The actual value of the identity code. |
+| Scope | `scope` | [cbc.Key](/draft-0/cbc/key) | Scope defines the context in which this identity is meant to be used. |
+| Country | `country` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | Country from which the identity was issued. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Uniquely classify this identity using a key instead of a Type. |
+| Type | `type` | [cbc.Code](/draft-0/cbc/code) | The type of Code being represented and usually specific for a particular context, country, or tax regime, and cannot be used alongside the key. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | The actual value of the identity code. |
 | Description | `description` | string | Description adds details about what the code could mean or imply |
-| Extensions | `ext` | [tax.tax.Extensions](/draft-0/tax/tax._extensions) | Ext provides a way to add additional information to the identity. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Ext provides a way to add additional information to the identity. |
 
 ## Scope Values
 
@@ -30,3 +30,11 @@ Identity is used to define a code for a specific context.
 | `tax` | Tax |
 | `legal` | Legal |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Identity</small> | <ul class="gobl-test"><li>Key and type must not be used together</li></ul> | `GOBL-ORG-IDENTITY-03`<br />Identity must have either a key or type defined, but not both |
+| <code>code</code> | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-IDENTITY-01`<br />Identity code must be provided |
+| <code>scope</code> | <ul class="gobl-test"><li>One of [tax, legal]</li></ul> | `GOBL-ORG-IDENTITY-02`<br />Identity scope when provided must be either 'tax' or 'legal' |
