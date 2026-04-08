@@ -661,6 +661,13 @@ Example:
 | `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-V1-TAX-COMBO-01`<br />Region and tax rate are required |
 | `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-V1-TAX-COMBO-02`<br />Exemption is required when tax rate is exempt |
 </Accordion>
+<Accordion title="tax.RateTotal">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-V1-TAX-RATETOTAL-01`<br />Region and tax rate are required |
+| `ext` | <ul class="gobl-test"><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-V1-TAX-RATETOTAL-02`<br />Exemption is required when tax rate is exempt |
+</Accordion>
 <Accordion title="org.Item">
 
 | Field | Test | Validation Code / Message |
@@ -694,7 +701,5 @@ Example:
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-03`<br />Cannot be blank |
 | `tax` | <ul class="gobl-test"><li>Has VAT category</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-04`<br />Missing category VAT |
 | `tax.categories[*].rates` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-05`<br />Only one rate allowed per line |
-| `tax.categories[*].rates[*].ext` | <ul class="gobl-test"><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-01`<br />Region and tax rate are required |
-| `tax.categories[*].rates[*].ext` | <ul class="gobl-test"><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-V1-BILL-PAYMENTLINE-02`<br />Exemption is required when tax rate is exempt |
 </Accordion>
 </AccordionGroup>

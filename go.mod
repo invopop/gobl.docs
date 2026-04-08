@@ -5,7 +5,7 @@ go 1.24.0
 toolchain go1.24.3
 
 require (
-	github.com/invopop/gobl v0.308.1-0.20260327141640-5fb0bd1e3340
+	github.com/invopop/gobl v0.309.1-0.20260408113404-0645b620fb0e
 	github.com/wk8/go-ordered-map/v2 v2.1.8
 )
 
@@ -26,4 +26,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/invopop/gobl => ../gobl
+// replace github.com/invopop/gobl => ../gobl
