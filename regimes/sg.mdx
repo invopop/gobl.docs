@@ -22,21 +22,21 @@ for invoice corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>SG</code> |
-| Currency | <code>SGD</code> |
-| Base Time Zone | <code>Asia/Singapore</code> |
+| Tax Country Code | `SG` |
+| Currency | `SGD` |
+| Base Time Zone | `Asia/Singapore` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>GST</code> | GST | Goods and Services Tax |
+| `GST` | GST | Goods and Services Tax |
 
 ### GST Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General rate | 9% | GST-registered businesses are required to charge and account for GST at 9% on all sales of goods and services in Singapore unless the sale can be zero-rated or exempted under the GST law. |
+| `general` | `standard` | General rate | 9% | GST-registered businesses are required to charge and account for GST at 9% on all sales of goods and services in Singapore unless the sale can be zero-rated or exempted under the GST law. |
 
 ## Correction Definitions
 
@@ -46,4 +46,27 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [SG]</li><li>Has GST tax ID code or UEN identity</li></ul> | `GOBL-SG-BILL-INVOICE-01`<br />Invoice supplier in Singapore must have a GST tax ID code or a UEN identity |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Type in [UEN]</li><li>Valid UEN</li></ul> | `GOBL-SG-ORG-IDENTITY-01`<br />Identity code for type UEN must be valid |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [SG]</li><li>Valid</li></ul> | `GOBL-SG-TAX-IDENTITY-01`<br />Invalid Singaporean tax identity code |
+</Accordion>
+</AccordionGroup>

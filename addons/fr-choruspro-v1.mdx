@@ -2,7 +2,7 @@
 title: Chorus Pro
 ---
 
-Key: <code>fr-choruspro-v1</code>
+Key: `fr-choruspro-v1`
 
 Support for the French Chorus Pro platform for B2G (Business-to-Government) electronic invoicing.
 This addon provides the necessary structures and validations to ensure compliance with the
@@ -15,7 +15,7 @@ requirements for public sector invoicing.
 - [Chorus Pro Specifications](https://communaute.chorus-pro.gouv.fr/wp-content/uploads/2018/11/External_Specifications_EDI_Appendix_V4.10.pdf)
 
 ## Extensions
-### General Information Framework	
+### General Information Framework
 
 The general information framework is used to provide additional context
 about the entity submitting the document. If no value is provided, it will
@@ -29,30 +29,30 @@ replaced by GOBL during normalization.
 
 | Code | Name |
 | ---- | ---- |
-| <code>A1</code> | Submission by a supplier of an invoice |
-| <code>A2</code> | Submission by a supplier of an invoice already paid |
-| <code>A3</code> | Submission by a supplier of a Memorandum on Justice Costs |
-| <code>A4</code> | Submission by a supplier of a draft monthly statement |
-| <code>A5</code> | Submission by a supplier of an account statement |
-| <code>A6</code> | Work invoice document sent to a financial service |
-| <code>A7</code> | Submission by a supplier of a draft final statement |
-| <code>A8</code> | Submission by a supplier of a general and definitive statement |
-| <code>A9</code> | Submission by a subcontractor of an invoice |
-| <code>A10</code> | Submission by a subcontractor of a draft monthly statement |
-| <code>A12</code> | Submission by a joint contractor of an invoice |
-| <code>A13</code> | Submission by a joint contractor of a draft monthly statement |
-| <code>A14</code> | Submission by a joint contractor of a draft final statement |
-| <code>A15</code> | Submission by a project manager of an account statement |
-| <code>A16</code> | Submission by a project manager of a validated account statement |
-| <code>A17</code> | Submission by a project manager of a draft general statement |
-| <code>A18</code> | Submission by a project manager of a general statement |
-| <code>A19</code> | Submission by a contracting authority of a validated account statement |
-| <code>A20</code> | Submission by a contracting authority of a general statement |
-| <code>A21</code> | Submission by a beneficiary of an ICT reimbursement request |
-| <code>A22</code> | Submission by a supplier or an authorised representative of a draft general statement as part of a tacit procedure |
-| <code>A23</code> | Submission by a supplier or an authorised representative of a tacit general and final statement |
-| <code>A24</code> | Submission by an authorised representative of a tacit general and final statement |
-| <code>A25</code> | Submission by an authorised representative of a general and final statement as part of a tacit procedure |
+| `A1` | Submission by a supplier of an invoice |
+| `A2` | Submission by a supplier of an invoice already paid |
+| `A3` | Submission by a supplier of a Memorandum on Justice Costs |
+| `A4` | Submission by a supplier of a draft monthly statement |
+| `A5` | Submission by a supplier of an account statement |
+| `A6` | Work invoice document sent to a financial service |
+| `A7` | Submission by a supplier of a draft final statement |
+| `A8` | Submission by a supplier of a general and definitive statement |
+| `A9` | Submission by a subcontractor of an invoice |
+| `A10` | Submission by a subcontractor of a draft monthly statement |
+| `A12` | Submission by a joint contractor of an invoice |
+| `A13` | Submission by a joint contractor of a draft monthly statement |
+| `A14` | Submission by a joint contractor of a draft final statement |
+| `A15` | Submission by a project manager of an account statement |
+| `A16` | Submission by a project manager of a validated account statement |
+| `A17` | Submission by a project manager of a draft general statement |
+| `A18` | Submission by a project manager of a general statement |
+| `A19` | Submission by a contracting authority of a validated account statement |
+| `A20` | Submission by a contracting authority of a general statement |
+| `A21` | Submission by a beneficiary of an ICT reimbursement request |
+| `A22` | Submission by a supplier or an authorised representative of a draft general statement as part of a tacit procedure |
+| `A23` | Submission by a supplier or an authorised representative of a tacit general and final statement |
+| `A24` | Submission by an authorised representative of a tacit general and final statement |
+| `A25` | Submission by an authorised representative of a general and final statement as part of a tacit procedure |
 </Accordion>
 ### Scheme
 
@@ -60,10 +60,38 @@ replaced by GOBL during normalization.
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Third party with SIRET |
-| <code>2</code> | European structure outside France |
-| <code>3</code> | Structure outside the EU |
-| <code>4</code> | RIDET |
-| <code>5</code> | Tahiti Number |
-| <code>6</code> | Other |
+| `1` | Third party with SIRET |
+| `2` | European structure outside France |
+| `3` | Structure outside the EU |
+| `4` | RIDET |
+| `5` | Tahiti Number |
+| `6` | Other |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `customer.ext` | <ul class="gobl-test"><li>Ext 'fr-choruspro-scheme' in [1]</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-01`<br />Customer scheme extension must be '1' |
+| `customer.identities` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-02`<br />Customer identities are required |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-03`<br />Tax object is required with extensions |
+| `tax.ext` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-04`<br />Tax extensions are required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [fr-choruspro-framework]</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-05`<br />Framework extension is required |
+| `totals`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Framework is paid</li><li>Paid</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-06`<br />Must be paid in full for framework 'A2' |
+</Accordion>
+<Accordion title="org.Party">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Ext require [fr-choruspro-scheme]</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-01`<br />Scheme extension is required |
+| `identities` | <ul class="gobl-test"><li>Party scheme is 1</li><li>Has SIRET</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-02`<br />Identities must have a SIRET entry for scheme '1' |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 1</li><li>One of [FR]</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-03`<br />Tax ID must be 'FR' for scheme '1' |
+| `identities` | <ul class="gobl-test"><li>Party scheme is not 1</li><li>No SIRET</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-04`<br />Identities cannot have a SIRET entry when not '1' scheme |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 2</li><li>Not one of [FR]</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-05`<br />Tax ID country must be a non-French, EU company with scheme '2' |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 2</li><li>EU member</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-06`<br />Tax ID country must be a member of the EU with scheme '2' |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 3</li><li>Non-EU</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-07`<br />Tax ID country must be a non-EU company with scheme '3' |
+</Accordion>
+</AccordionGroup>

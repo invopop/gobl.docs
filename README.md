@@ -4,16 +4,16 @@ The content and configuration powering the documentation available at [docs.gobl
 
 ### 👩‍💻 Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+Install the [Mintlify CLI](https://www.mintlify.com/docs/installation) to preview the documentation changes locally. To install, use the following command
 
 ```
-npm i mintlify -g
+npm i mint -g
 ```
 
 Run the following command at the root of your documentation (where mint.json is)
 
 ```
-mintlify dev
+mint dev
 ```
 
 ### Generated Content

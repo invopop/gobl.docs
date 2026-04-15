@@ -11,9 +11,17 @@ Period represents two dates with a start and finish.
 
 ## Properties
 
-| Title | Property | Type                          | Req. | Description                                                           |
-|-------|----------|-------------------------------|------|-----------------------------------------------------------------------|
-| Label | `label`  | string                        |      | Label is a short description of the period.                           |
-| Start | `start`  | [cal.Date](/draft-0/cal/date) | true | Start indicates when this period starts.                              |
-| End   | `end`    | [cal.Date](/draft-0/cal/date) | true | End indicates when the period ends, and must be after the start date. |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Label | `label` | string | Label is a short description of the period. |
+| Start | `start` | [cal.Date](/draft-0/cal/date) | Start indicates when this period starts. |
+| End | `end` | [cal.Date](/draft-0/cal/date) | End indicates when the period ends, and must be after the start date. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Period</small> | <ul class="gobl-test"><li>End not before start</li></ul> | `GOBL-CAL-PERIOD-10`<br />End date must be on or after start date |
+| `start` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-CAL-PERIOD-01`<br />Start date cannot be zero |
+| `end` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-CAL-PERIOD-02`<br />End date cannot be zero |

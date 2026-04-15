@@ -19,23 +19,23 @@ invoice corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>BE</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Brussels</code> |
+| Tax Country Code | `BE` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Brussels` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 21.0% |  |
-| <code>intermediate</code> | <code>standard</code> | Intermediate Rate | 12.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 6.0% |  |
+| `general` | `standard` | General Rate | 21.0% |  |
+| `intermediate` | `standard` | Intermediate Rate | 12.0% |  |
+| `reduced` | `standard` | Reduced Rate | 6.0% |  |
 
 ## Correction Definitions
 
@@ -45,4 +45,36 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [BE]</li><li>Valid</li></ul> | `GOBL-BE-TAX-IDENTITY-01`<br />Invalid Belgian VAT identity code |
+</Accordion>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier.tax_id` | <ul class="gobl-test"><li>No BCE identity</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-01`<br />Supplier tax ID required for Belgian regime |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li>No BCE identity</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-02`<br />Supplier tax ID code required for Belgian regime |
+| `supplier.identities` | <ul class="gobl-test"><li>No tax ID code</li><li>Has BCE type</li></ul> | `GOBL-BE-BILL-INVOICE-03`<br />Supplier identities must include BCE type |
+</Accordion>
+</AccordionGroup>

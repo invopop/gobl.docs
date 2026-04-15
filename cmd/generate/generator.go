@@ -67,18 +67,18 @@ func (g *generator) preceding(defs tax.CorrectionSet) error {
 
 		The types of invoices that can be created with a preceding definition:
 		{{- range .Types }}
-		- <code>{{ . }}</code>
+		- ~{{ . }}~
 		{{- end }}
 		{{- end }}
 
 		{{- if .Stamps }}
 
 		### Stamp Keys
-		
+
 		Stamp keys from the previous invoice that need to be referenced:
 
 		{{- range .Stamps }}
-		- <code>{{ . }}</code>
+		- ~{{ . }}~
 		{{- end }}
 		{{- end}}
 
@@ -90,7 +90,7 @@ func (g *generator) preceding(defs tax.CorrectionSet) error {
 		options. See the [Extensions](#extensions) section for possible values.
 
 		{{- range .Extensions }}
-		- <code>{{ . }}</code>
+		- ~{{ . }}~
 		{{- end }}
 		{{- end}}
 
@@ -103,7 +103,7 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 	}
 
 	if err := g.process(here.Doc(`
-		
+
 
 		## Extensions
 
@@ -120,13 +120,40 @@ func (g *generator) extensions(exts []*cbc.Definition) error {
 	return nil
 }
 
+func (g *generator) validationRules(sections []RuleSection) error {
+	if len(sections) == 0 {
+		return nil
+	}
+
+	return g.process(here.Doc(`
+
+
+		## Validation Rules
+
+		<AccordionGroup>
+		{{- range .}}
+		{{- $sec := .}}
+		<Accordion title="{{.Name}}">
+
+		| Field | Test | Validation Code / Message |
+		| ----- | ---- | ------------------------- |
+		{{- range .Rows}}
+		| {{fieldCell .Field .Calculated $sec.Name}} | {{testList .Tests .Calculated}} | {{codeMessage .Code .Desc}} |
+		{{- end}}
+		</Accordion>
+		{{- end}}
+		</AccordionGroup>
+
+	`), sections)
+}
+
 func (g *generator) extension(kd *cbc.Definition) error {
 
 	return g.process(here.Doc(`
 
 		### {{t .Name }}
 
-		{{- if .Desc }}	
+		{{- if .Desc }}
 
 		{{t .Desc }}
 
@@ -136,7 +163,7 @@ func (g *generator) extension(kd *cbc.Definition) error {
 
 		{{- if .Pattern }}
 
-		Pattern: <code>{{ .Pattern }}</code>
+		Pattern: ~{{ .Pattern }}~
 		{{- end }}
 
 
@@ -146,9 +173,9 @@ func (g *generator) extension(kd *cbc.Definition) error {
 		| ---- | ---- |
 		{{- range .Values }}
 		{{- if .Key }}
-		| <code>{{ .Key }}</code> | {{t .Name }} |
+		| ~{{ .Key }}~ | {{t .Name }} |
 		{{- else }}
-		| <code>{{ .Code }}</code> | {{t .Name }} |
+		| ~{{ .Code }}~ | {{t .Name }} |
 		{{- end }}
 		{{- end }}
 		{{- end }}

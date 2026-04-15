@@ -7,13 +7,19 @@ Online provides the details required to make a payment online using a website
 
 ## Schema ID
 
-`https://gobl.org/draft-0/pay/instructions#/$defs/Online`
+`https://gobl.org/draft-0/pay/online`
 
 ## Properties
 
-| Title | Property | Type                        | Req. | Description                                    |
-|-------|----------|-----------------------------|------|------------------------------------------------|
-| Key   | `key`    | [cbc.Key](/draft-0/cbc/key) |      | Key identifier for this online payment method. |
-| Label | `label`  | string                      |      | Descriptive label for the online provider.     |
-| URL   | `url`    | string                      | true | URL to be used for payment.                    |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key identifier for this online payment method. |
+| Label | `label` | string | Descriptive label for the online provider. |
+| URL | `url` | string | URL to be used for payment. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `url` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Url</li></ul> | `GOBL-PAY-ONLINE-01`<br />URL is required and must be valid |

@@ -11,10 +11,10 @@ FuelAccountTax represents a single tax applied to a fuel purchase.
 
 ## Properties
 
-| Title    | Property  | Type                                      | Req. | Description                                                                               |
-|----------|-----------|-------------------------------------------|------|-------------------------------------------------------------------------------------------|
-| Category | `cat`     | [cbc.Code](/draft-0/cbc/code)             | true | Category that identifies the tax ("VAT" or "IEPS", maps to `Impuesto`)                    |
-| Percent  | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percent applicable to the line total (tasa) to use instead of Rate (maps to `TasaoCuota`) |
-| Rate     | `rate`    | [num.Amount](/draft-0/num/amount)         |      | Rate is a fixed fee to apply to the line quantity (cuota) (maps to `TasaOCuota`)          |
-| Amount   | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Total amount of the tax once the percent or rate has been applied (maps to `Importe`).    |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Category | `cat` | [cbc.Code](/draft-0/cbc/code) | Category that identifies the tax ("VAT" or "IEPS", maps to `Impuesto`) |
+| Percent | `percent` | [num.Percentage](/draft-0/num/percentage) | Percent applicable to the line total (tasa) to use instead of Rate (maps to `TasaoCuota`) |
+| Rate | `rate` | [num.Amount](/draft-0/num/amount) | Rate is a fixed fee to apply to the line quantity (cuota) (maps to `TasaOCuota`) |
+| Amount | `amount` | [num.Amount](/draft-0/num/amount) | Total amount of the tax once the percent or rate has been applied (maps to `Importe`). |
 

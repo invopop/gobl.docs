@@ -1,0 +1,210 @@
+---
+title: "MCP Server"
+description: "Use GOBL with AI assistants via the Model Context Protocol"
+icon: "microchip-ai"
+---
+
+GOBL provides an [MCP (Model Context Protocol)](https://modelcontextprotocol.io) server that exposes document building, validation, and tax reference data to AI assistants like Claude. It lets you build, validate, and explore GOBL documents through natural language conversations.
+
+## Connection Options
+
+The GOBL MCP server is available in two ways:
+
+### Hosted (Streamable HTTP)
+
+Connect to the hosted server at:
+
+```
+https://gobl.dev/v0/mcp
+```
+
+This uses the [Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) and runs stateless — no session management required.
+
+### Local (Stdio)
+
+If you have the [GOBL CLI](/overview/tools) installed, launch a local MCP server over stdio:
+
+```bash
+gobl mcp
+```
+
+This is useful for offline usage or when you want to use a specific GOBL version.
+
+## Configuration
+
+### Claude Desktop
+
+Add the following to your Claude Desktop configuration (`claude_desktop_config.json`):
+
+<CodeGroup>
+```json Hosted
+{
+  "mcpServers": {
+    "gobl": {
+      "type": "streamablehttp",
+      "url": "https://gobl.dev/v0/mcp"
+    }
+  }
+}
+```
+
+```json Local (stdio)
+{
+  "mcpServers": {
+    "gobl": {
+      "command": "gobl",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+</CodeGroup>
+
+### Claude Code
+
+Add the GOBL MCP server to your project or user settings:
+
+```bash
+claude mcp add gobl --transport http https://gobl.dev/v0/mcp
+```
+
+Or for the local stdio version:
+
+```bash
+claude mcp add gobl -- gobl mcp
+```
+
+### Cursor
+
+Add to your Cursor MCP settings (`.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "gobl": {
+      "type": "streamablehttp",
+      "url": "https://gobl.dev/v0/mcp"
+    }
+  }
+}
+```
+
+## Tools
+
+The MCP server exposes 9 tools for working with GOBL documents and reference data.
+
+### Document Operations
+
+<AccordionGroup>
+  <Accordion title="build" icon="hammer">
+    Calculate and validate a GOBL document. Provide partial or complete JSON and get back a fully calculated document with totals, tax calculations, and validation.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `data` | string | Yes | JSON document data. Must include `$schema` and typically `$regime`. |
+    | `type` | string | No | Document type hint (e.g. `bill/invoice`). Only needed when `$schema` is not set. |
+    | `envelop` | boolean | No | Wrap the result in a GOBL envelope. Default `false`. |
+  </Accordion>
+
+  <Accordion title="validate" icon="check">
+    Validate a GOBL document without modifying it. Returns OK or structured validation errors with faults.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `data` | string | Yes | JSON document data to validate. Should be a fully built document (output from `build`). |
+  </Accordion>
+
+  <Accordion title="correct" icon="pen">
+    Create corrective documents (credit notes, debit notes) from an existing invoice. Can also return the available correction options schema for a given document.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `data` | string | Yes | JSON document data of the original invoice. |
+    | `options` | string | No | JSON correction options (e.g. stamps, reason, method). |
+    | `schema` | boolean | No | When `true`, returns available correction options instead of correcting. |
+  </Accordion>
+
+  <Accordion title="replicate" icon="copy">
+    Clone a GOBL document as a new template with a fresh UUID. Clears stamps and signatures from the original.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `data` | string | Yes | JSON document data to replicate. |
+  </Accordion>
+</AccordionGroup>
+
+### Reference Data
+
+<AccordionGroup>
+  <Accordion title="schema" icon="brackets-curly">
+    Look up the JSON Schema definition for any GOBL type.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `path` | string | Yes | Schema path (e.g. `bill/invoice`, `org/party`, `pay/instructions`). |
+  </Accordion>
+
+  <Accordion title="regime" icon="landmark">
+    Get the full tax regime definition for a country. Returns tax categories, rates, extensions, scenarios, and correction definitions.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `code` | string | Yes | Country code (e.g. `ES`, `DE`, `MX`, `GB`). |
+  </Accordion>
+
+  <Accordion title="regime_list" icon="list">
+    List all available tax regimes with their country codes, names, and currencies. No parameters required.
+  </Accordion>
+
+  <Accordion title="addon" icon="puzzle-piece">
+    Get the full addon definition for a given key. Returns extensions, scenarios, and validation rules that the addon applies.
+
+    **Parameters:**
+
+    | Name | Type | Required | Description |
+    |------|------|----------|-------------|
+    | `key` | string | Yes | Addon key (e.g. `es-verifactu-v1`, `mx-cfdi-v4`). |
+  </Accordion>
+
+  <Accordion title="addon_list" icon="list">
+    List all available addons with their keys, names, descriptions, and dependencies. No parameters required.
+  </Accordion>
+</AccordionGroup>
+
+## Resources
+
+The server also exposes MCP [resources](https://modelcontextprotocol.io/specification/2025-03-26/server/resources) for browsing reference data:
+
+| URI | Description |
+|-----|-------------|
+| `gobl://schemas` | List all registered GOBL schema types |
+| `gobl://schemas/{path}` | JSON Schema definition for a specific type |
+| `gobl://regimes` | List all available tax regimes |
+| `gobl://regimes/{code}` | Tax regime definition by country code |
+| `gobl://addons` | List all available addons |
+| `gobl://addons/{key}` | Addon definition by key |
+
+## Example Conversation
+
+Here's an example of what you can do with the GOBL MCP server connected to an AI assistant:
+
+> **You:** Create a Spanish invoice from Seller SL (B85905495) to Buyer SL (B85905495) for consulting services at 1000 EUR with standard VAT, using Verifactu.
+
+The assistant will:
+
+1. Call `regime` with code `ES` to look up Spanish tax rules
+2. Call `addon` with key `es-verifactu-v1` to check Verifactu requirements
+3. Call `build` with the assembled invoice JSON to calculate totals and validate
+4. Return the complete, calculated invoice ready for processing

@@ -2,10 +2,10 @@
 title: Brazil NFS-e 1.X
 ---
 
-Key: <code>br-nfse-v1</code>
+Key: `br-nfse-v1`
 
 ## Extensions
-### CNAE code	
+### CNAE code
 
 The CNAE (National Classification of Economic Activities) code for a service.
 
@@ -15,9 +15,9 @@ List of codes from the IBGE (Brazilian Institute of Geography and Statistics):
 
 <Accordion title="br-nfse-cnae">
 
-Pattern: <code>^\d{2}[\s\.\-\/]?\d{2}[\s\.\-\/]?\d[\s\.\-\/]?\d{2}$</code>
+Pattern: `^\d{2}[\s\.\-\/]?\d{2}[\s\.\-\/]?\d[\s\.\-\/]?\d{2}$`
 </Accordion>
-### NBS code	
+### NBS code
 
 The NBS (Nomenclatura Brasileira de Serviços, Intangíveis e outras Operações que
 produzam Variações no Patrimônio) code for a service. NBS is the Brazilian
@@ -31,9 +31,9 @@ Official list of codes from the MDIC:
 
 <Accordion title="br-nfse-nbs">
 
-Pattern: <code>^\d[\.\s]?\d{4}[\.\s]?\d{2}[\.\s]?\d{2}$</code>
+Pattern: `^\d[\.\s]?\d{4}[\.\s]?\d{2}[\.\s]?\d{2}$`
 </Accordion>
-### Fiscal Incentive	
+### Fiscal Incentive
 
 Indicates whether a party benefits from a fiscal incentive.
 
@@ -41,10 +41,10 @@ Indicates whether a party benefits from a fiscal incentive.
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Has incentive |
-| <code>2</code> | Does not have incentive |
+| `1` | Has incentive |
+| `2` | Does not have incentive |
 </Accordion>
-### ISS Liability	
+### ISS Liability
 
 Indicates the ISS liability status, i.e., whether the ISS tax is due or not and why.
 
@@ -57,15 +57,15 @@ List of codes from the national NFSe ABRASF (v2.04) model:
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Liable |
-| <code>2</code> | Not subject |
-| <code>3</code> | Exempt |
-| <code>4</code> | Export |
-| <code>5</code> | Immune |
-| <code>6</code> | Suspended Judicially |
-| <code>7</code> | Suspended Administratively |
+| `1` | Liable |
+| `2` | Not subject |
+| `3` | Exempt |
+| `4` | Export |
+| `5` | Immune |
+| `6` | Suspended Judicially |
+| `7` | Suspended Administratively |
 </Accordion>
-### Service Code	
+### Service Code
 
 The service code as defined by the municipality. Typically, one of the codes listed
 in the Lei Complementar 116/2003, but municipalities can make their own changes.
@@ -76,7 +76,7 @@ For further details on the list of possible codes, see:
 
 <Accordion title="br-nfse-service">
 </Accordion>
-### Opting for "Simples Nacional" regime	
+### Opting for "Simples Nacional" regime
 
 Indicates whether a party is opting for the "Simples Nacional" (Regime Especial
 Unificado de Arrecadação de Tributos e Contribuições devidos pelas Microempresas e
@@ -86,10 +86,10 @@ Empresas de Pequeno Porte) tax regime
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Opt-in |
-| <code>2</code> | Opt-out |
+| `1` | Opt-in |
+| `2` | Opt-out |
 </Accordion>
-### Special Tax Regime	
+### Special Tax Regime
 
 Indicates a special tax regime that a party is subject to.
 
@@ -97,14 +97,14 @@ Indicates a special tax regime that a party is subject to.
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Municipal micro-enterprise |
-| <code>2</code> | Estimated |
-| <code>3</code> | Professional Society |
-| <code>4</code> | Cooperative |
-| <code>5</code> | Single micro-entrepreneur (MEI) |
-| <code>6</code> | Micro-enterprise or Small Business (ME EPP) |
+| `1` | Municipal micro-enterprise |
+| `2` | Estimated |
+| `3` | Professional Society |
+| `4` | Cooperative |
+| `5` | Single micro-entrepreneur (MEI) |
+| `6` | Micro-enterprise or Small Business (ME EPP) |
 </Accordion>
-### Operation Indicator	
+### Operation Indicator
 
 Indicates the operation type for the determination of the IBS and CBS taxes by the
 tax authorities.
@@ -117,9 +117,9 @@ List of possible values:
 
 <Accordion title="br-nfse-operation">
 
-Pattern: <code>^\d{6}$</code>
+Pattern: `^\d{6}$`
 </Accordion>
-### Tax Status Code (CST)	
+### Tax Status Code (CST)
 
 Indicates the tax status of the operation for the determination of the IBS and CBS
 taxes by the tax authorities.
@@ -132,9 +132,9 @@ List of possible values:
 
 <Accordion title="br-nfse-tax-status">
 
-Pattern: <code>^\d{3}$</code>
+Pattern: `^\d{3}$`
 </Accordion>
-### Tax Classification Code	
+### Tax Classification Code
 
 Indicates the tax classification code for the determination of the IBS and CBS taxes
 by the tax authorities.
@@ -147,5 +147,50 @@ List of possible values:
 
 <Accordion title="br-nfse-tax-class">
 
-Pattern: <code>^\d{6}$</code>
+Pattern: `^\d{6}$`
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-01`<br />Series is required |
+| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-02`<br />Code must be a positive integer |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-03`<br />Supplier is required |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-05`<br />Supplier tax ID code is required |
+| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-06`<br />Supplier name is required |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-07`<br />Supplier must have at least one address |
+| `supplier.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-08`<br />Supplier address must not be empty |
+| `supplier.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-09`<br />Supplier address requires a street |
+| `supplier.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-10`<br />Supplier address requires a number |
+| `supplier.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-11`<br />Supplier address requires a locality |
+| `supplier.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-12`<br />Supplier address requires a state |
+| `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-13`<br />Supplier address requires a postal code |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext require [br-ibge-municipality, br-nfse-simples, br-nfse-fiscal-incentive]</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-14`<br />Supplier requires 'br-ibge-municipality', 'br-nfse-simples', and 'br-nfse-fiscal-incentive' extensions |
+| `charges` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-15`<br />Charges are not supported by NFS-e |
+| `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-16`<br />Discounts are not supported by NFS-e |
+</Accordion>
+<Accordion title="bill.Line">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ISS</li></ul> | `GOBL-BR-NFSE-V1-BILL-LINE-01`<br />Line taxes must include the ISS category |
+</Accordion>
+<Accordion title="org.Item">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Ext require [br-nfse-service]</li></ul> | `GOBL-BR-NFSE-V1-ORG-ITEM-01`<br />Item requires 'br-nfse-service' extension |
+| `ext` | <ul class="gobl-test"><li>Ext require all or none of [br-nfse-operation, br-nfse-tax-status, br-nfse-tax-class]</li></ul> | `GOBL-BR-NFSE-V1-ORG-ITEM-02`<br />Item extensions 'br-nfse-operation', 'br-nfse-tax-status', and 'br-nfse-tax-class' must all be present or all absent |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>ISS category</li><li>Ext require [br-nfse-iss-liability]</li></ul> | `GOBL-BR-NFSE-V1-TAX-COMBO-01`<br />ISS tax combo requires 'br-nfse-iss-liability' extension |
+</Accordion>
+</AccordionGroup>

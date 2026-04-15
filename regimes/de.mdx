@@ -20,22 +20,22 @@ transactions and ZUGFeRD/Factur-X widely used for B2B.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>DE</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Berlin</code> |
+| Tax Country Code | `DE` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Berlin` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General rate | 19% | For the majority of sales of goods and services: it applies to all products or services for which no other rate is expressly provided. |
-| <code>reduced</code> | <code>standard</code> | Reduced rate | 7% | Applicable in particular to basic foodstuffs, books and magazines, cultural events, hotel accommodations, public transportation, medical products, or home renovation. |
+| `general` | `standard` | General rate | 19% | For the majority of sales of goods and services: it applies to all products or services for which no other rate is expressly provided. |
+| `reduced` | `standard` | Reduced rate | 7% | Applicable in particular to basic foodstuffs, books and magazines, cultural events, hotel accommodations, public transportation, medical products, or home renovation. |
 
 ## Correction Definitions
 
@@ -45,4 +45,40 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Umkehr der Steuerschuld. (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [DE]</li><li>Has tax ID code or identity with 'de-tax-number' key</li></ul> | `GOBL-DE-BILL-INVOICE-01`<br />Invoice DE supplier must have either tax ID code or identity with 'de-tax-number' key |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Is tax number</li><li>Matches ^(\d{2}/\d{3}/\d{5}\|\d{3}/\d{3}/\d{5}\|\d{3}/\d{4}/\d{4})$</li></ul> | `GOBL-DE-ORG-IDENTITY-01`<br />German tax number code must be in valid format |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [DE]</li><li>Valid</li></ul> | `GOBL-DE-TAX-IDENTITY-01`<br />Invalid German VAT identity code |
+</Accordion>
+</AccordionGroup>

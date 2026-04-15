@@ -11,10 +11,16 @@ Note represents a tax-related note, typically used for exemption reasons or othe
 
 ## Properties
 
-| Title      | Property | Type                                      | Req. | Description                                                                                                                                                      |
-|------------|----------|-------------------------------------------|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Category   | `cat`    | [cbc.Code](/draft-0/cbc/code)             |      | Tax category code from those available inside a region.                                                                                                          |
-| Key        | `key`    | [cbc.Key](/draft-0/cbc/key)               |      | Key usually identifies the tax rate key this note applies to (e.g. "exempt", "reverse-charge"), but may also be used for other identifiers depending on context. |
-| Text       | `text`   | string                                    | true | Text contains the exemption reason or explanation.                                                                                                               |
-| Extensions | `ext`    | [tax.Extensions](/draft-0/tax/extensions) |      | Extensions for additional structured data.                                                                                                                       |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Category | `cat` | [cbc.Code](/draft-0/cbc/code) | Tax category code from those available inside a region. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key usually identifies the tax rate key this note applies to (e.g. "exempt", "reverse-charge"), but may also be used for other identifiers depending on context. |
+| Text | `text` | string | Text contains the exemption reason or explanation. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for additional structured data. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `text` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-NOTE-01`<br />Tax note text is required |

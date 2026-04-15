@@ -11,14 +11,21 @@ An Attachment provides a structure to be used to attach documents inside a GOBL 
 
 ## Properties
 
-| Title       | Property      | Type                                | Req. | Description                                                                            |
-|-------------|---------------|-------------------------------------|------|----------------------------------------------------------------------------------------|
-| UUID        | `uuid`        | string                              |      | Universally Unique Identifier.                                                         |
-| Key         | `key`         | [cbc.Key](/draft-0/cbc/key)         |      | Key used to identify the attachment inside the document.                               |
-| Code        | `code`        | [cbc.Code](/draft-0/cbc/code)       |      | Code used to identify the payload of the attachment.                                   |
-| Name        | `name`        | string                              |      | Filename of the attachment, will override name retrieved from URL.                     |
-| Description | `description` | string                              |      | Details of why the attachment is being included and details on what it contains.       |
-| URL         | `url`         | string                              | true | URL of where to find the attachment.                                                   |
-| Digest      | `digest`      | [dsig.Digest](/draft-0/dsig/digest) |      | Digest is used to verify the integrity of the attachment when downloaded from the URL. |
-| MIME Type   | `mime`        | string                              |      | MIME type of the attachment.                                                           |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key used to identify the attachment inside the document. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code used to identify the payload of the attachment. |
+| Name | `name` | string | Filename of the attachment, will override name retrieved from URL. |
+| Description | `description` | string | Details of why the attachment is being included and details on what it contains. |
+| URL | `url` | string | URL of where to find the attachment. |
+| Digest | `digest` | [dsig.Digest](/draft-0/dsig/digest) | Digest is used to verify the integrity of the attachment when downloaded from the URL. |
+| MIME Type | `mime` | string | MIME type of the attachment. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `url` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Url</li></ul> | `GOBL-ORG-ATTACHMENT-01`<br />Attachment URL must be valid |
+| `mime` | <ul class="gobl-test"><li>One of [application/pdf, image/jpeg, image/png, text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.oasis.opendocument.spreadsheet]</li></ul> | `GOBL-ORG-ATTACHMENT-02`<br />Attachment MIME type must be of an expected types defined in EN16931-1:2017 |

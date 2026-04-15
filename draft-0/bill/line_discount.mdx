@@ -11,32 +11,38 @@ LineDiscount represents an amount deducted from the line, and will be applied be
 
 ## Properties
 
-| Title      | Property  | Type                                      | Req. | Description                                                                  |
-|------------|-----------|-------------------------------------------|------|------------------------------------------------------------------------------|
-| Key        | `key`     | [cbc.Key](/draft-0/cbc/key)               |      | Key for identifying the type of discount being applied.                      |
-| Code       | `code`    | [cbc.Code](/draft-0/cbc/code)             |      | Code or reference for this discount defined by the issuer                    |
-| Reason     | `reason`  | string                                    |      | Text description as to why the discount was applied                          |
-| Base       | `base`    | [num.Amount](/draft-0/num/amount)         |      | Base for percent calculations instead of the line's sum.                     |
-| Percent    | `percent` | [num.Percentage](/draft-0/num/percentage) |      | Percentage to apply to the base or line sum to calculate the discount amount |
-| Amount     | `amount`  | [num.Amount](/draft-0/num/amount)         |      | Fixed discount amount to apply (calculated if percent present)               |
-| Extensions | `ext`     | [tax.Extensions](/draft-0/tax/extensions) |      | Extension codes that apply to the discount                                   |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key for identifying the type of discount being applied. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code or reference for this discount defined by the issuer |
+| Reason | `reason` | string | Text description as to why the discount was applied |
+| Base | `base` | [num.Amount](/draft-0/num/amount) | Base for percent calculations instead of the line's sum. |
+| Percent | `percent` | [num.Percentage](/draft-0/num/percentage) | Percentage to apply to the base or line sum to calculate the discount amount |
+| Amount | `amount` | [num.Amount](/draft-0/num/amount) | Fixed discount amount to apply (calculated if percent present) |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension codes that apply to the discount |
 
 ## Key Values
 
-| Value               | Description                       |
-|---------------------|-----------------------------------|
-| `early-completion`  | Bonus for works ahead of schedule |
-| `military`          | Military Discount                 |
-| `work-accident`     | Work Accident Discount            |
-| `special-agreement` | Special Agreement Discount        |
-| `production-error`  | Production Error Discount         |
-| `new-outlet`        | New Outlet Discount               |
-| `sample`            | Sample Discount                   |
-| `end-of-range`      | End of Range Discount             |
-| `incoterm`          | Incoterm Discount                 |
-| `pos-threshold`     | Point of Sale Threshold Discount  |
-| `special-rebate`    | Special Rebate                    |
-| `temporary`         | Temporary                         |
-| `standard`          | Standard                          |
-| `yearly-turnover`   | Yearly Turnover                   |
+| Value | Description |
+|-------|-------------|
+| `early-completion` | Bonus for works ahead of schedule |
+| `military` | Military Discount |
+| `work-accident` | Work Accident Discount |
+| `special-agreement` | Special Agreement Discount |
+| `production-error` | Production Error Discount |
+| `new-outlet` | New Outlet Discount |
+| `sample` | Sample Discount |
+| `end-of-range` | End of Range Discount |
+| `incoterm` | Incoterm Discount |
+| `pos-threshold` | Point of Sale Threshold Discount |
+| `special-rebate` | Special Rebate |
+| `temporary` | Temporary |
+| `standard` | Standard |
+| `yearly-turnover` | Yearly Turnover |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `percent` | <ul class="gobl-test"><li>Base != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-LINEDISCOUNT-01`<br />Percent is required when base is set |

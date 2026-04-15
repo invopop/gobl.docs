@@ -11,16 +11,16 @@ FuelAccountLine represents a single fuel purchase made with an e-wallet issued b
 
 ## Properties
 
-| Title                      | Property               | Type                                                                       | Req. | Description                                                                        |
-|----------------------------|------------------------|----------------------------------------------------------------------------|------|------------------------------------------------------------------------------------|
-| Index                      | `i`                    | integer                                                                    |      | Index of the line starting from 1 (calculated)                                     |
-| E-wallet Identifier        | `e_wallet_id`          | [cbc.Code](/draft-0/cbc/code)                                              | true | Identifier of the e-wallet used to make the purchase (maps to `Identificador`).    |
-| Purchase Date and Time     | `purchase_date_time`   | [cal.DateTime](/draft-0/cal/date_time)                                     | true | Date and time of the purchase (maps to `Fecha`).                                   |
-| Vendor's Tax Identity Code | `vendor_tax_code`      | [cbc.Code](/draft-0/cbc/code)                                              | true | Tax Identity Code of the fuel's vendor (maps to `Rfc`)                             |
-| Service Station Code       | `service_station_code` | [cbc.Code](/draft-0/cbc/code)                                              | true | Code of the service station where the purchase was made (maps to `ClaveEstacion`). |
-| Quantity                   | `quantity`             | [num.Amount](/draft-0/num/amount)                                          | true | Amount of fuel units purchased (maps to `Cantidad`)                                |
-| Item                       | `item`                 | [regimes.mx.FuelAccountItem](/draft-0/regimes/mx/fuel_account_item)        | true | Details of the fuel purchased.                                                     |
-| Purchase Code              | `purchase_code`        | [cbc.Code](/draft-0/cbc/code)                                              | true | Identifier of the purchase (maps to `FolioOperacion`).                             |
-| Total                      | `total`                | [num.Amount](/draft-0/num/amount)                                          |      | Result of quantity multiplied by the unit price (maps to `Importe`).               |
-| Taxes                      | `taxes`                | array of [regimes.mx.FuelAccountTax](/draft-0/regimes/mx/fuel_account_tax) | true | Map of taxes applied to the purchase (maps to `Traslados`).                        |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Index | `i` | integer | Index of the line starting from 1 (calculated) |
+| E-wallet Identifier | `e_wallet_id` | [cbc.Code](/draft-0/cbc/code) | Identifier of the e-wallet used to make the purchase (maps to `Identificador`). |
+| Purchase Date and Time | `purchase_date_time` | [cal.DateTime](/draft-0/cal/date_time) | Date and time of the purchase (maps to `Fecha`). |
+| Vendor's Tax Identity Code | `vendor_tax_code` | [cbc.Code](/draft-0/cbc/code) | Tax Identity Code of the fuel's vendor (maps to `Rfc`) |
+| Service Station Code | `service_station_code` | [cbc.Code](/draft-0/cbc/code) | Code of the service station where the purchase was made (maps to `ClaveEstacion`). |
+| Quantity | `quantity` | [num.Amount](/draft-0/num/amount) | Amount of fuel units purchased (maps to `Cantidad`) |
+| Item | `item` | [regimes.mx.FuelAccountItem](/draft-0/regimes/mx/fuel_account_item) | Details of the fuel purchased. |
+| Purchase Code | `purchase_code` | [cbc.Code](/draft-0/cbc/code) | Identifier of the purchase (maps to `FolioOperacion`). |
+| Total | `total` | [num.Amount](/draft-0/num/amount) | Result of quantity multiplied by the unit price (maps to `Importe`). |
+| Taxes | `taxes` | array of [regimes.mx.FuelAccountTax](/draft-0/regimes/mx/fuel_account_tax) | Map of taxes applied to the purchase (maps to `Traslados`). |
 

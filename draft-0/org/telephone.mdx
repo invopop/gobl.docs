@@ -11,9 +11,15 @@ Telephone describes what is expected for a telephone number.
 
 ## Properties
 
-| Title  | Property | Type   | Req. | Description                                            |
-|--------|----------|--------|------|--------------------------------------------------------|
-| UUID   | `uuid`   | string |      | Universally Unique Identifier.                         |
-| Label  | `label`  | string |      | Identifier for this number.                            |
-| Number | `num`    | string | true | Free-text string that represents the telephone number. |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Label | `label` | string | Identifier for this number. |
+| Number | `num` | string | Free-text string that represents the telephone number. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-TELEPHONE-01`<br />Telephone number is required |

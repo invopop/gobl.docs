@@ -19,21 +19,21 @@ correcting invoices.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>AE</code> |
-| Currency | <code>AED</code> |
-| Base Time Zone | <code>Asia/Dubai</code> |
+| Tax Country Code | `AE` |
+| Currency | `AED` |
+| Base Time Zone | `Asia/Dubai` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 5% | Applies to most goods and services unless specified otherwise. |
+| `general` | `standard` | General Rate | 5% | Applies to most goods and services unless specified otherwise. |
 
 ## Correction Definitions
 
@@ -43,4 +43,37 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge (reverse-charge)
+</Accordion>
+
+<Accordion title="#simplified">
+
+**Filters:**
+- **Tags:** `simplified`
+
+**Output:**
+- **Note:** Simplified Tax Invoice (simplified)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [AE]</li><li>Matches ^\d{15}$</li></ul> | `GOBL-AE-TAX-IDENTITY-01`<br />Invalid UAE tax identity code |
+</Accordion>
+</AccordionGroup>

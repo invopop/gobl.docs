@@ -26,8 +26,13 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
-		"joinKeys": joinKeys,
-		"codeMap":  codeMap,
+		"joinKeys":      joinKeys,
+		"codeMap":       codeMap,
+		"extMap":        extMap,
+		"scenarioTitle": scenarioTitle,
+		"codeMessage":   codeMessage,
+		"testList":      testList,
+		"fieldCell":     fieldCell,
 	})
 	return g
 }
@@ -39,10 +44,24 @@ func (g *addonGenerator) generate() error {
 	if err := g.preceding(g.addon.Corrections); err != nil {
 		return err
 	}
+	if err := g.scenarios(); err != nil {
+		return err
+	}
 	if err := g.extensions(g.addon.Extensions); err != nil {
 		return err
 	}
+	if err := g.validationRules(g.getAddonRuleSections()); err != nil {
+		return err
+	}
 	return nil
+}
+
+func (g *addonGenerator) getAddonRuleSections() []RuleSection {
+	topSet := findSetByName(g.addon.Key.String())
+	if topSet == nil {
+		return nil
+	}
+	return ruleSections(topSet)
 }
 
 func (g *addonGenerator) base() error {
@@ -51,7 +70,7 @@ func (g *addonGenerator) base() error {
 		title: {{t .Name}}
 		---
 
-		Key: <code>{{ .Key }}</code>
+		Key: ~{{ .Key }}~
 
 		{{- if .Description}}
 
@@ -66,6 +85,65 @@ func (g *addonGenerator) base() error {
 		- [{{t .Title}}]({{ .URL }})
 		{{- end}}
 		{{- end}}
+	`))
+}
+
+func (g *addonGenerator) scenarios() error {
+	if len(g.addon.Scenarios) == 0 {
+		return nil
+	}
+	return g.process(here.Doc(`
+
+
+		## Scenarios
+
+		{{- range .Scenarios }}
+
+		### {{ .Schema }}
+
+		{{- range .List }}
+
+		<Accordion title="{{ scenarioTitle . }}">
+
+		**Filters:**
+
+		{{- if .Types }}
+		- **Types:** {{ joinKeys .Types }}
+		{{- end }}
+		{{- if .Tags }}
+		- **Tags:** {{ joinKeys .Tags }}
+		{{- end }}
+		{{- if .ExtKey }}
+		- **Extension Key:** ~{{ .ExtKey }}~
+		{{- end }}
+		{{- if .ExtCode }}
+		- **Extension Code:** ~{{ .ExtCode }}~
+		{{- end }}
+		{{- if .Filter }}
+		- **Filter:** *(custom)*
+		{{- end }}
+		{{- if not .Types }}{{ if not .Tags }}{{ if not .ExtKey }}{{ if not .Filter }}
+		- *(none)*
+		{{- end }}{{ end }}{{ end }}{{ end }}
+
+		**Output:**
+
+		{{- if .Note }}
+		- **Note:** {{ .Note.Text }}{{ if .Note.Key }} ({{ .Note.Key }}){{ end }}
+		{{- end }}
+		{{- if .Codes }}
+		- **Codes:** {{ codeMap .Codes }}
+		{{- end }}
+		{{- if .Ext }}
+		- **Extensions:** {{ extMap .Ext }}
+		{{- end }}
+		{{- if not .Note }}{{ if not .Codes }}{{ if not .Ext }}
+		- *(none)*
+		{{- end }}{{ end }}{{ end }}
+		</Accordion>
+		{{- end }}
+		{{- end }}
+
 	`))
 }
 

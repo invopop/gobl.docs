@@ -23,24 +23,24 @@ supported for invoice corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>PT</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Lisbon</code> |
+| Tax Country Code | `PT` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Lisbon` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | pt-region | Percents | Description |
 | ---- | ---- | ---- | --------- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | <br/>PT-AC<br/>PT-MA | 23.0% <br/>16.0% <br/>22.0% |  |
-| <code>intermediate</code> | <code>standard</code> | Intermediate Rate | <br/>PT-AC<br/>PT-MA | 13.0% <br/>9.0% <br/>12.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | <br/>PT-AC<br/>PT-MA | 6.0% <br/>4.0% <br/>4.0% |  |
-| <code>other</code> | <code>standard</code> | Other |  |  |  |
+| `general` | `standard` | General Rate | <br/>PT-AC<br/>PT-MA | 23.0% <br/>16.0% <br/>22.0% |  |
+| `intermediate` | `standard` | Intermediate Rate | <br/>PT-AC<br/>PT-MA | 13.0% <br/>9.0% <br/>12.0% |  |
+| `reduced` | `standard` | Reduced Rate | <br/>PT-AC<br/>PT-MA | 6.0% <br/>4.0% <br/>4.0% |  |
+| `other` | `standard` | Other |  |  |  |
 
 ## Correction Definitions
 
@@ -50,11 +50,11 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
 
 ## Extensions
-### Region Code	
+### Region Code
 
 SAF-T's `TaxCountryRegion` (País ou região do imposto) specifies the region of taxation
 (Portugal mainland, Açores, Madeira or any ISO country) in a Portuguese invoice. Each
@@ -102,255 +102,289 @@ For example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>PT</code> | Mainland Portugal |
-| <code>PT-AC</code> | Azores |
-| <code>PT-MA</code> | Madeira |
-| <code>AF</code> | Afghanistan |
-| <code>AX</code> | Åland Islands |
-| <code>AL</code> | Albania |
-| <code>DZ</code> | Algeria |
-| <code>AS</code> | American Samoa |
-| <code>AD</code> | Andorra |
-| <code>AO</code> | Angola |
-| <code>AI</code> | Anguilla |
-| <code>AQ</code> | Antarctica |
-| <code>AG</code> | Antigua and Barbuda |
-| <code>AR</code> | Argentina |
-| <code>AM</code> | Armenia |
-| <code>AW</code> | Aruba |
-| <code>AU</code> | Australia |
-| <code>AT</code> | Austria |
-| <code>AZ</code> | Azerbaijan |
-| <code>BS</code> | Bahamas |
-| <code>BH</code> | Bahrain |
-| <code>BD</code> | Bangladesh |
-| <code>BB</code> | Barbados |
-| <code>BY</code> | Belarus |
-| <code>BE</code> | Belgium |
-| <code>BZ</code> | Belize |
-| <code>BJ</code> | Benin |
-| <code>BM</code> | Bermuda |
-| <code>BT</code> | Bhutan |
-| <code>BO</code> | Bolivia, Plurinational State of |
-| <code>BQ</code> | Bonaire, Sint Eustatius and Saba |
-| <code>BA</code> | Bosnia and Herzegovina |
-| <code>BW</code> | Botswana |
-| <code>BV</code> | Bouvet Island |
-| <code>BR</code> | Brazil |
-| <code>IO</code> | British Indian Ocean Territory |
-| <code>BN</code> | Brunei Darussalam |
-| <code>BG</code> | Bulgaria |
-| <code>BF</code> | Burkina Faso |
-| <code>BI</code> | Burundi |
-| <code>CV</code> | Cabo Verde |
-| <code>KH</code> | Cambodia |
-| <code>CM</code> | Cameroon |
-| <code>CA</code> | Canada |
-| <code>KY</code> | Cayman Islands |
-| <code>CF</code> | Central African Republic |
-| <code>TD</code> | Chad |
-| <code>CL</code> | Chile |
-| <code>CN</code> | China |
-| <code>CX</code> | Christmas Island |
-| <code>CC</code> | Cocos (Keeling) Islands |
-| <code>CO</code> | Colombia |
-| <code>KM</code> | Comoros |
-| <code>CG</code> | Congo |
-| <code>CD</code> | Congo, Democratic Republic of the |
-| <code>CK</code> | Cook Islands |
-| <code>CR</code> | Costa Rica |
-| <code>CI</code> | Côte d'Ivoire |
-| <code>HR</code> | Croatia |
-| <code>CU</code> | Cuba |
-| <code>CW</code> | Curaçao |
-| <code>CY</code> | Cyprus |
-| <code>CZ</code> | Czechia |
-| <code>DK</code> | Denmark |
-| <code>DJ</code> | Djibouti |
-| <code>DM</code> | Dominica |
-| <code>DO</code> | Dominican Republic |
-| <code>EC</code> | Ecuador |
-| <code>EG</code> | Egypt |
-| <code>SV</code> | El Salvador |
-| <code>GQ</code> | Equatorial Guinea |
-| <code>ER</code> | Eritrea |
-| <code>EE</code> | Estonia |
-| <code>SZ</code> | Eswatini |
-| <code>ET</code> | Ethiopia |
-| <code>FK</code> | Falkland Islands |
-| <code>FO</code> | Faroe Islands |
-| <code>FJ</code> | Fiji |
-| <code>FI</code> | Finland |
-| <code>FR</code> | France |
-| <code>GF</code> | French Guiana |
-| <code>PF</code> | French Polynesia |
-| <code>TF</code> | French Southern Territories |
-| <code>GA</code> | Gabon |
-| <code>GM</code> | Gambia |
-| <code>GE</code> | Georgia |
-| <code>DE</code> | Germany |
-| <code>GH</code> | Ghana |
-| <code>GI</code> | Gibraltar |
-| <code>GR</code> | Greece |
-| <code>GL</code> | Greenland |
-| <code>GD</code> | Grenada |
-| <code>GP</code> | Guadeloupe |
-| <code>GU</code> | Guam |
-| <code>GT</code> | Guatemala |
-| <code>GG</code> | Guernsey |
-| <code>GN</code> | Guinea |
-| <code>GW</code> | Guinea-Bissau |
-| <code>GY</code> | Guyana |
-| <code>HT</code> | Haiti |
-| <code>HM</code> | Heard Island and McDonald Islands |
-| <code>VA</code> | Holy See (the) |
-| <code>HN</code> | Honduras |
-| <code>HK</code> | Hong Kong |
-| <code>HU</code> | Hungary |
-| <code>IS</code> | Iceland |
-| <code>IN</code> | India |
-| <code>ID</code> | Indonesia |
-| <code>IR</code> | Iran, Islamic Republic of |
-| <code>IQ</code> | Iraq |
-| <code>IE</code> | Ireland |
-| <code>IM</code> | Isle of Man |
-| <code>IL</code> | Israel |
-| <code>IT</code> | Italy |
-| <code>JM</code> | Jamaica |
-| <code>JP</code> | Japan |
-| <code>JE</code> | Jersey |
-| <code>JO</code> | Jordan |
-| <code>KZ</code> | Kazakhstan |
-| <code>KE</code> | Kenya |
-| <code>KI</code> | Kiribati |
-| <code>KP</code> | Korea, Democratic People's Republic of |
-| <code>KR</code> | Korea, Republic of |
-| <code>KW</code> | Kuwait |
-| <code>KG</code> | Kyrgyzstan |
-| <code>LA</code> | Lao People's Democratic Republic |
-| <code>LV</code> | Latvia |
-| <code>LB</code> | Lebanon |
-| <code>LS</code> | Lesotho |
-| <code>LR</code> | Liberia |
-| <code>LY</code> | Libya |
-| <code>LI</code> | Liechtenstein |
-| <code>LT</code> | Lithuania |
-| <code>LU</code> | Luxembourg |
-| <code>MO</code> | Macao |
-| <code>MK</code> | North Macedonia |
-| <code>MG</code> | Madagascar |
-| <code>MW</code> | Malawi |
-| <code>MY</code> | Malaysia |
-| <code>MV</code> | Maldives |
-| <code>ML</code> | Mali |
-| <code>MT</code> | Malta |
-| <code>MH</code> | Marshall Islands |
-| <code>MQ</code> | Martinique |
-| <code>MR</code> | Mauritania |
-| <code>MU</code> | Mauritius |
-| <code>YT</code> | Mayotte |
-| <code>MX</code> | Mexico |
-| <code>FM</code> | Micronesia, Federated States of |
-| <code>MD</code> | Moldova, Republic of |
-| <code>MC</code> | Monaco |
-| <code>MN</code> | Mongolia |
-| <code>ME</code> | Montenegro |
-| <code>MS</code> | Montserrat |
-| <code>MA</code> | Morocco |
-| <code>MZ</code> | Mozambique |
-| <code>MM</code> | Myanmar |
-| <code>NA</code> | Namibia |
-| <code>NR</code> | Nauru |
-| <code>NP</code> | Nepal |
-| <code>NL</code> | Netherlands |
-| <code>NC</code> | New Caledonia |
-| <code>NZ</code> | New Zealand |
-| <code>NI</code> | Nicaragua |
-| <code>NE</code> | Niger |
-| <code>NG</code> | Nigeria |
-| <code>NU</code> | Niue |
-| <code>NF</code> | Norfolk Island |
-| <code>MP</code> | Northern Mariana Islands |
-| <code>NO</code> | Norway |
-| <code>OM</code> | Oman |
-| <code>PK</code> | Pakistan |
-| <code>PW</code> | Palau |
-| <code>PS</code> | Palestine, State of |
-| <code>PA</code> | Panama |
-| <code>PG</code> | Papua New Guinea |
-| <code>PY</code> | Paraguay |
-| <code>PE</code> | Peru |
-| <code>PH</code> | Philippines |
-| <code>PN</code> | Pitcairn |
-| <code>PL</code> | Poland |
-| <code>PR</code> | Puerto Rico |
-| <code>QA</code> | Qatar |
-| <code>RE</code> | Réunion |
-| <code>RO</code> | Romania |
-| <code>RU</code> | Russian Federation |
-| <code>RW</code> | Rwanda |
-| <code>BL</code> | Saint Barthélemy |
-| <code>SH</code> | Saint Helena, Ascension and Tristan da Cunha |
-| <code>KN</code> | Saint Kitts and Nevis |
-| <code>LC</code> | Saint Lucia |
-| <code>MF</code> | Saint Martin (French part) |
-| <code>PM</code> | Saint Pierre and Miquelon |
-| <code>VC</code> | Saint Vincent and the Grenadines |
-| <code>WS</code> | Samoa |
-| <code>SM</code> | San Marino |
-| <code>ST</code> | Sao Tome and Principe |
-| <code>SA</code> | Saudi Arabia |
-| <code>SN</code> | Senegal |
-| <code>RS</code> | Serbia |
-| <code>SC</code> | Seychelles |
-| <code>SL</code> | Sierra Leone |
-| <code>SG</code> | Singapore |
-| <code>SX</code> | Sint Maarten (Dutch part) |
-| <code>SK</code> | Slovakia |
-| <code>SI</code> | Slovenia |
-| <code>SB</code> | Solomon Islands |
-| <code>SO</code> | Somalia |
-| <code>ZA</code> | South Africa |
-| <code>GS</code> | South Georgia and the South Sandwich Islands |
-| <code>SS</code> | South Sudan |
-| <code>ES</code> | Spain |
-| <code>LK</code> | Sri Lanka |
-| <code>SD</code> | Sudan |
-| <code>SR</code> | Suriname |
-| <code>SJ</code> | Svalbard and Jan Mayen |
-| <code>SE</code> | Sweden |
-| <code>CH</code> | Switzerland |
-| <code>SY</code> | Syrian Arab Republic |
-| <code>TW</code> | Taiwan (Province of China) |
-| <code>TJ</code> | Tajikistan |
-| <code>TZ</code> | Tanzania, the United Republic of |
-| <code>TH</code> | Thailand |
-| <code>TL</code> | Timor-Leste |
-| <code>TG</code> | Togo |
-| <code>TK</code> | Tokelau |
-| <code>TO</code> | Tonga |
-| <code>TT</code> | Trinidad and Tobago |
-| <code>TN</code> | Tunisia |
-| <code>TR</code> | Türkiye |
-| <code>TM</code> | Turkmenistan |
-| <code>TC</code> | Turks and Caicos Islands |
-| <code>TV</code> | Tuvalu |
-| <code>UG</code> | Uganda |
-| <code>UA</code> | Ukraine |
-| <code>AE</code> | United Arab Emirates |
-| <code>GB</code> | United Kingdom |
-| <code>US</code> | United States of America |
-| <code>UM</code> | United States Minor Outlying Islands |
-| <code>UY</code> | Uruguay |
-| <code>UZ</code> | Uzbekistan |
-| <code>VU</code> | Vanuatu |
-| <code>VE</code> | Venezuela, Bolivarian Republic of |
-| <code>VN</code> | Viet Nam |
-| <code>VG</code> | Virgin Islands (British) |
-| <code>VI</code> | Virgin Islands (U.S.) |
-| <code>WF</code> | Wallis and Futuna |
-| <code>EH</code> | Western Sahara |
-| <code>YE</code> | Yemen |
-| <code>ZM</code> | Zambia |
-| <code>ZW</code> | Zimbabwe |
+| `PT` | Mainland Portugal |
+| `PT-AC` | Azores |
+| `PT-MA` | Madeira |
+| `AF` | Afghanistan |
+| `AX` | Åland Islands |
+| `AL` | Albania |
+| `DZ` | Algeria |
+| `AS` | American Samoa |
+| `AD` | Andorra |
+| `AO` | Angola |
+| `AI` | Anguilla |
+| `AQ` | Antarctica |
+| `AG` | Antigua and Barbuda |
+| `AR` | Argentina |
+| `AM` | Armenia |
+| `AW` | Aruba |
+| `AU` | Australia |
+| `AT` | Austria |
+| `AZ` | Azerbaijan |
+| `BS` | Bahamas |
+| `BH` | Bahrain |
+| `BD` | Bangladesh |
+| `BB` | Barbados |
+| `BY` | Belarus |
+| `BE` | Belgium |
+| `BZ` | Belize |
+| `BJ` | Benin |
+| `BM` | Bermuda |
+| `BT` | Bhutan |
+| `BO` | Bolivia, Plurinational State of |
+| `BQ` | Bonaire, Sint Eustatius and Saba |
+| `BA` | Bosnia and Herzegovina |
+| `BW` | Botswana |
+| `BV` | Bouvet Island |
+| `BR` | Brazil |
+| `IO` | British Indian Ocean Territory |
+| `BN` | Brunei Darussalam |
+| `BG` | Bulgaria |
+| `BF` | Burkina Faso |
+| `BI` | Burundi |
+| `CV` | Cabo Verde |
+| `KH` | Cambodia |
+| `CM` | Cameroon |
+| `CA` | Canada |
+| `KY` | Cayman Islands |
+| `CF` | Central African Republic |
+| `TD` | Chad |
+| `CL` | Chile |
+| `CN` | China |
+| `CX` | Christmas Island |
+| `CC` | Cocos (Keeling) Islands |
+| `CO` | Colombia |
+| `KM` | Comoros |
+| `CG` | Congo |
+| `CD` | Congo, Democratic Republic of the |
+| `CK` | Cook Islands |
+| `CR` | Costa Rica |
+| `CI` | Côte d'Ivoire |
+| `HR` | Croatia |
+| `CU` | Cuba |
+| `CW` | Curaçao |
+| `CY` | Cyprus |
+| `CZ` | Czechia |
+| `DK` | Denmark |
+| `DJ` | Djibouti |
+| `DM` | Dominica |
+| `DO` | Dominican Republic |
+| `EC` | Ecuador |
+| `EG` | Egypt |
+| `SV` | El Salvador |
+| `GQ` | Equatorial Guinea |
+| `ER` | Eritrea |
+| `EE` | Estonia |
+| `SZ` | Eswatini |
+| `ET` | Ethiopia |
+| `FK` | Falkland Islands |
+| `FO` | Faroe Islands |
+| `FJ` | Fiji |
+| `FI` | Finland |
+| `FR` | France |
+| `GF` | French Guiana |
+| `PF` | French Polynesia |
+| `TF` | French Southern Territories |
+| `GA` | Gabon |
+| `GM` | Gambia |
+| `GE` | Georgia |
+| `DE` | Germany |
+| `GH` | Ghana |
+| `GI` | Gibraltar |
+| `GR` | Greece |
+| `GL` | Greenland |
+| `GD` | Grenada |
+| `GP` | Guadeloupe |
+| `GU` | Guam |
+| `GT` | Guatemala |
+| `GG` | Guernsey |
+| `GN` | Guinea |
+| `GW` | Guinea-Bissau |
+| `GY` | Guyana |
+| `HT` | Haiti |
+| `HM` | Heard Island and McDonald Islands |
+| `VA` | Holy See (the) |
+| `HN` | Honduras |
+| `HK` | Hong Kong |
+| `HU` | Hungary |
+| `IS` | Iceland |
+| `IN` | India |
+| `ID` | Indonesia |
+| `IR` | Iran, Islamic Republic of |
+| `IQ` | Iraq |
+| `IE` | Ireland |
+| `IM` | Isle of Man |
+| `IL` | Israel |
+| `IT` | Italy |
+| `JM` | Jamaica |
+| `JP` | Japan |
+| `JE` | Jersey |
+| `JO` | Jordan |
+| `KZ` | Kazakhstan |
+| `KE` | Kenya |
+| `KI` | Kiribati |
+| `KP` | Korea, Democratic People's Republic of |
+| `KR` | Korea, Republic of |
+| `KW` | Kuwait |
+| `KG` | Kyrgyzstan |
+| `LA` | Lao People's Democratic Republic |
+| `LV` | Latvia |
+| `LB` | Lebanon |
+| `LS` | Lesotho |
+| `LR` | Liberia |
+| `LY` | Libya |
+| `LI` | Liechtenstein |
+| `LT` | Lithuania |
+| `LU` | Luxembourg |
+| `MO` | Macao |
+| `MK` | North Macedonia |
+| `MG` | Madagascar |
+| `MW` | Malawi |
+| `MY` | Malaysia |
+| `MV` | Maldives |
+| `ML` | Mali |
+| `MT` | Malta |
+| `MH` | Marshall Islands |
+| `MQ` | Martinique |
+| `MR` | Mauritania |
+| `MU` | Mauritius |
+| `YT` | Mayotte |
+| `MX` | Mexico |
+| `FM` | Micronesia, Federated States of |
+| `MD` | Moldova, Republic of |
+| `MC` | Monaco |
+| `MN` | Mongolia |
+| `ME` | Montenegro |
+| `MS` | Montserrat |
+| `MA` | Morocco |
+| `MZ` | Mozambique |
+| `MM` | Myanmar |
+| `NA` | Namibia |
+| `NR` | Nauru |
+| `NP` | Nepal |
+| `NL` | Netherlands |
+| `NC` | New Caledonia |
+| `NZ` | New Zealand |
+| `NI` | Nicaragua |
+| `NE` | Niger |
+| `NG` | Nigeria |
+| `NU` | Niue |
+| `NF` | Norfolk Island |
+| `MP` | Northern Mariana Islands |
+| `NO` | Norway |
+| `OM` | Oman |
+| `PK` | Pakistan |
+| `PW` | Palau |
+| `PS` | Palestine, State of |
+| `PA` | Panama |
+| `PG` | Papua New Guinea |
+| `PY` | Paraguay |
+| `PE` | Peru |
+| `PH` | Philippines |
+| `PN` | Pitcairn |
+| `PL` | Poland |
+| `PR` | Puerto Rico |
+| `QA` | Qatar |
+| `RE` | Réunion |
+| `RO` | Romania |
+| `RU` | Russian Federation |
+| `RW` | Rwanda |
+| `BL` | Saint Barthélemy |
+| `SH` | Saint Helena, Ascension and Tristan da Cunha |
+| `KN` | Saint Kitts and Nevis |
+| `LC` | Saint Lucia |
+| `MF` | Saint Martin (French part) |
+| `PM` | Saint Pierre and Miquelon |
+| `VC` | Saint Vincent and the Grenadines |
+| `WS` | Samoa |
+| `SM` | San Marino |
+| `ST` | Sao Tome and Principe |
+| `SA` | Saudi Arabia |
+| `SN` | Senegal |
+| `RS` | Serbia |
+| `SC` | Seychelles |
+| `SL` | Sierra Leone |
+| `SG` | Singapore |
+| `SX` | Sint Maarten (Dutch part) |
+| `SK` | Slovakia |
+| `SI` | Slovenia |
+| `SB` | Solomon Islands |
+| `SO` | Somalia |
+| `ZA` | South Africa |
+| `GS` | South Georgia and the South Sandwich Islands |
+| `SS` | South Sudan |
+| `ES` | Spain |
+| `LK` | Sri Lanka |
+| `SD` | Sudan |
+| `SR` | Suriname |
+| `SJ` | Svalbard and Jan Mayen |
+| `SE` | Sweden |
+| `CH` | Switzerland |
+| `SY` | Syrian Arab Republic |
+| `TW` | Taiwan (Province of China) |
+| `TJ` | Tajikistan |
+| `TZ` | Tanzania, the United Republic of |
+| `TH` | Thailand |
+| `TL` | Timor-Leste |
+| `TG` | Togo |
+| `TK` | Tokelau |
+| `TO` | Tonga |
+| `TT` | Trinidad and Tobago |
+| `TN` | Tunisia |
+| `TR` | Türkiye |
+| `TM` | Turkmenistan |
+| `TC` | Turks and Caicos Islands |
+| `TV` | Tuvalu |
+| `UG` | Uganda |
+| `UA` | Ukraine |
+| `AE` | United Arab Emirates |
+| `GB` | United Kingdom |
+| `US` | United States of America |
+| `UM` | United States Minor Outlying Islands |
+| `UY` | Uruguay |
+| `UZ` | Uzbekistan |
+| `VU` | Vanuatu |
+| `VE` | Venezuela, Bolivarian Republic of |
+| `VN` | Viet Nam |
+| `VG` | Virgin Islands (British) |
+| `VI` | Virgin Islands (U.S.) |
+| `WF` | Wallis and Futuna |
+| `EH` | Western Sahara |
+| `YE` | Yemen |
+| `ZM` | Zambia |
+| `ZW` | Zimbabwe |
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Value date not after issue date</li></ul> | `GOBL-PT-BILL-INVOICE-11`<br />Value date must not be after issue date |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Operation date not after issue date</li></ul> | `GOBL-PT-BILL-INVOICE-12`<br />Operation date must not be after issue date |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Preceding dates not after issue date</li></ul> | `GOBL-PT-BILL-INVOICE-13`<br />Preceding document issue dates must not be after invoice issue date |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Advance dates not after issue date</li></ul> | `GOBL-PT-BILL-INVOICE-14`<br />Advance payment dates must not be after invoice issue date |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Due dates not before issue date</li></ul> | `GOBL-PT-BILL-INVOICE-15`<br />Payment due dates must not be before invoice issue date |
+| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>One of [standard, credit-note, debit-note, proforma, other]</li></ul> | `GOBL-PT-BILL-INVOICE-01`<br />Invoice type is not valid for Portugal |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-BILL-INVOICE-02`<br />Preceding is required for credit and debit notes |
+| `supplier.tax_id` | <ul class="gobl-test"><li>Context: regime in [PT]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-BILL-INVOICE-03`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li>Context: regime in [PT]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-BILL-INVOICE-04`<br />Supplier tax ID code is required |
+| `lines[*].quantity` | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-05`<br />Line quantity must be zero or positive |
+| `lines[*].item.price` | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-06`<br />Item price must be zero or positive |
+| `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Context: regime in [PT]</li><li>Min 0</li></ul> | `GOBL-PT-BILL-INVOICE-07`<br />Due amount must be zero or positive |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>String(Category) == "VAT"</li><li>Ext require [pt-region]</li></ul> | `GOBL-PT-TAX-COMBO-01`<br />Pt-region extension is required for VAT |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [PT]</li><li>Valid</li></ul> | `GOBL-PT-TAX-IDENTITY-01`<br />Invalid Portuguese NIF tax identity code |
+</Accordion>
+</AccordionGroup>

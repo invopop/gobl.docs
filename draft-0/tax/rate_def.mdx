@@ -11,12 +11,21 @@ RateDef defines a single rate inside a category
 
 ## Properties
 
-| Title       | Property | Type                                                     | Req. | Description                                                                                                                                                                                              |
-|-------------|----------|----------------------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Rate        | `rate`   | [cbc.Key](/draft-0/cbc/key)                              | true | Rate defines the key for which this rate applies.                                                                                                                                                        |
-| Keys        | `keys`   | array of [cbc.Key](/draft-0/cbc/key)                     |      | Keys identifies the set of tax keys defined in the category that this rate can be used with.                                                                                                             |
-| Name        | `name`   | [i18n.String](/draft-0/i18n/string)                      | true | Human name of the rate                                                                                                                                                                                   |
-| Description | `desc`   | [i18n.String](/draft-0/i18n/string)                      |      | Useful description of the rate.                                                                                                                                                                          |
-| Values      | `values` | array of [tax.RateValueDef](/draft-0/tax/rate_value_def) |      | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
-| Meta        | `meta`   | [cbc.Meta](/draft-0/cbc/meta)                            |      | Meta contains additional information about the rate that is relevant for local frequently used implementations.                                                                                          |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Rate | `rate` | [cbc.Key](/draft-0/cbc/key) | Rate defines the key for which this rate applies. |
+| Keys | `keys` | array of [cbc.Key](/draft-0/cbc/key) | Keys identifies the set of tax keys defined in the category that this rate can be used with. |
+| Name | `name` | [i18n.String](/draft-0/i18n/string) | Human name of the rate |
+| Description | `desc` | [i18n.String](/draft-0/i18n/string) | Useful description of the rate. |
+| Values | `values` | array of [tax.RateValueDef](/draft-0/tax/rate_value_def) | Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Meta contains additional information about the rate that is relevant for local frequently used implementations. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `rate` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-RATEDEF-01`<br />Rate is required |
+| `name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-RATEDEF-02`<br />Name is required |
+| `values` | <ul class="gobl-test"><li>Date order</li></ul> | `GOBL-TAX-RATEDEF-03`<br />Rate values must be in descending chronological order |
+| `values[*].percent` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-RATEDEF-04`<br />Rate value percent is required |

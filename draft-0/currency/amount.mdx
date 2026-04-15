@@ -11,9 +11,15 @@ An Amount represents a monetary value in a specific currency.
 
 ## Properties
 
-| Title    | Property   | Type                                    | Req. | Description                                                                                    |
-|----------|------------|-----------------------------------------|------|------------------------------------------------------------------------------------------------|
-| Label    | `label`    | string                                  |      | Label allows for additional information to be added to the currency Amount that may be useful. |
-| Currency | `currency` | [currency.Code](/draft-0/currency/code) | true | Code defines the currency for this amount.                                                     |
-| Value    | `value`    | [num.Amount](/draft-0/num/amount)       | true | Value is the amount in the currency.                                                           |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Label | `label` | string | Label allows for additional information to be added to the currency Amount that may be useful. |
+| Currency | `currency` | [currency.Code](/draft-0/currency/code) | Code defines the currency for this amount. |
+| Value | `value` | [num.Amount](/draft-0/num/amount) | Value is the amount in the currency. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `currency` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-CURRENCY-AMOUNT-01`<br />Currency is required |

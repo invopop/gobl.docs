@@ -25,26 +25,26 @@ Individual) for individual micro-entrepreneurs.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>BR</code> |
-| Currency | <code>BRL</code> |
-| Base Time Zone | <code>America/Sao_Paulo</code> |
+| Tax Country Code | `BR` |
+| Currency | `BRL` |
+| Base Time Zone | `America/Sao_Paulo` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>ISS</code> | ISS | Municipal Service Tax |
-| <code>ICMS</code> | ICMS | State value-added tax |
-| <code>IPI</code> | IPI | Federal value-added Tax |
-| <code>PIS</code> | PIS | Social Integration Program |
-| <code>PISRet</code> | PIS (Retained) | Social Integration Program Retained |
-| <code>COFINS</code> | COFINS | Contribution for the Financing of Social Security |
-| <code>COFINSRet</code> | COFINS (Retained) | Contribution for the Financing of Social Security Retained |
-| <code>CSLL</code> | CSLL | Social Contribution on Net Profit |
-| <code>INSS</code> | INSS | National Social Security Institute Withholding |
-| <code>IRRF</code> | IRRF | Income Tax Withheld at Source |
-| <code>IBS</code> | IBS | Goods and Services Tax |
-| <code>CBS</code> | CBS | Federal Goods and Services Contribution |
+| `ISS` | ISS | Municipal Service Tax |
+| `ICMS` | ICMS | State value-added tax |
+| `IPI` | IPI | Federal value-added Tax |
+| `PIS` | PIS | Social Integration Program |
+| `PISRet` | PIS (Retained) | Social Integration Program Retained |
+| `COFINS` | COFINS | Contribution for the Financing of Social Security |
+| `COFINSRet` | COFINS (Retained) | Contribution for the Financing of Social Security Retained |
+| `CSLL` | CSLL | Social Contribution on Net Profit |
+| `INSS` | INSS | National Social Security Institute Withholding |
+| `IRRF` | IRRF | Income Tax Withheld at Source |
+| `IBS` | IBS | Goods and Services Tax |
+| `CBS` | CBS | Federal Goods and Services Contribution |
 
 ## Correction Definitions
 
@@ -54,15 +54,34 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
 
 ## Extensions
-### IBGE Municipality Code	
+### IBGE Municipality Code
 
 The municipality code as defined by the IBGE (Brazilian Institute of Geography and
 Statistics).
 
 <Accordion title="br-ibge-municipality">
 
-Pattern: <code>^\d{7}$</code>
+Pattern: `^\d{7}$`
 </Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="org.Party">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Is Brazilian party</li><li>Ext 'br-ibge-municipality' matches pattern '^\d{7}$'</li></ul> | `GOBL-BR-ORG-PARTY-01`<br />Brazilian party ext must define a valid 'br-ibge-municipality' code |
+| `addresses[*].state` | <ul class="gobl-test"><li>String(Country) in ['','BR']</li><li>Code in [AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO]</li></ul> | `GOBL-BR-ORG-PARTY-02`<br />Brazilian state must be one of the valid states |
+| `addresses[*].code` | <ul class="gobl-test"><li>String(Country) in ['','BR']</li><li>Matches ^\d{5}-?\d{3}$</li></ul> | `GOBL-BR-ORG-PARTY-03`<br />Brazilian postal code must match the valid format |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [BR]</li><li>Valid</li></ul> | `GOBL-BR-TAX-IDENTITY-01`<br />Invalid Brazilian tax identity code |
+</Accordion>
+</AccordionGroup>

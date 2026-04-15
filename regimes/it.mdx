@@ -26,30 +26,30 @@ corrections.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>IT</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Rome</code> |
+| Tax Country Code | `IT` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Rome` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
-| <code>IRPEF</code> | IRPEF | Personal Income Tax |
-| <code>IRES</code> | IRES | Corporate Income Tax |
-| <code>INPS</code> | INPS Contribution | Contribution to the National Social Security Institute |
-| <code>ENASARCO</code> | ENASARCO Contribution | Contribution to the National Welfare Board for Sales Agents and Representatives |
-| <code>ENPAM</code> | ENPAM Contribution | Contribution to the National Pension and Welfare Board for Doctors |
-| <code>CP</code> | Other Social Security Contributions | Other Social Security Contributions |
+| `VAT` | VAT | Value Added Tax |
+| `IRPEF` | IRPEF | Personal Income Tax |
+| `IRES` | IRES | Corporate Income Tax |
+| `INPS` | INPS Contribution | Contribution to the National Social Security Institute |
+| `ENASARCO` | ENASARCO Contribution | Contribution to the National Welfare Board for Sales Agents and Representatives |
+| `ENPAM` | ENPAM Contribution | Contribution to the National Pension and Welfare Board for Doctors |
+| `CP` | Other Social Security Contributions | Other Social Security Contributions |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>super-reduced</code> | <code>standard</code> | Minimum Rate | 4.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 5.0% |  |
-| <code>intermediate</code> | <code>standard</code> | Intermediate Rate | 10.0% |  |
-| <code>general</code> | <code>standard</code> | General Rate | 22.0% |  |
+| `super-reduced` | `standard` | Minimum Rate | 4.0% |  |
+| `reduced` | `standard` | Reduced Rate | 5.0% |  |
+| `intermediate` | `standard` | Intermediate Rate | 10.0% |  |
+| `general` | `standard` | General Rate | 22.0% |  |
 
 ## Correction Definitions
 
@@ -59,5 +59,37 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Inversione del soggetto passivo (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [IT]</li><li>Valid</li></ul> | `GOBL-IT-TAX-IDENTITY-01`<br />Invalid Italian VAT identity code |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-ORG-IDENTITY-01`<br />Fiscal code is required |
+| `code` | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li>Valid format</li></ul> | `GOBL-IT-ORG-IDENTITY-02`<br />Invalid fiscal code format |
+| `code` | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li>Valid checksum</li></ul> | `GOBL-IT-ORG-IDENTITY-03`<br />Invalid fiscal code check digit |
+</Accordion>
+</AccordionGroup>

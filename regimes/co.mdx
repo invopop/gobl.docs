@@ -26,28 +26,28 @@ interest, pending charges, change in value for debit notes).
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>CO</code> |
-| Currency | <code>COP</code> |
-| Base Time Zone | <code>America/Bogota</code> |
+| Tax Country Code | `CO` |
+| Currency | `COP` |
+| Base Time Zone | `America/Bogota` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
-| <code>IC</code> | IC | Consumption Tax |
-| <code>ICA</code> | ICA | Industry and Commerce Tax |
-| <code>INC</code> | INC | National Consumption Tax |
-| <code>RVAT</code> | ReteIVA | Retención en la fuente por el Impuesto al Valor Agregado |
-| <code>RICA</code> | ReteICA | Retención en la fuente por el Impuesto de Industria y Comercio |
-| <code>RR</code> | Retefuente | Retención en la fuente por el Impuesto de la Renta |
+| `VAT` | VAT | Value Added Tax |
+| `IC` | IC | Consumption Tax |
+| `ICA` | ICA | Industry and Commerce Tax |
+| `INC` | INC | National Consumption Tax |
+| `RVAT` | ReteIVA | Retención en la fuente por el Impuesto al Valor Agregado |
+| `RICA` | ReteICA | Retención en la fuente por el Impuesto de Industria y Comercio |
+| `RR` | Retefuente | Retención en la fuente por el Impuesto de la Renta |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 19.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 5.0% |  |
+| `general` | `standard` | General Rate | 19.0% |  |
+| `reduced` | `standard` | Reduced Rate | 5.0% |  |
 
 ## Correction Definitions
 
@@ -57,5 +57,16 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [CO]</li><li>Valid</li></ul> | `GOBL-CO-TAX-IDENTITY-01`<br />Invalid Colombian tax identity code |
+</Accordion>
+</AccordionGroup>

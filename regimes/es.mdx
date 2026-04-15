@@ -26,20 +26,20 @@ reporting of invoicing data to the AEAT.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>ES</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Madrid</code> |
+| Tax Country Code | `ES` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Madrid` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
-| <code>IGIC</code> | IGIC | Canary Island General Indirect Tax |
-| <code>IPSI</code> | IPSI | Production, Services, and Import Tax |
-| <code>IRPF</code> | IRPF | Personal income tax. |
+| `VAT` | VAT | Value Added Tax |
+| `IGIC` | IGIC | Canary Island General Indirect Tax |
+| `IPSI` | IPSI | Production, Services, and Import Tax |
+| `IRPF` | IRPF | Personal income tax. |
 
-### VAT Rates	
+### VAT Rates
 
 Known in Spanish as "Impuesto sobre el Valor Añadido" (IVA), is a consumption tax
 applied to the purchase of goods and services. It's a tax on the value added at
@@ -49,28 +49,28 @@ to its local needs.
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | Standard Rate | 21.0% |  |
-| <code>general+eqs</code> | <code>standard</code> | Standard Rate + Equivalence Surcharge | 21.0% (+5.2%) |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 10.0% |  |
-| <code>reduced+eqs</code> | <code>standard</code> | Reduced Rate + Equivalence Surcharge | 10.0% (+1.4%) |  |
-| <code>super-reduced</code> | <code>standard</code> | Super-Reduced Rate | 4.0% |  |
-| <code>super-reduced+eqs</code> | <code>standard</code> | Super-Reduced Rate + Equivalence Surcharge | 4.0% (+0.5%) |  |
+| `general` | `standard` | Standard Rate | 21.0% |  |
+| `general+eqs` | `standard` | Standard Rate + Equivalence Surcharge | 21.0% (+5.2%) |  |
+| `reduced` | `standard` | Reduced Rate | 10.0% |  |
+| `reduced+eqs` | `standard` | Reduced Rate + Equivalence Surcharge | 10.0% (+1.4%) |  |
+| `super-reduced` | `standard` | Super-Reduced Rate | 4.0% |  |
+| `super-reduced+eqs` | `standard` | Super-Reduced Rate + Equivalence Surcharge | 4.0% (+0.5%) |  |
 
 ### IGIC Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 7.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 3.0% |  |
+| `general` | `standard` | General Rate | 7.0% |  |
+| `reduced` | `standard` | Reduced Rate | 3.0% |  |
 
 ### IRPF Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>pro</code> |  | Professional Rate | 15.0% |  |
-| <code>pro-start</code> |  | Professional Starting Rate | 7.0% |  |
-| <code>capital</code> |  | Rental or Interest Capital | 19.0% |  |
-| <code>modules</code> |  | Modules Rate | 1.0% |  |
+| `pro` |  | Professional Rate | 15.0% |  |
+| `pro-start` |  | Professional Starting Rate | 7.0% |  |
+| `capital` |  | Rental or Interest Capital | 19.0% |  |
+| `modules` |  | Modules Rate | 1.0% |  |
 
 ## Correction Definitions
 
@@ -80,6 +80,155 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>corrective</code>
-- <code>debit-note</code>
+- `credit-note`
+- `corrective`
+- `debit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Inversión del sujeto pasivo. (reverse-charge)
+</Accordion>
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Inversión del sujeto pasivo. (reverse-charge)
+</Accordion>
+
+<Accordion title="#simplified-scheme">
+
+**Filters:**
+- **Tags:** `simplified-scheme`
+
+**Output:**
+- **Note:** Factura expedida por contribuyente en régimen simplificado. (simplified-scheme)
+</Accordion>
+
+<Accordion title="#self-billed">
+
+**Filters:**
+- **Tags:** `self-billed`
+
+**Output:**
+- **Note:** Facturación por el destinatario. (self-billed)
+</Accordion>
+
+<Accordion title="#travel-agency">
+
+**Filters:**
+- **Tags:** `travel-agency`
+
+**Output:**
+- **Note:** Régimen especial de las agencias de viajes. (travel-agency)
+</Accordion>
+
+<Accordion title="#travel-agency">
+
+**Filters:**
+- **Tags:** `travel-agency`
+
+**Output:**
+- **Note:** Régimen especial de las agencias de viajes. (travel-agency)
+</Accordion>
+
+<Accordion title="#second-hand-goods">
+
+**Filters:**
+- **Tags:** `second-hand-goods`
+
+**Output:**
+- **Note:** Régimen especial de los bienes usados. (second-hand-goods)
+</Accordion>
+
+<Accordion title="#second-hand-goods">
+
+**Filters:**
+- **Tags:** `second-hand-goods`
+
+**Output:**
+- **Note:** Régimen especial de los bienes usados. (second-hand-goods)
+</Accordion>
+
+<Accordion title="#art">
+
+**Filters:**
+- **Tags:** `art`
+
+**Output:**
+- **Note:** Régimen especial de los objetos de arte. (art)
+</Accordion>
+
+<Accordion title="#art">
+
+**Filters:**
+- **Tags:** `art`
+
+**Output:**
+- **Note:** Régimen especial de los objetos de arte. (art)
+</Accordion>
+
+<Accordion title="#antiques">
+
+**Filters:**
+- **Tags:** `antiques`
+
+**Output:**
+- **Note:** Régimen especial de las antigüedades y objetos de colección. (antiques)
+</Accordion>
+
+<Accordion title="#antiques">
+
+**Filters:**
+- **Tags:** `antiques`
+
+**Output:**
+- **Note:** Régimen especial de las antigüedades y objetos de colección. (antiques)
+</Accordion>
+
+<Accordion title="#cash-basis">
+
+**Filters:**
+- **Tags:** `cash-basis`
+
+**Output:**
+- **Note:** Régimen especial del criterio de caja. (cash-basis)
+</Accordion>
+
+<Accordion title="#cash-basis">
+
+**Filters:**
+- **Tags:** `cash-basis`
+
+**Output:**
+- **Note:** Régimen especial del criterio de caja. (cash-basis)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-01`<br />Invoice supplier in Spain is required |
+| `supplier.tax_id` | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-02`<br />Invoice supplier tax ID in Spain is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-03`<br />Invoice supplier tax ID code in Spain is required |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [ES]</li><li>Valid</li></ul> | `GOBL-ES-TAX-IDENTITY-01`<br />Invalid Spanish VAT identity code format or checksum |
+</Accordion>
+</AccordionGroup>

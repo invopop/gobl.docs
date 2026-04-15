@@ -22,22 +22,22 @@ central government.
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>NL</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Amsterdam</code> |
+| Tax Country Code | `NL` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Amsterdam` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
 | Rate | Keys | Name | Percents | Description |
 | ---- | ---- | ---- | -------- | ----------- |
-| <code>general</code> | <code>standard</code> | General Rate | 21.0% |  |
-| <code>reduced</code> | <code>standard</code> | Reduced Rate | 9.0% |  |
+| `general` | `standard` | General Rate | 21.0% |  |
+| `reduced` | `standard` | Reduced Rate | 9.0% |  |
 
 ## Correction Definitions
 
@@ -47,4 +47,41 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [NL]</li><li>Has tax ID code or KVK/OIN identity</li></ul> | `GOBL-NL-BILL-INVOICE-01`<br />Invoice supplier must have a tax ID code or a KVK/OIN identity |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Type in [KVK]</li><li>Length between 8 and 8</li></ul> | `GOBL-NL-ORG-IDENTITY-01`<br />Identity code for type KVK must be valid |
+| `code` | <ul class="gobl-test"><li>Type in [OIN]</li><li>Matches ^0{6}(0[1-9]\|10\|99)\d{9}0{3}$</li></ul> | `GOBL-NL-ORG-IDENTITY-02`<br />Identity code for type OIN must be valid |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [NL]</li><li>Valid</li></ul> | `GOBL-NL-TAX-IDENTITY-01`<br />Invalid Dutch VAT identity code |
+</Accordion>
+</AccordionGroup>

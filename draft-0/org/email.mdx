@@ -11,10 +11,17 @@ Email describes the electronic mailing details.
 
 ## Properties
 
-| Title   | Property | Type                          | Req. | Description                    |
-|---------|----------|-------------------------------|------|--------------------------------|
-| UUID    | `uuid`   | string                        |      | Universally Unique Identifier. |
-| Label   | `label`  | string                        |      | Identifier for the email.      |
-| Address | `addr`   | string                        | true | Electronic mailing address.    |
-| Meta    | `meta`   | [cbc.Meta](/draft-0/cbc/meta) |      | Additional fields.             |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Label | `label` | string | Identifier for the email. |
+| Address | `addr` | string | Electronic mailing address. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional fields. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `addr` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-EMAIL-01`<br />Email address is required |
+| `addr` | <ul class="gobl-test"><li>Email-format</li></ul> | `GOBL-ORG-EMAIL-02`<br />Email address must be valid |

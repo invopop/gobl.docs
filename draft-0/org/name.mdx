@@ -11,15 +11,22 @@ Name represents what a human is called.
 
 ## Properties
 
-| Title          | Property   | Type                          | Req. | Description                                        |
-|----------------|------------|-------------------------------|------|----------------------------------------------------|
-| UUID           | `uuid`     | string                        |      | Universally Unique Identifier.                     |
-| Alias          | `alias`    | string                        |      | What the person would like to be called            |
-| Prefix         | `prefix`   | string                        |      | Additional prefix to add to name, like Mrs. or Mr. |
-| Given          | `given`    | string                        |      | Person's given or first name                       |
-| Middle         | `middle`   | string                        |      | Middle names or initials                           |
-| Surname        | `surname`  | string                        |      | Second or Family name.                             |
-| Second Surname | `surname2` | string                        |      | Additional second of family name.                  |
-| Suffix         | `suffix`   | string                        |      | Titles to include after the name.                  |
-| Meta           | `meta`     | [cbc.Meta](/draft-0/cbc/meta) |      | Any additional useful data.                        |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Alias | `alias` | string | What the person would like to be called |
+| Prefix | `prefix` | string | Additional prefix to add to name, like Mrs. or Mr. |
+| Given | `given` | string | Person's given or first name |
+| Middle | `middle` | string | Middle names or initials |
+| Surname | `surname` | string | Second or Family name. |
+| Second Surname | `surname2` | string | Additional second of family name. |
+| Suffix | `suffix` | string | Titles to include after the name. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional useful data. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `given` | <ul class="gobl-test"><li>Surname == ""</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-NAME-01`<br />Given name is required when surname is absent |
+| `surname` | <ul class="gobl-test"><li>Given == ""</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-NAME-02`<br />Surname is required when given name is absent |

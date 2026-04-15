@@ -11,11 +11,18 @@ DueDate contains an amount that should be paid by the given date.
 
 ## Properties
 
-| Title    | Property   | Type                                      | Req. | Description                                              |
-|----------|------------|-------------------------------------------|------|----------------------------------------------------------|
-| Date     | `date`     | [cal.Date](/draft-0/cal/date)             | true | When the payment is due.                                 |
-| Notes    | `notes`    | string                                    |      | Other details to take into account for the due date.     |
-| Amount   | `amount`   | [num.Amount](/draft-0/num/amount)         | true | How much needs to be paid by the date.                   |
-| Percent  | `percent`  | [num.Percentage](/draft-0/num/percentage) |      | Percentage of the total that should be paid by the date. |
-| Currency | `currency` | [currency.Code](/draft-0/currency/code)   |      | If different from the parent document's base currency.   |
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Date | `date` | [cal.Date](/draft-0/cal/date) | When the payment is due. |
+| Notes | `notes` | string | Other details to take into account for the due date. |
+| Amount | `amount` | [num.Amount](/draft-0/num/amount) | How much needs to be paid by the date. |
+| Percent | `percent` | [num.Percentage](/draft-0/num/percentage) | Percentage of the total that should be paid by the date. |
+| Currency | `currency` | [currency.Code](/draft-0/currency/code) | If different from the parent document's base currency. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PAY-DUEDATE-01`<br />Date is required |
+| `amount` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-PAY-DUEDATE-02`<br />Amount must not be zero |
