@@ -4,11 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"text/template"
 
+	"github.com/invopop/gobl/data"
 	orderedmap "github.com/wk8/go-ordered-map/v2"
 )
 
@@ -39,28 +42,30 @@ type JSONSchema struct {
 // schemaStore holds all loaded JSON schemas keyed by $id URL.
 type schemaStore struct {
 	schemas map[string]*JSONSchema // keyed by $id
-	baseDir string
 }
 
-func newSchemaStore(baseDir string) (*schemaStore, error) {
+// newSchemaStore loads every schema embedded under "schemas/" in the GOBL
+// data.Content FS. Using the embedded FS means the generator no longer depends
+// on a sibling checkout of the gobl repository — the schemas come from the
+// version pinned in go.mod.
+func newSchemaStore() (*schemaStore, error) {
 	store := &schemaStore{
 		schemas: make(map[string]*JSONSchema),
-		baseDir: baseDir,
 	}
-	err := filepath.Walk(baseDir, func(path string, info os.FileInfo, err error) error {
+	err := fs.WalkDir(data.Content, "schemas", func(p string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
-		if info.IsDir() || filepath.Ext(path) != ".json" {
+		if d.IsDir() || path.Ext(p) != ".json" {
 			return nil
 		}
-		data, err := os.ReadFile(path)
+		raw, err := data.Content.ReadFile(p)
 		if err != nil {
 			return err
 		}
 		var s JSONSchema
-		if err := json.Unmarshal(data, &s); err != nil {
-			return fmt.Errorf("parsing %s: %w", path, err)
+		if err := json.Unmarshal(raw, &s); err != nil {
+			return fmt.Errorf("parsing %s: %w", p, err)
 		}
 		if s.ID != "" {
 			store.schemas[s.ID] = &s

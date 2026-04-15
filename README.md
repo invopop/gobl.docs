@@ -18,23 +18,16 @@ mint dev
 
 ### Generated Content
 
-There are two sources:
+Schema, catalogue, addon, and regime pages are produced by the internal Go
+generator in `cmd/generate`. Schemas are read from the `data.Content` embedded
+FS of the GOBL module pinned in `go.mod`, so no sibling checkout of the gobl
+repo is required.
 
- * Internal script for catalagues, addons, and regime definitions.
- * Ruby generator tool (`gobl.generator`) for transforming schemas.
-
-For the Ruby Generate tool, see that repo directly for details. Generally, you can run:
-
-```bash
-rm -rf ./draft-0
-../gobl.generator/bin/generate -l markdown -i ../gobl/data/schemas -o ./draft-0
-```
-
-For the internal scripts, simply run:
+To regenerate, run:
 
 ```bash
 go build ./cmd/generate && ./generate
 ```
 
-After running any generation script, you'll need to double check that everything is linked to from the `docs.json` file.
+After running the generator, double check that everything is linked to from the `docs.json` file.
 

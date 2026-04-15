@@ -10,8 +10,10 @@ import (
 )
 
 func main() {
-	// Phase 1: Generate draft-0 schema pages
-	store, err := newSchemaStore("../gobl/data/schemas")
+	// Phase 1: Generate draft-0 schema pages. Schemas are loaded from the
+	// data.Content embedded FS of the pinned gobl module, so no sibling
+	// checkout of github.com/invopop/gobl is required.
+	store, err := newSchemaStore()
 	if err != nil {
 		panic(fmt.Errorf("loading schemas: %w", err))
 	}
