@@ -27,10 +27,10 @@ type RuleSection struct {
 }
 
 // findSetByName scans the global rules registry for a top-level Set with
-// the given Name (e.g. "fr" for France, "es-sii-v1" for an addon).
+// the given Package (e.g. "fr" for France, "es-sii-v1" for an addon).
 func findSetByName(name string) *rules.Set {
 	for _, s := range rules.Registry() {
-		if s.Name == name {
+		if s.Package == name {
 			return s
 		}
 	}
@@ -47,7 +47,7 @@ func ruleSections(topSet *rules.Set) []RuleSection {
 			continue
 		}
 		sections = append(sections, RuleSection{
-			Name: sub.Name,
+			Name: sub.Object,
 			Rows: rows,
 		})
 	}
@@ -68,15 +68,15 @@ func coreRuleSectionsForStruct(structName string) []RuleSection {
 			continue
 		}
 		// Skip regime and addon sets
-		if exclude[topSet.Name] {
+		if exclude[topSet.Package] {
 			continue
 		}
 		for _, sub := range topSet.Subsets {
-			if sub.Name == structName {
+			if sub.Object == structName {
 				rows := flattenAssertions(sub, "", "")
 				if len(rows) > 0 {
 					sections = append(sections, RuleSection{
-						Name: sub.Name,
+						Name: sub.Object,
 						Rows: rows,
 					})
 				}
