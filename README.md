@@ -29,5 +29,10 @@ To regenerate, run:
 go build ./cmd/generate && ./generate
 ```
 
+The generator wipes `./draft-0` on each run so schemas removed upstream don't
+linger as orphaned pages. Treat the entire `./draft-0` directory as
+generator-owned — don't hand-edit files under it, as any local changes will be
+overwritten on the next regeneration.
+
 After running the generator, double check that everything is linked to from the `docs.json` file.
 
