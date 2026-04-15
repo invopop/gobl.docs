@@ -321,8 +321,6 @@
                   "draft-0/tax/rate_value_def",
                   "draft-0/tax/regime_code",
                   "draft-0/tax/regime_def",
-                  "draft-0/tax/note",
-                  "draft-0/tax/regime_code",
                   "draft-0/tax/scenario",
                   "draft-0/tax/scenario_set",
                   "draft-0/tax/set",
@@ -386,11 +384,6 @@
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "API",
-          "href": "https://gobl.dev",
-          "icon": "bolt"
-        },
         {
           "anchor": "Builder",
           "href": "https://build.gobl.org",
