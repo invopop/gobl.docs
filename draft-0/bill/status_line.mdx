@@ -1,0 +1,45 @@
+---
+title: StatusLine
+comment: 
+---
+
+StatusLine represents a single row inside a message, that describes the situation of another business document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/status#/$defs/StatusLine`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Index | `index` | integer | Position of the row inside the message, determined automatically. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Status Key indicates the situation of the document |
+| Date | `date` | [cal.Date](/draft-0/cal/date) | When this row should be considered effective |
+| Document | `doc` | [org.DocumentRef](/draft-0/org/document_ref) | Document reference or details about the document that needs to be looked at. |
+| Description | `description` | string | Description includes a human readable description that explains the reason for the current status, if necessary. |
+| Reasons | `reasons` | array of [bill.Reason](/draft-0/bill/reason) | Reasons define an array of reason objects that help the recipient determine why the status was provided. |
+| Actions | `actions` | array of [bill.Action](/draft-0/bill/action) | Actions contains an array of actions that should be carried out by the recipient of the message. These are suggestions. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format focussed data |
+| Complements | `complements` | array of [schema.Object](/draft-0/schema/object) | Complements contain regime/addon specific payload data. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional data specific for the source system. |
+
+## Key Values
+
+| Value | Description |
+|-------|-------------|
+| `issued` | Document has been submitted pending review by the recipient. |
+| `acknowledged` | Received a readable invoice message that can be understood and submitted for processing by the Buyer. |
+| `processing` | Indicates that the referenced message or transaction is being processed. |
+| `querying` | Buyer will not proceed to accept the Invoice without receiving additional information from the Seller. |
+| `rejected` | Buyer will not process the referenced Invoice any further. Buyer is rejecting this invoice but not necessarily the commercial transaction. Although it can be used also for rejection for commercial reasons (invoice not corresponding to delivery). |
+| `accepted` | Buyer has given a final approval of the invoice and the next step is payment. |
+| `paid` | Buyer has initiated payment, or the supplier has acknowledged receipt of payment. |
+| `error` | There is a technical issue with the document that has caused it to be rejected. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-STATUSLINE-01`<br />Status line key is required |

@@ -1,0 +1,50 @@
+---
+title: Status
+comment: 
+---
+
+Status represents a system or business event that needs to be recorded for compliance purposes.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/status`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Tax Regime | `$regime` | [tax.RegimeCode](/draft-0/tax/regime_code) | Country code that identifies the tax regime applicable to the document. It determines which country-specific tax rules, normalizations, and validations are applied. It may be determined automatically via normalization of a supplier or issuer tax identity country code. |
+| Addons | `$addons` | [tax.AddonList](/draft-0/tax/addon_list) | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document. |
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Type | `type` | [cbc.Key](/draft-0/cbc/key) | Type of status being reported (e.g. "system" for internal events). |
+| Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date) | IssueDate is the date when the status is to be considered effective. |
+| Issue Time | `issue_time` | [cal.Time](/draft-0/cal/time) | IssueTime is used when extra precision is required to determine when exactly the status was issued. |
+| Series | `series` | [cbc.Code](/draft-0/cbc/code) | Series is an optional code to group related status events together. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code provides a way to identify the specific status event being reported. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Ext provides additional structured data specific to the regime or addon. |
+| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Ordering provides links to related documents and details that may have occurred before this status was created. |
+| Supplier | `supplier` | [org.Party](/draft-0/org/party) | Supplier represents the entity supplying the goods or services in the original transaction and may not be the issuer of the document. |
+| Customer | `customer` | [org.Party](/draft-0/org/party) | Customer is optional and describes the recipient of the original services. In the case of a local or system event, this will be empty. |
+| Issuer | `issuer` | [org.Party](/draft-0/org/party) | Issuer represents an intermediary acting on behalf of either the supplier or customer in order to provide a status update, this is useful specifically if only the third party is registered on a network. (Optional). |
+| Recipient | `recipient` | [org.Party](/draft-0/org/party) | Recipient represents another intermediary responsible for receiving the event when the supplier or customer do not have networking capabilities. May also be a tax agency in a five corner model. (Optional). |
+| Lines | `lines` | array of [bill.StatusLine](/draft-0/bill/status_line) | Lines contain the main payload of the message used to describe individual documents which have a status. |
+| Notes | `notes` | array of [org.Note](/draft-0/org/note) | Notes for additional details about the event. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Meta contains unstructured data useful for internal tools. |
+
+## Type Values
+
+| Value | Description |
+|-------|-------------|
+| `response` | A response to a document that has been submitted, often used in a two way communication between a customer and supplier. |
+| `update` | Issued by the supplier (or issuer) that may be shared with the customer, but more likely with a fifth-corner, like a government agency. |
+| `system` | A system event that is not directly related to a specific document, but needs to be recorded for compliance purposes. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `type` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-STATUS-01`<br />Status type is required |
+| `type` | <ul class="gobl-test"><li>One of [response, update, system]</li></ul> | `GOBL-BILL-STATUS-02`<br />Status type is not valid |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-STATUS-03`<br />Status supplier is required |
+| `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-STATUS-04`<br />Status must have at least one line |

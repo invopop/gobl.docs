@@ -152,7 +152,9 @@
               {
                 "group": "Bill",
                 "pages": [
+                  "draft-0/bill/action",
                   "draft-0/bill/charge",
+                  "draft-0/bill/condition",
                   "draft-0/bill/correction_options",
                   "draft-0/bill/delivery",
                   "draft-0/bill/delivery_details",
@@ -166,6 +168,9 @@
                   "draft-0/bill/payment",
                   "draft-0/bill/payment_details",
                   "draft-0/bill/payment_line",
+                  "draft-0/bill/reason",
+                  "draft-0/bill/status",
+                  "draft-0/bill/status_line",
                   "draft-0/bill/sub_line",
                   "draft-0/bill/tax",
                   "draft-0/bill/totals",
@@ -178,7 +183,8 @@
                   "draft-0/cal/date",
                   "draft-0/cal/date_time",
                   "draft-0/cal/period",
-                  "draft-0/cal/time"
+                  "draft-0/cal/time",
+                  "draft-0/cal/timestamp"
                 ]
               },
               {

@@ -1,0 +1,38 @@
+---
+title: Action
+comment: 
+---
+
+Action provides a suggestion about what to do next with the document.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/status#/$defs/Action`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key helps determine what to do next. |
+| Description | `description` | string | Description includes human readable details about what steps should be take next. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format focussed data |
+
+## Key Values
+
+| Value | Description |
+|-------|-------------|
+| `none` | No action required. |
+| `provide` | Missing information requested without re-issuing invoice. |
+| `reissue` | Request to re-issue a corrected invoice. |
+| `credit-full` | Request to fully cancel the referenced invoice with a credit note. |
+| `credit-partial` | Request to issue partial credit note for corrections only. |
+| `credit-amount` | Request to repay the amount paid on the invoice. |
+| `other` | Requested action is not defined by code. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-ACTION-01`<br />Action key is required |
+| `key` | <ul class="gobl-test"><li>One of [none, provide, reissue, credit-full, credit-partial, credit-amount, other]</li></ul> | `GOBL-BILL-ACTION-02`<br />Action key is not valid |
