@@ -1,0 +1,46 @@
+---
+title: Reason
+comment: 
+---
+
+Reason helps the recipient of a message determine why they are receiving it.
+
+## Schema ID
+
+`https://gobl.org/draft-0/bill/status#/$defs/Reason`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key helps identify the reason. |
+| Description | `description` | string | Description contains a simple text that describes the reason why the original document was not processed. |
+| Conditions | `conditions` | array of [bill.Condition](/draft-0/bill/condition) | Condition provides additional details with codes about what has gone wrong with the incoming document. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format focussed data |
+
+## Key Values
+
+| Value | Description |
+|-------|-------------|
+| `none` | Receiver of the documents sends the message just to update the status and there are no problems with document processing. |
+| `references` | Received document did not contain references as required by the receiver for correctly routing the document for approval or processing. |
+| `legal` | Information in the received document is not according to legal requirements. |
+| `unknown-receiver` | The party to which the document is addressed is not known. |
+| `quality` | Unacceptable or incorrect quality. |
+| `delivery` | Delivery proposed or provided is not acceptable. |
+| `prices` | Prices not according to previous expectation. |
+| `quantity` | Quantity not according to previous expectation. |
+| `items` | Items not according to previous expectation. |
+| `payment-terms` | Payment terms not according to previous expectation. |
+| `not-recognized` | Commercial transaction not recognized. |
+| `finance-terms` | Finance terms not according to previous expectation. |
+| `partial` | Payment is partially but not fully paid. |
+| `other` | Reason for status is not defined by code. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-REASON-01`<br />Reason key is required |
+| `key` | <ul class="gobl-test"><li>One of [none, references, legal, unknown-receiver, quality, delivery, prices, quantity, items, payment-terms, not-recognized, finance-terms, partial, other]</li></ul> | `GOBL-BILL-REASON-02`<br />Reason key is not valid |
