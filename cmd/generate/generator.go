@@ -52,8 +52,7 @@ func (g *generator) preceding(defs tax.CorrectionSet) error {
 
 		## Correction Definitions
 
-		Auto-generation of corrective invoices or credit and debit notes is
-		supported.
+		Auto-generation of corrective invoices is supported.
 
 		{{- if .ReasonRequired }}
 
