@@ -52,8 +52,6 @@ func (g *generator) preceding(defs tax.CorrectionSet) error {
 
 		## Correction Definitions
 
-		Auto-generation of corrective invoices is supported.
-
 		{{- if .ReasonRequired }}
 
 		A reason is required in the <code>reason</code> field
