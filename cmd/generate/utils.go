@@ -210,11 +210,15 @@ func scenarioOutputCell(sc *tax.Scenario) string {
 		for n < len(line) && line[n] == ' ' {
 			n++
 		}
-		lines[i] = strings.Repeat("&nbsp;", n) + line[n:]
+		content := line[n:]
+		content = strings.ReplaceAll(content, "&", "&amp;")
+		content = strings.ReplaceAll(content, "<", "&lt;")
+		content = strings.ReplaceAll(content, ">", "&gt;")
+		content = strings.ReplaceAll(content, "{", "&#123;")
+		content = strings.ReplaceAll(content, "}", "&#125;")
+		lines[i] = strings.Repeat("&nbsp;", n) + content
 	}
 	body := strings.Join(lines, "<br/>")
-	body = strings.ReplaceAll(body, "{", "&#123;")
-	body = strings.ReplaceAll(body, "}", "&#125;")
 	body = strings.ReplaceAll(body, "|", "\\|")
 	return `<code class="code-block">` + body + "</code>"
 }
