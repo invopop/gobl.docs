@@ -6,45 +6,21 @@ Key: `mx-cfdi-v4`
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"mx-cfdi-doc-type": "I"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"mx-cfdi-doc-type": "E",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"mx-cfdi-rel-type": "01"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| [custom](https://github.com/invopop/gobl/blob/v0.401.0/addons/mx/cfdi/scenarios.go#L32) | `standard`<br />`credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"mx-cfdi-payment-method": "PUE"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| [custom](https://github.com/invopop/gobl/blob/v0.401.0/addons/mx/cfdi/scenarios.go#L45) | `standard`<br />`credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"mx-cfdi-payment-method": "PPD"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `mx-cfdi-doc-type:I`
 </Accordion>
-
-<Accordion title="credit-note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `mx-cfdi-rel-type:01`, `mx-cfdi-doc-type:E`
-</Accordion>
-
-<Accordion title="standard, credit-note">
-
-**Filters:**
-- **Types:** `standard`, `credit-note`
-- **Filter:** *(custom)*
-
-**Output:**
-- **Extensions:** `mx-cfdi-payment-method:PUE`
-</Accordion>
-
-<Accordion title="standard, credit-note">
-
-**Filters:**
-- **Types:** `standard`, `credit-note`
-- **Filter:** *(custom)*
-
-**Output:**
-- **Extensions:** `mx-cfdi-payment-method:PPD`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### Document Type
@@ -251,6 +227,10 @@ Pattern: `\d{4}`
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

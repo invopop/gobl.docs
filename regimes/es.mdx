@@ -86,135 +86,37 @@ The types of invoices that can be created with a preceding definition:
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="#reverse-charge">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Tags:** `reverse-charge`
+| Tags | Categories | Output |
+| --- | --- | --- |
+| `reverse-charge` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "reverse-charge",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Reverse Charge / Inversión del sujeto pasivo."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `reverse-charge` | `IGIC` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "IGIC",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "reverse-charge",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Reverse Charge / Inversión del sujeto pasivo."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified-scheme` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "simplified-scheme",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Factura expedida por contribuyente en régimen simplificado."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "self-billed",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Facturación por el destinatario."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `travel-agency` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "travel-agency",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de las agencias de viajes."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `travel-agency` | `IGIC` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "IGIC",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "travel-agency",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de las agencias de viajes."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `second-hand-goods` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "second-hand-goods",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de los bienes usados."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `second-hand-goods` | `IGIC` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "IGIC",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "second-hand-goods",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de los bienes usados."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `art` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "art",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de los objetos de arte."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `art` | `IGIC` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "IGIC",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "art",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de los objetos de arte."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `antiques` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "antiques",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de las antigüedades y objetos de colección."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `antiques` | `IGIC` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "IGIC",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "antiques",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial de las antigüedades y objetos de colección."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `cash-basis` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "cash-basis",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial del criterio de caja."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `cash-basis` | `IGIC` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "IGIC",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "cash-basis",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Régimen especial del criterio de caja."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Note:** Reverse Charge / Inversión del sujeto pasivo. (reverse-charge)
 </Accordion>
-
-<Accordion title="#reverse-charge">
-
-**Filters:**
-- **Tags:** `reverse-charge`
-
-**Output:**
-- **Note:** Reverse Charge / Inversión del sujeto pasivo. (reverse-charge)
-</Accordion>
-
-<Accordion title="#simplified-scheme">
-
-**Filters:**
-- **Tags:** `simplified-scheme`
-
-**Output:**
-- **Note:** Factura expedida por contribuyente en régimen simplificado. (simplified-scheme)
-</Accordion>
-
-<Accordion title="#self-billed">
-
-**Filters:**
-- **Tags:** `self-billed`
-
-**Output:**
-- **Note:** Facturación por el destinatario. (self-billed)
-</Accordion>
-
-<Accordion title="#travel-agency">
-
-**Filters:**
-- **Tags:** `travel-agency`
-
-**Output:**
-- **Note:** Régimen especial de las agencias de viajes. (travel-agency)
-</Accordion>
-
-<Accordion title="#travel-agency">
-
-**Filters:**
-- **Tags:** `travel-agency`
-
-**Output:**
-- **Note:** Régimen especial de las agencias de viajes. (travel-agency)
-</Accordion>
-
-<Accordion title="#second-hand-goods">
-
-**Filters:**
-- **Tags:** `second-hand-goods`
-
-**Output:**
-- **Note:** Régimen especial de los bienes usados. (second-hand-goods)
-</Accordion>
-
-<Accordion title="#second-hand-goods">
-
-**Filters:**
-- **Tags:** `second-hand-goods`
-
-**Output:**
-- **Note:** Régimen especial de los bienes usados. (second-hand-goods)
-</Accordion>
-
-<Accordion title="#art">
-
-**Filters:**
-- **Tags:** `art`
-
-**Output:**
-- **Note:** Régimen especial de los objetos de arte. (art)
-</Accordion>
-
-<Accordion title="#art">
-
-**Filters:**
-- **Tags:** `art`
-
-**Output:**
-- **Note:** Régimen especial de los objetos de arte. (art)
-</Accordion>
-
-<Accordion title="#antiques">
-
-**Filters:**
-- **Tags:** `antiques`
-
-**Output:**
-- **Note:** Régimen especial de las antigüedades y objetos de colección. (antiques)
-</Accordion>
-
-<Accordion title="#antiques">
-
-**Filters:**
-- **Tags:** `antiques`
-
-**Output:**
-- **Note:** Régimen especial de las antigüedades y objetos de colección. (antiques)
-</Accordion>
-
-<Accordion title="#cash-basis">
-
-**Filters:**
-- **Tags:** `cash-basis`
-
-**Output:**
-- **Note:** Régimen especial del criterio de caja. (cash-basis)
-</Accordion>
-
-<Accordion title="#cash-basis">
-
-**Filters:**
-- **Tags:** `cash-basis`
-
-**Output:**
-- **Note:** Régimen especial del criterio de caja. (cash-basis)
-</Accordion>
+</AccordionGroup>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

@@ -1,0 +1,56 @@
+---
+title: "Scenarios"
+---
+
+Scenarios are how GOBL applies tax-regime and addon-specific output to a document at build time without you having to write it yourself. Each [tax regime](/regimes/overview) and [addon](/addons/overview) declares a list of scenarios; whenever a document is built, GOBL evaluates them and merges any matching outputs into the document.
+
+## Anatomy of a scenario
+
+A scenario has two parts:
+
+- **Filters** decide whether the scenario applies to a given document.
+- **Outputs** describe what to attach to the document when the filters match.
+
+Both regimes and addons can define scenarios. Scenarios are organised per schema (for example `bill/invoice`), so a regime can hold one set of scenarios for invoices and a different set for orders or payments.
+
+## Filters
+
+A scenario matches when **every** filter it defines is satisfied by the document. An empty filter is treated as "any value is fine", so a scenario with no filters matches every document of the configured schema.
+
+| Filter | Matches against |
+| --- | --- |
+| **Type** | The document's [`type`](/draft-0/bill/invoice#type) (e.g. `standard`, `corrective`, `credit-note`). |
+| **Tags** | Tags applied to the document via [`$tags`](/draft-0/bill/invoice#tags) (e.g. `reverse-charge`, `simplified`, `self-billed`). |
+| **Categories** | The set of [tax categories](/draft-0/tax/category_def) present across the document's line, charge, and discount taxes (e.g. `VAT`, `IGIC`). |
+| **Extension key / code** | A specific [tax extension](/draft-0/tax/extensions) being present, optionally with a specific value. |
+| **Custom filter** | A regime- or addon-defined function for cases the basic filters can't express. |
+
+The **Categories** filter is what allows a country with multiple tax categories — like Spain (mainland VAT and Canary IGIC) — to express *"this note applies to reverse-charge invoices, but only when the lines are using VAT"*. The same scenario can then be paired with another that scopes the note to IGIC.
+
+Note that category matching looks at the document's lines, charges, and discounts: even though scenario outputs always land at the document level, the *applicability* is determined by what's used inside the document.
+
+## Outputs
+
+When a scenario matches, GOBL applies its outputs to the document:
+
+| Output | Where it lands |
+| --- | --- |
+| **Note** | Appended to the document's [`tax.notes`](/draft-0/bill/invoice#tax) array. The note carries its own `cat` (category) and `key`, and notes with the same category-and-key pair are deduplicated. |
+| **Extensions** | Merged into the document's [`tax.ext`](/draft-0/bill/invoice#tax) map. Useful for addons that need to attach a code identifying the document under a reporting standard. |
+| **Codes** | Made available through the scenario summary for downstream conversion processes; not auto-merged onto the document itself. |
+
+Outputs always land on the document, never on individual lines. That keeps the document model simple: a scenario filter may inspect line-level details to decide whether to fire, but the resulting note or extension belongs to the invoice as a whole.
+
+## How matching works
+
+When you build a document:
+
+1. GOBL collects every scenario defined by the document's regime and any enabled addons for the document's schema.
+2. Each scenario is evaluated against the document. All filters must match for the scenario to apply.
+3. For every matching scenario, the outputs are merged into the document. Notes are deduplicated by `cat` + `key`; extensions overwrite any earlier value for the same key.
+
+This means multiple scenarios can fire on the same document — a Spanish reverse-charge invoice using both VAT and IGIC will receive both the VAT-scoped note and the IGIC-scoped one.
+
+## Where to see them
+
+Each [regime](/regimes/overview) and [addon](/addons/overview) page has a **Scenarios** section listing every scenario it defines, broken down by schema. The columns shown depend on which filters that regime or addon actually uses — empty filter columns are hidden so the table stays focused on the values that matter for that country or standard.

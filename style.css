@@ -6,6 +6,11 @@
   margin: 0 0 0.4em -0.5em;
 }
 
+.prose table tr td code.code-block {
+  display: block;
+}
+
+
 /* repurpose bullets in test lists to indicate required vs conditional */
 .prose table tr td ul.gobl-test li {
   padding-left: 1em !important;

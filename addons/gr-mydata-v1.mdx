@@ -14,145 +14,31 @@ generate the myDATA XML reporting files.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`export` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`export`<br />`eu` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`self-billed` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.4"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services`<br />`export` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services`<br />`export`<br />`eu` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "5.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services`<br />`simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.4"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`simplified`<br />`self-billed` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.5"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.1`
 </Accordion>
-
-<Accordion title="standard, #goods">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.1`
-</Accordion>
-
-<Accordion title="standard, #goods, #export">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `export`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.3`
-</Accordion>
-
-<Accordion title="standard, #goods, #export, #eu">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `export`, `eu`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.2`
-</Accordion>
-
-<Accordion title="standard, #goods, #self-billed">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `self-billed`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.4`
-</Accordion>
-
-<Accordion title="standard, #services">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.1`
-</Accordion>
-
-<Accordion title="standard, #services, #export">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`, `export`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.3`
-</Accordion>
-
-<Accordion title="standard, #services, #export, #eu">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`, `export`, `eu`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.2`
-</Accordion>
-
-<Accordion title="credit-note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:5.1`
-</Accordion>
-
-<Accordion title="standard, #simplified">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.3`
-</Accordion>
-
-<Accordion title="standard, #goods, #simplified">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.1`
-</Accordion>
-
-<Accordion title="standard, #services, #simplified">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`, `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.2`
-</Accordion>
-
-<Accordion title="credit-note, #simplified">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.4`
-</Accordion>
-
-<Accordion title="credit-note, #goods, #simplified, #self-billed">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `goods`, `simplified`, `self-billed`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.5`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### VAT rate
@@ -693,6 +579,10 @@ For example:
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

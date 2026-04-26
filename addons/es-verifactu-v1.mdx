@@ -20,46 +20,21 @@ options. See the [Extensions](#extensions) section for possible values.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="Standard Invoice">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-verifactu-doc-type": "F1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-verifactu-doc-type": "F2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `replacement` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-verifactu-doc-type": "F3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `corrective`<br />`credit-note`<br />`debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-verifactu-doc-type": "R5"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `es-verifactu-doc-type:F1`
 </Accordion>
-
-<Accordion title="Simplified Invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `es-verifactu-doc-type:F2`
-</Accordion>
-
-<Accordion title="Replacement Invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `replacement`
-
-**Output:**
-- **Extensions:** `es-verifactu-doc-type:F3`
-</Accordion>
-
-<Accordion title="Simplified Corrective Invoice">
-
-**Filters:**
-- **Types:** `corrective`, `credit-note`, `debit-note`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `es-verifactu-doc-type:R5`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### Invoice Type Code
@@ -314,6 +289,10 @@ extension will be set to `T`.
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

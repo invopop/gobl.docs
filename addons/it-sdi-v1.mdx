@@ -6,242 +6,41 @@ Key: `it-sdi-v1`
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="Private Invoice">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- *(none)*
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-format": "FPR12"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `b2g` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-format": "FPA12"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD01"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `partial` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD02"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD04"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD05"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `freelance` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD06"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `partial`<br />`freelance` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD03"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD07"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD08"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD09"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD27"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`reverse-charge` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD16"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`import` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD17"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`import`<br />`goods-eu` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD18"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`import`<br />`goods` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD19"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`regularization` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD20"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`ceiling-exceeded` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD21"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`goods-extracted` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD22"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`goods-with-tax` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD23"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `deferred` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD24"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `deferred`<br />`third-period` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD25"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `depreciable-assets` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD26"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />`san-marino-paper` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"it-sdi-document-type": "TD28"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `it-sdi-format:FPR12`
 </Accordion>
-
-<Accordion title="Government Invoice">
-
-**Filters:**
-- **Tags:** `b2g`
-
-**Output:**
-- **Extensions:** `it-sdi-format:FPA12`
-</Accordion>
-
-<Accordion title="Regular Invoice">
-
-**Filters:**
-- **Types:** `standard`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD01`
-</Accordion>
-
-<Accordion title="Advance or down payment on invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `partial`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD02`
-</Accordion>
-
-<Accordion title="Credit Note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD04`
-</Accordion>
-
-<Accordion title="Debit Note">
-
-**Filters:**
-- **Types:** `debit-note`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD05`
-</Accordion>
-
-<Accordion title="Freelancer invoice with retained taxes">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `freelance`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD06`
-</Accordion>
-
-<Accordion title="Advance or down payment on freelance invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `partial`, `freelance`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD03`
-</Accordion>
-
-<Accordion title="Simplified Invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD07`
-</Accordion>
-
-<Accordion title="Simplified Credit Note">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD08`
-</Accordion>
-
-<Accordion title="Simplified Debit Note">
-
-**Filters:**
-- **Types:** `debit-note`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD09`
-</Accordion>
-
-<Accordion title="Self-billed for self consumption or for free transfer without recourse">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD27`
-</Accordion>
-
-<Accordion title="Reverse charge">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `reverse-charge`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD16`
-</Accordion>
-
-<Accordion title="Self-billed Import">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `import`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD17`
-</Accordion>
-
-<Accordion title="Self-billed EU Goods Import">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `import`, `goods-eu`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD18`
-</Accordion>
-
-<Accordion title="Self-billed Goods Import">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `import`, `goods`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD19`
-</Accordion>
-
-<Accordion title="Self-billed Regularization">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `regularization`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD20`
-</Accordion>
-
-<Accordion title="Self-billed invoice when ceiling exceeded">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `ceiling-exceeded`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD21`
-</Accordion>
-
-<Accordion title="Self-billed for goods extracted from VAT warehouse">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `goods-extracted`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD22`
-</Accordion>
-
-<Accordion title="Self-billed for goods extracted from VAT warehouse with VAT payment">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `goods-with-tax`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD23`
-</Accordion>
-
-<Accordion title="Deferred invoice ex art.21, c.4, lett. a) DPR 633/72">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `deferred`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD24`
-</Accordion>
-
-<Accordion title="Deferred invoice ex art.21, c.4, third period lett. b) DPR 633/72">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `deferred`, `third-period`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD25`
-</Accordion>
-
-<Accordion title="Sale of depreciable assets and for internal transfers (ex art.36 DPR 633/72">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `depreciable-assets`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD26`
-</Accordion>
-
-<Accordion title="Purchases from San Marino with VAT (paper invoice)">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`, `san-marino-paper`
-
-**Output:**
-- **Extensions:** `it-sdi-document-type:TD28`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### SDI Transmission Format
@@ -455,6 +254,10 @@ used to determine the correct schema to use when validating the document.
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

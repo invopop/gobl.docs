@@ -48,114 +48,34 @@ exemption note covering it.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "380"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "381"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "383"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `corrective` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "384"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `proforma` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "325"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `partial` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "326"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "389"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "261"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `prepayment` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "386"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `factoring` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "393"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `factoring` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "396"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `untdid-document-type:380`
 </Accordion>
-
-<Accordion title="credit-note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `untdid-document-type:381`
-</Accordion>
-
-<Accordion title="debit-note">
-
-**Filters:**
-- **Types:** `debit-note`
-
-**Output:**
-- **Extensions:** `untdid-document-type:383`
-</Accordion>
-
-<Accordion title="corrective">
-
-**Filters:**
-- **Types:** `corrective`
-
-**Output:**
-- **Extensions:** `untdid-document-type:384`
-</Accordion>
-
-<Accordion title="proforma">
-
-**Filters:**
-- **Types:** `proforma`
-
-**Output:**
-- **Extensions:** `untdid-document-type:325`
-</Accordion>
-
-<Accordion title="standard, #partial">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `partial`
-
-**Output:**
-- **Extensions:** `untdid-document-type:326`
-</Accordion>
-
-<Accordion title="standard, #self-billed">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `untdid-document-type:389`
-</Accordion>
-
-<Accordion title="credit-note, #self-billed">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `untdid-document-type:261`
-</Accordion>
-
-<Accordion title="standard, #prepayment">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `prepayment`
-
-**Output:**
-- **Extensions:** `untdid-document-type:386`
-</Accordion>
-
-<Accordion title="standard, #factoring">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `factoring`
-
-**Output:**
-- **Extensions:** `untdid-document-type:393`
-</Accordion>
-
-<Accordion title="credit-note, #factoring">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `factoring`
-
-**Output:**
-- **Extensions:** `untdid-document-type:396`
-</Accordion>
+</AccordionGroup>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">
