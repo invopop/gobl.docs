@@ -21,75 +21,24 @@ Stamp keys from the previous invoice that need to be referenced:
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="Regular Invoice">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "VAT"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `partial` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "ZAL"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `settlement` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "ROZ"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "UPR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "KOR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `partial` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "KOR_ZAL"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `settlement` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pl-favat-invoice-type": "KOR_ROZ"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:VAT`
 </Accordion>
-
-<Accordion title="Prepayment Invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `partial`
-
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:ZAL`
-</Accordion>
-
-<Accordion title="Settlement Invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `settlement`
-
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:ROZ`
-</Accordion>
-
-<Accordion title="Simplified Invoice">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:UPR`
-</Accordion>
-
-<Accordion title="Credit note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:KOR`
-</Accordion>
-
-<Accordion title="Prepayment credit note">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `partial`
-
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:KOR_ZAL`
-</Accordion>
-
-<Accordion title="Settlement credit note">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `settlement`
-
-**Output:**
-- **Extensions:** `pl-favat-invoice-type:KOR_ROZ`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### Tax categories for KSeF
@@ -750,6 +699,10 @@ Example of a credit note effective on correction date:
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

@@ -130,6 +130,10 @@ func (g *generator) validationRules(sections []RuleSection) error {
 
 		## Validation Rules
 
+		Validation rules check each struct against a set of assertions and report any
+		failures with a unique code and message.
+		[Read more about validation](/overview/validation).
+
 		<AccordionGroup>
 		{{- range .}}
 		{{- $sec := .}}

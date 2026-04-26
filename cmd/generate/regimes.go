@@ -49,7 +49,7 @@ func newRegimeGenerator(r *tax.RegimeDef) *regimeGenerator {
 		"joinKeys":      joinKeys,
 		"codeMap":       codeMap,
 		"extMap":        extMap,
-		"scenarioTitle": scenarioTitle,
+		"scenarioTable": scenarioTable,
 		"codeMessage":   codeMessage,
 		"testList":      testList,
 		"fieldCell":     fieldCell,
@@ -368,52 +368,17 @@ func (g *regimeGenerator) scenarios() error {
 
 		## Scenarios
 
+		Scenarios attach notes and extensions to a document when its filters match.
+		[Read more about scenarios](/overview/scenarios).
+
+		<AccordionGroup>
 		{{- range .Scenarios }}
+		<Accordion title="{{ .Schema }}">
 
-		### {{ .Schema }}
-
-		{{- range .List }}
-
-		<Accordion title="{{ scenarioTitle . }}">
-
-		**Filters:**
-
-		{{- if .Types }}
-		- **Types:** {{ joinKeys .Types }}
-		{{- end }}
-		{{- if .Tags }}
-		- **Tags:** {{ joinKeys .Tags }}
-		{{- end }}
-		{{- if .ExtKey }}
-		- **Extension Key:** ~{{ .ExtKey }}~
-		{{- end }}
-		{{- if .ExtCode }}
-		- **Extension Code:** ~{{ .ExtCode }}~
-		{{- end }}
-		{{- if .Filter }}
-		- **Filter:** *(custom)*
-		{{- end }}
-		{{- if not .Types }}{{ if not .Tags }}{{ if not .ExtKey }}{{ if not .Filter }}
-		- *(none)*
-		{{- end }}{{ end }}{{ end }}{{ end }}
-
-		**Output:**
-
-		{{- if .Note }}
-		- **Note:** {{ .Note.Text }}{{ if .Note.Key }} ({{ .Note.Key }}){{ end }}
-		{{- end }}
-		{{- if .Codes }}
-		- **Codes:** {{ codeMap .Codes }}
-		{{- end }}
-		{{- if .Ext }}
-		- **Extensions:** {{ extMap .Ext }}
-		{{- end }}
-		{{- if not .Note }}{{ if not .Codes }}{{ if not .Ext }}
-		- *(none)*
-		{{- end }}{{ end }}{{ end }}
+		{{ scenarioTable . }}
 		</Accordion>
 		{{- end }}
-		{{- end }}
+		</AccordionGroup>
 
 	`))
 }

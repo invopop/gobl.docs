@@ -17,91 +17,26 @@ options. See the [Extensions](#extensions) section for possible values.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard, corrective, credit-note, debit-note">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`, `corrective`, `credit-note`, `debit-note`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard`<br />`corrective`<br />`credit-note`<br />`debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-doc-type": "FC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-doc-type": "FA"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-doc-type": "AF"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "OO"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `corrective`<br />`credit-note`<br />`debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "OR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `summary` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "OC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `copy` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "CO"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `copy` | `corrective` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "CR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `copy`<br />`summary` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "CC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `es-facturae-doc-type:FC`
 </Accordion>
-
-<Accordion title="#simplified">
-
-**Filters:**
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `es-facturae-doc-type:FA`
-</Accordion>
-
-<Accordion title="#self-billed">
-
-**Filters:**
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `es-facturae-doc-type:AF`
-</Accordion>
-
-<Accordion title="standard">
-
-**Filters:**
-- **Types:** `standard`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:OO`
-</Accordion>
-
-<Accordion title="corrective, credit-note, debit-note">
-
-**Filters:**
-- **Types:** `corrective`, `credit-note`, `debit-note`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:OR`
-</Accordion>
-
-<Accordion title="#summary">
-
-**Filters:**
-- **Tags:** `summary`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:OC`
-</Accordion>
-
-<Accordion title="standard, #copy">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `copy`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:CO`
-</Accordion>
-
-<Accordion title="corrective, #copy">
-
-**Filters:**
-- **Types:** `corrective`
-- **Tags:** `copy`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:CR`
-</Accordion>
-
-<Accordion title="standard, #copy, #summary">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `copy`, `summary`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:CC`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### FacturaE: Document Type
@@ -160,6 +95,10 @@ FacturaE requires a specific and single code that explains why the previous invo
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

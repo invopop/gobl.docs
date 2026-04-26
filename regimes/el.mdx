@@ -61,13 +61,15 @@ Stamp keys from the previous invoice that need to be referenced:
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="#reverse-charge">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Tags:** `reverse-charge`
+| Tags | Categories | Output |
+| --- | --- | --- |
+| `reverse-charge` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "reverse-charge",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Reverse Charge / Αντίστροφη φόρτιση"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Note:** Reverse Charge / Αντίστροφη φόρτιση (reverse-charge)
 </Accordion>
+</AccordionGroup>
