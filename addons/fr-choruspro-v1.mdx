@@ -75,23 +75,24 @@ replaced by GOBL during normalization.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `customer.ext` | <ul class="gobl-test"><li>Ext 'fr-choruspro-scheme' in [1]</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-01`<br />Customer scheme extension must be '1' |
-| `customer.identities` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-02`<br />Customer identities are required |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-03`<br />Tax object is required with extensions |
-| `tax.ext` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-04`<br />Tax extensions are required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [fr-choruspro-framework]</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-05`<br />Framework extension is required |
-| `totals`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Framework is paid</li><li>Paid</li></ul> | `GOBL-FR-CHORUSPRO-V1-BILL-INVOICE-06`<br />Must be paid in full for framework 'A2' |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-07`<br />Invoice must be in EUR or provide exchange rate for conversion |
+| `customer.ext` | <ul class="gobl-test"><li>Ext 'fr-choruspro-scheme' in [1]</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-01`<br />Customer scheme extension must be '1' |
+| `customer.identities` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-02`<br />Customer identities are required |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-03`<br />Tax object is required with extensions |
+| `tax.ext` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-04`<br />Tax extensions are required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [fr-choruspro-framework]</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-05`<br />Framework extension is required |
+| `totals`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Framework is paid</li><li>Paid</li></ul> | `GOBL-FR-CHORUSPRO-BILL-INVOICE-06`<br />Must be paid in full for framework 'A2' |
 </Accordion>
 <Accordion title="org.Party">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [fr-choruspro-scheme]</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-01`<br />Scheme extension is required |
-| `identities` | <ul class="gobl-test"><li>Party scheme is 1</li><li>Has SIRET</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-02`<br />Identities must have a SIRET entry for scheme '1' |
-| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 1</li><li>One of [FR]</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-03`<br />Tax ID must be 'FR' for scheme '1' |
-| `identities` | <ul class="gobl-test"><li>Party scheme is not 1</li><li>No SIRET</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-04`<br />Identities cannot have a SIRET entry when not '1' scheme |
-| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 2</li><li>Not one of [FR]</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-05`<br />Tax ID country must be a non-French, EU company with scheme '2' |
-| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 2</li><li>EU member</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-06`<br />Tax ID country must be a member of the EU with scheme '2' |
-| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 3</li><li>Non-EU</li></ul> | `GOBL-FR-CHORUSPRO-V1-ORG-PARTY-07`<br />Tax ID country must be a non-EU company with scheme '3' |
+| `ext` | <ul class="gobl-test"><li>Ext require [fr-choruspro-scheme]</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-01`<br />Scheme extension is required |
+| `identities` | <ul class="gobl-test"><li>Party scheme is 1</li><li>Has SIRET</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-02`<br />Identities must have a SIRET entry for scheme '1' |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 1</li><li>One of [FR]</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-03`<br />Tax ID must be 'FR' for scheme '1' |
+| `identities` | <ul class="gobl-test"><li>Party scheme is not 1</li><li>No SIRET</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-04`<br />Identities cannot have a SIRET entry when not '1' scheme |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 2</li><li>Not one of [FR]</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-05`<br />Tax ID country must be a non-French, EU company with scheme '2' |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 2</li><li>EU member</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-06`<br />Tax ID country must be a member of the EU with scheme '2' |
+| `tax_id.country` | <ul class="gobl-test"><li>Party scheme is 3</li><li>Non-EU</li></ul> | `GOBL-FR-CHORUSPRO-ORG-PARTY-07`<br />Tax ID country must be a non-EU company with scheme '3' |
 </Accordion>
 </AccordionGroup>

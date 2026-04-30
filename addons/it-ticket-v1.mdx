@@ -73,19 +73,20 @@ Reference code provided by the AdE to be able to identify the specific line in c
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-01`<br />Tax is required |
-| `tax.prices_include` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-02`<br />Prices_include is required |
-| `tax.prices_include` | <ul class="gobl-test"><li>One of [VAT]</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-03`<br />Prices_include must be VAT |
-| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-05`<br />Preceding documents are required for corrective invoices |
-| `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-06`<br />Line taxes must include VAT category |
-| `lines[*].ext` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li>Ext require [it-ticket-line-ref]</li></ul> | `GOBL-IT-TICKET-V1-BILL-INVOICE-07`<br />Corrective invoice lines require 'it-ticket-line-ref' extension |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-08`<br />Invoice must be in EUR or provide exchange rate for conversion |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-01`<br />Tax is required |
+| `tax.prices_include` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-02`<br />Prices_include is required |
+| `tax.prices_include` | <ul class="gobl-test"><li>One of [VAT]</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-03`<br />Prices_include must be VAT |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-04`<br />Supplier tax ID is required |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-05`<br />Preceding documents are required for corrective invoices |
+| `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-06`<br />Line taxes must include VAT category |
+| `lines[*].ext` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li>Ext require [it-ticket-line-ref]</li></ul> | `GOBL-IT-TICKET-BILL-INVOICE-07`<br />Corrective invoice lines require 'it-ticket-line-ref' extension |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-ticket-exempt]</li></ul> | `GOBL-IT-TICKET-V1-TAX-COMBO-01`<br />Exempt VAT combo requires 'it-ticket-exempt' extension |
-| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is VAT</li><li>Valid percentage</li></ul> | `GOBL-IT-TICKET-V1-TAX-COMBO-02`<br />Must be a valid value |
+| `ext` | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-ticket-exempt]</li></ul> | `GOBL-IT-TICKET-TAX-COMBO-01`<br />Exempt VAT combo requires 'it-ticket-exempt' extension |
+| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is VAT</li><li>Valid percentage</li></ul> | `GOBL-IT-TICKET-TAX-COMBO-02`<br />Must be a valid value |
 </Accordion>
 </AccordionGroup>

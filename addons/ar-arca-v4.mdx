@@ -322,42 +322,43 @@ The VAT status is validated against the document type:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type credit note</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-05`<br />Invoice type is credit-note but ar-arca-doc-type is not a credit note |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type debit note</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-06`<br />Invoice type is debit-note but ar-arca-doc-type is not a debit note |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type credit note matches type</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-07`<br />Ar-arca-doc-type is a credit note but invoice type is not credit-note |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type debit note matches type</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-08`<br />Doc type is a debit note but invoice type is not debit-note |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type 49 vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-12`<br />Document type 49 (Used Goods Purchase Invoice) requires customer VAT status to be 5 (Final Consumer) |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type A vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-13`<br />Document type A requires customer VAT status to be one of [1 6 13 16] |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type B vat status</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-14`<br />Document type B cannot have customer VAT status [1 6 13 16] |
-| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-01`<br />Series is required |
-| `series` | <ul class="gobl-test"><li>Valid series</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-02`<br />Series must be a valid number between 1 and 99998 |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-03`<br />Tax is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-04`<br />Tax requires 'ar-arca-doc-type' extension |
-| `customer` | <ul class="gobl-test"><li>Customer required</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-09`<br />Customer is required |
-| `customer` | <ul class="gobl-test"><li>Has tax ID or identity</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-10`<br />Must have a tax_id, or an identity with ext 'ar-arca-identity-type' |
-| `customer.ext` | <ul class="gobl-test"><li>Ext require [ar-arca-vat-status]</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-11`<br />Customer requires 'ar-arca-vat-status' extension |
-| `ordering` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-15`<br />Ordering is required for services |
-| `ordering.period` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-16`<br />Ordering period is required for services |
-| `payment` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-17`<br />Payment is required for services |
-| `payment.terms` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-18`<br />Payment terms are required for services |
-| `payment.terms.due_dates` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-19`<br />Payment due dates are required for services |
-| `payment.terms.due_dates` | <ul class="gobl-test"><li>Concept is goods</li><li>Empty</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-20`<br />Payment due dates must not be set for goods |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-21`<br />Preceding documents are required for credit/debit notes |
-| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-22`<br />Preceding document requires 'ar-arca-doc-type' extension |
-| `lines[*].taxes` | <ul class="gobl-test"><li>Doc type is C</li><li>Empty</li></ul> | `GOBL-AR-ARCA-V4-BILL-INVOICE-23`<br />Type C invoices (simplified tax scheme) must not have taxes on lines |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [ARS]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-24`<br />Invoice must be in ARS or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type credit note</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-05`<br />Invoice type is credit-note but ar-arca-doc-type is not a credit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type debit note</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-06`<br />Invoice type is debit-note but ar-arca-doc-type is not a debit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type credit note matches type</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-07`<br />Ar-arca-doc-type is a credit note but invoice type is not credit-note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type debit note matches type</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-08`<br />Doc type is a debit note but invoice type is not debit-note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type 49 vat status</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-12`<br />Document type 49 (Used Goods Purchase Invoice) requires customer VAT status to be 5 (Final Consumer) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type A vat status</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-13`<br />Document type A requires customer VAT status to be one of [1 6 13 16] |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type B vat status</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-14`<br />Document type B cannot have customer VAT status [1 6 13 16] |
+| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-01`<br />Series is required |
+| `series` | <ul class="gobl-test"><li>Valid series</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-02`<br />Series must be a valid number between 1 and 99998 |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-03`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-04`<br />Tax requires 'ar-arca-doc-type' extension |
+| `customer` | <ul class="gobl-test"><li>Customer required</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-09`<br />Customer is required |
+| `customer` | <ul class="gobl-test"><li>Has tax ID or identity</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-10`<br />Must have a tax_id, or an identity with ext 'ar-arca-identity-type' |
+| `customer.ext` | <ul class="gobl-test"><li>Ext require [ar-arca-vat-status]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-11`<br />Customer requires 'ar-arca-vat-status' extension |
+| `ordering` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-15`<br />Ordering is required for services |
+| `ordering.period` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-16`<br />Ordering period is required for services |
+| `payment` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-17`<br />Payment is required for services |
+| `payment.terms` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-18`<br />Payment terms are required for services |
+| `payment.terms.due_dates` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-19`<br />Payment due dates are required for services |
+| `payment.terms.due_dates` | <ul class="gobl-test"><li>Concept is goods</li><li>Empty</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-20`<br />Payment due dates must not be set for goods |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-21`<br />Preceding documents are required for credit/debit notes |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-22`<br />Preceding document requires 'ar-arca-doc-type' extension |
+| `lines[*].taxes` | <ul class="gobl-test"><li>Doc type is C</li><li>Empty</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-23`<br />Type C invoices (simplified tax scheme) must not have taxes on lines |
 </Accordion>
 <Accordion title="bill.Charge">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Key is tax</li><li>Ext require [ar-arca-tax-type]</li></ul> | `GOBL-AR-ARCA-V4-BILL-CHARGE-01`<br />Tax charge requires 'ar-arca-tax-type' extension |
-| `percent` | <ul class="gobl-test"><li>Has tax type ext</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-CHARGE-02`<br />Percent is required when tax type is set |
-| `reason` | <ul class="gobl-test"><li>Tax type is other</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-V4-BILL-CHARGE-03`<br />Reason is required when tax type is 'other' |
+| `ext` | <ul class="gobl-test"><li>Key is tax</li><li>Ext require [ar-arca-tax-type]</li></ul> | `GOBL-AR-ARCA-BILL-CHARGE-01`<br />Tax charge requires 'ar-arca-tax-type' extension |
+| `percent` | <ul class="gobl-test"><li>Has tax type ext</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-CHARGE-02`<br />Percent is required when tax type is set |
+| `reason` | <ul class="gobl-test"><li>Tax type is other</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-CHARGE-03`<br />Reason is required when tax type is 'other' |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [ar-arca-vat-rate]</li></ul> | `GOBL-AR-ARCA-V4-TAX-COMBO-01`<br />VAT combo requires 'ar-arca-vat-rate' extension |
+| `ext` | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [ar-arca-vat-rate]</li></ul> | `GOBL-AR-ARCA-TAX-COMBO-01`<br />VAT combo requires 'ar-arca-vat-rate' extension |
 </Accordion>
 </AccordionGroup>

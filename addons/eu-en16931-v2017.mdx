@@ -162,93 +162,93 @@ exemption note covering it.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-08`<br />Exempt tax categories require either a VATEX code or an exemption note |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-01`<br />Tax details are required with ext and UNTDID document type |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [untdid-document-type]</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-02`<br />Document type extension is required |
-| `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-03`<br />At least one line is required (BR-16) |
-| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-04`<br />Supplier addresses are required (BR-8) |
-| `customer.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-05`<br />Customer addresses are required (BR-10) |
-| `payment` | <ul class="gobl-test"><li>Is due standard invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-06`<br />Payment details are required when amount is due (BR-CO-25) |
-| `payment.terms` | <ul class="gobl-test"><li>Is due standard invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-INVOICE-07`<br />Payment terms are required when amount is due (BR-CO-25) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-08`<br />Exempt tax categories require either a VATEX code or an exemption note |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-01`<br />Tax details are required with ext and UNTDID document type |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [untdid-document-type]</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-02`<br />Document type extension is required |
+| `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-03`<br />At least one line is required (BR-16) |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-04`<br />Supplier addresses are required (BR-8) |
+| `customer.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-05`<br />Customer addresses are required (BR-10) |
+| `payment` | <ul class="gobl-test"><li>Is due standard invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-06`<br />Payment details are required when amount is due (BR-CO-25) |
+| `payment.terms` | <ul class="gobl-test"><li>Is due standard invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-INVOICE-07`<br />Payment terms are required when amount is due (BR-CO-25) |
 </Accordion>
 <Accordion title="bill.Discount">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Discount</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-V2017-BILL-DISCOUNT-02`<br />Either a reason or an allowance type extension is required (BR-33) |
-| `taxes` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-BILL-DISCOUNT-01`<br />Taxes are required (BR-32) |
+| <small>Discount</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-BILL-DISCOUNT-02`<br />Either a reason or an allowance type extension is required (BR-33) |
+| `taxes` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-BILL-DISCOUNT-01`<br />Taxes are required (BR-32) |
 </Accordion>
 <Accordion title="bill.LineDiscount">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>LineDiscount</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-V2017-BILL-LINEDISCOUNT-01`<br />Either a reason or an allowance type extension is required (BR-41) |
+| <small>LineDiscount</small> | <ul class="gobl-test"><li>Reason or allowance</li></ul> | `GOBL-EU-EN16931-BILL-LINEDISCOUNT-01`<br />Either a reason or an allowance type extension is required (BR-41) |
 </Accordion>
 <Accordion title="bill.Charge">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Charge</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-V2017-BILL-CHARGE-01`<br />Either a reason or a charge type extension is required (BR-36) |
+| <small>Charge</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-BILL-CHARGE-01`<br />Either a reason or a charge type extension is required (BR-36) |
 </Accordion>
 <Accordion title="bill.LineCharge">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>LineCharge</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-V2017-BILL-LINECHARGE-01`<br />Either a reason or a charge type extension is required (BR-44) |
+| <small>LineCharge</small> | <ul class="gobl-test"><li>Reason or charge</li></ul> | `GOBL-EU-EN16931-BILL-LINECHARGE-01`<br />Either a reason or a charge type extension is required (BR-44) |
 </Accordion>
 <Accordion title="pay.Instructions">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [untdid-payment-means]</li></ul> | `GOBL-EU-EN16931-V2017-PAY-INSTRUCTIONS-01`<br />Payment means extension is required (BR-49) |
+| `ext` | <ul class="gobl-test"><li>Ext require [untdid-payment-means]</li></ul> | `GOBL-EU-EN16931-PAY-INSTRUCTIONS-01`<br />Payment means extension is required (BR-49) |
 </Accordion>
 <Accordion title="pay.Terms">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Terms</small> | <ul class="gobl-test"><li>Has due dates or notes</li></ul> | `GOBL-EU-EN16931-V2017-PAY-TERMS-01`<br />Either due_dates or notes must be provided (BR-CO-25) |
+| <small>Terms</small> | <ul class="gobl-test"><li>Has due dates or notes</li></ul> | `GOBL-EU-EN16931-PAY-TERMS-01`<br />Either due_dates or notes must be provided (BR-CO-25) |
 </Accordion>
 <Accordion title="org.Item">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `unit` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-ORG-ITEM-01`<br />Unit is required (BR-23) |
+| `unit` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-ORG-ITEM-01`<br />Unit is required (BR-23) |
 </Accordion>
 <Accordion title="org.Attachment">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-ORG-ATTACHMENT-01`<br />Code is required |
+| `code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-ORG-ATTACHMENT-01`<br />Code is required |
 </Accordion>
 <Accordion title="org.Party">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `inboxes` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-EU-EN16931-V2017-ORG-PARTY-01`<br />Cannot have more than one inbox (BT-34, BT-49) |
+| `inboxes` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-01`<br />Cannot have more than one inbox (BT-34, BT-49) |
 </Accordion>
 <Accordion title="org.Inbox">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Inbox</small> | <ul class="gobl-test"><li>Scheme required with code</li></ul> | `GOBL-EU-EN16931-V2017-ORG-INBOX-01`<br />Scheme cannot be blank when code is set (BR-62, BR-63) |
-| <small>Inbox</small> | <ul class="gobl-test"><li>Code required with scheme</li></ul> | `GOBL-EU-EN16931-V2017-ORG-INBOX-02`<br />Code cannot be blank when scheme is set |
+| <small>Inbox</small> | <ul class="gobl-test"><li>Scheme required with code</li></ul> | `GOBL-EU-EN16931-ORG-INBOX-01`<br />Scheme cannot be blank when code is set (BR-62, BR-63) |
+| <small>Inbox</small> | <ul class="gobl-test"><li>Code required with scheme</li></ul> | `GOBL-EU-EN16931-ORG-INBOX-02`<br />Code cannot be blank when scheme is set |
 </Accordion>
 <Accordion title="org.Address">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-V2017-ORG-ADDRESS-01`<br />Country is required (BR-9, BR-11, BR-20, BR-57) |
+| `country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-ORG-ADDRESS-01`<br />Country is required (BR-9, BR-11, BR-20, BR-57) |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [untdid-tax-category]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-01`<br />Tax category extension is required |
-| `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext 'untdid-tax-category' in [AE, E, G, K, O, S, Z]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-02`<br />VAT category code must be valid |
-| `ext` | <ul class="gobl-test"><li>Is IGIC</li><li>Ext 'untdid-tax-category' in [L]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-03`<br />Must use IGIC category code |
-| `ext` | <ul class="gobl-test"><li>Is IPSI</li><li>Ext 'untdid-tax-category' in [M]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-04`<br />Must use IPSI category code |
-| `ext` | <ul class="gobl-test"><li>Is outside scope</li><li>Ext 'untdid-tax-category' in [O]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-05`<br />Must use outside scope category code |
-| `ext` | <ul class="gobl-test"><li>Is exempt</li><li>Ext require [cef-vatex]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-06`<br />VATEX extension is required for exempt tax (BR-E-10) |
-| `ext` | <ul class="gobl-test"><li>Is non-exempt</li><li>Ext exclude [cef-vatex]</li></ul> | `GOBL-EU-EN16931-V2017-TAX-COMBO-07`<br />VATEX extension must not be set for standard, zero, IGIC, or IPSI categories (BR-S-10, BR-Z-10) |
+| `ext` | <ul class="gobl-test"><li>Ext require [untdid-tax-category]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-01`<br />Tax category extension is required |
+| `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext 'untdid-tax-category' in [AE, E, G, K, O, S, Z]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-02`<br />VAT category code must be valid |
+| `ext` | <ul class="gobl-test"><li>Is IGIC</li><li>Ext 'untdid-tax-category' in [L]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-03`<br />Must use IGIC category code |
+| `ext` | <ul class="gobl-test"><li>Is IPSI</li><li>Ext 'untdid-tax-category' in [M]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-04`<br />Must use IPSI category code |
+| `ext` | <ul class="gobl-test"><li>Is outside scope</li><li>Ext 'untdid-tax-category' in [O]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-05`<br />Must use outside scope category code |
+| `ext` | <ul class="gobl-test"><li>Is exempt</li><li>Ext require [cef-vatex]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-06`<br />VATEX extension is required for exempt tax (BR-E-10) |
+| `ext` | <ul class="gobl-test"><li>Is non-exempt</li><li>Ext exclude [cef-vatex]</li></ul> | `GOBL-EU-EN16931-TAX-COMBO-07`<br />VATEX extension must not be set for standard, zero, IGIC, or IPSI categories (BR-S-10, BR-Z-10) |
 </Accordion>
 </AccordionGroup>

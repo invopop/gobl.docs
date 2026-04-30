@@ -320,29 +320,31 @@ extension will be set to `T`.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-01`<br />Preceding documents are required for corrective invoices |
-| `preceding[*].issue_date` | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-02`<br />Issue date is required |
-| `preceding[*].tax` | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-03`<br />Preceding invoice tax data is required for corrective invoices |
-| `customer` | <ul class="gobl-test"><li>Simplified</li><li>No identity type ext</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-05`<br />Customer identity type extension not allowed for simplified invoices |
-| `customer.tax_id` | <ul class="gobl-test"><li>Simplified</li><li>Nil</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-04`<br />Customer tax ID must not be set for simplified invoices |
-| `customer` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-06`<br />Customer is required |
-| `customer` | <ul class="gobl-test"><li>Not simplified</li><li>Has tax_id or identity</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-07`<br />Must have a tax_id or an identity with ext 'es-verifactu-v1-identity-type' |
-| `customer.tax_id.code` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-08`<br />Tax ID must have a code |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-09`<br />Tax is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-verifactu-doc-type]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-10`<br />Doc type is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-verifactu-correction-type]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-13`<br />Correction type extension is required |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-verifactu-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-11`<br />Doc type extension for standard invoices must be F1, F2, or F3 |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-12`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
-| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-14`<br />General note text must be 500 characters or less |
-| `lines[*].taxes` | <ul class="gobl-test"><li>One of [VAT, IGIC, IPSI]</li></ul> | `GOBL-ES-VERIFACTU-V1-BILL-INVOICE-15`<br />Must include at least one of VAT, IGIC, or IPSI |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-16`<br />Invoice must be in EUR or provide exchange rate for conversion |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [corrective]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-01`<br />Preceding documents are required for corrective invoices |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-02`<br />Issue date is required |
+| `preceding[*].tax` | <ul class="gobl-test"><li>Not nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-03`<br />Preceding invoice tax data is required for corrective invoices |
+| `customer` | <ul class="gobl-test"><li>Simplified</li><li>No identity type ext</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-05`<br />Customer identity type extension not allowed for simplified invoices |
+| `customer.tax_id` | <ul class="gobl-test"><li>Simplified</li><li>Nil</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-04`<br />Customer tax ID must not be set for simplified invoices |
+| `customer` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-06`<br />Customer is required |
+| `customer` | <ul class="gobl-test"><li>Not simplified</li><li>Has tax_id or identity</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-07`<br />Must have a tax_id or an identity with ext 'es-verifactu-identity-type' |
+| `customer.tax_id.code` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-08`<br />Tax ID must have a code |
+| `customer.identities[*].country` | <ul class="gobl-test"><li>Has non-VAT identity type</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-17`<br />Country is required when ext 'es-verifactu-identity-type' is not 02 (NIF-VAT) |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-09`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-verifactu-doc-type]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-10`<br />Doc type is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-verifactu-correction-type]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-13`<br />Correction type extension is required |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-verifactu-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-11`<br />Doc type extension for standard invoices must be F1, F2, or F3 |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-12`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
+| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-14`<br />General note text must be 500 characters or less |
+| `lines[*].taxes` | <ul class="gobl-test"><li>One of [VAT, IGIC, IPSI]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-15`<br />Must include at least one of VAT, IGIC, or IPSI |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext require [es-verifactu-regime]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-01`<br />Extension 'es-verifactu-regime' is required |
-| `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext allow one of [es-verifactu-op-class, es-verifactu-exempt]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-03`<br />Cannot use both 'es-verifactu-op-class' and 'es-verifactu-exempt' at the same time |
-| `ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-regime' in [01]</li><li>Ext 'es-verifactu-exempt' not in [E2, E3]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-02`<br />Exempt codes E2 and E3 not allowed with 'es-verifactu-regime' 01 |
-| `ext` | <ul class="gobl-test"><li>Has percent</li><li>Ext require [es-verifactu-op-class]</li></ul> | `GOBL-ES-VERIFACTU-V1-TAX-COMBO-04`<br />Extension 'es-verifactu-op-class' is required for taxed operations |
+| `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext require [es-verifactu-regime]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-01`<br />Extension 'es-verifactu-regime' is required |
+| `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext allow one of [es-verifactu-op-class, es-verifactu-exempt]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-03`<br />Cannot use both 'es-verifactu-op-class' and 'es-verifactu-exempt' at the same time |
+| `ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-regime' in [01]</li><li>Ext 'es-verifactu-exempt' not in [E2, E3]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-02`<br />Exempt codes E2 and E3 not allowed with 'es-verifactu-regime' 01 |
+| `ext` | <ul class="gobl-test"><li>Has percent</li><li>Ext require [es-verifactu-op-class]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-04`<br />Extension 'es-verifactu-op-class' is required for taxed operations |
 </Accordion>
 </AccordionGroup>

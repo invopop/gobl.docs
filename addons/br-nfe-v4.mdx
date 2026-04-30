@@ -141,58 +141,59 @@ Indicates a special tax regime that a party is subject to.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Has reason note</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-30`<br />A note with key 'reason' is required to describe the nature of the operation (natOp) |
-| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-01`<br />Supplier tax ID is required |
-| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-02`<br />Supplier tax ID code is required |
-| `supplier.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-03`<br />Supplier address must not be empty |
-| `supplier.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-04`<br />Supplier address requires a street |
-| `supplier.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-05`<br />Supplier address requires a number |
-| `supplier.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-06`<br />Supplier address requires a locality |
-| `supplier.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-07`<br />Supplier address requires a state |
-| `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-08`<br />Supplier address requires a postal code |
-| `supplier.ext` | <ul class="gobl-test"><li>Has addresses</li><li>Ext require [br-ibge-municipality]</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-09`<br />Supplier requires 'br-ibge-municipality' extension when addresses are present |
-| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-10`<br />Supplier name is required |
-| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-11`<br />Supplier must have at least one address |
-| `customer` | <ul class="gobl-test"><li>Invoice is NFe</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-12`<br />Customer is required for NF-e invoices |
-| `customer.addresses` | <ul class="gobl-test"><li>Invoice is NFe</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-13`<br />Customer must have at least one address for NF-e invoices |
-| `customer.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-14`<br />Customer tax ID is required |
-| `customer.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-15`<br />Customer tax ID code is required |
-| `customer.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-16`<br />Customer address must not be empty |
-| `customer.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-17`<br />Customer address requires a street |
-| `customer.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-18`<br />Customer address requires a number |
-| `customer.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-19`<br />Customer address requires a locality |
-| `customer.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-20`<br />Customer address requires a state |
-| `customer.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-21`<br />Customer address requires a postal code |
-| `customer.ext` | <ul class="gobl-test"><li>Has addresses</li><li>Ext require [br-ibge-municipality]</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-22`<br />Customer requires 'br-ibge-municipality' extension when addresses are present |
-| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-23`<br />Series is required |
-| `series` | <ul class="gobl-test"><li>Matches ^(?:0\|[1-9]{1}[0-9]{0,2})$</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-24`<br />Series format is invalid; must be 0 or 1-999 |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-25`<br />Tax is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-model, br-nfe-presence]</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-26`<br />Tax requires 'br-nfe-model' and 'br-nfe-presence' extensions |
-| `tax.ext` | <ul class="gobl-test"><li>NFe model</li><li>Ext 'br-nfe-presence' not in [4]</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-27`<br />NF-e invoices do not support '4' for 'br-nfe-presence' |
-| `tax.ext` | <ul class="gobl-test"><li>NFCe model</li><li>Ext 'br-nfe-presence' in [1, 4]</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-28`<br />NFC-e invoices require in-person or delivery for 'br-nfe-presence' |
-| `notes[*].text` | <ul class="gobl-test"><li>Reason note</li><li>Length between 1 and 60</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-29`<br />Reason note text must be between 1 and 60 characters |
-| `payment` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-31`<br />Payment is required when invoice is unpaid |
-| `payment.instructions` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-32`<br />Payment instructions are required when invoice is unpaid |
-| `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Zero or positive</li></ul> | `GOBL-BR-NFE-V4-BILL-INVOICE-33`<br />Due amount must not be negative |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [BRL]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-34`<br />Invoice must be in BRL or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Has reason note</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-30`<br />A note with key 'reason' is required to describe the nature of the operation (natOp) |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-01`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-02`<br />Supplier tax ID code is required |
+| `supplier.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-03`<br />Supplier address must not be empty |
+| `supplier.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-04`<br />Supplier address requires a street |
+| `supplier.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-05`<br />Supplier address requires a number |
+| `supplier.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-06`<br />Supplier address requires a locality |
+| `supplier.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-07`<br />Supplier address requires a state |
+| `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-08`<br />Supplier address requires a postal code |
+| `supplier.ext` | <ul class="gobl-test"><li>Has addresses</li><li>Ext require [br-ibge-municipality]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-09`<br />Supplier requires 'br-ibge-municipality' extension when addresses are present |
+| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-10`<br />Supplier name is required |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-11`<br />Supplier must have at least one address |
+| `customer` | <ul class="gobl-test"><li>Invoice is NFe</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-12`<br />Customer is required for NF-e invoices |
+| `customer.addresses` | <ul class="gobl-test"><li>Invoice is NFe</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-13`<br />Customer must have at least one address for NF-e invoices |
+| `customer.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-14`<br />Customer tax ID is required |
+| `customer.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-15`<br />Customer tax ID code is required |
+| `customer.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-16`<br />Customer address must not be empty |
+| `customer.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-17`<br />Customer address requires a street |
+| `customer.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-18`<br />Customer address requires a number |
+| `customer.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-19`<br />Customer address requires a locality |
+| `customer.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-20`<br />Customer address requires a state |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-21`<br />Customer address requires a postal code |
+| `customer.ext` | <ul class="gobl-test"><li>Has addresses</li><li>Ext require [br-ibge-municipality]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-22`<br />Customer requires 'br-ibge-municipality' extension when addresses are present |
+| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-23`<br />Series is required |
+| `series` | <ul class="gobl-test"><li>Matches ^(?:0\|[1-9]{1}[0-9]{0,2})$</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-24`<br />Series format is invalid; must be 0 or 1-999 |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-25`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-model, br-nfe-presence]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-26`<br />Tax requires 'br-nfe-model' and 'br-nfe-presence' extensions |
+| `tax.ext` | <ul class="gobl-test"><li>NFe model</li><li>Ext 'br-nfe-presence' not in [4]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-27`<br />NF-e invoices do not support '4' for 'br-nfe-presence' |
+| `tax.ext` | <ul class="gobl-test"><li>NFCe model</li><li>Ext 'br-nfe-presence' in [1, 4]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-28`<br />NFC-e invoices require in-person or delivery for 'br-nfe-presence' |
+| `notes[*].text` | <ul class="gobl-test"><li>Reason note</li><li>Length between 1 and 60</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-29`<br />Reason note text must be between 1 and 60 characters |
+| `payment` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-31`<br />Payment is required when invoice is unpaid |
+| `payment.instructions` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-32`<br />Payment instructions are required when invoice is unpaid |
+| `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Zero or positive</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-33`<br />Due amount must not be negative |
 </Accordion>
 <Accordion title="bill.Line">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ICMS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-01`<br />Line taxes must include the ICMS category |
-| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category PIS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-02`<br />Line taxes must include the PIS category |
-| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category COFINS</li></ul> | `GOBL-BR-NFE-V4-BILL-LINE-03`<br />Line taxes must include the COFINS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ICMS</li></ul> | `GOBL-BR-NFE-BILL-LINE-01`<br />Line taxes must include the ICMS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category PIS</li></ul> | `GOBL-BR-NFE-BILL-LINE-02`<br />Line taxes must include the PIS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category COFINS</li></ul> | `GOBL-BR-NFE-BILL-LINE-03`<br />Line taxes must include the COFINS category |
 </Accordion>
 <Accordion title="pay.Instructions">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [br-nfe-payment-means]</li></ul> | `GOBL-BR-NFE-V4-PAY-INSTRUCTIONS-01`<br />Payment instructions require 'br-nfe-payment-means' extension |
+| `ext` | <ul class="gobl-test"><li>Ext require [br-nfe-payment-means]</li></ul> | `GOBL-BR-NFE-PAY-INSTRUCTIONS-01`<br />Payment instructions require 'br-nfe-payment-means' extension |
 </Accordion>
 <Accordion title="pay.Advance">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [br-nfe-payment-means]</li></ul> | `GOBL-BR-NFE-V4-PAY-ADVANCE-01`<br />Payment advance requires 'br-nfe-payment-means' extension |
+| `ext` | <ul class="gobl-test"><li>Ext require [br-nfe-payment-means]</li></ul> | `GOBL-BR-NFE-PAY-ADVANCE-01`<br />Payment advance requires 'br-nfe-payment-means' extension |
 </Accordion>
 </AccordionGroup>

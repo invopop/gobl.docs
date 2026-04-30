@@ -756,31 +756,34 @@ Example of a credit note effective on correction date:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>JST identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-11`<br />Customer requires identity with role '8' and code for JST |
-| <small>Invoice</small> | <ul class="gobl-test"><li>GroupVAT identity</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-12`<br />Customer requires identity with role '10' and code for GroupVAT |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Exemption note present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-13`<br />Missing exemption note |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Single exemption note</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-14`<br />Too many exemption notes |
-| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
-| `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-02`<br />Preceding issue date is required |
-| `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-03`<br />Preceding code is required |
-| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-04`<br />Supplier is required |
-| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-05`<br />Supplier name is required |
-| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-06`<br />Supplier addresses are required |
-| `supplier.addresses` | <ul class="gobl-test"><li>First address country</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-07`<br />Supplier first address must have a country |
-| `supplier.addresses` | <ul class="gobl-test"><li>First address street</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-08`<br />Supplier first address must have a street |
-| `customer` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-09`<br />Customer is required |
-| `customer.tax_id.code` | <ul class="gobl-test"><li>Code in [PL]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-BILL-INVOICE-10`<br />Customer Polish tax ID code is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [PLN]</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-15`<br />Invoice must be in PLN or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>JST identity</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-11`<br />Customer requires identity with role '8' and code for JST |
+| <small>Invoice</small> | <ul class="gobl-test"><li>GroupVAT identity</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-12`<br />Customer requires identity with role '10' and code for GroupVAT |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Exemption note present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-13`<br />Missing exemption note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Single exemption note</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-14`<br />Too many exemption notes |
+| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [standard, credit-note]</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-01`<br />Invoice type must be standard or credit-note |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-02`<br />Preceding issue date is required |
+| `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-03`<br />Preceding code is required |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-04`<br />Supplier is required |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-16`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-17`<br />Supplier tax ID code required |
+| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-05`<br />Supplier name is required |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-06`<br />Supplier addresses are required |
+| `supplier.addresses` | <ul class="gobl-test"><li>First address country</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-07`<br />Supplier first address must have a country |
+| `supplier.addresses` | <ul class="gobl-test"><li>First address street</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-08`<br />Supplier first address must have a street |
+| `customer` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-09`<br />Customer is required |
+| `customer.tax_id.code` | <ul class="gobl-test"><li>Code in [PL]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-BILL-INVOICE-10`<br />Customer Polish tax ID code is required |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [pl-favat-tax-category]</li></ul> | `GOBL-PL-FAVAT-V3-TAX-COMBO-01`<br />Tax combo requires 'pl-favat-tax-category' extension |
+| `ext` | <ul class="gobl-test"><li>Ext require [pl-favat-tax-category]</li></ul> | `GOBL-PL-FAVAT-TAX-COMBO-01`<br />Tax combo requires 'pl-favat-tax-category' extension |
 </Accordion>
 <Accordion title="pay.Advance">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-V3-PAY-ADVANCE-01`<br />Advance payment date is required |
+| `date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PL-FAVAT-PAY-ADVANCE-01`<br />Advance payment date is required |
 </Accordion>
 </AccordionGroup>
