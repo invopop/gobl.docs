@@ -405,10 +405,10 @@ func (g *regimeGenerator) scenarios() error {
 		{{- if .Codes }}
 		- **Codes:** {{ codeMap .Codes }}
 		{{- end }}
-		{{- if .Ext }}
+		{{- if not .Ext.IsZero }}
 		- **Extensions:** {{ extMap .Ext }}
 		{{- end }}
-		{{- if not .Note }}{{ if not .Codes }}{{ if not .Ext }}
+		{{- if not .Note }}{{ if not .Codes }}{{ if .Ext.IsZero }}
 		- *(none)*
 		{{- end }}{{ end }}{{ end }}
 		</Accordion>
