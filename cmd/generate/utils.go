@@ -27,7 +27,7 @@ func codeMap(m cbc.CodeMap) string {
 
 func extMap(m tax.Extensions) string {
 	var s []string
-	for k, v := range m {
+	for k, v := range m.All() {
 		s = append(s, fmt.Sprintf("`%s:%s`", k, v))
 	}
 	return strings.Join(s, ", ")

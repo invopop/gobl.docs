@@ -57,7 +57,7 @@ func (g *addonGenerator) generate() error {
 }
 
 func (g *addonGenerator) getAddonRuleSections() []RuleSection {
-	topSet := findSetByName(g.addon.Key.String())
+	topSet := findAddonSet(g.addon.Key)
 	if topSet == nil {
 		return nil
 	}

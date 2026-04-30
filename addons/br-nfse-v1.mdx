@@ -157,40 +157,41 @@ Pattern: `^\d{6}$`
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-01`<br />Series is required |
-| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-02`<br />Code must be a positive integer |
-| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-03`<br />Supplier is required |
-| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
-| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-05`<br />Supplier tax ID code is required |
-| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-06`<br />Supplier name is required |
-| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-07`<br />Supplier must have at least one address |
-| `supplier.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-08`<br />Supplier address must not be empty |
-| `supplier.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-09`<br />Supplier address requires a street |
-| `supplier.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-10`<br />Supplier address requires a number |
-| `supplier.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-11`<br />Supplier address requires a locality |
-| `supplier.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-12`<br />Supplier address requires a state |
-| `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-13`<br />Supplier address requires a postal code |
-| `supplier.ext` | <ul class="gobl-test"><li>Ext require [br-ibge-municipality, br-nfse-simples, br-nfse-fiscal-incentive]</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-14`<br />Supplier requires 'br-ibge-municipality', 'br-nfse-simples', and 'br-nfse-fiscal-incentive' extensions |
-| `charges` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-15`<br />Charges are not supported by NFS-e |
-| `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-V1-BILL-INVOICE-16`<br />Discounts are not supported by NFS-e |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [BRL]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-17`<br />Invoice must be in BRL or provide exchange rate for conversion |
+| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-01`<br />Series is required |
+| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-02`<br />Code must be a positive integer |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-03`<br />Supplier is required |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-04`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-05`<br />Supplier tax ID code is required |
+| `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-06`<br />Supplier name is required |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-07`<br />Supplier must have at least one address |
+| `supplier.addresses[*]` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-08`<br />Supplier address must not be empty |
+| `supplier.addresses[*].street` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-09`<br />Supplier address requires a street |
+| `supplier.addresses[*].num` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-10`<br />Supplier address requires a number |
+| `supplier.addresses[*].locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-11`<br />Supplier address requires a locality |
+| `supplier.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-12`<br />Supplier address requires a state |
+| `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-13`<br />Supplier address requires a postal code |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext require [br-ibge-municipality, br-nfse-simples, br-nfse-fiscal-incentive]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-14`<br />Supplier requires 'br-ibge-municipality', 'br-nfse-simples', and 'br-nfse-fiscal-incentive' extensions |
+| `charges` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-15`<br />Charges are not supported by NFS-e |
+| `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-16`<br />Discounts are not supported by NFS-e |
 </Accordion>
 <Accordion title="bill.Line">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ISS</li></ul> | `GOBL-BR-NFSE-V1-BILL-LINE-01`<br />Line taxes must include the ISS category |
+| <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ISS</li></ul> | `GOBL-BR-NFSE-BILL-LINE-01`<br />Line taxes must include the ISS category |
 </Accordion>
 <Accordion title="org.Item">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [br-nfse-service]</li></ul> | `GOBL-BR-NFSE-V1-ORG-ITEM-01`<br />Item requires 'br-nfse-service' extension |
-| `ext` | <ul class="gobl-test"><li>Ext require all or none of [br-nfse-operation, br-nfse-tax-status, br-nfse-tax-class]</li></ul> | `GOBL-BR-NFSE-V1-ORG-ITEM-02`<br />Item extensions 'br-nfse-operation', 'br-nfse-tax-status', and 'br-nfse-tax-class' must all be present or all absent |
+| `ext` | <ul class="gobl-test"><li>Ext require [br-nfse-service]</li></ul> | `GOBL-BR-NFSE-ORG-ITEM-01`<br />Item requires 'br-nfse-service' extension |
+| `ext` | <ul class="gobl-test"><li>Ext require all or none of [br-nfse-operation, br-nfse-tax-status, br-nfse-tax-class]</li></ul> | `GOBL-BR-NFSE-ORG-ITEM-02`<br />Item extensions 'br-nfse-operation', 'br-nfse-tax-status', and 'br-nfse-tax-class' must all be present or all absent |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>ISS category</li><li>Ext require [br-nfse-iss-liability]</li></ul> | `GOBL-BR-NFSE-V1-TAX-COMBO-01`<br />ISS tax combo requires 'br-nfse-iss-liability' extension |
+| `ext` | <ul class="gobl-test"><li>ISS category</li><li>Ext require [br-nfse-iss-liability]</li></ul> | `GOBL-BR-NFSE-TAX-COMBO-01`<br />ISS tax combo requires 'br-nfse-iss-liability' extension |
 </Accordion>
 </AccordionGroup>
