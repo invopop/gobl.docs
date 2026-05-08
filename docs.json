@@ -273,13 +273,13 @@
               {
                 "group": "Pay",
                 "pages": [
-                  "draft-0/pay/advance",
                   "draft-0/pay/card",
                   "draft-0/pay/credit_transfer",
                   "draft-0/pay/direct_debit",
                   "draft-0/pay/due_date",
                   "draft-0/pay/instructions",
                   "draft-0/pay/online",
+                  "draft-0/pay/record",
                   "draft-0/pay/terms"
                 ]
               },

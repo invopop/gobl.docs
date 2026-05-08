@@ -127,6 +127,27 @@ options. See the [Extensions](#extensions) section for possible values.
 | `CR` | Copy of the Corrective |
 | `CC` | Copy of the Summary |
 </Accordion>
+### FacturaE: Subsidy
+
+Indicates that an advance payment came from a public grant or subsidy. Set this extension on a payment [Record](/draft-0/pay/record)'s `ext` map (under `advances` in an invoice's [PaymentDetails](/draft-0/bill/payment_details), or as a `methods` entry on a [bill.Payment](/draft-0/bill/payment)) to flag subsidised advances when generating FacturaE output.
+
+```yaml
+payment:
+  advances:
+    - key: credit-transfer
+      amount: "500.00"
+      ext:
+        es-facturae-subsidy: "S"
+```
+
+<Accordion title="es-facturae-subsidy">
+
+| Code | Name |
+| ---- | ---- |
+| `S` | Yes |
+| `N` | No |
+</Accordion>
+
 ### FacturaE Change
 
 FacturaE requires a specific and single code that explains why the previous invoice is being corrected.
