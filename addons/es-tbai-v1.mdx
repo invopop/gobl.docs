@@ -99,6 +99,38 @@ data.
 | `R4` | Rectified invoice: Other |
 | `R5` | Rectified invoice: simplified invoices |
 </Accordion>
+### TicketBAI Bizkaia Activity Code
+
+Economic activity code (epígrafe) for individual issuers submitting through
+Bizkaia's LROE Modelo 140 register. Required for individual suppliers in
+Bizkaia, but not for organisations, who file through Modelo 240.
+
+The value must be a numeric code of up to 7 digits, matching the pattern
+`^\d{1,7}$`. The full list of valid codes is published by the Bizkaia tax
+authority.
+
+<Accordion title="es-tbai-bi-activity">
+
+| Field | Value |
+| ----- | ----- |
+| Pattern | `^\d{1,7}$` |
+| Required for | Individual suppliers in Bizkaia (region `BI`) |
+| Sources | [LROE list of activity codes](https://www.batuz.eus/fitxategiak/batuz/lroe/batuz_lroe_lista_epigrafes_v1_0_4.xlsx) · [Modelo 140 specification](https://www.batuz.eus/fitxategiak/batuz/lroe/lroe_140_v_1_0.pdf) |
+</Accordion>
+
+Set the activity code on the supplier's extensions:
+
+```json
+{
+  "supplier": {
+    "name": "Jane Doe",
+    "tax_id": { "country": "ES", "code": "12345678Z" },
+    "ext": {
+      "es-tbai-bi-activity": "6481"
+    }
+  }
+}
+```
 
 ## Validation Rules
 
@@ -116,6 +148,8 @@ data.
 | `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-05`<br />Preceding issue date is required |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |
 | `notes` | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-07`<br />With key 'general' missing |
+| `supplier.ext` | <ul class="gobl-test"><li>Bizkaia individual</li><li>Ext require [es-tbai-bi-activity]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-10`<br />Extension 'es-tbai-bi-activity' is required for Bizkaia individuals |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'es-tbai-bi-activity' matches pattern '^\d&#123;1,7&#125;$'</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-11`<br />Extension 'es-tbai-bi-activity' must be a valid Bizkaia activity code (epígrafe) |
 </Accordion>
 <Accordion title="tax.Combo">
 
