@@ -613,6 +613,7 @@ Example:
 | `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-06`<br />Cannot be blank |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-07`<br />Line taxes must include VAT category |
 | `payment.advances[*].date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-08`<br />Cannot be blank |
+| `payment.advances[*].amount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-16`<br />Must be no less than 0 |
 | `totals.payable`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-09`<br />Must be no less than 0 |
 | `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-10`<br />Must be equal to 0 |
 | `preceding` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |
