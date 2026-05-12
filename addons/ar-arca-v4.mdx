@@ -89,7 +89,22 @@ For other document types the value must be set manually.
 | `211` | MiPyMEs Electronic Credit Invoice (FCE) C |
 | `212` | MiPyMEs Electronic Debit Note (FCE) C |
 | `213` | MiPyMEs Electronic Credit Note (FCE) C |
+| `195` | Invoice T (Tourism) |
+| `196` | Debit Note T (Tourism) |
+| `197` | Credit Note T (Tourism) |
 </Accordion>
+
+### Tourism documents (Type T / WSCT)
+
+Document types `195`, `196`, and `197` cover tourism-sector operations issued under
+Argentina's WSCT (Web Service Comprobante T) for accommodation and travel services
+provided to non-resident tourists and travel agencies.
+
+Type T documents must be set manually via `ar-arca-doc-type` because GOBL does not
+auto-assign them during normalization. When the document type is `195`, `196`, or
+`197`, the additional requirements documented in
+[Tourism Issuer-Receiver Relationship](#tourism-issuer-receiver-relationship) and
+[Tourism Item Code](#tourism-item-code) apply.
 ### Argentina ARCA Concept (Goods, services, or both)
 
 Code used to identify the invoice concept, indicating whether the invoice covers
@@ -315,6 +330,79 @@ The VAT status is validated against the document type:
 | `16` | Promoted Independent Worker Monotributista |
 </Accordion>
 
+### Tourism Issuer-Receiver Relationship
+
+Code that identifies the relationship between the issuer and the receiver for tourism
+invoices (Comprobante T). Set this extension on the invoice `tax.ext` field whenever
+the document type is `195` (Invoice T), `196` (Debit Note T), or `197` (Credit Note T).
+
+Corresponds to `codigoRelacionEmisorReceptor` in the WSCT web service.
+
+Example invoice tax block for a hotel billing a non-resident tourist directly:
+
+```json
+"tax": {
+	"ext": {
+		"ar-arca-doc-type": "195",
+		"ar-arca-tourism-type": "1"
+	}
+}
+```
+
+<Accordion title="ar-arca-tourism-type">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Direct Accommodation to Non-Resident Tourist |
+| `2` | Accommodation to Resident Travel Agency |
+| `3` | Accommodation to Non-Resident Travel Agency |
+| `4` | Resident Travel Agency to Non-Resident Travel Agency |
+| `5` | Resident Travel Agency to Non-Resident Tourist |
+| `6` | Resident Travel Agency to Resident Travel Agency |
+</Accordion>
+
+### Tourism Item Code
+
+Code that identifies the type of tourism item supplied. Set this extension on the
+`tax.ext` field of each line, each top-level discount, and each payment advance for
+tourism invoices (document types `195`, `196`, `197`).
+
+Corresponds to `codigoTurismo` in the WSCT web service. Additional codes may be
+available via the `consultarCodigosItemTurismo` operation of the WSCT service.
+
+Example line for a hotel room without breakfast at the standard 21% VAT rate:
+
+```json
+"lines": [
+	{
+		"quantity": "1",
+		"item": {
+			"name": "Hotel Room",
+			"price": "100.00",
+			"key": "goods"
+		},
+		"taxes": [
+			{
+				"cat": "VAT",
+				"rate": "standard",
+				"ext": {
+					"ar-arca-tourism-item": "1"
+				}
+			}
+		]
+	}
+]
+```
+
+<Accordion title="ar-arca-tourism-item">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Hotel without Breakfast |
+| `2` | Hotel with Breakfast |
+| `5` | Surplus |
+</Accordion>
+
 ## Validation Rules
 
 <AccordionGroup>
@@ -346,6 +434,13 @@ The VAT status is validated against the document type:
 | `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-21`<br />Preceding documents are required for credit/debit notes |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-22`<br />Preceding document requires 'ar-arca-doc-type' extension |
 | `lines[*].taxes` | <ul class="gobl-test"><li>Doc type is C</li><li>Empty</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-23`<br />Type C invoices (simplified tax scheme) must not have taxes on lines |
+| `tax.ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-25`<br />Tourism invoice requires 'ar-arca-tourism-type' extension |
+| `lines[*].taxes[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-item]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-26`<br />Tourism invoice line requires 'ar-arca-tourism-item' extension |
+| `customer.addresses` | <ul class="gobl-test"><li>Doc type is T</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-27`<br />Tourism invoice customer requires an address |
+| `lines[*].taxes[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Has codes ar-arca-vat-rate=5</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-28`<br />Tourism invoice line VAT rate must be '5' (21%) via ar-arca-vat-rate |
+| `lines[*].taxes` | <ul class="gobl-test"><li>Doc type is T</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-29`<br />Tourism invoice line requires taxes |
+| `lines[*].discounts[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-item]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-30`<br />Tourism invoice discount requires 'ar-arca-tourism-item' extension |
+| `payment.advances[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-item]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-31`<br />Tourism invoice advance requires 'ar-arca-tourism-item' extension |
 </Accordion>
 <Accordion title="bill.Charge">
 
