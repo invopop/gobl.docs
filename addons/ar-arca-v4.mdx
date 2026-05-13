@@ -315,6 +315,42 @@ The VAT status is validated against the document type:
 | `16` | Promoted Independent Worker Monotributista |
 </Accordion>
 
+### Argentina ARCA Tourism Issuer-Receiver Relationship
+
+Code that identifies the relationship between the issuer and the receiver for tourism
+invoices (Comprobante T). Required on the invoice `tax.ext` when the document type is
+`195` (Invoice T), `196` (Debit Note T), or `197` (Credit Note T).
+
+Corresponds to `codigoRelacionEmisorReceptor` in the WSCT web service.
+
+<Accordion title="ar-arca-tourism-type">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Direct Accommodation to Non-Resident Tourist |
+| `2` | Accommodation to Resident Travel Agency |
+| `3` | Accommodation to Non-Resident Travel Agency |
+| `4` | Resident Travel Agency to Non-Resident Travel Agency |
+| `5` | Resident Travel Agency to Non-Resident Tourist |
+| `6` | Resident Travel Agency to Resident Travel Agency |
+</Accordion>
+### Argentina ARCA Tourism Item Code
+
+Code that identifies the type of tourism item on a line. Used on line item `tax.ext`
+for tourism invoices (Comprobante T, doc types 195/196/197).
+
+Corresponds to `codigoTurismo` in the WSCT web service. Additional codes may be
+available via the `consultarCodigosItemTurismo` operation of the WSCT service.
+
+<Accordion title="ar-arca-tourism-item">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Hotel without Breakfast |
+| `2` | Hotel with Breakfast |
+| `5` | Surplus |
+</Accordion>
+
 ## Validation Rules
 
 <AccordionGroup>
