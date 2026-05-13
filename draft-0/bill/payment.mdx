@@ -51,9 +51,11 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
+| <small>Payment</small> | <ul class="gobl-test"><li>Methods sum</li></ul> | `GOBL-BILL-PAYMENT-08`<br />Methods sum must match total |
 | `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-PAYMENT-01`<br />Payment type is required |
 | `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [request, advice, receipt]</li></ul> | `GOBL-BILL-PAYMENT-02`<br />Payment type is not valid |
-| `methods` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-03`<br />Payment methods are required; sum of method amounts must equal the document total |
+| `methods` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-03`<br />At least one payment method is required |
+| `methods[*].key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-09`<br />Payment method key is required |
 | `issue_date`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-PAYMENT-04`<br />Payment issue date is required |
 | `currency`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-PAYMENT-05`<br />Payment currency is required |
 | `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-06`<br />Payment supplier is required |

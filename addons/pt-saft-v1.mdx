@@ -400,13 +400,13 @@ Example for a purchase order:
 
 The SAF-T's `PaymentMechanism` (Meios de pagamento) field specifies the payment means in a
 sales invoice or payment. GOBL provides the `pt-saft-payment-means` extension to set this
-value in your `bill.Invoice` advances or in your `bill.Payment` methods. GOBL maps certain
+value in your `bill.Invoice` advances or in your `bill.Payment` method. GOBL maps certain
 payment mean keys automatically to this extension:
 
 | Code | Name                                               | GOBL Payment Means                                    |
 | ---- | -------------------------------------------------- | ----------------------------------------------------- |
-| `CC` | Cartão crédito                                     | `card`                                                |
-| `CD` | Cartão débito                                      | (*)                                                   |
+| `CC` | Cartão crédito                                     | `card` or `card+credit`                               |
+| `CD` | Cartão débito                                      | `card+debit`                                          |
 | `CH` | Cheque bancário                                    | `cheque`                                              |
 | `CI` | Letter of credit                                   | (*)                                                   |
 | `CO` | Cheque ou cartão oferta                            | (*)                                                   |
@@ -423,7 +423,7 @@ payment mean keys automatically to this extension:
 (*) For codes not mapped from a GOBL Payment Mean, use `other` and explicitly set the
 extension.
 
-For example, in an GOBL invoice:
+For example, in a GOBL invoice:
 
 ```js
 {
@@ -452,15 +452,13 @@ For example, in a GOBL receipt:
 {
 	"$schema": "https://gobl.org/draft-0/bill/receipt",
 	// ...
-	"methods": [
-		{
-			"key": "other",
-			"description": "Compensação extrassalarial",
-			"ext": {
-				"pt-saft-payment-means": "TR"
-			}
+	"method": {
+		"key": "other",
+		"detail": "Compensação extrassalarial",
+		"ext": {
+			"pt-saft-payment-means": "TR"
 		}
-	],
+	},
 	// ...
 }
 ```
@@ -615,6 +613,7 @@ Example:
 | `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-06`<br />Cannot be blank |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-07`<br />Line taxes must include VAT category |
 | `payment.advances[*].date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-08`<br />Cannot be blank |
+| `payment.advances[*].amount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-16`<br />Must be no less than 0 |
 | `totals.payable`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-09`<br />Must be no less than 0 |
 | `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-10`<br />Must be equal to 0 |
 | `preceding` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |

@@ -3,7 +3,7 @@ title: Record
 comment: 
 ---
 
-Record represents an individual payment transaction made via a specific means (cash, card, credit-transfer, etc.), with its own amount and optional currency. A Record is used both to describe advance payments on invoices and to describe payment methods on payment documents.
+Record represents an individual payment transaction made via a specific means (cash, card, credit-transfer, etc.), with its own amount and optional currency.
 
 ## Schema ID
 
@@ -54,5 +54,4 @@ Record represents an individual payment transaction made via a specific means (c
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `key` | <ul class="gobl-test"><li>Be or starts with one of [any, card, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other]</li></ul> | `GOBL-PAY-RECORD-01`<br />Key must be valid |
-| `amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PAY-RECORD-02`<br />Amount is required |
+| `key` | <ul class="gobl-test"><li>Be or starts with one of [any, card, card+credit, card+debit, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other]</li></ul> | `GOBL-PAY-RECORD-01`<br />Key must be valid |
