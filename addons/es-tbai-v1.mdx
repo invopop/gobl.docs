@@ -99,6 +99,16 @@ data.
 | `R4` | Rectified invoice: Other |
 | `R5` | Rectified invoice: simplified invoices |
 </Accordion>
+### Activity Code (Bizkaia)
+
+Economic activity code (epígrafe) for individual issuers submitting through
+Bizkaia's LROE Modelo 140 register. Not required for organisations, who
+file through Modelo 240.
+
+<Accordion title="es-tbai-bi-activity">
+
+Pattern: `^\d{1,7}$`
+</Accordion>
 
 ## Validation Rules
 
@@ -116,6 +126,8 @@ data.
 | `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-05`<br />Preceding issue date is required |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |
 | `notes` | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-07`<br />With key 'general' missing |
+| `supplier.ext` | <ul class="gobl-test"><li>Bizkaia individual</li><li>Ext require [es-tbai-bi-activity]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-10`<br />Extension 'es-tbai-bi-activity' is required for Bizkaia individuals |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'es-tbai-bi-activity' matches pattern '^\d{1,7}$'</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-11`<br />Extension 'es-tbai-bi-activity' must be a valid Bizkaia activity code (epígrafe) |
 </Accordion>
 <Accordion title="tax.Combo">
 
