@@ -7,9 +7,24 @@ import (
 
 	_ "github.com/invopop/gobl"
 	"github.com/invopop/gobl/tax"
+
+	// External addon modules. Every addon on gobl's approved external-addon
+	// list (tax.ApprovedAddons) must be imported here so its definitions are
+	// registered and documented; the guard in main enforces this.
+	_ "github.com/invopop/gobl.fr.ctc/addon"
 )
 
 func main() {
+	// Phase 0: Ensure every approved external addon is loaded. The approved
+	// list in gobl core is the manifest of external addons these docs must
+	// cover; an entry missing from the runtime registry means a module
+	// import is missing above.
+	for _, ea := range tax.ApprovedAddons() {
+		if tax.AddonForKey(ea.Key) == nil {
+			panic(fmt.Errorf("approved external addon %q is not loaded: import its module (%s) in cmd/generate", ea.Key, ea.Module))
+		}
+	}
+
 	// Phase 1: Generate draft-0 schema pages. Schemas are loaded from the
 	// data.Content embedded FS of the pinned gobl module, so no sibling
 	// checkout of github.com/invopop/gobl is required.
