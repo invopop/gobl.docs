@@ -1,0 +1,27 @@
+---
+title: France CTC (auto-dispatch)
+---
+
+Key: `fr-ctc-v1`
+
+<Info>
+Maintained in the external Go module [`github.com/invopop/gobl.fr.ctc`](https://github.com/invopop/gobl.fr.ctc).
+This addon is not bundled with GOBL core: applications that build or
+validate documents using it must import the module so its extensions,
+normalization, and validation rules are registered.
+</Info>
+
+Meta-addon for the French CTC (Continuous Transaction
+Control) reform. Inspects each GOBL document at
+normalize-time and appends the appropriate flow-specific
+addon — fr-ctc-flow2-v1 (domestic B2B clearance),
+fr-ctc-flow6-v1 (lifecycle status messages) or
+fr-ctc-flow10-v1 (B2C / cross-border B2B e-reporting and
+payment receipts) — so the right validation rules fire
+without the caller having to know which flow applies.
+
+Callers who prefer explicit control can declare any of
+the flow-specific addons directly.
+
+## Sources
+- [External Specifications](https://www.impots.gouv.fr/specifications-externes-b2b)

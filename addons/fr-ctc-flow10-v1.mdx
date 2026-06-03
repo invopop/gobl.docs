@@ -1,0 +1,177 @@
+---
+title: France CTC Flow 10 (E-Reporting)
+---
+
+Key: `fr-ctc-flow10-v1`
+
+<Info>
+Maintained in the external Go module [`github.com/invopop/gobl.fr.ctc`](https://github.com/invopop/gobl.fr.ctc).
+This addon is not bundled with GOBL core: applications that build or
+validate documents using it must import the module so its extensions,
+normalization, and validation rules are registered.
+</Info>
+
+Support for the French CTC Flow 10 e-reporting reform.
+Covers transactions that fall outside Flow 2 clearance:
+B2C sales, cross-border B2B invoices, and payment receipts
+subject to e-reporting to the DGFiP via the PPF.
+
+## Sources
+- [External Specifications](https://www.impots.gouv.fr/specifications-externes-b2b)
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** `standard`
+
+**Output:**
+- **Extensions:** `untdid-document-type:380`
+</Accordion>
+
+<Accordion title="standard, #prepayment">
+
+**Filters:**
+- **Types:** `standard`
+- **Tags:** `prepayment`
+
+**Output:**
+- **Extensions:** `untdid-document-type:386`
+</Accordion>
+
+<Accordion title="corrective">
+
+**Filters:**
+- **Types:** `corrective`
+
+**Output:**
+- **Extensions:** `untdid-document-type:384`
+</Accordion>
+
+<Accordion title="credit-note">
+
+**Filters:**
+- **Types:** `credit-note`
+
+**Output:**
+- **Extensions:** `untdid-document-type:381`
+</Accordion>
+
+<Accordion title="credit-note, #prepayment">
+
+**Filters:**
+- **Types:** `credit-note`
+- **Tags:** `prepayment`
+
+**Output:**
+- **Extensions:** `untdid-document-type:503`
+</Accordion>
+
+## Extensions
+### B2C Transaction Category
+
+Classifies a B2C transaction for French e-reporting to the PPF
+(G1.68). Required on Flow 10 B2C invoices.
+
+- TLB1: Goods deliveries subject to VAT.
+- TPS1: Services subject to VAT.
+- TNT1: Goods / services not subject to French VAT,
+  including intra-EU distance sales per CGI articles 258 A
+  and 259 B.
+- TMA1: Operations under the VAT-on-margin regime
+  (CGI articles 266-1-e, 268, 297 A).
+
+<Accordion title="fr-ctc-flow10-b2c-category">
+
+| Code | Name |
+| ---- | ---- |
+| `TLB1` | Goods subject to VAT |
+| `TPS1` | Services subject to VAT |
+| `TNT1` | Not subject to French VAT |
+| `TMA1` | VAT-on-margin regime |
+</Accordion>
+### Billing Mode
+
+Code used to describe the billing framework of the invoice. The
+billing mode indicates the nature of goods/services and the payment
+context.
+
+Code prefixes indicate the invoice nature:
+- "B": Goods invoice (Biens)
+- "S": Services invoice
+- "M": Mixed/dual invoice (goods and services that are not accessory
+  to each other)
+
+The numeric suffix indicates the payment type (1=deposit,
+2=already paid, 4=final after down payment, 5=subcontractor,
+6=co-contractor, 7=e-reporting).
+
+<Accordion title="fr-ctc-billing-mode">
+
+| Code | Name |
+| ---- | ---- |
+| `B1` | Goods - Deposit invoice |
+| `B2` | Goods - Already paid invoice |
+| `B4` | Goods - Final invoice (after down payment) |
+| `B7` | Goods - E-reporting (VAT already collected) |
+| `S1` | Services - Deposit invoice |
+| `S2` | Services - Already paid invoice |
+| `S4` | Services - Final invoice (after down payment) |
+| `S5` | Services - Subcontractor invoice |
+| `S6` | Services - Co-contractor invoice |
+| `S7` | Services - E-reporting (VAT already collected) |
+| `M1` | Mixed - Deposit invoice |
+| `M2` | Mixed - Already paid invoice |
+| `M4` | Mixed - Final invoice (after down payment) |
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-01`<br />Invoice must be in EUR or provide an exchange rate to EUR |
+| `supplier.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-02`<br />Invoice supplier address country is required |
+| `customer.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-03`<br />Invoice customer address country is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li>Allowed Flow 10 VAT percents</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-07`<br />Invoice VAT line percent must be one of the Flow 10 permitted values 0%, 0.9%, 1.05%, 1.75%, 2.1%, 5.5%, 7%, 8.5%, 9.2%, 9.6%, 10%, 13%, 19.6%, 20%, 20.6% (G1.24) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li>Ext require [fr-ctc-flow10-b2c-category]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-04`<br />Invoice tax ext fr-ctc-flow10-b2c-category is required on B2C invoices (G1.68) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-05`<br />Invoice supplier is required on B2C invoices |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li>Party has SIREN</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-06`<br />Invoice supplier must have a SIREN identity (ISO/IEC 6523 scheme 0002) on a B2C invoice |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Ext 'untdid-document-type' in [380, 386, 384, 381, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-08`<br />Invoice tax ext untdid-document-type must be one of the Flow 10 permitted UNTDID 1001 codes |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Ext require [fr-ctc-billing-mode]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required (G1.02) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice tax ext fr-ctc-billing-mode in [B4, S4, M4]</li><li>Ext 'untdid-document-type' not in [386, 500, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-10`<br />Invoice tax ext untdid-document-type must not be an advance-payment code (386, 500, 503) when billing mode is final-after-advance (B4, S4, M4) (G1.60) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-11`<br />Invoice supplier is required for Flow 10 B2B invoices (G2.19) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-12`<br />Invoice supplier must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-13`<br />Invoice supplier tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice has exempt (E) VAT category</li><li>Supplier or tax rep has VAT ID</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-14`<br />Invoice supplier tax_id or ordering.seller tax_id is required when the VAT breakdown contains an exempt (E) category |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice has exempt (E) VAT category</li><li>Has exempt tax note</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-15`<br />Invoice tax.notes must include an exempt-reason entry (key=exempt with non-empty text) when the VAT breakdown contains an exempt (E) category |
+| `customer` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-16`<br />Invoice customer is required for Flow 10 B2B invoices (G2.19) |
+| `customer` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-17`<br />Invoice customer must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
+| `customer` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-18`<br />Invoice customer tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
+</Accordion>
+<Accordion title="bill.Payment">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Payment</small> | <ul class="gobl-test"><li>Allowed Flow 10 VAT percents</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-03`<br />Payment VAT line percent must be one of the Flow 10 permitted values (G1.24) |
+| `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [receipt]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-01`<br />Payment type must be 'receipt' for Flow 10 reporting |
+| `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-02`<br />Payment value_date (settlement date) is required |
+| `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-04`<br />Payment supplier is required |
+| `supplier` | <ul class="gobl-test"><li>Party has SIREN</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-05`<br />Payment supplier must have a SIREN identity (ISO/IEC 6523 scheme 0002) |
+| `lines[*].document` | <ul class="gobl-test"><li>Payment is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-06`<br />Payment line document is required when a customer is present |
+| `lines[*].document.code` | <ul class="gobl-test"><li>Payment is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-07`<br />Payment line document code is required when a customer is present |
+| `lines[*].document.issue_date` | <ul class="gobl-test"><li>Payment is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-08`<br />Payment line document issue_date is required when a customer is present |
+</Accordion>
+<Accordion title="org.Party">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `identities` | <ul class="gobl-test"><li>Unique iso-scheme-id</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-PARTY-01`<br />Party identities must not duplicate iso-scheme-id values (BR-FR-CO-10) |
+| `identities[*].ext` | <ul class="gobl-test"><li>Ext require [iso-scheme-id]</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-PARTY-02`<br />Party identity ext iso-scheme-id is required (BR-FR-CO-10) |
+</Accordion>
+</AccordionGroup>
