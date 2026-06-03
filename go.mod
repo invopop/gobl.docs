@@ -5,7 +5,8 @@ go 1.24.0
 toolchain go1.24.3
 
 require (
-	github.com/invopop/gobl v0.403.0
+	github.com/invopop/gobl v0.403.1-0.20260603134844-28001cd0fd99
+	github.com/invopop/gobl.fr.ctc v0.0.0-20260603123411-82bcb109f132
 	github.com/wk8/go-ordered-map/v2 v2.1.8
 )
 
@@ -20,7 +21,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/invopop/jsonschema v0.14.0 // indirect
 	github.com/invopop/yaml v0.3.1 // indirect
-	github.com/kr/pretty v0.3.1 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/magefile/mage v1.15.0 // indirect
 	github.com/mailru/easyjson v0.9.0 // indirect
 	github.com/pb33f/ordered-map/v2 v2.3.1 // indirect

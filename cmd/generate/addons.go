@@ -12,6 +12,9 @@ import (
 type addonGenerator struct {
 	generator
 	addon *tax.AddonDef
+	// external is set when the addon's implementation lives in a separate
+	// Go module on gobl's approved external-addon list.
+	external *tax.ExternalAddon
 }
 
 func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
@@ -20,6 +23,12 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 			buf: new(bytes.Buffer),
 		},
 		addon: a,
+	}
+	for _, ea := range tax.ApprovedAddons() {
+		if ea.Key == a.Key {
+			g.external = ea
+			break
+		}
 	}
 	g.tmpl = template.New("base")
 	g.tmpl.Funcs(template.FuncMap{
@@ -33,6 +42,12 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"codeMessage":   codeMessage,
 		"testList":      testList,
 		"fieldCell":     fieldCell,
+		"externalModule": func() string {
+			if g.external != nil {
+				return g.external.Module
+			}
+			return ""
+		},
 	})
 	return g
 }
@@ -71,6 +86,16 @@ func (g *addonGenerator) base() error {
 		---
 
 		Key: ~{{ .Key }}~
+
+		{{- if externalModule}}
+
+		<Info>
+		Maintained in the external Go module [~{{ externalModule }}~](https://{{ externalModule }}).
+		This addon is not bundled with GOBL core: applications that build or
+		validate documents using it must import the module so its extensions,
+		normalization, and validation rules are registered.
+		</Info>
+		{{- end}}
 
 		{{- if .Description}}
 
