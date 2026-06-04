@@ -145,6 +145,13 @@
             ]
           },
           {
+            "group": "Converters",
+            "pages": [
+              "converters/overview",
+              "converters/ubl"
+            ]
+          },
+          {
             "group": "Schemas (Draft 0)",
             "pages": [
               "draft-0",

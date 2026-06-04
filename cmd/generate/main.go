@@ -68,7 +68,16 @@ func main() {
 		fmt.Printf("Wrote %s\n", name)
 	}
 
-	// Phase 5: Update docs.json navigation
+	// Phase 5: Generate converter mapping pages (GOBL → BT → target format),
+	// joining this repo's GOBL→BT leg with each converter's BT→target leg.
+	if err := os.MkdirAll("./converters", 0o775); err != nil {
+		panic(err)
+	}
+	if err := generateConverterPages(); err != nil {
+		panic(fmt.Errorf("generating converter pages: %w", err))
+	}
+
+	// Phase 6: Update docs.json navigation
 	if err := updateDocsNavigation("./docs.json", "./draft-0"); err != nil {
 		panic(fmt.Errorf("updating navigation: %w", err))
 	}

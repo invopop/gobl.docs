@@ -1,0 +1,151 @@
+---
+title: GOBL to UBL
+---
+
+This table maps GOBL invoice fields to their UBL 2.1 equivalents,
+joined on the [EN16931](/addons/eu-en16931-v2017) Business Term they share.
+The GOBL→Business Term leg is maintained in this repository; the
+Business Term→UBL 2.1 leg is imported from
+[`github.com/invopop/gobl.ubl`](https://github.com/invopop/gobl.ubl).
+
+| Business Term | GOBL | UBL 2.1 |
+| ------------- | ---- | --------------- |
+| BT-1 Invoice number | `$.doc.series`<br />`$.doc.code` | `/Invoice/cbc:ID` |
+| BT-2 Invoice issue date | `$.doc.issue_date` | `/Invoice/cbc:IssueDate` |
+| BT-3 Invoice type code | `$.doc.type`<br />`$.doc.$tags` | `/Invoice/cbc:InvoiceTypeCode` |
+| BT-5 Invoice currency code | `$.doc.currency` | `/Invoice/cbc:DocumentCurrencyCode` |
+| BT-6 VAT accounting currency code | `$.doc.currency`<br />`$.doc.exchange_rates` | `/Invoice/cbc:TaxCurrencyCode` |
+| BT-7 Value added tax point date | `$.doc.issue_date`<br />`$.doc.value_date` | `/Invoice/cbc:TaxPointDate` |
+| BT-9 Payment due date | `$.doc.payment.terms[*].due_dates` | `/Invoice/cbc:DueDate` |
+| BT-10 Buyer reference | `$.doc.ordering.code`<br />`$.doc.ordering.identities[*].code` | `/Invoice/cbc:BuyerReference` |
+| BT-11 Project reference | `$.doc.ordering.projects` | `/Invoice/cac:ProjectReference/cbc:ID` |
+| BT-12 Contract reference | `$.doc.ordering.contracts` | `/Invoice/cac:ContractDocumentReference/cbc:ID` |
+| BT-13 Purchase order reference | `$.doc.ordering.purchases` | `/Invoice/cac:OrderReference/cbc:ID` |
+| BT-14 Sales order reference | `$.doc.ordering.sales` | `/Invoice/cac:OrderReference/cbc:SalesOrderID` |
+| BT-15 Receiving advice reference | `$.doc.ordering.receiving` | `/Invoice/cac:ReceiptDocumentReference/cbc:ID` |
+| BT-16 Despatch advice reference | `$.doc.ordering.despatch` | `/Invoice/cac:DespatchDocumentReference/cbc:ID` |
+| BT-17 Tender or lot reference | `$.doc.ordering.tenders` | `/Invoice/cac:OriginatorDocumentReference/cbc:ID` |
+| BT-20 Payment terms | `$.doc.payment.terms` | `/Invoice/cac:PaymentTerms/cbc:Note` |
+| BT-21 Invoice note subject code | `$.doc.notes[*].key` | `/Invoice/cbc:Note/@subjectCode` |
+| BT-22 Invoice note | `$.doc.notes[*].text` | `/Invoice/cbc:Note` |
+| BT-23 Business process type | `$.doc.$addons` | `/Invoice/cbc:ProfileID` |
+| BT-25 Preceding invoice reference | `$.doc.preceding` | `/Invoice/cac:BillingReference/cac:InvoiceDocumentReference/cbc:ID` |
+| BT-26 Preceding invoice issue date | `$.doc.preceding[*].issue_date` | `/Invoice/cac:BillingReference/cac:InvoiceDocumentReference/cbc:IssueDate` |
+| BT-27 Seller name | `$.doc.supplier.name` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyLegalEntity/cbc:RegistrationName` |
+| BT-28 Seller trading name | `$.doc.supplier.alias` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name` |
+| BT-29 Seller identifier | `$.doc.supplier.uuid`<br />`$.doc.supplier.identities` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyIdentification/cbc:ID` |
+| BT-30 Seller legal registration identifier | `$.doc.supplier.identities` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyLegalEntity/cbc:CompanyID` |
+| BT-31 Seller VAT identifier | `$.doc.supplier.tax_id` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyTaxScheme/cbc:CompanyID` |
+| BT-32 Seller tax registration identifier | `$.doc.supplier.identities` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyTaxScheme/cbc:CompanyID` |
+| BT-33 Seller additional legal information | `$.doc.supplier.registration` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyLegalEntity/cbc:CompanyLegalForm` |
+| BT-34 Seller electronic address | `$.doc.supplier.inboxes` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID` |
+| BT-35 Seller address line 1 | `$.doc.supplier.addresses[0].street`<br />`$.doc.supplier.addresses[0].number`<br />`$.doc.supplier.addresses[0].floor`<br />`$.doc.supplier.addresses[0].block`<br />`$.doc.supplier.addresses[0].door`<br />`$.doc.supplier.addresses[0].po_box` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:StreetName` |
+| BT-36 Seller address line 2 | `$.doc.supplier.addresses[0].street_extra` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:AdditionalStreetName` |
+| BT-37 Seller city | `$.doc.supplier.addresses[0].locality` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:CityName` |
+| BT-38 Seller postal code | `$.doc.supplier.addresses[0].code` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:PostalZone` |
+| BT-39 Seller country subdivision | `$.doc.supplier.addresses[0].region` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:CountrySubentity` |
+| BT-40 Seller country code | `$.doc.supplier.tax_id.country`<br />`$.doc.supplier.addresses[0].country` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cac:Country/cbc:IdentificationCode` |
+| BT-41 Seller contact point | `$.doc.supplier.people` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:Contact/cbc:Name` |
+| BT-42 Seller contact telephone number | `$.doc.supplier.telephones` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:Contact/cbc:Telephone` |
+| BT-43 Seller contact email address | `$.doc.supplier.emails` | `/Invoice/cac:AccountingSupplierParty/cac:Party/cac:Contact/cbc:ElectronicMail` |
+| BT-44 Buyer name | `$.doc.customer.name` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyLegalEntity/cbc:RegistrationName` |
+| BT-45 Buyer trading name | `$.doc.customer.alias` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name` |
+| BT-46 Buyer identifier | `$.doc.customer.uuid`<br />`$.doc.customer.identities` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyIdentification/cbc:ID` |
+| BT-47 Buyer legal registration identifier | `$.doc.customer.identities` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyLegalEntity/cbc:CompanyID` |
+| BT-48 Buyer VAT identifier | `$.doc.customer.tax_id` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyTaxScheme/cbc:CompanyID` |
+| BT-49 Buyer electronic address | `$.doc.customer.inboxes` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID` |
+| BT-50 Buyer address line 1 | `$.doc.customer.addresses[0].street`<br />`$.doc.customer.addresses[0].number`<br />`$.doc.customer.addresses[0].floor`<br />`$.doc.customer.addresses[0].block`<br />`$.doc.customer.addresses[0].door`<br />`$.doc.customer.addresses[0].po_box` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PostalAddress/cbc:StreetName` |
+| BT-51 Buyer address line 2 | `$.doc.customer.addresses[0].street_extra` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PostalAddress/cbc:AdditionalStreetName` |
+| BT-52 Buyer city | `$.doc.customer.addresses[0].locality` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PostalAddress/cbc:CityName` |
+| BT-53 Buyer postal code | `$.doc.customer.addresses[0].code` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PostalAddress/cbc:PostalZone` |
+| BT-54 Buyer country subdivision | `$.doc.customer.addresses[0].region` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PostalAddress/cbc:CountrySubentity` |
+| BT-55 Buyer country code | `$.doc.customer.tax_id.country`<br />`$.doc.customer.addresses[0].country` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PostalAddress/cac:Country/cbc:IdentificationCode` |
+| BT-56 Buyer contact point | `$.doc.customer.people` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:Contact/cbc:Name` |
+| BT-57 Buyer contact telephone number | `$.doc.customer.telephones` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:Contact/cbc:Telephone` |
+| BT-58 Buyer contact email address | `$.doc.customer.emails` | `/Invoice/cac:AccountingCustomerParty/cac:Party/cac:Contact/cbc:ElectronicMail` |
+| BT-59 Payee name | `$.doc.payment.payee.name` | `/Invoice/cac:PayeeParty/cac:PartyName/cbc:Name` |
+| BT-60 Payee identifier | `$.doc.payment.payee.uuid`<br />`$.doc.payment.payee.identities` | `/Invoice/cac:PayeeParty/cac:PartyIdentification/cbc:ID` |
+| BT-61 Payee legal registration identifier | `$.doc.payment.payee.tax_id`<br />`$.doc.payment.payee.identities` | `/Invoice/cac:PayeeParty/cac:PartyLegalEntity/cbc:CompanyID` |
+| BT-62 Seller tax representative name | `$.doc.ordering.seller.name` | `/Invoice/cac:TaxRepresentativeParty/cac:PartyName/cbc:Name` |
+| BT-63 Seller tax representative VAT identifier | `$.doc.ordering.seller.tax_id` | `/Invoice/cac:TaxRepresentativeParty/cac:PartyTaxScheme/cbc:CompanyID` |
+| BT-64 Tax representative address line 1 | `$.doc.ordering.seller.addresses[0].street`<br />`$.doc.ordering.seller.addresses[0].number`<br />`$.doc.ordering.seller.addresses[0].floor`<br />`$.doc.ordering.seller.addresses[0].block`<br />`$.doc.ordering.seller.addresses[0].door`<br />`$.doc.ordering.seller.addresses[0].po_box` | `/Invoice/cac:TaxRepresentativeParty/cac:PostalAddress/cbc:StreetName` |
+| BT-65 Tax representative address line 2 | `$.doc.ordering.seller.addresses[0].street_extra` | `/Invoice/cac:TaxRepresentativeParty/cac:PostalAddress/cbc:AdditionalStreetName` |
+| BT-66 Tax representative city | `$.doc.ordering.seller.addresses[0].locality` | `/Invoice/cac:TaxRepresentativeParty/cac:PostalAddress/cbc:CityName` |
+| BT-67 Tax representative postal code | `$.doc.ordering.seller.addresses[0].code` | `/Invoice/cac:TaxRepresentativeParty/cac:PostalAddress/cbc:PostalZone` |
+| BT-68 Tax representative country subdivision | `$.doc.ordering.seller.addresses[0].region` | `/Invoice/cac:TaxRepresentativeParty/cac:PostalAddress/cbc:CountrySubentity` |
+| BT-69 Tax representative country code | `$.doc.ordering.seller.tax_id.country`<br />`$.doc.ordering.seller.addresses[0].country` | `/Invoice/cac:TaxRepresentativeParty/cac:PostalAddress/cac:Country/cbc:IdentificationCode` |
+| BT-70 Deliver to party name | `$.doc.delivery.receiver.name` | `/Invoice/cac:Delivery/cac:DeliveryParty/cac:PartyName/cbc:Name` |
+| BT-71 Deliver to location identifier | `$.doc.delivery.receiver.uuid`<br />`$.doc.delivery.receiver.identities`<br />`$.doc.delivery.receiver.tax_id` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cbc:ID` |
+| BT-72 Actual delivery date | `$.doc.delivery.date` | `/Invoice/cac:Delivery/cbc:ActualDeliveryDate` |
+| BT-73 Invoicing period start date | `$.doc.delivery.period.start` | `/Invoice/cac:InvoicePeriod/cbc:StartDate` |
+| BT-74 Invoicing period end date | `$.doc.delivery.period.end` | `/Invoice/cac:InvoicePeriod/cbc:EndDate` |
+| BT-75 Deliver to address line 1 | `$.doc.delivery.receiver.addresses[0].street`<br />`$.doc.delivery.receiver.addresses[0].number`<br />`$.doc.delivery.receiver.addresses[0].floor`<br />`$.doc.delivery.receiver.addresses[0].block`<br />`$.doc.delivery.receiver.addresses[0].door`<br />`$.doc.delivery.receiver.addresses[0].po_box` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cac:Address/cbc:StreetName` |
+| BT-76 Deliver to address line 2 | `$.doc.delivery.reveiver.addresses[0].street_extra` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cac:Address/cbc:AdditionalStreetName` |
+| BT-77 Deliver to city | `$.doc.delivery.receiver.addresses[0].locality` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cac:Address/cbc:CityName` |
+| BT-78 Deliver to postal code | `$.doc.delivery.reveiver.addresses[0].code` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cac:Address/cbc:PostalZone` |
+| BT-79 Deliver to country subdivision | `$.doc.delivery.receiver.addresses[0].region` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cac:Address/cbc:CountrySubentity` |
+| BT-80 Deliver to country code | `$.doc.delivery.receiver.addresses[0].country` | `/Invoice/cac:Delivery/cac:DeliveryLocation/cac:Address/cac:Country/cbc:IdentificationCode` |
+| BT-81 Payment means type code | `$.doc.payment.instructions.key` | `/Invoice/cac:PaymentMeans/cbc:PaymentMeansCode` |
+| BT-82 Payment means text | `$.doc.payment.instructions.key`<br />`$.doc.payment.instructions.detail` | `/Invoice/cac:PaymentMeans/cbc:PaymentMeansCode/@name` |
+| BT-83 Remittance information | `$.doc.payment.instructions.ref` | `/Invoice/cac:PaymentMeans/cbc:PaymentID` |
+| BT-84 Payment amount identifier | `$.doc.payment.instructions.credit_transfer[*].iban`<br />`$.doc.payment.instructions.credit_transfer[*].number` | `/Invoice/cac:PaymentMeans/cac:PayeeFinancialAccount/cbc:ID` |
+| BT-85 Payment account name | `$.doc.payment.instructions.credit_transfer[*].name` | `/Invoice/cac:PaymentMeans/cac:PayeeFinancialAccount/cbc:Name` |
+| BT-86 Payment serivce provider identifier | `$.doc.payment.instructions.credit_transfer[*].bic` | `/Invoice/cac:PaymentMeans/cac:PayeeFinancialAccount/cac:FinancialInstitutionBranch/cbc:ID` |
+| BT-87 Payment card primary account number | `$.doc.payment.instructions.card.first6`<br />`$.doc.payment.instructions.card.last4` | `/Invoice/cac:PaymentMeans/cac:CardAccount/cbc:PrimaryAccountNumberID` |
+| BT-88 Payment card holder name | `$.doc.payment.instructions.card.name` | `/Invoice/cac:PaymentMeans/cac:CardAccount/cbc:HolderName` |
+| BT-89 Mandate reference identifier | `$.doc.payment.instructions.direct_debit.ref` | `/Invoice/cac:PaymentMeans/cac:PaymentMandate/cbc:ID` |
+| BT-90 Bank assigned creditor identifier | `$.doc.payment.instructions.direct_debit.creditor` | `/Invoice/cac:PaymentMeans/cac:PaymentMandate/cac:PayerFinancialAccount/cbc:ID` |
+| BT-92 Document level allowance amount | `$.doc.discounts.amount` | `/Invoice/cac:AllowanceCharge/cbc:Amount` |
+| BT-93 Document level allowance base amount | `$.doc.discounts.base` | `/Invoice/cac:AllowanceCharge/cbc:BaseAmount` |
+| BT-94 Document level allowance percentage | `$.doc.discounts.percent` | `/Invoice/cac:AllowanceCharge/cbc:MultiplierFactorNumeric` |
+| BT-95 Document level allowance VAT category code | `$.doc.discounts.taxes.cat`<br />`$.doc.discounts.taxes.ext` | `/Invoice/cac:AllowanceCharge/cac:TaxCategory/cbc:ID` |
+| BT-96 Document level allowance VAT rate | `$.doc.discounts.taxes.percent` | `/Invoice/cac:AllowanceCharge/cac:TaxCategory/cbc:Percent` |
+| BT-97 Document level allowance reason | `$.doc.discounts.reason` | `/Invoice/cac:AllowanceCharge/cbc:AllowanceChargeReason` |
+| BT-98 Document level allowance reason code | `$.doc.discounts.ext['untdid-allowance']` | `/Invoice/cac:AllowanceCharge/cbc:AllowanceChargeReasonCode` |
+| BT-99 Document level charge amount | `$.doc.charges.amount` | `/Invoice/cac:AllowanceCharge/cbc:Amount` |
+| BT-100 Document level charge base amount | `$.doc.charges.base` | `/Invoice/cac:AllowanceCharge/cbc:BaseAmount` |
+| BT-101 Document level charge percentage | `$.doc.charges.percent` | `/Invoice/cac:AllowanceCharge/cbc:MultiplierFactorNumeric` |
+| BT-102 Document level charge VAT category code | `$.doc.charges.taxes.cat`<br />`$.doc.charges.taxes.ext` | `/Invoice/cac:AllowanceCharge/cac:TaxCategory/cbc:ID` |
+| BT-103 Document level charge VAT rate | `$.doc.charges.taxes.percent` | `/Invoice/cac:AllowanceCharge/cac:TaxCategory/cbc:Percent` |
+| BT-104 Document level charge reason | `$.doc.charges.reason` | `/Invoice/cac:AllowanceCharge/cbc:AllowanceChargeReason` |
+| BT-105 Document level charge reason code | `$.doc.charges.ext['untdid-charge']` | `/Invoice/cac:AllowanceCharge/cbc:AllowanceChargeReasonCode` |
+| BT-106 Sum of invoice line net amounts | `$.doc.totals.sum`<br />`$.doc.totals.tax_included` | `/Invoice/cac:LegalMonetaryTotal/cbc:LineExtensionAmount` |
+| BT-107 Sum of allowances on document level | `$.doc.totals.discount`<br />`$.doc.totals.tax_included` | `/Invoice/cac:LegalMonetaryTotal/cbc:AllowanceTotalAmount` |
+| BT-108 Sum of charges on document level | `$.doc.totals.charge`<br />`$.doc.totals.tax_included` | `/Invoice/cac:LegalMonetaryTotal/cbc:ChargeTotalAmount` |
+| BT-109 Invoice total amount without VAT | `$.doc.totals.total` | `/Invoice/cac:LegalMonetaryTotal/cbc:TaxExclusiveAmount` |
+| BT-110 Invoice total VAT amount | `$.doc.totals.tax`<br />`$.doc.totals.taxes.categories[code='VAT'].amount` | `/Invoice/cac:TaxTotal/cbc:TaxAmount` |
+| BT-111 Invoice total VAT amount in accounting currency | `$.doc.totals.tax`<br />`$.doc.totals.taxes.categories[code='VAT'].amount`<br />`$.doc.exchange_rates` | `/Invoice/cac:TaxTotal/cbc:TaxAmount` |
+| BT-112 Invoice total amount with VAT | `$.doc.totals.total_with_tax` | `/Invoice/cac:LegalMonetaryTotal/cbc:TaxInclusiveAmount` |
+| BT-113 Paid amount | `$.doc.totals.advances` | `/Invoice/cac:LegalMonetaryTotal/cbc:PrepaidAmount` |
+| BT-114 Rounding amount | `$.doc.totals.rounding` | `/Invoice/cac:LegalMonetaryTotal/cbc:PayableRoundingAmount` |
+| BT-115 Amount due for payment | `$.doc.totals.due` | `/Invoice/cac:LegalMonetaryTotal/cbc:PayableAmount` |
+| BT-116 VAT category taxable amount | `$.doc.totals.taxes.categories[code='VAT'].base` | `/Invoice/cac:TaxTotal/cac:TaxSubtotal/cbc:TaxableAmount` |
+| BT-117 VAT category tax amount | `$.doc.totals.taxes.categories[code='VAT'].amount` | `/Invoice/cac:TaxTotal/cac:TaxSubtotal/cbc:TaxAmount` |
+| BT-118 VAT category code | `$.doc.totals.taxes.categories[code='VAT'].ext['untdid-tax-category']` | `/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:ID` |
+| BT-119 VAT category rate | `$.doc.totals.taxes.categories[code='VAT'].percent` | `/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:Percent` |
+| BT-120 VAT exemption reason text | `$.doc.notes[key='legal'].text` | `/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:TaxExemptionReason` |
+| BT-121 VAT exemption reason code | `$.doc.totals.taxes.categories[code='VAT'].ext['cef-vatex']` | `/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:TaxExemptionReasonCode` |
+| BT-122 Supporting document reference | `$.doc.attachments[*].code` | `/Invoice/cac:AdditionalDocumentReference/cbc:ID` |
+| BT-123 Supporting document description | `$.doc.attachments[*].description` | `/Invoice/cac:AdditionalDocumentReference/cbc:DocumentDescription` |
+| BT-124 External document location | `$.doc.attachments[*].uri` | `/Invoice/cac:AdditionalDocumentReference/cac:Attachment/cac:ExternalReference/cbc:URI` |
+| BT-125 Attached document | `$.doc.attachments[*].data`<br />`$.doc.attachments[*].mime`<br />`$.doc.attachments[*].name` | `/Invoice/cac:AdditionalDocumentReference/cac:Attachment/cbc:EmbeddedDocumentBinaryObject` |
+| BT-126 Invoice line identifier | `$.doc.lines[*].i` | `/Invoice/cac:InvoiceLine/cbc:ID` |
+| BT-127 Invoice line note | `$.doc.lines[*].notes` | `/Invoice/cac:InvoiceLine/cbc:Note` |
+| BT-128 Invoice line object identifier | `$.doc.lines[*].identifier` | `/Invoice/cac:InvoiceLine/cac:DocumentReference/cbc:ID` |
+| BT-129 Invoiced Quantity | `$.doc.lines[*].quantity` | `/Invoice/cac:InvoiceLine/cbc:InvoicedQuantity` |
+| BT-130 Invoiced Quantity unit of measure | `$.doc.lines[*].item.unit` | `/Invoice/cac:InvoiceLine/cbc:InvoicedQuantity/@unitCode` |
+| BT-131 Invoice line net amount | `$.doc.lines[*].total` | `/Invoice/cac:InvoiceLine/cbc:LineExtensionAmount` |
+| BT-132 Referenced purchase order line reference | `$.doc.lines[*].order` | `/Invoice/cac:InvoiceLine/cac:OrderLineReference/cbc:LineID` |
+| BT-133 Invoice line buyer accounting reference | `$.doc.lines[*].cost` | `/Invoice/cac:InvoiceLine/cbc:AccountingCost` |
+| BT-134 Invoice line period start date | `$.doc.lines[*].period.start` | `/Invoice/cac:InvoiceLine/cac:InvoicePeriod/cbc:StartDate` |
+| BT-135 Invoice line period end date | `$.doc.lines[*].period.end` | `/Invoice/cac:InvoiceLine/cac:InvoicePeriod/cbc:EndDate` |
+| BT-136 Invoice line allowance amount | `$.doc.lines[*].discounts[*].amount` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:Amount` |
+| BT-137 Invoice line allowance base amount | `$.doc.lines[*].discounts[*].base` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:BaseAmount` |
+| BT-138 Invoice line allowance percentage | `$.doc.lines[*].discounts[*].percent` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:MultiplierFactorNumeric` |
+| BT-139 Invoice line allowance reason | `$.doc.lines[*].discounts[*].reason` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:AllowanceChargeReason` |
+| BT-140 Invoice line allowance reason code | `$.doc.lines[*].discounts[*].key`<br />`$.doc.lines[*].discounts[*].ext['untdid-allowance']` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:AllowanceChargeReasonCode` |
+| BT-141 Invoice line charge amount | `$.doc.lines[*].charges[*].amount` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:Amount` |
+| BT-142 Invoice line charge base amount | `$.doc.lines[*].charges[*].base` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:BaseAmount` |
+| BT-143 Invoice line charge percentage | `$.doc.lines[*].charges[*].percent` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:MultiplierFactorNumeric` |
+| BT-144 Invoice line charge reason | `$.doc.lines[*].charges[*].reason` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:AllowanceChargeReason` |
+| BT-145 Invoice line charge reason code | `$.doc.lines[*].charges[*].key`<br />`$.doc.lines[*].charges[*].ext['untdid-charge']` | `/Invoice/cac:InvoiceLine/cac:AllowanceCharge/cbc:AllowanceChargeReasonCode` |
