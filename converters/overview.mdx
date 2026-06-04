@@ -1,0 +1,20 @@
+---
+title: Overview
+---
+
+Converters turn a GOBL document into a local or international format — and back
+again. Unlike [addons](/addons/overview), which augment a GOBL document with
+extra normalization and validation, a converter performs a structural mapping
+between GOBL and another schema such as UBL or CII.
+
+Each converter lives in its own Go module (for example
+[gobl.ubl](https://github.com/invopop/gobl.ubl)). The field mappings documented
+in this section are built by joining two data sources on the shared
+[EN16931](/addons/eu-en16931-v2017) Business Term:
+
+- the **GOBL → Business Term** mapping, maintained in this documentation repository, and
+- the **Business Term → target format** mapping, imported directly from the converter's module.
+
+Because both legs are data keyed by Business Term, the full GOBL → target
+mapping is generated deterministically rather than hand-written, and stays in
+step with the converter it documents.
