@@ -3,7 +3,7 @@ title: Code
 comment: 
 ---
 
-Alphanumerical text identifier with upper-case letters and limits on using special characters or whitespace to separate blocks.
+Text identifier with a limit of 64 characters, no control characters, and no leading or trailing whitespace.
 
 ## Schema ID
 
@@ -15,4 +15,4 @@ Alphanumerical text identifier with upper-case letters and limits on using speci
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Code</small> | <ul class="gobl-test"><li>Length between 0 and 64</li></ul> | `GOBL-CBC-CODE-01`<br />Codes must be no longer than 64 characters |
-| <small>Code</small> | <ul class="gobl-test"><li>Matches ^[A-ZÑa-z0-9]+([.\-:/,_& ]?[A-ZÑa-z0-9]+)*$</li></ul> | `GOBL-CBC-CODE-02`<br />Codes must only contain letters, numbers, and optionally separated by .-:/,_& or space |
+| <small>Code</small> | <ul class="gobl-test"><li>Matches ^[^\s\x00-\x1f\x7f-\x9f]([^\x00-\x1f\x7f-\x9f]*[^\s\x00-\x1f\x7f-\x9f])?$</li></ul> | `GOBL-CBC-CODE-02`<br />Codes must not contain control characters or leading or trailing whitespace |

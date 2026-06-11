@@ -7,7 +7,7 @@ Reason helps the recipient of a message determine why they are receiving it.
 
 ## Schema ID
 
-`https://gobl.org/draft-0/bill/status#/$defs/Reason`
+`https://gobl.org/draft-0/bill/reason`
 
 ## Properties
 
@@ -15,7 +15,7 @@ Reason helps the recipient of a message determine why they are receiving it.
 |-------|----------|------|-------------|
 | Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key helps identify the reason. |
 | Description | `description` | string | Description contains a simple text that describes the reason why the original document was not processed. |
-| Conditions | `conditions` | array of [bill.Condition](/draft-0/bill/condition) | Condition provides additional details with codes about what has gone wrong with the incoming document. |
+| Faults | `faults` | array of [bill.Fault](/draft-0/bill/fault) | Faults provides more specific details about what cause the document to be rejected. |
 | Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format focussed data |
 
 ## Key Values

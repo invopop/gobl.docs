@@ -7,7 +7,7 @@ StatusLine represents a single row inside a message, that describes the situatio
 
 ## Schema ID
 
-`https://gobl.org/draft-0/bill/status#/$defs/StatusLine`
+`https://gobl.org/draft-0/bill/status-line`
 
 ## Properties
 
@@ -36,6 +36,7 @@ StatusLine represents a single row inside a message, that describes the situatio
 | `accepted` | Buyer has given a final approval of the invoice and the next step is payment. |
 | `paid` | Buyer has initiated payment, or the supplier has acknowledged receipt of payment. |
 | `error` | There is a technical issue with the document that has caused it to be rejected. |
+| `other` | Status to be determined by other codes or details listed in the line. |
 
 
 ## Validation Rules
@@ -43,3 +44,4 @@ StatusLine represents a single row inside a message, that describes the situatio
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-STATUSLINE-01`<br />Status line key is required |
+| `key` | <ul class="gobl-test"><li>One of [issued, acknowledged, processing, querying, rejected, accepted, paid, error, other]</li></ul> | `GOBL-BILL-STATUSLINE-02`<br />Status line key is not valid |

@@ -90,8 +90,10 @@
                   "regimes/it",
                   "regimes/mx",
                   "regimes/nl",
+                  "regimes/no",
                   "regimes/pl",
                   "regimes/pt",
+                  "regimes/sa",
                   "regimes/se",
                   "regimes/sg",
                   "regimes/us"
@@ -118,14 +120,17 @@
                   "addons/es-verifactu-v1",
                   "addons/eu-en16931-v2017",
                   "addons/fr-choruspro-v1",
+                  "addons/fr-ctc-flow10-v1",
                   "addons/fr-ctc-flow2-v1",
+                  "addons/fr-ctc-flow6-v1",
                   "addons/fr-facturx-v1",
                   "addons/gr-mydata-v1",
                   "addons/it-sdi-v1",
                   "addons/it-ticket-v1",
                   "addons/mx-cfdi-v4",
                   "addons/pl-favat-v3",
-                  "addons/pt-saft-v1"
+                  "addons/pt-saft-v1",
+                  "addons/sa-zatca-v1"
                 ]
               }
             ]
@@ -154,11 +159,11 @@
                 "pages": [
                   "draft-0/bill/action",
                   "draft-0/bill/charge",
-                  "draft-0/bill/condition",
                   "draft-0/bill/correction_options",
                   "draft-0/bill/delivery",
                   "draft-0/bill/delivery_details",
                   "draft-0/bill/discount",
+                  "draft-0/bill/fault",
                   "draft-0/bill/invoice",
                   "draft-0/bill/line",
                   "draft-0/bill/line_charge",
@@ -195,7 +200,8 @@
                   "draft-0/cbc/definition",
                   "draft-0/cbc/key",
                   "draft-0/cbc/meta",
-                  "draft-0/cbc/source"
+                  "draft-0/cbc/source",
+                  "draft-0/cbc/uri"
                 ]
               },
               {
@@ -256,6 +262,7 @@
                   "draft-0/org/coordinates",
                   "draft-0/org/document_ref",
                   "draft-0/org/email",
+                  "draft-0/org/endpoint",
                   "draft-0/org/identity",
                   "draft-0/org/image",
                   "draft-0/org/inbox",

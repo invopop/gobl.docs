@@ -30,9 +30,9 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 | Supplier | `supplier` | [org.Party](/draft-0/org/party) | The taxable entity who is responsible for supplying goods or services. |
 | Customer | `customer` | [org.Party](/draft-0/org/party) | Legal entity that receives the goods or services. |
 | Payee | `payee` | [org.Party](/draft-0/org/party) | Legal entity that receives the payment if not the supplier. |
+| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Ordering allows for additional information about the ordering process including references to other documents and alternative parties involved in the order-to-delivery process. |
 | Lines | `lines` | array of [bill.PaymentLine](/draft-0/bill/payment_line) | List of documents that are being paid for. |
 | Methods | `methods` | array of [pay.Record](/draft-0/pay/record) | Methods describes how the payment was settled. At least one method is required; multiple may be present when the payment was split across means (for example, partly card + partly cash). |
-| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Ordering allows for additional information about the ordering process including references to other documents and alternative parties involved in the order-to-delivery process. |
 | Total | `total` | [num.Amount](/draft-0/num/amount) | Total amount to be paid in this payment, either positive or negative according to the line types and totals. Calculated automatically. |
 | Notes | `notes` | array of [org.Note](/draft-0/org/note) | Unstructured information that is relevant to the payment, such as correction or additional legal details. |
 | Complements | `complements` | array of [schema.Object](/draft-0/schema/object) | Additional complementary objects that add relevant information to the payment. |

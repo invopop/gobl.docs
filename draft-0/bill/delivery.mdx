@@ -53,6 +53,7 @@ Delivery document used to describe the delivery of goods or potentially also ser
 | `note` | A delivery note is a document accompanying a shipment of goods that lists the items included in the shipment. |
 | `waybill` | A waybill is a document issued by a carrier giving details and instructions relating to the shipment of a consignment of goods. |
 | `receipt` | A delivery receipt is a document that is signed by the person who receives goods to confirm that they have been received. |
+| `other` | Any other type of delivery that does not fit into the standard categories and implies that any scenarios defined in tax regimes or addons will not be applied. This is useful for being able to create deliveries with custom types in extensions, but is not recommended for general use. |
 
 
 ## Validation Rules
@@ -60,7 +61,7 @@ Delivery document used to describe the delivery of goods or potentially also ser
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `type` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DELIVERY-01`<br />Type is required |
-| `type` | <ul class="gobl-test"><li>One of [advice, note, waybill, receipt]</li></ul> | `GOBL-BILL-DELIVERY-02`<br />Type is not valid |
+| `type` | <ul class="gobl-test"><li>One of [advice, note, waybill, receipt, other]</li></ul> | `GOBL-BILL-DELIVERY-02`<br />Type is not valid |
 | `issue_date`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-DELIVERY-03`<br />Issue date is required |
 | `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DELIVERY-04`<br />Supplier is required |
 | `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-DELIVERY-05`<br />Lines are required |

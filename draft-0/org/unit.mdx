@@ -14,16 +14,19 @@ Unit defines how the quantity of the product should be interpreted either using 
 | Value | Title | Description |
 |-------|-------|-------------|
 | `mg` | Milligrams |  |
+| `cg` | Centigrams |  |
 | `g` | Metric grams |  |
 | `kg` | Metric kilograms |  |
 | `t` | Metric tons |  |
-| `mm` | Milimetres |  |
+| `mm` | Millimetres |  |
 | `cm` | Centimetres |  |
 | `dm` | Decimetres | A unit of length equal to one-tenth of a metre. |
 | `m` | Metres |  |
-| `km` | Kilometers |  |
+| `lm` | Linear metres | The running length in metres of a uniform-width product (e.g. carpet, fabric, cable), billed per metre regardless of width. |
+| `km` | Kilometres |  |
 | `in` | Inches |  |
 | `ft` | Feet |  |
+| `lft` | Linear feet | The running length in feet of a uniform-width product (e.g. lumber, trim, cable), billed per foot regardless of width. |
 | `mm2` | Square millimetres |  |
 | `cm2` | Square centimetres |  |
 | `dm2` | Square decimetres |  |
@@ -36,12 +39,16 @@ Unit defines how the quantity of the product should be interpreted either using 
 | `m3` | Cubic metres |  |
 | `ml` | Millilitres |  |
 | `cl` | Centilitres |  |
+| `dl` | Decilitres |  |
 | `l` | Litres |  |
+| `kl` | Kilolitres |  |
 | `w` | Watts |  |
 | `kw` | Kilowatts |  |
 | `kwh` | Kilowatt Hours |  |
 | `rate` | Rate | A unit of quantity expressed as a rate for usage of a facility or service. |
+| `yr` | Years | A unit of time equal to twelve months. |
 | `mon` | Months | Unit of time equal to 1/12 of a year of 365,25 days. |
+| `wk` | Weeks | A unit of time equal to seven days. |
 | `day` | Days |  |
 | `s` | Seconds |  |
 | `h` | Hours |  |
@@ -76,12 +83,15 @@ Unit defines how the quantity of the product should be interpreted either using 
 | `barrel` | Barrels |  |
 | `jerrican` | Jerricans | Jerrican, cylindrical |
 | `carboy` | Carboys |  |
-| `demijohn` | Demijohn |  |
+| `demijohn` | Demijohns |  |
 | `bottle` | Bottles |  |
 | `6pack` | Six Packs |  |
 | `canister` | Canisters |  |
 | `pkg` | Packages | Standard packaging unit. |
+| `pkt` | Packets |  |
 | `bunch` | Bunches |  |
+| `bdl` | Bundles |  |
+| `blk` | Blocks |  |
 | `tetrabrik` | Tetra-Briks |  |
 | `pallet` | Pallets |  |
 | `reel` | Reels |  |
@@ -96,4 +106,4 @@ Unit defines how the quantity of the product should be interpreted either using 
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Unit</small> | <ul class="gobl-test"><li>Matches ^[A-Z0-9]{2,3}$, or one of [mg, g, kg, t, mm, cm, dm, m, km, in, ft, mm2, cm2, dm2, m2, ac, ha, mm3, cm3, dm3, m3, ml, cl, l, w, kw, kwh, rate, mon, day, s, h, min, piece, item, pair, dozen, assortment, service, job, activity, trip, group, outfit, kit, basebox, pk, one, bag, box, bin, can, tub, case, tray, portion, set, roll, carton, cylinder, barrel, jerrican, carboy, demijohn, bottle, 6pack, canister, pkg, bunch, tetrabrik, pallet, reel, sack, sheet, envelope, lot, unit]</li></ul> | `GOBL-ORG-UNIT-01`<br />Unit must be a valid value or UN/ECE code |
+| <small>Unit</small> | <ul class="gobl-test"><li>Matches ^[A-Z0-9]{2,3}$, or one of [mg, cg, g, kg, t, mm, cm, dm, m, lm, km, in, ft, lft, mm2, cm2, dm2, m2, ac, ha, mm3, cm3, dm3, m3, ml, cl, dl, l, kl, w, kw, kwh, rate, yr, mon, wk, day, s, h, min, piece, item, pair, dozen, assortment, service, job, activity, trip, group, outfit, kit, basebox, pk, one, bag, box, bin, can, tub, case, tray, portion, set, roll, carton, cylinder, barrel, jerrican, carboy, demijohn, bottle, 6pack, canister, pkg, pkt, bunch, bdl, blk, tetrabrik, pallet, reel, sack, sheet, envelope, lot, unit]</li></ul> | `GOBL-ORG-UNIT-01`<br />Unit must be a valid value or UN/ECE code |

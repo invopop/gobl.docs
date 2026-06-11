@@ -25,4 +25,5 @@ Identity stores the details required to identify an entity for tax purposes in a
 | ----- | ---- | ------------------------- |
 | `country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-IDENTITY-01`<br />Tax id country code is always required |
 | `code` | <ul class="gobl-test"><li>Matches ^[A-Z0-9Ñ\&]+$</li></ul> | `GOBL-TAX-IDENTITY-02`<br />Tax id code must have a valid format |
+| `scheme` | <ul class="gobl-test"><li>Matches ^[A-ZÑa-z0-9]+([.\-:/,_& ]?[A-ZÑa-z0-9]+)*$</li></ul> | `GOBL-TAX-IDENTITY-03`<br />Tax id scheme must be a valid code |
 | `code` | <ul class="gobl-test"><li>Code in [EL]</li><li>Valid</li></ul> | `GOBL-GR-TAX-IDENTITY-01`<br />Invalid Greek VAT identity code |

@@ -4,6 +4,8 @@ title: Spain TicketBAI
 
 Key: `es-tbai-v1`
 
+Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+
 ## Correction Definitions
 
 Auto-generation of corrective invoices or credit and debit notes is
@@ -99,6 +101,46 @@ data.
 | `R4` | Rectified invoice: Other |
 | `R5` | Rectified invoice: simplified invoices |
 </Accordion>
+### TicketBAI VAT Regime Key
+
+Identifies the VAT regime or operation classification applied to the
+transaction. Maps to the `ClaveRegimenIvaOpTrascendencia` field, with
+values taken from the TicketBAI XSD.
+
+The regime code is normally assigned per tax combo. If no regime code
+is provided, GOBL will try to assign a code from the following contexts:
+
+| Combo Context              | Regime Code |
+|----------------------------|-------------|
+| Category `IGIC`            | `08`        |
+| Key `export`               | `02`        |
+| Has surcharge              | `51`        |
+| Otherwise                  | `01`        |
+
+<Accordion title="es-tbai-regime">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | General regime operation |
+| `02` | Export |
+| `03` | Special regime for used goods, art objects, antiques and collectibles |
+| `04` | Special regime for investment gold |
+| `05` | Special regime for travel agencies |
+| `06` | Special regime for VAT groups (Advanced Level) |
+| `07` | Special cash accounting regime |
+| `08` | Operations subject to IPSI/IGIC |
+| `09` | Billing of travel agency services acting as mediators in name and on behalf of others |
+| `10` | Collection of professional fees or industrial property rights on behalf of third parties |
+| `11` | Business premises rental operations subject to withholding |
+| `12` | Business premises rental operations not subject to withholding |
+| `13` | Business premises rental operations, both subject and not subject to withholding |
+| `14` | Invoice with pending VAT accrual in work certifications for Public Administration |
+| `15` | Invoice with pending VAT accrual in successive tract operations |
+| `17` | Operation under OSS or IOSS regimes |
+| `51` | Operations under the equivalence surcharge regime |
+| `52` | Operations under the simplified VAT regime |
+| `53` | Operations carried out by or for entities without a permanent establishment |
+</Accordion>
 ### Activity Code (Bizkaia)
 
 Economic activity code (epígrafe) for individual issuers submitting through
@@ -109,6 +151,84 @@ file through Modelo 240.
 
 Pattern: `^\d{1,7}$`
 </Accordion>
+### Identity Type Code
+
+Identity code used to identify the type of identity document used by the customer
+when there is no tax identifier available. Maps to the `IDType` value under
+`IDOtro` in the TicketBAI XML.
+
+The regular Party Tax Identity is preferred over using a specific identity type
+code, and will be mapped automatically as follows:
+
+- Spanish Tax IDs will be mapped to the `NIF` field.
+- EU Tax IDs will be mapped to the `IDOtro` field with code `02`.
+- Non-EU Tax IDs will be mapped to the `IDOtro` field with code `04`.
+
+The following identity `key` values will be mapped automatically to an extension
+by the addon:
+
+| Identity Key | Extension Code |
+|--------------|----------------|
+| `passport`   | `03`           |
+| `foreign`    | `04`           |
+| `resident`   | `05`           |
+| `other`      | `06`           |
+
+Example identity of a UK passport:
+
+```
+{
+	"identities": [
+		{
+			"key": "passport",
+			"country": "GB",
+			"code": "123456789"
+		}
+	]
+}
+```
+
+Will be normalized to:
+
+```
+{
+	"identities": [
+		{
+			"key": "passport",
+			"country": "GB",
+			"code": "123456789",
+			"ext": {
+				"es-tbai-identity-type": "03"
+			}
+		}
+	]
+}
+```
+
+<Accordion title="es-tbai-identity-type">
+
+| Code | Name |
+| ---- | ---- |
+| `02` | NIF-VAT Identity (VIES) |
+| `03` | Passport |
+| `04` | Foreign Identity Document |
+| `05` | Residential Certificate |
+| `06` | Other Identity Document |
+</Accordion>
+### TicketBAI Simplified Invoice Flag
+
+Flag that maps to the `FacturaSimplificada` field in TicketBAI
+documents. Set automatically to `S` by GOBL during normalization
+when the `simplified` tag is present. When absent, the invoice is
+treated as `N` (not simplified).
+
+<Accordion title="es-tbai-simplified">
+
+| Code | Name |
+| ---- | ---- |
+| `S` | Yes |
+| `N` | No |
+</Accordion>
 
 ## Validation Rules
 
@@ -118,16 +238,16 @@ Pattern: `^\d{1,7}$`
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-09`<br />Invoice must be in EUR or provide exchange rate for conversion |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-01`<br />Tax is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-tbai-region]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-02`<br />Extension 'es-tbai-region' is required |
-| `customer` | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-03`<br />Customer is required for non-simplified invoices |
-| `customer.tax_id` | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-08`<br />Customer tax ID is required |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-04`<br />Preceding documents are required for credit-note, corrective, debit-note invoices |
-| `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-05`<br />Preceding issue date is required |
-| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-06`<br />Preceding ext 'es-tbai-correction' is required |
-| `notes` | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-07`<br />With key 'general' missing |
-| `supplier.ext` | <ul class="gobl-test"><li>Bizkaia individual</li><li>Ext require [es-tbai-bi-activity]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-10`<br />Extension 'es-tbai-bi-activity' is required for Bizkaia individuals |
-| `supplier.ext` | <ul class="gobl-test"><li>Ext 'es-tbai-bi-activity' matches pattern '^\d{1,7}$'</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-11`<br />Extension 'es-tbai-bi-activity' must be a valid Bizkaia activity code (epígrafe) |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-01`<br />Invoice tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-tbai-region]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-02`<br />Invoice tax extension 'es-tbai-region' is required |
+| `customer` | <ul class="gobl-test"><li>Non-simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-03`<br />Invoice customer is required for non-simplified invoices |
+| `customer` | <ul class="gobl-test"><li>Non-simplified</li><li>Has tax_id or identity-type identity</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-08`<br />Invoice customer must have a tax_id or an identity with ext 'es-tbai-identity-type' |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-04`<br />Invoice preceding documents are required for credit-note, corrective, debit-note invoices |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-05`<br />Invoice preceding issue date is required |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-06`<br />Invoice preceding ext 'es-tbai-correction' is required |
+| `notes` | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-07`<br />Invoice must have a note with key 'general' |
+| `supplier.ext` | <ul class="gobl-test"><li>Bizkaia individual</li><li>Ext require [es-tbai-bi-activity]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-10`<br />Invoice supplier extension 'es-tbai-bi-activity' is required for Bizkaia individuals |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'es-tbai-bi-activity' matches pattern '^\d{1,7}$'</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-11`<br />Invoice supplier extension 'es-tbai-bi-activity' must be a valid Bizkaia activity code (epígrafe) |
 </Accordion>
 <Accordion title="tax.Combo">
 

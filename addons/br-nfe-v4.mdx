@@ -4,6 +4,8 @@ title: Brazil NF-e 4.00
 
 Key: `br-nfe-v4`
 
+Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+
 ## Scenarios
 
 ### bill/invoice
@@ -175,6 +177,7 @@ Indicates a special tax regime that a party is subject to.
 | `payment` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-31`<br />Payment is required when invoice is unpaid |
 | `payment.instructions` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-32`<br />Payment instructions are required when invoice is unpaid |
 | `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Zero or positive</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-33`<br />Due amount must not be negative |
+| `lines[*].ext` | <ul class="gobl-test"><li>Invoice is NFe</li><li>Ext require [br-nfe-cfop]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-35`<br />NF-e lines require 'br-nfe-cfop' extension |
 </Accordion>
 <Accordion title="bill.Line">
 

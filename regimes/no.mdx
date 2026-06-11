@@ -1,0 +1,60 @@
+---
+title: Norway
+---
+Norway applies VAT (merverdiavgift, MVA), administered by the
+Norwegian Tax Administration (Skatteetaten), at a standard rate
+with reduced and special rates for certain goods and services.
+
+Businesses are identified by their organisasjonsnummer, validated
+with a mod-11 check digit; the VAT number is the organisation
+number followed by "MVA".
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `NO` |
+| Currency | `NOK` |
+| Base Time Zone | `Europe/Oslo` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `VAT` | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 25.0% | Standard rate for most goods and services. |
+| `reduced` | `standard` | Reduced Rate | 15.0% | Food, beverages, water and wastewater services. |
+| `super-reduced` | `standard` | Super-reduced Rate | 12.0% | Transport, accommodation, cinema, broadcasting. |
+| `special` | `standard` | Special Rate | 11.11% | Raw fish (wild marine resources via fiskesalgslag). |
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- `credit-note`
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [NO]</li><li>Valid mod-11 org number</li></ul> | `GOBL-NO-TAX-IDENTITY-01`<br />Invalid organisasjonsnummer |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Type in [ON]</li><li>Valid mod-11 org number</li></ul> | `GOBL-NO-ORG-IDENTITY-01`<br />Invalid organisasjonsnummer |
+</Accordion>
+</AccordionGroup>

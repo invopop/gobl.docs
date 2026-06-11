@@ -4,10 +4,23 @@ import (
 	"bytes"
 	"text/template"
 
+	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/i18n"
 	"github.com/invopop/gobl/pkg/here"
 	"github.com/invopop/gobl/tax"
 )
+
+// addonModule returns the Go module that implements an addon. Approved
+// external addons record their module path in GOBL's curated list; anything
+// else is bundled with GOBL core.
+func addonModule(key cbc.Key) string {
+	for _, ea := range tax.ApprovedAddons() {
+		if ea.Key == key {
+			return ea.Module
+		}
+	}
+	return "github.com/invopop/gobl"
+}
 
 type addonGenerator struct {
 	generator
@@ -33,6 +46,7 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"codeMessage":   codeMessage,
 		"testList":      testList,
 		"fieldCell":     fieldCell,
+		"addonModule":   addonModule,
 	})
 	return g
 }
@@ -71,6 +85,8 @@ func (g *addonGenerator) base() error {
 		---
 
 		Key: ~{{ .Key }}~
+
+		Module: [{{ addonModule .Key }}](https://{{ addonModule .Key }})
 
 		{{- if .Description}}
 
