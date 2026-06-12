@@ -10,4 +10,13 @@ A great example of this is the `mx-cfdi-v4` addon. When applied to an invoice, i
 
 The key advantage with addons is that the original content of the GOBL invoice is still intact, maintaining the global compatibility, but ensuring that any local or format restrictions are accounted for.
 
+## Sources
+
+Addons are sourced from multiple repositories:
+
+- **Core addons** are bundled with [GOBL](https://github.com/invopop/gobl) itself and are always available.
+- **External addons** live in their own Go modules, such as [gobl.fr.ctc](https://github.com/invopop/gobl.fr.ctc) and [gobl.sa.zatca](https://github.com/invopop/gobl.sa.zatca). GOBL keeps a curated list of approved external addons so that their keys are recognized in the `$addons` schema, but each module must be imported by the consuming application for its normalization and validation rules to run. The set of external addons bundled with [gobl.dev](https://github.com/invopop/gobl.dev) and documented here is defined by gobl.dev's `bundle` package.
+
+Each addon's page states the module that implements it.
+
 Support for addons was included in the `v0.200.0` release of [GOBL](https://github.com/invopop/gobl).

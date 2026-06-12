@@ -4,6 +4,8 @@ title: Portugal SAF-T
 
 Key: `pt-saft-v1`
 
+Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+
 Portugal doesn't have an e-invoicing format per se. Tax information is reported
 electronically to the AT (Autoridade Tributária e Aduaneira) either periodically in
 batches via a SAF-T (PT) report or individually in real time via a web service. This addon
@@ -23,12 +25,6 @@ supported.
 
 A reason is required in the <code>reason</code> field
 when submitting the correction options.
-
-### Invoice Types
-
-The types of invoices that can be created with a preceding definition:
-- `credit-note`
-- `debit-note`
 
 ## Scenarios
 
@@ -559,29 +555,50 @@ Example with a recovered document:
 ### Movement Type
 
 SAF-T's `MovementType` (Tipo de documento de movimentação de mercadorias) specifies the type of
-a delivery document. In GOBL,this type can be set using the `pt-saft-movement-type` extension.
-If not provided explicitly, GOBL will set the extension for you based on the type of your delivery
-document.
+a delivery document. In GOBL, this type can be set using the `pt-saft-movement-type` extension.
+If not provided explicitly, GOBL will set the extension for you based on the type and tags of
+your delivery document.
 
 The table below shows how this mapping is done:
 
-| Code | Name                | GOBL Type     |
-| ---- | ------------------- | ------------- |
-| `GR` | Delivery note       | `note`        |
-| `GT` | Waybill             | `waybill`     |
+| Code | Name                                    | GOBL Type | GOBL Tag |
+| ---- | --------------------------------------- | --------- | -------- |
+| `GR` | Guia de Remessa (Delivery note)         | `note`    |          |
+| `GT` | Guia de Transporte (Transport guide)    | `waybill` |          |
+| `GD` | Guia de Devolução (Return note)         | `note`    | `return` |
+| `GA` | Guia de Movimentação de Ativos Próprios | (*)       |          |
+| `GC` | Guia de Consignação                     | (*)       |          |
 
-Example:
+(*) or codes not mapped from a GOBL type or tag; use `other` as the delivery type and explicitly set the
+extension.
+
+For example, to indicate a return delivery (GD):
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/delivery",
+	"$tags": ["return"],
+	"type": "note",
+	// The `pt-saft-movement-type` extension is set automatically to "GD"
+	// ...
+}
+```
+
+For example, to set a movement type with no GOBL equivalent (e.g. GA):
 
 ```js
 {
 	"$schema": "https://gobl.org/draft-0/bill/delivery",
 	// ...
-	"type": "note",
+	"type": "other",
 	// ...
-	"ext": {
-		"pt-saft-movement-type": "GR"
+	"tax": {
+		"ext": {
+			"pt-saft-movement-type": "GA"
+		}
 	},
 	// ...
+}
 ```
 
 <Accordion title="pt-saft-movement-type">
@@ -638,12 +655,15 @@ Example:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Delivery</small> | <ul class="gobl-test"><li>Has movement type</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-01`<br />Tax requires 'pt-saft-movement-type' extension |
-| <small>Delivery</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-02`<br />Series format must be valid |
-| <small>Delivery</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-03`<br />Code format must be valid |
-| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-04`<br />Supplier tax ID is required |
-| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-05`<br />Supplier tax ID code is required |
-| `despatch_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-06`<br />Cannot be blank |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Has movement type</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-01`<br />Delivery tax requires 'pt-saft-movement-type' extension |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-02`<br />Delivery series format must be valid |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-03`<br />Delivery code format must be valid |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-04`<br />Delivery supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-05`<br />Delivery supplier tax ID code is required |
+| `despatch_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-06`<br />Delivery despatch date is required |
+| `preceding` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-07`<br />Delivery preceding must have at most one entry |
+| `preceding[*].series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-08`<br />Delivery preceding series is required |
+| `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-09`<br />Delivery preceding code is required |
 </Accordion>
 <Accordion title="bill.Order">
 

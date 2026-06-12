@@ -1,0 +1,147 @@
+---
+title: Saudi Arabia ZATCA
+---
+
+Key: `sa-zatca-v1`
+
+Module: [github.com/invopop/gobl.sa.zatca](https://github.com/invopop/gobl.sa.zatca)
+
+Support for the Saudi Arabia ZATCA (Zakat, Tax and Customs Authority) e-invoicing
+requirements based on UBL 2.1 with EN 16931 as an intermediate layer and KSA-specific
+extensions (BR-KSA-* rules).
+
+ZATCA e-invoicing covers both standard tax invoices (B2B/B2G) sent for clearance
+and simplified tax invoices (B2C) sent for reporting through the FATOORA platform.
+
+This addon extends EN 16931 with Saudi-specific fields and validations including
+invoice type transactions, address requirements, and supply date handling.
+
+## Sources
+- [ZATCA E-Invoicing Developer Portal](https://zatca.gov.sa/en/E-Invoicing/SystemsDevelopers/Pages/E-Invoice-specifications.aspx)
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** `standard`
+
+**Output:**
+- **Extensions:** `untdid-document-type:388`
+</Accordion>
+
+## Extensions
+### ZATCA Invoice Transaction Type
+
+Code used to describe the ZATCA invoice transaction type and flags (KSA-2).
+The code is a 7-character string where positions 1-2 indicate the main type
+(01 = Standard Tax Invoice, 02 = Simplified Tax Invoice) and positions 3-7
+are binary flags for third-party, nominal, export, summary, and self-billed
+transactions respectively.
+
+<Accordion title="sa-zatca-invoice-type">
+
+Pattern: `^0[12][01]{5}$`
+
+| Code | Name |
+| ---- | ---- |
+| `0100000` | Standard Tax Invoice |
+| `0100001` | Standard Tax Invoice — Self-billed |
+| `0100010` | Standard Tax Invoice — Summary |
+| `0100011` | Standard Tax Invoice — Summary, Self-billed |
+| `0100100` | Standard Tax Invoice — Export |
+| `0100110` | Standard Tax Invoice — Export, Summary |
+| `0101000` | Standard Tax Invoice — Nominal |
+| `0101001` | Standard Tax Invoice — Nominal, Self-billed |
+| `0101010` | Standard Tax Invoice — Nominal, Summary |
+| `0101011` | Standard Tax Invoice — Nominal, Summary, Self-billed |
+| `0101100` | Standard Tax Invoice — Nominal, Export |
+| `0101110` | Standard Tax Invoice — Nominal, Export, Summary |
+| `0110000` | Standard Tax Invoice — Third-party |
+| `0110001` | Standard Tax Invoice — Third-party, Self-billed |
+| `0110010` | Standard Tax Invoice — Third-party, Summary |
+| `0110011` | Standard Tax Invoice — Third-party, Summary, Self-billed |
+| `0110100` | Standard Tax Invoice — Third-party, Export |
+| `0110110` | Standard Tax Invoice — Third-party, Export, Summary |
+| `0111000` | Standard Tax Invoice — Third-party, Nominal |
+| `0111001` | Standard Tax Invoice — Third-party, Nominal, Self-billed |
+| `0111010` | Standard Tax Invoice — Third-party, Nominal, Summary |
+| `0111011` | Standard Tax Invoice — Third-party, Nominal, Summary, Self-billed |
+| `0111100` | Standard Tax Invoice — Third-party, Nominal, Export |
+| `0111110` | Standard Tax Invoice — Third-party, Nominal, Export, Summary |
+| `0200000` | Simplified Tax Invoice |
+| `0200010` | Simplified Tax Invoice — Summary |
+| `0201000` | Simplified Tax Invoice — Nominal |
+| `0201010` | Simplified Tax Invoice — Nominal, Summary |
+| `0210000` | Simplified Tax Invoice — Third-party |
+| `0210010` | Simplified Tax Invoice — Third-party, Summary |
+| `0211000` | Simplified Tax Invoice — Third-party, Nominal |
+| `0211010` | Simplified Tax Invoice — Third-party, Nominal, Summary |
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `issue_time`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-01`<br />Invoice issue time must be present (BR-KSA-70) |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-02`<br />Invoice tax must be present |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [untdid-document-type]</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-03`<br />Invoice tax untdid-document-type extension is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [sa-zatca-invoice-type]</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-04`<br />Invoice tax sa-zatca-invoice-type extension is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'untdid-document-type' in [388, 386, 383, 381]</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-05`<br />Invoice tax untdid-document-type extension must be a valid ZATCA type (388, 386, 383, 381) (BR-KSA-05) |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'sa-zatca-invoice-type' in [0100000, 0100001, 0100010, 0100011, 0100100, 0100110, 0101000, 0101001, 0101010, 0101011, 0101100, 0101110, 0110000, 0110001, 0110010, 0110011, 0110100, 0110110, 0111000, 0111001, 0111010, 0111011, 0111100, 0111110, 0200000, 0200010, 0201000, 0201010, 0210000, 0210010, 0211000, 0211010]</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-06`<br />Invoice tax sa-zatca-invoice-type extension must be valid (BR-KSA-06) |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-07`<br />Credit and debit notes must have a billing reference |
+| `preceding[*].code` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-08`<br />Credit or debit note billing reference must have an identifier (BR-KSA-56) |
+| `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-09`<br />Credit and debit notes must contain the reason for issuance (BR-KSA-17) |
+| `customer` | <ul class="gobl-test"><li>Standard tax invoice</li><li>Invoice customer must have a tax id code or a valid identification (TIN/CRN/MOM/MLS/700/SAG/NAT/GCC/IQA/PAS/OTH) for standard invoices (BR-KSA-14), (BR-KSA-81)</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-13`<br />Invoice customer must have a valid identification scheme for standard invoices |
+| `customer.addresses[*].street` | <ul class="gobl-test"><li>Standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-10`<br />Invoice customer address must have a street name for standard tax invoices (BR-KSA-10) |
+| `customer.addresses[*].locality` | <ul class="gobl-test"><li>Standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-11`<br />Invoice customer address must have a city name for standard tax invoices (BR-KSA-10) |
+| `customer.addresses[*].country` | <ul class="gobl-test"><li>Standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-12`<br />Invoice customer address must have a country code for standard tax invoices (BR-KSA-10) |
+| `lines[*].taxes` | <ul class="gobl-test"><li>Standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-14`<br />Invoice line taxes are required for standard tax invoices (BR-KSA-52) |
+| `delivery` | <ul class="gobl-test"><li>Standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-15`<br />Invoice delivery must be present for standard tax invoices |
+| `delivery.date` | <ul class="gobl-test"><li>Standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-16`<br />Invoice delivery must have a supply date for standard tax invoices (BR-KSA-15) |
+| `customer.tax_id` | <ul class="gobl-test"><li>Export invoice</li><li>Empty</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-17`<br />Invoice customer must not have a tax id for export invoices (BR-KSA-46) |
+| `delivery` | <ul class="gobl-test"><li>Invoice is simplified and summary</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-18`<br />Invoice delivery must be present for simplified and summary invoices |
+| `delivery.period` | <ul class="gobl-test"><li>Invoice is simplified and summary</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-19`<br />Invoice supply must have a delivery period for simplified and summary invoices |
+| `delivery.period.start` | <ul class="gobl-test"><li>Invoice is simplified and summary</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-20`<br />Invoice delivery start date must be present for simplified and summary invoices (BR-KSA-72) |
+| `delivery.period.end` | <ul class="gobl-test"><li>Invoice is simplified and summary</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-21`<br />Invoice delivery end date must be present for simplified and summary invoices (BR-KSA-72) |
+| `customer.identities` | <ul class="gobl-test"><li>Has EDU or HEA tax exemption</li><li>Has a type in [NAT]</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-22`<br />Invoice customer must have a national ID (NAT) when tax exemption is VATEX-SA-EDU or VATEX-SA-HEA (BR-KSA-49) |
+| `customer` | <ul class="gobl-test"><li>Simplified and (EDU or HEA exemptions), or invoice is simplified and summary, or standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-23`<br />Invoice customer must be present for standard tax invoices, simplified summary invoices, and simplified invoices with EDU or HEA exemptions |
+| `customer.name` | <ul class="gobl-test"><li>Simplified and (EDU or HEA exemptions), or invoice is simplified and summary, or standard tax invoice</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-24`<br />Invoice customer must be present for standard tax invoices, simplified summary invoices, and simplified invoices with EDU or HEA exemptions (BR-KSA-71), (BR-KSA-25), (BR-KSA-42) |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-25`<br />Invoice supplier must have a tax id (BR-KSA-39) |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-26`<br />Invoice supplier must have a tax id code (BR-KSA-39) |
+| `supplier.identities` | <ul class="gobl-test"><li>Identity must be one of: CRN/MOM/MLS/700/SAG/OTH</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-27`<br />Invoice supplier must have a valid identity (CRN/MOM/MLS/700/SAG/OTH) (BR-KSA-08) |
+| `customer.tax_id` | <ul class="gobl-test"><li>Invoice is self-billed</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-28`<br />Invoice customer must have a tax id when self-billed (BR-KSA-39) |
+| `customer.tax_id.code` | <ul class="gobl-test"><li>Invoice is self-billed</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-29`<br />Invoice customer must have a tax id code when self-billed (BR-KSA-39) |
+| `customer.identities` | <ul class="gobl-test"><li>Invoice is self-billed</li><li>Identity must be one of: CRN/MOM/MLS/700/SAG/OTH</li></ul> | `GOBL-SA-ZATCA-BILL-INVOICE-30`<br />Invoice customer must have a valid identity for self-billed invoices (CRN/MOM/MLS/700/SAG/OTH) (BR-KSA-08) |
+</Accordion>
+<Accordion title="bill.Line">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `charges` | <ul class="gobl-test"><li>Length between 0 and 0</li></ul> | `GOBL-SA-ZATCA-BILL-LINE-01`<br />Invoice line charges are not allowed (BR-KSA-EN16931-06) |
+</Accordion>
+<Accordion title="org.Address">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-ORG-ADDRESS-01`<br />Address must have a country code |
+| `street` | <ul class="gobl-test"><li>Country code is SA</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-ORG-ADDRESS-02`<br />Invoice addresses in SA must have a street name (BR-KSA-09), (BR-KSA-63) |
+| `num` | <ul class="gobl-test"><li>Country code is SA</li><li class="gobl-test-present">Present</li><li>Matches ^\d{4}$</li></ul> | `GOBL-SA-ZATCA-ORG-ADDRESS-03`<br />Invoice addresses in SA must have a 4 digits building number (BR-KSA-09), (BR-KSA-63), (BR-KSA-37) |
+| `code` | <ul class="gobl-test"><li>Country code is SA</li><li class="gobl-test-present">Present</li><li>Matches ^\d{5}$</li></ul> | `GOBL-SA-ZATCA-ORG-ADDRESS-04`<br />Invoice addresses in SA must have a 5 digits postal code (BR-KSA-09), (BR-KSA-63) (BR-KSA-67), (BR-KSA-66) |
+| `locality` | <ul class="gobl-test"><li>Country code is SA</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-ORG-ADDRESS-05`<br />Invoice addresses in SA must have a city name (BR-KSA-09), (BR-KSA-63) |
+| `street_extra` | <ul class="gobl-test"><li>Country code is SA</li><li class="gobl-test-present">Present</li></ul> | `GOBL-SA-ZATCA-ORG-ADDRESS-06`<br />Invoice addresses in SA must have a district name (BR-KSA-09), (BR-KSA-63) |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Valid SA VAT exemption code</li></ul> | `GOBL-SA-ZATCA-TAX-COMBO-01`<br />Invoice line tax cef-vatex extension code must be present and valid for Z/E/O categories, and must not be set for Standard (BR-KSA-CL-04) |
+| `ext` | <ul class="gobl-test"><li>Ext 'untdid-tax-category' in [S, Z, E, O]</li></ul> | `GOBL-SA-ZATCA-TAX-COMBO-02`<br />Invoice line tax untdid-tax-category extension code must contain one of the values (S, Z, E, O) (BR-KSA-18) |
+| `cat` | <ul class="gobl-test"><li>One of [VAT]</li></ul> | `GOBL-SA-ZATCA-TAX-COMBO-03`<br />Tax schema id must be 'VAT' (BR-KSA-54) |
+</Accordion>
+</AccordionGroup>

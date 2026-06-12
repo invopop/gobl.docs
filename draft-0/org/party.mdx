@@ -21,6 +21,7 @@ Party represents a person or business entity.
 | Tax Identity | `tax_id` | [tax.Identity](/draft-0/tax/identity) | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |
 | Identities | `identities` | array of [org.Identity](/draft-0/org/identity) | Set of codes used to identify the party in other systems. |
 | People | `people` | array of [org.Person](/draft-0/org/person) | Details of physical people who represent the party. |
+| Endpoints | `endpoints` | array of [org.Endpoint](/draft-0/org/endpoint) | Endpoints to which electronic documents may be sent, identified by URI. |
 | Inboxes | `inboxes` | array of [org.Inbox](/draft-0/org/inbox) | Digital inboxes used for forwarding electronic versions of documents |
 | Postal Addresses | `addresses` | array of [org.Address](/draft-0/org/address) | Regular post addresses for where information should be sent if needed. |
 | Email Addresses | `emails` | array of [org.Email](/draft-0/org/email) | Electronic mail addresses |

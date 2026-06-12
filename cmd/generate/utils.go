@@ -3,11 +3,34 @@ package main
 import (
 	"fmt"
 	"html"
+	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/tax"
 )
+
+// removeStalePages deletes any .mdx file in dir whose base name is not in
+// keep. Used by generators that own a directory of per-key pages so removed
+// definitions don't leave orphaned docs behind.
+func removeStalePages(dir string, keep map[string]bool) error {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return err
+	}
+	for _, e := range entries {
+		if e.IsDir() || filepath.Ext(e.Name()) != ".mdx" || keep[e.Name()] {
+			continue
+		}
+		name := filepath.Join(dir, e.Name())
+		if err := os.Remove(name); err != nil {
+			return err
+		}
+		fmt.Printf("Removed stale %s\n", name)
+	}
+	return nil
+}
 
 func joinKeys(keys []cbc.Key) string {
 	var s []string
