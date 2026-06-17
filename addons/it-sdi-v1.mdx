@@ -455,6 +455,32 @@ used to determine the correct schema to use when validating the document.
 | `TC21` | National pension and welfare board for psychologists (ENPAP) |
 | `TC22` | National Social Security Institute (INPS) |
 </Accordion>
+### Liquidation State
+
+Indicates whether the company is in liquidation, used in the
+IscrizioneREA block of a FatturaPA document as the
+StatoLiquidazione field.
+
+<Accordion title="it-sdi-liquidation-state">
+
+| Code | Name |
+| ---- | ---- |
+| `LS` | In liquidation |
+| `LN` | Not in liquidation |
+</Accordion>
+### Shareholder State
+
+Indicates the company's shareholder configuration, used in the
+IscrizioneREA block of a FatturaPA document as the SocioUnico
+field.
+
+<Accordion title="it-sdi-shareholder-state">
+
+| Code | Name |
+| ---- | ---- |
+| `SU` | Sole shareholder |
+| `SM` | Multiple shareholders |
+</Accordion>
 
 ## Validation Rules
 

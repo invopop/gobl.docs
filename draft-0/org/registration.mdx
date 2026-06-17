@@ -25,10 +25,11 @@ Registration is used in countries that require additional information to be asso
 | Page | `page` | string |  |
 | Entry | `entry` | string |  |
 | Other | `other` | string |  |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Ext holds any additional information that may be required by specific tax authorities. |
 
 
 ## Validation Rules
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `currency` | <ul class="gobl-test"><li>Is valid currency</li></ul> | `GOBL-ORG-REGISTRATION-01`<br />Registration currency must be a valid ISO 4217 code |
+| `currency` | <ul class="gobl-test"><li>Valid currency code</li></ul> | `GOBL-ORG-REGISTRATION-01`<br />Registration currency must be a valid ISO 4217 code |
