@@ -1063,3 +1063,75 @@ terms:
         name: "PRICE DETAILS"
         paths:
           - $.doc.lines[*].item
+
+      - id: BG-31
+        name: "ITEM INFORMATION"
+        paths:
+          - $.doc.lines[*].item
+        terms:
+          - id: BT-153
+            name: "Item name"
+            paths:
+              - $.doc.lines[*].item.name
+          - id: BT-154
+            name: "Item description"
+            paths:
+              - $.doc.lines[*].item.description
+          - id: BT-155
+            name: "Item Seller's identifier"
+            paths:
+              - $.doc.lines[*].item.identities[scope='seller'].code
+            notes: |-
+              The seller's own code for the item, defined as an item identity
+              with the `seller` scope.
+          - id: BT-156
+            name: "Item Buyer's identifier"
+            paths:
+              - $.doc.lines[*].item.identities[scope='buyer'].code
+            notes: |-
+              The buyer's own code for the item, defined as an item identity
+              with the `buyer` scope.
+          - id: BT-157
+            name: "Item standard identifier"
+            paths:
+              - $.doc.lines[*].item.identities[scope='legal'].code
+              - $.doc.lines[*].item.identities[scope='legal'].ext['iso-scheme-id']
+            notes: |-
+              A standard item identifier issued under a registered scheme (e.g. a
+              GS1 GTIN), defined as an item identity with the `legal` scope. The
+              scheme identifier (BT-157-1) is provided by the `iso-scheme-id`
+              extension.
+          - id: BT-158
+            name: "Item classification identifier"
+            paths:
+              - $.doc.lines[*].item.identities[scope='class'].code
+              - $.doc.lines[*].item.identities[scope='class'].ext['untdid-item-type']
+              - $.doc.lines[*].item.identities[scope='class'].ext['untdid-item-type-version']
+            notes: |-
+              A code grouping the item into a category of a classification scheme
+              (e.g. UNSPSC, CPV, HS), defined as an item identity with the `class`
+              scope. The scheme (BT-158-1) is given by the `untdid-item-type`
+              extension and its version (BT-158-2) by `untdid-item-type-version`.
+          - id: BT-159
+            name: "Item country of origin"
+            paths:
+              - $.doc.lines[*].item.origin
+
+          - id: BG-32
+            name: "ITEM ATTRIBUTES"
+            paths:
+              - $.doc.lines[*].item.attributes[*]
+            terms:
+              - id: BT-160
+                name: "Item attribute name"
+                paths:
+                  - $.doc.lines[*].item.attributes[*].label
+                  - $.doc.lines[*].item.attributes[*].key
+                notes: |-
+                  GOBL attributes carry a machine-readable `key` and an optional
+                  human-readable `label`; the `label` is internal-only and not
+                  included in output documents.
+              - id: BT-161
+                name: "Item attribute value"
+                paths:
+                  - $.doc.lines[*].item.attributes[*].value
