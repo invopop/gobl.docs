@@ -1064,6 +1064,24 @@ terms:
         paths:
           - $.doc.lines[*].item
 
+      - id: BG-30
+        name: "LINE VAT INFORMATION"
+        paths:
+          - $.doc.lines[*].taxes
+        terms:
+          - id: BT-151
+            name: "Invoiced item VAT category code"
+            paths:
+              - $.doc.lines[*].taxes[*].ext['untdid-tax-category']
+            notes: |-
+              GOBL line taxes carry the tax scheme in `cat` (e.g. `VAT`) and a
+              `rate` key; the EN 16931 category code (UNTDID 5305: S, Z, E, AE,
+              O, …) is provided by the `untdid-tax-category` extension.
+          - id: BT-152
+            name: "Invoiced item VAT rate"
+            paths:
+              - $.doc.lines[*].taxes[*].percent
+
       - id: BG-31
         name: "ITEM INFORMATION"
         paths:
