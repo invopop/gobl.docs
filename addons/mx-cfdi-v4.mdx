@@ -4,7 +4,7 @@ title: Mexican SAT CFDI v4.X
 
 Key: `mx-cfdi-v4`
 
-Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+Module: [github.com/invopop/gobl.mx.cfdi](https://github.com/invopop/gobl.mx.cfdi)
 
 ## Scenarios
 
@@ -139,10 +139,10 @@ Chosen by the customer to indicate the purpose of an invoice.
 | `G02` | Returns, discounts or rebates |
 | `G03` | General expenses |
 | `I01` | Construction |
-| `I02` | Office furniture and equipment as investmen |
+| `I02` | Office furniture and equipment as investment |
 | `I03` | Transport equipment |
 | `I04` | Computer equipment and accessories |
-| `I05` | Dies, punches, molds, matrices and other toolin |
+| `I05` | Dies, punches, molds, matrices and other tooling |
 | `I06` | Telephone communications |
 | `I07` | Satellite communications |
 | `I08` | Other machinery and equipment |
@@ -204,7 +204,7 @@ Code defined in the CFDI catalogue "c_FormaPago" for the payment method. Used in
 </Accordion>
 ### CFDI Global Period
 
-Period for when the sales where generated.
+Period for when the sales were generated.
 
 <Accordion title="mx-cfdi-global-period">
 
@@ -305,7 +305,7 @@ Pattern: `\d{4}`
 | ----- | ---- | ------------------------- |
 | `notes` | <ul class="gobl-test"><li>Length between 0 and 1000</li></ul> | `GOBL-MX-CFDI-PAY-TERMS-01`<br />Notes length must be no more than 1000 |
 </Accordion>
-<Accordion title="cfdi.FoodVouchers">
+<Accordion title="addon.FoodVouchers">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
@@ -321,13 +321,13 @@ Pattern: `\d{4}`
 | `lines[*].employee.tax_code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-10`<br />Employee tax code (RFC) is required |
 | `lines[*].employee.tax_code` | <ul class="gobl-test"><li>Valid RFC</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-11`<br />Employee tax code (RFC) must be valid |
 | `lines[*].employee.curp` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-12`<br />Employee CURP is required |
-| `lines[*].employee.curp` | <ul class="gobl-test"><li>Matches ^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B,C,D,F,G,H,J,K,L,M,N,Ñ,P,Q,R,S,T,V,W,X,Y,Z]{3}[0-9,A-Z][0-9]$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-13`<br />Employee CURP format must be valid |
+| `lines[*].employee.curp` | <ul class="gobl-test"><li>Matches ^[A-Z][AEIOUX][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][MH][A-Z]{2}[BCDFGHJKLMNÑPQRSTVWXYZ]{3}[0-9A-Z][0-9]$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-13`<br />Employee CURP format must be valid |
 | `lines[*].employee.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-14`<br />Employee name is required |
 | `lines[*].employee.name` | <ul class="gobl-test"><li>Length between 0 and 100</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-15`<br />Employee name must be no more than 100 characters |
 | `lines[*].employee.social_security` | <ul class="gobl-test"><li>Matches ^[0-9]{11}$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-16`<br />Employee social security number format is invalid |
 | `lines[*].amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-17`<br />Line amount is required |
 </Accordion>
-<Accordion title="cfdi.FuelAccountBalance">
+<Accordion title="addon.FuelAccountBalance">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |

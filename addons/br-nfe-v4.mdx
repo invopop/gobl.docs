@@ -4,7 +4,23 @@ title: Brazil NF-e 4.00
 
 Key: `br-nfe-v4`
 
-Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+Module: [github.com/invopop/gobl.br.nfe](https://github.com/invopop/gobl.br.nfe)
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- `credit-note`
+- `debit-note`
+
+### Stamp Keys
+
+Stamp keys from the previous invoice that need to be referenced:
+- `sefaz-key`
 
 ## Scenarios
 
@@ -27,6 +43,15 @@ Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
 
 **Output:**
 - **Extensions:** `br-nfe-model:65`
+</Accordion>
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** `standard`
+
+**Output:**
+- **Extensions:** `br-nfe-operation-type:1`, `br-nfe-purpose:1`
 </Accordion>
 
 ## Extensions
@@ -110,7 +135,8 @@ Indicates whether a party benefits from a fiscal incentive.
 </Accordion>
 ### Tax Regime Code
 
-Indicates the tax regime that a party is subject to.
+Indicates the tax regime that a party is subject to. Defaults to `3`
+(normal regime) during normalization when not provided.
 
 <Accordion title="br-nfe-regime">
 
@@ -119,6 +145,7 @@ Indicates the tax regime that a party is subject to.
 | `1` | Simples Nacional |
 | `2` | Simples Nacional, Excess |
 | `3` | Normal |
+| `4` | MEI - Individual Micro-entrepreneur |
 </Accordion>
 ### Special Tax Regime Code
 
@@ -134,6 +161,224 @@ Indicates a special tax regime that a party is subject to.
 | `4` | Cooperative |
 | `5` | Single micro-entrepreneur (MEI) |
 | `6` | Micro-enterprise or Small Business (ME EPP) |
+</Accordion>
+### ICMS Tax Status Code (CST)
+
+ICMS tax status code (CST) for the line item, used by issuers under the normal
+regime (`br-nfe-regime` `3`). Simples Nacional issuers must use the CSOSN code
+(`br-nfe-icms-csosn`) instead. Defaults to `00` (taxed in full) during
+normalization when not provided.
+
+<Accordion title="br-nfe-icms-cst">
+
+| Code | Name |
+| ---- | ---- |
+| `00` | Taxed in full |
+| `02` | Monophasic taxation (fuels) |
+| `10` | Taxed with ICMS charged by tax substitution |
+| `15` | Fuel operation with ICMS retention |
+| `20` | Taxed with tax base reduction |
+| `30` | Exempt/non-taxed with ICMS charged by tax substitution |
+| `40` | Exempt |
+| `41` | Non-taxed |
+| `50` | Suspended |
+| `51` | Deferred |
+| `53` | Fuel operation with deferral |
+| `60` | ICMS charged previously by tax substitution |
+| `61` | Fuel operation with ICMS withheld |
+| `70` | Taxed with base reduction and ICMS charged by tax substitution |
+| `90` | Others |
+</Accordion>
+### ICMS Simples Nacional Status Code (CSOSN)
+
+ICMS status code (CSOSN) for the line item, used by issuers under the Simples
+Nacional regime (`br-nfe-regime` `1`, `2` or `4`). Normal-regime issuers must
+use the CST code (`br-nfe-icms-cst`) instead.
+
+<Accordion title="br-nfe-icms-csosn">
+
+| Code | Name |
+| ---- | ---- |
+| `101` | Taxed under Simples Nacional with credit permission |
+| `102` | Taxed under Simples Nacional without credit permission |
+| `103` | ICMS exemption under Simples Nacional for gross revenue range |
+| `201` | Taxed under Simples Nacional with credit permission and ICMS by tax substitution |
+| `202` | Taxed under Simples Nacional without credit permission and ICMS by tax substitution |
+| `203` | ICMS exemption under Simples Nacional for revenue range and ICMS by tax substitution |
+| `300` | Immune |
+| `400` | Non-taxed under Simples Nacional |
+| `500` | ICMS charged previously by tax substitution or anticipation |
+| `900` | Others |
+</Accordion>
+### ICMS Goods Origin
+
+Origin of the goods for ICMS purposes. Defaults to `0` (national) during
+normalization when not provided.
+
+<Accordion title="br-nfe-icms-origin">
+
+| Code | Name |
+| ---- | ---- |
+| `0` | National (except codes 3, 4, 5 and 8) |
+| `1` | Foreign, direct import (except code 6) |
+| `2` | Foreign, acquired in the domestic market (except code 7) |
+| `3` | National, import content above 40% and up to 70% |
+| `4` | National, produced under the basic productive processes |
+| `5` | National, import content up to 40% |
+| `6` | Foreign, direct import, no domestic equivalent (CAMEX list / natural gas) |
+| `7` | Foreign, acquired domestically, no domestic equivalent (CAMEX list / natural gas) |
+| `8` | National, import content above 70% |
+</Accordion>
+### PIS Tax Status Code (CST)
+
+PIS tax status code for the line item. Simples Nacional issuers typically use
+`49` or `99`, as PIS is settled within the unified DAS collection. Defaults to
+`01` (standard-rate taxable operation) during normalization when not provided.
+
+<Accordion title="br-nfe-pis-cst">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Taxable operation, standard rate |
+| `02` | Taxable operation, differentiated rate |
+| `03` | Taxable operation, rate per unit of measure |
+| `04` | Taxable monophasic operation, zero-rate resale |
+| `05` | Taxable operation by tax substitution |
+| `06` | Taxable operation, zero rate |
+| `07` | Operation exempt from the contribution |
+| `08` | Operation without incidence of the contribution |
+| `09` | Operation with suspension of the contribution |
+| `49` | Other outbound operations |
+| `50` | Credit operation, exclusively taxed domestic revenue |
+| `51` | Credit operation, exclusively non-taxed domestic revenue |
+| `52` | Credit operation, exclusively export revenue |
+| `53` | Credit operation, taxed and non-taxed domestic revenue |
+| `54` | Credit operation, taxed domestic and export revenue |
+| `55` | Credit operation, non-taxed domestic and export revenue |
+| `56` | Credit operation, taxed/non-taxed domestic and export revenue |
+| `60` | Presumed credit, exclusively taxed domestic revenue |
+| `61` | Presumed credit, exclusively non-taxed domestic revenue |
+| `62` | Presumed credit, exclusively export revenue |
+| `63` | Presumed credit, taxed and non-taxed domestic revenue |
+| `64` | Presumed credit, taxed domestic and export revenue |
+| `65` | Presumed credit, non-taxed domestic and export revenue |
+| `66` | Presumed credit, taxed/non-taxed domestic and export revenue |
+| `67` | Presumed credit, other operations |
+| `70` | Acquisition operation without credit right |
+| `71` | Acquisition operation with exemption |
+| `72` | Acquisition operation with suspension |
+| `73` | Acquisition operation at zero rate |
+| `74` | Acquisition operation without incidence of the contribution |
+| `75` | Acquisition operation by tax substitution |
+| `98` | Other inbound operations |
+| `99` | Other operations |
+</Accordion>
+### COFINS Tax Status Code (CST)
+
+COFINS tax status code for the line item. Simples Nacional issuers typically
+use `49` or `99`, as COFINS is settled within the unified DAS collection.
+Defaults to `01` (standard-rate taxable operation) during normalization when
+not provided.
+
+<Accordion title="br-nfe-cofins-cst">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Taxable operation, standard rate |
+| `02` | Taxable operation, differentiated rate |
+| `03` | Taxable operation, rate per unit of measure |
+| `04` | Taxable monophasic operation, zero-rate resale |
+| `05` | Taxable operation by tax substitution |
+| `06` | Taxable operation, zero rate |
+| `07` | Operation exempt from the contribution |
+| `08` | Operation without incidence of the contribution |
+| `09` | Operation with suspension of the contribution |
+| `49` | Other outbound operations |
+| `50` | Credit operation, exclusively taxed domestic revenue |
+| `51` | Credit operation, exclusively non-taxed domestic revenue |
+| `52` | Credit operation, exclusively export revenue |
+| `53` | Credit operation, taxed and non-taxed domestic revenue |
+| `54` | Credit operation, taxed domestic and export revenue |
+| `55` | Credit operation, non-taxed domestic and export revenue |
+| `56` | Credit operation, taxed/non-taxed domestic and export revenue |
+| `60` | Presumed credit, exclusively taxed domestic revenue |
+| `61` | Presumed credit, exclusively non-taxed domestic revenue |
+| `62` | Presumed credit, exclusively export revenue |
+| `63` | Presumed credit, taxed and non-taxed domestic revenue |
+| `64` | Presumed credit, taxed domestic and export revenue |
+| `65` | Presumed credit, non-taxed domestic and export revenue |
+| `66` | Presumed credit, taxed/non-taxed domestic and export revenue |
+| `67` | Presumed credit, other operations |
+| `70` | Acquisition operation without credit right |
+| `71` | Acquisition operation with exemption |
+| `72` | Acquisition operation with suspension |
+| `73` | Acquisition operation at zero rate |
+| `74` | Acquisition operation without incidence of the contribution |
+| `75` | Acquisition operation by tax substitution |
+| `98` | Other inbound operations |
+| `99` | Other operations |
+</Accordion>
+### Purpose Code
+
+Code that identifies the purpose of the fiscal document (SEFAZ field `finNFe`,
+B25). Standard invoices are set to `1` (normal) via a tax scenario.
+
+<Accordion title="br-nfe-purpose">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Normal |
+| `2` | Complementary |
+| `3` | Adjustment |
+| `4` | Goods Return |
+| `5` | Credit Note |
+| `6` | Debit Note |
+</Accordion>
+### Operation Type Code
+
+Code that identifies the type of operation, indicating whether it is inbound
+or outbound (SEFAZ field `tpNF`, B11). Standard invoices are set to `1`
+(outbound) via a tax scenario.
+
+<Accordion title="br-nfe-operation-type">
+
+| Code | Name |
+| ---- | ---- |
+| `0` | Inbound |
+| `1` | Outbound |
+</Accordion>
+### Credit Note Type Code
+
+Code that identifies the type of credit note (SEFAZ field `tpNFCredito`,
+B25.2) according to the RTM (applies to IBS/CBS only).
+
+<Accordion title="br-nfe-credit-note-type">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Penalty and interest |
+| `02` | Appropriation of presumed IBS credit in the ZFM |
+| `03` | Return |
+| `04` | Reduction of values |
+| `05` | Credit transfer on succession |
+</Accordion>
+### Debit Note Type Code
+
+Code that identifies the type of debit note (SEFAZ field `tpNFDebito`, B25.1)
+according to the RTM (applies to IBS/CBS only).
+
+<Accordion title="br-nfe-debit-note-type">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Transfer of credits from Cooperatives |
+| `02` | Credit annulment |
+| `03` | Debits not processed in the regular assessment |
+| `04` | Penalty and interest |
+| `05` | Credit transfer on succession |
+| `06` | Advance payment |
+| `07` | Inventory loss |
+| `08` | Exit from Simples Nacional |
 </Accordion>
 
 ## Validation Rules
@@ -155,6 +400,7 @@ Indicates a special tax regime that a party is subject to.
 | `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-08`<br />Invoice supplier address requires a postal code |
 | `supplier.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-37`<br />Invoice supplier address requires a country |
 | `supplier.ext` | <ul class="gobl-test"><li>Has addresses</li><li>Ext require [br-ibge-municipality]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-09`<br />Invoice supplier requires 'br-ibge-municipality' extension when addresses are present |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-regime]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-39`<br />Invoice supplier requires 'br-nfe-regime' extension |
 | `supplier.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-10`<br />Invoice supplier name is required |
 | `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-11`<br />Invoice supplier must have at least one address |
 | `customer` | <ul class="gobl-test"><li>Invoice is NFe</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-12`<br />Invoice customer is required for NF-e invoices |
@@ -172,9 +418,11 @@ Indicates a special tax regime that a party is subject to.
 | `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-23`<br />Invoice series is required |
 | `series` | <ul class="gobl-test"><li>Matches ^(?:0\|[1-9]{1}[0-9]{0,2})$</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-24`<br />Invoice series format is invalid; must be 0 or 1-999 |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-25`<br />Invoice tax is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-model, br-nfe-presence]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-26`<br />Invoice tax requires 'br-nfe-model' and 'br-nfe-presence' extensions |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-model, br-nfe-presence, br-nfe-purpose, br-nfe-operation-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-26`<br />Invoice tax requires 'br-nfe-model', 'br-nfe-presence', 'br-nfe-purpose' and 'br-nfe-operation-type' extensions |
 | `tax.ext` | <ul class="gobl-test"><li>NFe model</li><li>Ext 'br-nfe-presence' not in [4]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-27`<br />NF-e invoices do not support '4' for 'br-nfe-presence' |
 | `tax.ext` | <ul class="gobl-test"><li>NFCe model</li><li>Ext 'br-nfe-presence' in [1, 4]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-28`<br />NFC-e invoices require in-person or delivery for 'br-nfe-presence' |
+| `tax.ext` | <ul class="gobl-test"><li>Credit note purpose</li><li>Ext require [br-nfe-credit-note-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-40`<br />Credit note invoices require 'br-nfe-credit-note-type' extension |
+| `tax.ext` | <ul class="gobl-test"><li>Debit note purpose</li><li>Ext require [br-nfe-debit-note-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-41`<br />Debit note invoices require 'br-nfe-debit-note-type' extension |
 | `notes[*].text` | <ul class="gobl-test"><li>Reason note</li><li>Length between 1 and 60</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-29`<br />Invoice reason note text must be between 1 and 60 characters |
 | `payment` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-31`<br />Invoice payment is required when invoice is unpaid |
 | `payment.instructions` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-32`<br />Invoice payment instructions are required when invoice is unpaid |
@@ -188,6 +436,15 @@ Indicates a special tax regime that a party is subject to.
 | <small>Line</small> | <ul class="gobl-test"><li>Line has tax category ICMS</li></ul> | `GOBL-BR-NFE-BILL-LINE-01`<br />Line taxes must include the ICMS category |
 | <small>Line</small> | <ul class="gobl-test"><li>Line has tax category PIS</li></ul> | `GOBL-BR-NFE-BILL-LINE-02`<br />Line taxes must include the PIS category |
 | <small>Line</small> | <ul class="gobl-test"><li>Line has tax category COFINS</li></ul> | `GOBL-BR-NFE-BILL-LINE-03`<br />Line taxes must include the COFINS category |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext require [br-nfe-icms-cst], or ext require [br-nfe-icms-csosn]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-01`<br />ICMS tax combo requires 'br-nfe-icms-cst' or 'br-nfe-icms-csosn' extension |
+| `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext require [br-nfe-icms-origin]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-02`<br />ICMS tax combo requires 'br-nfe-icms-origin' extension |
+| `ext` | <ul class="gobl-test"><li>PIS category</li><li>Ext require [br-nfe-pis-cst]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-03`<br />PIS tax combo requires 'br-nfe-pis-cst' extension |
+| `ext` | <ul class="gobl-test"><li>COFINS category</li><li>Ext require [br-nfe-cofins-cst]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-04`<br />COFINS tax combo requires 'br-nfe-cofins-cst' extension |
 </Accordion>
 <Accordion title="pay.Instructions">
 
