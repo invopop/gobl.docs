@@ -3,8 +3,8 @@ module github.com/invopop/gobl.docs
 go 1.25.0
 
 require (
-	github.com/invopop/gobl v0.501.0
-	github.com/invopop/gobl.dev v0.500.1
+	github.com/invopop/gobl v0.502.2
+	github.com/invopop/gobl.dev v0.500.7
 	github.com/wk8/go-ordered-map/v2 v2.1.8
 )
 
@@ -17,8 +17,12 @@ require (
 	github.com/expr-lang/expr v1.17.8 // indirect
 	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/invopop/gobl.fr.ctc v0.0.3-0.20260609134133-16fd5925da73 // indirect
-	github.com/invopop/gobl.sa.zatca v0.0.1 // indirect
+	github.com/invopop/gobl.br.nfe v0.0.1 // indirect
+	github.com/invopop/gobl.br.nfse v0.0.1 // indirect
+	github.com/invopop/gobl.fr.ctc v0.0.4 // indirect
+	github.com/invopop/gobl.mx.cfdi v0.61.0 // indirect
+	github.com/invopop/gobl.pt.saft v0.0.1 // indirect
+	github.com/invopop/gobl.sa.zatca v0.0.2 // indirect
 	github.com/invopop/jsonschema v0.14.0 // indirect
 	github.com/invopop/yaml v0.3.1 // indirect
 	github.com/magefile/mage v1.17.2 // indirect

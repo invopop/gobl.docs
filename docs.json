@@ -83,6 +83,7 @@
                   "regimes/dk",
                   "regimes/el",
                   "regimes/es",
+                  "regimes/fi",
                   "regimes/fr",
                   "regimes/gb",
                   "regimes/ie",
@@ -288,23 +289,6 @@
                   "draft-0/pay/online",
                   "draft-0/pay/record",
                   "draft-0/pay/terms"
-                ]
-              },
-              {
-                "group": "Addons",
-                "pages": [
-                  {
-                    "group": "MX",
-                    "pages": [
-                      "draft-0/regimes/mx/food_vouchers",
-                      "draft-0/regimes/mx/food_vouchers_employee",
-                      "draft-0/regimes/mx/food_vouchers_line",
-                      "draft-0/regimes/mx/fuel_account_balance",
-                      "draft-0/regimes/mx/fuel_account_item",
-                      "draft-0/regimes/mx/fuel_account_line",
-                      "draft-0/regimes/mx/fuel_account_tax"
-                    ]
-                  }
                 ]
               },
               {
