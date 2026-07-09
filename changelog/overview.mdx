@@ -1,0 +1,33 @@
+---
+title: "Changelog"
+description: "Latest updates and improvements to GOBL."
+---
+
+<Update label="June 12, 2026">
+
+## New addons
+
+GOBL now supports several new addons, sourced from a curated set of approved external modules:
+
+- **[France CTC Flow 2](/addons/fr-ctc-flow2-v1)** — domestic B2B clearance for the French CTC reform, applied to invoices exchanged between two French parties.
+- **[France CTC Flow 6](/addons/fr-ctc-flow6-v1)** — cross-border B2B reporting (e-reporting) for invoices with at least one non-French party.
+- **[France CTC Flow 10](/addons/fr-ctc-flow10-v1)** — B2C reporting flow for invoices to consumers.
+- **[Saudi Arabia ZATCA](/addons/sa-zatca-v1)** — e-invoicing requirements for the FATOORA platform, covering both standard tax invoices (B2B/B2G clearance) and simplified tax invoices (B2C reporting), built on UBL 2.1 with EN 16931.
+
+## New tax regimes
+
+- **[Norway](/regimes/no)** — VAT (MVA) administered by the Norwegian Tax Administration, with organisasjonsnummer-based business identification.
+- **[Kingdom of Saudi Arabia](/regimes/sa)** — VAT administered by ZATCA, with clearance and reporting flows for B2B and B2C invoices.
+
+## Updates
+
+- **Multi-repository addon model.** Approved addons can now live in their own Go modules outside of GOBL core. Each addon page lists the module that implements it, so you know exactly which dependency to import. See the [addons overview](/addons/overview) for details on how core and external addons are sourced.
+- **New document types.** Added schemas for `bill/action`, `bill/delivery`, `bill/fault` (replacing `bill/condition`), `bill/payment`, `bill/reason`, `bill/status`, and `bill/status_line` to support a wider range of business document workflows.
+- **Endpoints and URIs.** New `org/endpoint` schema for declaring party communication endpoints, and a new `cbc/uri` type for typed URI fields.
+- **Header and party improvements.** Updates to `head/header`, `org/party`, `org/unit`, and `tax/identity` to support the new addons and regimes.
+
+## Removed
+
+- The `pl-favat-v2` addon has been removed. Use [`pl-favat-v3`](/addons/pl-favat-v3) instead.
+
+</Update>
