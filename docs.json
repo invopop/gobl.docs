@@ -331,6 +331,18 @@
         "icon": "book-open"
       },
       {
+        "anchor": "Changelog",
+        "groups": [
+          {
+            "group": "Changelog",
+            "pages": [
+              "changelog/overview"
+            ]
+          }
+        ],
+        "icon": "clock-rotate-left"
+      },
+      {
         "anchor": "API Reference",
         "groups": [
           {

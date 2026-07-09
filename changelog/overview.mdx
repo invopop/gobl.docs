@@ -1,0 +1,19 @@
+---
+title: Changelog
+description: Updates and improvements to GOBL.
+---
+
+<Update label="2026-06-22" description="GOBL v0.501.0">
+
+## New
+
+- **Italy (SDI FatturaPA): Liquidation and Shareholder State extensions.** Two new code sets are available for the FatturaPA `IscrizioneREA` block: `it-sdi-liquidation-state` (`LS` in liquidation / `LN` not in liquidation) and `it-sdi-shareholder-state` (`SU` sole shareholder / `SM` multiple shareholders). See [Italy SDI FatturaPA](/addons/it-sdi-v1).
+- **Brazil (NF-e v4): foreign supplier and customer identity rules.** Additional validation covers supplier/customer country requirements and foreign-party identifiers when issuing NF-e documents. See [Brazil NF-e v4](/addons/br-nfe-v4).
+
+## Updates
+
+- **Norway: MVA-aware VAT identity validation.** Norwegian tax identities are now validated as MVA-suffixed mod-11 organisation numbers, with clearer messages distinguishing a valid MVA-suffixed number from an invalid Norwegian VAT number. See [Norway](/regimes/no).
+- **Brazil (NF-e v4): clearer invoice validation messages.** Invoice-level validation messages have been reworded with an `Invoice` prefix so it's easier to tell which document a message refers to. See [Brazil NF-e v4](/addons/br-nfe-v4).
+- **EU EN 16931: simplified VAT exemption rule.** The standalone `BR-E-10` tax-combo rule for VATEX exemption codes has been removed in favour of the broader exemption checks already covered by the standard. See [EU EN 16931](/addons/eu-en16931-v2017).
+
+</Update>
