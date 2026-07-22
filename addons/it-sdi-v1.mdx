@@ -533,6 +533,12 @@ field.
 | `code` | <ul class="gobl-test"><li>Italian address</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-07`<br />Italian address code is required |
 | `code` | <ul class="gobl-test"><li>Italian address</li><li>Matches ^\d{5}$</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-08`<br />Italian address code must be 5 digits |
 </Accordion>
+<Accordion title="org.Attribute">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `type` | <ul class="gobl-test"><li>Length between 0 and 10</li></ul> | `GOBL-IT-SDI-ORG-ATTRIBUTE-01`<br />Attribute type cannot be longer than 10 characters (TipoDato) |
+</Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |

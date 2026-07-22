@@ -108,17 +108,17 @@ The numeric suffix indicates the payment type (1=deposit,
 
 | Code | Name |
 | ---- | ---- |
-| `B1` | Goods - Deposit invoice |
+| `B1` | Goods - Standard invoice |
 | `B2` | Goods - Already paid invoice |
 | `B4` | Goods - Final invoice (after down payment) |
 | `B7` | Goods - E-reporting (VAT already collected) |
-| `S1` | Services - Deposit invoice |
+| `S1` | Services - Standard invoice |
 | `S2` | Services - Already paid invoice |
 | `S4` | Services - Final invoice (after down payment) |
 | `S5` | Services - Subcontractor invoice |
 | `S6` | Services - Co-contractor invoice |
 | `S7` | Services - E-reporting (VAT already collected) |
-| `M1` | Mixed - Deposit invoice |
+| `M1` | Mixed - Standard invoice |
 | `M2` | Mixed - Already paid invoice |
 | `M4` | Mixed - Final invoice (after down payment) |
 </Accordion>
@@ -133,21 +133,21 @@ The numeric suffix indicates the payment type (1=deposit,
 | <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-01`<br />Invoice must be in EUR or provide an exchange rate to EUR |
 | `supplier.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-02`<br />Invoice supplier address country is required |
 | `customer.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-03`<br />Invoice customer address country is required |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li>Allowed Flow 10 VAT percents</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-07`<br />Invoice VAT line percent must be one of the Flow 10 permitted values 0%, 0.9%, 1.05%, 1.75%, 2.1%, 5.5%, 7%, 8.5%, 9.2%, 9.6%, 10%, 13%, 19.6%, 20%, 20.6% (G1.24) |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li>Ext require [fr-ctc-flow10-b2c-category]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-04`<br />Invoice tax ext fr-ctc-flow10-b2c-category is required on B2C invoices (G1.68) |
-| `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-05`<br />Invoice supplier is required on B2C invoices |
-| `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no customer)</li><li>Party has SIREN</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-06`<br />Invoice supplier must have a SIREN identity (ISO/IEC 6523 scheme 0002) on a B2C invoice |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Ext 'untdid-document-type' in [380, 386, 384, 381, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-08`<br />Invoice tax ext untdid-document-type must be one of the Flow 10 permitted UNTDID 1001 codes |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Ext require [fr-ctc-billing-mode]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required (G1.02) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li>Allowed Flow 10 VAT percents</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-07`<br />Invoice VAT line percent must be one of the Flow 10 permitted values 0%, 0.9%, 1.05%, 1.75%, 2.1%, 5.5%, 7%, 8.5%, 9.2%, 9.6%, 10%, 13%, 19.6%, 20%, 20.6% (G1.24) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li>Ext require [fr-ctc-flow10-b2c-category]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-04`<br />Invoice tax ext fr-ctc-flow10-b2c-category is required on B2C invoices (G1.68) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-05`<br />Invoice supplier is required on B2C invoices |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li>Party has SIREN</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-06`<br />Invoice supplier must have a SIREN identity (ISO/IEC 6523 scheme 0002) on a B2C invoice |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext 'untdid-document-type' in [380, 386, 384, 381, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-08`<br />Invoice tax ext untdid-document-type must be one of the Flow 10 permitted UNTDID 1001 codes |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext require [fr-ctc-billing-mode]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required (G1.02) |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice tax ext fr-ctc-billing-mode in [B4, S4, M4]</li><li>Ext 'untdid-document-type' not in [386, 500, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-10`<br />Invoice tax ext untdid-document-type must not be an advance-payment code (386, 500, 503) when billing mode is final-after-advance (B4, S4, M4) (G1.60) |
-| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-11`<br />Invoice supplier is required for Flow 10 B2B invoices (G2.19) |
-| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-12`<br />Invoice supplier must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
-| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-13`<br />Invoice supplier tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-11`<br />Invoice supplier is required for Flow 10 B2B invoices (G2.19) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-12`<br />Invoice supplier must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
+| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-13`<br />Invoice supplier tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Invoice has exempt (E) VAT category</li><li>Supplier or tax rep has VAT ID</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-14`<br />Invoice supplier tax_id or ordering.seller tax_id is required when the VAT breakdown contains an exempt (E) category |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Invoice has exempt (E) VAT category</li><li>Has exempt tax note</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-15`<br />Invoice tax.notes must include an exempt-reason entry (key=exempt with non-empty text) when the VAT breakdown contains an exempt (E) category |
-| `customer` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-16`<br />Invoice customer is required for Flow 10 B2B invoices (G2.19) |
-| `customer` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-17`<br />Invoice customer must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
-| `customer` | <ul class="gobl-test"><li>Invoice is B2B (has customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-18`<br />Invoice customer tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
+| `customer` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-16`<br />Invoice customer is required for Flow 10 B2B invoices (G2.19) |
+| `customer` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-17`<br />Invoice customer must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
+| `customer` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-18`<br />Invoice customer tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
 </Accordion>
 <Accordion title="bill.Payment">
 
@@ -167,6 +167,16 @@ The numeric suffix indicates the payment type (1=deposit,
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `identities` | <ul class="gobl-test"><li>Unique iso-scheme-id</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-PARTY-01`<br />Party identities must not duplicate iso-scheme-id values (BR-FR-CO-10) |
+| `identities` | <ul class="gobl-test"><li>Single legal-scope identity</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-PARTY-03`<br />Only one identity may have the legal scope |
 | `identities[*].ext` | <ul class="gobl-test"><li>Ext require [iso-scheme-id]</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-PARTY-02`<br />Party identity ext iso-scheme-id is required (BR-FR-CO-10) |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Scheme 0227</li><li>Length between 0 and 18</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-01`<br />HORS_UE (0227) identity must be no more than 18 characters (G1.73) |
+| `code` | <ul class="gobl-test"><li>Scheme 0227</li><li>Matches ^[A-Z0-9]+$</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-02`<br />HORS_UE (0227) identity must be uppercase alphanumeric (G1.73) |
+| `code` | <ul class="gobl-test"><li>Scheme 0228</li><li>Length between 9 and 10</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-03`<br />RIDET (0228) identity must be 9 or 10 characters (G1.73) |
+| `code` | <ul class="gobl-test"><li>Scheme 0229</li><li>Length between 9 and 9</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-04`<br />TAHITI (0229) identity must be 9 characters (G1.73) |
 </Accordion>
 </AccordionGroup>

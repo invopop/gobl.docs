@@ -49,6 +49,16 @@ when submitting the correction options.
 - **Extensions:** `pt-saft-invoice-type:FS`
 </Accordion>
 
+<Accordion title="standard, #cash-vat">
+
+**Filters:**
+- **Types:** `standard`
+- **Tags:** `cash-vat`
+
+**Output:**
+- **Extensions:** `pt-saft-cash-vat:1`
+</Accordion>
+
 <Accordion title="standard">
 
 **Filters:**
@@ -143,7 +153,7 @@ below shows how this mapping is done:
 | Code | Name                                       | GOBL Type | GOBL Tax Tag |
 | ---- | ------------------------------------------ | --------- | ------------ |
 | RG   | Outro Recibo                               | `receipt` |              |
-| RC   | Recibo no âmbito do regime de IVA de Caixa | `receipt` | `vat-cash`   |
+| RC   | Recibo no âmbito do regime de IVA de Caixa | `receipt` | `cash-vat`   |
 
 For example:
 
@@ -611,6 +621,47 @@ For example, to set a movement type with no GOBL equivalent (e.g. GA):
 | `GC` | Consignment note |
 | `GD` | Returns slip or note |
 </Accordion>
+### Cash VAT Scheme Indicator
+
+SAF-T's `CashVATSchemeIndicator` (Indicador da adesão ao regime de IVA de Caixa) indicates
+whether the document was issued by a taxpayer that has adhered to the Cash VAT scheme (regime
+de IVA de Caixa).
+
+In GOBL, this is set with the `pt-saft-cash-vat` extension in the invoice tax section. GOBL
+sets it automatically to "1" when the invoice carries the `cash-vat` tag.
+
+| Code | Description                                  |
+| ---- | -------------------------------------------- |
+| `0`  | Not adhered to the Cash VAT scheme (default) |
+| `1`  | Adhered to the Cash VAT scheme               |
+
+Example:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	"$tags": [
+		"cash-vat"
+	],
+	// ...
+	"type": "standard",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-cash-vat": "1"
+		}
+	},
+	// ...
+}
+```
+
+<Accordion title="pt-saft-cash-vat">
+
+| Code | Name |
+| ---- | ---- |
+| `0` | No |
+| `1` | Yes |
+</Accordion>
 
 ## Validation Rules
 
@@ -644,6 +695,7 @@ For example, to set a movement type with no GOBL equivalent (e.g. GA):
 | <small>Payment</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-02`<br />Code format must be valid |
 | <small>Payment</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-06`<br />Source ref format is invalid |
 | <small>Payment</small> | <ul class="gobl-test"><li>Customer name present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-09`<br />Customer name is required when customer has tax ID code |
+| <small>Payment</small> | <ul class="gobl-test"><li>Method dates</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-11`<br />Payment method dates must match the issue date |
 | `ext` | <ul class="gobl-test"><li>Ext require [pt-saft-payment-type]</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-03`<br />'pt-saft-payment-type' extension is required |
 | `ext` | <ul class="gobl-test"><li>Ext require [pt-saft-source]</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-04`<br />'pt-saft-source' extension is required |
 | `ext` | <ul class="gobl-test"><li>Source not produced</li><li>Ext require [pt-saft-source-ref]</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-05`<br />'pt-saft-source-ref' extension is required when source is not produced |
@@ -683,12 +735,12 @@ For example, to set a movement type with no GOBL equivalent (e.g. GA):
 | `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-TAX-COMBO-01`<br />Region and tax rate are required |
 | `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-TAX-COMBO-02`<br />Exemption is required when tax rate is exempt |
 </Accordion>
-<Accordion title="tax.RateTotal">
+<Accordion title="tax.CategoryTotal">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-TAX-RATETOTAL-01`<br />Region and tax rate are required |
-| `ext` | <ul class="gobl-test"><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-TAX-RATETOTAL-02`<br />Exemption is required when tax rate is exempt |
+| `rates[*].ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-TAX-CATEGORYTOTAL-01`<br />Region and tax rate are required |
+| `rates[*].ext` | <ul class="gobl-test"><li>Is VAT</li><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-TAX-CATEGORYTOTAL-02`<br />Exemption is required when tax rate is exempt |
 </Accordion>
 <Accordion title="org.Item">
 
@@ -702,6 +754,12 @@ For example, to set a movement type with no GOBL equivalent (e.g. GA):
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `text` | <ul class="gobl-test"><li>Legal exemption note</li><li>Length between 6 and 60</li></ul> | `GOBL-PT-SAFT-ORG-NOTE-01`<br />The length must be between 6 and 60 |
+</Accordion>
+<Accordion title="tax.Note">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `text` | <ul class="gobl-test"><li>Withholding note</li><li>Length between 0 and 60</li></ul> | `GOBL-PT-SAFT-TAX-NOTE-02`<br />The length must be at most 60 |
 </Accordion>
 <Accordion title="bill.Line">
 

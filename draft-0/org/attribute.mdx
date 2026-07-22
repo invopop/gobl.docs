@@ -1,0 +1,57 @@
+---
+title: Attribute
+comment: 
+---
+
+Attribute describes a named feature or property of the parent object, such as the color or size of an item.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/attribute`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Label | `label` | string | Label for the attribute, used for presentation in converted outputs such as PDFs. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key that identifies the attribute, either from the list pre-defined by GOBL or an alternative agreed upon between the supplier and customer. |
+| Type | `type` | [cbc.Code](/draft-0/cbc/code) | Type defines a code used to identify the attribute when the "key" field is empty, from a code list agreed upon between the supplier and customer. |
+| Text | `text` | string | Text value of the attribute. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code value of the attribute, used as an alternative to text when the value comes from a code list agreed upon between the supplier and customer. |
+| Amount | `amount` | [num.Amount](/draft-0/num/amount) | Amount used when the attribute represents a numeric or measurable value. |
+| Unit | `unit` | [org.Unit](/draft-0/org/unit) | Unit of measure that accompanies the amount. |
+| Date | `date` | [cal.Date](/draft-0/cal/date) | Date value of the attribute. |
+
+## Key Values
+
+| Value | Description |
+|-------|-------------|
+| `color` | Color of the item, either as a name or a code such as RAL or Pantone. |
+| `size` | Size of the item, such as a clothing size. |
+| `material` | Main material the item is made of, such as cotton or steel. |
+| `length` | Length of the item itself, excluding packaging, usually as an amount with a unit of measure. |
+| `width` | Width of the item itself, excluding packaging, usually as an amount with a unit of measure. |
+| `height` | Height of the item itself, excluding packaging, usually as an amount with a unit of measure. |
+| `diameter` | Diameter of the item itself, excluding packaging, usually as an amount with a unit of measure. |
+| `weight` | Weight of a single unit of the item itself, excluding packaging, usually as an amount with a unit of measure. |
+| `volume` | Volume of a single unit of the item itself, excluding packaging, usually as an amount with a unit of measure. |
+| `production` | Date the item was produced or manufactured. |
+| `expiry` | Date the item expires or is best consumed before. |
+| `nutrition+energy` | Energy content per 100g or 100ml, usually in kilojoules (kj) or kilocalories (kcal). |
+| `nutrition+fat` | Total fat content per 100g or 100ml, usually in grams. |
+| `nutrition+saturated-fat` | Saturated fat content per 100g or 100ml, usually in grams. |
+| `nutrition+carbohydrates` | Carbohydrate content per 100g or 100ml, usually in grams. |
+| `nutrition+sugars` | Sugar content per 100g or 100ml, usually in grams. |
+| `nutrition+protein` | Protein content per 100g or 100ml, usually in grams. |
+| `nutrition+salt` | Salt content per 100g or 100ml, usually in grams. |
+| `nutrition+fibre` | Fibre content per 100g or 100ml, usually in grams. |
+| `emissions+co2e` | Greenhouse gas emissions of a single unit of the item expressed as a carbon dioxide equivalent, usually in kilograms. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Attribute</small> | <ul class="gobl-test"><li>(string(Key) == "") != (string(Type) == "")</li></ul> | `GOBL-ORG-ATTRIBUTE-01`<br />Attribute must have either a key or a type, but not both |
+| <small>Attribute</small> | <ul class="gobl-test"><li>(Text == "" ? 0 : 1) + (string(Code) == "" ? 0 : 1) + (Amount == nil ? 0 : 1) + (Date == nil ? 0 : 1) == 1</li></ul> | `GOBL-ORG-ATTRIBUTE-02`<br />Attribute must have exactly one of the text, code, amount, or date values |
+| <small>Attribute</small> | <ul class="gobl-test"><li>String(Unit) != ""</li><li>Amount != nil</li></ul> | `GOBL-ORG-ATTRIBUTE-03`<br />Attribute unit may only be used alongside an amount |
