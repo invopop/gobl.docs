@@ -227,6 +227,8 @@ exemption note covering it.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `inboxes` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-01`<br />Cannot have more than one inbox (BT-34, BT-49) |
+| `identities` | <ul class="gobl-test"><li>Single legal-scope identity</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-02`<br />Only one identity may have the legal scope (BT-30, BT-47) |
+| `identities` | <ul class="gobl-test"><li>Single tax-scope identity</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-03`<br />Only one identity may have the tax scope (BT-31, BT-48) |
 </Accordion>
 <Accordion title="org.Inbox">
 

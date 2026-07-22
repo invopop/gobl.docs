@@ -25,7 +25,7 @@ Tax defines a summary of the taxes which may be applied to an invoice.
 | Value | Description |
 |-------|-------------|
 | `precise` | The default method of calculating the totals in GOBL, and provides the best results for most cases as the precision is maintained to the maximum amount possible. The tradeoff however is that sometimes the totals may not sum exactly based on what is visible. |
-| `currency` | The alternative method of calculating the totals that will first round all the amounts to the currency's precision before making the sums. Totals using this approach can always be recalculated using the amounts presented, but can lead to rounding errors in the case of pre-payments and when line item prices include tax. |
+| `currency` | The alternative method of calculating the totals that will first round all the amounts to the currency's precision before making the sums. Totals using this approach can always be recalculated using the amounts presented, but can lead to rounding errors in the case of pre-payments. When prices include tax, the tax amounts are calculated from each rate's sum of tax-inclusive line totals so that the bases and amounts always add up, though recalculating a tax amount from its base alone may occasionally differ by a single subunit of the currency. |
 
 ## Point Values
 

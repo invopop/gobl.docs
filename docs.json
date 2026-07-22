@@ -260,6 +260,7 @@
                 "pages": [
                   "draft-0/org/address",
                   "draft-0/org/attachment",
+                  "draft-0/org/attribute",
                   "draft-0/org/coordinates",
                   "draft-0/org/document_ref",
                   "draft-0/org/email",

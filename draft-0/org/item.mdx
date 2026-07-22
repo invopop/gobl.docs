@@ -18,6 +18,7 @@ Item is used to describe a single product or service.
 | Key | `key` | [cbc.Key](/draft-0/cbc/key) | Special key used to classify the item sometimes required by some regimes. |
 | Name | `name` | string | Brief name of the item |
 | Identities | `identities` | array of [org.Identity](/draft-0/org/identity) | List of additional codes, IDs, or SKUs which can be used to identify the item. They should be agreed upon between supplier and customer. |
+| Attributes | `attributes` | array of [org.Attribute](/draft-0/org/attribute) | Attributes describe named features or properties of the item, such as color or size. |
 | Description | `description` | string | Detailed description of the item. |
 | Images | `images` | array of [org.Image](/draft-0/org/image) | Images associated with the item. |
 | Currency | `currency` | [currency.Code](/draft-0/currency/code) | Currency used for the item's price. |
@@ -42,3 +43,4 @@ Item is used to describe a single product or service.
 | ----- | ---- | ------------------------- |
 | `name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-ITEM-01`<br />Item name is required |
 | `price` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-02`<br />Item price must be zero or positive |
+| `attributes` | <ul class="gobl-test"><li>Attribute keys must be unique</li></ul> | `GOBL-ORG-ITEM-03`<br />Item attributes must not contain duplicate keys |

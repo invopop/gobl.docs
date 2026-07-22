@@ -187,17 +187,17 @@ The numeric suffix indicates the payment type (1=deposit,
 
 | Code | Name |
 | ---- | ---- |
-| `B1` | Goods - Deposit invoice |
+| `B1` | Goods - Standard invoice |
 | `B2` | Goods - Already paid invoice |
 | `B4` | Goods - Final invoice (after down payment) |
 | `B7` | Goods - E-reporting (VAT already collected) |
-| `S1` | Services - Deposit invoice |
+| `S1` | Services - Standard invoice |
 | `S2` | Services - Already paid invoice |
 | `S4` | Services - Final invoice (after down payment) |
 | `S5` | Services - Subcontractor invoice |
 | `S6` | Services - Co-contractor invoice |
 | `S7` | Services - E-reporting (VAT already collected) |
-| `M1` | Mixed - Deposit invoice |
+| `M1` | Mixed - Standard invoice |
 | `M2` | Mixed - Already paid invoice |
 | `M4` | Mixed - Final invoice (after down payment) |
 </Accordion>
@@ -220,10 +220,10 @@ The numeric suffix indicates the payment type (1=deposit,
 | `tax.ext` | <ul class="gobl-test"><li>Ext require [fr-ctc-billing-mode]</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice tax ext fr-ctc-billing-mode in [B4, S4, M4]</li><li>Ext 'untdid-document-type' not in [386, 500, 503]</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-10`<br />Invoice tax ext untdid-document-type must not be an advance-payment code (386, 500, 503) when billing mode is factoring (B4, S4, M4) (BR-FR-CO-08) |
 | `supplier.inboxes` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-11`<br />Invoice supplier inboxes are required for French B2B invoices (BR-FR-13) |
-| `supplier.identities` | <ul class="gobl-test"><li>Has SIREN (legal scope)</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-12`<br />Invoice supplier identities must include a SIREN identity with iso-scheme-id 0002 and scope legal (BR-FR-10/11) |
+| `supplier.identities` | <ul class="gobl-test"><li>Legal identity is SIREN</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-12`<br />Invoice supplier legal identity must be a SIREN with iso-scheme-id 0002 (BR-FR-10/11) |
 | `supplier` | <ul class="gobl-test"><li>Invoice tax ext untdid-document-type not in [389, 501, 500, 471, 473, 261, 502]</li><li>Has SIREN inbox</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-13`<br />Invoice supplier must have an inbox with scheme 0225 matching the SIREN code (BR-FR-21/22) |
 | `customer.inboxes` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-14`<br />Invoice customer inboxes are required for French B2B invoices (BR-FR-13) |
-| `customer.identities` | <ul class="gobl-test"><li>Has SIREN (legal scope)</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-15`<br />Invoice customer identities must include a SIREN identity with iso-scheme-id 0002 and scope legal (BR-FR-10/11) |
+| `customer.identities` | <ul class="gobl-test"><li>Legal identity is SIREN</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-15`<br />Invoice customer legal identity must be a SIREN with iso-scheme-id 0002 (BR-FR-10/11) |
 | `customer` | <ul class="gobl-test"><li>Invoice tax ext untdid-document-type in [389, 501, 500, 471, 473, 261, 502]</li><li>Has SIREN inbox</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-16`<br />Invoice customer must have an inbox with scheme 0225 matching the SIREN code (BR-FR-21/22) |
 | `ordering.identities` | <ul class="gobl-test"><li>Identities have at most one ext untdid-reference=AFL</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-17`<br />Invoice ordering identities must not contain more than one entry with UNTDID reference 'AFL' (BR-FR-30) |
 | `ordering.identities` | <ul class="gobl-test"><li>Identities have at most one ext untdid-reference=AWW</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-18`<br />Invoice ordering identities must not contain more than one entry with UNTDID reference 'AWW' (BR-FR-30) |
