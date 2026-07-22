@@ -1,0 +1,22 @@
+---
+title: Changelog
+description: Recent updates to GOBL and its addons.
+---
+
+<Update label="July 22, 2026" description="GOBL v0.503.0">
+
+## New features
+
+- **Item attributes (EN 16931 BG-32).** Items can now carry named attributes such as colour, size, material, dimensions, nutrition, and CO₂e emissions using the new [`org.Attribute`](/draft-0/org/attribute) schema. Attributes flow through to EN 16931 outputs and to derived formats like [Italy SDI FatturaPA](/addons/it-sdi-v1).
+- **New unit codes.** Extended [`org.Unit`](/draft-0/org/unit) with additional length, area, energy, and time units to better describe physical goods and services.
+
+## Updates
+
+- **Portugal SAF-T.** Refreshed [pt-saft-v1](/addons/pt-saft-v1) with scenario, extension, and validation updates aligned to the latest AT requirements.
+- **Saudi Arabia ZATCA.** Expanded [sa-zatca-v1](/addons/sa-zatca-v1) with additional KSA-specific fields and validations layered on top of EN 16931 (invoice type transactions, address requirements, supply date handling).
+- **France CTC.** Updated the Flow 2, Flow 6, and Flow 10 addons ([fr-ctc-flow2-v1](/addons/fr-ctc-flow2-v1), [fr-ctc-flow6-v1](/addons/fr-ctc-flow6-v1), [fr-ctc-flow10-v1](/addons/fr-ctc-flow10-v1)) to keep pace with the latest DGFiP e-invoicing and e-reporting specifications.
+- **EN 16931 party identity validation.** [eu-en16931-v2017](/addons/eu-en16931-v2017) now validates the cardinality of party identity scopes to catch invalid combinations earlier.
+- **Italy SDI item attribute lengths.** [it-sdi-v1](/addons/it-sdi-v1) now validates the length of item attribute types against the FatturaPA `TipoDato` field.
+- **Tax rounding.** Included taxes are now extracted from rate group sums using currency rounding, improving accuracy on totals in [bill.Tax](/draft-0/bill/tax).
+
+</Update>
