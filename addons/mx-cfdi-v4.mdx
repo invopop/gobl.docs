@@ -57,6 +57,7 @@ Module: [github.com/invopop/gobl.mx.cfdi](https://github.com/invopop/gobl.mx.cfd
 | ---- | ---- |
 | `I` | Invoice |
 | `E` | Credit Note |
+| `P` | Payment |
 </Accordion>
 ### Relation Type
 
@@ -286,6 +287,41 @@ Pattern: `\d{4}`
 | `lines[*].total` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-24`<br />Line total must not be negative |
 | `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-25`<br />Document level discounts are not supported, use line discounts instead |
 | `charges` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-26`<br />Document level charges are not supported |
+</Accordion>
+<Accordion title="bill.Payment">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Payment</small> | <ul class="gobl-test"><li>Payment type in [receipt]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-01`<br />Only payment receipts are supported |
+| <small>Payment</small> | <ul class="gobl-test"><li>Can convert to MXN</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-02`<br />Payment must be in MXN or provide exchange rate for conversion |
+| <small>Payment</small> | <ul class="gobl-test"><li>Line document currencies match</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-28`<br />Line document currency must match the payment currency |
+| `ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-doc-type, mx-cfdi-issue-place]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-03`<br />Payment requires 'mx-cfdi-doc-type' and 'mx-cfdi-issue-place' extensions |
+| `ext` | <ul class="gobl-test"><li>Ext 'mx-cfdi-doc-type' in [P]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-04`<br />Payment document type must be 'P' |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-05`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-06`<br />Supplier tax ID code is required |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-fiscal-regime]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-07`<br />Supplier requires 'mx-cfdi-fiscal-regime' extension |
+| `customer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-08`<br />Customer is required |
+| `customer.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-09`<br />Customer tax ID is required |
+| `customer.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-10`<br />Customer tax ID code is required |
+| `customer.ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-use]</li><li>Ext 'mx-cfdi-use' in [CP01]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-11`<br />Customer's 'mx-cfdi-use' must be 'CP01' for payments |
+| `customer.ext` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Ext require [mx-cfdi-fiscal-regime]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-12`<br />Mexican customer requires 'mx-cfdi-fiscal-regime' extension |
+| `customer.addresses` | <ul class="gobl-test"><li>Customer is Mexican</li><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-13`<br />Mexican customer must have at least one address |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-14`<br />Customer address postal code is required |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Matches ^[0-9]{5}$</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-15`<br />Customer address postal code format is invalid |
+| `payee` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-16`<br />Payee cannot be represented in a CFDI payment |
+| `methods` | <ul class="gobl-test"><li>Length between 1 and 1</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-17`<br />Exactly one payment method is required |
+| `methods[*].ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-payment-means]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-18`<br />Payment method requires 'mx-cfdi-payment-means' extension |
+| `methods[*].ext` | <ul class="gobl-test"><li>Ext 'mx-cfdi-payment-means' not in [99]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-19`<br />Payment means '99' (to define) is not allowed |
+| `lines[*].refund` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-20`<br />Refund lines are not supported |
+| `lines[*].installment` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-21`<br />Installment number is required |
+| `lines[*].payable` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-22`<br />Payable amount is required |
+| `lines[*].due` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-23`<br />Due amount is required |
+| `lines[*].document` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-24`<br />Line document is required |
+| `lines[*].document.stamps` | <ul class="gobl-test"><li>Stamps have sat-uuid</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-25`<br />Line document requires the 'sat-uuid' stamp |
+| `lines[*].tax` | <ul class="gobl-test"><li>No rate surcharges</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-26`<br />Tax rate surcharges are not supported |
+| `lines[*].tax` | <ul class="gobl-test"><li>Retained rates with percent</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-27`<br />Retained tax rates must have a percent |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-rel-type]</li><li>Ext 'mx-cfdi-rel-type' in [04]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-29`<br />Preceding row's 'mx-cfdi-rel-type' must be '04' |
+| `preceding[*].stamps` | <ul class="gobl-test"><li>Stamps have sat-uuid</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-30`<br />Preceding row is missing 'sat-uuid' stamp |
 </Accordion>
 <Accordion title="pay.Instructions">
 
