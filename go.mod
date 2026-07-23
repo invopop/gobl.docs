@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/invopop/gobl v0.503.0
-	github.com/invopop/gobl.dev v0.500.11
+	github.com/invopop/gobl.dev v0.500.12
 	github.com/wk8/go-ordered-map/v2 v2.1.8
 )
 
@@ -20,7 +20,7 @@ require (
 	github.com/invopop/gobl.br.nfe v0.0.1 // indirect
 	github.com/invopop/gobl.br.nfse v0.0.1 // indirect
 	github.com/invopop/gobl.fr.ctc v0.0.7 // indirect
-	github.com/invopop/gobl.mx.cfdi v0.62.0 // indirect
+	github.com/invopop/gobl.mx.cfdi v0.63.0 // indirect
 	github.com/invopop/gobl.pt.saft v0.0.5 // indirect
 	github.com/invopop/gobl.sa.zatca v0.0.3 // indirect
 	github.com/invopop/jsonschema v0.14.0 // indirect
