@@ -419,15 +419,23 @@ according to the RTM (applies to IBS/CBS only).
 | `series` | <ul class="gobl-test"><li>Matches ^(?:0\|[1-9]{1}[0-9]{0,2})$</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-24`<br />Invoice series format is invalid; must be 0 or 1-999 |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-25`<br />Invoice tax is required |
 | `tax.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-model, br-nfe-presence, br-nfe-purpose, br-nfe-operation-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-26`<br />Invoice tax requires 'br-nfe-model', 'br-nfe-presence', 'br-nfe-purpose' and 'br-nfe-operation-type' extensions |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfe-model' in [55, 65]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-44`<br />'br-nfe-model' extension, when set, must be a valid code |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfe-presence' in [0, 1, 2, 3, 4, 5, 9]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-45`<br />'br-nfe-presence' extension, when set, must be a valid code |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfe-purpose' in [1, 2, 3, 4, 5, 6]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-46`<br />'br-nfe-purpose' extension, when set, must be a valid code |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfe-operation-type' in [0, 1]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-47`<br />'br-nfe-operation-type' extension, when set, must be a valid code |
 | `tax.ext` | <ul class="gobl-test"><li>NFe model</li><li>Ext 'br-nfe-presence' not in [4]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-27`<br />NF-e invoices do not support '4' for 'br-nfe-presence' |
 | `tax.ext` | <ul class="gobl-test"><li>NFCe model</li><li>Ext 'br-nfe-presence' in [1, 4]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-28`<br />NFC-e invoices require in-person or delivery for 'br-nfe-presence' |
 | `tax.ext` | <ul class="gobl-test"><li>Credit note purpose</li><li>Ext require [br-nfe-credit-note-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-40`<br />Credit note invoices require 'br-nfe-credit-note-type' extension |
+| `tax.ext` | <ul class="gobl-test"><li>Credit note purpose</li><li>Ext 'br-nfe-credit-note-type' in [01, 02, 03, 04, 05]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-48`<br />'br-nfe-credit-note-type' extension, when set, must be a valid code |
 | `tax.ext` | <ul class="gobl-test"><li>Debit note purpose</li><li>Ext require [br-nfe-debit-note-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-41`<br />Debit note invoices require 'br-nfe-debit-note-type' extension |
+| `tax.ext` | <ul class="gobl-test"><li>Debit note purpose</li><li>Ext 'br-nfe-debit-note-type' in [01, 02, 03, 04, 05, 06, 07, 08]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-49`<br />'br-nfe-debit-note-type' extension, when set, must be a valid code |
 | `notes[*].text` | <ul class="gobl-test"><li>Reason note</li><li>Length between 1 and 60</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-29`<br />Invoice reason note text must be between 1 and 60 characters |
 | `payment` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-31`<br />Invoice payment is required when invoice is unpaid |
 | `payment.instructions` | <ul class="gobl-test"><li>Invoice not paid</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-32`<br />Invoice payment instructions are required when invoice is unpaid |
 | `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Zero or positive</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-33`<br />Invoice due amount must not be negative |
-| `lines[*].ext` | <ul class="gobl-test"><li>Invoice is NFe</li><li>Ext require [br-nfe-cfop]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-35`<br />NF-e invoice lines require 'br-nfe-cfop' extension |
+| `lines[*].ext` | <ul class="gobl-test"><li>Ext require [br-nfe-cfop]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-35`<br />Invoice lines require 'br-nfe-cfop' extension |
+| `lines[*].taxes[*].ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext exclude [br-nfe-icms-csosn]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-42`<br />Only Simples Nacional issuers can use 'br-nfe-icms-csosn'; others must use 'br-nfe-icms-cst' |
+| `lines[*].taxes[*].ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext exclude [br-nfe-icms-cst], or ext 'br-nfe-icms-cst' in [02, 15, 53, 61]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-43`<br />Simples Nacional issuers (regime 1 or 4) must use 'br-nfe-icms-csosn'; 'br-nfe-icms-cst' is only allowed for fuel codes 02, 15, 53 and 61 |
 </Accordion>
 <Accordion title="bill.Line">
 
@@ -443,19 +451,46 @@ according to the RTM (applies to IBS/CBS only).
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext require [br-nfe-icms-cst], or ext require [br-nfe-icms-csosn]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-01`<br />ICMS tax combo requires 'br-nfe-icms-cst' or 'br-nfe-icms-csosn' extension |
 | `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext require [br-nfe-icms-origin]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-02`<br />ICMS tax combo requires 'br-nfe-icms-origin' extension |
+| `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext allow one of [br-nfe-icms-cst, br-nfe-icms-csosn]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-05`<br />ICMS tax combo cannot include both 'br-nfe-icms-cst' and 'br-nfe-icms-csosn' extensions |
+| `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext 'br-nfe-icms-cst' in [00, 02, 10, 15, 20, 30, 40, 41, 50, 51, 53, 60, 61, 70, 90]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-10`<br />'br-nfe-icms-cst' extension, when set, must be a valid code |
+| `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext 'br-nfe-icms-csosn' in [101, 102, 103, 201, 202, 203, 300, 400, 500, 900]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-11`<br />'br-nfe-icms-csosn' extension, when set, must be a valid code |
+| `ext` | <ul class="gobl-test"><li>ICMS category</li><li>Ext 'br-nfe-icms-origin' in [0, 1, 2, 3, 4, 5, 6, 7, 8]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-12`<br />'br-nfe-icms-origin' extension, when set, must be a valid code |
+| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>No-value CSOSN code</li><li>Equals 0%</li></ul> | `GOBL-BR-NFE-TAX-COMBO-06`<br />ICMS percent must be zero for CSOSN codes 102, 103, 202, 203, 300, 400 and 500: they carry no ICMS value |
+| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>No-value CST code</li><li>Equals 0%</li></ul> | `GOBL-BR-NFE-TAX-COMBO-07`<br />ICMS percent must be zero for CST codes 40, 41, 50 and 60: they carry no ICMS value |
 | `ext` | <ul class="gobl-test"><li>PIS category</li><li>Ext require [br-nfe-pis-cst]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-03`<br />PIS tax combo requires 'br-nfe-pis-cst' extension |
+| `ext` | <ul class="gobl-test"><li>PIS category</li><li>Ext 'br-nfe-pis-cst' in [01, 02, 03, 04, 05, 06, 07, 08, 09, 49, 50, 51, 52, 53, 54, 55, 56, 60, 61, 62, 63, 64, 65, 66, 67, 70, 71, 72, 73, 74, 75, 98, 99]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-13`<br />'br-nfe-pis-cst' extension, when set, must be a valid code |
+| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Non-taxed CST code</li><li>Equals 0%</li></ul> | `GOBL-BR-NFE-TAX-COMBO-08`<br />PIS percent must be zero for CST codes 04 to 09: they carry no PIS value |
 | `ext` | <ul class="gobl-test"><li>COFINS category</li><li>Ext require [br-nfe-cofins-cst]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-04`<br />COFINS tax combo requires 'br-nfe-cofins-cst' extension |
+| `ext` | <ul class="gobl-test"><li>COFINS category</li><li>Ext 'br-nfe-cofins-cst' in [01, 02, 03, 04, 05, 06, 07, 08, 09, 49, 50, 51, 52, 53, 54, 55, 56, 60, 61, 62, 63, 64, 65, 66, 67, 70, 71, 72, 73, 74, 75, 98, 99]</li></ul> | `GOBL-BR-NFE-TAX-COMBO-14`<br />'br-nfe-cofins-cst' extension, when set, must be a valid code |
+| `percent`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Non-taxed CST code</li><li>Equals 0%</li></ul> | `GOBL-BR-NFE-TAX-COMBO-09`<br />COFINS percent must be zero for CST codes 04 to 09: they carry no COFINS value |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>CEST identity</li><li>Matches ^\d{7}$</li></ul> | `GOBL-BR-NFE-ORG-IDENTITY-01`<br />CEST identity code must be a 7-digit number |
+| `code` | <ul class="gobl-test"><li>NCM identity</li><li>Matches ^(\d{2}\|\d{8})$</li></ul> | `GOBL-BR-NFE-ORG-IDENTITY-02`<br />NCM identity code must be an 8-digit number (or 2 digits in exceptional cases), without separators |
+</Accordion>
+<Accordion title="org.Party">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-regime' in [1, 2, 3, 4]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-01`<br />'br-nfe-regime' extension, when set, must be a valid code |
+| `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-fiscal-incentive' in [1, 2]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-02`<br />'br-nfe-fiscal-incentive' extension, when set, must be a valid code |
+| `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-special-regime' in [1, 2, 3, 4, 5, 6]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-03`<br />'br-nfe-special-regime' extension, when set, must be a valid code |
 </Accordion>
 <Accordion title="pay.Instructions">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>Ext require [br-nfe-payment-means]</li></ul> | `GOBL-BR-NFE-PAY-INSTRUCTIONS-01`<br />Payment instructions require 'br-nfe-payment-means' extension |
+| `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-payment-means' in [01, 02, 03, 04, 05, 10, 11, 12, 13, 15, 16, 17, 18, 19, 90, 99]</li></ul> | `GOBL-BR-NFE-PAY-INSTRUCTIONS-02`<br />'br-nfe-payment-means' extension, when set, must be a valid code |
 </Accordion>
 <Accordion title="pay.Record">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>Ext require [br-nfe-payment-means]</li></ul> | `GOBL-BR-NFE-PAY-RECORD-01`<br />Payment advance requires 'br-nfe-payment-means' extension |
+| `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-payment-means' in [01, 02, 03, 04, 05, 10, 11, 12, 13, 15, 16, 17, 18, 19, 90, 99]</li></ul> | `GOBL-BR-NFE-PAY-RECORD-02`<br />'br-nfe-payment-means' extension, when set, must be a valid code |
 </Accordion>
 </AccordionGroup>

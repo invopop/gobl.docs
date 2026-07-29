@@ -712,10 +712,14 @@ Example:
 | <small>Delivery</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-03`<br />Delivery code format must be valid |
 | `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-04`<br />Delivery supplier tax ID is required |
 | `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-05`<br />Delivery supplier tax ID code is required |
+| `supplier.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-10`<br />Delivery supplier post code must be in the 'NNNN-NNN' format |
 | `despatch_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-06`<br />Delivery despatch date is required |
 | `preceding` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-07`<br />Delivery preceding must have at most one entry |
 | `preceding[*].series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-08`<br />Delivery preceding series is required |
 | `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-09`<br />Delivery preceding code is required |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-11`<br />Delivery customer post code must be in the 'NNNN-NNN' format |
+| `despatcher.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-12`<br />Delivery despatcher post code must be in the 'NNNN-NNN' format |
+| `receiver.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-13`<br />Delivery receiver post code must be in the 'NNNN-NNN' format |
 </Accordion>
 <Accordion title="bill.Order">
 
