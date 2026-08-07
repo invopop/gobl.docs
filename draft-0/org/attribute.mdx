@@ -53,5 +53,5 @@ Attribute describes a named feature or property of the parent object, such as th
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Attribute</small> | <ul class="gobl-test"><li>(string(Key) == "") != (string(Type) == "")</li></ul> | `GOBL-ORG-ATTRIBUTE-01`<br />Attribute must have either a key or a type, but not both |
-| <small>Attribute</small> | <ul class="gobl-test"><li>(Text == "" ? 0 : 1) + (string(Code) == "" ? 0 : 1) + (Amount == nil ? 0 : 1) + (Date == nil ? 0 : 1) == 1</li></ul> | `GOBL-ORG-ATTRIBUTE-02`<br />Attribute must have exactly one of the text, code, amount, or date values |
+| <small>Attribute</small> | <ul class="gobl-test"><li>(Text == "" ? 0 : 1) + (string(Code) == "" ? 0 : 1) + (Amount == nil ? 0 : 1) + (Date == nil ? 0 : 1) >= 1</li></ul> | `GOBL-ORG-ATTRIBUTE-02`<br />Attribute must have at least one of the text, code, amount, or date values |
 | <small>Attribute</small> | <ul class="gobl-test"><li>String(Unit) != ""</li><li>Amount != nil</li></ul> | `GOBL-ORG-ATTRIBUTE-03`<br />Attribute unit may only be used alongside an amount |

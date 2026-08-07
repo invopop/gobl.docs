@@ -52,13 +52,14 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `supplier` | <ul class="gobl-test"><li>Context: regime in [DK]</li><li>Has tax ID code or identity with 'CVR' type</li></ul> | `GOBL-DK-BILL-INVOICE-01`<br />Invoice DK supplier must have either tax ID code or identity with 'CVR' type |
+| `supplier.identities` | <ul class="gobl-test"><li>Not (has tax ID code)</li><li>Has a type in [CVR, CPR]</li></ul> | `GOBL-DK-BILL-INVOICE-01`<br />Invoice DK supplier without a tax ID code requires an identity with 'CVR' or 'CPR' type |
 </Accordion>
 <Accordion title="org.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li>Is CVR</li><li>Valid</li></ul> | `GOBL-DK-ORG-IDENTITY-01`<br />Invalid Danish CVR identity code |
+| `code` | <ul class="gobl-test"><li>Type in [CVR]</li><li>Valid</li></ul> | `GOBL-DK-ORG-IDENTITY-01`<br />Invalid Danish CVR identity code |
+| `code` | <ul class="gobl-test"><li>Type in [CPR]</li><li>Length between 10 and 10</li><li>Digit</li></ul> | `GOBL-DK-ORG-IDENTITY-02`<br />Invalid Danish CPR identity code |
 </Accordion>
 <Accordion title="tax.Identity">
 

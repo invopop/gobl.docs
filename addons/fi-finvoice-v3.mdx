@@ -1,0 +1,39 @@
+---
+title: Finland Finvoice 3.0
+---
+
+Key: `fi-finvoice-v3`
+
+Module: [github.com/invopop/gobl.fi.finvoice](https://github.com/invopop/gobl.fi.finvoice)
+
+Support for the Finnish Finvoice 3.0 format for electronic invoicing.
+Finvoice conforms to the European Norm (EN) 16931, so this addon only adds
+the Finvoice-specific requirements on top of the EN 16931 rules: a named
+customer, and the payment data needed to build the Finvoice EpiDetails
+payment block (credit transfer instructions with an IBAN, a payment
+reference, and a due date), which is mandatory on every invoice.
+
+For more information on Finvoice, visit
+[www.finanssiala.fi](https://www.finanssiala.fi/en/topics/finvoice-implementation-guidelines/).
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `customer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-01`<br />Customer is required (Finvoice BuyerPartyDetails) |
+| `customer.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-02`<br />Customer name is required (Finvoice BuyerOrganisationName) |
+| `payment` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-03`<br />Payment details are required (Finvoice EpiDetails) |
+| `payment.instructions` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-04`<br />Payment instructions are required (Finvoice EpiDetails) |
+| `payment.instructions.key` | <ul class="gobl-test"><li>Be or starts with one of [credit-transfer]</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-05`<br />Payment instructions key must be credit-transfer |
+| `payment.instructions.ref` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-06`<br />Payment reference is required (Finvoice EpiReference) |
+| `payment.instructions.credit_transfer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-07`<br />Credit transfer details are required (Finvoice EpiAccountID) |
+| `payment.instructions.credit_transfer` | <ul class="gobl-test"><li>First entry has IBAN</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-08`<br />First credit transfer IBAN is required (Finvoice EpiAccountID) |
+| `payment.instructions.credit_transfer[*].iban` | <ul class="gobl-test"><li>Matches ^[A-Z]{2}\d{2}[A-Z0-9]{11,30}$, and has matching check digits</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-09`<br />Credit transfer IBAN is not valid |
+| `payment.instructions.credit_transfer[*].bic` | <ul class="gobl-test"><li>Matches ^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-10`<br />Credit transfer BIC is not valid (Finvoice EpiBfiIdentifier) |
+| `payment.terms` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-11`<br />Payment terms are required (Finvoice EpiDateOptionDate) |
+| `payment.terms.due_dates` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FI-FINVOICE-BILL-INVOICE-12`<br />At least one due date is required (Finvoice EpiDateOptionDate) |
+</Accordion>
+</AccordionGroup>
