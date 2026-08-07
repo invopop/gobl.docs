@@ -73,8 +73,8 @@ The types of invoices that can be created with a preceding definition:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `supplier.tax_id` | <ul class="gobl-test"><li>No BCE identity</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-01`<br />Supplier tax ID required for Belgian regime |
-| `supplier.tax_id.code` | <ul class="gobl-test"><li>No BCE identity</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-02`<br />Supplier tax ID code required for Belgian regime |
-| `supplier.identities` | <ul class="gobl-test"><li>No tax ID code</li><li>Has BCE type</li></ul> | `GOBL-BE-BILL-INVOICE-03`<br />Supplier identities must include BCE type |
+| `supplier.tax_id` | <ul class="gobl-test"><li>Not (has a type in [BCE])</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-01`<br />Supplier tax ID required for Belgian regime |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li>Not (has a type in [BCE])</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BE-BILL-INVOICE-02`<br />Supplier tax ID code required for Belgian regime |
+| `supplier.identities` | <ul class="gobl-test"><li>Not (has tax ID code)</li><li>Has a type in [BCE]</li></ul> | `GOBL-BE-BILL-INVOICE-03`<br />Supplier identities must include BCE type |
 </Accordion>
 </AccordionGroup>

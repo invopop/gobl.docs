@@ -1,0 +1,88 @@
+---
+title: Danish OIOUBL 2.1
+---
+
+Key: `dk-oioubl-v2`
+
+Module: [github.com/invopop/gobl.dk.oioubl](https://github.com/invopop/gobl.dk.oioubl)
+
+Support for the Danish OIOUBL 2.1 standard used on the NemHandel
+e-invoicing network, mandatory for business-to-government (B2G)
+transactions in Denmark since 2005.
+
+OIOUBL 2.1 is a national profile of UBL 2.1, maintained by
+Erhvervsstyrelsen (the Danish Business Authority). Unlike many
+European profiles it predates and does not extend EN 16931.
+
+This addon translates the OIOUBL Schematron rules (v1.17.2, the
+hotfix live since 2026-05-18) into GOBL
+validations. OIOUBL 2.1 is scheduled to be replaced by NemHandel
+BIS 4 starting in 2028.
+
+## Sources
+- [OIOUBL 2.1 documentation overview](https://nemhandel.dk/vejledning-oioubl-dokumentationsoversigt)
+- [OIOUBL Schematron v1.17.2 (hotfix, live 2026-05-18)](https://git.erst.dk/openebusiness/common/-/tree/master/released/oioubl)
+- [OIOUBL Schematron rules (browsable source, referenced by rule citations)](https://git.erst.dk/openebusiness/common/-/tree/master/resources/Schematrons/OIOUBL?ref_type=heads)
+
+## Extensions
+### SKAT excise duty code
+
+Code identifying a Danish excise duty ("punktafgift") from the SKAT
+tax scheme codelist (OIOUBL `urn:oioubl:id:taxschemeid`), set on a
+document or line charge whose key is `excise`. OIOUBL emits the
+charge as its own `cac:TaxTotal` with this code as the
+`cac:TaxScheme/cbc:ID`.
+
+For example, `16` is the duty on chocolate and confectionery
+("Chokolade- og sukkervarerafgift") and `66` the vehicle
+registration tax ("Registreringsafgift af motorkøretøjer").
+
+The value set is deliberately left open: the codelist has both
+gained and lost codes across taxschemeid versions, and includes
+non-numeric codes (e.g. `21d`).
+
+<Accordion title="dk-oioubl-duty-code">
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'untdid-document-type' in [325, 380, 381, 393]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-01`<br />Tax extension 'untdid-document-type' must use a document type OIOUBL supports: 325, 380 or 393 for an invoice, 381 for a credit note (F-INV011) |
+| `tax.rounding` | <ul class="gobl-test"><li>One of [currency]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-02`<br />Amounts must be rounded per currency so the emitted lines sum to the document totals (F-INV126) |
+| `customer.endpoints` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-03`<br />Customer endpoint is required (F-INV044 / F-CRN040) |
+| `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-04`<br />Each line requires a VAT tax category (F-INV138 / F-CRN081) |
+| `charges[*].taxes` | <ul class="gobl-test"><li>String(Key) != "excise"</li><li>All of [VAT]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-05`<br />Document-level charge requires a VAT tax for the OIOUBL TaxCategory (F-LIB226) |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `key` | <ul class="gobl-test"><li>Not one of [exempt]</li></ul> | `GOBL-DK-OIOUBL-TAX-COMBO-01`<br />OIOUBL has no exempt VAT category (taxcategoryid-1.1) |
+</Accordion>
+<Accordion title="bill.Charge">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `reason` | <ul class="gobl-test"><li>String(Key) == "excise"</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-CHARGE-01`<br />An OIOUBL excise duty charge requires a reason for its tax-scheme name (F-LIB066) |
+| `taxes` | <ul class="gobl-test"><li>String(Key) == "excise"</li><li>All of [VAT]</li></ul> | `GOBL-DK-OIOUBL-BILL-CHARGE-02`<br />A document-level OIOUBL excise duty requires a VAT tax stating its own VAT type (OIOUBL Skat guideline) |
+| `ext` | <ul class="gobl-test"><li>String(Key) == "excise"</li><li>Ext require [dk-oioubl-duty-code]</li></ul> | `GOBL-DK-OIOUBL-BILL-CHARGE-03`<br />An excise duty charge requires the 'dk-oioubl-duty-code' extension, which becomes the OIOUBL tax-scheme ID |
+</Accordion>
+<Accordion title="bill.LineCharge">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `reason` | <ul class="gobl-test"><li>String(Key) == "excise"</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-LINECHARGE-01`<br />An OIOUBL excise duty charge requires a reason for its tax-scheme name (F-LIB066) |
+| `ext` | <ul class="gobl-test"><li>String(Key) == "excise"</li><li>Ext require [dk-oioubl-duty-code]</li></ul> | `GOBL-DK-OIOUBL-BILL-LINECHARGE-02`<br />An excise duty charge requires the 'dk-oioubl-duty-code' extension, which becomes the OIOUBL tax-scheme ID |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Ext 'untdid-payment-means' in [1, 10, 20, 31, 42, 48, 49, 50, 58, 59, 93, 97]</li></ul> | `GOBL-DK-OIOUBL-PAY-INSTRUCTIONS-01`<br />Tax extension 'untdid-payment-means' must use a payment means code OIOUBL supports (F-LIB100) |
+| `credit_transfer[*].clearing` | <ul class="gobl-test"><li>Domestic bank transfer (means 42)</li><li class="gobl-test-present">Present</li><li>Matches ^\d{4}$</li></ul> | `GOBL-DK-OIOUBL-PAY-INSTRUCTIONS-02`<br />A domestic transfer needs a four-digit bank clearing code (F-LIB124 / F-LIB130) |
+</Accordion>
+</AccordionGroup>

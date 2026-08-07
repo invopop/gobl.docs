@@ -13,9 +13,10 @@ CreditTransfer contains fields that can be used for making payments via a bank t
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| IBAN | `iban` | string | International Bank Account Number |
-| BIC | `bic` | string | Bank Identifier Code used for international transfers. |
-| Number | `number` | string | Account number, if IBAN not available. |
+| IBAN | `iban` | [cbc.Code](/draft-0/cbc/code) | International Bank Account Number |
+| BIC | `bic` | [cbc.Code](/draft-0/cbc/code) | Bank Identifier Code used for international transfers. |
+| Number | `number` | [cbc.Code](/draft-0/cbc/code) | Account number, if IBAN not available. |
+| Clearing Code | `clearing` | [cbc.Code](/draft-0/cbc/code) | National bank or branch clearing identifier, such as a Danish registration number, UK sort code, or US routing number. |
 | Name | `name` | string | Name of the bank. |
 | Branch | `branch` | [org.Address](/draft-0/org/address) | Bank office branch address, not normally required. |
 
