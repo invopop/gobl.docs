@@ -75,8 +75,7 @@ You should get back something like:
     "dig": {
       "alg": "sha256",
       "val": "1e11c95c78f0a5de339dcb837a662b31b954cf923c879f61f29149b556bdb1d7"
-    },
-    "draft": true
+    }
   },
   "doc": {
     "$schema": "https://gobl.org/draft-0/bill/invoice",
@@ -170,7 +169,7 @@ Congratulations! You've just created a complete GOBL invoice.
 
 Take a look at some of the data that has been generated, a few observations:
 
-- Everything has been embedded inside a GOBL Envelope, with a head and signature.
+- Everything has been embedded inside a GOBL Envelope with a header; signatures are added later by `gobl sign`.
 - Each invoice line has been updated with a `sum` and `total`, where the total is the sum with discounts applied.
 - Tax rates valid for the `issue_date` have been added automatically.
 - A `totals` property has been added to the invoice, and details all the taxes that were applied to the calculations made from the lines.

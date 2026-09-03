@@ -9,12 +9,12 @@ For the sake of the examples here, we'll be using the `note` package's `Message`
 
 ### Installation
 
-Our recommendation is to head over to the [GOBL releases page](https://github.com/invopop/gobl/releases) and download the latest version for your platform and copy the binary to a directory of your choosing.
+The CLI is built from the [gobl.dev](https://github.com/invopop/gobl.dev) repository, which bundles the core GOBL library with every addon. Our recommendation is to head over to the [gobl.dev releases page](https://github.com/invopop/gobl.dev/releases) and download the latest version for your platform and copy the binary to a directory of your choosing.
 
 If you already have a [working Go environment](https://go.dev/doc/install) you may also find it easy to install the latest version with:
 
 ```
-go install github.com/invopop/gobl/cmd/gobl@latest
+go install github.com/invopop/gobl.dev/cmd/gobl@latest
 ```
 
 Once downloaded and installed or built, check it's working:
@@ -23,13 +23,12 @@ Once downloaded and installed or built, check it's working:
 gobl version
 ```
 
-If you're using a packaged version, you should get version information back like:
+You should get version information back like the following, where `version` is the gobl.dev release and `core` is the version of the GOBL library it bundles:
 
 ```json
 {
-  "version": "0.46.0",
-  "gobl": "v0.30.2",
-  "date": "2022-09-02T12:37:32Z"
+  "version": "v0.500.15",
+  "core": "v0.504.0"
 }
 ```
 
@@ -49,10 +48,10 @@ If you're using an editor like VSCode which has built-in support for JSON Schema
 
 The GOBL CLI also supports YAML input, but in general, thanks to the schemas and powerful text editors, we find it a bit easier to write files in JSON.
 
-Now send the document to the gobl `build` command with the `--envelop` and `--draft` flags indicating that we want a draft envelope of the message. The `-i` flag produces prettier output:
+Now send the document to the gobl `build` command with the `--envelop` flag indicating that we want the message wrapped in an envelope. The `-i` flag produces prettier output:
 
 ```
-gobl build -i --envelop --draft ./message.json
+gobl build -i --envelop ./message.json
 ```
 
 You should get something similar to the following:
@@ -61,22 +60,22 @@ You should get something similar to the following:
 {
   "$schema": "https://gobl.org/draft-0/envelope",
   "head": {
-    "uuid": "dda69a91-2ad0-11ed-a33d-3e7e00ce5635",
+    "uuid": "01a06688-0b25-7e05-aac6-2b5db66388b1",
     "dig": {
       "alg": "sha256",
-      "val": "45ac3115c8569a1789e58af8d0dc91ef3baa1fb71daaf38f5aef94f82b4d0033"
-    },
-    "draft": true
+      "val": "b4dad872e5adf18d4369e9cf251acbcb382eae1670ce659815297894323d614c"
+    }
   },
   "doc": {
     "$schema": "https://gobl.org/draft-0/note/message",
+    "uuid": "01a06688-0b25-7e15-a520-20a3f8a6c415",
     "title": "Test Message",
     "content": "We hope you like this test message!"
   }
 }
 ```
 
-The original message has now been placed into a GOBL Envelope with a header that allows us to ensure that the contents of the document cannot be modified without creating a new digest.
+The original message has now been placed into a GOBL Envelope with a header that allows us to ensure that the contents of the document cannot be modified without creating a new digest. Both the envelope and the message received a `uuid`.
 
 ### Keys
 
@@ -143,19 +142,20 @@ The output produced should be something like:
 {
   "$schema": "https://gobl.org/draft-0/envelope",
   "head": {
-    "uuid": "c7eac0a3-2ad2-11ed-964a-3e7e00ce5635",
+    "uuid": "01a06688-0ba6-7a6b-b729-a7df25899f45",
     "dig": {
       "alg": "sha256",
-      "val": "45ac3115c8569a1789e58af8d0dc91ef3baa1fb71daaf38f5aef94f82b4d0033"
+      "val": "dd87e73cdb77eb895494c2dd99e3c228473e661e8a796b01ff9a334e8ec77b83"
     }
   },
   "doc": {
     "$schema": "https://gobl.org/draft-0/note/message",
+    "uuid": "01a06688-0ba6-7a7b-a32e-6100be69de0b",
     "title": "Test Message",
     "content": "We hope you like this test message!"
   },
   "sigs": [
-    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjBhMjg2MDAwLTM2MGEtNGU2Ni04MWFhLTU2ZDQ0YmI4ZjEwNyJ9.eyJ1dWlkIjoiYzdlYWMwYTMtMmFkMi0xMWVkLTk2NGEtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjQ1YWMzMTE1Yzg1NjlhMTc4OWU1OGFmOGQwZGM5MWVmM2JhYTFmYjcxZGFhZjM4ZjVhZWY5NGY4MmI0ZDAwMzMifX0.JsLXd3TkKOwuy0KOXJVG8atIShlNZb1vbLglVO8PDZnZbwGVyWRE_i7y85lVKvSby-j0rwU9wgleIxcGj9tE4g"
+    "eyJhbGciOiJFUzI1NiIsImtpZCI6IjAxYTA2Njg4LTBiNjEtNzg5My1hZDk1LTJiZjBlNDc0YTFlYyJ9.eyJ1dWlkIjoiMDFhMDY2ODgtMGJhNi03YTZiLWI3MjktYTdkZjI1ODk5ZjQ1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6ImRkODdlNzNjZGI3N2ViODk1NDk0YzJkZDk5ZTNjMjI4NDczZTY2MWU4YTc5NmIwMWZmOWEzMzRlOGVjNzdiODMifSwiaWF0IjoxNzg4NDI2NTg3fQ.RC8sGfOqyHr8SFdry31bTCh-m3GCubQi6DvMthgeUCjnZms3lZqSZtyod0Zkuq92OI_aguyECvZNqGvCT8kFLg"
   ]
 }
 ```
