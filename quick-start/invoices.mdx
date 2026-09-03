@@ -6,6 +6,10 @@ For this guide, we assume you already have already successfully followed in the 
 
 Creating an invoice is one of the most useful features of GOBL as it demonstrates the full power of the library. For the sake of the examples on this page, we're using Spain as the base region, but everything here should be supported with minor modifications in any other supported country.
 
+<Prompt description="Have your agent build an invoice for your country instead of Spain." icon="file-invoice" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/quick-start/invoices.md and the GOBL rules in https://docs.gobl.org/llms.md, then the regime page for my country at https://docs.gobl.org/regimes/ followed by the lowercase tax country code and .md. Rewrite the quick start invoice for a supplier and customer in my country with valid tax identities, the right tax category code and rate key, and my currency, keeping amounts as strings and dates as YYYY-MM-DD. Build it with gobl build, or by posting it wrapped in a data property to https://gobl.dev/v0/build, and show me the built document. Point out every value build added and explain where the tax percentage came from.
+</Prompt>
+
 ## Prepare Source
 
 To get started we're going to need some base data. Take the following yaml, modify as you see fit, and output to a file like `invoice.yaml`:

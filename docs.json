@@ -38,6 +38,7 @@
             "group": "Overview",
             "pages": [
               "introduction",
+        "llms",
               "overview/components",
               "overview/tools",
               "overview/versions",
@@ -405,5 +406,8 @@
   "styling": {
     "codeblocks": "system"
   },
-  "theme": "mint"
+  "theme": "mint",
+  "contextual": {
+    "options": ["copy", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  }
 }

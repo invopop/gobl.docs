@@ -32,6 +32,10 @@ You should get version information back like the following, where `version` is t
 }
 ```
 
+<Prompt description="Have your agent install the CLI and run this quick start for you." icon="terminal" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/quick-start/cli.md and https://docs.gobl.org/llms.md. Install the gobl CLI from github.com/invopop/gobl.dev with go install, or download a release binary, and confirm gobl version works. Then reproduce the quick start: write the message.json document, build it with the envelop flag, generate a key pair with gobl keygen, sign the message and verify the signed envelope. Show me each command and its output, and explain what the header uuid, the digest and the signature each guarantee.
+</Prompt>
+
 ### Building a Message
 
 The [notes.Message](https://github.com/invopop/gobl/blob/main/note/message.go) type is great for setting up a simple test. For this tutorial open your text editor and a simple JSON file called `message.json` that looks like:
