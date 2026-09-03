@@ -64,6 +64,10 @@ GOBL contains tax identity code normalization and validation rules that help you
 
 One of the first tasks we do when adding a new tax regime to GOBL is figuring out the local tax code validation rules and checksum calculations with the aim of creating a central and global source reference.
 
+<Prompt description="Have your agent map your data model onto a GOBL invoice." icon="diagram-project" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/use-cases/invoicing.md, https://docs.gobl.org/llms.md and the invoice schema at https://docs.gobl.org/draft-0/bill/invoice.md. Look at how this project represents invoices, customers, line items, taxes, discounts and payment terms, and produce a mapping table from each of our fields to the GOBL property it belongs in, naming the GOBL type for each nested object such as org/party, bill/line, tax/combo and pay/terms. Flag every field of ours that has no GOBL home and suggest whether it belongs in meta, in an identities entry or nowhere. Then write a converter function in this project's language that emits the minimal GOBL document, without totals or percentages, and a test that builds its output with https://gobl.dev/v0/build and checks the payable amount.
+</Prompt>
+
 ## Invoice Types
 
 GOBL defines a specific set of common [types](/draft-0/bill/invoice#type-values) assigned to an invoice via the `type` property. Other standards define many more, but these are the ones we think are key for most use cases:
@@ -74,7 +78,7 @@ GOBL defines a specific set of common [types](/draft-0/bill/invoice#type-values)
 - `credit-note` - traditional and most frequently used type when a supplier needs to issue a refund or cancel part of an invoice through a [preceding definition](/draft-0/org/document_ref).
 - `debit-note` - indicates that the preceding invoice was incomplete and there are now some additional costs. Most companies will just issue a new invoice to complement the previous one as opposed to issuing a specific debit note.
 
-Not every country will have support for all these types. Spain for example doesn't have support for credit-notes, and instead requires corrective invoices, more details below.
+Not every country accepts every type, and each [tax regime](/regimes/overview) lists the ones it does under **Correction Definitions**. Spanish law, for example, recognises only rectifying invoices, so GOBL maps a `credit-note` to a rectification by differences and a `corrective` to a full replacement when converting to local formats, while the United Kingdom accepts `credit-note` only.
 
 ## Invoice Scenarios
 
@@ -95,7 +99,7 @@ For example, to define a "simplified invoice" in Spain, essentially an invoice w
 
 In this example the validation rules for checking for the presence of the customer will be skipped.
 
-Another common scenario deals with "reverse charge" invoices, a special VAT situation whereby the supplier is indicating that the taxes will be dealt with by the customer instead the supplier, and thus does not include any VAT. This is represented in GOBL using the `"reverse-charge"` tax tag, and will automatically include a special note.
+Another common scenario deals with "reverse charge" invoices, a special VAT situation whereby the supplier is indicating that the taxes will be dealt with by the customer instead the supplier, and thus does not include any VAT. This is represented in GOBL using the `"reverse-charge"` tax tag together with a `reverse-charge` key on the line taxes, and build adds the regime's legal note under `tax.notes`.
 
 The Italian FatturaPA format for example defines some 22 different invoice type codes that cover multiple different scenarios, including self billing. To support these we've defined a set of scenarios with different tags defined in the Italian tax regime. Here's an example for an "Advance or down payment on a freelance invoice" type:
 
