@@ -382,6 +382,18 @@
         ],
         "icon": "code",
         "openapi": "openapi/v0.json"
+      },
+      {
+        "anchor": "Changelog",
+        "icon": "clock-rotate-left",
+        "groups": [
+          {
+            "group": "Changelog",
+            "pages": [
+              "changelog/overview"
+            ]
+          }
+        ]
       }
     ],
     "global": {
