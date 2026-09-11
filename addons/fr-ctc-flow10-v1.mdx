@@ -102,7 +102,8 @@ Code prefixes indicate the invoice nature:
 
 The numeric suffix indicates the payment type (1=deposit,
 2=already paid, 4=final after down payment, 5=subcontractor,
-6=co-contractor, 7=e-reporting).
+6=co-contractor, 7=e-reporting, 8=multi-vendor,
+9=bi-directional).
 
 <Accordion title="fr-ctc-billing-mode">
 
@@ -112,15 +113,21 @@ The numeric suffix indicates the payment type (1=deposit,
 | `B2` | Goods - Already paid invoice |
 | `B4` | Goods - Final invoice (after down payment) |
 | `B7` | Goods - E-reporting (VAT already collected) |
+| `B8` | Goods - Multi-vendor invoice |
+| `B9` | Goods - Bi-directional invoice |
 | `S1` | Services - Standard invoice |
 | `S2` | Services - Already paid invoice |
 | `S4` | Services - Final invoice (after down payment) |
 | `S5` | Services - Subcontractor invoice |
 | `S6` | Services - Co-contractor invoice |
 | `S7` | Services - E-reporting (VAT already collected) |
+| `S8` | Services - Multi-vendor invoice |
+| `S9` | Services - Bi-directional invoice |
 | `M1` | Mixed - Standard invoice |
 | `M2` | Mixed - Already paid invoice |
 | `M4` | Mixed - Final invoice (after down payment) |
+| `M8` | Mixed - Multi-vendor invoice (unit invoices not all Sx or Bx) |
+| `M9` | Mixed - Bi-directional invoice |
 </Accordion>
 
 ## Validation Rules
@@ -138,16 +145,14 @@ The numeric suffix indicates the payment type (1=deposit,
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-05`<br />Invoice supplier is required on B2C invoices |
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li>Party has SIREN</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-06`<br />Invoice supplier must have a SIREN identity (ISO/IEC 6523 scheme 0002) on a B2C invoice |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext 'untdid-document-type' in [380, 386, 384, 381, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-08`<br />Invoice tax ext untdid-document-type must be one of the Flow 10 permitted UNTDID 1001 codes |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext require [fr-ctc-billing-mode]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required (G1.02) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext require [fr-ctc-billing-mode]</li><li>Ext 'fr-ctc-billing-mode' in [B1, B2, B4, B7, B8, B9, S1, S2, S4, S5, S6, S7, S8, S9, M1, M2, M4, M8, M9]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required and must be a valid billing-mode code (G1.02) |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice tax ext fr-ctc-billing-mode in [B4, S4, M4]</li><li>Ext 'untdid-document-type' not in [386, 500, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-10`<br />Invoice tax ext untdid-document-type must not be an advance-payment code (386, 500, 503) when billing mode is final-after-advance (B4, S4, M4) (G1.60) |
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-11`<br />Invoice supplier is required for Flow 10 B2B invoices (G2.19) |
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-12`<br />Invoice supplier must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
-| `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-13`<br />Invoice supplier tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Invoice has exempt (E) VAT category</li><li>Supplier or tax rep has VAT ID</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-14`<br />Invoice supplier tax_id or ordering.seller tax_id is required when the VAT breakdown contains an exempt (E) category |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Invoice has exempt (E) VAT category</li><li>Has exempt tax note</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-15`<br />Invoice tax.notes must include an exempt-reason entry (key=exempt with non-empty text) when the VAT breakdown contains an exempt (E) category |
 | `customer` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-16`<br />Invoice customer is required for Flow 10 B2B invoices (G2.19) |
 | `customer` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-17`<br />Invoice customer must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
-| `customer` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has TaxID when required</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-18`<br />Invoice customer tax_id is required when legal identity scheme is SIREN (0002) or EU VAT (0223) (G2.33) |
 </Accordion>
 <Accordion title="bill.Payment">
 

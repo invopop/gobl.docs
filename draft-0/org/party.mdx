@@ -18,6 +18,7 @@ Party represents a person or business entity.
 | Label | `label` | string | Label can be used to provide a custom label for the party in a given context in a single language, for example "Supplier", "Host", or similar. |
 | Name | `name` | string | Legal name or representation of the organization. |
 | Alias | `alias` | string | Alternate short name. |
+| Agent | `agent` | [org.Party](/draft-0/org/party) | Agent is a party that acts on behalf of this party. An agent cannot itself have an agent. |
 | Tax Identity | `tax_id` | [tax.Identity](/draft-0/tax/identity) | The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes. |
 | Identities | `identities` | array of [org.Identity](/draft-0/org/identity) | Set of codes used to identify the party in other systems. |
 | People | `people` | array of [org.Person](/draft-0/org/person) | Details of physical people who represent the party. |
@@ -32,3 +33,9 @@ Party represents a person or business entity.
 | Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension code map for any additional regime specific codes that may be required. |
 | Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional semi-structured information that does not fit into the rest of the party. |
 
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `agent` | <ul class="gobl-test"><li>Not have an agent</li></ul> | `GOBL-ORG-PARTY-01`<br />Agent must not have an agent |

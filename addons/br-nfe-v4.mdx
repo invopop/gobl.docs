@@ -26,25 +26,6 @@ Stamp keys from the previous invoice that need to be referenced:
 
 ### bill/invoice
 
-<Accordion title="standard, credit-note, debit-note">
-
-**Filters:**
-- **Types:** `standard`, `credit-note`, `debit-note`
-
-**Output:**
-- **Extensions:** `br-nfe-model:55`
-</Accordion>
-
-<Accordion title="standard, credit-note, debit-note, #simplified">
-
-**Filters:**
-- **Types:** `standard`, `credit-note`, `debit-note`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `br-nfe-model:65`
-</Accordion>
-
 <Accordion title="standard">
 
 **Filters:**
@@ -57,9 +38,10 @@ Stamp keys from the previous invoice that need to be referenced:
 ## Extensions
 ### Fiscal Document Model Code
 
-Code used to identify the fiscal document model. It will be
-determined automatically by GOBL during normalization according to
-the scenario definitions.
+Code used to identify the fiscal document model. It is determined
+automatically by GOBL during normalization from the invoice tags:
+`65` (NFC-e) for invoices tagged as `simplified` and `55` (NF-e)
+otherwise.
 
 <Accordion title="br-nfe-model">
 
@@ -161,6 +143,23 @@ Indicates a special tax regime that a party is subject to.
 | `4` | Cooperative |
 | `5` | Single micro-entrepreneur (MEI) |
 | `6` | Micro-enterprise or Small Business (ME EPP) |
+</Accordion>
+### Recipient State Registration Indicator
+
+Indicates the ICMS taxpayer status of the invoice's customer with
+regard to its state registration (IE) (SEFAZ field `indIEDest`,
+E16a). It is required on the customer, when present. If not
+provided, GOBL sets it during normalization: `9` (non-taxpayer) for
+NFC-e documents, and otherwise `1` (taxpayer) when the customer has
+a `br-nfe-state-reg` identity or `9` when it does not.
+
+<Accordion title="br-nfe-state-reg-ind">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | ICMS taxpayer |
+| `2` | ICMS taxpayer exempt from registration |
+| `9` | Non-taxpayer |
 </Accordion>
 ### ICMS Tax Status Code (CST)
 
@@ -415,6 +414,10 @@ according to the RTM (applies to IBS/CBS only).
 | `customer.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-38`<br />Invoice customer address requires a country |
 | `customer.addresses[*].state` | <ul class="gobl-test"><li>Is Brazilian</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-20`<br />Invoice customer address requires a state |
 | `customer.ext` | <ul class="gobl-test"><li>Has addresses</li><li>Ext require [br-ibge-municipality]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-22`<br />Invoice customer requires 'br-ibge-municipality' extension when addresses are present |
+| `customer.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-state-reg-ind]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-50`<br />Invoice customer requires 'br-nfe-state-reg-ind' extension |
+| `customer` | <ul class="gobl-test"><li>ICMS taxpayer</li><li>Has state registration</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-51`<br />Invoice customer requires 'br-nfe-state-reg' identity when 'br-nfe-state-reg-ind' is '1' |
+| `customer` | <ul class="gobl-test"><li>ICMS taxpayer exempt</li><li>Has no state registration</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-52`<br />Invoice customer must not have 'br-nfe-state-reg' identity when 'br-nfe-state-reg-ind' is '2' |
+| `customer.ext` | <ul class="gobl-test"><li>Invoice is NFCe</li><li>Ext 'br-nfe-state-reg-ind' in [9]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-53`<br />NFC-e invoices require '9' for 'br-nfe-state-reg-ind' |
 | `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-23`<br />Invoice series is required |
 | `series` | <ul class="gobl-test"><li>Matches ^(?:0\|[1-9]{1}[0-9]{0,2})$</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-24`<br />Invoice series format is invalid; must be 0 or 1-999 |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-25`<br />Invoice tax is required |
@@ -478,6 +481,7 @@ according to the RTM (applies to IBS/CBS only).
 | `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-regime' in [1, 2, 3, 4]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-01`<br />'br-nfe-regime' extension, when set, must be a valid code |
 | `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-fiscal-incentive' in [1, 2]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-02`<br />'br-nfe-fiscal-incentive' extension, when set, must be a valid code |
 | `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-special-regime' in [1, 2, 3, 4, 5, 6]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-03`<br />'br-nfe-special-regime' extension, when set, must be a valid code |
+| `ext` | <ul class="gobl-test"><li>Ext 'br-nfe-state-reg-ind' in [1, 2, 9]</li></ul> | `GOBL-BR-NFE-ORG-PARTY-04`<br />'br-nfe-state-reg-ind' extension, when set, must be a valid code |
 </Accordion>
 <Accordion title="pay.Instructions">
 

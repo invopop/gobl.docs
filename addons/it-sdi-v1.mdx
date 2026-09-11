@@ -4,7 +4,26 @@ title: Italy SDI FatturaPA v1.x
 
 Key: `it-sdi-v1`
 
-Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+Module: [github.com/invopop/gobl.it.sdi](https://github.com/invopop/gobl.it.sdi)
+
+Italy exchanges electronic invoices in the FatturaPA XML format through the tax
+authority's Sistema di Interscambio (SDI). This addon ensures GOBL documents carry
+the fields and extensions needed to produce valid FatturaPA files with
+[gobl.fatturapa](https://github.com/invopop/gobl.it.sdi).
+
+## Customer identification
+
+An Italian customer is identified by a partita IVA (VAT number, in the party's
+`tax_id`) or a codice fiscale (an identity with the key `it-fiscal-code`), and
+routed by a codice destinatario (`it-sdi-code` inbox) or a PEC address
+(`it-sdi-pec` inbox). A customer outside Italy needs only the country in `tax_id`.
+
+Where a party has no code of its own, FatturaPA expects a placeholder rather than
+an empty field, and the conversion supplies it: `0000000` for a customer with no
+tax code, or an Italian customer with no inbox; `XXXXXXX` as the recipient code for
+a customer outside Italy; and `OO99999999999` in place of a non-EU business's own
+tax number, since only EU VAT numbers are meaningful to SDI. Leave the field out
+rather than writing these values yourself.
 
 ## Scenarios
 
@@ -225,7 +244,7 @@ Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
 - **Extensions:** `it-sdi-document-type:TD25`
 </Accordion>
 
-<Accordion title="Sale of depreciable assets and for internal transfers (ex art.36 DPR 633/72">
+<Accordion title="Sale of depreciable assets and for internal transfers (ex art.36 DPR 633/72)">
 
 **Filters:**
 - **Types:** `standard`
@@ -248,12 +267,9 @@ Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
 ## Extensions
 ### SDI Transmission Format
 
-Code used to describe the transmission format of the invoice. By default
-the value "FPR12" is used unless the user explicitly sets the value
-to something else.
-
-Normally this will only be needed when the invoice is to be sent to governmental
-bodies and must use the "FPA12" format.
+Code used to describe the transmission format of the invoice. It is set
+during calculation from the invoice's tags: "FPA12" when the invoice
+carries the "b2g" tag, and "FPR12" otherwise.
 
 <Accordion title="it-sdi-format">
 
@@ -290,7 +306,7 @@ used to determine the correct schema to use when validating the document.
 | `TD23` | Self-billed for goods extracted from VAT warehouse with VAT payment |
 | `TD24` | Deferred invoice ex art.21, c.4, lett. a) DPR 633/72 |
 | `TD25` | Deferred invoice ex art.21, c.4, third period lett. b) DPR 633/72 |
-| `TD26` | Sale of depreciable assets and for internal transfers (ex art.36 DPR 633/72 |
+| `TD26` | Sale of depreciable assets and for internal transfers (ex art.36 DPR 633/72) |
 | `TD27` | Self-billed for self consumption or for free transfer without recourse |
 | `TD28` | Purchases from San Marino with VAT (paper invoice) |
 </Accordion>
@@ -386,6 +402,21 @@ used to determine the correct schema to use when validating the document.
 | `Y` | Fees paid from January 1, 2005, to July 26, 2005, by resident companies or entities or by permanent establishments of foreign companies referred to in Article 26-quater, paragraph 1, letters a) and b) of Presidential Decree no. 600 of September 29, 1973, to companies or permanent establishments of companies located in another EU Member State meeting the requirements of the aforementioned Article 26-quater of Presidential Decree 600 of September 29, 1973, for which a refund of the withholding tax was made in 2006 pursuant to Article 4 of Legislative Decree no. 143 of May 30, 2005 |
 | `ZO` | Different title from the previous ones |
 </Accordion>
+### Retained Tax Statutory Rate
+
+Statutory rate of a withholding computed on a reduced taxable base, as
+printed in AliquotaRitenuta. Italian withholdings often apply to a fraction
+of the line total, such as the 23% withheld on 50% of an agent's commission
+(art. 25-bis DPR 600/1973). GOBL has no taxable base per tax, so the combo's
+percent must be the effective rate over the whole line (11.50% in that
+example) and this extension keeps the statutory one. Set it when the two
+differ; ImportoRitenuta is still calculated from the percent, and whether
+the pair is coherent is up to the issuer.
+
+<Accordion title="it-sdi-retained-rate">
+
+Pattern: `^([0-9]{1,2}\.[0-9]{2}|100\.00)$`
+</Accordion>
 ### Payment Means
 
 <Accordion title="it-sdi-payment-means">
@@ -397,7 +428,7 @@ used to determine the correct schema to use when validating the document.
 | `MP03` | Banker's Draft |
 | `MP04` | Cash at Treasury |
 | `MP05` | Bank Transfer |
-| `Mp06` | Promissory Note |
+| `MP06` | Promissory Note |
 | `MP07` | Bank payment slip |
 | `MP08` | Payment card |
 | `MP09` | Direct Debit (RID) |
@@ -481,6 +512,25 @@ field.
 | `SU` | Sole shareholder |
 | `SM` | Multiple shareholders |
 </Accordion>
+### SDI Notification
+
+Outcome SDI reports for a submitted invoice, recorded on a
+bill.Status line. RC/NS/MC/AT/DT are the codes SDI emits
+directly; EC01/EC02 are the recipient responses resolved from a
+Notifica Esito.
+
+<Accordion title="it-sdi-notification">
+
+| Code | Name |
+| ---- | ---- |
+| `RC` | Delivery receipt |
+| `NS` | Rejection notice |
+| `MC` | Failed delivery |
+| `AT` | Transmission attestation |
+| `DT` | Deadline expiry |
+| `EC01` | Acceptance |
+| `EC02` | Refusal |
+</Accordion>
 
 ## Validation Rules
 
@@ -520,6 +570,18 @@ field.
 | `ext` | <ul class="gobl-test"><li>Is fund contribution</li><li>Ext require [it-sdi-fund-type]</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-02`<br />Fund contribution charge requires 'it-sdi-fund-type' extension |
 | `taxes` | <ul class="gobl-test"><li>Is fund contribution</li><li>All of [VAT]</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-03`<br />Fund contribution charge must have VAT tax category |
 </Accordion>
+<Accordion title="bill.Status">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Status</small> | <ul class="gobl-test"><li>Has one notification direction</li></ul> | `GOBL-IT-SDI-BILL-STATUS-01`<br />Notifications must not mix buyer responses with SDI updates |
+</Accordion>
+<Accordion title="bill.StatusLine">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Is a failed delivery</li><li>Ext require [it-sdi-format]</li></ul> | `GOBL-IT-SDI-BILL-STATUSLINE-01`<br />Failed delivery requires the 'it-sdi-format' extension |
+</Accordion>
 <Accordion title="org.Address">
 
 | Field | Test | Validation Code / Message |
@@ -544,7 +606,10 @@ field.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-sdi-exempt]</li></ul> | `GOBL-IT-SDI-TAX-COMBO-01`<br />VAT tax combo without percent requires 'it-sdi-exempt' extension |
+| <small>Combo</small> | <ul class="gobl-test"><li>Is retained tax</li><li>Statutory rate exceeds the percent</li></ul> | `GOBL-IT-SDI-TAX-COMBO-04`<br />Retained tax combo 'it-sdi-retained-rate' extension must be greater than the percent |
 | `ext` | <ul class="gobl-test"><li>Is retained tax</li><li>Ext require [it-sdi-retained]</li></ul> | `GOBL-IT-SDI-TAX-COMBO-02`<br />Retained tax combo requires 'it-sdi-retained' extension |
+| `ext` | <ul class="gobl-test"><li>Is retained tax</li><li>Ext 'it-sdi-retained-rate' matches pattern '^([0-9]{1,2}\.[0-9]{2}\|100\.00)$'</li></ul> | `GOBL-IT-SDI-TAX-COMBO-03`<br />Retained tax combo 'it-sdi-retained-rate' extension must be a percentage between 0.00 and 100.00 with two decimals |
+| `ext` | <ul class="gobl-test"><li>Not (is retained tax)</li><li>Ext exclude [it-sdi-retained-rate]</li></ul> | `GOBL-IT-SDI-TAX-COMBO-05`<br />'it-sdi-retained-rate' extension is only for retained taxes |
 </Accordion>
 <Accordion title="pay.Instructions">
 
@@ -557,5 +622,11 @@ field.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>Ext require [it-sdi-payment-means]</li></ul> | `GOBL-IT-SDI-PAY-RECORD-01`<br />Payment advance requires 'it-sdi-payment-means' extension |
+</Accordion>
+<Accordion title="pay.DueDate">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Not zero</li></ul> | `GOBL-IT-SDI-PAY-DUEDATE-01`<br />Amount is required |
 </Accordion>
 </AccordionGroup>

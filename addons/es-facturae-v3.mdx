@@ -187,4 +187,10 @@ FacturaE requires a specific and single code that explains why the previous invo
 | `preceding[*].issue_date` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-05`<br />Preceding document issue date is required |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li>Ext require [es-facturae-correction]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-06`<br />Preceding document ext require 'es-facturae-correction' extension |
 </Accordion>
+<Accordion title="pay.DueDate">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Not zero</li></ul> | `GOBL-ES-FACTURAE-PAY-DUEDATE-01`<br />Amount is required |
+</Accordion>
 </AccordionGroup>

@@ -13,7 +13,7 @@ Attribute describes a named feature or property of the parent object, such as th
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Label | `label` | string | Label for the attribute, used for presentation in converted outputs such as PDFs. |
+| Label | `label` | string | Label for the attribute, used for presentation in converted outputs such as PDFs, and may identify the attribute when no key or type is set. |
 | Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key that identifies the attribute, either from the list pre-defined by GOBL or an alternative agreed upon between the supplier and customer. |
 | Type | `type` | [cbc.Code](/draft-0/cbc/code) | Type defines a code used to identify the attribute when the "key" field is empty, from a code list agreed upon between the supplier and customer. |
 | Text | `text` | string | Text value of the attribute. |
@@ -52,6 +52,7 @@ Attribute describes a named feature or property of the parent object, such as th
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Attribute</small> | <ul class="gobl-test"><li>(string(Key) == "") != (string(Type) == "")</li></ul> | `GOBL-ORG-ATTRIBUTE-01`<br />Attribute must have either a key or a type, but not both |
-| <small>Attribute</small> | <ul class="gobl-test"><li>(Text == "" ? 0 : 1) + (string(Code) == "" ? 0 : 1) + (Amount == nil ? 0 : 1) + (Date == nil ? 0 : 1) >= 1</li></ul> | `GOBL-ORG-ATTRIBUTE-02`<br />Attribute must have at least one of the text, code, amount, or date values |
+| <small>Attribute</small> | <ul class="gobl-test"><li>Not both key and type</li></ul> | `GOBL-ORG-ATTRIBUTE-01`<br />Attribute must not have both a key and a type |
+| <small>Attribute</small> | <ul class="gobl-test"><li>Text, code, amount, or date present</li></ul> | `GOBL-ORG-ATTRIBUTE-02`<br />Attribute must have at least one of the text, code, amount, or date values |
+| <small>Attribute</small> | <ul class="gobl-test"><li>No label</li><li>Key or type present</li></ul> | `GOBL-ORG-ATTRIBUTE-04`<br />Attribute must have a key, a type, or a label |
 | <small>Attribute</small> | <ul class="gobl-test"><li>String(Unit) != ""</li><li>Amount != nil</li></ul> | `GOBL-ORG-ATTRIBUTE-03`<br />Attribute unit may only be used alongside an amount |
