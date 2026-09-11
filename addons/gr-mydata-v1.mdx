@@ -460,6 +460,11 @@ set at the item level to any of the values expected by the IAPR. For example:
 ]
 ```
 
+When an income category is set, the income type must also be provided, with one
+exception: `category1_95` (Other Income-related Information) covers informative
+amounts that do not count towards income, such as the 0.5% municipality duty, and
+must be reported without the `gr-mydata-income-type` extension.
+
 <Accordion title="gr-mydata-income-cat">
 
 | Code | Name |
@@ -693,6 +698,37 @@ For example:
 | `3` | Coefficient 3.6% |
 | `4` | Other cases |
 </Accordion>
+### Branch number
+
+The branch (establishment) number of the party, as declared in the
+AADE taxpayer registry. Set the `gr-mydata-branch` extension on a
+party when the invoice is issued by or addressed to an establishment
+other than the headquarters. When absent, the headquarters branch
+(`0`) is assumed.
+
+The number must match an establishment registered with AADE for the
+party's tax ID; submissions with unknown branch numbers may be
+rejected by myDATA.
+
+For example:
+
+```json
+"supplier": {
+	"name": "Hotel Example",
+	"tax_id": {
+		"country": "EL",
+		"code": "111222333"
+	},
+	"ext": {
+		"gr-mydata-branch": "2"
+	}
+}
+```
+
+<Accordion title="gr-mydata-branch">
+
+Pattern: `^(0|[1-9]\d{0,3})$`
+</Accordion>
 
 ## Validation Rules
 
@@ -707,6 +743,8 @@ For example:
 | `tax.ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-invoice-type]</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-03`<br />Tax requires 'gr-mydata-invoice-type' extension |
 | `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-04`<br />Supplier tax ID is required |
 | `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-18`<br />Supplier tax ID code is required |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'gr-mydata-branch' matches pattern '^(0\|[1-9]\d{0,3})$'</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-21`<br />Supplier 'gr-mydata-branch' extension must be a valid branch number |
+| `customer.ext` | <ul class="gobl-test"><li>Ext 'gr-mydata-branch' matches pattern '^(0\|[1-9]\d{0,3})$'</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-22`<br />Customer 'gr-mydata-branch' extension must be a valid branch number |
 | `customer` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-05`<br />Customer is required |
 | `customer.tax_id` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-06`<br />Customer tax ID is required |
 | `customer.addresses` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-07`<br />Customer addresses are required |
@@ -715,6 +753,7 @@ For example:
 | `lines[*].total` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-10`<br />Line total must be positive |
 | `lines[*].total` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-11`<br />Line total must not be zero |
 | `lines[*].item.ext` | <ul class="gobl-test"><li>Income ext pair</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-12`<br />Item income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| `lines[*].item.ext` | <ul class="gobl-test"><li>No income type with other info category</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-20`<br />Item income extension 'gr-mydata-income-type' must not be present with category 'category1_95' |
 | `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-13`<br />Discounts are not supported by mydata |
 | `payment` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-14`<br />Payment is required |
 | `payment` | <ul class="gobl-test"><li>Has instructions or advances</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-15`<br />Payment instructions are required when no advances |
@@ -736,7 +775,8 @@ For example:
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [gr-mydata-vat-rate]</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-01`<br />VAT combo requires 'gr-mydata-vat-rate' extension |
 | `ext` | <ul class="gobl-test"><li>VAT with no percent</li><li>Ext require [gr-mydata-exemption]</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-02`<br />Exempt VAT combo requires 'gr-mydata-exemption' extension |
-| `ext` | <ul class="gobl-test"><li>VAT with income ext</li><li>Ext require [gr-mydata-income-cat, gr-mydata-income-type]</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-03`<br />Income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| `ext` | <ul class="gobl-test"><li>VAT with income ext</li><li>Income ext pair</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-03`<br />Income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| `ext` | <ul class="gobl-test"><li>VAT with income ext</li><li>No income type with other info category</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-04`<br />Income extension 'gr-mydata-income-type' must not be present with category 'category1_95' |
 </Accordion>
 <Accordion title="pay.Instructions">
 

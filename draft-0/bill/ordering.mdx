@@ -3,7 +3,7 @@ title: Ordering
 comment: 
 ---
 
-Ordering provides additional information about the ordering process including references to other documents and alternative parties involved in the order-to-delivery process.
+Ordering contains information about the commercial process and documents used to prepare the invoice, including orders, contracts, projects, preceding documents, and parties involved in issuing or addressing the invoice.
 
 ## Schema ID
 
@@ -20,6 +20,7 @@ Ordering provides additional information about the ordering process including re
 | Buyer | `buyer` | [org.Party](/draft-0/org/party) | Party who is responsible for issuing payment, if not the same as the customer. |
 | Seller | `seller` | [org.Party](/draft-0/org/party) | Seller is the party liable to pay taxes on the transaction if not the same as the supplier. |
 | Issuer | `issuer` | [org.Party](/draft-0/org/party) | Issuer represents a third party responsible for issuing the document, but is not responsible for tax. Some tax regimes and formats require this field. |
+| Addressee | `addressee` | [org.Party](/draft-0/org/party) | Addressee represents a third party to whom the document is addressed, but is not the customer. |
 | Projects | `projects` | array of [org.DocumentRef](/draft-0/org/document_ref) | Projects this document refers to. |
 | Contracts | `contracts` | array of [org.DocumentRef](/draft-0/org/document_ref) | The identification of contracts. |
 | Purchase Orders | `purchases` | array of [org.DocumentRef](/draft-0/org/document_ref) | Purchase orders issued by the customer or buyer. |

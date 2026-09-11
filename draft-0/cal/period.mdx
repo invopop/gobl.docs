@@ -3,7 +3,7 @@ title: Period
 comment: 
 ---
 
-Period represents two dates with a start and finish.
+Period represents a span of time bounded by a start and/or an end date.
 
 ## Schema ID
 
@@ -14,8 +14,8 @@ Period represents two dates with a start and finish.
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Label | `label` | string | Label is a short description of the period. |
-| Start | `start` | [cal.Date](/draft-0/cal/date) | Start indicates when this period starts. |
-| End | `end` | [cal.Date](/draft-0/cal/date) | End indicates when the period ends, and must be after the start date. |
+| Start | `start` | [cal.Date](/draft-0/cal/date) | Start indicates when this period starts, required if there is no end date. |
+| End | `end` | [cal.Date](/draft-0/cal/date) | End indicates when the period ends, required if there is no start date, and must be on or after the start date. |
 
 
 ## Validation Rules
@@ -23,5 +23,6 @@ Period represents two dates with a start and finish.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Period</small> | <ul class="gobl-test"><li>End not before start</li></ul> | `GOBL-CAL-PERIOD-10`<br />End date must be on or after start date |
+| <small>Period</small> | <ul class="gobl-test"><li>Has start or end</li></ul> | `GOBL-CAL-PERIOD-11`<br />Either a start or end date is required |
 | `start` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-CAL-PERIOD-01`<br />Start date cannot be zero |
 | `end` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-CAL-PERIOD-02`<br />End date cannot be zero |
