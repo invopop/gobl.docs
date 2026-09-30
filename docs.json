@@ -80,6 +80,7 @@
                   "regimes/ca",
                   "regimes/ch",
                   "regimes/co",
+                  "regimes/cr",
                   "regimes/de",
                   "regimes/dk",
                   "regimes/el",
@@ -94,11 +95,13 @@
                   "regimes/nl",
                   "regimes/no",
                   "regimes/nz",
+                  "regimes/pe",
                   "regimes/pl",
                   "regimes/pt",
                   "regimes/sa",
                   "regimes/se",
                   "regimes/sg",
+                  "regimes/sk",
                   "regimes/us"
                 ]
               }
@@ -279,7 +282,6 @@
                   "draft-0/org/person",
                   "draft-0/org/registration",
                   "draft-0/org/telephone",
-                  "draft-0/org/unit",
                   "draft-0/org/website"
                 ]
               },

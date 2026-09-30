@@ -54,8 +54,27 @@ non-numeric codes (e.g. `21d`).
 | `tax.ext` | <ul class="gobl-test"><li>Ext 'untdid-document-type' in [325, 380, 381, 393]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-01`<br />Tax extension 'untdid-document-type' must use a document type OIOUBL supports: 325, 380 or 393 for an invoice, 381 for a credit note (F-INV011) |
 | `tax.rounding` | <ul class="gobl-test"><li>One of [currency]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-02`<br />Amounts must be rounded per currency so the emitted lines sum to the document totals (F-INV126) |
 | `customer.endpoints` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-03`<br />Customer endpoint is required (F-INV044 / F-CRN040) |
+| `customer.endpoints` | <ul class="gobl-test"><li>Has an OIOUBL endpoint</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-06`<br />At least one customer endpoint must name a register OIOUBL accepts (F-LIB179) |
+| `supplier.endpoints` | <ul class="gobl-test"><li>Has an OIOUBL endpoint</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-07`<br />At least one supplier endpoint must name a register OIOUBL accepts (F-LIB179) |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-04`<br />Each line requires a VAT tax category (F-INV138 / F-CRN081) |
 | `charges[*].taxes` | <ul class="gobl-test"><li>String(Key) != "excise"</li><li>All of [VAT]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-05`<br />Document-level charge requires a VAT tax for the OIOUBL TaxCategory (F-LIB226) |
+</Accordion>
+<Accordion title="bill.Status">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Response status type</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-01`<br />Code is required (F-APR005) |
+| `supplier` | <ul class="gobl-test"><li>Response status type</li><li>Has tax id code or identity</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-03`<br />Supplier must have a tax ID code or an identity (F-APR041) |
+| `supplier` | <ul class="gobl-test"><li>Response status type</li><li>Has name or identification</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-04`<br />Supplier must have a name or identification (F-LIB022) |
+| `supplier.endpoints` | <ul class="gobl-test"><li>Response status type</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-02`<br />Supplier endpoint is required (F-APR012) |
+| `supplier.endpoints` | <ul class="gobl-test"><li>Response status type</li><li>Has an OIOUBL endpoint</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-13`<br />At least one supplier endpoint must name a register OIOUBL accepts (F-LIB179) |
+| `customer` | <ul class="gobl-test"><li>Response status type</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-05`<br />Customer is required for a response |
+| `customer` | <ul class="gobl-test"><li>Response status type</li><li>Has name or identification</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-07`<br />Customer must have a name or identification (F-LIB022) |
+| `customer.endpoints` | <ul class="gobl-test"><li>Response status type</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-06`<br />Customer endpoint is required (F-APR008) |
+| `customer.endpoints` | <ul class="gobl-test"><li>Response status type</li><li>Has an OIOUBL endpoint</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-14`<br />At least one customer endpoint must name a register OIOUBL accepts (F-LIB179) |
+| `lines` | <ul class="gobl-test"><li>Response status type</li><li>Length between 1 and 1</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-08`<br />A response carries exactly one document response (F-APR051 / F-APR054) |
+| `lines[*].key` | <ul class="gobl-test"><li>Response status type</li><li>One of [accepted, rejected, acknowledged, error]</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-09`<br />Response status event must be one OIOUBL supports (F-APR018) |
+| `lines[*].doc` | <ul class="gobl-test"><li>Response status type</li><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-STATUS-10`<br />Line document reference is required for a response (cf. F-APR016, F-APR025) |
 </Accordion>
 <Accordion title="tax.Combo">
 
