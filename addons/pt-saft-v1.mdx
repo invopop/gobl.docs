@@ -729,8 +729,12 @@ Example:
 | <small>Order</small> | <ul class="gobl-test"><li>Order work type valid</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-02`<br />Work type must not be an invoice work type |
 | <small>Order</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-03`<br />Series format must be valid |
 | <small>Order</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-04`<br />Code format must be valid |
+| <small>Order</small> | <ul class="gobl-test"><li>Tax has source</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-08`<br />Tax requires 'pt-saft-source' extension |
+| <small>Order</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-10`<br />Source ref format is invalid |
 | `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-05`<br />Cannot be blank |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-06`<br />Line taxes must include VAT category |
+| `totals.total`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-07`<br />Must be no less than 0 |
+| <small>Order</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-09`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
 </Accordion>
 <Accordion title="tax.Combo">
 

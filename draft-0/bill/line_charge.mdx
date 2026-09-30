@@ -19,7 +19,7 @@ LineCharge represents an amount added to the line, and will be applied before ta
 | Base | `base` | [num.Amount](/draft-0/num/amount) | Base for percent calculations instead of the line's sum |
 | Percent | `percent` | [num.Percentage](/draft-0/num/percentage) | Percentage of base or parent line's sum |
 | Quantity | `quantity` | [num.Amount](/draft-0/num/amount) | Quantity of units to apply the charge to when using the rate instead of the line's quantity. |
-| Unit | `unit` | [org.Unit](/draft-0/org/unit) | Unit to associate with the quantity when using the rate. |
+| Unit | `unit` | [cbc.Key](/draft-0/cbc/key) | Unit to associate with the quantity when using the rate. |
 | Rate | `rate` | [num.Amount](/draft-0/num/amount) | Rate defines a price per unit to use instead of the percentage. |
 | Amount | `amount` | [num.Amount](/draft-0/num/amount) | Fixed or resulting charge amount to apply (calculated if percent present). |
 | Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension codes that apply to the charge |
@@ -40,6 +40,98 @@ LineCharge represents an amount added to the line, and will be applied before ta
 | `admin` | Administration |
 | `cleaning` | Cleaning |
 
+## Unit Values
+
+| Value | Description |
+|-------|-------------|
+| `mg` | Milligrams |
+| `cg` | Centigrams |
+| `g` | Metric grams |
+| `kg` | Metric kilograms |
+| `t` | Metric tons |
+| `mm` | Millimetres |
+| `cm` | Centimetres |
+| `dm` | A unit of length equal to one-tenth of a metre. |
+| `m` | Metres |
+| `lm` | The running length in metres of a uniform-width product (e.g. carpet, fabric, cable), billed per metre regardless of width. |
+| `km` | Kilometres |
+| `in` | Inches |
+| `ft` | Feet |
+| `lft` | The running length in feet of a uniform-width product (e.g. lumber, trim, cable), billed per foot regardless of width. |
+| `mm2` | Square millimetres |
+| `cm2` | Square centimetres |
+| `dm2` | Square decimetres |
+| `m2` | Square metres |
+| `ac` | A unit of area equal to 43,560 square feet. |
+| `ha` | A unit of area equal to 10,000 square metres. |
+| `mm3` | Cubic millimetres |
+| `cm3` | Cubic centimetres |
+| `dm3` | Cubic decimetres |
+| `m3` | Cubic metres |
+| `ml` | Millilitres |
+| `cl` | Centilitres |
+| `dl` | Decilitres |
+| `l` | Litres |
+| `kl` | Kilolitres |
+| `w` | Watts |
+| `kw` | Kilowatts |
+| `kwh` | Kilowatt Hours |
+| `kj` | Kilojoules |
+| `kcal` | Kilocalories |
+| `rate` | A unit of quantity expressed as a rate for usage of a facility or service. |
+| `yr` | A unit of time equal to twelve months. |
+| `mon` | Unit of time equal to 1/12 of a year of 365,25 days. |
+| `wk` | A unit of time equal to seven days. |
+| `day` | Days |
+| `s` | Seconds |
+| `h` | Hours |
+| `min` | Minutes |
+| `piece` | A unit of count defining the number of pieces (piece: a single item, article or exemplar). |
+| `item` | A unit of count defining the number of items regarded as separate units. |
+| `pair` | A unit of count defining the number of pairs (pair: item described by two's). |
+| `dozen` | A unit of count defining the number of units in multiples of 12. |
+| `assortment` | A unit of count defining the number of assortments (assortment: a collection of items or components of a single product packaged together). |
+| `service` | A unit of count defining the number of service units (service unit: defined period / property / facility / utility of supply). |
+| `job` | A unit of count defining the number of jobs. |
+| `activity` | A unit of count defining the number of activities (activity: a unit of work or action). |
+| `trip` | A unit of count defining the number of trips (trip: a journey to a place and back again). |
+| `group` | A unit of count defining the number of groups (group: set of items classified together). |
+| `outfit` | A unit of count defining the number of outfits (outfit: a complete set of equipment / materials / objects used for a specific purpose). |
+| `kit` | A unit of count defining the number of kits (kit: tub, barrel or pail). |
+| `basebox` | A unit of area of 112 sheets of tin mil products (tin plate, tin free steel or black plate) 14 by 20 inches, or 31,360 square inches. |
+| `pk` | A unit of count defining the number of items per bulk pack. |
+| `one` | A single generic unit of a service or product. |
+| `bag` | Bags |
+| `box` | Boxes |
+| `bin` | Bins |
+| `can` | Cans |
+| `tub` | Tubs |
+| `case` | Cases |
+| `tray` | Trays |
+| `portion` | Portions |
+| `set` | A unit of count defining the number of sets (set: a number of objects grouped together). |
+| `roll` | Rolls |
+| `carton` | Cartons |
+| `cylinder` | Cylinders |
+| `barrel` | Barrels |
+| `jerrican` | Jerrican, cylindrical |
+| `carboy` | Carboys |
+| `demijohn` | Demijohns |
+| `bottle` | Bottles |
+| `canister` | Canisters |
+| `pkg` | Standard packaging unit. |
+| `pkt` | Packets |
+| `bunch` | Bunches |
+| `bdl` | Bundles |
+| `blk` | Blocks |
+| `pallet` | Pallets |
+| `reel` | Reels |
+| `sack` | Sacks |
+| `sheet` | Sheets |
+| `envelope` | Envelopes |
+| `lot` | Lot |
+| `unit` | A type of package composed of a single item or object, not otherwise specified as a unit of transport equipment. |
+
 
 ## Validation Rules
 
@@ -50,3 +142,4 @@ LineCharge represents an amount added to the line, and will be applied before ta
 | `rate` | <ul class="gobl-test"><li>Base != nil \|\| Percent != nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-03`<br />Rate must be blank with base or percent |
 | `unit` | <ul class="gobl-test"><li>Quantity == nil</li><li>Empty</li></ul> | `GOBL-BILL-LINECHARGE-04`<br />Unit must be blank without quantity |
 | `rate` | <ul class="gobl-test"><li>Quantity != nil</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-LINECHARGE-05`<br />Rate is required when quantity is set |
+| `unit` | <ul class="gobl-test"><li>One of [mg, cg, g, kg, t, mm, cm, dm, m, lm, km, in, ft, lft, mm2, cm2, dm2, m2, ac, ha, mm3, cm3, dm3, m3, ml, cl, dl, l, kl, w, kw, kwh, kj, kcal, rate, yr, mon, wk, day, s, h, min, piece, item, pair, dozen, assortment, service, job, activity, trip, group, outfit, kit, basebox, pk, one, bag, box, bin, can, tub, case, tray, portion, set, roll, carton, cylinder, barrel, jerrican, carboy, demijohn, bottle, canister, pkg, pkt, bunch, bdl, blk, pallet, reel, sack, sheet, envelope, lot, unit]</li></ul> | `GOBL-BILL-LINECHARGE-06`<br />Unit must be valid |
