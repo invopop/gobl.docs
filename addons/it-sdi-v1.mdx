@@ -25,6 +25,21 @@ a customer outside Italy; and `OO99999999999` in place of a non-EU business's ow
 tax number, since only EU VAT numbers are meaningful to SDI. Leave the field out
 rather than writing these values yourself.
 
+## Simplified invoices
+
+Add the `simplified` tag to issue a fattura semplificata (format `FSM10`,
+document types `TD07`, `TD08` and `TD09`). The customer then needs only a partita
+IVA or codice fiscale; a name is sent only together with an address. The total may
+not exceed 400.00 EUR unless the supplier is in regime `RF19` or `RF20` or it is a
+credit or debit note correcting a preceding invoice, and every charge and discount
+needs a VAT combo,
+since the format lists them as entries alongside the lines. A credit or debit note
+must identify the invoice it corrects, with its date and the reason. Simplified invoices
+cannot go to a public administration, carry retained taxes or fund contributions,
+or cover intra-EU supplies (art. 21-bis DPR 633/72). Sales to a habitual exporter
+(`N3.5`) and stamp duty exemptions (`NB1`, `NB2`, `NB3`) need the ordinary format,
+the only one that carries the declaration of intent and those codes.
+
 ## Scenarios
 
 ### bill/invoice
@@ -45,6 +60,15 @@ rather than writing these values yourself.
 
 **Output:**
 - **Extensions:** `it-sdi-format:FPA12`
+</Accordion>
+
+<Accordion title="Simplified Invoice">
+
+**Filters:**
+- **Tags:** `simplified`
+
+**Output:**
+- **Extensions:** `it-sdi-format:FSM10`
 </Accordion>
 
 <Accordion title="Regular Invoice">
@@ -269,7 +293,8 @@ rather than writing these values yourself.
 
 Code used to describe the transmission format of the invoice. It is set
 during calculation from the invoice's tags: "FPA12" when the invoice
-carries the "b2g" tag, and "FPR12" otherwise.
+carries the "b2g" tag, "FSM10" when it carries the "simplified" tag,
+and "FPR12" otherwise.
 
 <Accordion title="it-sdi-format">
 
@@ -277,6 +302,7 @@ carries the "b2g" tag, and "FPR12" otherwise.
 | ---- | ---- |
 | `FPA12` | Public Administration |
 | `FPR12` | Private Parties (default) |
+| `FSM10` | Private Parties, Simplified |
 </Accordion>
 ### SDI Document Type
 
@@ -334,6 +360,7 @@ used to determine the correct schema to use when validating the document.
 | `RF17` | VAT paid in cash by subjects with business turnover below Euro 200,000 (Art. 7, Italian Decree Law 185/2008) |
 | `RF19` | Flat rate (Art. 1, section 54-89, Italian Law 190/2014) |
 | `RF18` | Other |
+| `RF20` | Cross-border VAT franchise (EU Directive 2020/285) |
 </Accordion>
 ### Exemption Code
 
@@ -540,8 +567,6 @@ Notifica Esito.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-22`<br />Invoice must be in EUR or provide exchange rate for conversion |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Customer name check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-13`<br />Customer name is required |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Customer people check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-14`<br />Customer people are required when name is empty |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Payment instructions check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-21`<br />Payment instructions are required when terms with due dates are present |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-01`<br />Tax is required |
 | `tax.ext` | <ul class="gobl-test"><li>Ext require [it-sdi-format, it-sdi-document-type]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-02`<br />Tax requires 'it-sdi-document-type' and 'it-sdi-format' extensions |
@@ -554,13 +579,36 @@ Notifica Esito.
 | `customer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-09`<br />Customer is required |
 | `customer.name` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-10`<br />Customer name must use Latin-1 characters |
 | `customer.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-11`<br />Customer tax ID is required |
-| `customer.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-12`<br />Customer addresses are required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Customer name check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-13`<br />Customer name is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Customer people check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-14`<br />Customer people are required when name is empty |
+| `customer.addresses` | <ul class="gobl-test"><li>Not (simplified invoice)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-12`<br />Customer addresses are required |
 | `customer.tax_id.code` | <ul class="gobl-test"><li>Italian customer without fiscal code</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-15`<br />Customer tax ID code is required for Italian parties without fiscal code |
 | `customer.identities` | <ul class="gobl-test"><li>Italian customer without tax ID code</li><li>Has fiscal code</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-16`<br />Customer requires identity with key 'it-fiscal-code' |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-17`<br />Line must have VAT tax category |
 | `lines[*].item.name` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-18`<br />Item name must use Latin-1 characters |
 | `ordering.despatch[*].issue_date` | <ul class="gobl-test"><li>Has deferred tag</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-19`<br />Despatch issue date is required |
 | `ordering.despatch` | <ul class="gobl-test"><li>No deferred tag</li><li>Empty</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-20`<br />Despatch can only be set when invoice has deferred tag |
+| `tax.ext` | <ul class="gobl-test"><li>Simplified format matches document type</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-23`<br />'it-sdi-format' FSM10 goes with document types TD07, TD08 and TD09 only |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>Not b2g</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-24`<br />Simplified invoice cannot be issued to a public administration |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No ordinary document type tag</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-25`<br />Simplified invoice cannot use another document type tag |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>Simplified document type matches invoice type</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-43`<br />Simplified invoice document type must match its type: TD07 for a standard invoice, TD08 for a credit note, TD09 for a debit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>Within the simplified limit</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-26`<br />Simplified invoice total cannot exceed 400.00 EUR, unless the supplier is in regime RF19 or RF20 or it is a credit or debit note correcting a preceding invoice |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>Simplified exemption codes</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-27`<br />Simplified invoice VAT exemption must be N1, N2.1, N2.2, N3.1, N3.3, N3.4, N3.5, N3.6, N4 or N5 |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No N2.1 to an EU business</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-28`<br />Simplified invoice cannot cover operations taxed on a business in another EU country (N2.1) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No stamp duty exemption</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-41`<br />Simplified invoice cannot declare a stamp duty exemption (NB1, NB2 or NB3), which only the ordinary format carries |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No sale to a habitual exporter</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-42`<br />Simplified invoice cannot cover a sale to a habitual exporter (N3.5), whose declaration of intent only the ordinary format carries |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No retained taxes</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-29`<br />Simplified invoice cannot carry retained taxes |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>Supplier is not the customer</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-38`<br />Simplified invoice supplier and customer must be different parties |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>A party in Italy</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-39`<br />Simplified invoice supplier and customer cannot both be outside Italy |
+| `charges[*]` | <ul class="gobl-test"><li>Simplified invoice</li><li>Not (is fund contribution)</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-30`<br />Simplified invoice cannot carry fund contributions |
+| `charges[*].taxes` | <ul class="gobl-test"><li>Simplified invoice</li><li>All of [VAT]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-31`<br />Simplified invoice charge requires a VAT tax combo |
+| `discounts[*].taxes` | <ul class="gobl-test"><li>Simplified invoice</li><li>All of [VAT]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-32`<br />Simplified invoice discount requires a VAT tax combo |
+| `totals.rounding`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No rounding</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-33`<br />Simplified invoice cannot carry a rounding amount |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Simplified note</li><li>Issued after the preceding invoice</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-37`<br />Simplified invoice cannot be issued before the preceding invoice |
+| `preceding` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-40`<br />Simplified credit or debit note requires the preceding invoice it corrects |
+| `preceding` | <ul class="gobl-test"><li>Simplified note</li><li>Length between 0 and 1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-34`<br />Simplified invoice can refer to one preceding invoice only |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-35`<br />Simplified invoice preceding issue date is required |
+| `preceding[*].reason` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-36`<br />Simplified invoice preceding reason is required |
 </Accordion>
 <Accordion title="bill.Charge">
 
