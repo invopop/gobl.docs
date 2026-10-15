@@ -1,0 +1,42 @@
+---
+title: Commonwealth of The Bahamas
+---
+Value Added Tax (VAT) was introduced in The Bahamas in January 2015
+as part of a broader reform of the tax system. The broad based consumption
+tax is applied to almost all goods and services that are imported, bought
+and sold for use in The Bahamas.
+
+Businesses are identified by their Tax Identification Number, a 9 digit
+identifier.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `BS` |
+| Currency | `BSD` |
+| Base Time Zone | `America/Nassau` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `VAT` | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | Standard Rate | 10% | Applies to most taxable goods and services. |
+| `reduced` | `standard` | Reduced Rate | 5% | Applies to some qualifying essential goods. |
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [BS]</li><li>Matches ^[0-9]{9}$</li></ul> | `GOBL-BS-TAX-IDENTITY-01`<br />Tax id code must be a valid TIN |
+</Accordion>
+</AccordionGroup>

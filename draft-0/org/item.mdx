@@ -16,18 +16,21 @@ Item is used to describe a single product or service.
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Ref | `ref` | [cbc.Code](/draft-0/cbc/code) | Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property. |
 | Key | `key` | [cbc.Key](/draft-0/cbc/key) | Special key used to classify the item sometimes required by some regimes. |
-| Name | `name` | string | Brief name of the item |
+| Name | `name` | string | Brief name of the item. |
 | Identities | `identities` | array of [org.Identity](/draft-0/org/identity) | List of additional codes, IDs, or SKUs which can be used to identify the item. They should be agreed upon between supplier and customer. |
-| Attributes | `attributes` | array of [org.Attribute](/draft-0/org/attribute) | Attributes describe named features or properties of the item, such as color or size. |
+| Attributes | `attributes` | array of [org.Attribute](/draft-0/org/attribute) | Named features or properties of the item, such as color or size. |
 | Description | `description` | string | Detailed description of the item. |
 | Images | `images` | array of [org.Image](/draft-0/org/image) | Images associated with the item. |
 | Currency | `currency` | [currency.Code](/draft-0/currency/code) | Currency used for the item's price. |
-| Price | `price` | [num.Amount](/draft-0/num/amount) | Base price of a single unit to be sold. Must be either zero or positive. |
-| Alternative Prices | `alt_prices` | array of [currency.Amount](/draft-0/currency/amount) | AltPrices defines a list of prices with their currencies that may be used as an alternative to the item's base price. |
+| List Price | `list` | [num.Amount](/draft-0/num/amount) | List price before the price discount is applied. When set, the price is calculated as the list price less the discount. |
+| Price Discount | `discount` | [num.Amount](/draft-0/num/amount) | Amount deducted from the list price to determine the price. |
+| Price | `price` | [num.Amount](/draft-0/num/amount) | Price after any price discount, for a single unit or the number of units defined by per. Must be either zero or positive. |
+| Alternative Prices | `alt_prices` | array of [currency.Amount](/draft-0/currency/amount) | Prices in other currencies that may be used as an alternative to the item's price. |
+| Per Quantity | `per` | [num.Amount](/draft-0/num/amount) | Number of units the prices apply to, e.g. 100 for a price per 100 kg. Assumed to be 1 when empty. |
 | Unit | `unit` | [cbc.Key](/draft-0/cbc/key) | Unit of measure using a GOBL key. Standard UN/ECE codes may be preserved in the untdid-unit extension. |
-| Country of Origin | `origin` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | Country code of where this item was from originally. |
+| Country of Origin | `origin` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | Country code of where the item originates from. |
 | Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension code map for any additional regime specific codes that may be required. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional meta information that may be useful |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional semi-structured information that may be useful. |
 
 ## Key Values
 
@@ -137,3 +140,8 @@ Item is used to describe a single product or service.
 | `price` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-02`<br />Item price must be zero or positive |
 | `attributes` | <ul class="gobl-test"><li>Attribute keys must be unique</li></ul> | `GOBL-ORG-ITEM-03`<br />Item attributes must not contain duplicate keys |
 | `unit` | <ul class="gobl-test"><li>One of [mg, cg, g, kg, t, mm, cm, dm, m, lm, km, in, ft, lft, mm2, cm2, dm2, m2, ac, ha, mm3, cm3, dm3, m3, ml, cl, dl, l, kl, w, kw, kwh, kj, kcal, rate, yr, mon, wk, day, s, h, min, piece, item, pair, dozen, assortment, service, job, activity, trip, group, outfit, kit, basebox, pk, one, bag, box, bin, can, tub, case, tray, portion, set, roll, carton, cylinder, barrel, jerrican, carboy, demijohn, bottle, canister, pkg, pkt, bunch, bdl, blk, pallet, reel, sack, sheet, envelope, lot, unit]</li></ul> | `GOBL-ORG-ITEM-04`<br />Item unit must be valid |
+| `per` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-05`<br />Item per must be positive |
+| `list` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-06`<br />Item list price must be zero or positive |
+| `discount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-ORG-ITEM-07`<br />Item price discount must be zero or positive |
+| <small>Item</small> | <ul class="gobl-test"><li>Discount != nil</li><li>List != nil</li></ul> | `GOBL-ORG-ITEM-08`<br />Item price discount requires a list price |
+| <small>Item</small> | <ul class="gobl-test"><li>Discount != nil</li><li>Discount within list price</li></ul> | `GOBL-ORG-ITEM-09`<br />Item price discount must not exceed the list price |

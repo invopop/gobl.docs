@@ -14,14 +14,14 @@ StatusLine represents a single row inside a message, that describes the situatio
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Index | `index` | integer | Position of the row inside the message, determined automatically. |
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Status Key indicates the situation of the document |
-| Date | `date` | [cal.Date](/draft-0/cal/date) | When this row should be considered effective |
-| Document | `doc` | [org.DocumentRef](/draft-0/org/document_ref) | Document reference or details about the document that needs to be looked at. |
-| Description | `description` | string | Description includes a human readable description that explains the reason for the current status, if necessary. |
-| Reasons | `reasons` | array of [bill.Reason](/draft-0/bill/reason) | Reasons define an array of reason objects that help the recipient determine why the status was provided. |
-| Actions | `actions` | array of [bill.Action](/draft-0/bill/action) | Actions contains an array of actions that should be carried out by the recipient of the message. These are suggestions. |
-| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format focussed data |
-| Complements | `complements` | array of [schema.Object](/draft-0/schema/object) | Complements contain regime/addon specific payload data. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Indicates the situation of the referenced document. |
+| Date | `date` | [cal.Date](/draft-0/cal/date) | When this row should be considered effective. |
+| Document | `doc` | [org.DocumentRef](/draft-0/org/document_ref) | Reference to or details of the document this status applies to. |
+| Description | `description` | string | Human readable explanation of the reason for the current status, if necessary. |
+| Reasons | `reasons` | array of [bill.Reason](/draft-0/bill/reason) | Reasons that help the recipient determine why the status was provided. |
+| Actions | `actions` | array of [bill.Action](/draft-0/bill/action) | Suggested actions to be carried out by the recipient of the message. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format specific data. |
+| Complements | `complements` | array of [schema.Object](/draft-0/schema/object) | Regime or addon specific payload data. |
 | Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional data specific for the source system. |
 
 ## Key Values

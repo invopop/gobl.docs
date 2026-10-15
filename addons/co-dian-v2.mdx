@@ -4,7 +4,7 @@ title: Colombia DIAN UBL 2.X
 
 Key: `co-dian-v2`
 
-Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+Module: [github.com/invopop/gobl.co.dian](https://github.com/invopop/gobl.co.dian)
 
 Extensions to support the Colombian DIAN (Dirección de Impuestos y Aduanas Nacionales)
 specifications for electronic invoicing based on UBL 2.1.
@@ -335,6 +335,61 @@ For example:
 | `O-47` | Simple tax regime |
 | `R-99-PN` | Not applicable – Others |
 </Accordion>
+### Item Identification Standard
+
+Identifies the product-coding standard used for an invoice line's item code,
+mapped to the UBL's `StandardItemIdentification/ID@schemeID`.
+
+For example:
+
+```js
+"item": {
+	"name": "Producto",
+	"ref": "7702004003489",
+	"ext": { "co-dian-item-identification": "010" }
+}
+```
+
+<Accordion title="co-dian-item-identification">
+
+| Code | Name |
+| ---- | ---- |
+| `001` | UNSPSC |
+| `010` | GTIN |
+| `020` | Customs tariff |
+| `999` | Taxpayer's own standard |
+</Accordion>
+### Tax Scheme
+
+The tax (tributo) the party is responsible for, as defined by the DIAN for
+Colombian electronic invoicing.
+
+The DIAN limits suppliers to `01` (IVA) or `04` (INC), while customers may
+use any value; final consumers must be reported with `ZZ`. If a Colombian
+customer provides no value, GOBL will automatically set `ZZ` as the default.
+
+For example:
+
+```js
+"supplier": {
+	"name": "EXAMPLE SUPPLIER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": { "co-dian-tax-scheme": "01" }
+}
+```
+
+<Accordion title="co-dian-tax-scheme">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | VAT |
+| `04` | National consumption tax |
+| `ZA` | VAT and national consumption tax |
+| `ZZ` | Not applicable |
+</Accordion>
 
 ## Validation Rules
 
@@ -357,5 +412,15 @@ For example:
 | `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-12`<br />Preceding reason is required |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li>Ext require [co-dian-debit-code]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-11`<br />Extension 'co-dian-debit-code' is required for debit notes |
 | `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-13`<br />Preceding reason is required |
+| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-15`<br />Invoice code must be a positive integer without leading zeroes |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Missing dian-cude stamp</li><li>Ext 'co-dian-credit-code' not in [2]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-16`<br />Extension 'co-dian-credit-code' cannot be '2' (revoked) without a 'dian-cude' stamp |
+| `preceding[*].period` | <ul class="gobl-test"><li>Missing dian-cude stamp</li><li>Single calendar month</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-17`<br />Period must be within a single calendar month without a 'dian-cude' stamp |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice type in [standard, credit-note, debit-note]</li><li>Credit sale has due date</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-18`<br />Payment due date is required when the invoice is not fully paid |
+</Accordion>
+<Accordion title="bill.Line">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `quantity` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-CO-DIAN-BILL-LINE-01`<br />Must be greater than 0 |
 </Accordion>
 </AccordionGroup>

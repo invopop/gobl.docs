@@ -13,10 +13,10 @@ Reason helps the recipient of a message determine why they are receiving it.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key helps identify the reason. |
-| Description | `description` | string | Description contains a simple text that describes the reason why the original document was not processed. |
-| Faults | `faults` | array of [bill.Fault](/draft-0/bill/fault) | Faults provides more specific details about what cause the document to be rejected. |
-| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format focussed data |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Identifies the type of reason. |
+| Description | `description` | string | Text describing why the original document was not processed. |
+| Faults | `faults` | array of [bill.Fault](/draft-0/bill/fault) | More specific details about what caused the document to be rejected. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for local or format specific data. |
 
 ## Key Values
 
