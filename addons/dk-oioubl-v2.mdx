@@ -53,6 +53,7 @@ non-numeric codes (e.g. `21d`).
 | ----- | ---- | ------------------------- |
 | `tax.ext` | <ul class="gobl-test"><li>Ext 'untdid-document-type' in [325, 380, 381, 393]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-01`<br />Tax extension 'untdid-document-type' must use a document type OIOUBL supports: 325, 380 or 393 for an invoice, 381 for a credit note (F-INV011) |
 | `tax.rounding` | <ul class="gobl-test"><li>One of [currency]</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-02`<br />Amounts must be rounded per currency so the emitted lines sum to the document totals (F-INV126) |
+| `customer` | <ul class="gobl-test"><li>Has a contact identifier</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-08`<br />Customer needs a contact identifier: a person with an identity code, or an email (F-INV046 / F-INV051) |
 | `customer.endpoints` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-03`<br />Customer endpoint is required (F-INV044 / F-CRN040) |
 | `customer.endpoints` | <ul class="gobl-test"><li>Has an OIOUBL endpoint</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-06`<br />At least one customer endpoint must name a register OIOUBL accepts (F-LIB179) |
 | `supplier.endpoints` | <ul class="gobl-test"><li>Has an OIOUBL endpoint</li></ul> | `GOBL-DK-OIOUBL-BILL-INVOICE-07`<br />At least one supplier endpoint must name a register OIOUBL accepts (F-LIB179) |

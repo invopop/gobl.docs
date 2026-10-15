@@ -7,23 +7,40 @@ Key: `it-sdi-v1`
 Module: [github.com/invopop/gobl.it.sdi](https://github.com/invopop/gobl.it.sdi)
 
 Italy exchanges electronic invoices in the FatturaPA XML format through the tax
-authority's Sistema di Interscambio (SDI). This addon ensures GOBL documents carry
-the fields and extensions needed to produce valid FatturaPA files with
+authority's Sistema di Interscambio (SDI). This addon ensures a GOBL document has
+the fields and extensions needed to produce a valid FatturaPA file with
 [gobl.fatturapa](https://github.com/invopop/gobl.it.sdi).
 
 ## Customer identification
 
-An Italian customer is identified by a partita IVA (VAT number, in the party's
-`tax_id`) or a codice fiscale (an identity with the key `it-fiscal-code`), and
-routed by a codice destinatario (`it-sdi-code` inbox) or a PEC address
-(`it-sdi-pec` inbox). A customer outside Italy needs only the country in `tax_id`.
+Every customer needs a `tax_id`, and what you put in it depends on who they are. For
+an Italian business, use their partita IVA (VAT number). An Italian private
+individual has no VAT number, so give the country alone and put their codice
+fiscale in an identity with the key `it-fiscal-code`. For a customer outside Italy,
+give the country, and their VAT number if they have one.
 
-Where a party has no code of its own, FatturaPA expects a placeholder rather than
-an empty field, and the conversion supplies it: `0000000` for a customer with no
-tax code, or an Italian customer with no inbox; `XXXXXXX` as the recipient code for
-a customer outside Italy; and `OO99999999999` in place of a non-EU business's own
-tax number, since only EU VAT numbers are meaningful to SDI. Leave the field out
-rather than writing these values yourself.
+In your GOBL document you can declare two kinds of inbox to tell SDI where the
+invoice should be delivered: `it-sdi-code` for a codice destinatario, and
+`it-sdi-pec` for a PEC address, which goes in the inbox's `email` field. You can
+declare both. A FatturaPA document supports only one destination field, so the
+conversion prioritises the codice destinatario when it is available, and omits the
+PEC.
+
+FatturaPA always asks for a recipient code, and for a tax number when the party is
+a business. Some customers have neither, so the format defines a fixed value for
+each case and the conversion writes it for you.
+
+A codice destinatario names a channel accredited with SDI, so only recipients in
+Italy have one. An Italian customer who receives by PEC, or who has not given you
+a code, gets `0000000`. A customer outside Italy has none, and SDI cannot deliver
+there anyway, so they get `XXXXXXX`. The conversion takes it from the country, and
+any inbox on that customer makes no difference.
+
+The tax number follows the same idea. A party outside Italy with no VAT number
+gets `0000000`. A business outside the EU has a tax number, but SDI can only check
+EU VAT numbers, so the conversion replaces it with `OO99999999999`, on suppliers
+as much as customers. An Italian private individual needs no placeholder: their
+codice fiscale identifies them, and the conversion writes no tax number for them.
 
 ## Simplified invoices
 
@@ -175,7 +192,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `reverse-charge`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD16`
+- **Extensions:** `it-sdi-document-type:TD16`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Self-billed Import">
@@ -185,7 +202,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `import`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD17`
+- **Extensions:** `it-sdi-document-type:TD17`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Self-billed EU Goods Import">
@@ -195,7 +212,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `import`, `goods-eu`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD18`
+- **Extensions:** `it-sdi-document-type:TD18`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Self-billed Goods Import">
@@ -205,7 +222,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `import`, `goods`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD19`
+- **Extensions:** `it-sdi-document-type:TD19`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Self-billed Regularization">
@@ -215,7 +232,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `regularization`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD20`
+- **Extensions:** `it-sdi-document-type:TD20`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Self-billed invoice when ceiling exceeded">
@@ -235,7 +252,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `goods-extracted`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD22`
+- **Extensions:** `it-sdi-document-type:TD22`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Self-billed for goods extracted from VAT warehouse with VAT payment">
@@ -245,7 +262,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `goods-with-tax`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD23`
+- **Extensions:** `it-sdi-document-type:TD23`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 <Accordion title="Deferred invoice ex art.21, c.4, lett. a) DPR 633/72">
@@ -285,7 +302,7 @@ the only one that carries the declaration of intent and those codes.
 - **Tags:** `self-billed`, `san-marino-paper`
 
 **Output:**
-- **Extensions:** `it-sdi-document-type:TD28`
+- **Extensions:** `it-sdi-document-type:TD28`, `it-sdi-issuer-type:CC`
 </Accordion>
 
 ## Extensions
@@ -513,6 +530,33 @@ Pattern: `^([0-9]{1,2}\.[0-9]{2}|100\.00)$`
 | `TC21` | National pension and welfare board for psychologists (ENPAP) |
 | `TC22` | National Social Security Institute (INPS) |
 </Accordion>
+### Issuer Type
+
+Says who issued the invoice when it was not the supplier. FatturaPA
+requires this in the `SoggettoEmittente` field whenever someone other
+than the supplier issues the document (article 21 of DPR 633/1972).
+
+When you name a third party as the ordering `issuer`, because that party
+issues the invoice on the supplier's behalf, the addon sets `TZ`.
+
+When your tags select a document the customer issues, the addon sets
+`CC` and replaces any value you gave: TD16 to TD20, TD22, TD23 and TD28.
+On these the customer sends the document to SDI and the supplier block
+names the seller. TD21 and TD27 stay unset, because there the issuer is
+both supplier and customer. For any other invoice the customer issued,
+set `CC` yourself.
+
+A `CC` invoice cannot also name an ordering `issuer`, because FatturaPA
+keeps `TerzoIntermediarioOSoggettoEmittente` for a third party acting for
+the supplier.
+
+<Accordion title="it-sdi-issuer-type">
+
+| Code | Name |
+| ---- | ---- |
+| `CC` | Issued by Customer |
+| `TZ` | Issued by Third Party |
+</Accordion>
 ### Liquidation State
 
 Indicates whether the company is in liquidation, used in the
@@ -567,13 +611,20 @@ Notifica Esito.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-22`<br />Invoice must be in EUR or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice number fits</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-44`<br />Invoice number (series and code) must be 20 ASCII characters or fewer |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Payment instructions check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-21`<br />Payment instructions are required when terms with due dates are present |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Issuer identification check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-66`<br />Issuer tax ID code or fiscal code is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Issuer name check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-68`<br />Issuer name or people is required |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Customer issuer names no third party</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-49`<br />Ordering issuer must be removed: the customer issued this invoice (issuer type CC, always set for TD16-TD20, TD22, TD23, TD28) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Ordering issuer is not the customer</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-63`<br />Ordering issuer must not be the customer: remove it and set the issuer type to CC |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Supplier is the customer</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-65`<br />Supplier and customer must be the same party for document types TD21 and TD27 |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-01`<br />Tax is required |
 | `tax.ext` | <ul class="gobl-test"><li>Ext require [it-sdi-format, it-sdi-document-type]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-02`<br />Tax requires 'it-sdi-document-type' and 'it-sdi-format' extensions |
 | `supplier.name` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-03`<br />Supplier name must use Latin-1 characters |
 | `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-04`<br />Supplier addresses are required |
 | `supplier.ext` | <ul class="gobl-test"><li>Ext require [it-sdi-fiscal-regime]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-05`<br />Supplier requires 'it-sdi-fiscal-regime' extension |
 | `supplier.registration.entry` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-06`<br />Supplier registration entry is required when registration is present |
+| `supplier.registration.entry` | <ul class="gobl-test"><li>Matches ^[[:ascii:]]{0,20}$</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-47`<br />Supplier registration entry must be 20 ASCII characters or fewer |
 | `supplier.registration.office` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-07`<br />Supplier registration office is required when registration is present |
 | `supplier.telephones[*].num` | <ul class="gobl-test"><li>Supplier is Italian</li><li>Length between 5 and 12</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-08`<br />Italian telephone number length must be between 5 and 12 |
 | `customer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-09`<br />Customer is required |
@@ -582,6 +633,8 @@ Notifica Esito.
 | <small>Invoice</small> | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Customer name check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-13`<br />Customer name is required |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Customer people check</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-14`<br />Customer people are required when name is empty |
 | `customer.addresses` | <ul class="gobl-test"><li>Not (simplified invoice)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-12`<br />Customer addresses are required |
+| `preceding[*]` | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Document reference fits</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-45`<br />Preceding document number and item reference must be 20 ASCII characters or fewer |
+| `ordering` | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Ordering references fit</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-46`<br />Ordering document numbers and item references must be 20 ASCII characters or fewer |
 | `customer.tax_id.code` | <ul class="gobl-test"><li>Italian customer without fiscal code</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-15`<br />Customer tax ID code is required for Italian parties without fiscal code |
 | `customer.identities` | <ul class="gobl-test"><li>Italian customer without tax ID code</li><li>Has fiscal code</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-16`<br />Customer requires identity with key 'it-fiscal-code' |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-17`<br />Line must have VAT tax category |
@@ -607,8 +660,18 @@ Notifica Esito.
 | <small>Invoice</small> | <ul class="gobl-test"><li>Simplified note</li><li>Issued after the preceding invoice</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-37`<br />Simplified invoice cannot be issued before the preceding invoice |
 | `preceding` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-40`<br />Simplified credit or debit note requires the preceding invoice it corrects |
 | `preceding` | <ul class="gobl-test"><li>Simplified note</li><li>Length between 0 and 1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-34`<br />Simplified invoice can refer to one preceding invoice only |
+| `preceding[*]` | <ul class="gobl-test"><li>Simplified note</li><li>Document number fits</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-48`<br />Simplified invoice preceding number must be 20 ASCII characters or fewer |
 | `preceding[*].issue_date` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-35`<br />Simplified invoice preceding issue date is required |
 | `preceding[*].reason` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-36`<br />Simplified invoice preceding reason is required |
+| `ordering.issuer` | <ul class="gobl-test"><li>Person full name</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-53`<br />Issuer person needs a given name and a surname when the issuer has no name |
+| `ordering.issuer` | <ul class="gobl-test"><li>Person latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-54`<br />Issuer person name must use Latin-1 characters |
+| `ordering.issuer` | <ul class="gobl-test"><li>Person title</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-55`<br />Issuer person title must be 2 to 10 printable ASCII characters |
+| `ordering.issuer` | <ul class="gobl-test"><li>Name length</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-56`<br />Issuer name must be at most 80 characters |
+| `ordering.issuer` | <ul class="gobl-test"><li>Person name length</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-57`<br />Issuer person given name and surname must be at most 60 characters each |
+| `ordering.issuer.name` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-67`<br />Issuer name must use Latin-1 characters |
+| `ordering.issuer.tax_id.code` | <ul class="gobl-test"><li>Rune length between 0 and 28</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-64`<br />Issuer tax ID code must be at most 28 characters |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'it-sdi-issuer-type' in [CC, TZ]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-69`<br />Tax extension 'it-sdi-issuer-type' must have a valid code |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Third-party issuer named</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-70`<br />Issuer is required when the issuer type is TZ |
 </Accordion>
 <Accordion title="bill.Charge">
 
@@ -617,6 +680,7 @@ Notifica Esito.
 | `percent` | <ul class="gobl-test"><li>Is fund contribution</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-01`<br />Fund contribution charge requires a percentage |
 | `ext` | <ul class="gobl-test"><li>Is fund contribution</li><li>Ext require [it-sdi-fund-type]</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-02`<br />Fund contribution charge requires 'it-sdi-fund-type' extension |
 | `taxes` | <ul class="gobl-test"><li>Is fund contribution</li><li>All of [VAT]</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-03`<br />Fund contribution charge must have VAT tax category |
+| `code` | <ul class="gobl-test"><li>Is fund contribution</li><li>Matches ^[[:ascii:]]{0,20}$</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-04`<br />Fund contribution charge code must be 20 ASCII characters or fewer |
 </Accordion>
 <Accordion title="bill.Status">
 

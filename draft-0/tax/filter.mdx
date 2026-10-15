@@ -1,0 +1,25 @@
+---
+title: Filter
+comment: 
+---
+
+Filter selects rate totals from a document's tax totals by category and, optionally, key and extensions.
+
+## Schema ID
+
+`https://gobl.org/draft-0/tax/filter`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Category | `cat` | [cbc.Code](/draft-0/cbc/code) | Tax category code the rates must belong to. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Tax key the rates must have, if set. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions the rates must include, if set. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `cat` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-FILTER-01`<br />Tax filter category is required |

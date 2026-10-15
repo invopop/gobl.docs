@@ -13,8 +13,8 @@ KeyDef defines a key that can be used inside a tax category.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Key identifies this rate within the system |
-| Name | `name` | [i18n.String](/draft-0/i18n/string) | Human name of the rate set |
-| Description | `desc` | [i18n.String](/draft-0/i18n/string) | Useful description of the rate. |
-| No Percent | `no_percent` | boolean | NoPercent when true implies that the rate when used in a tax Combo should not define a percent value. |
+| Key | `key` | [cbc.Key](/draft-0/cbc/key) | Unique identifier for the key within the category. |
+| Name | `name` | [i18n.String](/draft-0/i18n/string) | Human readable name of the key. |
+| Description | `desc` | [i18n.String](/draft-0/i18n/string) | Useful description of the key. |
+| No Percent | `no_percent` | boolean | When true, a tax combo using this key should not define a percent value. |
 

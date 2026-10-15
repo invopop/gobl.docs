@@ -252,6 +252,19 @@ Specific month or month range for the global invoice.
 
 Pattern: `\d{4}`
 </Accordion>
+### Cancellation Reason
+
+Reason for cancelling a CFDI at the SAT. Reason 01 requires the UUID of the CFDI that substitutes it.
+
+<Accordion title="mx-cfdi-cancel-reason">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Issued with errors, with relation |
+| `02` | Issued with errors, without relation |
+| `03` | The operation was not carried out |
+| `04` | Nominative operation included in a global invoice |
+</Accordion>
 
 ## Validation Rules
 
@@ -322,6 +335,12 @@ Pattern: `\d{4}`
 | `lines[*].tax` | <ul class="gobl-test"><li>Retained rates with percent</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-27`<br />Retained tax rates must have a percent |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-rel-type]</li><li>Ext 'mx-cfdi-rel-type' in [04]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-29`<br />Preceding row's 'mx-cfdi-rel-type' must be '04' |
 | `preceding[*].stamps` | <ul class="gobl-test"><li>Stamps have sat-uuid</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-30`<br />Preceding row is missing 'sat-uuid' stamp |
+</Accordion>
+<Accordion title="bill.Status">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `lines[*].ext` | <ul class="gobl-test"><li>Ext 'mx-cfdi-cancel-reason' in [01, 02, 03, 04]</li></ul> | `GOBL-MX-CFDI-BILL-STATUS-01`<br />Line 'mx-cfdi-cancel-reason' extension is not valid |
 </Accordion>
 <Accordion title="pay.Instructions">
 
