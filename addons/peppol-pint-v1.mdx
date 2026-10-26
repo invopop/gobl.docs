@@ -1,0 +1,64 @@
+---
+title: Peppol PINT
+---
+
+Key: `peppol-pint-v1`
+
+Module: [github.com/invopop/gobl.peppol](https://github.com/invopop/gobl.peppol)
+
+Support for the Peppol International (PINT) billing model, the common
+layer shared by the country-specific PINT specifications.
+
+PINT builds on EN 16931 but, unlike the EU CIUS, recognises indirect
+tax schemes beyond VAT. This addon re-maps the
+UNTDID 5305 tax category code from the GOBL tax key so that, for
+example, standard-rated GST is reported as "S" (standard rated) instead
+of the EN 16931 default of "O" (outside scope).
+
+Jurisdiction-specific requirements are applied according to the
+document's tax regime: Australian and New Zealand documents are also
+validated against the PINT A-NZ rules.
+
+## Sources
+- [Peppol PINT specifications](https://docs.peppol.eu/poac/pint/)
+- [Peppol PINT A-NZ Billing specification](https://docs.peppol.eu/poac/aunz/pint-aunz/bis/)
+- [PINT A-NZ jurisdiction-aligned rules](https://docs.peppol.eu/poac/aunz/pint-aunz/trn-invoice/rule/PINT-jurisdiction-aligned-rules/)
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Has identifier</li></ul> | `GOBL-PEPPOL-PINT-BILL-INVOICE-01`<br />Invoice supplier must have a tax ID or identity (IBR-CO-26) |
+| `supplier.endpoints` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PEPPOL-PINT-BILL-INVOICE-02`<br />Invoice supplier electronic address is required (IBR-081) |
+| `customer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PEPPOL-PINT-BILL-INVOICE-03`<br />Invoice customer is required (IBR-007) |
+| `customer.endpoints` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PEPPOL-PINT-BILL-INVOICE-04`<br />Invoice customer electronic address is required (IBR-080) |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Ext 'untdid-tax-category' in [AE, E, G, K, O, S, Z]</li></ul> | `GOBL-PEPPOL-PINT-TAX-COMBO-01`<br />Invoice line tax category code must be a recognised PINT UNTDID 5305 code |
+| `ext` | <ul class="gobl-test"><li>Context: regime in [AU,NZ]</li><li>Ext 'untdid-tax-category' in [E, S, Z, G, O]</li></ul> | `GOBL-PEPPOL-PINT-TAX-COMBO-02`<br />Tax category code must be an A-NZ UNCL5305 code: E, S, Z, G or O (ALIGNED-IBRP-CL-01-AUNZ) |
+</Accordion>
+<Accordion title="tax.CategoryTotal">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>CategoryTotal</small> | <ul class="gobl-test"><li>Context: regime in [AU,NZ]</li><li>Outside scope tax is exclusive</li></ul> | `GOBL-PEPPOL-PINT-TAX-CATEGORYTOTAL-01`<br />GST breakdown not subject to tax cannot be combined with other tax categories (ALIGNED-IBRP-O-11-AUNZ) |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `credit_transfer` | <ul class="gobl-test"><li>Payment means is credit transfer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PEPPOL-PINT-PAY-INSTRUCTIONS-01`<br />Invoice credit transfer instructions must include a payment account identifier (ALIGNED-IBRP-018) |
+</Accordion>
+<Accordion title="pay.CreditTransfer">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>CreditTransfer</small> | <ul class="gobl-test"><li>Context: regime in [AU,NZ]</li><li>Has IBAN or account number</li></ul> | `GOBL-PEPPOL-PINT-PAY-CREDITTRANSFER-01`<br />Credit transfer information must include a payment account identifier (ALIGNED-IBRP-016) |
+</Accordion>
+</AccordionGroup>

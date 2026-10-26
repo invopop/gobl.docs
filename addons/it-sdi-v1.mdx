@@ -659,7 +659,7 @@ Notifica Esito.
 | `totals.rounding`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Simplified invoice</li><li>No rounding</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-33`<br />Simplified invoice cannot carry a rounding amount |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Simplified note</li><li>Issued after the preceding invoice</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-37`<br />Simplified invoice cannot be issued before the preceding invoice |
 | `preceding` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-40`<br />Simplified credit or debit note requires the preceding invoice it corrects |
-| `preceding` | <ul class="gobl-test"><li>Simplified note</li><li>Length between 0 and 1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-34`<br />Simplified invoice can refer to one preceding invoice only |
+| `preceding` | <ul class="gobl-test"><li>Simplified note</li><li>Length at most 1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-34`<br />Simplified invoice can refer to one preceding invoice only |
 | `preceding[*]` | <ul class="gobl-test"><li>Simplified note</li><li>Document number fits</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-48`<br />Simplified invoice preceding number must be 20 ASCII characters or fewer |
 | `preceding[*].issue_date` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-35`<br />Simplified invoice preceding issue date is required |
 | `preceding[*].reason` | <ul class="gobl-test"><li>Simplified note</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-36`<br />Simplified invoice preceding reason is required |
@@ -669,7 +669,7 @@ Notifica Esito.
 | `ordering.issuer` | <ul class="gobl-test"><li>Name length</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-56`<br />Issuer name must be at most 80 characters |
 | `ordering.issuer` | <ul class="gobl-test"><li>Person name length</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-57`<br />Issuer person given name and surname must be at most 60 characters each |
 | `ordering.issuer.name` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-67`<br />Issuer name must use Latin-1 characters |
-| `ordering.issuer.tax_id.code` | <ul class="gobl-test"><li>Rune length between 0 and 28</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-64`<br />Issuer tax ID code must be at most 28 characters |
+| `ordering.issuer.tax_id.code` | <ul class="gobl-test"><li>Rune length at most 28</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-64`<br />Issuer tax ID code must be at most 28 characters |
 | `tax.ext` | <ul class="gobl-test"><li>Ext 'it-sdi-issuer-type' in [CC, TZ]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-69`<br />Tax extension 'it-sdi-issuer-type' must have a valid code |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Not (simplified invoice)</li><li>Third-party issuer named</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-70`<br />Issuer is required when the issuer type is TZ |
 </Accordion>
@@ -711,7 +711,7 @@ Notifica Esito.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `type` | <ul class="gobl-test"><li>Length between 0 and 10</li></ul> | `GOBL-IT-SDI-ORG-ATTRIBUTE-01`<br />Attribute type cannot be longer than 10 characters (TipoDato) |
+| `type` | <ul class="gobl-test"><li>Length at most 10</li></ul> | `GOBL-IT-SDI-ORG-ATTRIBUTE-01`<br />Attribute type cannot be longer than 10 characters (TipoDato) |
 </Accordion>
 <Accordion title="tax.Combo">
 

@@ -4,7 +4,7 @@ title: Spain FacturaE
 
 Key: `es-facturae-v3`
 
-Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+Module: [github.com/invopop/gobl.es.facturae](https://github.com/invopop/gobl.es.facturae)
 
 ## Correction Definitions
 
@@ -179,18 +179,24 @@ FacturaE requires a specific and single code that explains why the previous invo
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-07`<br />Invoice must be in EUR or provide exchange rate for conversion |
-| `customer.tax_id.code` | <ul class="gobl-test"><li>Code in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-01`<br />Customer tax ID code is required for Spanish customers |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-02`<br />Tax object is required with ext document type and invoice classes |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-facturae-doc-type, es-facturae-invoice-class]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-03`<br />Tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-04`<br />Preceding document reference is required for credit-note, corrective, debit-note invoices |
-| `preceding[*].issue_date` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-05`<br />Preceding document issue date is required |
-| `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li>Ext require [es-facturae-correction]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-06`<br />Preceding document ext require 'es-facturae-correction' extension |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-07`<br />Invoice must be in EUR or provide exchange rate for conversion (FacturaE: InvoiceIssueData/ExchangeRateDetails; Art. 10.1 RD 1496/2003) |
+| `supplier` | <ul class="gobl-test"><li>Address country</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-09`<br />Supplier address country is required (FacturaE: SellerParty/LegalEntity|Individual/OverseasAddress/CountryCode) |
+| `supplier` | <ul class="gobl-test"><li>Individual person</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-10`<br />Supplier person is required for individuals (FacturaE: SellerParty/Individual) |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-08`<br />Supplier address is required (FacturaE: SellerParty/LegalEntity|Individual/AddressInSpain|OverseasAddress) |
+| `customer` | <ul class="gobl-test"><li>Tax ID present</li><li>Address country</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-12`<br />Customer address country is required (FacturaE: BuyerParty/LegalEntity|Individual/OverseasAddress/CountryCode) |
+| `customer` | <ul class="gobl-test"><li>Tax ID present</li><li>Individual person</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-13`<br />Customer person is required for individuals (FacturaE: BuyerParty/Individual) |
+| `customer.addresses` | <ul class="gobl-test"><li>Tax ID present</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-11`<br />Customer address is required (FacturaE: BuyerParty/LegalEntity|Individual/AddressInSpain|OverseasAddress) |
+| `customer.tax_id.code` | <ul class="gobl-test"><li>Code in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-01`<br />Customer tax ID code is required for Spanish customers (FacturaE: BuyerParty/TaxIdentification/TaxIdentificationNumber) |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-02`<br />Tax object is required with ext document type and invoice classes (FacturaE: InvoiceHeader/InvoiceDocumentType, InvoiceHeader/InvoiceClass) |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-facturae-doc-type, es-facturae-invoice-class]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-03`<br />Tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions (FacturaE: InvoiceHeader/InvoiceDocumentType, InvoiceHeader/InvoiceClass) |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-04`<br />Preceding document reference is required for credit-note, corrective, debit-note invoices (FacturaE: InvoiceHeader/Corrective) |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-05`<br />Preceding document issue date is required (FacturaE: Corrective/TaxPeriod) |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li>Ext require [es-facturae-correction]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-06`<br />Preceding document ext require 'es-facturae-correction' extension (FacturaE: Corrective/ReasonCode) |
 </Accordion>
 <Accordion title="pay.DueDate">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Not zero</li></ul> | `GOBL-ES-FACTURAE-PAY-DUEDATE-01`<br />Amount is required |
+| `amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Not zero</li></ul> | `GOBL-ES-FACTURAE-PAY-DUEDATE-01`<br />Amount is required (FacturaE: PaymentDetails/Installment/InstallmentAmount) |
 </Accordion>
 </AccordionGroup>

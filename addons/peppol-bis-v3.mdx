@@ -1,0 +1,61 @@
+---
+title: Peppol BIS Billing 3.0
+---
+
+Key: `peppol-bis-v3`
+
+Module: [github.com/invopop/gobl.peppol](https://github.com/invopop/gobl.peppol)
+
+Support for the Peppol BIS Billing 3.0 profile, the pan-European Peppol
+specification built on EN 16931.
+
+This addon layers the Peppol-specific business rules
+(PEPPOL-EN16931-*) on top of EN 16931. Rules already guaranteed by
+EN 16931 or GOBL's calculation engine are not duplicated here, and
+country-specific CIUS rules are handled by dedicated jurisdiction
+addons.
+
+## Sources
+- [Peppol BIS Billing 3.0](https://docs.peppol.eu/poacc/billing/3.0/)
+- [Peppol BIS Billing 3.0 UBL business rules](https://docs.peppol.eu/poacc/billing/3.0/rules/ubl-peppol/)
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Has buyer reference or purchase order</li></ul> | `GOBL-PEPPOL-BIS-BILL-INVOICE-01`<br />Invoice must have a buyer reference or a purchase order reference (PEPPOL-EN16931-R003) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Line periods within invoice period</li></ul> | `GOBL-PEPPOL-BIS-BILL-INVOICE-03`<br />Invoice line period must fall within the invoice period (PEPPOL-EN16931-R110, PEPPOL-EN16931-R111) |
+| `notes` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PEPPOL-BIS-BILL-INVOICE-02`<br />Invoice must not have more than one document-level note (PEPPOL-EN16931-R002) |
+| `ordering.projects` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PEPPOL-BIS-BILL-INVOICE-04`<br />Invoice must not have more than one project reference (PEPPOL-EN16931-R080) |
+| `supplier` | <ul class="gobl-test"><li>Has Peppol endpoint</li></ul> | `GOBL-PEPPOL-BIS-BILL-INVOICE-05`<br />Invoice supplier electronic address is required (PEPPOL-EN16931-R020) |
+| `customer` | <ul class="gobl-test"><li>Has Peppol endpoint</li></ul> | `GOBL-PEPPOL-BIS-BILL-INVOICE-06`<br />Invoice customer electronic address is required (PEPPOL-EN16931-R010) |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>VATEX matches tax category</li></ul> | `GOBL-PEPPOL-BIS-TAX-COMBO-01`<br />Tax category code must match the VATEX exemption reason code (PEPPOL-EN16931-P0104..P0111) |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `direct_debit` | <ul class="gobl-test"><li>Direct debit</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PEPPOL-BIS-PAY-INSTRUCTIONS-01`<br />Direct debit details are required (PEPPOL-EN16931-R061) |
+| `direct_debit.ref` | <ul class="gobl-test"><li>Direct debit</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PEPPOL-BIS-PAY-INSTRUCTIONS-02`<br />Direct debit mandate reference is required (PEPPOL-EN16931-R061) |
+</Accordion>
+<Accordion title="org.Endpoint">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `uri` | <ul class="gobl-test"><li>Matches ^iso6523-actorid-upis::0088:</li><li>GS1 check digit</li></ul> | `GOBL-PEPPOL-BIS-ORG-ENDPOINT-01`<br />GLN electronic address must have a valid GS1 format (PEPPOL-COMMON-R040) |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>GLN identity</li><li>Matches ^\d{13}$</li><li>GS1 check digit</li></ul> | `GOBL-PEPPOL-BIS-ORG-IDENTITY-01`<br />GLN identifier must have a valid GS1 format (PEPPOL-COMMON-R040) |
+</Accordion>
+</AccordionGroup>

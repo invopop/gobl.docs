@@ -358,19 +358,19 @@ Reason for cancelling a CFDI at the SAT. Reason 01 requires the UUID of the CFDI
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `notes` | <ul class="gobl-test"><li>Length between 0 and 1000</li></ul> | `GOBL-MX-CFDI-PAY-TERMS-01`<br />Notes length must be no more than 1000 |
+| `notes` | <ul class="gobl-test"><li>Length at most 1000</li></ul> | `GOBL-MX-CFDI-PAY-TERMS-01`<br />Notes length must be no more than 1000 |
 </Accordion>
 <Accordion title="addon.FoodVouchers">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `employer_registration` | <ul class="gobl-test"><li>Length between 0 and 20</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-01`<br />Employer registration must be no more than 20 characters |
+| `employer_registration` | <ul class="gobl-test"><li>Length at most 20</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-01`<br />Employer registration must be no more than 20 characters |
 | `account_number` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-02`<br />Account number is required |
-| `account_number` | <ul class="gobl-test"><li>Length between 0 and 20</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-03`<br />Account number must be no more than 20 characters |
+| `account_number` | <ul class="gobl-test"><li>Length at most 20</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-03`<br />Account number must be no more than 20 characters |
 | `total` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-04`<br />Total is required |
 | `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-05`<br />Lines are required |
 | `lines[*].e_wallet_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-06`<br />Line e-wallet ID is required |
-| `lines[*].e_wallet_id` | <ul class="gobl-test"><li>Length between 0 and 20</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-07`<br />Line e-wallet ID must be no more than 20 characters |
+| `lines[*].e_wallet_id` | <ul class="gobl-test"><li>Length at most 20</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-07`<br />Line e-wallet ID must be no more than 20 characters |
 | `lines[*].issue_date_time` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-08`<br />Line issue date and time is required |
 | `lines[*].employee` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-09`<br />Line employee is required |
 | `lines[*].employee.tax_code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-10`<br />Employee tax code (RFC) is required |
@@ -378,7 +378,7 @@ Reason for cancelling a CFDI at the SAT. Reason 01 requires the UUID of the CFDI
 | `lines[*].employee.curp` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-12`<br />Employee CURP is required |
 | `lines[*].employee.curp` | <ul class="gobl-test"><li>Matches ^[A-Z][AEIOUX][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][MH][A-Z]{2}[BCDFGHJKLMNÑPQRSTVWXYZ]{3}[0-9A-Z][0-9]$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-13`<br />Employee CURP format must be valid |
 | `lines[*].employee.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-14`<br />Employee name is required |
-| `lines[*].employee.name` | <ul class="gobl-test"><li>Length between 0 and 100</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-15`<br />Employee name must be no more than 100 characters |
+| `lines[*].employee.name` | <ul class="gobl-test"><li>Length at most 100</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-15`<br />Employee name must be no more than 100 characters |
 | `lines[*].employee.social_security` | <ul class="gobl-test"><li>Matches ^[0-9]{11}$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-16`<br />Employee social security number format is invalid |
 | `lines[*].amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-17`<br />Line amount is required |
 </Accordion>

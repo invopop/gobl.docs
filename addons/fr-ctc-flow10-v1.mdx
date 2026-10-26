@@ -66,7 +66,7 @@ subject to e-reporting to the DGFiP via the PPF.
 </Accordion>
 
 ## Extensions
-### B2C Transaction Category
+### France CTC: B2C Transaction Category
 
 Classifies a B2C transaction for French e-reporting to the PPF
 (G1.68). Required on Flow 10 B2C invoices.
@@ -88,7 +88,7 @@ Classifies a B2C transaction for French e-reporting to the PPF
 | `TNT1` | Not subject to French VAT |
 | `TMA1` | VAT-on-margin regime |
 </Accordion>
-### Billing Mode
+### France CTC: Billing Mode
 
 Code used to describe the billing framework of the invoice. The
 billing mode indicates the nature of goods/services and the payment
@@ -101,9 +101,12 @@ Code prefixes indicate the invoice nature:
   to each other)
 
 The numeric suffix indicates the payment type (1=deposit,
-2=already paid, 4=final after down payment, 5=subcontractor,
-6=co-contractor, 7=e-reporting, 8=multi-vendor,
-9=bi-directional).
+2=already paid, 3=subcontracting with direct payment,
+4=final after down payment, 5=subcontractor, 6=co-contractor,
+7=e-reporting, 8=multi-vendor, 9=bi-directional).
+
+S3 is public-sector only: a subcontractor bills the public buyer
+directly under the paiement direct arrangement.
 
 <Accordion title="fr-ctc-billing-mode">
 
@@ -117,6 +120,7 @@ The numeric suffix indicates the payment type (1=deposit,
 | `B9` | Goods - Bi-directional invoice |
 | `S1` | Services - Standard invoice |
 | `S2` | Services - Already paid invoice |
+| `S3` | Services - Subcontracting payment request with direct payment |
 | `S4` | Services - Final invoice (after down payment) |
 | `S5` | Services - Subcontractor invoice |
 | `S6` | Services - Co-contractor invoice |
@@ -145,7 +149,7 @@ The numeric suffix indicates the payment type (1=deposit,
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-05`<br />Invoice supplier is required on B2C invoices |
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li>Party has SIREN</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-06`<br />Invoice supplier must have a SIREN identity (ISO/IEC 6523 scheme 0002) on a B2C invoice |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext 'untdid-document-type' in [380, 386, 384, 381, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-08`<br />Invoice tax ext untdid-document-type must be one of the Flow 10 permitted UNTDID 1001 codes |
-| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext require [fr-ctc-billing-mode]</li><li>Ext 'fr-ctc-billing-mode' in [B1, B2, B4, B7, B8, B9, S1, S2, S4, S5, S6, S7, S8, S9, M1, M2, M4, M8, M9]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required and must be a valid billing-mode code (G1.02) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Ext require [fr-ctc-billing-mode]</li><li>Ext 'fr-ctc-billing-mode' in [B1, B2, B4, B7, B8, B9, S1, S2, S3, S4, S5, S6, S7, S8, S9, M1, M2, M4, M8, M9]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-09`<br />Invoice tax ext fr-ctc-billing-mode is required and must be a valid billing-mode code (G1.02) |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice tax ext fr-ctc-billing-mode in [B4, S4, M4]</li><li>Ext 'untdid-document-type' not in [386, 500, 503]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-10`<br />Invoice tax ext untdid-document-type must not be an advance-payment code (386, 500, 503) when billing mode is final-after-advance (B4, S4, M4) (G1.60) |
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-11`<br />Invoice supplier is required for Flow 10 B2B invoices (G2.19) |
 | `supplier` | <ul class="gobl-test"><li>Invoice is B2B (legal customer)</li><li>Party has allowed legal scheme</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-12`<br />Invoice supplier must declare a legal identity with an allowed ICD 6523 scheme (0002, 0223, 0227, 0228 or 0229) (G2.19) |
@@ -179,7 +183,7 @@ The numeric suffix indicates the payment type (1=deposit,
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li>Scheme 0227</li><li>Length between 0 and 18</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-01`<br />HORS_UE (0227) identity must be no more than 18 characters (G1.73) |
+| `code` | <ul class="gobl-test"><li>Scheme 0227</li><li>Length at most 18</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-01`<br />HORS_UE (0227) identity must be no more than 18 characters (G1.73) |
 | `code` | <ul class="gobl-test"><li>Scheme 0227</li><li>Matches ^[A-Z0-9]+$</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-02`<br />HORS_UE (0227) identity must be uppercase alphanumeric (G1.73) |
 | `code` | <ul class="gobl-test"><li>Scheme 0228</li><li>Length between 9 and 10</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-03`<br />RIDET (0228) identity must be 9 or 10 characters (G1.73) |
 | `code` | <ul class="gobl-test"><li>Scheme 0229</li><li>Length between 9 and 9</li></ul> | `GOBL-FR-CTC-FLOW10-ORG-IDENTITY-04`<br />TAHITI (0229) identity must be 9 characters (G1.73) |

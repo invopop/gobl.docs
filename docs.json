@@ -137,6 +137,8 @@
                   "addons/it-sdi-v1",
                   "addons/it-ticket-v1",
                   "addons/mx-cfdi-v4",
+                  "addons/peppol-bis-v3",
+                  "addons/peppol-pint-v1",
                   "addons/pl-favat-v3",
                   "addons/pt-saft-v1",
                   "addons/sa-zatca-v1"
@@ -210,7 +212,8 @@
                   "draft-0/cbc/key",
                   "draft-0/cbc/meta",
                   "draft-0/cbc/source",
-                  "draft-0/cbc/uri"
+                  "draft-0/cbc/uri",
+                  "draft-0/cbc/usage"
                 ]
               },
               {

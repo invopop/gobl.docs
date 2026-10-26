@@ -18,6 +18,7 @@ Definition defines properties of a key, code, or other value that has a specific
 | Name | `name` | [i18n.String](/draft-0/i18n/string) | Short name for the key. |
 | Description | `desc` | [i18n.String](/draft-0/i18n/string) | More details about when the key should be used. |
 | Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Any additional details associated with the key. |
+| Usage | `usage` | [cbc.Usage](/draft-0/cbc/usage) | Context in which the definition may be used, such as the addons or regimes that offer it, and where it can be placed inside a document. |
 | Sources | `sources` | array of [cbc.Source](/draft-0/cbc/source) | Where the information was sourced from and where it can be reviewed for updates in the future. |
 | Values | `values` | array of [cbc.Definition](/draft-0/cbc/definition) | Possible values associated with the key, which are themselves either keys or codes depending on the context. |
 | Pattern | `pattern` | string | Regular expression used to validate the value instead of a fixed value from the code or key definitions. |
