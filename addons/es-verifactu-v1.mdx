@@ -4,7 +4,7 @@ title: Spain VERI*FACTU V1
 
 Key: `es-verifactu-v1`
 
-Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+Module: [github.com/invopop/gobl.es.verifactu](https://github.com/invopop/gobl.es.verifactu)
 
 ## Sources
 - [VERI*FACTU error response code list](https://prewww2.aeat.es/static_files/common/internet/dep/aplicaciones/es/aeat/tikeV1.0/cont/ws/errores.properties)
@@ -314,6 +314,31 @@ extension will be set to `T`.
 | `T` | Issued by Third Party |
 | `D` | Issued by Customer |
 </Accordion>
+### Event Type Code
+
+Identifies the NO VERI*FACTU event being reported by a `bill.Status`
+line, whose key must be `other`. Core GOBL status line keys describe
+the situation of a business document, so the event type is carried
+here instead.
+
+Maps to the `TipoEvento` field of a `RegistroEvento`, list L2E.
+
+<Accordion title="es-verifactu-event-type">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Invoicing System Startup |
+| `02` | Invoicing System Shutdown |
+| `03` | Invoice Record Anomaly Detection Launch |
+| `04` | Invoice Record Anomaly Detection |
+| `05` | Event Record Anomaly Detection Launch |
+| `06` | Event Record Anomaly Detection |
+| `07` | Backup Restoration |
+| `08` | Invoice Record Export |
+| `09` | Event Record Export |
+| `10` | Event Summary |
+| `90` | Other |
+</Accordion>
 
 ## Validation Rules
 
@@ -337,7 +362,7 @@ extension will be set to `T`.
 | `tax.ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-verifactu-correction-type]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-13`<br />Correction type extension is required |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-verifactu-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-11`<br />Doc type extension for standard invoices must be F1, F2, or F3 |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-verifactu-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-12`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
-| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-14`<br />General note text must be 500 characters or less |
+| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length at most 500</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-14`<br />General note text must be 500 characters or less |
 | `lines[*].taxes` | <ul class="gobl-test"><li>One of [VAT, IGIC, IPSI]</li></ul> | `GOBL-ES-VERIFACTU-BILL-INVOICE-15`<br />Must include at least one of VAT, IGIC, or IPSI |
 </Accordion>
 <Accordion title="tax.Combo">
@@ -348,5 +373,17 @@ extension will be set to `T`.
 | `ext` | <ul class="gobl-test"><li>Verifactu vat/igic</li><li>Ext allow one of [es-verifactu-op-class, es-verifactu-exempt]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-03`<br />Cannot use both 'es-verifactu-op-class' and 'es-verifactu-exempt' at the same time |
 | `ext` | <ul class="gobl-test"><li>Ext 'es-verifactu-regime' in [01]</li><li>Ext 'es-verifactu-exempt' not in [E2, E3]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-02`<br />Exempt codes E2 and E3 not allowed with 'es-verifactu-regime' 01 |
 | `ext` | <ul class="gobl-test"><li>Has percent</li><li>Ext require [es-verifactu-op-class]</li></ul> | `GOBL-ES-VERIFACTU-TAX-COMBO-04`<br />Extension 'es-verifactu-op-class' is required for taxed operations |
+</Accordion>
+<Accordion title="bill.Status">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Length between 1 and 1</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-01`<br />Status must have exactly one line |
+| `lines[*].key` | <ul class="gobl-test"><li>One of [other]</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-02`<br />Line key must be 'other' |
+| `lines[*].ext` | <ul class="gobl-test"><li>Ext require [es-verifactu-event-type]</li><li>Ext 'es-verifactu-event-type' in [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 90]</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-03`<br />A supported event type is required |
+| `lines[*]` | <ul class="gobl-test"><li>Requires complement</li><li>Correct complement schema</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-05`<br />Complement must correspond to the event type |
+| `lines[*].complements` | <ul class="gobl-test"><li>Requires complement</li><li class="gobl-test-present">Present</li><li>Length between 1 and 1</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-04`<br />Complement is required for this event type |
+| `lines[*].description` | <ul class="gobl-test"><li>Anomaly detection event</li><li>Length at most 100</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-06`<br />Description must be 100 characters or less |
+| `notes[*].text` | <ul class="gobl-test"><li>Other note</li><li>Length at most 100</li></ul> | `GOBL-ES-VERIFACTU-BILL-STATUS-07`<br />Other note text must be 100 characters or less |
 </Accordion>
 </AccordionGroup>

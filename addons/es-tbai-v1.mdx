@@ -18,7 +18,7 @@ options. See the [Extensions](#extensions) section for possible values.
 - `es-tbai-correction`
 
 ## Extensions
-### TicketBAI Region Code
+### TicketBAI: Region Code
 
 Region codes are used by TicketBAI to differentiate between the different
 subdivisions of the Basque Country. This is used to determine the correct
@@ -32,7 +32,7 @@ API endpoint to use when submitting documents.
 | `BI` | Bizkaia |
 | `SS` | Gipuzkoa |
 </Accordion>
-### TicketBAI Product Key
+### TicketBAI: Product Key
 
 Product keys are used by TicketBAI to differentiate between -exported- goods
 and services. It may be useful to classify all products regardless of wether
@@ -52,7 +52,7 @@ If no product key is provided, the default is "services".
 | `services` | Provision of services |
 | `resale` | Resale of goods without modification by vendor in the simplified regime |
 </Accordion>
-### TicketBAI Exemption code
+### TicketBAI: Exemption Code
 
 Codes used by TicketBAI for both "exempt", "not-subject", and reverse
 charge transactions. In the TicketBAI format these are separated,
@@ -85,7 +85,7 @@ The follow mappings will be made automatically by GOBL during normalization.
 | `IE` | Not subject in the TAI due to localization rules, but foreign tax, IPS/IGIC or VAT from another EU member state is passed on |
 | `S2` | Subject and not exempt: with reverse charge |
 </Accordion>
-### TicketBAI Rectification Type Code
+### TicketBAI: Rectification Type Code
 
 Corrected or rectified invoices that need to be sent in the TicketBAI format
 require a specific type code to be defined alongside the preceding invoice
@@ -101,7 +101,7 @@ data.
 | `R4` | Rectified invoice: Other |
 | `R5` | Rectified invoice: simplified invoices |
 </Accordion>
-### TicketBAI VAT Regime Key
+### TicketBAI: VAT Regime Key
 
 Identifies the VAT regime or operation classification applied to the
 transaction. Maps to the `ClaveRegimenIvaOpTrascendencia` field, with
@@ -141,7 +141,7 @@ is provided, GOBL will try to assign a code from the following contexts:
 | `52` | Operations under the simplified VAT regime |
 | `53` | Operations carried out by or for entities without a permanent establishment |
 </Accordion>
-### Activity Code (Bizkaia)
+### TicketBAI: Activity Code (Bizkaia)
 
 Economic activity code (epígrafe) for individual issuers submitting through
 Bizkaia's LROE Modelo 140 register. Not required for organisations, who
@@ -151,7 +151,7 @@ file through Modelo 240.
 
 Pattern: `^\d{1,7}$`
 </Accordion>
-### Identity Type Code
+### TicketBAI: Identity Type Code
 
 Identity code used to identify the type of identity document used by the customer
 when there is no tax identifier available. Maps to the `IDType` value under
@@ -215,7 +215,7 @@ Will be normalized to:
 | `05` | Residential Certificate |
 | `06` | Other Identity Document |
 </Accordion>
-### TicketBAI Simplified Invoice Flag
+### TicketBAI: Simplified Invoice Flag
 
 Flag that maps to the `FacturaSimplificada` field in TicketBAI
 documents. Set automatically to `S` by GOBL during normalization

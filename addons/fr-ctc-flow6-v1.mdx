@@ -16,7 +16,7 @@ and the Portail Public de Facturation (PPF).
 - [External Specifications](https://www.impots.gouv.fr/specifications-externes-b2b)
 
 ## Extensions
-### Party Role Code
+### France CTC: Party Role Code
 
 UNCL 3035 role code carried as the CDAR RoleCode (MDT-158)
 on each populated party of any Flow 6 lifecycle message
@@ -44,7 +44,7 @@ and leaves the rest for the caller to set explicitly.
 | `II` | Invoicer |
 | `IV` | Invoicee |
 </Accordion>
-### CDAR Reason Code
+### France CTC: CDAR Reason Code
 
 Exact CDAR ReasonCode pinned on a bill.Reason under a
 bill.Status — Status-only (bill.Payment has no
@@ -105,7 +105,7 @@ bucket's other allowed codes.
 | `IRR_TAILLE_F` | File size |
 | `IRR_ANTIVIRUS` | Antivirus |
 </Accordion>
-### CDAR Process Condition Code
+### France CTC: CDAR Process Condition Code
 
 CDAR ProcessConditionCode (MDT-9) identifying the
 lifecycle event reported by the Flow 6 message.
@@ -143,7 +143,7 @@ code (e.g. when round-tripping a parsed CDV).
 | `212` | Cashed in |
 | `213` | Semantically rejected |
 </Accordion>
-### Flow 6 Condition Code
+### France CTC: Flow 6 Condition Code
 
 CDAR CharacteristicTypeCode (MDT-207). Unified
 vocabulary; the rules narrow the allow-list per
@@ -183,7 +183,7 @@ document type:
 | `MPA` | Amount paid |
 | `RAP` | Amount remaining |
 </Accordion>
-### Flow 6 Action Code
+### France CTC: Flow 6 Action Code
 
 CDAR RequestedActionCode (MDT-121) carried on a
 bill.Action under a bill.Status line. Tells the issuer
@@ -214,15 +214,14 @@ round-tripping a parsed CDV.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
+| <small>Status</small> | <ul class="gobl-test"><li>A party has an endpoint unless WK/DFH</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-28`<br />Status supplier or customer must have an iso6523-actorid-upis endpoint when its role is not WK or DFH (BR-FR-CDV-08) |
 | `type` | <ul class="gobl-test"><li>One of [response, update]</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-01`<br />Status type must be one of: response, update |
 | `ext` | <ul class="gobl-test"><li>Ext 'fr-ctc-flow6-status' in [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 213]</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-02`<br />Status ext fr-ctc-flow6-status must be a Status-applicable ProcessConditionCode (200-210 or 213); codes 211, 212 belong on bill.Payment |
 | `code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-26`<br />Status code is required as the CDV document identifier (ram:ID; BR-FR-CDV-03, MDT-4) |
 | `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-03`<br />Status supplier is required (BR-FR-CDV-13) |
-| `supplier` | <ul class="gobl-test"><li>Supplier has inbox unless WK/DFH</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-04`<br />Status supplier must have an inbox when its role is not WK or DFH (BR-FR-CDV-08) |
 | `supplier.ext` | <ul class="gobl-test"><li>Ext require [fr-ctc-flow6-role]</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-05`<br />Status supplier ext fr-ctc-flow6-role is required (BR-FR-CDV-CL-03) |
 | `supplier.identities` | <ul class="gobl-test"><li>Has a ext [iso-scheme-id] in [0002]</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-06`<br />Status supplier must have an identity with ISO/IEC 6523 scheme 0002 (SIREN) |
 | `customer` | <ul class="gobl-test"><li>Status is business-issued</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-07`<br />Status customer is required (BR-FR-CDV-CL-04) |
-| `customer` | <ul class="gobl-test"><li>Customer has inbox unless WK/DFH</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-08`<br />Status customer must have an inbox when its role is not WK or DFH (BR-FR-CDV-08) |
 | `customer.ext` | <ul class="gobl-test"><li>Ext require [fr-ctc-flow6-role]</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-09`<br />Status customer ext fr-ctc-flow6-role is required (BR-FR-CDV-CL-04) |
 | `customer.identities` | <ul class="gobl-test"><li>Has a ext [iso-scheme-id] in [0002, 0009, 0223, 0224, 0226, 0227, 0228, 0229, 0238]</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-10`<br />Status customer must have at least one identity with an iso-scheme-id in the Flow 6 allow-list; STC 0231 is a Flow 2 invoice concept |
 | `lines` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Length between 1 and 1</li></ul> | `GOBL-FR-CTC-FLOW6-BILL-STATUS-11`<br />Status lines must contain exactly one entry |
@@ -288,8 +287,8 @@ round-tripping a parsed CDV.
 | `identities` | <ul class="gobl-test"><li>Unique iso-scheme-id</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-03`<br />Party identities must not duplicate iso-scheme-id values (BR-FR-CO-10) |
 | `identities[*].ext` | <ul class="gobl-test"><li>Ext require [iso-scheme-id]</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-04`<br />Party identity ext iso-scheme-id is required (BR-FR-CO-10) |
 | `identities[*].ext` | <ul class="gobl-test"><li>Ext 'iso-scheme-id' in [0002, 0009, 0223, 0224, 0226, 0227, 0228, 0229, 0238]</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-05`<br />Party identity ext iso-scheme-id must be one of the Flow 6 allowed schemes (BR-FR-CO-10) |
-| `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Length between 0 and 100</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-06`<br />Party identity code for private-id (0224) must not exceed 100 characters (BR-FR-26) |
-| `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Matches ^[A-Za-z0-9+\-_/]+$</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-07`<br />Party identity code for private-id (0224) must contain only alphanumeric characters and +, -, _, / (BR-FR-24) |
+| `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Length at most 100</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-06`<br />Party identity code for private-id (0224) must not exceed 100 characters (BR-FR-26) |
+| `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Matches ^[A-Za-z0-9+\-_.]+$</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-07`<br />Party identity code for private-id (0224) must contain only alphanumeric characters and +, -, _, . (BR-FR-24) |
 | `inboxes[*]` | <ul class="gobl-test"><li>Valid inbox</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-08`<br />Party inbox code format is invalid |
 </Accordion>
 </AccordionGroup>

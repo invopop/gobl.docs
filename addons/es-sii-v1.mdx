@@ -64,7 +64,7 @@ options. See the [Extensions](#extensions) section for possible values.
 </Accordion>
 
 ## Extensions
-### Invoice Type
+### SII: Invoice Type
 
 Code used to identify the type of invoice being sent or received. This will be determined
 automatically by GOBL during normalization according to the scenario definitions.
@@ -93,7 +93,7 @@ L2_RECI (received invoices) lists.
 | `AJ` | Profit margin adjustment |
 | `LC` | Customs - Complementary settlement |
 </Accordion>
-### Corrective Invoice Type
+### SII: Corrective Invoice Type
 
 Correction type code used to identify the type of correction being made.
 
@@ -114,7 +114,7 @@ Maps to the `TipoRectificativa` field. Values correspond to the L5 list.
 | `S` | Substitution |
 | `I` | Differences |
 </Accordion>
-### Exemption Reason
+### SII: Exemption Reason
 
 Exemption code used to explain why the operation is exempt from taxes.
 
@@ -141,7 +141,7 @@ Note: This extension is **mutually exclusive** with `es-sii-outside-scope`.
 | `E5` | Exempt pursuant to Art. 25 (delivery of goods destined to another Member State). |
 | `E6` | Exempt pursuant to other reasons |
 </Accordion>
-### Type of Operation Outside Scope
+### SII: Type of Operation Outside Scope
 
 Type of operation not subject to VAT.
 
@@ -169,7 +169,7 @@ Note: This extension is **mutually exclusive** with `es-sii-exempt`.
 | `other` | Outside scope - Articles 7, 14, others |
 | `location` | Outside scope - Due to location rules |
 </Accordion>
-### Special Regime or Relevance Key
+### SII: Special Regime or Relevance Key
 
 Identify the regime applied to the operation.
 
@@ -206,7 +206,7 @@ Maps to the field `ClaveRegimenEspecialOTrascendencia`. Values correspond to the
 | `16` | First half of 2017 and other invoices prior to inclusion in the SII |
 | `17` | Operation covered by one of the regimes provided for in Chapter XI of Title IX (OSS and IOSS) |
 </Accordion>
-### Identification Type
+### SII: Identification Type
 
 Identity code used to identify the type of identity document used by the customer.
 
@@ -277,7 +277,7 @@ Maps to the field `IDOtro\IDType`. Values correspond to the L4 list.
 | `06` | Other Identity Document |
 | `07` | Not registered in census |
 </Accordion>
-### Simplified Invoice Art. 7.2 and 7.3, RD 1619/2012
+### SII: Simplified Invoice Art. 7.2 and 7.3, RD 1619/2012
 
 This extension covers a specific use-case when the customer specifically requests that the
 invoice includes their fiscal details, but they are not registered for tax.
@@ -294,7 +294,7 @@ Maps to the `FacturaSimplificadaArticulos7.2_7.3` field. Values correspond to th
 | `S` | Yes |
 | `N` | No |
 </Accordion>
-### Issued by Third Party or Recipient
+### SII: Issued by Third Party or Recipient
 
 Indicates whether the invoice is issued by a third party or by the customer themselves.
 
@@ -314,7 +314,7 @@ Maps to the field `EmitidaPorTercerosODestinatario`. Values correspond to the L1
 | `S` | Yes |
 | `N` | No |
 </Accordion>
-### Product Type
+### SII: Product Type
 
 Product type code used to differentiate between goods and services for the purpose of
 reporting breakdowns in the SII format.
@@ -356,7 +356,7 @@ Doesn't map directly to any field. Used internally to structure the breakdown da
 | `tax.ext` | <ul class="gobl-test"><li>Ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5]</li><li>Ext require [es-sii-correction-type]</li></ul> | `GOBL-ES-SII-BILL-INVOICE-09`<br />Tax extension 'es-sii-correction-type' is required |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice type in [standard]</li><li>Ext 'es-sii-doc-type' in [F1, F2, F3]</li></ul> | `GOBL-ES-SII-BILL-INVOICE-10`<br />Tax extension 'es-sii-doc-type' for standard invoices must be F1, F2, or F3 |
 | `tax.ext` | <ul class="gobl-test"><li>Invoice type in [corrective, credit-note, debit-note]</li><li>Ext 'es-sii-doc-type' in [R1, R2, R3, R4, R5]</li></ul> | `GOBL-ES-SII-BILL-INVOICE-11`<br />Doc type extension for corrective invoices must be R1, R2, R3, R4, or R5 |
-| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length between 0 and 500</li></ul> | `GOBL-ES-SII-BILL-INVOICE-12`<br />General note text must be 500 characters or less |
+| `notes[*].text` | <ul class="gobl-test"><li>General note</li><li>Length at most 500</li></ul> | `GOBL-ES-SII-BILL-INVOICE-12`<br />General note text must be 500 characters or less |
 | `lines` | <ul class="gobl-test"><li>Consistent product</li></ul> | `GOBL-ES-SII-BILL-INVOICE-13`<br />'es-sii-product' must be present in all tax combos or none |
 | `lines` | <ul class="gobl-test"><li>Same regime</li></ul> | `GOBL-ES-SII-BILL-INVOICE-14`<br />'es-sii-regime' must be the same in all tax combos |
 </Accordion>

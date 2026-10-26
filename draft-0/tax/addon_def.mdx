@@ -19,6 +19,7 @@ AddonDef is an interface that defines the methods that a tax add-on must impleme
 | Description | `description` | [i18n.String](/draft-0/i18n/string) | Description of the add-on. |
 | Sources | `sources` | array of [cbc.Source](/draft-0/cbc/source) | Sources of the data used to define the add-on. |
 | Extensions | `extensions` | array of [cbc.Definition](/draft-0/cbc/definition) | Extensions associated with the add-on. |
+| Stamps | `stamps` | array of [cbc.Definition](/draft-0/cbc/definition) | Stamps that may be included in envelope headers by the agency or intermediary the add-on targets, registered in the head package. |
 | Tags | `tags` | array of [tax.TagSet](/draft-0/tax/tag_set) | Tag sets that define what can be assigned to each document schema. |
 | Scenarios | `scenarios` | array of [tax.ScenarioSet](/draft-0/tax/scenario_set) | Applied to documents after normalization and before validation to ensure that format specific extensions have been added. |
 | Identities | `identities` | array of [cbc.Definition](/draft-0/cbc/definition) | Identities that are specific for the add-on and may be validated against or used during conversion processes. |

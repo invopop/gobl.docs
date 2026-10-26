@@ -25,6 +25,7 @@ RegimeDef defines the holding structure for the definitions of taxes inside a co
 | Calculator Rounding Rule | `calculator_rounding_rule` | [cbc.Key](/draft-0/cbc/key) | Rounding rule to use when calculating the tax totals. See the RoundingRule constants for more details. If not provided, the default is RoundingRulePrecise. |
 | Tags | `tags` | array of [tax.TagSet](/draft-0/tax/tag_set) | Tags that can be applied at the document level to identify additional considerations. |
 | Extensions | `extensions` | array of [cbc.Definition](/draft-0/cbc/definition) | Keys that can be used for extended or extra data specific to the regime that cannot be easily determined from other GOBL structures. Typically used to define local codes for suppliers, customers, products, or tax rates. |
+| Stamps | `stamps` | array of [cbc.Definition](/draft-0/cbc/definition) | Stamps that may be included in envelope headers by the regime's tax agency or intermediaries, registered in the head package. |
 | Identities | `identities` | array of [cbc.Definition](/draft-0/cbc/definition) | Identities used in addition to regular tax identities and specific for the regime that may be validated against. |
 | Payment Means Keys | `payment_means_keys` | array of [cbc.Definition](/draft-0/cbc/definition) | Payment means keys specific to the regime that extend the base set. |
 | Inbox Keys | `inbox_keys` | array of [cbc.Definition](/draft-0/cbc/definition) | Inbox keys specific to the regime that identify where a document should be forwarded to. |
@@ -41,4 +42,4 @@ RegimeDef defines the holding structure for the definitions of taxes inside a co
 | `name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-02`<br />Name is required |
 | `time_zone` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-TAX-REGIMEDEF-03`<br />Time zone is required |
 | `time_zone` | <ul class="gobl-test"><li>Valid time zone</li></ul> | `GOBL-TAX-REGIMEDEF-04`<br />Time zone must be valid |
-| `categories` | <ul class="gobl-test"><li>Length between 1 and 0</li></ul> | `GOBL-TAX-REGIMEDEF-05`<br />At least one category is required |
+| `categories` | <ul class="gobl-test"><li>Length at least 1</li></ul> | `GOBL-TAX-REGIMEDEF-05`<br />At least one category is required |

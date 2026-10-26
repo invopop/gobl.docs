@@ -157,7 +157,7 @@ generate the myDATA XML reporting files.
 </Accordion>
 
 ## Extensions
-### VAT rate
+### myDATA: VAT rate
 
 Greece has three VAT rates: standard, reduced and super-reduced. Each of these rates are reduced by
 30% on the islands of Leros, Lesbos, Kos, Samos and Chios. The tax authority identifies each rate
@@ -217,7 +217,7 @@ Please, note that GOBL will automatically set the proper `gr-mydata-vat-rate` co
 | `7` | Without VAT |
 | `8` | Records without VAT (e.g. Payroll, Amortisations) |
 </Accordion>
-### Invoice type
+### myDATA: Invoice type
 
 The Greek tax authority (IAPR) requires an invoice type code to be specified as part of the invoice. GOBL will
 automatically set the correct code based on the invoice's `type` and `$tags` values.
@@ -321,7 +321,7 @@ And this is how you'll get the same result by using the GOBL type and tags:
 | `17.5` | Other Expense Adjustment/Regularisation Entries – Accounting Base |
 | `17.6` | Other Expense Adjustment/Regularisation Entries – Tax Base |
 </Accordion>
-### Payment means
+### myDATA: Payment means
 
 The IAPR requires invoices to specify a payment method code. In a GOBL invoice,
 the payment means is set using the `key` field in the payment instructions.
@@ -360,7 +360,7 @@ For example:
 | `6` | Web Banking |
 | `7` | POS / e-POS |
 </Accordion>
-### VAT exemption cause
+### myDATA: VAT exemption cause
 
 Greece invoices can be exempt of VAT for different causes and the tax authority
 require a specific cause code to be provided.
@@ -435,7 +435,7 @@ professional to ensure you're choosing the correct code.
 | `30` | Without VAT - Article 47c of the VAT Code (OSS EU scheme) |
 | `31` | Excluding VAT - Article 47d of the VAT Code (IOSS) |
 </Accordion>
-### Income Classification Category
+### myDATA: Income Classification Category
 
 Invoices reported to the Greek tax authority via myDATA can optionally include information
 about the income classification of each invoice item.
@@ -481,7 +481,7 @@ must be reported without the `gr-mydata-income-type` extension.
 | `category1_10` | Other Income Adjustment/Regularisation Entries (+)/(-) |
 | `category1_95` | Other Income-related Information (+)/(-) |
 </Accordion>
-### Income Classification Type
+### myDATA: Income Classification Type
 
 See the Income Classification Category for more information.
 
@@ -524,7 +524,7 @@ See the Income Classification Category for more information.
 | `E3_598_001` | Sales of goods belonging to excise duty |
 | `E3_598_003` | Sales on behalf of farmers through an agricultural cooperative e.t.c. |
 </Accordion>
-### Tax type
+### myDATA: Tax type
 
 Greek invoices may contain charges or allowances for taxes and fees different from VAT. The
 `gr-mydata-tax-type` extension at charge level must be used to specify the tax type.
@@ -564,7 +564,7 @@ For example (manual):
 | `4` | Stamp Duty |
 | `5` | Deduction |
 </Accordion>
-### Fee category
+### myDATA: Fee category
 
 Greek invoices may contain charges for different types of fees. In GOBL, you must use
 the `gr-mydata-fee` extension at charge level to specify the specific fee category
@@ -612,7 +612,7 @@ For example:
 | `21` | Fee on gross revenues of casinos |
 | `22` | Other fees on gross revenues |
 </Accordion>
-### Other taxes category
+### myDATA: Other taxes category
 
 Greek invoices may contain charges for different taxes other than VAT. The
 `gr-mydata-other-tax` extension at charge level must be used to specify the specific
@@ -668,7 +668,7 @@ For example:
 | `29` | Short-term rental properties detached houses over 80 sq.m. 4.00€ |
 | `30` | Self-catering accommodation – tourist furnished villas (villas) 4.00€ |
 </Accordion>
-### Stamp duty coefficient category
+### myDATA: Stamp duty coefficient category
 
 Greek invoices may contain charges for stamp duty. The `gr-mydata-stamp-duty` extension
 at charge level must be used to specify the specific stamp duty coefficient category
@@ -698,7 +698,7 @@ For example:
 | `3` | Coefficient 3.6% |
 | `4` | Other cases |
 </Accordion>
-### Branch number
+### myDATA: Branch number
 
 The branch (establishment) number of the party, as declared in the
 AADE taxpayer registry. Set the `gr-mydata-branch` extension on a

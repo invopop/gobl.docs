@@ -684,7 +684,7 @@ Example:
 | `payment.advances[*].amount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-16`<br />Must be no less than 0 |
 | `totals.payable`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-09`<br />Must be no less than 0 |
 | `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-10`<br />Must be equal to 0 |
-| `preceding` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |
+| `preceding` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-13`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
 </Accordion>
 <Accordion title="bill.Payment">
@@ -714,7 +714,7 @@ Example:
 | `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-05`<br />Delivery supplier tax ID code is required |
 | `supplier.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-10`<br />Delivery supplier post code must be in the 'NNNN-NNN' format |
 | `despatch_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-06`<br />Delivery despatch date is required |
-| `preceding` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-07`<br />Delivery preceding must have at most one entry |
+| `preceding` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-07`<br />Delivery preceding must have at most one entry |
 | `preceding[*].series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-08`<br />Delivery preceding series is required |
 | `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-09`<br />Delivery preceding code is required |
 | `customer.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-11`<br />Delivery customer post code must be in the 'NNNN-NNN' format |
@@ -767,7 +767,7 @@ Example:
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `text` | <ul class="gobl-test"><li>Withholding note</li><li>Length between 0 and 60</li></ul> | `GOBL-PT-SAFT-TAX-NOTE-02`<br />The length must be at most 60 |
+| `text` | <ul class="gobl-test"><li>Withholding note</li><li>Length at most 60</li></ul> | `GOBL-PT-SAFT-TAX-NOTE-02`<br />The length must be at most 60 |
 </Accordion>
 <Accordion title="bill.Line">
 
@@ -788,6 +788,6 @@ Example:
 | `document.issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-02`<br />Cannot be blank |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-03`<br />Cannot be blank |
 | `tax` | <ul class="gobl-test"><li>Has VAT category</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-04`<br />Missing category VAT |
-| `tax.categories[*].rates` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-05`<br />Only one rate allowed per line |
+| `tax.categories[*].rates` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-05`<br />Only one rate allowed per line |
 </Accordion>
 </AccordionGroup>
