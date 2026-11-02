@@ -16,7 +16,7 @@ require (
 	github.com/beevik/etree v1.6.0 // indirect
 	github.com/buger/jsonparser v1.1.2 // indirect
 	github.com/expr-lang/expr v1.17.8 // indirect
-	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
+	github.com/go-jose/go-jose/v4 v4.1.6 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/invopop/gobl.ar.arca v0.0.3 // indirect
 	github.com/invopop/gobl.br.nfe v0.0.4 // indirect
