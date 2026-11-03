@@ -1,0 +1,61 @@
+---
+title: Slovakia
+---
+Slovakia's tax system is administered by the Financial Administration of the
+Slovak Republic (Finančná správa Slovenskej republiky). As an EU member state,
+Slovakia follows the EU VAT Directive.
+
+VAT (daň z pridanej hodnoty, DPH) applies at a standard rate, with reduced rates
+for certain goods and services such as foodstuffs, medicines, medical devices,
+books, and accommodation. Exports and intra-EU supplies to VAT-registered buyers
+are zero-rated.
+
+Businesses registered for VAT are identified by their IČ DPH, formed by the
+prefix SK followed by ten digits (e.g. SK2020273893).
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `SK` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Bratislava` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `VAT` | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | Standard Rate | 23.0% |  |
+| `reduced` | `standard` | Reduced Rate | 19.0% | Non-basic foodstuffs, electricity and certain catering services. |
+| `super-reduced` | `standard` | Super-reduced Rate | 5.0% | Basic foodstuffs, medicines, medical devices, books, and accommodation. |
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [SK]</li><li>Matches ^[1-9]\d{9}$</li></ul> | `GOBL-SK-TAX-IDENTITY-01`<br />Tax identity code for SK must be 10 digits starting with 1-9 |
+| `code` | <ul class="gobl-test"><li>Code in [SK]</li><li>Checksum</li></ul> | `GOBL-SK-TAX-IDENTITY-02`<br />Tax identity code for SK failed the checksum: the 10 digit number must be divisible by 11 |
+</Accordion>
+</AccordionGroup>

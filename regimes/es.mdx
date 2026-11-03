@@ -1,25 +1,46 @@
 ---
 title: Spain
 ---
+Spain's tax system is administered by the Agencia Tributaria (AEAT). As an
+EU member state, Spain follows the EU VAT Directive with locally adapted rates.
+
+IVA (Impuesto sobre el Valor Añadido) applies at general, reduced, and
+super-reduced rates. The Canary Islands use IGIC (Impuesto General Indirecto
+Canario) instead of IVA, while Ceuta and Melilla use IPSI (Impuesto sobre la
+Producción, los Servicios y la Importación).
+
+Businesses are identified by their NIF (Número de Identificación Fiscal) or
+CIF for companies. IRPF (Impuesto sobre la Renta de las Personas Físicas)
+retention taxes apply to freelancer invoices at varying rates.
+
+According to Real Decreto 1619/2012, only rectified (rectificativa) invoices
+are recognized in Spanish law. GOBL maps corrective invoices to "rectificación
+modelo íntegro" (complete replacement) and credit notes to "rectificación por
+diferencias" (correction by differences, with quantities inverted during
+conversion). The FacturaE format is used for B2G e-invoicing, with TicketBAI
+required in the Basque Country, VeriFactu being rolled out nationally, and the
+SII (Suministro Inmediato de Información) system providing near-real-time
+reporting of invoicing data to the AEAT.
 
 ## Base Details
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>ES</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Madrid</code> |
+| Tax Country Code | `ES` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Madrid` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
-| <code>IGIC</code> | IGIC | Canary Island General Indirect Tax |
-| <code>IPSI</code> | IPSI | Production, Services, and Import Tax |
-| <code>IRPF</code> | IRPF | Personal income tax. |
+| `VAT` | VAT | Value Added Tax |
+| `IGIC` | IGIC | Canary Island General Indirect Tax |
+| `IPSI` | IPSI | Production, Services, and Import Tax |
+| `IRPF` | IRPF | Personal income tax. |
+| `IRNR` | IRNR | Non-residents income tax |
 
-### VAT Rates	
+### VAT Rates
 
 Known in Spanish as "Impuesto sobre el Valor Añadido" (IVA), is a consumption tax
 applied to the purchase of goods and services. It's a tax on the value added at
@@ -27,33 +48,48 @@ each stage of production or distribution. Spain, as a member of the European Uni
 follows the EU's VAT Directive, but with specific rates and exemptions tailored
 to its local needs.
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>zero</code> | Zero Rate | 0.0% |  |
-| <code>standard</code> | Standard Rate | 21.0% |  |
-| <code>standard+eqs</code> | Standard Rate + Equivalence Surcharge | 21.0% (+5.2%) |  |
-| <code>reduced</code> | Reduced Rate | 10.0% |  |
-| <code>reduced+eqs</code> | Reduced Rate + Equivalence Surcharge | 10.0% (+1.4%) |  |
-| <code>super-reduced</code> | Super-Reduced Rate | 4.0% |  |
-| <code>super-reduced+eqs</code> | Super-Reduced Rate + Equivalence Surcharge | 4.0% (+0.5%) |  |
-| <code>exempt</code> | Exempt |  |  |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | Standard Rate | 21.0% |  |
+| `general+eqs` | `standard` | Standard Rate + Equivalence Surcharge | 21.0% (+5.2%) |  |
+| `reduced` | `standard` | Reduced Rate | 10.0% |  |
+| `reduced+eqs` | `standard` | Reduced Rate + Equivalence Surcharge | 10.0% (+1.4%) |  |
+| `super-reduced` | `standard` | Super-Reduced Rate | 4.0% |  |
+| `super-reduced+eqs` | `standard` | Super-Reduced Rate + Equivalence Surcharge | 4.0% (+0.5%) |  |
 
 ### IGIC Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>zero</code> | Zero Rate | 0.0% |  |
-| <code>standard</code> | Standard Rate | 7.0% |  |
-| <code>reduced</code> | Reduced Rate | 3.0% |  |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 7.0% |  |
+| `reduced` | `standard` | Reduced Rate | 3.0% |  |
 
 ### IRPF Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>pro</code> | Professional Rate | 15.0% |  |
-| <code>pro-start</code> | Professional Starting Rate | 7.0% |  |
-| <code>capital</code> | Rental or Interest Capital | 19.0% |  |
-| <code>modules</code> | Modules Rate | 1.0% |  |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `pro` |  | Professional Rate | 15.0% |  |
+| `pro-start` |  | Professional Starting Rate | 7.0% |  |
+| `capital` |  | Rental or Interest Capital | 19.0% |  |
+| `modules` |  | Modules Rate | 1.0% |  |
+
+### IRNR Rates
+
+Personal or corporate income tax levied on income obtained in Spanish
+territory by individuals and entities that are not resident in Spain.
+Regulated by Real Decreto Legislativo 5/2004 (TRLIRNR).
+
+This category covers income obtained without a permanent establishment
+(sin establecimiento permanente), where the Spanish payer is generally
+obliged to withhold the tax at source on each payment. Income obtained
+through a permanent establishment is taxed under the rules of the
+Corporate Income Tax (Impuesto sobre Sociedades) and is out of scope
+at the invoice level.
+
+Applicable rates depend on the type of income and on whether the
+recipient is resident in another EU/EEA Member State with an effective
+exchange of tax information, in which case reduced rates apply.
+No rates defined.
 
 ## Correction Definitions
 
@@ -63,6 +99,155 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>corrective</code>
-- <code>debit-note</code>
+- `credit-note`
+- `corrective`
+- `debit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Inversión del sujeto pasivo. (reverse-charge)
+</Accordion>
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Inversión del sujeto pasivo. (reverse-charge)
+</Accordion>
+
+<Accordion title="#simplified-scheme">
+
+**Filters:**
+- **Tags:** `simplified-scheme`
+
+**Output:**
+- **Note:** Factura expedida por contribuyente en régimen simplificado. (simplified-scheme)
+</Accordion>
+
+<Accordion title="#self-billed">
+
+**Filters:**
+- **Tags:** `self-billed`
+
+**Output:**
+- **Note:** Facturación por el destinatario. (self-billed)
+</Accordion>
+
+<Accordion title="#travel-agency">
+
+**Filters:**
+- **Tags:** `travel-agency`
+
+**Output:**
+- **Note:** Régimen especial de las agencias de viajes. (travel-agency)
+</Accordion>
+
+<Accordion title="#travel-agency">
+
+**Filters:**
+- **Tags:** `travel-agency`
+
+**Output:**
+- **Note:** Régimen especial de las agencias de viajes. (travel-agency)
+</Accordion>
+
+<Accordion title="#second-hand-goods">
+
+**Filters:**
+- **Tags:** `second-hand-goods`
+
+**Output:**
+- **Note:** Régimen especial de los bienes usados. (second-hand-goods)
+</Accordion>
+
+<Accordion title="#second-hand-goods">
+
+**Filters:**
+- **Tags:** `second-hand-goods`
+
+**Output:**
+- **Note:** Régimen especial de los bienes usados. (second-hand-goods)
+</Accordion>
+
+<Accordion title="#art">
+
+**Filters:**
+- **Tags:** `art`
+
+**Output:**
+- **Note:** Régimen especial de los objetos de arte. (art)
+</Accordion>
+
+<Accordion title="#art">
+
+**Filters:**
+- **Tags:** `art`
+
+**Output:**
+- **Note:** Régimen especial de los objetos de arte. (art)
+</Accordion>
+
+<Accordion title="#antiques">
+
+**Filters:**
+- **Tags:** `antiques`
+
+**Output:**
+- **Note:** Régimen especial de las antigüedades y objetos de colección. (antiques)
+</Accordion>
+
+<Accordion title="#antiques">
+
+**Filters:**
+- **Tags:** `antiques`
+
+**Output:**
+- **Note:** Régimen especial de las antigüedades y objetos de colección. (antiques)
+</Accordion>
+
+<Accordion title="#cash-basis">
+
+**Filters:**
+- **Tags:** `cash-basis`
+
+**Output:**
+- **Note:** Régimen especial del criterio de caja. (cash-basis)
+</Accordion>
+
+<Accordion title="#cash-basis">
+
+**Filters:**
+- **Tags:** `cash-basis`
+
+**Output:**
+- **Note:** Régimen especial del criterio de caja. (cash-basis)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-01`<br />Invoice supplier in Spain is required |
+| `supplier.tax_id` | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-02`<br />Invoice supplier tax ID in Spain is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li>Context: regime in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-BILL-INVOICE-03`<br />Invoice supplier tax ID code in Spain is required |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [ES]</li><li>Valid</li></ul> | `GOBL-ES-TAX-IDENTITY-01`<br />Invalid Spanish VAT identity code format or checksum |
+</Accordion>
+</AccordionGroup>

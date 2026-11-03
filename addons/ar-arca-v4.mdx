@@ -1,0 +1,406 @@
+---
+title: Argentina ARCA V4
+---
+
+Key: `ar-arca-v4`
+
+Module: [github.com/invopop/gobl.ar.arca](https://github.com/invopop/gobl.ar.arca)
+
+Support for the Argentina ARCA v4 standard for electronic invoicing.
+
+## Sources
+- [Argentina ARCA V4](https://www.afip.gob.ar/ws/documentacion/manuales/manual-desarrollador-ARCA-COMPG-v4-0.pdf)
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Extension Keys
+
+One or all of the following extensions may be required as part of the correction
+options. See the [Extensions](#extensions) section for possible values.
+- `ar-arca-doc-type`
+
+## Extensions
+### Argentina ARCA Document Type
+
+Code used to identify the type of document being issued.
+
+This can always be set directly. If not provided, GOBL will automatically determine it during
+normalization based on the following rules:
+
+Type C (Simplified Tax Scheme / Monotributo supplier): If the invoice has the
+`monotax` tag set, the document type will be `11` (Invoice C), `13` (Credit Note C),
+or `12` (Debit Note C).
+
+Type A (B2B with VAT-registered customers): If the customer's `ar-arca-vat-status` extension
+is one of `1` (Registered Company), `6` (Monotributo Responsible), `13` (Social Monotributista),
+or `16` (Promoted Independent Worker), the document type will be `1` (Invoice A), `3` (Credit
+Note A), or `2` (Debit Note A).
+
+Type B (B2C or other scenarios): For all other cases (final consumers, foreign customers,
+exempt entities, or when no customer is provided), the document type will be `6` (Invoice B),
+`8` (Credit Note B), or `7` (Debit Note B).
+
+For other document types the value must be set manually.
+
+<Accordion title="ar-arca-doc-type">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Invoice A |
+| `2` | Debit Note A |
+| `3` | Credit Note A |
+| `4` | Receipt A |
+| `5` | Cash Sales Note A |
+| `6` | Invoice B |
+| `7` | Debit Note B |
+| `8` | Credit Note B |
+| `9` | Receipt B |
+| `10` | Cash Sales Note B |
+| `11` | Invoice C |
+| `12` | Debit Note C |
+| `13` | Credit Note C |
+| `15` | Receipt C |
+| `34` | Invoices A per Annex I, Section A, subsection f), R.G. No. 1415 |
+| `35` | Vouchers B per Annex I, Section A, subsection f), R.G. No. 1415 |
+| `39` | Other Vouchers A compliant with R.G. No. 1415 |
+| `40` | Other Vouchers B compliant with R.G. No. 1415 |
+| `49` | Used Goods Purchase Invoice to Final Consumer |
+| `51` | Invoice A with Legend 'Subject to Withholding' |
+| `52` | Debit Note A with Legend 'Subject to Withholding' |
+| `53` | Credit Note A with Legend 'Subject to Withholding' |
+| `54` | Receipt A with Legend 'Subject to Withholding' |
+| `60` | Sales Account and Product Settlement A |
+| `61` | Sales Account and Product Settlement B |
+| `63` | Settlement A |
+| `64` | Settlement B |
+| `201` | MiPyMEs Electronic Credit Invoice (FCE) A |
+| `202` | MiPyMEs Electronic Debit Note (FCE) A |
+| `203` | MiPyMEs Electronic Credit Note (FCE) A |
+| `206` | MiPyMEs Electronic Credit Invoice (FCE) B |
+| `207` | MiPyMEs Electronic Debit Note (FCE) B |
+| `208` | MiPyMEs Electronic Credit Note (FCE) B |
+| `211` | MiPyMEs Electronic Credit Invoice (FCE) C |
+| `212` | MiPyMEs Electronic Debit Note (FCE) C |
+| `213` | MiPyMEs Electronic Credit Note (FCE) C |
+| `195` | Invoice T |
+| `196` | Debit Note T |
+| `197` | Credit Note T |
+</Accordion>
+### Argentina ARCA Concept (Goods, services, or both)
+
+Code used to identify the invoice concept, indicating whether the invoice covers
+goods, services, or both.
+
+This extension is automatically determined by GOBL based on the `key` field of each
+line item:
+
+- `1` (Products): All line items have `key` set to `goods`.
+- `2` (Services): All line items have `key` empty, unset, or set to any value other than `goods`.
+- `3` (Products and Services): The invoice contains a mix of both goods and services.
+
+When the concept is `2` (Services) or `3` (Products and Services), the invoice must
+include an ordering period and payment terms with due dates.
+
+<Accordion title="ar-arca-concept">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Goods |
+| `2` | Services |
+| `3` | Goods and services |
+</Accordion>
+### Argentina ARCA Tax Type
+
+Code used to identify the type of tax applied as a charge. This is used for taxes other than
+VAT that need to be included in the invoice (national taxes, provincial taxes, withholdings, etc.).
+
+These taxes must be added as invoice charges (not in line items) with the charge `key` set
+to `tax`, a `percent` value (required, amounts are not accepted), and this extension to
+specify the tax type.
+
+Example - Tax applied to invoice total:
+
+```json
+"charges": [
+	{
+		"key": "tax",
+		"percent": "3%",
+		"ext": {
+			"ar-arca-tax-type": "1"
+		}
+	}
+]
+```
+
+Example - Tax applied to a specific base:
+
+```json
+"charges": [
+	{
+		"key": "tax",
+		"percent": "3%",
+		"base": "1000.00",
+		"ext": {
+			"ar-arca-tax-type": "1"
+		}
+	}
+]
+```
+
+Validation rules:
+
+- When a charge has `key: tax`, this extension is required.
+- The `percent` field is required when this extension is present.
+- When using code `99` (Other), the charge `reason` field is required to describe the tax.
+
+<Accordion title="ar-arca-tax-type">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | National Taxes |
+| `2` | Provincial Taxes |
+| `3` | Municipal Taxes |
+| `4` | Internal Taxes |
+| `5` | Gross Income Tax |
+| `6` | VAT Prepayment |
+| `7` | Gross Income Tax Prepayment |
+| `8` | Municipal Taxes Prepayment |
+| `9` | Other Prepayments |
+| `13` | VAT Not Categorized Prepayment |
+| `99` | Other |
+</Accordion>
+### Argentina ARCA VAT Rate
+
+Code used to identify the VAT rate applied to line items.
+
+This extension is automatically determined by GOBL based on the tax rate key defined in
+the Argentine tax regime:
+
+- `zero` rate (0%) → code `3`
+- `reduced` rate (10.5%) → code `4`
+- `standard` rate (21%) → code `5`
+- `increased` rate (27%) → code `6`
+
+For the special reduced rates of 5% and 2.5%, the extension must be set manually on the
+line tax as these are not covered by the standard rate keys:
+
+- 5% → code `8`
+- 2.5% → code `9`
+
+<Accordion title="ar-arca-vat-rate">
+
+| Code | Name |
+| ---- | ---- |
+| `3` | 0% |
+| `4` | 10.5% |
+| `5` | 21% |
+| `6` | 27% |
+| `8` | 5% |
+| `9` | 2.5% |
+</Accordion>
+### Argentina ARCA Customer Identity Type
+
+Code used to identify the type of identity document in the customer's `identities` field.
+
+This extension is typically only needed for B2C operations where the customer needs to
+provide an identification number but does not have a tax ID. Common examples include
+DNI (code `96`), passport, or provincial identity cards.
+
+When the customer has a CUIT, CUIL, or a valid foreign tax identification number,
+these should be included in the `tax_id` field instead, and this extension is not required.
+
+Example usage for a final consumer with DNI:
+
+```json
+"customer": {
+	"name": "John Doe",
+	"identities": [
+		{
+			"code": "12345678",
+			"ext": {
+				"ar-arca-identity-type": "96"
+			}
+		}
+	],
+	"ext": {
+		"ar-arca-vat-status": "5"
+	}
+}
+```
+
+<Accordion title="ar-arca-identity-type">
+
+| Code | Name |
+| ---- | ---- |
+| `00` | CI Capital Federal |
+| `01` | CI Buenos Aires |
+| `02` | CI Catamarca |
+| `03` | CI Córdoba |
+| `04` | CI Corrientes |
+| `05` | CI Entre Ríos |
+| `06` | CI Jujuy |
+| `07` | CI Mendoza |
+| `08` | CI La Rioja |
+| `09` | CI Salta |
+| `10` | CI San Juan |
+| `11` | CI San Luis |
+| `12` | CI Santa Fe |
+| `13` | CI Santiago del Estero |
+| `14` | CI Tucumán |
+| `16` | CI Chaco |
+| `17` | CI Chubut |
+| `18` | CI Formosa |
+| `19` | CI Misiones |
+| `20` | CI Neuquén |
+| `21` | CI La Pampa |
+| `22` | CI Río Negro |
+| `23` | CI Santa Cruz |
+| `24` | CI Tierra del Fuego |
+| `80` | CUIT (Unique Tax Identification Number) |
+| `86` | CUIL (Unique Labor Identification Number) |
+| `87` | CDI |
+| `89` | LE |
+| `90` | LC |
+| `91` | Foreign CI |
+| `92` | In Process |
+| `93` | Birth Certificate |
+| `94` | Passport |
+| `95` | CI Bs. As. RNP |
+| `96` | DNI |
+| `99` | Final Consumer |
+</Accordion>
+### Customer VAT Status
+
+Code used to identify the VAT status of the customer. This extension must be included
+in the customer's `ext` field when the customer is required.
+
+GOBL will automatically normalize this value based on the customer's tax identification:
+
+Customer without tax ID (final consumers): Defaults to `5` (Final Consumer). Also
+accepts `4` (Exempt Subject), `7` (Uncategorized), `10` (VAT Exempt Law 19640),
+or `15` (VAT Not Applicable).
+
+Customer with foreign tax ID: Defaults to `9` (Foreign Customer). Also accepts
+`8` (Foreign Supplier).
+
+Customer with Argentine tax ID (CUIT/CUIL): Defaults to `1` (Registered VAT Company).
+Also accepts `6` (Monotributo), `13` (Social Monotributista), `16` (Promoted Independent
+Worker), `4` (Exempt Subject), `7` (Uncategorized), `10` (VAT Exempt Law 19640),
+or `15` (VAT Not Applicable).
+
+The VAT status is validated against the document type:
+
+- Type A documents (`1`, `2`, `3`, etc.): Require VAT status `1`, `6`, `13`, or `16`.
+- Type B documents (`6`, `7`, `8`, etc.): Cannot have VAT status `1`, `6`, `13`, or `16`.
+- Document type `49` (Used Goods Purchase Invoice): Requires VAT status `5` (Final Consumer).
+
+<Accordion title="ar-arca-vat-status">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Registered VAT Company |
+| `4` | VAT Exempt Subject |
+| `5` | Final Consumer |
+| `6` | Monotributo Responsible |
+| `7` | Uncategorized Subject |
+| `8` | Foreign Supplier |
+| `9` | Foreign Customer |
+| `10` | VAT Exempt - Law N° 19.640 |
+| `13` | Social Monotributista |
+| `15` | VAT Not Applicable |
+| `16` | Promoted Independent Worker Monotributista |
+</Accordion>
+### Argentina ARCA Tourism Issuer-Receiver Relationship
+
+Code that identifies the relationship between the issuer and the receiver for tourism
+invoices (Comprobante T). Required on the invoice `tax.ext` when the document type is
+`195` (Invoice T), `196` (Debit Note T), or `197` (Credit Note T).
+
+Corresponds to `codigoRelacionEmisorReceptor` in the WSCT web service.
+
+<Accordion title="ar-arca-tourism-type">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Direct Accommodation to Non-Resident Tourist |
+| `2` | Accommodation to Resident Travel Agency |
+| `3` | Accommodation to Non-Resident Travel Agency |
+| `4` | Resident Travel Agency to Non-Resident Travel Agency |
+| `5` | Resident Travel Agency to Non-Resident Tourist |
+| `6` | Resident Travel Agency to Resident Travel Agency |
+</Accordion>
+### Argentina ARCA Tourism Item Code
+
+Code that identifies the type of tourism item on a line. Used on line item `tax.ext`
+for tourism invoices (Comprobante T, doc types 195/196/197).
+
+Corresponds to `codigoTurismo` in the WSCT web service. Additional codes may be
+available via the `consultarCodigosItemTurismo` operation of the WSCT service.
+
+<Accordion title="ar-arca-tourism-item">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Hotel without Breakfast |
+| `2` | Hotel with Breakfast |
+| `5` | Surplus |
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [ARS]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-24`<br />Invoice must be in ARS or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type credit note</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-05`<br />Invoice type is credit-note but ar-arca-doc-type is not a credit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Type matches doc type debit note</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-06`<br />Invoice type is debit-note but ar-arca-doc-type is not a debit note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type credit note matches type</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-07`<br />Ar-arca-doc-type is a credit note but invoice type is not credit-note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type debit note matches type</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-08`<br />Doc type is a debit note but invoice type is not debit-note |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type 49 vat status</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-12`<br />Document type 49 (Used Goods Purchase Invoice) requires customer VAT status to be 5 (Final Consumer) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type A vat status</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-13`<br />Document type A requires customer VAT status to be one of [1 6 13 16] |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Doc type B vat status</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-14`<br />Document type B cannot have customer VAT status [1 6 13 16] |
+| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-01`<br />Series is required |
+| `series` | <ul class="gobl-test"><li>Valid series</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-02`<br />Series must be a valid number between 1 and 99998 |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-03`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-04`<br />Tax requires 'ar-arca-doc-type' extension |
+| `customer` | <ul class="gobl-test"><li>Customer required</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-09`<br />Customer is required |
+| `customer` | <ul class="gobl-test"><li>Has tax ID or identity</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-10`<br />Must have a tax_id, or an identity with ext 'ar-arca-identity-type' |
+| `customer.ext` | <ul class="gobl-test"><li>Ext require [ar-arca-vat-status]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-11`<br />Customer requires 'ar-arca-vat-status' extension |
+| `ordering` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-15`<br />Ordering is required for services |
+| `ordering.period` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-16`<br />Ordering period is required for services |
+| `payment` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-17`<br />Payment is required for services |
+| `payment.terms` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-18`<br />Payment terms are required for services |
+| `payment.terms.due_dates` | <ul class="gobl-test"><li>Concept is services</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-19`<br />Payment due dates are required for services |
+| `payment.terms.due_dates` | <ul class="gobl-test"><li>Concept is goods</li><li>Empty</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-20`<br />Payment due dates must not be set for goods |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-21`<br />Preceding documents are required for credit/debit notes |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [ar-arca-doc-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-22`<br />Preceding document requires 'ar-arca-doc-type' extension |
+| `lines[*].taxes` | <ul class="gobl-test"><li>Doc type is C</li><li>Empty</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-23`<br />Type C invoices (simplified tax scheme) must not have taxes on lines |
+| `tax.ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-type]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-25`<br />Tourism invoice requires 'ar-arca-tourism-type' extension |
+| `customer.addresses` | <ul class="gobl-test"><li>Doc type is T</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-27`<br />Tourism invoice customer requires an address |
+| `lines[*].taxes` | <ul class="gobl-test"><li>Doc type is T</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-29`<br />Tourism invoice line requires taxes |
+| `lines[*].taxes[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-item]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-26`<br />Tourism invoice line requires 'ar-arca-tourism-item' extension |
+| `lines[*].taxes[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext 'ar-arca-vat-rate' in [5]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-28`<br />Tourism invoice line VAT rate must be '5' (21%) via 'ar-arca-vat-rate' |
+| `discounts[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-item]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-30`<br />Tourism invoice discount requires 'ar-arca-tourism-item' extension |
+| `discounts[*].taxes` | <ul class="gobl-test"><li>Doc type is T</li><li>All of [VAT]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-31`<br />Tourism invoice discount requires VAT taxes |
+| `discounts[*].taxes[*].ext` | <ul class="gobl-test"><li>Doc type is T</li><li>Ext require [ar-arca-tourism-item]</li></ul> | `GOBL-AR-ARCA-BILL-INVOICE-32`<br />Tourism invoice discount tax requires 'ar-arca-tourism-item' extension |
+</Accordion>
+<Accordion title="bill.Charge">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Key is tax</li><li>Ext require [ar-arca-tax-type]</li></ul> | `GOBL-AR-ARCA-BILL-CHARGE-01`<br />Tax charge requires 'ar-arca-tax-type' extension |
+| `percent` | <ul class="gobl-test"><li>Has tax type ext</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-CHARGE-02`<br />Percent is required when tax type is set |
+| `reason` | <ul class="gobl-test"><li>Tax type is other</li><li class="gobl-test-present">Present</li></ul> | `GOBL-AR-ARCA-BILL-CHARGE-03`<br />Reason is required when tax type is 'other' |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [ar-arca-vat-rate]</li></ul> | `GOBL-AR-ARCA-TAX-COMBO-01`<br />VAT combo requires 'ar-arca-vat-rate' extension |
+</Accordion>
+</AccordionGroup>

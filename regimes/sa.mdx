@@ -1,0 +1,47 @@
+---
+title: Kingdom of Saudi Arabia
+---
+Saudi Arabia's tax system is administered by the Zakat, Tax and
+Customs Authority (ZATCA).
+
+B2C invoices follow the reporting flow while B2B invoices follow 
+the clearance flow. Both credit notes and debit notes are supported
+for invoice corrections and follow the same flow as the invoices 
+they correct.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `SA` |
+| Currency | `SAR` |
+| Base Time Zone | `Asia/Riyadh` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `VAT` | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | Standard Rate | 15.0% | Applies to most goods and services unless specified otherwise. |
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Context: regime in [SA]</li><li>Matches ^[a-zA-Z0-9]*$</li></ul> | `GOBL-SA-ORG-IDENTITY-01`<br />Invoice identity type must be alphanumerical |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [SA]</li><li>Matches ^3[0-9]{13}3$</li></ul> | `GOBL-SA-TAX-IDENTITY-01`<br />Invoice tax id code must be 15 digits long, and start and end with 3 |
+</Accordion>
+</AccordionGroup>

@@ -2,7 +2,9 @@
 title: Portugal SAF-T
 ---
 
-Key: <code>pt-saft-v1</code>
+Key: `pt-saft-v1`
+
+Module: [github.com/invopop/gobl.pt.saft](https://github.com/invopop/gobl.pt.saft)
 
 Portugal doesn't have an e-invoicing format per se. Tax information is reported
 electronically to the AT (Autoridade Tributária e Aduaneira) either periodically in
@@ -14,14 +16,102 @@ the AT.
 - [Portaria n.o 302/2016 – SAF-T Data Structure & Taxonomies](https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/legislacao/diplomas_legislativos/Documents/Portaria_302_2016.pdf)
 - [Portaria n.o 195/2020 – Comunicação de Séries Documentais, Aspetos Específicos](https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Comunicacao_Series_ATCUD/Documents/Comunicacao_de_Series_Documentais_Manual_de_Integracao_de_SW_Aspetos_Genericos.pdf)
 - [Portaria n.o 195/2020 – Especificações Técnicas Código QR](https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Novas_regras_faturacao/Documents/Especificacoes_Tecnicas_Codigo_QR.pdf)
-- [Comunicação dos elementos dos documentos de faturação à AT, por webservice](https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Fatcorews/Documents/Comunicacao_dos_elementos_dos_documentos_de_faturacao.pdf)
+- [Comunicação dos elementos dos documentos de faturação à AT, por webservice](https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Fatcorews/Documents/Comunicacao_dos_elementos_dos_documentos_de_faturacao.pdf)
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+A reason is required in the <code>reason</code> field
+when submitting the correction options.
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** `standard`
+
+**Output:**
+- **Extensions:** `pt-saft-invoice-type:FT`
+</Accordion>
+
+<Accordion title="standard, #simplified">
+
+**Filters:**
+- **Types:** `standard`
+- **Tags:** `simplified`
+
+**Output:**
+- **Extensions:** `pt-saft-invoice-type:FS`
+</Accordion>
+
+<Accordion title="standard, #cash-vat">
+
+**Filters:**
+- **Types:** `standard`
+- **Tags:** `cash-vat`
+
+**Output:**
+- **Extensions:** `pt-saft-cash-vat:1`
+</Accordion>
+
+<Accordion title="standard">
+
+**Filters:**
+- **Types:** `standard`
+- **Filter:** *(custom)*
+
+**Output:**
+- **Extensions:** `pt-saft-invoice-type:FR`
+</Accordion>
+
+<Accordion title="debit-note">
+
+**Filters:**
+- **Types:** `debit-note`
+
+**Output:**
+- **Extensions:** `pt-saft-invoice-type:ND`
+</Accordion>
+
+<Accordion title="credit-note">
+
+**Filters:**
+- **Types:** `credit-note`
+
+**Output:**
+- **Extensions:** `pt-saft-invoice-type:NC`
+</Accordion>
+
+<Accordion title="proforma">
+
+**Filters:**
+- **Types:** `proforma`
+
+**Output:**
+- **Extensions:** `pt-saft-work-type:PF`
+</Accordion>
 
 ## Extensions
-### Invoice Type	
+### Invoice Type
 
 SAF-T's `InvoiceType` (Tipo de documento) specifies the type of a sales invoice. In GOBL,
 this type can be set using the `pt-saft-invoice-type` extension in the tax section. GOBL
 will set the extension for you based on the type and the tax tags you set in your invoice.
+
+The table below shows how this mapping is done:
+
+| Code | Name                | GOBL Type     | GOBL Tax Tag    |
+| ---- | ------------------- | ------------- | --------------- |
+| `FT` | Standard Invoice    | `standard`    |                 |
+| `FS` | Simplified Invoice  | `standard`    | `simplified`    |
+| `FR` | Invoice-Receipt     | `standard`    | `invoice-receipt` |
+| `ND` | Debit Note          | `debit-note`  |                 |
+| `NC` | Credit Note         | `credit-note` |                 |
 
 Example:
 
@@ -46,13 +136,13 @@ Example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>FT</code> | Standard Invoice |
-| <code>FS</code> | Simplified Invoice |
-| <code>FR</code> | Invoice-Receipt |
-| <code>ND</code> | Debit Note |
-| <code>NC</code> | Credit Note |
+| `FT` | Standard Invoice |
+| `FS` | Simplified Invoice |
+| `FR` | Invoice-Receipt |
+| `ND` | Debit Note |
+| `NC` | Credit Note |
 </Accordion>
-### Payment Type	
+### Payment Type
 
 To report payment receipts to the AT, GOBL provides conversion from `bill.Payment`
 documents. In a payment, the SAF-T's `PaymentType` (Tipo de documento) field specifies its
@@ -63,7 +153,7 @@ below shows how this mapping is done:
 | Code | Name                                       | GOBL Type | GOBL Tax Tag |
 | ---- | ------------------------------------------ | --------- | ------------ |
 | RG   | Outro Recibo                               | `receipt` |              |
-| RC   | Recibo no âmbito do regime de IVA de Caixa | `receipt` | `vat-cash`   |
+| RC   | Recibo no âmbito do regime de IVA de Caixa | `receipt` | `cash-vat`   |
 
 For example:
 
@@ -83,10 +173,10 @@ For example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>RC</code> | Receipt under the VAT Cash scheme |
-| <code>RG</code> | Other Receipt |
+| `RC` | Receipt under the VAT Cash scheme |
+| `RG` | Other Receipt |
 </Accordion>
-### Tax Rate Code	
+### Tax Rate Code
 
 The SAF-T's `TaxCode` (Código do imposto) is required for invoice items that apply VAT.
 GOBL provides the `pt-saft-tax-rate` extension to set this code at line tax level. It also
@@ -104,19 +194,29 @@ table lists the supported tax codes and how GOBL will map them:
 
 | Code | Name |
 | ---- | ---- |
-| <code>RED</code> | Reduced |
-| <code>INT</code> | Intermediate |
-| <code>NOR</code> | Normal |
-| <code>ISE</code> | Exempt |
-| <code>OUT</code> | Other |
+| `RED` | Reduced |
+| `INT` | Intermediate |
+| `NOR` | Normal |
+| `ISE` | Exempt |
+| `OUT` | Other |
 </Accordion>
-### Tax exemption reason code	
+### Tax exemption reason code
 
-AT's `TaxExemptionCode` (Código do motivo de isenção de imposto) is a code that
+The SAF-T's `TaxExemptionCode` (Código do motivo de isenção de imposto) is a code that
 specifies the reason the VAT tax is exempt in a Portuguese invoice. When the `exempt` tag
-is used in a tax combo, the `ext` map's `pt-exemption-code` property is required.
+is used in a tax combo, the `ext` map's `pt-saft-exemption` property is required.
 
-For example, you could define an invoice line exempt of tax as follows:
+The SAF-T's `TaxExemptionReason` (Motivo da isenção de imposto) is a text that justifies
+the exemption referencing the relevant legislation. In GOBL, this is provided with a
+special line-level `note`.
+
+By default, if no note is provided, GOBL will automatically assign a default one
+consistent with the exemption code. However, note that default texts are generic and not
+always sufficiently precise to comply with the regulations. The invoice issuer should be
+given the option to provide a custom note with the appropriate descriptive text.
+
+For example, you could define an invoice line exempt of tax with the exemption code and
+the reason as follows:
 
 ```js
 {
@@ -125,7 +225,7 @@ For example, you could define an invoice line exempt of tax as follows:
 	"lines": [
 		{
 			// ...
-			"item": {
+		"item": {
 				"name": "Some service exempt of tax",
 				"price": "25.00"
 			},
@@ -135,11 +235,19 @@ For example, you could define an invoice line exempt of tax as follows:
 						"rate": "exempt",
 						"ext": {
 							"pt-saft-tax-rate": "ISE",
-							"pt-saft-exemption": "M19"
+							"pt-saft-exemption": "M40"
 						}
 				}
 			]
-		}
+		},
+		"notes": [
+			{
+				"key": "legal",
+				"code": "M40",
+				"src": "pt-saft-exemption",
+				"text": "Artigo 6.º n.º 6 alínea a) do CIVA, a contrário"
+			}
+		]
 	]
 }
 ```
@@ -148,35 +256,40 @@ For example, you could define an invoice line exempt of tax as follows:
 
 | Code | Name |
 | ---- | ---- |
-| <code>M01</code> | Article 16, No. 6 of the VAT code |
-| <code>M02</code> | Article 6 of the Decree-Law 198/90 of 19th June |
-| <code>M04</code> | Exempt pursuant to article 13 of the VAT code |
-| <code>M05</code> | Exempt pursuant to article 14 of the VAT code |
-| <code>M06</code> | Exempt pursuant to article 15 of the VAT code |
-| <code>M07</code> | Exempt pursuant to article 9 of the VAT code |
-| <code>M09</code> | VAT - does not confer right to deduct / Article 62 paragraph b) of the VAT code |
-| <code>M10</code> | VAT - exemption scheme / Article 57 of the VAT code |
-| <code>M11</code> | Special scheme for tobacco / Decree-Law No. 346/85 of 23rd August |
-| <code>M12</code> | Margin scheme - Travel agencies / Decree-Law No. 221/85 of 3rd July |
-| <code>M13</code> | Margin scheme - Second-hand goods / Decree-Law No. 199/96 of 18th October |
-| <code>M14</code> | Margin scheme - Works of art / Decree-Law No. 199/96 of 18th October |
-| <code>M15</code> | Margin scheme - Collector’s items and antiques / Decree-Law No. 199/96 of 18th October |
-| <code>M16</code> | Exempt pursuant to Article 14 of the RITI |
-| <code>M19</code> | Other exemptions - Temporary exemptions determined by specific legislation |
-| <code>M20</code> | VAT - flat-rate scheme / Article 59-D No. 2 of the VAT code |
-| <code>M21</code> | VAT - does not confer right to deduct (or similar) - Article 72 No. 4 of the VAT code |
-| <code>M25</code> | Consignment goods - Article 38 No. 1 paragraph a) of the VAT code |
-| <code>M30</code> | VAT - reverse charge / Article 2 No. 1 paragraph i) of the VAT code |
-| <code>M31</code> | VAT - reverse charge / Article 2 No. 1 paragraph j) of the VAT code |
-| <code>M32</code> | VAT - reverse charge / Article 2 No. 1 paragraph l) of the VAT code |
-| <code>M33</code> | VAT - reverse charge / Article 2 No. 1 paragraph m) of the VAT code |
-| <code>M40</code> | VAT - reverse charge / Article 6 No. 6 paragraph a) of the VAT code, to the contrary |
-| <code>M41</code> | VAT - reverse charge / Article 8 No. 3 of the RITI |
-| <code>M42</code> | VAT - reverse charge / Decree-Law No. 21/2007 of 29 January |
-| <code>M43</code> | VAT - reverse charge / Decree-Law No. 362/99 of 16th September |
-| <code>M99</code> | Not subject to tax or not taxed |
+| `M01` | Article 16, No. 6, paragraphs a) to d) of the VAT code |
+| `M02` | Article 6 of Decree-Law No. 198/90 of 19th June |
+| `M04` | Article 13 of the VAT code |
+| `M05` | Article 14 of the VAT code |
+| `M06` | Article 15 of the VAT code |
+| `M07` | Article 9 of the VAT code |
+| `M09` | Article 62 paragraph b) of the VAT code |
+| `M10` | Article 57 of the VAT code |
+| `M11` | Decree-Law No. 346/85 of 23rd August |
+| `M12` | Decree-Law No. 221/85 of 3rd July |
+| `M13` | Decree-Law No. 199/96 of 18th October |
+| `M14` | Decree-Law No. 199/96 of 18th October |
+| `M15` | Decree-Law No. 199/96 of 18th October |
+| `M16` | Article 14 of the RITI |
+| `M19` | Other exemptions |
+| `M20` | Article 59-D No. 2 of the VAT code |
+| `M21` | Article 72 No. 4 of the VAT code |
+| `M25` | Article 38 No. 1 paragraph a) of the VAT code |
+| `M26` | Law No. 17/2023 of 14th April |
+| `M30` | Article 2 No. 1 paragraph i) of the VAT code |
+| `M31` | Article 2 No. 1 paragraph j) of the VAT code |
+| `M32` | Article 2 No. 1 paragraph l) of the VAT code |
+| `M33` | Article 2 No. 1 paragraph m) of the VAT code |
+| `M34` | Article 2 No. 1 paragraph n) of the VAT code |
+| `M40` | Article 6 No. 6 paragraph a) of the VAT code, to the contrary |
+| `M41` | Article 8 No. 3 of the RITI |
+| `M42` | Decree-Law No. 21/2007 of 29th January |
+| `M43` | Decree-Law No. 362/99 of 16th September |
+| `M44` | Article 6.º of the CIVA – Specific rules |
+| `M45` | Art 58º-A of the CIVA (IVA - cross-border exemption regime) |
+| `M46` | Decree-Law No. 19/2017, of February 14 |
+| `M99` | Not subject to tax or not taxed |
 </Accordion>
-### Product Type	
+### Product Type
 
 SAF-T's `ProductType` (Indicador de produto ou serviço) indicates the type of each line
 item in an invoice. The `pt-saft-product-type` extension used at line item level allows to
@@ -208,23 +321,98 @@ Example:
 
 | Code | Name |
 | ---- | ---- |
-| <code>P</code> | Goods |
-| <code>S</code> | Services |
-| <code>O</code> | Other |
-| <code>E</code> | Excise Duties |
-| <code>I</code> | Taxes/Fees |
+| `P` | Goods |
+| `S` | Services |
+| `O` | Other |
+| `E` | Excise Duties |
+| `I` | Taxes/Fees |
 </Accordion>
-### Payment Means	
+### Document Type
+
+SAF-T's `WorkType` (Tipo de documento de conferência) specifies the type of a working
+document. In GOBL, this type can be set using the `pt-saft-work-type` extension in either
+`bill.Invoice` or `bill.Order` documents. GOBL will set the extension for you based on the
+document type in some cases.
+
+The table below shows the supported work type codes and their compatibility with GOBL objects:
+
+| Code   | Name                            | GOBL Doc | GOBL Type  |
+| ------ | ------------------------------- | -------- | ---------- |
+| `PF`   | Pró-forma                       | Invoice  | `proforma` |
+| `FC`   | Fatura de consignação           | Invoice  |            |
+| `CC`   | Credito de consignação          | Invoice  |            |
+| `CM`   | Consultas de mesa               | Order    |            |
+| `FO`   | Folhas de obra                  | Order    |            |
+| `NE`   | Nota de Encomenda               | Order    | `purchase` |
+| `OU`   | Outros                          | Order    |            |
+| `OR`   | Orçamentos                      | Order    | `quote`    |
+| `DC`   | Documentos de conferência       | Order    |            |
+| `RP`   | Prémio ou recibo de prémio      | Order    |            |
+| `RE`   | Estorno ou recibo de estorno    | Order    |            |
+| `CS`   | Imputação a co-seguradoras      | Order    |            |
+| `LD`   | Imputação a co-seguradora líder | Order    |            |
+| `RA`   | Resseguro aceite                | Order    |            |
+
+Example for a proforma invoice:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	"type": "proforma",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-work-type": "PF"
+		}
+	},
+	// ...
+```
+
+Example for a purchase order:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/order",
+	"type": "purchase",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-work-type": "NE"
+		}
+	},
+	// ...
+```
+
+<Accordion title="pt-saft-work-type">
+
+| Code | Name |
+| ---- | ---- |
+| `CM` | Table orders |
+| `CC` | Consignment credit note |
+| `FC` | VAT-compliant consignment invoice (Article 38) |
+| `FO` | Work orders |
+| `NE` | Purchase order |
+| `OU` | Other documents |
+| `OR` | Quotations |
+| `PF` | Pro forma invoice |
+| `DC` | Delivery verification documents |
+| `RP` | Premium Receipt |
+| `RE` | Chargeback Receipt |
+| `CS` | Co-insurers Allocation |
+| `LD` | Lead Co-insurer Allocation |
+| `RA` | Accepted Reinsurance |
+</Accordion>
+### Payment Means
 
 The SAF-T's `PaymentMechanism` (Meios de pagamento) field specifies the payment means in a
 sales invoice or payment. GOBL provides the `pt-saft-payment-means` extension to set this
-value in your `bill.Invoice` advances or in you `bill.Receipt` method. GOBL maps certain
+value in your `bill.Invoice` advances or in your `bill.Payment` method. GOBL maps certain
 payment mean keys automatically to this extension:
 
 | Code | Name                                               | GOBL Payment Means                                    |
 | ---- | -------------------------------------------------- | ----------------------------------------------------- |
-| `CC` | Cartão crédito                                     | `card`                                                |
-| `CD` | Cartão débito                                      | (*)                                                   |
+| `CC` | Cartão crédito                                     | `card` or `card+credit`                               |
+| `CD` | Cartão débito                                      | `card+debit`                                          |
 | `CH` | Cheque bancário                                    | `cheque`                                              |
 | `CI` | Letter of credit                                   | (*)                                                   |
 | `CO` | Cheque ou cartão oferta                            | (*)                                                   |
@@ -241,7 +429,7 @@ payment mean keys automatically to this extension:
 (*) For codes not mapped from a GOBL Payment Mean, use `other` and explicitly set the
 extension.
 
-For example, in an GOBL invoice:
+For example, in a GOBL invoice:
 
 ```js
 {
@@ -279,23 +467,327 @@ For example, in a GOBL receipt:
 	},
 	// ...
 }
+```
 
 <Accordion title="pt-saft-payment-means">
 
 | Code | Name |
 | ---- | ---- |
-| <code>CC</code> | Credit card |
-| <code>CD</code> | Debit card |
-| <code>CH</code> | Bank cheque |
-| <code>CI</code> | International documentary credit |
-| <code>CO</code> | Gift cheque or card |
-| <code>CS</code> | Settlement of balances in current account |
-| <code>DE</code> | Electronic money |
-| <code>LC</code> | Commercial bill |
-| <code>MB</code> | Multibanco payment references |
-| <code>NU</code> | Cash |
-| <code>OU</code> | Other |
-| <code>PR</code> | Barter |
-| <code>TB</code> | Bank transfer or direct debit |
-| <code>TR</code> | Supplementary compensation |
+| `CC` | Credit card |
+| `CD` | Debit card |
+| `CH` | Bank cheque |
+| `CI` | International documentary credit |
+| `CO` | Gift cheque or card |
+| `CS` | Settlement of balances in current account |
+| `DE` | Electronic money |
+| `LC` | Commercial bill |
+| `MB` | Multibanco payment references |
+| `NU` | Cash |
+| `OU` | Other |
+| `PR` | Barter |
+| `TB` | Bank transfer or direct debit |
+| `TR` | Supplementary compensation |
 </Accordion>
+### Document Source
+
+SAF-T's `SourceBilling` (Origem do documento) field specifies the source of the document.
+GOBL provides the `pt-saft-source` extension to set this value in your documents.
+By default, GOBL will set this extension to "P" (Produced).
+
+The table below shows the supported source billing codes:
+
+| Code | Name       | Description                                         |
+| ---- | ---------- | --------------------------------------------------- |
+| `P`  | Produced   | Document produced by the application                |
+| `I`  | Integrated | Integrated document produced by another application |
+| `M`  | Manual     | Document from recovery or issued manually           |
+
+Example:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	// ...
+	"ext": {
+		"pt-saft-source": "P"
+	},
+	// ...
+}
+```
+
+<Accordion title="pt-saft-source">
+
+| Code | Name |
+| ---- | ---- |
+| `P` | Produced |
+| `I` | Integrated |
+| `M` | Manual |
+</Accordion>
+### Source Document Reference
+
+GOBL provides the `pt-saft-source-ref` extension to provide the full reference to a document
+integrated from another system, recovered or issued manually.
+
+This extension is required when the document source (`pt-saft-source` extension) is
+"M" (manual) or "I" (integrated). It must contain the complete document reference to be appended
+to the SAF-T's `HashControl` field as stipulated by Despacho n.o 8632/2014.
+
+Example with a manual document:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	// ...
+	"ext": {
+		"pt-saft-source": "M",
+		"pt-saft-source-ref": "FTM abc/00001"
+	},
+	// ...
+}
+```
+
+Example with a recovered document:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	// ...
+	"ext": {
+		"pt-saft-source": "M",
+		"pt-saft-source-ref": "FTD FT SERIESA/123"
+	},
+	// ...
+}
+```
+
+<Accordion title="pt-saft-source-ref">
+</Accordion>
+### Movement Type
+
+SAF-T's `MovementType` (Tipo de documento de movimentação de mercadorias) specifies the type of
+a delivery document. In GOBL, this type can be set using the `pt-saft-movement-type` extension.
+If not provided explicitly, GOBL will set the extension for you based on the type and tags of
+your delivery document.
+
+The table below shows how this mapping is done:
+
+| Code | Name                                    | GOBL Type | GOBL Tag |
+| ---- | --------------------------------------- | --------- | -------- |
+| `GR` | Guia de Remessa (Delivery note)         | `note`    |          |
+| `GT` | Guia de Transporte (Transport guide)    | `waybill` |          |
+| `GD` | Guia de Devolução (Return note)         | `note`    | `return` |
+| `GA` | Guia de Movimentação de Ativos Próprios | (*)       |          |
+| `GC` | Guia de Consignação                     | (*)       |          |
+
+(*) or codes not mapped from a GOBL type or tag; use `other` as the delivery type and explicitly set the
+extension.
+
+For example, to indicate a return delivery (GD):
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/delivery",
+	"$tags": ["return"],
+	"type": "note",
+	// The `pt-saft-movement-type` extension is set automatically to "GD"
+	// ...
+}
+```
+
+For example, to set a movement type with no GOBL equivalent (e.g. GA):
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/delivery",
+	// ...
+	"type": "other",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-movement-type": "GA"
+		}
+	},
+	// ...
+}
+```
+
+<Accordion title="pt-saft-movement-type">
+
+| Code | Name |
+| ---- | ---- |
+| `GR` | Delivery note |
+| `GT` | Waybill |
+| `GA` | Guide to the movement own fixed assets |
+| `GC` | Consignment note |
+| `GD` | Returns slip or note |
+</Accordion>
+### Cash VAT Scheme Indicator
+
+SAF-T's `CashVATSchemeIndicator` (Indicador da adesão ao regime de IVA de Caixa) indicates
+whether the document was issued by a taxpayer that has adhered to the Cash VAT scheme (regime
+de IVA de Caixa).
+
+In GOBL, this is set with the `pt-saft-cash-vat` extension in the invoice tax section. GOBL
+sets it automatically to "1" when the invoice carries the `cash-vat` tag.
+
+| Code | Description                                  |
+| ---- | -------------------------------------------- |
+| `0`  | Not adhered to the Cash VAT scheme (default) |
+| `1`  | Adhered to the Cash VAT scheme               |
+
+Example:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	"$tags": [
+		"cash-vat"
+	],
+	// ...
+	"type": "standard",
+	// ...
+	"tax": {
+		"ext": {
+			"pt-saft-cash-vat": "1"
+		}
+	},
+	// ...
+}
+```
+
+<Accordion title="pt-saft-cash-vat">
+
+| Code | Name |
+| ---- | ---- |
+| `0` | No |
+| `1` | Yes |
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-15`<br />Invoice must be in EUR or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Has doc type</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-01`<br />Either 'pt-saft-work-type' or 'pt-saft-invoice-type' must be set |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Not both doc types</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-02`<br />Either 'pt-saft-work-type' or 'pt-saft-invoice-type' must be set, but not both |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Valid invoice work type</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-03`<br />Invoice work type is not valid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-04`<br />Series format must be valid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-05`<br />Code format must be valid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Tax has source</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-12`<br />Tax requires 'pt-saft-source' extension |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-14`<br />Source ref format is invalid |
+| `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-06`<br />Cannot be blank |
+| `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-07`<br />Line taxes must include VAT category |
+| `payment.advances[*].date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-08`<br />Cannot be blank |
+| `payment.advances[*].amount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-16`<br />Must be no less than 0 |
+| `totals.payable`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-09`<br />Must be no less than 0 |
+| `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-10`<br />Must be equal to 0 |
+| `preceding` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-13`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
+</Accordion>
+<Accordion title="bill.Payment">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Payment</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-01`<br />Series format must be valid |
+| <small>Payment</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-02`<br />Code format must be valid |
+| <small>Payment</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-06`<br />Source ref format is invalid |
+| <small>Payment</small> | <ul class="gobl-test"><li>Customer name present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-09`<br />Customer name is required when customer has tax ID code |
+| <small>Payment</small> | <ul class="gobl-test"><li>Method dates</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-11`<br />Payment method dates must match the issue date |
+| `ext` | <ul class="gobl-test"><li>Ext require [pt-saft-payment-type]</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-03`<br />'pt-saft-payment-type' extension is required |
+| `ext` | <ul class="gobl-test"><li>Ext require [pt-saft-source]</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-04`<br />'pt-saft-source' extension is required |
+| `ext` | <ul class="gobl-test"><li>Source not produced</li><li>Ext require [pt-saft-source-ref]</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-05`<br />'pt-saft-source-ref' extension is required when source is not produced |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-07`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-08`<br />Supplier tax ID code is required |
+| `total` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENT-10`<br />Must be no less than 0 |
+</Accordion>
+<Accordion title="bill.Delivery">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Has movement type</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-01`<br />Delivery tax requires 'pt-saft-movement-type' extension |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-02`<br />Delivery series format must be valid |
+| <small>Delivery</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-03`<br />Delivery code format must be valid |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-04`<br />Delivery supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-05`<br />Delivery supplier tax ID code is required |
+| `supplier.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-10`<br />Delivery supplier post code must be in the 'NNNN-NNN' format |
+| `despatch_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-06`<br />Delivery despatch date is required |
+| `preceding` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-07`<br />Delivery preceding must have at most one entry |
+| `preceding[*].series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-08`<br />Delivery preceding series is required |
+| `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-09`<br />Delivery preceding code is required |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-11`<br />Delivery customer post code must be in the 'NNNN-NNN' format |
+| `despatcher.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-12`<br />Delivery despatcher post code must be in the 'NNNN-NNN' format |
+| `receiver.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-13`<br />Delivery receiver post code must be in the 'NNNN-NNN' format |
+</Accordion>
+<Accordion title="bill.Order">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Order</small> | <ul class="gobl-test"><li>Has work type</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-01`<br />Tax requires 'pt-saft-work-type' extension |
+| <small>Order</small> | <ul class="gobl-test"><li>Order work type valid</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-02`<br />Work type must not be an invoice work type |
+| <small>Order</small> | <ul class="gobl-test"><li>Series format</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-03`<br />Series format must be valid |
+| <small>Order</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-04`<br />Code format must be valid |
+| <small>Order</small> | <ul class="gobl-test"><li>Tax has source</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-08`<br />Tax requires 'pt-saft-source' extension |
+| <small>Order</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-10`<br />Source ref format is invalid |
+| `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-05`<br />Cannot be blank |
+| `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-06`<br />Line taxes must include VAT category |
+| `totals.total`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-07`<br />Must be no less than 0 |
+| <small>Order</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-BILL-ORDER-09`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
+</Accordion>
+<Accordion title="tax.Combo">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-TAX-COMBO-01`<br />Region and tax rate are required |
+| `ext` | <ul class="gobl-test"><li>Is VAT</li><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-TAX-COMBO-02`<br />Exemption is required when tax rate is exempt |
+</Accordion>
+<Accordion title="tax.CategoryTotal">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `rates[*].ext` | <ul class="gobl-test"><li>Is VAT</li><li>Ext require [pt-region, pt-saft-tax-rate]</li></ul> | `GOBL-PT-SAFT-TAX-CATEGORYTOTAL-01`<br />Region and tax rate are required |
+| `rates[*].ext` | <ul class="gobl-test"><li>Is VAT</li><li>Exempt requires exemption</li></ul> | `GOBL-PT-SAFT-TAX-CATEGORYTOTAL-02`<br />Exemption is required when tax rate is exempt |
+</Accordion>
+<Accordion title="org.Item">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `unit` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-ORG-ITEM-01`<br />Cannot be blank |
+| `ext` | <ul class="gobl-test"><li>Ext require [pt-saft-product-type]</li></ul> | `GOBL-PT-SAFT-ORG-ITEM-02`<br />Product type is required |
+</Accordion>
+<Accordion title="org.Note">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `text` | <ul class="gobl-test"><li>Legal exemption note</li><li>Length between 6 and 60</li></ul> | `GOBL-PT-SAFT-ORG-NOTE-01`<br />The length must be between 6 and 60 |
+</Accordion>
+<Accordion title="tax.Note">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `text` | <ul class="gobl-test"><li>Withholding note</li><li>Length at most 60</li></ul> | `GOBL-PT-SAFT-TAX-NOTE-02`<br />The length must be at most 60 |
+</Accordion>
+<Accordion title="bill.Line">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Line</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-PT-SAFT-BILL-LINE-05`<br />Exemption notes invalid |
+| `quantity` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-LINE-01`<br />Must be greater than 0 |
+| `sum`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-LINE-02`<br />Must be no less than 0 |
+| `total`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-LINE-03`<br />Must be no less than 0 |
+| `discounts[*].amount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-LINE-04`<br />Must be no less than 0 |
+</Accordion>
+<Accordion title="bill.PaymentLine">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>PaymentLine</small> | <ul class="gobl-test"><li>Exemption notes</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-06`<br />Exemption notes invalid |
+| `document` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-01`<br />Cannot be blank |
+| `document.issue_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-02`<br />Cannot be blank |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-03`<br />Cannot be blank |
+| `tax` | <ul class="gobl-test"><li>Has VAT category</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-04`<br />Missing category VAT |
+| `tax.categories[*].rates` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-PAYMENTLINE-05`<br />Only one rate allowed per line |
+</Accordion>
+</AccordionGroup>

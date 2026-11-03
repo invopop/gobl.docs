@@ -1,36 +1,55 @@
 ---
 title: Italy
 ---
+Italy's tax system is administered by the Agenzia delle Entrate (Revenue
+Agency). All invoices must comply with the FatturaPA electronic format,
+transmitted through the Sistema di Interscambio (SDI).
+
+IVA (Imposta sul Valore Aggiunto) applies at standard, reduced, intermediate,
+and minimum rates covering various categories of goods and services.
+
+Businesses are identified by their Partita IVA (VAT number), an 11-digit code,
+and by the Codice Fiscale (fiscal code) for individuals and entities. The
+FatturaPA format requires a Codice Destinatario (recipient code) or PEC
+(certified email) for invoice routing. Every supplier must declare a fiscal
+regime (Regime Fiscale, e.g. RF01 Ordinary, RF19 Flat rate) in their invoices.
+
+The FatturaPA format supports an extensive set of document types (TD01-TD28)
+covering standard invoices, self-billed invoices, and various special cases.
+Line items may require Nature (Natura) codes to explain VAT exemptions or
+reverse charge situations. Stamp duty (Imposta di bollo) applies to certain
+exempt invoices. Withholding taxes (IRPEF, IRES, INPS, ENASARCO, ENPAM) can
+be applied alongside VAT. Both credit notes and debit notes are supported for
+corrections.
 
 ## Base Details
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>IT</code> |
-| Currency | <code>EUR</code> |
-| Base Time Zone | <code>Europe/Rome</code> |
+| Tax Country Code | `IT` |
+| Currency | `EUR` |
+| Base Time Zone | `Europe/Rome` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
-| <code>IRPEF</code> | IRPEF | Personal Income Tax |
-| <code>IRES</code> | IRES | Corporate Income Tax |
-| <code>INPS</code> | INPS Contribution | Contribution to the National Social Security Institute |
-| <code>ENASARCO</code> | ENASARCO Contribution | Contribution to the National Welfare Board for Sales Agents and Representatives |
-| <code>ENPAM</code> | ENPAM Contribution | Contribution to the National Pension and Welfare Board for Doctors |
+| `VAT` | VAT | Value Added Tax |
+| `IRPEF` | IRPEF | Personal Income Tax |
+| `IRES` | IRES | Corporate Income Tax |
+| `INPS` | INPS Contribution | Contribution to the National Social Security Institute |
+| `ENASARCO` | ENASARCO Contribution | Contribution to the National Welfare Board for Sales Agents and Representatives |
+| `ENPAM` | ENPAM Contribution | Contribution to the National Pension and Welfare Board for Doctors |
+| `CP` | Other Social Security Contributions | Other Social Security Contributions |
 
 ### VAT Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>zero</code> | Zero Rate | 0.0% |  |
-| <code>super-reduced</code> | Minimum Rate | 4.0% |  |
-| <code>reduced</code> | Reduced Rate | 5.0% |  |
-| <code>intermediate</code> | Intermediate Rate | 10.0% |  |
-| <code>standard</code> | Ordinary Rate | 22.0% |  |
-| <code>exempt</code> | Exempt |  |  |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `super-reduced` | `standard` | Minimum Rate | 4.0% |  |
+| `reduced` | `standard` | Reduced Rate | 5.0% |  |
+| `intermediate` | `standard` | Intermediate Rate | 10.0% |  |
+| `general` | `standard` | General Rate | 22.0% |  |
 
 ## Correction Definitions
 
@@ -40,5 +59,37 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge / Inversione del soggetto passivo (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [IT]</li><li>Valid</li></ul> | `GOBL-IT-TAX-IDENTITY-01`<br />Invalid Italian VAT identity code |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-ORG-IDENTITY-01`<br />Fiscal code is required |
+| `code` | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li>Valid format</li></ul> | `GOBL-IT-ORG-IDENTITY-02`<br />Invalid fiscal code format |
+| `code` | <ul class="gobl-test"><li>Key in [it-fiscal-code]</li><li>Valid checksum</li></ul> | `GOBL-IT-ORG-IDENTITY-03`<br />Invalid fiscal code check digit |
+</Accordion>
+</AccordionGroup>

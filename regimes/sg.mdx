@@ -1,0 +1,72 @@
+---
+title: Singapore
+---
+Singapore's tax system includes a Goods and Services Tax (GST) administered
+by the Inland Revenue Authority of Singapore (IRAS). Zero-rated supplies apply
+to international services and exports. Exempt supplies include financial
+services, sale and lease of residential properties, digital payment tokens,
+and investment precious metals.
+
+Businesses are identified by their Unique Entity Number (UEN). GST-registered
+suppliers must display their GST Registration Number on all tax invoices,
+which in most cases is the same as the UEN.
+
+Three invoicing methods are supported: tax invoices (standard, requiring full
+supplier and customer details), simplified tax invoices (for transactions
+up to 1000 SGD inclusive of GST), and receipts (for non-GST-registered
+customers). Credit notes are supported for correcting invoices; debit notes
+in Singapore are used for requesting payment on non-GST transactions, not
+for invoice corrections.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `SG` |
+| Currency | `SGD` |
+| Base Time Zone | `Asia/Singapore` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `GST` | GST | Goods and Services Tax |
+
+### GST Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General rate | 9% | GST-registered businesses are required to charge and account for GST at 9% on all sales of goods and services in Singapore unless the sale can be zero-rated or exempted under the GST law. |
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- `credit-note`
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [SG]</li><li>Has tax ID code, or has a type in [UEN]</li></ul> | `GOBL-SG-BILL-INVOICE-01`<br />Invoice supplier in Singapore must have a GST tax ID code or a UEN identity |
+</Accordion>
+<Accordion title="org.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Type in [UEN]</li><li>Valid UEN</li></ul> | `GOBL-SG-ORG-IDENTITY-01`<br />Identity code for type UEN must be valid |
+</Accordion>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [SG]</li><li>Valid</li></ul> | `GOBL-SG-TAX-IDENTITY-01`<br />Invalid Singaporean tax identity code |
+</Accordion>
+</AccordionGroup>

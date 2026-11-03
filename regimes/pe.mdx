@@ -1,0 +1,81 @@
+---
+title: Peru
+---
+Peru applies the IGV (Impuesto General a las Ventas), a
+value-added tax administered by SUNAT, at a standard rate that
+combines the IGV itself with the Municipal Promotion Tax (IPM).
+
+Businesses and individuals are identified by their RUC
+(Registro Único de Contribuyentes), an eleven-digit number
+with a taxpayer type prefix and a mod-11 check digit.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `PE` |
+| Currency | `PEN` |
+| Base Time Zone | `America/Lima` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `VAT` | VAT | Value Added Tax |
+
+### VAT Rates
+
+The IGV is Peru's value-added tax. The rate charged on invoices
+always combines the IGV itself with the Municipal Promotion Tax
+(IPM); both are levied together and shown as a single amount, so
+GOBL models them as one rate.
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 18.0% | Standard rate for most goods and services, combining the
+IGV and the IPM. The internal split between the two is
+set by law year to year (16% + 2% until 2025, recomposed
+annually by Ley 32387 from 2026); the 18% total charged
+on invoices does not change. |
+
+## Correction Definitions
+
+Auto-generation of corrective invoices or credit and debit notes is
+supported.
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- `credit-note`
+- `debit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [PE]</li><li>Valid mod-11 RUC</li></ul> | `GOBL-PE-TAX-IDENTITY-01`<br />Invalid Peruvian RUC |
+</Accordion>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `supplier` | <ul class="gobl-test"><li>Context: regime in [PE]</li><li>Has tax ID code</li></ul> | `GOBL-PE-BILL-INVOICE-01`<br />Invoice supplier tax ID code required for Peruvian regime |
+| `supplier.tax_id.country` | <ul class="gobl-test"><li>Context: regime in [PE]</li><li>One of [PE]</li></ul> | `GOBL-PE-BILL-INVOICE-02`<br />Invoice supplier tax ID country must be PE for Peruvian regime |
+</Accordion>
+</AccordionGroup>

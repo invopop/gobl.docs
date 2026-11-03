@@ -1,28 +1,39 @@
 ---
 title: United Arab Emirates
 ---
+The UAE tax system is administered by the Federal Tax Authority (FTA).
+VAT was introduced on January 1, 2018, with standard, zero, and
+exempt rate categories.
+
+Businesses must register for VAT if taxable supplies and imports
+exceed AED 375,000 in a 12-month period, with voluntary registration
+available above AED 187,500. Registered businesses receive a Tax
+Registration Number (TRN) which must be included on all tax invoices.
+
+Simplified VAT invoices may be used when the recipient is not VAT
+registered, or when the transaction value does not exceed AED 10,000
+for VAT-registered recipients. Credit notes are supported for
+correcting invoices.
 
 ## Base Details
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>AE</code> |
-| Currency | <code>AED</code> |
-| Base Time Zone | <code>Asia/Dubai</code> |
+| Tax Country Code | `AE` |
+| Currency | `AED` |
+| Base Time Zone | `Asia/Dubai` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>zero</code> | Zero Rate | 0.0% | A VAT rate of 0% applicable to specific exports, designated areas, and essential services. |
-| <code>standard</code> | Standard Rate | 5% | Applies to most goods and services unless specified otherwise. |
-| <code>exempt</code> | Exempt |  | Certain goods and services, such as financial services and residential real estate, are exempt from VAT. |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 5% | Applies to most goods and services unless specified otherwise. |
 
 ## Correction Definitions
 
@@ -32,4 +43,37 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse Charge (reverse-charge)
+</Accordion>
+
+<Accordion title="#simplified">
+
+**Filters:**
+- **Tags:** `simplified`
+
+**Output:**
+- **Note:** Simplified Tax Invoice (simplified)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [AE]</li><li>Matches ^\d{15}$</li></ul> | `GOBL-AE-TAX-IDENTITY-01`<br />Invalid UAE tax identity code |
+</Accordion>
+</AccordionGroup>

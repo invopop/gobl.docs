@@ -1,28 +1,43 @@
 ---
 title: Switzerland
 ---
+Switzerland's tax system is administered by the Federal Tax Administration
+(Eidgenössische Steuerverwaltung, ESTV). Although not an EU member, Switzerland
+operates its own VAT system (Mehrwertsteuer, MWST).
+
+VAT applies at standard, reduced, and special rates. The reduced rate covers
+everyday goods such as food, non-alcoholic beverages, books, newspapers, and
+medicines, while a special rate applies to accommodation services.
+
+Businesses with annual taxable revenues exceeding CHF 100,000 must register
+for VAT. Tax identification uses the UID (Unternehmens-Identifikationsnummer)
+in the format CHE-XXX.XXX.XXX followed by "MWST" for VAT purposes.
+
+Switzerland supports credit notes for invoice corrections. E-invoicing is not
+mandatory but is increasingly used, particularly in business-to-government (B2G)
+transactions.
 
 ## Base Details
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>CH</code> |
-| Currency | <code>CHF</code> |
-| Base Time Zone | <code>Europe/Zurich</code> |
+| Tax Country Code | `CH` |
+| Currency | `CHF` |
+| Base Time Zone | `Europe/Zurich` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>standard</code> | Standard Rate | 8.1% | Applies to most goods and services. |
-| <code>intermediate</code> | Intermediate Rate | 3.8% | Applies to accommodation services. |
-| <code>reduced</code> | Reduced Rate | 2.6% | Applies to food, books, newspapers, and public transport. |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 8.1% | Applies to most goods and services. |
+| `intermediate` | `standard` | Intermediate Rate | 3.8% | Applies to accommodation services. |
+| `reduced` | `standard` | Reduced Rate | 2.6% | Applies to food, books, newspapers, and public transport. |
 
 ## Correction Definitions
 
@@ -32,4 +47,28 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
+- `credit-note`
+
+## Scenarios
+
+### bill/invoice
+
+<Accordion title="#reverse-charge">
+
+**Filters:**
+- **Tags:** `reverse-charge`
+
+**Output:**
+- **Note:** Reverse charge: Customer to account for VAT to the relevant tax authority. (reverse-charge)
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [CH]</li><li>Valid</li></ul> | `GOBL-CH-TAX-IDENTITY-01`<br />Invalid Swiss VAT identity code |
+</Accordion>
+</AccordionGroup>

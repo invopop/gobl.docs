@@ -1,29 +1,45 @@
 ---
 title: Canada
 ---
+Canada's tax system is administered by the Canada Revenue Agency
+(CRA). The country uses a multi-layered sales tax system consisting
+of the federal Goods and Services Tax (GST) and various provincial
+taxes.
+
+The Harmonized Sales Tax (HST) combines GST and provincial sales
+tax in participating provinces. Non-participating provinces levy a
+separate Provincial Sales Tax (PST) at varying rates. Zero-rated
+supplies include basic groceries, agricultural products, and
+exports. Exempt supplies include certain financial services,
+educational services, and healthcare services.
+
+Businesses with annual taxable revenues exceeding CAD 30,000 must
+register for GST/HST. Tax identification is through the Business
+Number (BN) assigned by the CRA. Canada supports both credit notes
+and debit notes for invoice corrections.
 
 ## Base Details
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>CA</code> |
-| Currency | <code>CAD</code> |
-| Base Time Zone | <code>America/Toronto</code> |
+| Tax Country Code | `CA` |
+| Currency | `CAD` |
+| Base Time Zone | `America/Toronto` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>GST</code> | GST | General Sales Tax |
-| <code>HST</code> | HST | Harmonized Sales Tax |
-| <code>PST</code> | PST | Provincial Sales Tax |
+| `GST` | GST | General Sales Tax |
+| `HST` | HST | Harmonized Sales Tax |
+| `PST` | PST | Provincial Sales Tax |
 
 ### GST Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>zero</code> | Zero Rate | 0.0% | Some supplies are zero-rated under the GST, mainly: basic groceries, agricultural products, farm livestock, most fishery products such, prescription drugs and drug-dispensing services, certain medical devices, feminine hygiene products, exports, many transportation services where the origin or destination is outside Canada |
-| <code>standard</code> | Standard rate | 5% | For the majority of sales of goods and services: it applies to all products or services for which no other rate is expressly provided. |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `zero` |  | Zero Rate | 0.0% | Some supplies are zero-rated under the GST, mainly: basic groceries, agricultural products, farm livestock, most fishery products such, prescription drugs and drug-dispensing services, certain medical devices, feminine hygiene products, exports, many transportation services where the origin or destination is outside Canada |
+| `general` |  | General rate | 5% | For the majority of sales of goods and services: it applies to all products or services for which no other rate is expressly provided. |
 
 ## Correction Definitions
 
@@ -33,5 +49,5 @@ supported.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`

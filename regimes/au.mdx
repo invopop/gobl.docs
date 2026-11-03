@@ -1,0 +1,42 @@
+---
+title: Australia
+---
+Australia's Goods and Services Tax (GST) is a broad-based tax
+applied to most goods, services and other items sold or consumed in
+Australia. It is administered by the Australian Taxation Office (ATO).
+
+Businesses are identified by their Australian Business Number (ABN), an
+11-digit identifier whose validity is confirmed with a weighted
+modulus-89 check.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `AU` |
+| Currency | `AUD` |
+| Base Time Zone | `Australia/Sydney` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `GST` | GST | Goods and Services Tax |
+
+### GST Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | Standard Rate | 10.0% | Applies to most goods and services unless they are GST-free or input-taxed. |
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [AU]</li><li>Matches ^[0-9]{11}$</li></ul> | `GOBL-AU-TAX-IDENTITY-01`<br />Tax id code must be a valid 11-digit ABN |
+| `code` | <ul class="gobl-test"><li>Code in [AU]</li><li>Valid</li></ul> | `GOBL-AU-TAX-IDENTITY-02`<br />Tax id code checksum must be valid |
+</Accordion>
+</AccordionGroup>

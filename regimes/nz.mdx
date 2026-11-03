@@ -1,0 +1,41 @@
+---
+title: New Zealand
+---
+New Zealand's Goods and Services Tax (GST) is a broad-based tax
+applied to most goods and services supplied in New Zealand. It is
+administered by Inland Revenue (IRD).
+
+Businesses are identified by their IRD number, an 8 or 9 digit
+identifier whose validity is confirmed with a weighted modulus-11 check.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `NZ` |
+| Currency | `NZD` |
+| Base Time Zone | `Pacific/Auckland` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `GST` | GST | Goods and Services Tax |
+
+### GST Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | Standard Rate | 15.0% | Applies to most goods and services unless they are zero-rated or exempt. |
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [NZ]</li><li>Matches ^[0-9]{8,9}$</li></ul> | `GOBL-NZ-TAX-IDENTITY-01`<br />Tax id code must be a valid IRD number |
+| `code` | <ul class="gobl-test"><li>Code in [NZ]</li><li>Valid</li></ul> | `GOBL-NZ-TAX-IDENTITY-02`<br />Tax id code checksum must be valid |
+</Accordion>
+</AccordionGroup>

@@ -4,10 +4,23 @@ import (
 	"bytes"
 	"text/template"
 
+	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/i18n"
 	"github.com/invopop/gobl/pkg/here"
 	"github.com/invopop/gobl/tax"
 )
+
+// addonModule returns the Go module that implements an addon. Approved
+// external addons record their module path in GOBL's curated list; anything
+// else is bundled with GOBL core.
+func addonModule(key cbc.Key) string {
+	for _, ea := range tax.ApprovedAddons() {
+		if ea.Key == key {
+			return ea.Module
+		}
+	}
+	return "github.com/invopop/gobl"
+}
 
 type addonGenerator struct {
 	generator
@@ -26,8 +39,14 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"t": func(s i18n.String) string {
 			return s.String()
 		},
-		"joinKeys": joinKeys,
-		"codeMap":  codeMap,
+		"joinKeys":      joinKeys,
+		"codeMap":       codeMap,
+		"extMap":        extMap,
+		"scenarioTitle": scenarioTitle,
+		"codeMessage":   codeMessage,
+		"testList":      testList,
+		"fieldCell":     fieldCell,
+		"addonModule":   addonModule,
 	})
 	return g
 }
@@ -39,10 +58,24 @@ func (g *addonGenerator) generate() error {
 	if err := g.preceding(g.addon.Corrections); err != nil {
 		return err
 	}
+	if err := g.scenarios(); err != nil {
+		return err
+	}
 	if err := g.extensions(g.addon.Extensions); err != nil {
 		return err
 	}
+	if err := g.validationRules(g.getAddonRuleSections()); err != nil {
+		return err
+	}
 	return nil
+}
+
+func (g *addonGenerator) getAddonRuleSections() []RuleSection {
+	topSet := findAddonSet(g.addon.Key)
+	if topSet == nil {
+		return nil
+	}
+	return ruleSections(topSet)
 }
 
 func (g *addonGenerator) base() error {
@@ -51,7 +84,9 @@ func (g *addonGenerator) base() error {
 		title: {{t .Name}}
 		---
 
-		Key: <code>{{ .Key }}</code>
+		Key: ~{{ .Key }}~
+
+		Module: [{{ addonModule .Key }}](https://{{ addonModule .Key }})
 
 		{{- if .Description}}
 
@@ -66,6 +101,65 @@ func (g *addonGenerator) base() error {
 		- [{{t .Title}}]({{ .URL }})
 		{{- end}}
 		{{- end}}
+	`))
+}
+
+func (g *addonGenerator) scenarios() error {
+	if len(g.addon.Scenarios) == 0 {
+		return nil
+	}
+	return g.process(here.Doc(`
+
+
+		## Scenarios
+
+		{{- range .Scenarios }}
+
+		### {{ .Schema }}
+
+		{{- range .List }}
+
+		<Accordion title="{{ scenarioTitle . }}">
+
+		**Filters:**
+
+		{{- if .Types }}
+		- **Types:** {{ joinKeys .Types }}
+		{{- end }}
+		{{- if .Tags }}
+		- **Tags:** {{ joinKeys .Tags }}
+		{{- end }}
+		{{- if .ExtKey }}
+		- **Extension Key:** ~{{ .ExtKey }}~
+		{{- end }}
+		{{- if .ExtCode }}
+		- **Extension Code:** ~{{ .ExtCode }}~
+		{{- end }}
+		{{- if .Filter }}
+		- **Filter:** *(custom)*
+		{{- end }}
+		{{- if not .Types }}{{ if not .Tags }}{{ if not .ExtKey }}{{ if not .Filter }}
+		- *(none)*
+		{{- end }}{{ end }}{{ end }}{{ end }}
+
+		**Output:**
+
+		{{- if .Note }}
+		- **Note:** {{ .Note.Text }}{{ if .Note.Key }} ({{ .Note.Key }}){{ end }}
+		{{- end }}
+		{{- if .Codes }}
+		- **Codes:** {{ codeMap .Codes }}
+		{{- end }}
+		{{- if not .Ext.IsZero }}
+		- **Extensions:** {{ extMap .Ext }}
+		{{- end }}
+		{{- if not .Note }}{{ if not .Codes }}{{ if .Ext.IsZero }}
+		- *(none)*
+		{{- end }}{{ end }}{{ end }}
+		</Accordion>
+		{{- end }}
+		{{- end }}
+
 	`))
 }
 

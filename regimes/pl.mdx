@@ -1,82 +1,51 @@
 ---
 title: Poland
 ---
+Poland's tax system is administered by the Krajowa Administracja Skarbowa
+(National Revenue Administration, KAS). As an EU member state, Poland follows
+the EU VAT Directive with locally adapted rates.
+
+VAT (Podatek od towarów i usług, PTU) applies at standard, reduced, and
+super-reduced rates. Zero-rated supplies include exports and intra-community
+supplies.
+
+Businesses are identified by their NIP (Numer Identyfikacji Podatkowej), a
+10-digit tax identification number. The Polish VAT number uses the format PL
+followed by the 10-digit NIP.
+
+Poland has implemented the KSeF (Krajowy System e-Faktur) national e-invoicing
+system, which is progressively becoming mandatory for B2B transactions.
+E-invoicing via PEPPOL is used for cross-border and B2G transactions.
 
 ## Base Details
 
 | Key | Value |
 | --- | ----- |
-| Tax Country Code | <code>PL</code> |
-| Currency | <code>PLN</code> |
-| Base Time Zone | <code>Europe/Warsaw</code> |
+| Tax Country Code | `PL` |
+| Currency | `PLN` |
+| Base Time Zone | `Europe/Warsaw` |
 
 ## Tax Categories
 
 | Code | Name | Title |
 | ---- | ---- | ----- |
-| <code>VAT</code> | VAT | Value Added Tax |
+| `VAT` | VAT | Value Added Tax |
 
 ### VAT Rates
 
-| Key | Name | Percents | Description |
-| --- | ---- | -------- | ----------- |
-| <code>standard</code> | Standard Rate | 23.0% |  |
-| <code>reduced</code> | First Reduced Rate | 8.0% |  |
-| <code>super-reduced</code> | Second Reduced Rate | 5.0% |  |
-| <code>zero</code> | Zero Rate | 0.0% |  |
-| <code>exempt</code> | Exempt |  |  |
-| <code>special</code> | Special Rate |  |  |
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 23.0% |  |
+| `reduced` | `standard` | First Reduced Rate | 8.0% |  |
+| `super-reduced` | `standard` | Second Reduced Rate | 5.0% |  |
 
-## Correction Definitions
+## Validation Rules
 
-Auto-generation of corrective invoices or credit and debit notes is
-supported.
+<AccordionGroup>
+<Accordion title="tax.Identity">
 
-A reason is required in the <code>reason</code> field
-when submitting the correction options.
-
-### Invoice Types
-
-The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-
-### Stamp Keys
-
-Stamp keys from the previous invoice that need to be referenced:
-- <code>ksef-id</code>
-
-### Extension Keys
-
-One or all of the following extensions may be required as part of the correction
-options. See the [Extensions](#extensions) section for possible values.
-- <code>pl-ksef-effective-date</code>
-
-## Extensions
-### Special VAT Extensions for KSeF
-
-<Accordion title="pl-ksef-vat-special">
-
-| Code | Name |
-| ---- | ---- |
-| <code>taxi</code> | Taxi Rate |
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [PL]</li><li>Valid</li></ul> | `GOBL-PL-TAX-IDENTITY-01`<br />Invalid Polish VAT identity code |
 </Accordion>
-### Zero VAT Extensions for KSeF
-
-<Accordion title="pl-ksef-vat-zero">
-
-| Code | Name |
-| ---- | ---- |
-| <code>wdt</code> | WDT |
-| <code>domestic</code> | Domestic |
-| <code>export</code> | Export |
-</Accordion>
-### Effective date code.
-
-<Accordion title="pl-ksef-effective-date">
-
-| Code | Name |
-| ---- | ---- |
-| <code>1</code> | Original |
-| <code>2</code> | Correction |
-| <code>3</code> | Other |
-</Accordion>
+</AccordionGroup>

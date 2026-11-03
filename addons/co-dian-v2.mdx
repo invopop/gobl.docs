@@ -2,10 +2,175 @@
 title: Colombia DIAN UBL 2.X
 ---
 
-Key: <code>co-dian-v2</code>
+Key: `co-dian-v2`
+
+Module: [github.com/invopop/gobl.co.dian](https://github.com/invopop/gobl.co.dian)
 
 Extensions to support the Colombian DIAN (Dirección de Impuestos y Aduanas Nacionales)
 specifications for electronic invoicing based on UBL 2.1.
+
+## Invoice Series & Code
+
+Invoices ("Facturas de Venta") as expected in many countries require a series and unique sequential code to be issued for each document. The DIAN in Colombia however have gone a step further and require invoice series to be pre-registered with the government.
+
+Details on how to do this are available [here](https://www.dian.gov.co/impuestos/sociedades/presentacionclientes/Solicitud_de_Autorizacion_de_Numeracion_de_Facturacion.pdf).
+
+## Municipality codes
+
+The DIAN requires that Colombian addresses in the invoice specify its municipality code. The list of municipality codes is available [here](https://www.dian.gov.co/atencionciudadano/formulariosinstructivos/Formularios/2007/Codigos_municipios_2007.pdf).
+
+In a GOBL invoice, you can provide the supplier's or customer's municipality code using the `co-dian-municipality` extension. For example:
+
+```js
+"supplier": {
+	"name": "EXAMPLE SUPPLIER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": {
+		"co-dian-municipality": "11001" // Bogotá, D.C.
+	},
+	// [...]
+},
+"customer": {
+	"name": "EXAMPLE CUSTOMER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514805"
+	},
+	"ext": {
+		"co-dian-municipality": "05001" // Medellín
+	},
+	// [...]
+},
+```
+
+## Customer identities
+
+While the DIAN requires suppliers of invoices to identify themselves using their NIT, in the case of customers, it allows various identification types. Each identification type has a specific code that must be sent to the DIAN.
+
+### B2B
+
+In a GOBL invoice, Colombian business customers are required to provide a Tax ID with the company's NIT to be reported with the `31` (NIT) DIAN ID type. Foreign business customers must also provide a Tax ID with their country's VAT code, and that will be reported to the DIAN using the `50` (NIT de otro país) type.
+
+For example:
+
+```js
+"customer": {
+	"name": "EXAMPLE CUSTOMER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514805" // NIT. DIAN type 31
+	},
+	"ext": {
+		"co-dian-municipality": "11001"
+	},
+	"addresses": [
+		{
+			"street": "CRA 8 113 31 OF 703",
+			"locality": "Bogotá, D.C.",
+			"region": "Bogotá",
+			"country": "CO"
+		}
+	]
+}
+```
+
+### B2C
+
+In the case of non-business customers, the GOBL invoice will need to include the tax tag `simplified`. That will allow to omit the customer or identify it with any of the other document types accepted by the DIAN. They'll just need to include an Identity object with any of the keys below:
+
+| GOBL Identity Key      | DIAN ID type | Description                            |
+| ---------------------- | ------------ | -------------------------------------- |
+| `co-civil-register`    | `11`         | Registro civil                         |
+| `co-id-card`           | `12`         | Tarjeta de identidad                   |
+| `co-citizen-id`        | `13`         | Cédula de ciudadanía                   |
+| `co-foreigner-id-card` | `21`         | Tarjeta de extranjería                 |
+| `co-foreigner-id`      | `22`         | Cédula de extranjería                  |
+| `co-passport`          | `41`         | Pasaporte                              |
+| `co-foreign-id`        | `42`         | Documento de identificación extranjero |
+| `co-pep`               | `47`         | PEP (Permiso Especial de Permanencia)  |
+| `co-nuip`              | `91`         | NUIP                                   |
+
+For example:
+
+```js
+"tax": {
+	"tags": ["simplified"]
+},
+"customer": {
+	"name": "Ángel Pérez",
+	"identities": [
+		{
+			"key": "co-passport", // DIAN type 41
+			"code": "1234567890"
+		}
+	]
+}
+```
+
+Note that GOBL `simplified` invoices don't require a customer (or its identity) to be present. In the lack of a customer identity, the reserved code for final consumers (`222222222222`) will be automatically sent to the DIAN (i.e., no need to set it explicitly)
+
+For example:
+
+```js
+"tax": {
+	"tags": ["simplified"]
+},
+"customer": { // The customer could be fully omitted as well
+	"name": "Juan Fernández"
+}
+```
+
+## Credit and debit correction codes
+
+The DIAN requires credit and debit notes sent to them to specify a code with a cause of the correction.
+
+In a GOBL invoice, you'll need to include the extension `co-dian-credit-code` (for credit notes) or `co-dian-debit-code` (for debit notes) as part of the Preceding section of the document. Each extension allows a different set of values:
+
+**`co-dian-credit-code`**
+
+| Code | Description    |
+| ---- | -------------- |
+| 1    | Partial refund |
+| 2    | Revoked        |
+| 3    | Discount       |
+| 4    | Adjustment     |
+| 5    | Other          |
+
+**`co-dian-debit-code`**
+
+| Code | Description     |
+| ---- | --------------- |
+| 1    | Interest        |
+| 2    | Pending charges |
+| 3    | Change in value |
+| 4    | Other           |
+
+For example:
+
+```js
+"preceding": [
+	{
+		"uuid": "0190e063-7676-7000-8c58-2db7172a4e58",
+		"type": "standard",
+		"series": "SETT",
+		"code": "1010006",
+		"issue_date": "2024-07-23",
+		"reason": "Reason",
+		"stamps": [
+			{
+				"prv": "dian-cude",
+				"val": "57601dd1ab69213ccf8cfd5894f2e9fbfe23643f3a24e2f2526a5bb88d058a0842fffcb339694b6704dc105a9d813327"
+			}
+		],
+		"ext": {
+			"co-dian-debit-code": "3"
+		}
+	}
+],
+```
 
 ## Correction Definitions
 
@@ -18,59 +183,244 @@ when submitting the correction options.
 ### Invoice Types
 
 The types of invoices that can be created with a preceding definition:
-- <code>credit-note</code>
-- <code>debit-note</code>
+- `credit-note`
+- `debit-note`
 
 ### Stamp Keys
 
 Stamp keys from the previous invoice that need to be referenced:
-- <code>dian-cude</code>
+- `dian-cude`
 
 ### Extension Keys
 
 One or all of the following extensions may be required as part of the correction
 options. See the [Extensions](#extensions) section for possible values.
-- <code>co-dian-credit-code</code>
-- <code>co-dian-debit-code</code>
+- `co-dian-credit-code`
+- `co-dian-debit-code`
 
 ## Extensions
-### DIAN Municipality Code	
+### DIAN Municipality Code
 
 The municipality code as defined by the DIAN.
 
-For further details on the list of possible codes, see:
+Set the 5-digit code for the municipality where the issuer is located in both
+the supplier and customer:
 
- * https://www.dian.gov.co/atencionciudadano/formulariosinstructivos/Formularios/2007/Codigos_municipios_2007.pdf
- * https://github.com/ALAxHxC/MunicipiosDane
+```js
+"supplier": {
+	"name": "EXAMPLE SUPPLIER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": {
+		"co-dian-municipality": "11001" // Bogotá, D.C.
+	},
+	// [...]
+},
+"customer": {
+	"name": "EXAMPLE CUSTOMER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514805"
+	},
+	"ext": {
+		"co-dian-municipality": "05001" // Medellín
+	},
+	// [...]
+},
+```
 
 <Accordion title="co-dian-municipality">
 
-Pattern: <code>^\d{5}$</code>
+Pattern: `^\d{5}$`
 </Accordion>
-### Credit Code	
+### Credit Code
 
-DIAN correction code for credit notes
+The DIAN correction code is required when issuing credit notes in Colombia
+and is not automatically assigned by GOBL. It must be be included inside the
+`preceding` document references.
+
+The extension will be offered as an option in the invoice correction process.
+
+Usage example:
+
+```js
+"preceding": [
+	{
+		"uuid": "0190e063-7676-7000-8c58-2db7172a4e58",
+		"type": "standard",
+		"series": "SETT",
+		"code": "1010006",
+		"issue_date": "2024-07-23",
+		"reason": "Reason",
+		"stamps": [
+			{
+				"prv": "dian-cude",
+				"val": "57601dd1ab69213ccf8cfd5894f2e9fbfe23643f3a24e2f2526a5bb88d058a0842fffcb339694b6704dc105a9d813327"
+			}
+		],
+		"ext": {
+			"co-dian-credit-code": "3"
+		}
+	}
+],
+```
 
 <Accordion title="co-dian-credit-code">
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Partial refund |
-| <code>2</code> | Revoked |
-| <code>3</code> | Discount |
-| <code>4</code> | Adjustment |
-| <code>5</code> | Other |
+| `1` | Partial refund |
+| `2` | Revoked |
+| `3` | Discount |
+| `4` | Adjustment |
+| `5` | Other |
 </Accordion>
-### Debit Code	
+### Debit Code
 
-DIAN correction code for debit notes
+The DIAN correction code is required when issuing debit notes in Colombia
+and is not automatically assigned by GOBL.
+
+The extension will be offered as an option in the invoice correction process.
 
 <Accordion title="co-dian-debit-code">
 
 | Code | Name |
 | ---- | ---- |
-| <code>1</code> | Interest |
-| <code>2</code> | Pending charges |
-| <code>3</code> | Change in value |
-| <code>4</code> | Other |
+| `1` | Interest |
+| `2` | Pending charges |
+| `3` | Change in value |
+| `4` | Other |
 </Accordion>
+### Fiscal Responsibility Code
+
+The fiscal responsibility code as defined by the DIAN for Colombian electronic invoicing.
+Maps to the UBL's `TaxLevelCode` field.
+
+The DIAN requires that Colombian invoices specify the fiscal responsibilities of the
+supplier or customer using specific codes. If no value is provided, GOBL will
+automatically set `R-99-PN` as the default.
+
+| Code    | Description                   |
+| ------- | ----------------------------- |
+| O-13    | Gran contribuyente            |
+| O-15    | Autorretenedor                |
+| O-23    | Agente de retención IVA       |
+| O-47    | Régimen simple de tributación |
+| R-99-PN | No aplica - Otros             |
+
+For example:
+
+```js
+"customer": {
+	"name": "EXAMPLE CUSTOMER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": {
+		"co-dian-fiscal-responsibility": "O-13"
+	}
+}
+```
+
+<Accordion title="co-dian-fiscal-responsibility">
+
+| Code | Name |
+| ---- | ---- |
+| `O-13` | Major taxpayer |
+| `O-15` | Self-withholder |
+| `O-23` | VAT withholding agent |
+| `O-47` | Simple tax regime |
+| `R-99-PN` | Not applicable – Others |
+</Accordion>
+### Item Identification Standard
+
+Identifies the product-coding standard used for an invoice line's item code,
+mapped to the UBL's `StandardItemIdentification/ID@schemeID`.
+
+For example:
+
+```js
+"item": {
+	"name": "Producto",
+	"ref": "7702004003489",
+	"ext": { "co-dian-item-identification": "010" }
+}
+```
+
+<Accordion title="co-dian-item-identification">
+
+| Code | Name |
+| ---- | ---- |
+| `001` | UNSPSC |
+| `010` | GTIN |
+| `020` | Customs tariff |
+| `999` | Taxpayer's own standard |
+</Accordion>
+### Tax Scheme
+
+The tax (tributo) the party is responsible for, as defined by the DIAN for
+Colombian electronic invoicing.
+
+The DIAN limits suppliers to `01` (IVA) or `04` (INC), while customers may
+use any value; final consumers must be reported with `ZZ`. If a Colombian
+customer provides no value, GOBL will automatically set `ZZ` as the default.
+
+For example:
+
+```js
+"supplier": {
+	"name": "EXAMPLE SUPPLIER S.A.S.",
+	"tax_id": {
+		"country": "CO",
+		"code": "9014514812"
+	},
+	"ext": { "co-dian-tax-scheme": "01" }
+}
+```
+
+<Accordion title="co-dian-tax-scheme">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | VAT |
+| `04` | National consumption tax |
+| `ZA` | VAT and national consumption tax |
+| `ZZ` | Not applicable |
+</Accordion>
+
+## Validation Rules
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [COP]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-14`<br />Invoice must be in COP or provide exchange rate for conversion |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice type in [standard, credit-note, debit-note, proforma]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-01`<br />Invoice type must be one of standard, credit-note, debit-note, or proforma |
+| `supplier.addresses` | <ul class="gobl-test"><li>Colombian supplier</li><li>Length at least 1</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-02`<br />At least one address is required for Colombian suppliers |
+| `supplier.ext` | <ul class="gobl-test"><li>Colombian supplier with code</li><li>Ext require [co-dian-municipality]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-03`<br />Extension 'co-dian-municipality' is required |
+| `supplier.ext` | <ul class="gobl-test"><li>Colombian supplier</li><li>Ext require [co-dian-fiscal-responsibility]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-04`<br />Extension 'co-dian-fiscal-responsibility' is required |
+| `customer.tax_id` | <ul class="gobl-test"><li>Not simplified</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-05`<br />Customer tax ID is required |
+| `customer.addresses` | <ul class="gobl-test"><li>Colombian customer</li><li>Length at least 1</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-06`<br />At least one address is required for Colombian customers |
+| `customer.ext` | <ul class="gobl-test"><li>Colombian customer with code</li><li>Ext require [co-dian-municipality]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-07`<br />Extension 'co-dian-municipality' is required |
+| `customer.ext` | <ul class="gobl-test"><li>Colombian customer</li><li>Ext require [co-dian-fiscal-responsibility]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-08`<br />Extension 'co-dian-fiscal-responsibility' is required |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-09`<br />Preceding documents are required for credit and debit notes |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li>Ext require [co-dian-credit-code]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-10`<br />Extension 'co-dian-credit-code' is required for credit notes |
+| `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-12`<br />Preceding reason is required |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li>Ext require [co-dian-debit-code]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-11`<br />Extension 'co-dian-debit-code' is required for debit notes |
+| `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-13`<br />Preceding reason is required |
+| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-15`<br />Invoice code must be a positive integer without leading zeroes |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Missing dian-cude stamp</li><li>Ext 'co-dian-credit-code' not in [2]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-16`<br />Extension 'co-dian-credit-code' cannot be '2' (revoked) without a 'dian-cude' stamp |
+| `preceding[*].period` | <ul class="gobl-test"><li>Missing dian-cude stamp</li><li>Single calendar month</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-17`<br />Period must be within a single calendar month without a 'dian-cude' stamp |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice type in [standard, credit-note, debit-note]</li><li>Credit sale has due date</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-18`<br />Payment due date is required when the invoice is not fully paid |
+</Accordion>
+<Accordion title="bill.Line">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `quantity` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-CO-DIAN-BILL-LINE-01`<br />Must be greater than 0 |
+</Accordion>
+</AccordionGroup>

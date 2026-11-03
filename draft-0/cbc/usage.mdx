@@ -1,0 +1,27 @@
+---
+title: Usage
+comment: 
+---
+
+Usage describes the context in which a definition may be used.
+
+## Schema ID
+
+`https://gobl.org/draft-0/cbc/usage`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| Keys | `keys` | array of [cbc.Key](/draft-0/cbc/key) | Keys used for filtering, such as the addons that offer the definition. |
+| Codes | `codes` | array of [cbc.Code](/draft-0/cbc/code) | Codes used for filtering, such as the tax regime country codes that offer the definition. |
+| Schemas | `schemas` | array of string | Short schema IDs, without the GOBL base, of the objects in which the definition may be used, such as "tax/combo" or "org/party". Packages provide constants for them, such as tax.ShortSchemaCombo. |
+| Paths | `paths` | array of string | JSON paths inside a document under which the definition may be used, with "[*]" matching any array index, for when only some of the schema's locations apply. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `schemas[*]` | <ul class="gobl-test"><li>Matches ^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$</li></ul> | `GOBL-CBC-USAGE-01`<br />Schema must be a short schema ID |
+| `paths[*]` | <ul class="gobl-test"><li>Matches ^\$(\.[$a-zA-Z0-9_-]+(\[\*\])*)*$</li></ul> | `GOBL-CBC-USAGE-02`<br />Path must be a JSON path |
