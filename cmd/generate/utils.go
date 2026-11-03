@@ -135,9 +135,19 @@ func customFilterLabel(sc *tax.Scenario) string {
 	return "custom"
 }
 
-// customFilterSource returns a GitHub permalink (pinned at the gobl version
+// customFilterSource returns a GitHub permalink (pinned at the module version
 // this generator is built against) to the source location of the supplied
 // custom filter function, or "" if the source can't be resolved.
+//
+// Filters may live in core gobl or in any of the external addon modules
+// (gobl.pt.saft, gobl.mx.cfdi, ...), so the lookup accepts any module under
+// github.com/invopop/ and derives the repository from the module path. Module
+// cache paths look like:
+//
+//	.../github.com/invopop/gobl.pt.saft@v0.0.9/scenarios.go
+//
+// A path without a "@version" segment (e.g. a local replace directive) can't
+// be mapped to a permalink and yields "".
 func customFilterSource(filter func(doc any) bool) string {
 	if filter == nil {
 		return ""
@@ -148,17 +158,28 @@ func customFilterSource(filter func(doc any) bool) string {
 		return ""
 	}
 	file, line := fn.FileLine(pc)
-	const marker = "github.com/invopop/gobl@"
-	idx := strings.Index(file, marker)
+	const marker = "github.com/invopop/"
+	idx := strings.LastIndex(file, marker)
 	if idx < 0 {
 		return ""
 	}
 	rest := file[idx+len(marker):]
-	parts := strings.SplitN(rest, "/", 2)
+	// rest: "<module>[/vN]@<version>/<path/in/repo>"
+	at := strings.Index(rest, "@")
+	if at < 0 {
+		return ""
+	}
+	module := rest[:at]
+	parts := strings.SplitN(rest[at+1:], "/", 2)
 	if len(parts) != 2 {
 		return ""
 	}
-	return fmt.Sprintf("https://github.com/invopop/gobl/blob/%s/%s#L%d", parts[0], parts[1], line)
+	version, path := parts[0], parts[1]
+	// Strip a major-version suffix ("gobl.ubl/v2") to recover the repo name.
+	if i := strings.Index(module, "/"); i >= 0 {
+		module = module[:i]
+	}
+	return fmt.Sprintf("https://github.com/invopop/%s/blob/%s/%s#L%d", module, version, path, line)
 }
 
 // scenarioTagsCell renders the Tags column of a scenario row, including any
