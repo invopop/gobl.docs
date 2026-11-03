@@ -66,6 +66,10 @@ Addon rules typically enforce the requirements of a specific standard or reporti
 
 ---
 
+<Prompt description="Have your agent explain and fix a validation error." icon="bug" actions={["copy", "cursor"]}>
+I will paste a GOBL build error. Read https://docs.gobl.org/overview/validation.md and https://docs.gobl.org/llms.md. For each fault, find the rule by its code: core codes such as GOBL-BILL-INVOICE-NN are in the Validation Rules table of the schema page under https://docs.gobl.org/draft-0/, codes with a country such as GOBL-ES-TAX-IDENTITY-NN are on the regime page, and codes with an addon key such as GOBL-ES-VERIFACTU-BILL-INVOICE-NN are on the addon page. Explain what each rule requires and why my document fails it at the JSON paths given, propose the smallest change that satisfies all rules at once, apply it and rebuild with https://gobl.dev/v0/build or the gobl CLI to confirm.
+</Prompt>
+
 ## Validation codes
 
 Every assertion gets a unique code built from the package, struct, and a sequence number:

@@ -56,6 +56,10 @@ curl -X POST https://gobl.dev/v0/build \
 
 No authentication is required. The API is free to use.
 
+<Prompt description="Have your agent write a client for the GOBL API in your language." icon="code" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/api/introduction.md, https://docs.gobl.org/llms.md and the OpenAPI description linked from https://docs.gobl.org/llms.txt. Write a small client for https://gobl.dev/v0 in this project's language with functions for build, validate, correct, and fetching a regime and an addon definition. Every document request wraps the document in a data property; build accepts an envelop flag. Turn the error body, which has a key and a faults array with code, paths and message, into a typed error so callers can branch on fault codes. Send a descriptive User-Agent header. Add a test that builds the example invoice from https://docs.gobl.org/llms.md and asserts its payable total, and one that sends an invalid tax identity and asserts the fault code.
+</Prompt>
+
 ## MCP Server
 
 An [MCP (Model Context Protocol) server](/api/mcp) is also available for integrating GOBL with AI assistants like Claude. It exposes the same document operations plus tax reference data as MCP tools.

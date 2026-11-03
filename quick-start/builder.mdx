@@ -8,3 +8,7 @@ The [GOBL Builder](https://build.gobl.org) is a fantastic starting point for lea
 You can checkout the [source code of the GOBL builder](https://github.com/invopop/gobl.builder) and even use this tool inside your own projects.
 
 Behind the scenes, the builder uses the GOBL compiled using the new WASM (web assembly) frameworks for Go, so there is no server-side logic, and no data leaves your browser.
+
+<Prompt description="Prefer to work from your editor? Have your agent do what the builder does." icon="robot" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/llms.md. Set up a way for me to build and validate GOBL documents from this project without the browser: install the gobl CLI from github.com/invopop/gobl.dev, or if I cannot install anything, write a small script that posts a document wrapped in a data property to https://gobl.dev/v0/build and prints the faults array on failure. Then take the document I give you, build it, and show me the built result next to my input so I can see what was calculated.
+</Prompt>
