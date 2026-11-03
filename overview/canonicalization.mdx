@@ -27,32 +27,36 @@ GOBL considers the following JSON values as explicit types:
 
 JSON in canonical form:
 
-1. MUST be encoded in VALID [UTF-8](https://tools.ietf.org/html/rfc3629). A document with invalid character encoding will be rejected.
-2. MUST NOT include insignificant whitespace.
-3. MUST order the attributes of objects lexicographically by the UCS (Unicode Character Set) code points of their names.
-4. MUST remove attributes from objects whose value is `null`.
-5. MUST NOT remove null values from arrays.
-6. MUST represent integer numbers, those with a zero-valued fractional part, WITHOUT:
-   1. a leading minus sign when the value is zero,
-   2. a decimal point,
-   3. an exponent, thus limiting numbers to 64 bits, and
-   4. insignificant leading zeroes, as already required by JSON.
-7. MUST represent floating point numbers in exponential notation, INCLUDING:
-   1. a nonzero single-digit part to the left of the decimal point,
-   2. a nonempty fractional part to the right of the decimal point,
-   3. no trailing zeroes to right of the decimal point except to comply with the previous point,
-   4. a capital `E` for the exponent indicator,
-   5. no plus sign in the [mantissa](https://en.wikipedia.org/wiki/Significand) nor exponent, and
-   6. no insignificant leading zeros in the exponent.
-8. MUST represent all strings, including object attribute keys, in their minimal length UTF-8 encoding:
+1. **Must** be encoded in [valid UTF-8](https://tools.ietf.org/html/rfc3629). A document with invalid character encoding will be rejected.
+2. **Must not** include superfluous or non-semantic whitespace.
+3. **Must** order the attributes of objects lexicographically by the  <Tooltip tip="Unicode Character Set">UCS</Tooltip> code points of their names.
+4. **Must** remove attributes from objects whose value is `null`.
+5. **Must not** remove null values from arrays.
+6. **Must** represent numbers that are mathematically integers—i.e., those with a zero-valued fractional part—using the canonical JSON integer form. These numbers **must not** be represented with:
+    * a leading minus sign when the value is zero (i.e., use `0`, not `-0`);
+    * a decimal point (e.g., `3`, not `3.0`);
+    * exponent notation (e.g., `1000`, not `1e3`);
+    * leading zeroes (e.g., `42`, not `042`), as already prohibited by the JSON specification.
+7. **Must** represent floating-point numbers in **exponential notation**, adhering to the following format:
+    * A **nonzero single-digit** integer part to the left of the decimal point (e.g., `1.23E+3`, not `12.3E+2`);
+    * A **nonempty fractional part** to the right of the decimal point (e.g., `1.2E3`, not `1.E3`);
+    * **No trailing zeroes** in the fractional part, unless required to satisfy the condition above;
+    * A capital **`E`** as the exponent separator (not lowercase `e`);
+    * **No plus sign** (`+`) in either the mantissa or the exponent;
+    * **No leading zeroes** in the exponent (e.g., `1.2E3`, not `1.2E003`).
+8. **Must** represent all strings, including object attribute keys, in their minimal length UTF-8 encoding:
    1. using two-character escape sequences where possible for characters that require escaping, specifically:
-      * `\"` U+0022 Quotation Mark
-      * `\\` U+005C Reverse Solidus (backslash)
-      * `\b` U+0008 Backspace
-      * &#x20;U+0009 Character Tabulation (tab)
-      * &#x20;U+000A Line Feed (newline)
-      * `\f` U+000C Form Feed
-      * &#x20;U+000D Carriage Return
+
+    | Character                       | Escape Sequence | Unicode   |
+    | ---------------------------     | --------------- | -------   |
+    | `"` Quotation Mark              | `\"`            | `U+0022`  |
+    | `\` Reverse Solidus (backslash) | `\\`            | `U+005C`  |
+    | `⌫` Backspace                   | `\b`            | `U+0008`  |
+    | `⇥` Character Tabulation (tab)  | `\t`            | `U+0009`  |
+    | `␊` Line Feed (newline)         | `\n`            | `U+000A`  |
+    | `␌` Form Feed                   | `\f`            | `U+000C`  |
+    | `↵` Carriage Return             | `\r`            | `U+000D`  |
+
    2. using six-character `\u00XX` uppercase hexadecimal escape sequences for control characters that require escaping but lack a two-character sequence described previously, and
    3. reject any string containing invalid encoding.
 
