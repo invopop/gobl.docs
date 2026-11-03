@@ -29,8 +29,9 @@ var groupNames = map[string]string{
 }
 
 // updateDocsNavigation reads docs.json, rebuilds the Schemas (Draft 0)
-// navigation group from the generated draft-0/ pages, and writes it back.
-func updateDocsNavigation(docsJSONPath, draft0Dir string) error {
+// navigation group from the generated draft-0/ pages plus the Addons and Tax
+// Regimes groups from the given keys, and writes it back.
+func updateDocsNavigation(docsJSONPath, draft0Dir string, addonKeys, regimeKeys []string) error {
 	data, err := os.ReadFile(docsJSONPath)
 	if err != nil {
 		return err
@@ -52,6 +53,16 @@ func updateDocsNavigation(docsJSONPath, draft0Dir string) error {
 		return err
 	}
 
+	// Rebuild the addon definitions list inside the top-level Addons group
+	if err := replaceKeyedGroup(doc, "Addons", "addons/overview", "Definitions", "addons", addonKeys); err != nil {
+		return err
+	}
+
+	// Rebuild the country list inside the Tax Regimes group
+	if err := replaceKeyedGroup(doc, "Tax Regimes", "regimes/overview", "Countries", "regimes", regimeKeys); err != nil {
+		return err
+	}
+
 	out, err := json.MarshalIndent(doc, "", "  ")
 	if err != nil {
 		return err
@@ -65,7 +76,7 @@ func updateDocsNavigation(docsJSONPath, draft0Dir string) error {
 func buildDraft0Nav(draft0Dir string) (any, error) {
 	// Collect all MDX files grouped by directory
 	topLevel := []string{}
-	groups := make(map[string][]string)     // dir → sorted page paths
+	groups := make(map[string][]string)               // dir → sorted page paths
 	subGroups := make(map[string]map[string][]string) // dir → subdir → sorted page paths
 
 	err := filepath.Walk(draft0Dir, func(path string, info os.FileInfo, err error) error {
@@ -180,6 +191,58 @@ func buildDraft0Nav(draft0Dir string) (any, error) {
 		"group": "Schemas (Draft 0)",
 		"pages": pages,
 	}, nil
+}
+
+// replaceKeyedGroup rebuilds a navigation group made up of an overview page
+// followed by a single sub-group of generated per-key pages (used for both
+// Addons and Tax Regimes). The group is matched by name and its overview
+// page, to avoid confusing it with same-named sub-groups elsewhere (e.g. the
+// "Addons" sub-group under Schemas (Draft 0)).
+func replaceKeyedGroup(doc map[string]any, groupName, overviewPage, subGroupName, dir string, keys []string) error {
+	sorted := append([]string{}, keys...)
+	sort.Strings(sorted)
+	pages := make([]any, 0, len(sorted))
+	for _, k := range sorted {
+		pages = append(pages, dir+"/"+k)
+	}
+
+	nav, ok := doc["navigation"].(map[string]any)
+	if !ok {
+		return fmt.Errorf("navigation not found in docs.json")
+	}
+	anchors, ok := nav["anchors"].([]any)
+	if !ok {
+		return fmt.Errorf("anchors not found in navigation")
+	}
+	for _, anchor := range anchors {
+		a, ok := anchor.(map[string]any)
+		if !ok {
+			continue
+		}
+		groups, ok := a["groups"].([]any)
+		if !ok {
+			continue
+		}
+		for _, group := range groups {
+			g, ok := group.(map[string]any)
+			if !ok || g["group"] != groupName {
+				continue
+			}
+			gp, ok := g["pages"].([]any)
+			if !ok || len(gp) == 0 || gp[0] != overviewPage {
+				continue
+			}
+			g["pages"] = []any{
+				overviewPage,
+				map[string]any{
+					"group": subGroupName,
+					"pages": pages,
+				},
+			}
+			return nil
+		}
+	}
+	return fmt.Errorf("%s group not found in docs.json", groupName)
 }
 
 // replaceSchemasGroup finds and replaces the "Schemas (Draft 0)" group in docs.json.

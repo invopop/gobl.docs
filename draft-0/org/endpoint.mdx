@@ -1,0 +1,25 @@
+---
+title: Endpoint
+comment: 
+---
+
+Endpoint identifies an address to which electronic documents may be sent, expressed as a single URI.
+
+## Schema ID
+
+`https://gobl.org/draft-0/org/endpoint`
+
+## Properties
+
+| Title | Property | Type | Description |
+|-------|----------|------|-------------|
+| UUID | `uuid` | string | Universally Unique Identifier. |
+| Label | `label` | string | Label for the endpoint. |
+| URI | `uri` | [cbc.URI](/draft-0/cbc/u_r_i) | URI that identifies the endpoint. |
+
+
+## Validation Rules
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `uri` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ORG-ENDPOINT-01`<br />Endpoint uri is required |

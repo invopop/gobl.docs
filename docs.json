@@ -75,15 +75,19 @@
                   "regimes/ae",
                   "regimes/ar",
                   "regimes/at",
+                  "regimes/au",
                   "regimes/be",
                   "regimes/br",
+                  "regimes/bs",
                   "regimes/ca",
                   "regimes/ch",
                   "regimes/co",
+                  "regimes/cr",
                   "regimes/de",
                   "regimes/dk",
                   "regimes/el",
                   "regimes/es",
+                  "regimes/fi",
                   "regimes/fr",
                   "regimes/gb",
                   "regimes/ie",
@@ -91,10 +95,15 @@
                   "regimes/it",
                   "regimes/mx",
                   "regimes/nl",
+                  "regimes/no",
+                  "regimes/nz",
+                  "regimes/pe",
                   "regimes/pl",
                   "regimes/pt",
+                  "regimes/sa",
                   "regimes/se",
                   "regimes/sg",
+                  "regimes/sk",
                   "regimes/us"
                 ]
               }
@@ -113,20 +122,27 @@
                   "addons/co-dian-v2",
                   "addons/de-xrechnung-v3",
                   "addons/de-zugferd-v2",
+                  "addons/dk-oioubl-v2",
                   "addons/es-facturae-v3",
                   "addons/es-sii-v1",
                   "addons/es-tbai-v1",
                   "addons/es-verifactu-v1",
                   "addons/eu-en16931-v2017",
+                  "addons/fi-finvoice-v3",
                   "addons/fr-choruspro-v1",
+                  "addons/fr-ctc-flow10-v1",
                   "addons/fr-ctc-flow2-v1",
+                  "addons/fr-ctc-flow6-v1",
                   "addons/fr-facturx-v1",
                   "addons/gr-mydata-v1",
                   "addons/it-sdi-v1",
                   "addons/it-ticket-v1",
                   "addons/mx-cfdi-v4",
+                  "addons/peppol-bis-v3",
+                  "addons/peppol-pint-v1",
                   "addons/pl-favat-v3",
-                  "addons/pt-saft-v1"
+                  "addons/pt-saft-v1",
+                  "addons/sa-zatca-v1"
                 ]
               }
             ]
@@ -155,11 +171,11 @@
                 "pages": [
                   "draft-0/bill/action",
                   "draft-0/bill/charge",
-                  "draft-0/bill/condition",
                   "draft-0/bill/correction_options",
                   "draft-0/bill/delivery",
                   "draft-0/bill/delivery_details",
                   "draft-0/bill/discount",
+                  "draft-0/bill/fault",
                   "draft-0/bill/invoice",
                   "draft-0/bill/line",
                   "draft-0/bill/line_charge",
@@ -196,7 +212,9 @@
                   "draft-0/cbc/definition",
                   "draft-0/cbc/key",
                   "draft-0/cbc/meta",
-                  "draft-0/cbc/source"
+                  "draft-0/cbc/source",
+                  "draft-0/cbc/uri",
+                  "draft-0/cbc/usage"
                 ]
               },
               {
@@ -254,9 +272,11 @@
                 "pages": [
                   "draft-0/org/address",
                   "draft-0/org/attachment",
+                  "draft-0/org/attribute",
                   "draft-0/org/coordinates",
                   "draft-0/org/document_ref",
                   "draft-0/org/email",
+                  "draft-0/org/endpoint",
                   "draft-0/org/identity",
                   "draft-0/org/image",
                   "draft-0/org/inbox",
@@ -267,38 +287,20 @@
                   "draft-0/org/person",
                   "draft-0/org/registration",
                   "draft-0/org/telephone",
-                  "draft-0/org/unit",
                   "draft-0/org/website"
                 ]
               },
               {
                 "group": "Pay",
                 "pages": [
-                  "draft-0/pay/advance",
                   "draft-0/pay/card",
                   "draft-0/pay/credit_transfer",
                   "draft-0/pay/direct_debit",
                   "draft-0/pay/due_date",
                   "draft-0/pay/instructions",
                   "draft-0/pay/online",
+                  "draft-0/pay/record",
                   "draft-0/pay/terms"
-                ]
-              },
-              {
-                "group": "Addons",
-                "pages": [
-                  {
-                    "group": "MX",
-                    "pages": [
-                      "draft-0/regimes/mx/food_vouchers",
-                      "draft-0/regimes/mx/food_vouchers_employee",
-                      "draft-0/regimes/mx/food_vouchers_line",
-                      "draft-0/regimes/mx/fuel_account_balance",
-                      "draft-0/regimes/mx/fuel_account_item",
-                      "draft-0/regimes/mx/fuel_account_line",
-                      "draft-0/regimes/mx/fuel_account_tax"
-                    ]
-                  }
                 ]
               },
               {
@@ -319,6 +321,7 @@
                   "draft-0/tax/correction_definition",
                   "draft-0/tax/correction_set",
                   "draft-0/tax/extensions",
+                  "draft-0/tax/filter",
                   "draft-0/tax/identity",
                   "draft-0/tax/key_def",
                   "draft-0/tax/note",

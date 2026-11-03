@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"html"
+	"os"
+	"path/filepath"
 	"reflect"
 	"runtime"
 	"strings"
@@ -11,6 +13,27 @@ import (
 	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/tax"
 )
+
+// removeStalePages deletes any .mdx file in dir whose base name is not in
+// keep. Used by generators that own a directory of per-key pages so removed
+// definitions don't leave orphaned docs behind.
+func removeStalePages(dir string, keep map[string]bool) error {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return err
+	}
+	for _, e := range entries {
+		if e.IsDir() || filepath.Ext(e.Name()) != ".mdx" || keep[e.Name()] {
+			continue
+		}
+		name := filepath.Join(dir, e.Name())
+		if err := os.Remove(name); err != nil {
+			return err
+		}
+		fmt.Printf("Removed stale %s\n", name)
+	}
+	return nil
+}
 
 func joinKeys(keys []cbc.Key) string {
 	var s []string
@@ -30,7 +53,7 @@ func codeMap(m cbc.CodeMap) string {
 
 func extMap(m tax.Extensions) string {
 	var s []string
-	for k, v := range m {
+	for k, v := range m.All() {
 		s = append(s, fmt.Sprintf("`%s:%s`", k, v))
 	}
 	return strings.Join(s, ", ")
@@ -189,7 +212,7 @@ func scenarioCategoriesCell(sc *tax.Scenario) string {
 type scenarioOutputJSON struct {
 	Note  *tax.Note      `json:"note,omitempty"`
 	Codes cbc.CodeMap    `json:"codes,omitempty"`
-	Ext   tax.Extensions `json:"ext,omitempty"`
+	Ext   tax.Extensions `json:"ext,omitzero"`
 }
 
 // scenarioOutputCell renders the Output column as an indented JSON snippet
@@ -199,7 +222,7 @@ type scenarioOutputJSON struct {
 // preserving indentation. Braces and pipes are escaped so MDX and the table
 // parser don't choke.
 func scenarioOutputCell(sc *tax.Scenario) string {
-	if sc.Note == nil && len(sc.Codes) == 0 && len(sc.Ext) == 0 {
+	if sc.Note == nil && len(sc.Codes) == 0 && sc.Ext.IsZero() {
 		return "-"
 	}
 	out := scenarioOutputJSON{Note: sc.Note, Codes: sc.Codes, Ext: sc.Ext}

@@ -38,6 +38,7 @@ reporting of invoicing data to the AEAT.
 | `IGIC` | IGIC | Canary Island General Indirect Tax |
 | `IPSI` | IPSI | Production, Services, and Import Tax |
 | `IRPF` | IRPF | Personal income tax. |
+| `IRNR` | IRNR | Non-residents income tax |
 
 ### VAT Rates
 
@@ -71,6 +72,24 @@ to its local needs.
 | `pro-start` |  | Professional Starting Rate | 7.0% |  |
 | `capital` |  | Rental or Interest Capital | 19.0% |  |
 | `modules` |  | Modules Rate | 1.0% |  |
+
+### IRNR Rates
+
+Personal or corporate income tax levied on income obtained in Spanish
+territory by individuals and entities that are not resident in Spain.
+Regulated by Real Decreto Legislativo 5/2004 (TRLIRNR).
+
+This category covers income obtained without a permanent establishment
+(sin establecimiento permanente), where the Spanish payer is generally
+obliged to withhold the tax at source on each payment. Income obtained
+through a permanent establishment is taxed under the rules of the
+Corporate Income Tax (Impuesto sobre Sociedades) and is out of scope
+at the invoice level.
+
+Applicable rates depend on the type of income and on whether the
+recipient is resident in another EU/EEA Member State with an effective
+exchange of tax information, in which case reduced rates apply.
+No rates defined.
 
 ## Correction Definitions
 
