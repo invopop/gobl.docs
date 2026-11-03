@@ -279,7 +279,7 @@ Never invent an extension value. Copy it from the addon page, the MCP `addon` to
 
 Corrections are new documents whose `type` is `credit-note` (a refund that extends the original), `debit-note` (extra charges) or `corrective` (a full replacement), with the original referenced in `preceding`. Amounts on a credit note are positive; the type carries the sign. Which types a regime accepts is on its page under **Correction Definitions**: Spain accepts all three and maps them onto its rectifying invoices, the United Kingdom accepts `credit-note` only.
 
-Do not assemble corrections by hand. `gobl correct -i --credit invoice.json`, `POST /v0/correct` or the MCP `correct` tool copies the lines and builds `preceding` with the original's `uuid`, `series`, `code` and `issue_date`, and adds whatever the regime or addon requires. Pass `--options` (or `"schema": true` over MCP) to see the correction options a document allows: `type`, `series`, `issue_date`, `reason`, `copy_tax`, `stamps` and, for some addons, extension codes.
+Do not assemble corrections by hand. `gobl correct -i --credit built.json`, `POST /v0/correct` or the MCP `correct` tool copies the lines and builds `preceding` with the original's `series`, `code`, `issue_date` and, when the original was built with an envelope, its `uuid`, and adds whatever the regime or addon requires. Pass `--options` (or `"schema": true` over MCP) to see the correction options a document allows: `type`, `series`, `issue_date`, `reason`, `copy_tax`, `stamps` and, for some addons, extension codes.
 
 ### 12. The envelope is sealed by its digest
 
