@@ -20,3 +20,7 @@ Addons are sourced from multiple repositories:
 Each addon's page states the module that implements it.
 
 Support for addons was included in the `v0.200.0` release of [GOBL](https://github.com/invopop/gobl).
+
+<Prompt description="Have your agent work out which addon you need and what it demands." icon="puzzle-piece" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/addons/overview.md and https://docs.gobl.org/llms.md. For the country and use case I describe, identify which addon keys apply from the list under https://docs.gobl.org/addons/ and read each addon's page. For each one, list the extension keys it can require, where on the document they go (document, line, tax or party ext), the code values allowed and what they mean, the tags and scenarios it defines, and the validation rules most likely to fail. Then take my invoice, add the addon to $addons, build it with https://gobl.dev/v0/build or the gobl CLI, and show me which extensions build filled in automatically and which I must supply myself.
+</Prompt>

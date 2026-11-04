@@ -89,6 +89,10 @@ Add to your Cursor MCP settings (`.cursor/mcp.json`):
 }
 ```
 
+<Prompt description="Have your agent connect the GOBL MCP server and check it works." icon="microchip-ai" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/api/mcp.md and https://docs.gobl.org/llms.md. Add the GOBL MCP server to the agent configuration used in this project, preferring the hosted server at https://gobl.dev/v0/mcp and falling back to the local gobl mcp command if the CLI is installed. Then exercise it: call regime_list and tell me how many regimes exist, call regime for the country I name and summarise its tax categories and rate keys, call addon for the addon I name and list its extension keys, and finally call build with the example invoice from https://docs.gobl.org/llms.md and report the payable total. Tell me if any tool call fails and why.
+</Prompt>
+
 ## Tools
 
 The MCP server exposes 9 tools for working with GOBL documents and reference data.

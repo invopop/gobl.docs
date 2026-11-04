@@ -16,6 +16,16 @@ Run the following command at the root of your documentation (where mint.json is)
 mint dev
 ```
 
+### 🤖 Agent-facing files
+
+Mintlify publishes every root-level Markdown file verbatim, so three files here exist for AI agents that consume the docs rather than for maintainers:
+
+- `llms.mdx` → `/llms`, the long-form primer (mental model, twelve rules, tooling, prompts, URL tables). Every JSON example on it must build with the current `gobl` CLI.
+- `AGENTS.md` → `docs.gobl.org/AGENTS.md`, the condensed version integrators paste into their own agent instructions.
+- `skill.md` → `/skill.md`, installed by `npx skills add https://docs.gobl.org`; it overrides Mintlify's auto-generated skill and follows the agentskills.io frontmatter.
+
+Hand-written pages carry `<Prompt>` cards (prose only in the children, no braces or angle brackets, pointing agents at `.md` URLs). Keep the three files consistent with each other when GOBL behaviour changes.
+
 ### Generated Content
 
 Schema, catalogue, addon, and regime pages are produced by the internal Go
