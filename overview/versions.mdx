@@ -11,6 +11,6 @@ GOBL follows [semver](https://semver.org) and [Go Module Versioning](https://go.
 JSON Schemas created by GOBL use a simplified approach and only include the "major" version in sources. A few observations:
 
 - Schema versions match GOBL major versions.
-- GOBL `v0` releases will use `draft-0` in schemas for more closer alignment to JSON Schema expectations.
+- GOBL `v0` releases will use `draft-0` in schemas for closer alignment to JSON Schema expectations.
 - Complete GOBL Schema URLs include the version in the URL, e.g.: `https://gobl.org/draft-0/envelope` or `https://gobl.org/v1/envelope`.
 - Patch and minor releases of GOBL may add new fields or alter descriptions, but must be 100% backwards and forwards compatible inside the same major version. Most schema definitions allow additional properties, which simplifies this task.
