@@ -21,16 +21,18 @@ invoice type transactions, address requirements, and supply date handling.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Type | Output |
+| --- | --- |
+| `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "388"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `untdid-document-type:388`
 </Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### ZATCA Invoice Transaction Type
@@ -82,6 +84,10 @@ Pattern: `^0[12][01]{5}$`
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">

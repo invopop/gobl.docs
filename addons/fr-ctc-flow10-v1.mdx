@@ -16,54 +16,22 @@ subject to e-reporting to the DGFiP via the PPF.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "380"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `prepayment` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "386"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `corrective` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "384"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "381"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `prepayment` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "503"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `untdid-document-type:380`
 </Accordion>
-
-<Accordion title="standard, #prepayment">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `prepayment`
-
-**Output:**
-- **Extensions:** `untdid-document-type:386`
-</Accordion>
-
-<Accordion title="corrective">
-
-**Filters:**
-- **Types:** `corrective`
-
-**Output:**
-- **Extensions:** `untdid-document-type:384`
-</Accordion>
-
-<Accordion title="credit-note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `untdid-document-type:381`
-</Accordion>
-
-<Accordion title="credit-note, #prepayment">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `prepayment`
-
-**Output:**
-- **Extensions:** `untdid-document-type:503`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
 ### France CTC: B2C Transaction Category
@@ -135,6 +103,10 @@ directly under the paiement direct arrangement.
 </Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">
