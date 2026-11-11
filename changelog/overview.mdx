@@ -1,0 +1,35 @@
+---
+title: "Changelog"
+description: "New features, updates, and fixes shipped in GOBL."
+---
+
+<Update label="v0.505.0" description="September 11, 2026">
+
+## New features
+
+- **Australia tax regime.** GST support and Australian Business Number (ABN) validation with the weighted modulus-89 checksum. See [Australia](/regimes/au).
+- **New Zealand tax regime.** GST, IRD number validation (weighted modulus-11 checksum), and te reo Māori (`mi`) translations. See [New Zealand](/regimes/nz).
+- **Agents and addressees on parties and orders.** Parties can now identify a single-level agent acting on their behalf, and ordering details can identify the addressee alongside the document issuer.
+- **Greek MyDATA branch numbers.** New `gr-mydata-branch` party extension declares the AADE branch number on suppliers and customers. If omitted, the headquarters branch (`0`) is assumed. See [gr-mydata-v1](/addons/gr-mydata-v1).
+- **Singapore UEN check character validation.** UEN check character validation now applies to the ROB, ROC, and "Others" formats for both `UEN` org identities and tax identity codes.
+
+## Updates
+
+- **CEF VATEX code list updated to version 8.0.** The `cef-vatex` extension grows from 59 to 88 codes, adding all 26 French codes required by the CTC profiles (for example `VATEX-FR-CGI261-1`) and new EU codes including `VATEX-EU-135-1`, `VATEX-EU-144`, `VATEX-EU-146-1E`, `VATEX-EU-153`, and `VATEX-EU-159`. Every code now carries source-list metadata and the extension records its `version`. See [CEF catalogue](/catalogues/cef).
+- **Electronic address validation moved to `org.Endpoint`.** The EN 16931 addon now validates the party electronic address (BT-34, BT-49) on `org.Endpoint` instead of the deprecated `org.Inbox`. At most one ISO 6523 endpoint per party, and its URI must carry both a scheme and a code. See [eu-en16931-v2017](/addons/eu-en16931-v2017).
+- **MyDATA `category1_95` may omit an income type.** The `gr-mydata-income-cat` extension can now be set to `category1_95` (Other Income-related Information) without an accompanying `gr-mydata-income-type`, as required by IAPR for informative amounts such as the 0.5% municipality duty. Setting an income type alongside `category1_95` is now rejected. See [gr-mydata-v1](/addons/gr-mydata-v1).
+- **Calendar periods now accept a single bound.** `cal.Period` `start` and `end` are now optional pointers, and only one of the two is required. A period with neither fails with `GOBL-CAL-PERIOD-11`. **Breaking.**
+- **Italian SDI addon moved to its own module.** The `it-sdi-v1` addon now lives in `github.com/invopop/gobl.it.sdi`. Add a blank import (`_ "github.com/invopop/gobl.it.sdi/addon"`) to keep using the `it-sdi-v1` addon key. **Breaking.** See [it-sdi-v1](/addons/it-sdi-v1).
+- **Attributes with just a label.** `org.Attribute` no longer requires a `key` or `type` when a `label` is present.
+- **FacturaE due dates require an amount.** Due dates on Spanish FacturaE invoices now require an `amount` (`GOBL-ES-FACTURAE-PAY-DUEDATE-01`), preserving FacturaE's mandatory `InstallmentAmount` element now that the core `pay.DueDate` requirement is relaxed. See [es-facturae-v3](/addons/es-facturae-v3).
+- **`pay.DueDate` no longer requires an amount.** Due dates parsed from documents that omit partial payment amounts (for example CII payment terms) are no longer assigned a zero amount that fails `GOBL-PAY-DUEDATE-02`. An amount that is set must still be non-zero.
+
+## Fixes
+
+- **Singapore IRAS-assigned GST numbers accepted.** Tax identity codes ending in a digit (for example `M201189853`) are no longer rejected because a trailing letter was required.
+- **Currency-rounded documents keep tax amounts intact when removing included taxes.** Removing taxes included in prices from a document using the `currency` rounding rule now switches it to `precise`, so the resulting tax bases and amounts match the original document. Previously, tax-exclusive line totals were rounded to the currency's precision and drifted by an amount that grew with the number of lines.
+- **Argentina `24` prefix accepted.** CUIT/CUIL tax identities with the `24` prefix (an individual contingency prefix) are no longer wrongly rejected.
+- **Safer signature handling.** `SignedPayload` and `Header.Verify` now return an error for `null` signature entries instead of panicking.
+- **Invoice unmarshalling on Go 1.27.** Unmarshalling an `Invoice` under the `jsonv2` implementation of `encoding/json` (the default from Go 1.27) no longer re-enters `Invoice.UnmarshalJSON` until the process crashes with a stack overflow.
+
+</Update>
