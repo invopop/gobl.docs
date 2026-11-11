@@ -165,7 +165,7 @@ failures with a unique code and message.
 | ----- | ---- | ------------------------- |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [BRL]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-17`<br />Invoice must be in BRL or provide exchange rate for conversion |
 | `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-01`<br />Series is required |
-| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-02`<br />Code must be a positive integer |
+| `code` | <ul class="gobl-test"><li>Matches `^[1-9][0-9]*$`</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-02`<br />Code must be a positive integer |
 | `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-03`<br />Supplier is required |
 | `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-04`<br />Supplier tax ID is required |
 | `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-05`<br />Supplier tax ID code is required |

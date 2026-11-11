@@ -226,6 +226,10 @@ func buildTestParts(cond string, a *rules.Assertion) []string {
 	}
 	for _, t := range a.Tests {
 		ts := t.String()
+		if pattern, ok := strings.CutPrefix(ts, "matches "); ok {
+			// Wrap regexes in code so MDX doesn't read them as links or emphasis
+			ts = "matches `" + pattern + "`"
+		}
 		if ts != "" {
 			parts = append(parts, ts)
 		}

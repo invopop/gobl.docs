@@ -40,12 +40,12 @@ failures with a unique code and message.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li>Context: regime in [SA]</li><li>Matches ^[a-zA-Z0-9]*$</li></ul> | `GOBL-SA-ORG-IDENTITY-01`<br />Invoice identity type must be alphanumerical |
+| `code` | <ul class="gobl-test"><li>Context: regime in [SA]</li><li>Matches `^[a-zA-Z0-9]*$`</li></ul> | `GOBL-SA-ORG-IDENTITY-01`<br />Invoice identity type must be alphanumerical |
 </Accordion>
 <Accordion title="tax.Identity">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li>Code in [SA]</li><li>Matches ^3[0-9]{13}3$</li></ul> | `GOBL-SA-TAX-IDENTITY-01`<br />Invoice tax id code must be 15 digits long, and start and end with 3 |
+| `code` | <ul class="gobl-test"><li>Code in [SA]</li><li>Matches `^3[0-9]{13}3$`</li></ul> | `GOBL-SA-TAX-IDENTITY-01`<br />Invoice tax id code must be 15 digits long, and start and end with 3 |
 </Accordion>
 </AccordionGroup>

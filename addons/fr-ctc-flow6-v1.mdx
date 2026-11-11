@@ -292,7 +292,7 @@ failures with a unique code and message.
 | `identities[*].ext` | <ul class="gobl-test"><li>Ext require [iso-scheme-id]</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-04`<br />Party identity ext iso-scheme-id is required (BR-FR-CO-10) |
 | `identities[*].ext` | <ul class="gobl-test"><li>Ext 'iso-scheme-id' in [0002, 0009, 0223, 0224, 0226, 0227, 0228, 0229, 0238]</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-05`<br />Party identity ext iso-scheme-id must be one of the Flow 6 allowed schemes (BR-FR-CO-10) |
 | `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Length at most 100</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-06`<br />Party identity code for private-id (0224) must not exceed 100 characters (BR-FR-26) |
-| `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Matches ^[A-Za-z0-9+\-_.]+$</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-07`<br />Party identity code for private-id (0224) must contain only alphanumeric characters and +, -, _, . (BR-FR-24) |
+| `identities[*].code` | <ul class="gobl-test"><li>Scheme 0224 (private-id)</li><li>Matches `^[A-Za-z0-9+\-_.]+$`</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-07`<br />Party identity code for private-id (0224) must contain only alphanumeric characters and +, -, _, . (BR-FR-24) |
 | `inboxes[*]` | <ul class="gobl-test"><li>Valid inbox</li></ul> | `GOBL-FR-CTC-FLOW6-ORG-PARTY-08`<br />Party inbox code format is invalid |
 </Accordion>
 </AccordionGroup>

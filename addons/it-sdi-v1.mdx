@@ -419,7 +419,7 @@ failures with a unique code and message.
 | `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-04`<br />Supplier addresses are required |
 | `supplier.ext` | <ul class="gobl-test"><li>Ext require [it-sdi-fiscal-regime]</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-05`<br />Supplier requires 'it-sdi-fiscal-regime' extension |
 | `supplier.registration.entry` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-06`<br />Supplier registration entry is required when registration is present |
-| `supplier.registration.entry` | <ul class="gobl-test"><li>Matches ^[[:ascii:]]{0,20}$</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-47`<br />Supplier registration entry must be 20 ASCII characters or fewer |
+| `supplier.registration.entry` | <ul class="gobl-test"><li>Matches `^[[:ascii:]]{0,20}$`</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-47`<br />Supplier registration entry must be 20 ASCII characters or fewer |
 | `supplier.registration.office` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-07`<br />Supplier registration office is required when registration is present |
 | `supplier.telephones[*].num` | <ul class="gobl-test"><li>Supplier is Italian</li><li>Length between 5 and 12</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-08`<br />Italian telephone number length must be between 5 and 12 |
 | `customer` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-09`<br />Customer is required |
@@ -475,7 +475,7 @@ failures with a unique code and message.
 | `percent` | <ul class="gobl-test"><li>Is fund contribution</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-01`<br />Fund contribution charge requires a percentage |
 | `ext` | <ul class="gobl-test"><li>Is fund contribution</li><li>Ext require [it-sdi-fund-type]</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-02`<br />Fund contribution charge requires 'it-sdi-fund-type' extension |
 | `taxes` | <ul class="gobl-test"><li>Is fund contribution</li><li>All of [VAT]</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-03`<br />Fund contribution charge must have VAT tax category |
-| `code` | <ul class="gobl-test"><li>Is fund contribution</li><li>Matches ^[[:ascii:]]{0,20}$</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-04`<br />Fund contribution charge code must be 20 ASCII characters or fewer |
+| `code` | <ul class="gobl-test"><li>Is fund contribution</li><li>Matches `^[[:ascii:]]{0,20}$`</li></ul> | `GOBL-IT-SDI-BILL-CHARGE-04`<br />Fund contribution charge code must be 20 ASCII characters or fewer |
 </Accordion>
 <Accordion title="bill.Status">
 
@@ -500,7 +500,7 @@ failures with a unique code and message.
 | `locality` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-05`<br />Address locality is required |
 | `locality` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-06`<br />Address locality must use Latin-1 characters |
 | `code` | <ul class="gobl-test"><li>Italian address</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-07`<br />Italian address code is required |
-| `code` | <ul class="gobl-test"><li>Italian address</li><li>Matches ^\d{5}$</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-08`<br />Italian address code must be 5 digits |
+| `code` | <ul class="gobl-test"><li>Italian address</li><li>Matches `^\d{5}$`</li></ul> | `GOBL-IT-SDI-ORG-ADDRESS-08`<br />Italian address code must be 5 digits |
 </Accordion>
 <Accordion title="org.Attribute">
 
