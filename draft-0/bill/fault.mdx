@@ -14,8 +14,8 @@ Fault provides a more formal structure for describing with a specific code what 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code or business term provided by the system that raised the condition. These should be searchable in order to help users or systems understand what went wrong with the document. |
-| Message | `message` | string | Message contains human readable details about the specific condition. |
-| Paths | `paths` | array of string | Paths contains an array of JSON paths that maps the GOBL specific error to a field inside the envelope that the condition is applied to. |
+| Message | `message` | string | Human readable details about the specific condition. |
+| Paths | `paths` | array of string | JSON paths that map the GOBL specific error to the fields inside the envelope that the condition applies to. |
 
 
 ## Validation Rules

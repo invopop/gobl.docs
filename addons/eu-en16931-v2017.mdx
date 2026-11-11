@@ -50,114 +50,34 @@ exemption note covering it.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "380"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "381"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "383"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `corrective` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "384"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `proforma` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "325"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `partial` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "326"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "389"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "261"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `prepayment` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "386"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `factoring` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "393"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `factoring` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "396"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `untdid-document-type:380`
 </Accordion>
-
-<Accordion title="credit-note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `untdid-document-type:381`
-</Accordion>
-
-<Accordion title="debit-note">
-
-**Filters:**
-- **Types:** `debit-note`
-
-**Output:**
-- **Extensions:** `untdid-document-type:383`
-</Accordion>
-
-<Accordion title="corrective">
-
-**Filters:**
-- **Types:** `corrective`
-
-**Output:**
-- **Extensions:** `untdid-document-type:384`
-</Accordion>
-
-<Accordion title="proforma">
-
-**Filters:**
-- **Types:** `proforma`
-
-**Output:**
-- **Extensions:** `untdid-document-type:325`
-</Accordion>
-
-<Accordion title="standard, #partial">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `partial`
-
-**Output:**
-- **Extensions:** `untdid-document-type:326`
-</Accordion>
-
-<Accordion title="standard, #self-billed">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `untdid-document-type:389`
-</Accordion>
-
-<Accordion title="credit-note, #self-billed">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `untdid-document-type:261`
-</Accordion>
-
-<Accordion title="standard, #prepayment">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `prepayment`
-
-**Output:**
-- **Extensions:** `untdid-document-type:386`
-</Accordion>
-
-<Accordion title="standard, #factoring">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `factoring`
-
-**Output:**
-- **Extensions:** `untdid-document-type:393`
-</Accordion>
-
-<Accordion title="credit-note, #factoring">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `factoring`
-
-**Output:**
-- **Extensions:** `untdid-document-type:396`
-</Accordion>
+</AccordionGroup>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">
@@ -214,7 +134,7 @@ exemption note covering it.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `unit` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-EU-EN16931-ORG-ITEM-01`<br />Unit is required (BR-23) |
+| <small>Item</small> | <ul class="gobl-test"><li>Required valid UNTDID unit</li></ul> | `GOBL-EU-EN16931-ORG-ITEM-02`<br />Unit code must be determinable from the unit or the `untdid-unit` extension (BR-23) |
 </Accordion>
 <Accordion title="org.Attachment">
 
@@ -226,16 +146,15 @@ exemption note covering it.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `inboxes` | <ul class="gobl-test"><li>Length between 0 and 1</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-01`<br />Cannot have more than one inbox (BT-34, BT-49) |
+| `endpoints` | <ul class="gobl-test"><li>Single iso6523 endpoint</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-04`<br />Cannot have more than one 'iso6523-actorid-upis' endpoint (BT-34, BT-49) |
 | `identities` | <ul class="gobl-test"><li>Single legal-scope identity</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-02`<br />Only one identity may have the legal scope (BT-30, BT-47) |
 | `identities` | <ul class="gobl-test"><li>Single tax-scope identity</li></ul> | `GOBL-EU-EN16931-ORG-PARTY-03`<br />Only one identity may have the tax scope (BT-31, BT-48) |
 </Accordion>
-<Accordion title="org.Inbox">
+<Accordion title="org.Endpoint">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Inbox</small> | <ul class="gobl-test"><li>Scheme required with code</li></ul> | `GOBL-EU-EN16931-ORG-INBOX-01`<br />Scheme cannot be blank when code is set (BR-62, BR-63) |
-| <small>Inbox</small> | <ul class="gobl-test"><li>Code required with scheme</li></ul> | `GOBL-EU-EN16931-ORG-INBOX-02`<br />Code cannot be blank when scheme is set |
+| `uri` | <ul class="gobl-test"><li>Uri scheme in [iso6523-actorid-upis]</li><li>Uri opaque matches ^:[^:]+:.+$</li></ul> | `GOBL-EU-EN16931-ORG-ENDPOINT-01`<br />Endpoint uri requires both a scheme and a code, e.g. 'iso6523-actorid-upis::0225:356000000' (BR-62, BR-63) |
 </Accordion>
 <Accordion title="org.Address">
 

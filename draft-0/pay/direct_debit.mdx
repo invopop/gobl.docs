@@ -13,7 +13,9 @@ DirectDebit defines the data that will be used to make the direct debit.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| Mandate Reference | `ref` | string | Unique identifier assigned by the payee for referencing the direct debit. |
+| Label | `label` | string | Short label to help identify this direct debit. |
+| Mandate Reference | `ref` | [cbc.Code](/draft-0/cbc/code) | Unique identifier assigned by the payee for referencing the direct debit. |
 | Creditor ID | `creditor` | string | Unique banking reference that identifies the payee or seller assigned by the bank. |
 | Account | `account` | string | Account identifier to be debited by the direct debit. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional semi-structured data that may be useful. |
 

@@ -16,13 +16,13 @@ Header defines the metadata of the body.
 | UUID | `uuid` | string | Unique UUIDv1 identifier for the envelope. |
 | Digest | `dig` | [dsig.Digest](/draft-0/dsig/digest) | Digest of the canonical JSON body. |
 | Stamps | `stamps` | array of [head.Stamp](/draft-0/head/stamp) | Seals of approval from other organisations that can only be added to non-draft envelopes. |
-| Links | `links` | array of [head.Link](/draft-0/head/link) | Links provide URLs to other resources that are related to this envelope and unlike stamps can be added even in the draft state. |
+| Links | `links` | array of [head.Link](/draft-0/head/link) | URLs to other resources related to this envelope. Unlike stamps, links can be added even in the draft state. |
 | Tags | `tags` | array of string | Set of labels that describe but have no influence on the data. |
 | Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional semi-structured information about this envelope. |
-| Notes | `notes` | string | Any information that may be relevant to other humans about this envelope |
-| From | `from` | [cbc.URI](/draft-0/cbc/u_r_i) | From is the URI-form transport address of the envelope's issuer, e.g. "gobl:invoices.example.com" or "iso6523-actorid-upis::9920:b123123123". |
-| To | `to` | [cbc.URI](/draft-0/cbc/u_r_i) | To is the URI-form transport address of the envelope's intended receiver. |
-| Ignore | `ignore` | array of string | Ignore lists fully-qualified validation fault codes to suppress when validating this envelope, e.g. "GOBL-EU-EN16931-ORG-ITEM-01". Intended for format-conversion cases where a specific, known fault is acceptable. Covered by the envelope signature when sealed. NOTE: any code may be listed, including structural envelope/header codes — use deliberately. |
+| Notes | `notes` | string | Any information that may be relevant to other humans about this envelope. |
+| From | `from` | [cbc.URI](/draft-0/cbc/u_r_i) | URI-form transport address of the envelope's issuer, e.g. "gobl:invoices.example.com" or "iso6523-actorid-upis::9920:b123123123". |
+| To | `to` | [cbc.URI](/draft-0/cbc/u_r_i) | URI-form transport address of the envelope's intended receiver. |
+| Ignore | `ignore` | array of string | Fully-qualified validation fault codes to suppress when validating this envelope, e.g. "GOBL-EU-EN16931-ORG-ITEM-01". Intended for format-conversion cases where a specific, known fault is acceptable. Covered by the envelope signature when sealed. Any code may be listed, including structural envelope and header codes, so use deliberately. |
 
 
 ## Validation Rules

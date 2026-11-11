@@ -48,6 +48,7 @@
               "overview/canonicalization",
               "overview/support",
               "overview/inside",
+              "overview/scenarios",
               "overview/validation"
             ]
           },
@@ -75,11 +76,14 @@
                   "regimes/ae",
                   "regimes/ar",
                   "regimes/at",
+                  "regimes/au",
                   "regimes/be",
                   "regimes/br",
+                  "regimes/bs",
                   "regimes/ca",
                   "regimes/ch",
                   "regimes/co",
+                  "regimes/cr",
                   "regimes/de",
                   "regimes/dk",
                   "regimes/el",
@@ -93,11 +97,14 @@
                   "regimes/mx",
                   "regimes/nl",
                   "regimes/no",
+                  "regimes/nz",
+                  "regimes/pe",
                   "regimes/pl",
                   "regimes/pt",
                   "regimes/sa",
                   "regimes/se",
                   "regimes/sg",
+                  "regimes/sk",
                   "regimes/us"
                 ]
               }
@@ -132,6 +139,8 @@
                   "addons/it-sdi-v1",
                   "addons/it-ticket-v1",
                   "addons/mx-cfdi-v4",
+                  "addons/peppol-bis-v3",
+                  "addons/peppol-pint-v1",
                   "addons/pl-favat-v3",
                   "addons/pt-saft-v1",
                   "addons/sa-zatca-v1"
@@ -205,7 +214,8 @@
                   "draft-0/cbc/key",
                   "draft-0/cbc/meta",
                   "draft-0/cbc/source",
-                  "draft-0/cbc/uri"
+                  "draft-0/cbc/uri",
+                  "draft-0/cbc/usage"
                 ]
               },
               {
@@ -278,7 +288,6 @@
                   "draft-0/org/person",
                   "draft-0/org/registration",
                   "draft-0/org/telephone",
-                  "draft-0/org/unit",
                   "draft-0/org/website"
                 ]
               },
@@ -313,6 +322,7 @@
                   "draft-0/tax/correction_definition",
                   "draft-0/tax/correction_set",
                   "draft-0/tax/extensions",
+                  "draft-0/tax/filter",
                   "draft-0/tax/identity",
                   "draft-0/tax/key_def",
                   "draft-0/tax/note",

@@ -3,7 +3,7 @@ title: CorrectionDefinition
 comment: 
 ---
 
-CorrectionDefinition contains details about what can be defined in .
+CorrectionDefinition contains details about what can be defined in the preceding document references when correcting a document.
 
 ## Schema ID
 
@@ -14,11 +14,11 @@ CorrectionDefinition contains details about what can be defined in .
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Schema | `schema` | string | Partial or complete schema URL for the document type supported by correction. |
-| Types | `types` | array of [cbc.Key](/draft-0/cbc/key) | The types of sub-documents supported by the regime |
-| Extensions | `extensions` | array of [cbc.Key](/draft-0/cbc/key) | Extension keys that can be included |
-| Reason Required | `reason_required` | boolean | ReasonRequired when true implies that a reason must be provided |
+| Types | `types` | array of [cbc.Key](/draft-0/cbc/key) | The types of sub-documents supported by the regime. |
+| Extensions | `extensions` | array of [cbc.Key](/draft-0/cbc/key) | Extension keys that can be included. |
+| Reason Required | `reason_required` | boolean | When true, a reason must be provided. |
 | Stamps | `stamps` | array of [cbc.Key](/draft-0/cbc/key) | Stamps that must be copied from the preceding document. |
-| Copy Tax Totals | `copy_tax` | boolean | Copy tax from the preceding document to the document ref. |
+| Copy Tax Totals | `copy_tax` | boolean | When true, tax totals are copied from the preceding document to the document reference. |
 
 
 ## Validation Rules

@@ -14,15 +14,15 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Tax Regime | `$regime` | [tax.RegimeCode](/draft-0/tax/regime_code) | Country code that identifies the tax regime applicable to the document. It determines which country-specific tax rules, normalizations, and validations are applied. It may be determined automatically via normalization of a supplier or issuer tax identity country code. |
-| Addons | `$addons` | [tax.AddonList](/draft-0/tax/addon_list) | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document. |
-| Tags | `$tags` | array of [cbc.Key](/draft-0/cbc/key) | Tags are used to help identify specific tax scenarios or requirements that may apply changes to the contents of the document or imply a specific meaning. Converters may use tags to help identify specific situations that do not have a specific extension, for example; self-billed or partial invoices may be identified by their respective tags. |
+| Addons | `$addons` | [tax.AddonList](/draft-0/tax/addon_list) | Keys identifying the tax addons that apply special normalization, scenarios, and validation rules to the document. |
+| Tags | `$tags` | array of [cbc.Key](/draft-0/cbc/key) | Keys that identify specific tax scenarios or requirements that may change the contents of the document or imply a specific meaning. Converters may use tags to identify situations that do not have a specific extension; for example, self-billed or partial invoices are identified by their respective tags. |
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Type | `type` | [cbc.Key](/draft-0/cbc/key) | Type of payment document being issued. |
-| Series | `series` | [cbc.Code](/draft-0/cbc/code) | Series is used to identify groups of payments by date, business area, project, type, customer, a combination of any, or other company specific data. If the output format does not support the series as a separate field, it will be prepended to the code for presentation with a dash (`-`) for separation. |
-| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code is a sequential identifier that uniquely identifies the payment. The code can be left empty initially, but is **required** to **sign** the document. |
+| Series | `series` | [cbc.Code](/draft-0/cbc/code) | Identifies groups of payments by date, business area, project, type, customer, a combination of any, or other company specific data. If the output format does not support the series as a separate field, it will be prepended to the code with a dash (`-`) for separation. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Sequential identifier that uniquely identifies the payment. May be left empty initially, but is **required** to **sign** the document. |
 | Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date) | When the payment was issued. |
-| Issue Time | `issue_time` | [cal.Time](/draft-0/cal/time) | IssueTime is an optional field that may be useful to indicate the time of day when the payment was issued. |
-| Value Date | `value_date` | [cal.Date](/draft-0/cal/date) | When the taxes of this payment become accountable, if none set, the issue date is assumed. |
+| Issue Time | `issue_time` | [cal.Time](/draft-0/cal/time) | Optional time of day when the payment was issued. |
+| Value Date | `value_date` | [cal.Date](/draft-0/cal/date) | When the taxes of the payment become accountable. Defaults to the issue date. |
 | Currency | `currency` | [currency.Code](/draft-0/currency/code) | Currency for all payment totals. |
 | Exchange Rates | `exchange_rates` | array of [currency.ExchangeRate](/draft-0/currency/exchange_rate) | Exchange rates to be used when converting the payment's monetary values into other currencies. |
 | Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extensions for additional codes that may be required. |
@@ -30,9 +30,9 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 | Supplier | `supplier` | [org.Party](/draft-0/org/party) | The taxable entity who is responsible for supplying goods or services. |
 | Customer | `customer` | [org.Party](/draft-0/org/party) | Legal entity that receives the goods or services. |
 | Payee | `payee` | [org.Party](/draft-0/org/party) | Legal entity that receives the payment if not the supplier. |
-| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Ordering allows for additional information about the ordering process including references to other documents and alternative parties involved in the order-to-delivery process. |
+| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Additional information about the ordering process, including references to other documents and alternative parties involved in the order-to-delivery process. |
 | Lines | `lines` | array of [bill.PaymentLine](/draft-0/bill/payment_line) | List of documents that are being paid for. |
-| Methods | `methods` | array of [pay.Record](/draft-0/pay/record) | Methods describes how the payment was settled. At least one method is required; multiple may be present when the payment was split across means (for example, partly card + partly cash). |
+| Methods | `methods` | array of [pay.Record](/draft-0/pay/record) | How the payment was settled. At least one method is required; multiple may be present when the payment was split across means, for example partly card and partly cash. |
 | Total | `total` | [num.Amount](/draft-0/num/amount) | Total amount to be paid in this payment, either positive or negative according to the line types and totals. Calculated automatically. |
 | Notes | `notes` | array of [org.Note](/draft-0/org/note) | Unstructured information that is relevant to the payment, such as correction or additional legal details. |
 | Complements | `complements` | array of [schema.Object](/draft-0/schema/object) | Additional complementary objects that add relevant information to the payment. |
@@ -56,6 +56,8 @@ A Payment is used to link an invoice or invoices with a payment transaction.
 | `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [request, advice, receipt]</li></ul> | `GOBL-BILL-PAYMENT-02`<br />Payment type is not valid |
 | `methods` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-03`<br />At least one payment method is required |
 | `methods[*].key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-09`<br />Payment method key is required |
+| `methods[*].taxes` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BILL-PAYMENT-10`<br />Payment method taxes are not supported |
+| `methods[*].waiver` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BILL-PAYMENT-11`<br />Payment method waiver is not supported |
 | `issue_date`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-PAYMENT-04`<br />Payment issue date is required |
 | `currency`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Present</li></ul> | `GOBL-BILL-PAYMENT-05`<br />Payment currency is required |
 | `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BILL-PAYMENT-06`<br />Payment supplier is required |

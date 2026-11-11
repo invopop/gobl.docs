@@ -14,20 +14,20 @@ Status represents a system or business event that needs to be recorded for compl
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
 | Tax Regime | `$regime` | [tax.RegimeCode](/draft-0/tax/regime_code) | Country code that identifies the tax regime applicable to the document. It determines which country-specific tax rules, normalizations, and validations are applied. It may be determined automatically via normalization of a supplier or issuer tax identity country code. |
-| Addons | `$addons` | [tax.AddonList](/draft-0/tax/addon_list) | Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document. |
+| Addons | `$addons` | [tax.AddonList](/draft-0/tax/addon_list) | Keys identifying the tax addons that apply special normalization, scenarios, and validation rules to the document. |
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Type | `type` | [cbc.Key](/draft-0/cbc/key) | Type of status being reported (e.g. "system" for internal events). |
-| Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date) | IssueDate is the date when the status is to be considered effective. |
-| Issue Time | `issue_time` | [cal.Time](/draft-0/cal/time) | IssueTime is used when extra precision is required to determine when exactly the status was issued. |
-| Series | `series` | [cbc.Code](/draft-0/cbc/code) | Series is an optional code to group related status events together. |
-| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Code provides a way to identify the specific status event being reported. |
-| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Ext provides additional structured data specific to the regime or addon. |
-| Supplier | `supplier` | [org.Party](/draft-0/org/party) | Supplier represents the entity supplying the goods or services in the original transaction. |
-| Customer | `customer` | [org.Party](/draft-0/org/party) | Customer is optional and describes the recipient of the original services. |
-| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Ordering provides links to related documents and additional details about which parties may be involved in the transaction. |
-| Lines | `lines` | array of [bill.StatusLine](/draft-0/bill/status_line) | Lines contain the main payload of the message used to describe individual documents which have a status. |
+| Issue Date | `issue_date` | [cal.Date](/draft-0/cal/date) | Date when the status is to be considered effective. |
+| Issue Time | `issue_time` | [cal.Time](/draft-0/cal/time) | Time of day when the status was issued, for when extra precision is required. |
+| Series | `series` | [cbc.Code](/draft-0/cbc/code) | Optional code to group related status events together. |
+| Code | `code` | [cbc.Code](/draft-0/cbc/code) | Identifies the specific status event being reported. |
+| Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Additional structured data specific to the regime or addon. |
+| Supplier | `supplier` | [org.Party](/draft-0/org/party) | Entity supplying the goods or services in the original transaction. |
+| Customer | `customer` | [org.Party](/draft-0/org/party) | Optional recipient of the original goods or services. |
+| Ordering | `ordering` | [bill.Ordering](/draft-0/bill/ordering) | Links to related documents and additional details about which parties may be involved in the transaction. |
+| Lines | `lines` | array of [bill.StatusLine](/draft-0/bill/status_line) | Main payload of the message, describing the status of individual documents. |
 | Notes | `notes` | array of [org.Note](/draft-0/org/note) | Notes for additional details about the event. |
-| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Meta contains unstructured data useful for internal tools. |
+| Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Unstructured data useful for internal tools. |
 
 ## Type Values
 

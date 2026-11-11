@@ -16,9 +16,11 @@ Record represents an individual payment transaction made via a specific means (c
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Date | `date` | [cal.Date](/draft-0/cal/date) | When the payment was made. |
 | Key | `key` | [cbc.Key](/draft-0/cbc/key) | The payment means used. |
-| Reference | `ref` | string | ID or reference for the payment. |
+| Waiver | `waiver` | [cbc.Key](/draft-0/cbc/key) | Reason the amount was waived and not collected from the customer, as an alternative to the payment means key. |
+| Reference | `ref` | [cbc.Code](/draft-0/cbc/code) | ID or reference for the payment. |
 | Description | `description` | string | Description about the payment. |
 | Percent | `percent` | [num.Percentage](/draft-0/num/percentage) | Percentage of the total amount payable that was paid. Note that multiple records with percentages may lead to rounding errors, especially when the total sums to 100%. We recommend only including one record with a percent value per document. |
+| Taxes | `taxes` | array of [tax.Filter](/draft-0/tax/filter) | Tax rate totals whose sum is used as the amount, as an alternative to the percent. |
 | Amount | `amount` | [num.Amount](/draft-0/num/amount) | How much was paid. |
 | Currency | `currency` | [currency.Code](/draft-0/currency/code) | If different from the parent document's base currency. |
 | Card | `card` | [pay.Card](/draft-0/pay/card) | Details of the payment that was made via a credit or debit card. |
@@ -55,3 +57,5 @@ Record represents an individual payment transaction made via a specific means (c
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `key` | <ul class="gobl-test"><li>Be or starts with one of [any, card, card+credit, card+debit, credit-transfer, credit-transfer+sepa, debit-transfer, cash, cheque, bank-draft, direct-debit, direct-debit+sepa, online, promissory-note, netting, other]</li></ul> | `GOBL-PAY-RECORD-01`<br />Key must be valid |
+| `key` | <ul class="gobl-test"><li>String(Waiver) != ""</li><li>Empty</li></ul> | `GOBL-PAY-RECORD-03`<br />Key must be blank with waiver |
+| `taxes` | <ul class="gobl-test"><li>Percent != nil</li><li>Empty</li></ul> | `GOBL-PAY-RECORD-02`<br />Taxes must be blank with percent |
