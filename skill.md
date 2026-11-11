@@ -10,7 +10,7 @@ metadata:
 
 # GOBL
 
-GOBL is an open-source JSON format and Go library for business documents with the tax rules of 27 countries built in. You write only the facts of a document; `build` normalises them, calculates every derived value for the document's regime (country) and addons (local formats), and validates the result with coded rules. Built documents are wrapped in a signed envelope and converted to local formats by companion libraries. Invopop uses GOBL as its document format.
+GOBL is an open-source JSON format and Go library for business documents with the tax rules of 27 countries built in. You write only the facts of a document; `build` normalises them, calculates every derived value for the document's regime (country) and addons (local formats), and validates the result with coded rules. Built documents can then be wrapped in an envelope, signed, and converted to local formats by companion libraries. Invopop uses GOBL as its document format.
 
 ## When to use
 
@@ -31,7 +31,7 @@ GOBL is an open-source JSON format and Go library for business documents with th
 
 1. Identify the supplier's tax country and any local format required. Read the regime page for rate keys, tags and correction types, and the addon page for extension codes. Or call the MCP tools `regime` and `addon`.
 2. Write the minimal document: `$schema`, `$regime`, `$addons` if needed, `series`, `code` if you own numbering, `issue_date` as `YYYY-MM-DD`, `supplier` with `tax_id`, `customer` with `tax_id` unless a `simplified` tag allows omitting it, `lines` with `quantity`, `item.name`, `item.price` as strings and `taxes` as an uppercase `cat` plus a lowercase `rate` key (or a `key` such as `exempt` or `reverse-charge`). No sums, totals or uuid; leave out currency and percentages when the regime supplies them, and set both for a country without a regime.
-3. Build it: `POST https://gobl.dev/v0/build` with `{"data": <document>}` (no auth), or `gobl build -i doc.json` (CLI from `go install github.com/invopop/gobl.dev/cmd/gobl@latest`), or the MCP `build` tool, or `gobl.NewEnvelope().Insert(doc)` in Go.
+3. Build it: `POST https://gobl.dev/v0/build` with `{"data": <document>}` (no auth), or `gobl build -i doc.json` (CLI from `go install github.com/invopop/gobl.dev/cmd/gobl@latest`), or the MCP `build` tool, or `env := gobl.NewEnvelope(); env.Insert(doc)` then `env.Validate()` in Go (`Insert` calculates but does not validate).
 4. Read every fault by `code` and `paths`; look the code up on the schema, regime or addon page named by its prefix; fix; rebuild.
 5. For corrections use `gobl correct --credit`, `POST /v0/correct` or the MCP `correct` tool. Never write `preceding` by hand.
 6. Optionally, to seal: `gobl build -e` for an envelope, `gobl keygen` then `gobl sign`, `gobl verify` to check. Never edit a signed envelope; correct it.
