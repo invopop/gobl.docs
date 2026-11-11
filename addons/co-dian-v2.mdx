@@ -387,6 +387,34 @@ For example:
 | `ZA` | VAT and national consumption tax |
 | `ZZ` | Not applicable |
 </Accordion>
+### Document Type
+
+The type of sales invoice reported to the DIAN. Only applies to standard
+invoices; when not set, the invoice is a regular electronic sales invoice.
+
+Use `03` to transmit a paper invoice (factura de talonario o de papel) issued
+while the supplier could not invoice electronically. The invoice's series and
+code must be the paper invoice's number, from a DIAN contingency numbering
+resolution, and the `issue_date` the date the paper invoice was issued.
+
+For example:
+
+```js
+"series": "CONT",
+"code": "1001",
+"issue_date": "2026-10-22",
+"tax": {
+	"ext": { "co-dian-invoice-type": "03" }
+}
+```
+
+<Accordion title="co-dian-invoice-type">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Electronic sales invoice |
+| `03` | Contingency transmission |
+</Accordion>
 
 ## Validation Rules
 

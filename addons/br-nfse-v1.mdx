@@ -67,6 +67,23 @@ List of codes from the national NFSe ABRASF (v2.04) model:
 | `6` | Suspended Judicially |
 | `7` | Suspended Administratively |
 </Accordion>
+### ISS Immunity
+
+The constitutional immunity that applies when the ISS of a service is immune,
+that is, when the ISS tax combo has the `br-nfse-iss-liability` code `5`.
+
+Maps to the `tpImunidade` field in the NFS-e national layout.
+
+<Accordion title="br-nfse-iss-immunity">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Assets, income or services of government entities between each other (CF88, Art 150, VI, a) |
+| `2` | Religious entities and temples of any faith, including their assistance and charitable organisations (CF88, Art 150, VI, b) |
+| `3` | Assets, income or services of political parties, including their foundations, workers' unions, and non-profit education and social assistance institutions, as required by law (CF88, Art 150, VI, c) |
+| `4` | Books, newspapers, periodicals and the paper used to print them (CF88, Art 150, VI, d) |
+| `5` | Music recordings and music videos produced in Brazil with musical or literary-musical works by Brazilian authors or works performed by Brazilian artists, and the physical media or digital files containing them, except at the industrial replication stage of laser-read optical media (CF88, Art 150, VI, e) |
+</Accordion>
 ### Service Code
 
 The service code as defined by the municipality. Typically, one of the codes listed
@@ -75,6 +92,12 @@ in the Lei Complementar 116/2003, but municipalities can make their own changes.
 For further details on the list of possible codes, see:
 
 * https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm
+
+For suppliers issuing through the NFS-e Nacional, the 6-digit national service code
+instead, which maps to the `cTribNac` field in the national layout. List of possible
+values:
+
+* https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual/anexo_b-nbs2-lista_servico_nacional-snnfse-v1-01-20260122.xlsx
 
 <Accordion title="br-nfse-service">
 </Accordion>
@@ -90,6 +113,22 @@ Empresas de Pequeno Porte) tax regime
 | ---- | ---- |
 | `1` | Opt-in |
 | `2` | Opt-out |
+</Accordion>
+### Simples Nacional Tax Assessment Regime
+
+How a supplier opting for the Simples Nacional as ME/EPP pays its federal taxes and
+ISS, which changes when it exceeds a Simples Nacional sublimit or limit. On the
+national system, required for ME/EPP suppliers and not allowed for any other.
+
+Maps to the `regApTribSN` field in the NFS-e national layout.
+
+<Accordion title="br-nfse-simples-regime">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Federal and municipal taxes through the Simples Nacional |
+| `2` | Federal taxes through the Simples Nacional, ISS under the municipal legislation |
+| `3` | Federal and municipal taxes under their own legislation |
 </Accordion>
 ### Special Tax Regime
 
@@ -151,6 +190,57 @@ List of possible values:
 
 Pattern: `^\d{6}$`
 </Accordion>
+### Supply Mode
+
+How a service exported or imported was supplied.
+
+Maps to the `mdPrestacao` field in the NFS-e national layout.
+
+<Accordion title="br-nfse-supply-mode">
+
+| Code | Name |
+| ---- | ---- |
+| `1` | Cross-border |
+| `2` | Consumption in Brazil |
+| `3` | Temporary movement of individuals |
+| `4` | Consumption abroad |
+</Accordion>
+### Relationship Between Parties
+
+Relationship between the supplier and the foreign customer, as defined in
+art. 23 of Law 9.430/1996.
+
+Maps to the `vincPrest` field in the NFS-e national layout.
+
+<Accordion title="br-nfse-relationship">
+
+| Code | Name |
+| ---- | ---- |
+| `0` | No relationship |
+| `1` | Controlled |
+| `2` | Controlling |
+| `3` | Affiliated |
+| `4` | Head office |
+| `5` | Branch |
+| `6` | Other relationship |
+</Accordion>
+### Total Tax Estimate
+
+Identifies an informative charge holding the approximate percentage of the taxes
+included in the price, as required by Law 12.741/2012. Either the Simples Nacional
+one or the federal, state and municipal ones.
+
+Maps to the `totTrib` group in the NFS-e national layout.
+
+<Accordion title="br-nfse-tax-estimate">
+
+| Code | Name |
+| ---- | ---- |
+| `federal` | Federal |
+| `state` | State |
+| `municipal` | Municipal |
+| `simples` | Simples Nacional |
+</Accordion>
 
 ## Validation Rules
 
@@ -178,8 +268,18 @@ failures with a unique code and message.
 | `supplier.addresses[*].state` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-12`<br />Supplier address requires a state |
 | `supplier.addresses[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-13`<br />Supplier address requires a postal code |
 | `supplier.ext` | <ul class="gobl-test"><li>Ext require [br-ibge-municipality, br-nfse-simples, br-nfse-fiscal-incentive]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-14`<br />Supplier requires 'br-ibge-municipality', 'br-nfse-simples', and 'br-nfse-fiscal-incentive' extensions |
-| `charges` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-15`<br />Charges are not supported by NFS-e |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'br-nfse-simples-regime' in [1, 2, 3]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-18`<br />Supplier extension 'br-nfse-simples-regime' must be a valid code |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfse-supply-mode' in [1, 2, 3, 4]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-19`<br />Tax extension 'br-nfse-supply-mode' must be a valid code |
+| `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfse-relationship' in [0, 1, 2, 3, 4, 5, 6]</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-20`<br />Tax extension 'br-nfse-relationship' must be a valid code |
 | `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-BR-NFSE-BILL-INVOICE-16`<br />Discounts are not supported by NFS-e |
+</Accordion>
+<Accordion title="bill.Charge">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Charge</small> | <ul class="gobl-test"><li>Has tax estimate ext</li><li>Informative</li></ul> | `GOBL-BR-NFSE-BILL-CHARGE-01`<br />Tax estimate charge must be informative |
+| `ext` | <ul class="gobl-test"><li>Has tax estimate ext</li><li>Ext 'br-nfse-tax-estimate' in [federal, state, municipal, simples]</li></ul> | `GOBL-BR-NFSE-BILL-CHARGE-02`<br />Charge extension 'br-nfse-tax-estimate' must be a valid code |
+| `percent` | <ul class="gobl-test"><li>Has tax estimate ext</li><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFSE-BILL-CHARGE-03`<br />Tax estimate charge requires a percent |
 </Accordion>
 <Accordion title="bill.Line">
 
@@ -199,5 +299,6 @@ failures with a unique code and message.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>ISS category</li><li>Ext require [br-nfse-iss-liability]</li></ul> | `GOBL-BR-NFSE-TAX-COMBO-01`<br />ISS tax combo requires 'br-nfse-iss-liability' extension |
+| `ext` | <ul class="gobl-test"><li>ISS category</li><li>Ext 'br-nfse-iss-immunity' in [1, 2, 3, 4, 5]</li></ul> | `GOBL-BR-NFSE-TAX-COMBO-02`<br />ISS tax combo extension 'br-nfse-iss-immunity' must be a valid code |
 </Accordion>
 </AccordionGroup>
