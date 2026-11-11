@@ -1,6 +1,7 @@
 package main
 
 import (
+	"regexp"
 	"strings"
 
 	"github.com/invopop/gobl/cbc"
@@ -218,6 +219,25 @@ func annotateCalculated(sections []RuleSection) {
 	}
 }
 
+var (
+	quotedPatternRegex   = regexp.MustCompile(`^(.*\b[Mm]atches pattern )'(.*)'$`)
+	anchoredPatternRegex = regexp.MustCompile(`^(|.*\s)([Mm]atches )(\^.*?)(, and .*)?$`)
+)
+
+// codeRegex wraps the regex in a "matches" test in a code span so MDX
+// doesn't read it as links or emphasis, leaving any trailing prose outside.
+// e.g. "ext 'x' matches pattern '^\d{7}$'" → "ext 'x' matches pattern `^\d{7}$`"
+// e.g. "matches ^[A-Z]{2}$, and has matching check digits" → "matches `^[A-Z]{2}$`, and has matching check digits"
+func codeRegex(s string) string {
+	if m := quotedPatternRegex.FindStringSubmatch(s); m != nil {
+		return m[1] + "`" + m[2] + "`"
+	}
+	if m := anchoredPatternRegex.FindStringSubmatch(s); m != nil {
+		return m[1] + m[2] + "`" + m[3] + "`" + m[4]
+	}
+	return s
+}
+
 // buildTestParts returns individual test strings (sentence-cased, pipe-escaped).
 func buildTestParts(cond string, a *rules.Assertion) []string {
 	var parts []string
@@ -226,15 +246,12 @@ func buildTestParts(cond string, a *rules.Assertion) []string {
 	}
 	for _, t := range a.Tests {
 		ts := t.String()
-		if pattern, ok := strings.CutPrefix(ts, "matches "); ok {
-			// Wrap regexes in code so MDX doesn't read them as links or emphasis
-			ts = "matches `" + pattern + "`"
-		}
 		if ts != "" {
 			parts = append(parts, ts)
 		}
 	}
 	for i, p := range parts {
+		p = codeRegex(p)
 		parts[i] = sentenceCase(strings.ReplaceAll(p, "|", "\\|"))
 	}
 	return parts

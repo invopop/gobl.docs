@@ -515,7 +515,7 @@ failures with a unique code and message.
 | `ext` | <ul class="gobl-test"><li>VAT without percent</li><li>Ext require [it-sdi-exempt]</li></ul> | `GOBL-IT-SDI-TAX-COMBO-01`<br />VAT tax combo without percent requires 'it-sdi-exempt' extension |
 | <small>Combo</small> | <ul class="gobl-test"><li>Is retained tax</li><li>Statutory rate exceeds the percent</li></ul> | `GOBL-IT-SDI-TAX-COMBO-04`<br />Retained tax combo 'it-sdi-retained-rate' extension must be greater than the percent |
 | `ext` | <ul class="gobl-test"><li>Is retained tax</li><li>Ext require [it-sdi-retained]</li></ul> | `GOBL-IT-SDI-TAX-COMBO-02`<br />Retained tax combo requires 'it-sdi-retained' extension |
-| `ext` | <ul class="gobl-test"><li>Is retained tax</li><li>Ext 'it-sdi-retained-rate' matches pattern '^([0-9]{1,2}\.[0-9]{2}\|100\.00)$'</li></ul> | `GOBL-IT-SDI-TAX-COMBO-03`<br />Retained tax combo 'it-sdi-retained-rate' extension must be a percentage between 0.00 and 100.00 with two decimals |
+| `ext` | <ul class="gobl-test"><li>Is retained tax</li><li>Ext 'it-sdi-retained-rate' matches pattern `^([0-9]{1,2}\.[0-9]{2}\|100\.00)$`</li></ul> | `GOBL-IT-SDI-TAX-COMBO-03`<br />Retained tax combo 'it-sdi-retained-rate' extension must be a percentage between 0.00 and 100.00 with two decimals |
 | `ext` | <ul class="gobl-test"><li>Not (is retained tax)</li><li>Ext exclude [it-sdi-retained-rate]</li></ul> | `GOBL-IT-SDI-TAX-COMBO-05`<br />'it-sdi-retained-rate' extension is only for retained taxes |
 </Accordion>
 <Accordion title="pay.Instructions">

@@ -24,7 +24,7 @@ type JSONSchema struct {
 	Type              string                                      `json:"type,omitempty"`
 	Title             string                                      `json:"title,omitempty"`
 	Description       string                                      `json:"description,omitempty"`
-	Properties        *orderedmap.OrderedMap[string, *JSONSchema]  `json:"properties,omitempty"`
+	Properties        *orderedmap.OrderedMap[string, *JSONSchema] `json:"properties,omitempty"`
 	Required          []string                                    `json:"required,omitempty"`
 	Items             *JSONSchema                                 `json:"items,omitempty"`
 	OneOf             []*JSONSchema                               `json:"oneOf,omitempty"`
