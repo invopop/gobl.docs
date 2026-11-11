@@ -4,10 +4,23 @@ import (
 	"bytes"
 	"text/template"
 
+	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/i18n"
 	"github.com/invopop/gobl/pkg/here"
 	"github.com/invopop/gobl/tax"
 )
+
+// addonModule returns the Go module that implements an addon. Approved
+// external addons record their module path in GOBL's curated list; anything
+// else is bundled with GOBL core.
+func addonModule(key cbc.Key) string {
+	for _, ea := range tax.ApprovedAddons() {
+		if ea.Key == key {
+			return ea.Module
+		}
+	}
+	return "github.com/invopop/gobl"
+}
 
 type addonGenerator struct {
 	generator
@@ -29,10 +42,11 @@ func newAddonGenerator(a *tax.AddonDef) *addonGenerator {
 		"joinKeys":      joinKeys,
 		"codeMap":       codeMap,
 		"extMap":        extMap,
-		"scenarioTitle": scenarioTitle,
+		"scenarioTable": scenarioTable,
 		"codeMessage":   codeMessage,
 		"testList":      testList,
 		"fieldCell":     fieldCell,
+		"addonModule":   addonModule,
 	})
 	return g
 }
@@ -57,7 +71,7 @@ func (g *addonGenerator) generate() error {
 }
 
 func (g *addonGenerator) getAddonRuleSections() []RuleSection {
-	topSet := findSetByName(g.addon.Key.String())
+	topSet := findAddonSet(g.addon.Key)
 	if topSet == nil {
 		return nil
 	}
@@ -71,6 +85,8 @@ func (g *addonGenerator) base() error {
 		---
 
 		Key: ~{{ .Key }}~
+
+		Module: [{{ addonModule .Key }}](https://{{ addonModule .Key }})
 
 		{{- if .Description}}
 
@@ -97,52 +113,17 @@ func (g *addonGenerator) scenarios() error {
 
 		## Scenarios
 
+		Scenarios attach notes and extensions to a document when its filters match.
+		[Read more about scenarios](/overview/scenarios).
+
+		<AccordionGroup>
 		{{- range .Scenarios }}
+		<Accordion title="{{ .Schema }}">
 
-		### {{ .Schema }}
-
-		{{- range .List }}
-
-		<Accordion title="{{ scenarioTitle . }}">
-
-		**Filters:**
-
-		{{- if .Types }}
-		- **Types:** {{ joinKeys .Types }}
-		{{- end }}
-		{{- if .Tags }}
-		- **Tags:** {{ joinKeys .Tags }}
-		{{- end }}
-		{{- if .ExtKey }}
-		- **Extension Key:** ~{{ .ExtKey }}~
-		{{- end }}
-		{{- if .ExtCode }}
-		- **Extension Code:** ~{{ .ExtCode }}~
-		{{- end }}
-		{{- if .Filter }}
-		- **Filter:** *(custom)*
-		{{- end }}
-		{{- if not .Types }}{{ if not .Tags }}{{ if not .ExtKey }}{{ if not .Filter }}
-		- *(none)*
-		{{- end }}{{ end }}{{ end }}{{ end }}
-
-		**Output:**
-
-		{{- if .Note }}
-		- **Note:** {{ .Note.Text }}{{ if .Note.Key }} ({{ .Note.Key }}){{ end }}
-		{{- end }}
-		{{- if .Codes }}
-		- **Codes:** {{ codeMap .Codes }}
-		{{- end }}
-		{{- if .Ext }}
-		- **Extensions:** {{ extMap .Ext }}
-		{{- end }}
-		{{- if not .Note }}{{ if not .Codes }}{{ if not .Ext }}
-		- *(none)*
-		{{- end }}{{ end }}{{ end }}
+		{{ scenarioTable . }}
 		</Accordion>
 		{{- end }}
-		{{- end }}
+		</AccordionGroup>
 
 	`))
 }

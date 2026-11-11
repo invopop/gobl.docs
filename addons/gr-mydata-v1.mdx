@@ -4,6 +4,8 @@ title: Greece MyData v1.x
 
 Key: `gr-mydata-v1`
 
+Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
+
 Greece uses the myDATA and Peppol BIS Billing 3.0 formats for their e-invoicing/tax-reporting system.
 This addon will ensure that the GOBL documents have all the required fields to be able to correctly
 generate the myDATA XML reporting files.
@@ -14,148 +16,34 @@ generate the myDATA XML reporting files.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`export` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`export`<br />`eu` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`self-billed` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "1.4"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services`<br />`export` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services`<br />`export`<br />`eu` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "2.2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "5.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.3"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `services`<br />`simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.2"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.4"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `goods`<br />`simplified`<br />`self-billed` | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"gr-mydata-invoice-type": "11.5"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.1`
 </Accordion>
-
-<Accordion title="standard, #goods">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.1`
-</Accordion>
-
-<Accordion title="standard, #goods, #export">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `export`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.3`
-</Accordion>
-
-<Accordion title="standard, #goods, #export, #eu">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `export`, `eu`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.2`
-</Accordion>
-
-<Accordion title="standard, #goods, #self-billed">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `self-billed`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:1.4`
-</Accordion>
-
-<Accordion title="standard, #services">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.1`
-</Accordion>
-
-<Accordion title="standard, #services, #export">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`, `export`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.3`
-</Accordion>
-
-<Accordion title="standard, #services, #export, #eu">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`, `export`, `eu`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:2.2`
-</Accordion>
-
-<Accordion title="credit-note">
-
-**Filters:**
-- **Types:** `credit-note`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:5.1`
-</Accordion>
-
-<Accordion title="standard, #simplified">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.3`
-</Accordion>
-
-<Accordion title="standard, #goods, #simplified">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `goods`, `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.1`
-</Accordion>
-
-<Accordion title="standard, #services, #simplified">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `services`, `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.2`
-</Accordion>
-
-<Accordion title="credit-note, #simplified">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.4`
-</Accordion>
-
-<Accordion title="credit-note, #goods, #simplified, #self-billed">
-
-**Filters:**
-- **Types:** `credit-note`
-- **Tags:** `goods`, `simplified`, `self-billed`
-
-**Output:**
-- **Extensions:** `gr-mydata-invoice-type:11.5`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
-### VAT rate
+### myDATA: VAT rate
 
 Greece has three VAT rates: standard, reduced and super-reduced. Each of these rates are reduced by
 30% on the islands of Leros, Lesbos, Kos, Samos and Chios. The tax authority identifies each rate
@@ -215,7 +103,7 @@ Please, note that GOBL will automatically set the proper `gr-mydata-vat-rate` co
 | `7` | Without VAT |
 | `8` | Records without VAT (e.g. Payroll, Amortisations) |
 </Accordion>
-### Invoice type
+### myDATA: Invoice type
 
 The Greek tax authority (IAPR) requires an invoice type code to be specified as part of the invoice. GOBL will
 automatically set the correct code based on the invoice's `type` and `$tags` values.
@@ -319,7 +207,7 @@ And this is how you'll get the same result by using the GOBL type and tags:
 | `17.5` | Other Expense Adjustment/Regularisation Entries – Accounting Base |
 | `17.6` | Other Expense Adjustment/Regularisation Entries – Tax Base |
 </Accordion>
-### Payment means
+### myDATA: Payment means
 
 The IAPR requires invoices to specify a payment method code. In a GOBL invoice,
 the payment means is set using the `key` field in the payment instructions.
@@ -358,7 +246,7 @@ For example:
 | `6` | Web Banking |
 | `7` | POS / e-POS |
 </Accordion>
-### VAT exemption cause
+### myDATA: VAT exemption cause
 
 Greece invoices can be exempt of VAT for different causes and the tax authority
 require a specific cause code to be provided.
@@ -433,7 +321,7 @@ professional to ensure you're choosing the correct code.
 | `30` | Without VAT - Article 47c of the VAT Code (OSS EU scheme) |
 | `31` | Excluding VAT - Article 47d of the VAT Code (IOSS) |
 </Accordion>
-### Income Classification Category
+### myDATA: Income Classification Category
 
 Invoices reported to the Greek tax authority via myDATA can optionally include information
 about the income classification of each invoice item.
@@ -458,6 +346,11 @@ set at the item level to any of the values expected by the IAPR. For example:
 ]
 ```
 
+When an income category is set, the income type must also be provided, with one
+exception: `category1_95` (Other Income-related Information) covers informative
+amounts that do not count towards income, such as the 0.5% municipality duty, and
+must be reported without the `gr-mydata-income-type` extension.
+
 <Accordion title="gr-mydata-income-cat">
 
 | Code | Name |
@@ -474,7 +367,7 @@ set at the item level to any of the values expected by the IAPR. For example:
 | `category1_10` | Other Income Adjustment/Regularisation Entries (+)/(-) |
 | `category1_95` | Other Income-related Information (+)/(-) |
 </Accordion>
-### Income Classification Type
+### myDATA: Income Classification Type
 
 See the Income Classification Category for more information.
 
@@ -517,7 +410,7 @@ See the Income Classification Category for more information.
 | `E3_598_001` | Sales of goods belonging to excise duty |
 | `E3_598_003` | Sales on behalf of farmers through an agricultural cooperative e.t.c. |
 </Accordion>
-### Tax type
+### myDATA: Tax type
 
 Greek invoices may contain charges or allowances for taxes and fees different from VAT. The
 `gr-mydata-tax-type` extension at charge level must be used to specify the tax type.
@@ -557,7 +450,7 @@ For example (manual):
 | `4` | Stamp Duty |
 | `5` | Deduction |
 </Accordion>
-### Fee category
+### myDATA: Fee category
 
 Greek invoices may contain charges for different types of fees. In GOBL, you must use
 the `gr-mydata-fee` extension at charge level to specify the specific fee category
@@ -605,7 +498,7 @@ For example:
 | `21` | Fee on gross revenues of casinos |
 | `22` | Other fees on gross revenues |
 </Accordion>
-### Other taxes category
+### myDATA: Other taxes category
 
 Greek invoices may contain charges for different taxes other than VAT. The
 `gr-mydata-other-tax` extension at charge level must be used to specify the specific
@@ -661,7 +554,7 @@ For example:
 | `29` | Short-term rental properties detached houses over 80 sq.m. 4.00€ |
 | `30` | Self-catering accommodation – tourist furnished villas (villas) 4.00€ |
 </Accordion>
-### Stamp duty coefficient category
+### myDATA: Stamp duty coefficient category
 
 Greek invoices may contain charges for stamp duty. The `gr-mydata-stamp-duty` extension
 at charge level must be used to specify the specific stamp duty coefficient category
@@ -691,62 +584,102 @@ For example:
 | `3` | Coefficient 3.6% |
 | `4` | Other cases |
 </Accordion>
+### myDATA: Branch number
+
+The branch (establishment) number of the party, as declared in the
+AADE taxpayer registry. Set the `gr-mydata-branch` extension on a
+party when the invoice is issued by or addressed to an establishment
+other than the headquarters. When absent, the headquarters branch
+(`0`) is assumed.
+
+The number must match an establishment registered with AADE for the
+party's tax ID; submissions with unknown branch numbers may be
+rejected by myDATA.
+
+For example:
+
+```json
+"supplier": {
+	"name": "Hotel Example",
+	"tax_id": {
+		"country": "EL",
+		"code": "111222333"
+	},
+	"ext": {
+		"gr-mydata-branch": "2"
+	}
+}
+```
+
+<Accordion title="gr-mydata-branch">
+
+Pattern: `^(0|[1-9]\d{0,3})$`
+</Accordion>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-01`<br />Series is required |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-02`<br />Tax is required |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-invoice-type]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-03`<br />Tax requires 'gr-mydata-invoice-type' extension |
-| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-04`<br />Supplier tax ID is required |
-| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-18`<br />Supplier tax ID code is required |
-| `customer` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-05`<br />Customer is required |
-| `customer.tax_id` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-06`<br />Customer tax ID is required |
-| `customer.addresses` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-07`<br />Customer addresses are required |
-| `customer.addresses[*].locality` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-08`<br />Customer address locality is required |
-| `customer.addresses[*].code` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-09`<br />Customer address code is required |
-| `lines[*].total` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-10`<br />Line total must be positive |
-| `lines[*].total` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-11`<br />Line total must not be zero |
-| `lines[*].item.ext` | <ul class="gobl-test"><li>Income ext pair</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-12`<br />Item income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
-| `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-13`<br />Discounts are not supported by mydata |
-| `payment` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-14`<br />Payment is required |
-| `payment` | <ul class="gobl-test"><li>Has instructions or advances</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-15`<br />Payment instructions are required when no advances |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-16`<br />Preceding documents are required for credit notes |
-| `preceding[*].stamps` | <ul class="gobl-test"><li>Stamps have iapr-mark</li></ul> | `GOBL-GR-MYDATA-V1-BILL-INVOICE-17`<br />Preceding document requires 'iapr-mark' stamp |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-19`<br />Invoice must be in EUR or provide exchange rate for conversion |
+| `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-01`<br />Series is required |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-02`<br />Tax is required |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-invoice-type]</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-03`<br />Tax requires 'gr-mydata-invoice-type' extension |
+| `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-04`<br />Supplier tax ID is required |
+| `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-18`<br />Supplier tax ID code is required |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'gr-mydata-branch' matches pattern '^(0\|[1-9]\d{0,3})$'</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-21`<br />Supplier 'gr-mydata-branch' extension must be a valid branch number |
+| `customer.ext` | <ul class="gobl-test"><li>Ext 'gr-mydata-branch' matches pattern '^(0\|[1-9]\d{0,3})$'</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-22`<br />Customer 'gr-mydata-branch' extension must be a valid branch number |
+| `customer` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-05`<br />Customer is required |
+| `customer.tax_id` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-06`<br />Customer tax ID is required |
+| `customer.addresses` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-07`<br />Customer addresses are required |
+| `customer.addresses[*].locality` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-08`<br />Customer address locality is required |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Requires customer</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-09`<br />Customer address code is required |
+| `lines[*].total` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-10`<br />Line total must be positive |
+| `lines[*].total` | <ul class="gobl-test"><li>Not zero</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-11`<br />Line total must not be zero |
+| `lines[*].item.ext` | <ul class="gobl-test"><li>Income ext pair</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-12`<br />Item income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| `lines[*].item.ext` | <ul class="gobl-test"><li>No income type with other info category</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-20`<br />Item income extension 'gr-mydata-income-type' must not be present with category 'category1_95' |
+| `discounts` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-13`<br />Discounts are not supported by mydata |
+| `payment` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-14`<br />Payment is required |
+| `payment` | <ul class="gobl-test"><li>Has instructions or advances</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-15`<br />Payment instructions are required when no advances |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-16`<br />Preceding documents are required for credit notes |
+| `preceding[*].stamps` | <ul class="gobl-test"><li>Stamps have iapr-mark</li></ul> | `GOBL-GR-MYDATA-BILL-INVOICE-17`<br />Preceding document requires 'iapr-mark' stamp |
 </Accordion>
 <Accordion title="bill.Charge">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Ext allow one of [gr-mydata-fee, gr-mydata-other-tax, gr-mydata-stamp-duty]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-01`<br />Only one of fee, other-tax, or stamp-duty allowed |
-| `ext` | <ul class="gobl-test"><li>Tax type is fee</li><li>Ext require [gr-mydata-fee]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-02`<br />Charge with fee tax type requires 'gr-mydata-fee' extension |
-| `ext` | <ul class="gobl-test"><li>Tax type is other tax</li><li>Ext require [gr-mydata-other-tax]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-03`<br />Charge with other-tax type requires 'gr-mydata-other-tax' extension |
-| `ext` | <ul class="gobl-test"><li>Tax type is stamp duty</li><li>Ext require [gr-mydata-stamp-duty]</li></ul> | `GOBL-GR-MYDATA-V1-BILL-CHARGE-04`<br />Charge with stamp-duty type requires 'gr-mydata-stamp-duty' extension |
+| `ext` | <ul class="gobl-test"><li>Ext allow one of [gr-mydata-fee, gr-mydata-other-tax, gr-mydata-stamp-duty]</li></ul> | `GOBL-GR-MYDATA-BILL-CHARGE-01`<br />Only one of fee, other-tax, or stamp-duty allowed |
+| `ext` | <ul class="gobl-test"><li>Tax type is fee</li><li>Ext require [gr-mydata-fee]</li></ul> | `GOBL-GR-MYDATA-BILL-CHARGE-02`<br />Charge with fee tax type requires 'gr-mydata-fee' extension |
+| `ext` | <ul class="gobl-test"><li>Tax type is other tax</li><li>Ext require [gr-mydata-other-tax]</li></ul> | `GOBL-GR-MYDATA-BILL-CHARGE-03`<br />Charge with other-tax type requires 'gr-mydata-other-tax' extension |
+| `ext` | <ul class="gobl-test"><li>Tax type is stamp duty</li><li>Ext require [gr-mydata-stamp-duty]</li></ul> | `GOBL-GR-MYDATA-BILL-CHARGE-04`<br />Charge with stamp-duty type requires 'gr-mydata-stamp-duty' extension |
 </Accordion>
 <Accordion title="tax.Combo">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `ext` | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [gr-mydata-vat-rate]</li></ul> | `GOBL-GR-MYDATA-V1-TAX-COMBO-01`<br />VAT combo requires 'gr-mydata-vat-rate' extension |
-| `ext` | <ul class="gobl-test"><li>VAT with no percent</li><li>Ext require [gr-mydata-exemption]</li></ul> | `GOBL-GR-MYDATA-V1-TAX-COMBO-02`<br />Exempt VAT combo requires 'gr-mydata-exemption' extension |
-| `ext` | <ul class="gobl-test"><li>VAT with income ext</li><li>Ext require [gr-mydata-income-cat, gr-mydata-income-type]</li></ul> | `GOBL-GR-MYDATA-V1-TAX-COMBO-03`<br />Income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| `ext` | <ul class="gobl-test"><li>Category is VAT</li><li>Ext require [gr-mydata-vat-rate]</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-01`<br />VAT combo requires 'gr-mydata-vat-rate' extension |
+| `ext` | <ul class="gobl-test"><li>VAT with no percent</li><li>Ext require [gr-mydata-exemption]</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-02`<br />Exempt VAT combo requires 'gr-mydata-exemption' extension |
+| `ext` | <ul class="gobl-test"><li>VAT with income ext</li><li>Income ext pair</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-03`<br />Income extensions 'gr-mydata-income-cat' and 'gr-mydata-income-type' must both be present |
+| `ext` | <ul class="gobl-test"><li>VAT with income ext</li><li>No income type with other info category</li></ul> | `GOBL-GR-MYDATA-TAX-COMBO-04`<br />Income extension 'gr-mydata-income-type' must not be present with category 'category1_95' |
 </Accordion>
 <Accordion title="pay.Instructions">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-PAY-INSTRUCTIONS-01`<br />Payment instructions key is required |
-| `ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-payment-means]</li></ul> | `GOBL-GR-MYDATA-V1-PAY-INSTRUCTIONS-02`<br />Payment instructions require 'gr-mydata-payment-means' extension |
+| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-PAY-INSTRUCTIONS-01`<br />Payment instructions key is required |
+| `ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-payment-means]</li></ul> | `GOBL-GR-MYDATA-PAY-INSTRUCTIONS-02`<br />Payment instructions require 'gr-mydata-payment-means' extension |
 </Accordion>
-<Accordion title="pay.Advance">
+<Accordion title="pay.Record">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-V1-PAY-ADVANCE-01`<br />Payment advance key is required |
-| `ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-payment-means]</li></ul> | `GOBL-GR-MYDATA-V1-PAY-ADVANCE-02`<br />Payment advance requires 'gr-mydata-payment-means' extension |
+| `key` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-GR-MYDATA-PAY-RECORD-01`<br />Payment advance key is required |
+| `ext` | <ul class="gobl-test"><li>Ext require [gr-mydata-payment-means]</li></ul> | `GOBL-GR-MYDATA-PAY-RECORD-02`<br />Payment advance requires 'gr-mydata-payment-means' extension |
 </Accordion>
 </AccordionGroup>

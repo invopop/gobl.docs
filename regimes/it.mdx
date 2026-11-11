@@ -64,18 +64,24 @@ The types of invoices that can be created with a preceding definition:
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="#reverse-charge">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Tags:** `reverse-charge`
+| Tags | Categories | Output |
+| --- | --- | --- |
+| `reverse-charge` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "reverse-charge",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Reverse Charge / Inversione del soggetto passivo"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Note:** Reverse Charge / Inversione del soggetto passivo (reverse-charge)
 </Accordion>
+</AccordionGroup>
 
 ## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
 
 <AccordionGroup>
 <Accordion title="tax.Identity">

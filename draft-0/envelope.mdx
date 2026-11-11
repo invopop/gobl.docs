@@ -13,8 +13,8 @@ Envelope wraps around a document adding headers and digital signatures.
 
 | Title | Property | Type | Description |
 |-------|----------|------|-------------|
-| JSON Schema ID | `$schema` | string | Schema identifies the schema that should be used to understand this document |
-| Header | `head` | [head.Header](/draft-0/head/header) | Details on what the contents are |
-| Document | `doc` | [schema.Object](/draft-0/schema/object) | The data inside the envelope |
-| Signatures | `sigs` | array of [dsig.Signature](/draft-0/dsig/signature) | JSON Web Signatures of the header |
+| JSON Schema ID | `$schema` | string | Identifies the schema that should be used to understand this document. |
+| Header | `head` | [head.Header](/draft-0/head/header) | Details about the contents of the envelope. |
+| Document | `doc` | [schema.Object](/draft-0/schema/object) | Document contained inside the envelope. |
+| Signatures | `sigs` | array of [dsig.Signature](/draft-0/dsig/signature) | JSON Web Signatures of the header. |
 

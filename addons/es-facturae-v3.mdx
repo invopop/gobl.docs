@@ -4,6 +4,8 @@ title: Spain FacturaE
 
 Key: `es-facturae-v3`
 
+Module: [github.com/invopop/gobl.es.facturae](https://github.com/invopop/gobl.es.facturae)
+
 ## Correction Definitions
 
 Auto-generation of corrective invoices or credit and debit notes is
@@ -17,93 +19,39 @@ options. See the [Extensions](#extensions) section for possible values.
 
 ## Scenarios
 
-### bill/invoice
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
 
-<Accordion title="standard, corrective, credit-note, debit-note">
+<AccordionGroup>
+<Accordion title="bill/invoice">
 
-**Filters:**
-- **Types:** `standard`, `corrective`, `credit-note`, `debit-note`
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard`<br />`corrective`<br />`credit-note`<br />`debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-doc-type": "FC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `simplified` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-doc-type": "FA"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-doc-type": "AF"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "OO"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `corrective`<br />`credit-note`<br />`debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "OR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `summary` | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "OC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `copy` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "CO"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `copy` | `corrective` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "CR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `copy`<br />`summary` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"es-facturae-invoice-class": "CC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 
-**Output:**
-- **Extensions:** `es-facturae-doc-type:FC`
 </Accordion>
-
-<Accordion title="#simplified">
-
-**Filters:**
-- **Tags:** `simplified`
-
-**Output:**
-- **Extensions:** `es-facturae-doc-type:FA`
-</Accordion>
-
-<Accordion title="#self-billed">
-
-**Filters:**
-- **Tags:** `self-billed`
-
-**Output:**
-- **Extensions:** `es-facturae-doc-type:AF`
-</Accordion>
-
-<Accordion title="standard">
-
-**Filters:**
-- **Types:** `standard`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:OO`
-</Accordion>
-
-<Accordion title="corrective, credit-note, debit-note">
-
-**Filters:**
-- **Types:** `corrective`, `credit-note`, `debit-note`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:OR`
-</Accordion>
-
-<Accordion title="#summary">
-
-**Filters:**
-- **Tags:** `summary`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:OC`
-</Accordion>
-
-<Accordion title="standard, #copy">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `copy`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:CO`
-</Accordion>
-
-<Accordion title="corrective, #copy">
-
-**Filters:**
-- **Types:** `corrective`
-- **Tags:** `copy`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:CR`
-</Accordion>
-
-<Accordion title="standard, #copy, #summary">
-
-**Filters:**
-- **Types:** `standard`
-- **Tags:** `copy`, `summary`
-
-**Output:**
-- **Extensions:** `es-facturae-invoice-class:CC`
-</Accordion>
+</AccordionGroup>
 
 ## Extensions
+### FacturaE: Subsidy
+
+Indicates that an advance payment came from a public grant or subsidy. Set on a payment Record's `ext` map; replaces the previous `pay.Record.Grant` boolean field.
+
+<Accordion title="es-facturae-subsidy">
+
+| Code | Name |
+| ---- | ---- |
+| `S` | Yes |
+| `N` | No |
+</Accordion>
 ### FacturaE: Document Type
 
 <Accordion title="es-facturae-doc-type">
@@ -161,16 +109,33 @@ FacturaE requires a specific and single code that explains why the previous invo
 
 ## Validation Rules
 
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
+
 <AccordionGroup>
 <Accordion title="bill.Invoice">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `customer.tax_id.code` | <ul class="gobl-test"><li>Code in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-V3-BILL-INVOICE-01`<br />Customer tax ID code is required for Spanish customers |
-| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-V3-BILL-INVOICE-02`<br />Tax object is required with ext document type and invoice classes |
-| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-facturae-doc-type, es-facturae-invoice-class]</li></ul> | `GOBL-ES-FACTURAE-V3-BILL-INVOICE-03`<br />Tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions |
-| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-V3-BILL-INVOICE-04`<br />Preceding document reference is required for credit-note, corrective, debit-note invoices |
-| `preceding[*].issue_date` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-V3-BILL-INVOICE-05`<br />Preceding document issue date is required |
-| `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li>Ext require [es-facturae-correction]</li></ul> | `GOBL-ES-FACTURAE-V3-BILL-INVOICE-06`<br />Preceding document ext require 'es-facturae-correction' extension |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-07`<br />Invoice must be in EUR or provide exchange rate for conversion (FacturaE: InvoiceIssueData/ExchangeRateDetails; Art. 10.1 RD 1496/2003) |
+| `supplier` | <ul class="gobl-test"><li>Address country</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-09`<br />Supplier address country is required (FacturaE: SellerParty/LegalEntity|Individual/OverseasAddress/CountryCode) |
+| `supplier` | <ul class="gobl-test"><li>Individual person</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-10`<br />Supplier person is required for individuals (FacturaE: SellerParty/Individual) |
+| `supplier.addresses` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-08`<br />Supplier address is required (FacturaE: SellerParty/LegalEntity|Individual/AddressInSpain|OverseasAddress) |
+| `customer` | <ul class="gobl-test"><li>Tax ID present</li><li>Address country</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-12`<br />Customer address country is required (FacturaE: BuyerParty/LegalEntity|Individual/OverseasAddress/CountryCode) |
+| `customer` | <ul class="gobl-test"><li>Tax ID present</li><li>Individual person</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-13`<br />Customer person is required for individuals (FacturaE: BuyerParty/Individual) |
+| `customer.addresses` | <ul class="gobl-test"><li>Tax ID present</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-11`<br />Customer address is required (FacturaE: BuyerParty/LegalEntity|Individual/AddressInSpain|OverseasAddress) |
+| `customer.tax_id.code` | <ul class="gobl-test"><li>Code in [ES]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-01`<br />Customer tax ID code is required for Spanish customers (FacturaE: BuyerParty/TaxIdentification/TaxIdentificationNumber) |
+| `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-02`<br />Tax object is required with ext document type and invoice classes (FacturaE: InvoiceHeader/InvoiceDocumentType, InvoiceHeader/InvoiceClass) |
+| `tax.ext` | <ul class="gobl-test"><li>Ext require [es-facturae-doc-type, es-facturae-invoice-class]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-03`<br />Tax ext require 'es-facturae-doc-type' and 'es-facturae-invoice-class' extensions (FacturaE: InvoiceHeader/InvoiceDocumentType, InvoiceHeader/InvoiceClass) |
+| `preceding` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-04`<br />Preceding document reference is required for credit-note, corrective, debit-note invoices (FacturaE: InvoiceHeader/Corrective) |
+| `preceding[*].issue_date` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-05`<br />Preceding document issue date is required (FacturaE: Corrective/TaxPeriod) |
+| `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [credit-note, corrective, debit-note]</li><li>Ext require [es-facturae-correction]</li></ul> | `GOBL-ES-FACTURAE-BILL-INVOICE-06`<br />Preceding document ext require 'es-facturae-correction' extension (FacturaE: Corrective/ReasonCode) |
+</Accordion>
+<Accordion title="pay.DueDate">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li><li>Not zero</li></ul> | `GOBL-ES-FACTURAE-PAY-DUEDATE-01`<br />Amount is required (FacturaE: PaymentDetails/Installment/InstallmentAmount) |
 </Accordion>
 </AccordionGroup>

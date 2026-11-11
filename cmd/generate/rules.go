@@ -3,6 +3,7 @@ package main
 import (
 	"strings"
 
+	"github.com/invopop/gobl/cbc"
 	"github.com/invopop/gobl/rules"
 	"github.com/invopop/gobl/tax"
 )
@@ -27,11 +28,35 @@ type RuleSection struct {
 }
 
 // findSetByName scans the global rules registry for a top-level Set with
-// the given Package (e.g. "fr" for France, "es-sii-v1" for an addon).
+// the given Package (e.g. "fr" for France, "ar-arca" for an addon family).
 func findSetByName(name string) *rules.Set {
 	for _, s := range rules.Registry() {
 		if s.Package == name {
 			return s
+		}
+	}
+	return nil
+}
+
+// findAddonSet locates the registered top-level rule Set for a specific
+// addon version. Addon rule sets are registered against the unversioned
+// family Package (e.g. "ar-arca"); the version is carried in the Guard
+// via tax.AddonIn(<versioned key>), so we match by the guard's context
+// keys to pick the set that targets this exact addon.
+func findAddonSet(key cbc.Key) *rules.Set {
+	target := rules.ContextKey(key)
+	for _, s := range rules.Registry() {
+		if s.Guard == nil {
+			continue
+		}
+		ck, ok := s.Guard.(rules.ContextKeyable)
+		if !ok {
+			continue
+		}
+		for _, k := range ck.ContextKeys() {
+			if k == target {
+				return s
+			}
 		}
 	}
 	return nil
