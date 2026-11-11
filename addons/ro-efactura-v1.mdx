@@ -1,0 +1,172 @@
+---
+title: Romania RO e-Factura v1.x
+---
+
+Key: `ro-efactura-v1`
+
+Module: [github.com/invopop/gobl.ro.anaf](https://github.com/invopop/gobl.ro.anaf)
+
+Support for the Romanian national e-invoicing system,
+RO e-Factura, operated by ANAF. The addon applies the
+national rules (BR-RO) RO_CIUS adds to the EN 16931
+semantic model: the document types ANAF files, the
+ISO 3166-2:RO subdivisions and Bucharest sector codes
+addresses have to carry, the VAT accounting currency,
+the identifiers of the seller and the buyer, and the
+length and count limits of every element.
+
+Built on the EU EN 16931 CIUS profile, declared as a
+dependency.
+
+## Sources
+- [Order MF 1366/2021 approving RO_CIUS and the national operational rules](https://static.anaf.ro/static/10/Anaf/legislatie/OMF_1366_2021.pdf)
+- [Order MF 4092/2022 amending RO_CIUS (version 1.0.1, BR-RO table)](https://static.anaf.ro/static/10/Anaf/legislatie/OMF_4092_2022.pdf)
+- [RO e-Factura technical information and schematron](https://mfinante.gov.ro/ro/web/efactura/informatii-tehnice)
+
+## Scenarios
+
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
+
+<AccordionGroup>
+<Accordion title="bill/invoice">
+
+| Tags | Type | Output |
+| --- | --- | --- |
+| - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "380"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "381"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| - | `corrective` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "384"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `accounting` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "751"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"untdid-document-type": "389"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| `self-billed`<br />[custom](https://github.com/invopop/gobl.ro.anaf/blob/v0.7.0/addon/scenarios.go#L143) | - | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "self-billed",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Autofactură"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+
+</Accordion>
+</AccordionGroup>
+
+## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
+
+<AccordionGroup>
+<Accordion title="bill.Invoice">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice number has a digit</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-01`<br />Invoice number (with series when set) must include at least one digit (BR-RO-010) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice number within length</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-02`<br />Invoice number (with series when set) must be no more than 200 characters long (BR-RO-L200) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [RON]</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-03`<br />Invoice in a currency other than RON must provide an exchange rate to RON, so VAT can be stated in RON (BR-RO-030, BR-53) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Currency within two subunits</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-04`<br />Invoice currency must state its amounts on no more than two decimals (BR-RO-Z2) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Notes within count</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-05`<br />Invoice notes, with the autofactura mention the converter adds, must contain no more than 20 entries (BR-RO-A020) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Seller is identified</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-10`<br />Invoice supplier must have a VAT identifier or a tax registration identifier, or its tax representative a VAT identifier (BR-RO-065) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Outside scope stands alone</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-36`<br />An invoice not subject to VAT (category O) cannot carry other VAT categories (BR-O-11) |
+| `preceding` | <ul class="gobl-test"><li>Length at most 500</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-06`<br />Invoice preceding must contain no more than 500 entries (BR-RO-A500) |
+| `preceding` | <ul class="gobl-test"><li>Preceding numbers within length</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-07`<br />Preceding invoice number must be no more than 200 characters long (BR-RO-L200) |
+| `attachments` | <ul class="gobl-test"><li>Length at most 50</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-08`<br />Invoice attachments must contain no more than 50 entries (BR-RO-A050) |
+| `ordering.cost` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-09`<br />Buyer accounting reference must be no more than 100 characters long (BR-RO-L100) |
+| `ordering.seller` | <ul class="gobl-test"><li>Tax representative address has a street</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-16`<br />Tax representative address line 1 is required (BR-RO-140) |
+| `ordering.seller` | <ul class="gobl-test"><li>Tax representative address has a city</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-17`<br />Tax representative city is required (BR-RO-150) |
+| `supplier` | <ul class="gobl-test"><li>Supplier address has a street</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-11`<br />Invoice supplier address line 1 is required (BR-RO-080) |
+| `supplier` | <ul class="gobl-test"><li>Supplier address has a city</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-12`<br />Invoice supplier city is required (BR-RO-090) |
+| `customer` | <ul class="gobl-test"><li>Customer is identified</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-13`<br />Invoice customer must have a legal registration identifier or a VAT identifier (BR-RO-120) |
+| `customer` | <ul class="gobl-test"><li>Customer address has a street</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-14`<br />Invoice customer address line 1 is required (BR-RO-080) |
+| `customer` | <ul class="gobl-test"><li>Customer address has a city</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-15`<br />Invoice customer city is required (BR-RO-090) |
+| `tax.notes` | <ul class="gobl-test"><li>Exemption reasons within length</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-20`<br />VAT exemption reason must be no more than 100 characters long (BR-RO-L100) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li>Ext 'untdid-document-type' in [381]</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-21`<br />Invoice tax ext untdid-document-type must be 381 for a credit note (BR-RO-020) |
+| `tax.ext` | <ul class="gobl-test"><li>Invoice is not a credit note</li><li>Ext 'untdid-document-type' in [380, 384, 389, 751]</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-22`<br />Invoice tax ext untdid-document-type must be one of 380, 384, 389 or 751 (BR-RO-020) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Invoice is issued in an enforcement procedure</li><li>Enforcement body identified</li></ul> | `GOBL-RO-EFACTURA-BILL-INVOICE-35`<br />An enforcement invoice must name the enforcement body as payee, with its name and its legal registration identifier (BR-RO-130) |
+</Accordion>
+<Accordion title="bill.DeliveryDetails">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>DeliveryDetails</small> | <ul class="gobl-test"><li>Delivery has an address</li><li>Delivery address has a street</li></ul> | `GOBL-RO-EFACTURA-BILL-DELIVERYDETAILS-01`<br />Invoice delivery address line 1 is required when a delivery address is provided (BR-RO-180) |
+| <small>DeliveryDetails</small> | <ul class="gobl-test"><li>Delivery has an address</li><li>Delivery address has a city</li></ul> | `GOBL-RO-EFACTURA-BILL-DELIVERYDETAILS-02`<br />Invoice delivery city is required when a delivery address is provided (BR-RO-200) |
+| <small>DeliveryDetails</small> | <ul class="gobl-test"><li>Delivery has an address</li><li>Delivery address has a region</li></ul> | `GOBL-RO-EFACTURA-BILL-DELIVERYDETAILS-03`<br />Invoice delivery country subdivision is required when a delivery address is provided (BR-RO-210) |
+</Accordion>
+<Accordion title="bill.Discount">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `reason` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-BILL-DISCOUNT-01`<br />Document level allowance reason must be no more than 100 characters long (BR-RO-L100) |
+</Accordion>
+<Accordion title="bill.Charge">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `reason` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-BILL-CHARGE-01`<br />Document level charge reason must be no more than 100 characters long (BR-RO-L100) |
+</Accordion>
+<Accordion title="bill.LineDiscount">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `reason` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-BILL-LINEDISCOUNT-01`<br />Invoice line allowance reason must be no more than 100 characters long (BR-RO-L100) |
+</Accordion>
+<Accordion title="bill.LineCharge">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `reason` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-BILL-LINECHARGE-01`<br />Invoice line charge reason must be no more than 100 characters long (BR-RO-L100) |
+</Accordion>
+<Accordion title="org.Party">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `name` | <ul class="gobl-test"><li>Rune length at most 200</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-01`<br />Party name must be no more than 200 characters long (BR-RO-L200) |
+| `alias` | <ul class="gobl-test"><li>Rune length at most 200</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-02`<br />Party trading name must be no more than 200 characters long (BR-RO-L200) |
+| `people` | <ul class="gobl-test"><li>Contact name within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-03`<br />Contact point must be no more than 100 characters long (BR-RO-L100) |
+| `telephones` | <ul class="gobl-test"><li>Telephone within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-04`<br />Contact telephone number must be no more than 100 characters long (BR-RO-L100) |
+| `emails` | <ul class="gobl-test"><li>Email within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-05`<br />Contact email address must be no more than 100 characters long (BR-RO-L100) |
+| `addresses` | <ul class="gobl-test"><li>Line one within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-06`<br />Address line 1 must be no more than 150 characters long (BR-RO-L150) |
+| `addresses` | <ul class="gobl-test"><li>Line two within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-07`<br />Address line 2 must be no more than 100 characters long (BR-RO-L100) |
+| `addresses` | <ul class="gobl-test"><li>Locality within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-08`<br />City must be no more than 50 characters long (BR-RO-L050) |
+| `addresses` | <ul class="gobl-test"><li>Post code within length</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-09`<br />Post code must be no more than 20 characters long (BR-RO-L020) |
+| `addresses` | <ul class="gobl-test"><li>ISO 3166-2:RO subdivision</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-10`<br />Country subdivision must be an ISO 3166-2:RO code, such as RO-B or RO-AB (BR-RO-110, BR-RO-170, BR-RO-210) |
+| `addresses` | <ul class="gobl-test"><li>SECTOR-RO code</li></ul> | `GOBL-RO-EFACTURA-ORG-PARTY-11`<br />City must be a Bucharest sector, such as SECTOR1, when the country subdivision is RO-B (BR-RO-100, BR-RO-160, BR-RO-200) |
+</Accordion>
+<Accordion title="org.Item">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `name` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-ORG-ITEM-01`<br />Item name must be no more than 100 characters long (BR-RO-L100) |
+| `description` | <ul class="gobl-test"><li>Rune length at most 200</li></ul> | `GOBL-RO-EFACTURA-ORG-ITEM-02`<br />Item description must be no more than 200 characters long (BR-RO-L200) |
+| `attributes` | <ul class="gobl-test"><li>Length at most 50</li></ul> | `GOBL-RO-EFACTURA-ORG-ITEM-03`<br />Item attributes must contain no more than 50 entries (BR-RO-A050) |
+</Accordion>
+<Accordion title="org.Attribute">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Attribute</small> | <ul class="gobl-test"><li>Attribute value within length</li></ul> | `GOBL-RO-EFACTURA-ORG-ATTRIBUTE-02`<br />Item attribute value must be no more than 100 characters long (BR-RO-L100) |
+| `label` | <ul class="gobl-test"><li>Rune length at most 50</li></ul> | `GOBL-RO-EFACTURA-ORG-ATTRIBUTE-01`<br />Item attribute name must be no more than 50 characters long (BR-RO-L050) |
+</Accordion>
+<Accordion title="org.Note">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| <small>Note</small> | <ul class="gobl-test"><li>Note within length</li></ul> | `GOBL-RO-EFACTURA-ORG-NOTE-01`<br />Note, with its subject qualifier when set, must be no more than 300 characters long (BR-RO-L300) |
+| <small>Note</small> | <ul class="gobl-test"><li>Accounting reference within length</li></ul> | `GOBL-RO-EFACTURA-ORG-NOTE-02`<br />Invoice line buyer accounting reference must be no more than 100 characters long (BR-RO-L100) |
+</Accordion>
+<Accordion title="org.Attachment">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `description` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-ORG-ATTACHMENT-01`<br />Supporting document description must be no more than 100 characters long (BR-RO-L100) |
+| `url` | <ul class="gobl-test"><li>Rune length at most 200</li></ul> | `GOBL-RO-EFACTURA-ORG-ATTACHMENT-02`<br />External document location must be no more than 200 characters long (BR-RO-L200) |
+| `name` | <ul class="gobl-test"><li>Rune length at most 200</li></ul> | `GOBL-RO-EFACTURA-ORG-ATTACHMENT-03`<br />Attached document filename must be no more than 200 characters long (BR-RO-L200) |
+</Accordion>
+<Accordion title="pay.Terms">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `notes` | <ul class="gobl-test"><li>Rune length at most 300</li></ul> | `GOBL-RO-EFACTURA-PAY-TERMS-01`<br />Payment terms must be no more than 300 characters long (BR-RO-L300) |
+</Accordion>
+<Accordion title="pay.Instructions">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `detail` | <ul class="gobl-test"><li>Rune length at most 100</li></ul> | `GOBL-RO-EFACTURA-PAY-INSTRUCTIONS-01`<br />Payment means text must be no more than 100 characters long (BR-RO-L100) |
+| `credit_transfer` | <ul class="gobl-test"><li>Account name within length</li></ul> | `GOBL-RO-EFACTURA-PAY-INSTRUCTIONS-02`<br />Payment account name must be no more than 200 characters long (BR-RO-L200) |
+| `card.holder` | <ul class="gobl-test"><li>Rune length at most 200</li></ul> | `GOBL-RO-EFACTURA-PAY-INSTRUCTIONS-03`<br />Payment card holder name must be no more than 200 characters long (BR-RO-L200) |
+</Accordion>
+</AccordionGroup>
