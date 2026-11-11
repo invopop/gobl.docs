@@ -35,7 +35,7 @@ Nine words carry most of the meaning.
 | Word | What it is | Where it shows up |
 | ---- | ---------- | ----------------- |
 | **Document** | The business object. Its `$schema` names the type, for example `https://gobl.org/draft-0/bill/invoice`. | Everything you write |
-| **Build** | Normalise, calculate and validate. Fills in `$regime`, `type`, `currency`, `uuid`, tax percentages, line sums and `totals`. | CLI `gobl build`, API `POST /build`, MCP `build` |
+| **Build** | Normalise, calculate and validate. Fills in `$regime`, `type`, `currency`, tax percentages, line sums and `totals`, plus a `uuid` when you build an envelope. | CLI `gobl build`, API `POST /build`, MCP `build` |
 | **Envelope** | `head` (UUID, digest, stamps, tags) + `doc` + `sigs`. The unit that is signed and exchanged. | `$schema` `https://gobl.org/draft-0/envelope` |
 | **Regime** | A country's tax rules: categories, rate keys and percentages by date, tags, correction types, validation. | `$regime`, pages under `/regimes/` |
 | **Addon** | Rules for one local format or reporting system, layered on the regime. | `$addons`, pages under `/addons/` |
@@ -69,10 +69,10 @@ Never hand-check a GOBL document. Build it with one of these and read the faults
     ```bash
     curl -s -X POST https://gobl.dev/v0/build \
       -H "Content-Type: application/json" \
-      -d '{"data": {"$schema": "https://gobl.org/draft-0/bill/invoice", "...": "..."}}'
+      -d "$(jq '{data: .}' invoice.json)"
     ```
 
-    The response mirrors the request: `{"data": <built document>}`. Add `"envelop": true` for an envelope. Errors come back as `{"key": "validation", "faults": [{"code", "paths", "message"}]}`. `GET /v0/regimes/ES` and `GET /v0/addons/es-verifactu-v1` return the same definitions the docs are generated from. No authentication, free to use, see the [API reference](/api/introduction).
+    The response body is the built document itself, not wrapped in `data`. Add `"envelop": true` for an envelope. Errors come back as `{"key": "validation", "faults": [{"code", "paths", "message"}]}`. `GET /v0/regimes/ES` and `GET /v0/addons/es-verifactu-v1` return the same definitions the docs are generated from. No authentication, free to use, see the [API reference](/api/introduction).
   </Tab>
   <Tab title="CLI">
     The CLI is built from [gobl.dev](https://github.com/invopop/gobl.dev), which bundles the core library with every addon.
@@ -118,7 +118,7 @@ Checked against GOBL `v0.504.0` through gobl.dev `v0.500.15`.
 
 ### 1. Send the minimum and let build do the maths
 
-You provide the facts, build provides everything derived. Never write `sum`, `total`, `totals`, tax `percent`, `currency` or `uuid` yourself. If you do send `totals`, they are recalculated and silently replaced, so a wrong figure will not raise an error.
+You provide the facts, build provides everything derived. Never write `sum`, `total`, `totals` or `uuid` yourself, and leave out `currency` and tax `percent` whenever the regime supplies them (a country without a regime needs both, see rule 4). If you do send `totals`, they are recalculated and silently replaced, so a wrong figure will not raise an error.
 
 <CodeGroup>
 ```json What you send
@@ -273,7 +273,7 @@ Never invent an extension value. Copy it from the addon page, the MCP `addon` to
 
 ### 10. Identities are normalised and checked
 
-`series` plus `code` is the document number. Both may be empty at build time, but `code` is required to sign, and most issuing systems assign it just before signing. A `tax_id` has a `country` and a `code`; build strips prefixes and punctuation, so `ESB23103039` and `es-b-986.026.42` become `B23103039` and `B98602642`, then validates format and checksum with codes such as `GOBL-GB-TAX-IDENTITY-03`. Use real, valid identities when testing. Other identifiers of a party, such as a registration number or a Peppol participant ID, go in `identities`, not `tax_id`.
+`series` plus `code` is the document number. Both may be empty at build time, but an invoice needs a `code` to be signed, and most issuing systems assign it just before signing. A `tax_id` has a `country` and a `code`; build strips prefixes and punctuation, so `ESB23103039` and `es-b-986.026.42` become `B23103039` and `B98602642`, then validates format and checksum with codes such as `GOBL-GB-TAX-IDENTITY-03`. Use real, valid identities when testing. Other identifiers of a party, such as a registration number or a Peppol participant ID, go in `identities`, not `tax_id`.
 
 ### 11. Never edit an issued invoice, correct it
 
@@ -285,7 +285,7 @@ Do not assemble corrections by hand. `gobl correct -i --credit built.json`, `POS
 
 `gobl build -e` wraps the document in an envelope with `head.uuid`, a `head.dig` SHA-256 digest of the canonical document, and a `uuid` inside the document as well; the two UUIDs differ. `gobl sign` signs the header with an ES256 key from `gobl keygen`, and `gobl verify` checks both. Changing a single character of a signed or enveloped document without rebuilding fails with `GOBL-ENVELOPE-11 envelope digest does not match document contents`. Treat a signed envelope as read-only and correct it instead. Stamps from authorities live in `head.stamps`; free-form data goes in `meta`.
 
-## Your first document in five commands
+## Your first document in five steps
 
 <Steps>
   <Step title="Write the facts">
@@ -301,10 +301,10 @@ Do not assemble corrections by hand. `gobl correct -i --credit built.json`, `POS
   <Step title="Ask for a credit note">
     ```bash
     gobl build invoice.json > built.json
-    gobl correct -i --credit built.json
+    gobl correct -i --credit built.json > credit.json
     ```
 
-    The result has `type: credit-note`, the same series, and a `preceding` block naming the original.
+    `credit.json` has `type: credit-note`, the same series, and a `preceding` block naming the original.
   </Step>
   <Step title="Sign it">
     ```bash
@@ -312,7 +312,7 @@ Do not assemble corrections by hand. `gobl correct -i --credit built.json`, `POS
     gobl sign -i built.json > signed.json
     ```
 
-    The output is an envelope with one entry in `sigs`. Signing requires a `code` on the document.
+    The output is an envelope with one entry in `sigs`. Signing an invoice requires a `code`. Sign `credit.json` the same way before you issue it.
   </Step>
   <Step title="Verify it">
     ```bash
@@ -330,11 +330,11 @@ The [invoices quick start](/quick-start/invoices) does the same with YAML and ad
 Each card copies a complete prompt for your coding agent. They point the agent at the Markdown sources above so it works from current documentation rather than memory.
 
 <Prompt description="Turn your own invoice data into a valid GOBL document and prove it builds." icon="file-invoice" actions={["copy", "cursor"]}>
-Convert my invoice data into a GOBL bill/invoice document. First read https://docs.gobl.org/llms.md in full, then the schema at https://docs.gobl.org/draft-0/bill/invoice.md and the regime page for the supplier's country at https://docs.gobl.org/regimes/ followed by the lowercase country code and .md. Write the minimal document: $schema, $regime, series, issue_date in YYYY-MM-DD form, supplier and customer with tax_id objects, and lines with quantity, item name and price as strings and taxes expressed as an uppercase category code plus a lowercase rate key. Do not write sums, totals, currency, uuid or tax percentages, and if you must write a percentage include the percent sign. If I name a local format, add its key to $addons and read its page under https://docs.gobl.org/addons/ for the extension codes. Then build the document by posting it wrapped in a data property to https://gobl.dev/v0/build, or with gobl build if the CLI is installed, or with the build tool of the GOBL MCP server. If it fails, read each fault's code and paths, look the code up on the schema page, fix the document and try again. Show me the built result and explain every field you were unsure about.
+Convert my invoice data into a GOBL bill/invoice document. First read https://docs.gobl.org/llms.md in full, then the schema at https://docs.gobl.org/draft-0/bill/invoice.md and the regime page for the supplier's country at https://docs.gobl.org/regimes/ followed by the lowercase country code and .md. Write the minimal document: $schema, $regime, series, issue_date in YYYY-MM-DD form, supplier and customer with tax_id objects, and lines with quantity, item name and price as strings and taxes expressed as an uppercase category code plus a lowercase rate key. Do not write sums, totals or uuid, leave out currency and tax percentages unless the country has no regime, and if you must write a percentage include the percent sign. If I name a local format, add its key to $addons and read its page under https://docs.gobl.org/addons/ for the extension codes. Then build the document by posting it wrapped in a data property to https://gobl.dev/v0/build, or with gobl build if the CLI is installed, or with the build tool of the GOBL MCP server. If it fails, read each fault's code and paths, look the code up on the schema page, fix the document and try again. Show me the built result and explain every field you were unsure about.
 </Prompt>
 
 <Prompt description="Find out what a country requires before writing a single document." icon="landmark" actions={["copy", "cursor"]}>
-I need to issue invoices in the country I name. Read https://docs.gobl.org/llms.md, then the regime page at https://docs.gobl.org/regimes/ followed by the lowercase tax country code and .md, and the page of every addon whose key starts with that country code under https://docs.gobl.org/addons/. Summarise for me: the tax categories and the rate keys with their current percentages, the tags the regime defines and what each one changes, the correction types allowed, the extensions each addon requires and where their code values come from, and the validation rules most likely to fail for a first-time user. Then write one minimal invoice for that country that satisfies the regime and the most relevant addon, build it with https://gobl.dev/v0/build or the gobl CLI, and show me the built output.
+I need to issue invoices in the country I name. Read https://docs.gobl.org/llms.md, then the regime page at https://docs.gobl.org/regimes/ followed by the lowercase tax country code and .md, and the page under https://docs.gobl.org/addons/ of every addon that applies to that country, checking each addon page rather than relying on the key prefix, since cross-border formats such as eu-en16931-v2017 have no country prefix. Summarise for me: the tax categories and the rate keys with their current percentages, the tags the regime defines and what each one changes, the correction types allowed, the extensions each addon requires and where their code values come from, and the validation rules most likely to fail for a first-time user. Then write one minimal invoice for that country that satisfies the regime and the most relevant addon, build it with https://gobl.dev/v0/build or the gobl CLI, and show me the built output.
 </Prompt>
 
 <Prompt description="Correct an issued invoice the right way." icon="eraser" actions={["copy", "cursor"]}>

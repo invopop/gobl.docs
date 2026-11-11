@@ -16,7 +16,7 @@ GOBL (Go Business Language, https://gobl.org) is an open-source format and libra
 ## Mental model
 
 1. **Document**: JSON whose `$schema` names its type, `https://gobl.org/draft-0/bill/invoice`, `.../org/party`, `.../bill/order`, `.../bill/delivery`, `.../bill/payment`, `.../bill/status`, `.../org/item`, `.../note/message`.
-2. **Build**: normalise, calculate, validate. Fills `$regime`, `type`, `currency`, `uuid`, line `sum`/`total`, tax `key`/`rate`/`percent`, `totals`, and addon extension defaults. Idempotent.
+2. **Build**: normalise, calculate, validate. Fills `$regime`, `type`, `currency`, line `sum`/`total`, tax `key`/`rate`/`percent`, `totals`, and addon extension defaults; with `-e` (`"envelop": true`) it also adds `uuid`. Idempotent.
 3. **Envelope**: `{"$schema": "https://gobl.org/draft-0/envelope", "head": {uuid, dig, stamps, tags, meta}, "doc": <document>, "sigs": [...]}`. The digest seals the document; signatures cover the header.
 4. **Regime** (`$regime`, a country code): tax categories, rate keys with percentages by date, tags, correction types, validation rules. Page: `https://docs.gobl.org/regimes/<code>.md`.
 5. **Addon** (`$addons`, a list of keys): rules and **extensions** (`ext` code maps) for one local format. Page: `https://docs.gobl.org/addons/<key>.md`.
@@ -25,19 +25,19 @@ GOBL (Go Business Language, https://gobl.org) is an open-source format and libra
 
 ## Rules
 
-1. **Send the minimum, let build calculate.** Never write `sum`, `total`, `totals`, `currency`, `uuid` or tax `percent` (unless the regime has no rates). Hand-written `totals` are silently replaced, never checked.
+1. **Send the minimum, let build calculate.** Never write `sum`, `total`, `totals` or `uuid`. Leave out `currency` and tax `percent` too when the regime supplies them; a country without a regime needs both (rule 5). Hand-written `totals` are silently replaced, never checked.
 2. **Numbers are strings** with meaningful precision: `"100.00"`, `"10%"`, `"21.0%"`. JSON numbers are accepted and returned as strings.
 3. **Percentages need the `%` sign.** `"percent": "21"` is read as a factor and becomes `2100%` without any error. Write `"21%"`.
 4. **`$schema` is mandatory**; a document without it fails with `unknown-schema`. The envelope has its own `$schema` and the document's goes inside `doc`.
 5. **Set `$regime` explicitly** to the supplier's tax country. It is inferred from `supplier.tax_id.country`, but with neither present the error is `currency: missing or invalid`. `$regime` wins over the supplier's country. Regimes: `AE AR AT BE BR CA CH CO DE DK EL ES FI FR GB IE IN IT MX NL NO PL PT SA SE SG US` (`EL` is Greece; a `GR` tax identity is normalised to `EL`). Countries without a regime need explicit `currency` and tax `percent` values.
-6. **Taxes are `cat` + rate key.** `{"cat": "VAT", "rate": "standard"}` → `key: standard, rate: general, percent: 21.0%` for the regime and `issue_date` (`standard` and `general` are aliases). Other rates: `reduced`, `super-reduced`, `intermediate`, `zero`. Keys without a percent: `exempt`, `reverse-charge`. Unknown keys fail (`'bogus' rate not defined for key 'standard'`). Category codes differ by regime (`VAT`, `ST`, `IVA`, `GST`, plus `IGIC`, `IRPF` in Spain); read them from the regime page. Retained taxes (for example `IRPF`) lower `totals.payable` below `totals.total_with_tax`. `tax.prices_include: "VAT"` treats prices as tax-inclusive.
+6. **Taxes are `cat` + rate key, or `cat` + `key`.** `{"cat": "VAT", "rate": "standard"}` → `key: standard, rate: general, percent: 21.0%` for the regime and `issue_date` (`standard` and `general` are aliases). Other rates: `reduced`, `super-reduced`, `intermediate`, `zero`. Keys without a percent: `exempt`, `reverse-charge`. Unknown keys fail (`'bogus' rate not defined for key 'standard'`). Category codes differ by regime (`VAT`, `ST`, `IVA`, `GST`, plus `IGIC`, `IRPF` in Spain); read them from the regime page. Retained taxes (for example `IRPF`) lower `totals.payable` below `totals.total_with_tax`. `tax.prices_include: "VAT"` treats prices as tax-inclusive.
 7. **Keys are lowercase, codes are uppercase as given.** `"cat": "vat"` → `invalid-category: 'vat' not defined in regime`; `"rate": "Standard"` fails too.
 8. **`$addons` selects a local format**; build fills the extension defaults it can (VERI*FACTU alone yields `es-verifactu-doc-type: F1` and per-tax `es-verifactu-op-class`/`es-verifactu-regime`), and reports the rest as faults naming the extension key. Never invent an extension value; copy it from the addon page, the MCP `addon` tool or `GET /v0/addons/<key>`. Addons: `ar-arca-v4 br-nfe-v4 br-nfse-v1 co-dian-v2 de-xrechnung-v3 de-zugferd-v2 dk-oioubl-v2 es-facturae-v3 es-sii-v1 es-tbai-v1 es-verifactu-v1 eu-en16931-v2017 fi-finvoice-v3 fr-choruspro-v1 fr-ctc-flow2-v1 fr-ctc-flow6-v1 fr-ctc-flow10-v1 fr-facturx-v1 gr-mydata-v1 it-sdi-v1 it-ticket-v1 mx-cfdi-v4 pl-favat-v3 pt-saft-v1 sa-zatca-v1`.
 9. **Only defined tags are allowed**: `$tags: ["bogus"]` fails with `$tags: 'bogus' undefined`. `simplified` lets you omit the customer (under VERI*FACTU the customer is otherwise required, `GOBL-ES-VERIFACTU-BILL-INVOICE-06`, and `simplified` sets doc type `F2`); `reverse-charge` adds the regime's legal note under `tax.notes`. Legacy `tax.tags` is moved to `$tags`.
 10. **Dates are `YYYY-MM-DD`.** Anything else is an input error. `issue_date` defaults to today and selects the tax rates (a 2012 Spanish invoice gets 18%).
-11. **`series` + `code` is the document number.** Optional at build, `code` required to sign. Tax IDs are normalised (`ESB23103039` → `B23103039`, `es-b-986.026.42` → `B98602642`) and checksum-validated (`GOBL-GB-TAX-IDENTITY-03`). Non-tax identifiers go in `identities`.
+11. **`series` + `code` is the document number.** Optional at build; an invoice needs a `code` to be signed. Tax IDs are normalised (`ESB23103039` → `B23103039`, `es-b-986.026.42` → `B98602642`) and checksum-validated (`GOBL-GB-TAX-IDENTITY-03`). Non-tax identifiers go in `identities`.
 12. **Never edit an issued invoice; correct it.** `type` `credit-note` (extends), `debit-note` (adds charges) or `corrective` (replaces), with the original in `preceding`; amounts stay positive. Allowed types are on the regime page (Spain: all three; UK: `credit-note`). Use `gobl correct -i --credit built.json`, `POST /v0/correct` or the MCP `correct` tool; never build `preceding` by hand. `gobl correct --options` shows the allowed options (`type`, `series`, `issue_date`, `reason`, `copy_tax`, `stamps`, addon extensions).
-13. **Envelopes are sealed.** `gobl build -e` adds `head.uuid` and `head.dig`; `gobl sign` needs a key from `gobl keygen` and a `code` on the document; `gobl verify` checks. Editing a signed or enveloped document without rebuilding fails with `GOBL-ENVELOPE-11 envelope digest does not match document contents`.
+13. **Envelopes are sealed.** `gobl build -e` adds `head.uuid` and `head.dig`; `gobl sign` needs a key from `gobl keygen` (and, for an invoice, a `code`); `gobl verify` checks. Editing a signed or enveloped document without rebuilding fails with `GOBL-ENVELOPE-11 envelope digest does not match document contents`.
 14. **`validate` is not `build`.** Validating a partial document fails; build first.
 15. **Empty `lines` fail** (`GOBL-BILL-INVOICE-10`) unless the document carries discounts or charges. Line and document `discounts`/`charges` take `percent` or `amount`.
 
@@ -166,7 +166,7 @@ gobl verify signed.json
 - `unknown-schema` → missing or wrong `$schema`.
 - `parsing time "15/01/2026" as "2006-01-02"` → dates must be `YYYY-MM-DD`.
 - `GOBL-ENVELOPE-11 envelope digest does not match document contents` → an enveloped or signed document was edited; rebuild, or correct instead.
-- `envelope doc is not ready to be signed, check code or other key fields` → signing requires `code`.
+- `envelope doc is not ready to be signed, check code or other key fields` → signing an invoice requires `code`.
 
 ## Where to look
 

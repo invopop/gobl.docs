@@ -568,12 +568,18 @@
             "items": {
               "type": "object",
               "properties": {
-                "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Rule code, for example GOBL-ES-TAX-IDENTITY-01.",
+                  "example": "GOBL-ES-TAX-IDENTITY-01"
+                },
+                "paths": {
                   "type": "array",
                   "items": { "type": "string" },
-                  "description": "Property paths that failed."
+                  "description": "JSON paths of the values that failed.",
+                  "example": ["$.supplier.tax_id.code"]
                 },
-                "description": { "type": "string" }
+                "message": { "type": "string", "description": "Human-readable description of the fault." }
               }
             }
           }

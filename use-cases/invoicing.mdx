@@ -82,7 +82,7 @@ Not every country accepts every type, and each [tax regime](/regimes/overview) l
 
 ## Invoice Scenarios
 
-Some times the type of invoice alone is not enough to be able to classify a document, so each tax regime definition in GOBL has the option of defining "tax scenarios". A scenario implies a combination of different key fields within an invoice, including a special top-level field known in GOBL as `$tags`.
+Sometimes the type of invoice alone is not enough to be able to classify a document, so each tax regime definition in GOBL has the option of defining "tax scenarios". A scenario implies a combination of different key fields within an invoice, including a special top-level field known in GOBL as `$tags`.
 
 For example, to define a "simplified invoice" in Spain, essentially an invoice without customer data, you'd include the `"simplified"` tag:
 
@@ -97,7 +97,7 @@ For example, to define a "simplified invoice" in Spain, essentially an invoice w
 
 In this example the validation rules for checking for the presence of the customer will be skipped.
 
-Another common scenario deals with "reverse charge" invoices, a special VAT situation whereby the supplier is indicating that the taxes will be dealt with by the customer instead the supplier, and thus does not include any VAT. This is represented in GOBL using the `"reverse-charge"` tag in `$tags` together with a `reverse-charge` key on the line taxes, and build adds the regime's legal note under `tax.notes`.
+Another common scenario deals with "reverse charge" invoices, a special VAT situation whereby the supplier is indicating that the taxes will be dealt with by the customer instead of the supplier, and thus does not include any VAT. This is represented in GOBL using the `"reverse-charge"` tag in `$tags` together with a `reverse-charge` key on the line taxes, and build adds the regime's legal note under `tax.notes`.
 
 The Italian FatturaPA format for example defines some 22 different invoice type codes that cover multiple different scenarios, including self billing. To support these we've defined a set of scenarios with different tags defined in the Italian tax regime. Here's an example for an "Advance or down payment on a freelance invoice" type:
 
