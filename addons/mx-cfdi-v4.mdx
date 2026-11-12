@@ -266,7 +266,7 @@ failures with a unique code and message.
 | `customer.ext` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Ext require [mx-cfdi-fiscal-regime, mx-cfdi-use]</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-10`<br />Mexican customer requires 'mx-cfdi-fiscal-regime' and 'mx-cfdi-use' extensions |
 | `customer.addresses` | <ul class="gobl-test"><li>Customer is Mexican</li><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-11`<br />Mexican customer must have at least one address |
 | `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-12`<br />Customer address postal code is required |
-| `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Matches ^[0-9]{5}$</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-13`<br />Customer address postal code format is invalid |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Matches `^[0-9]{5}$`</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-13`<br />Customer address postal code format is invalid |
 | `lines[*].item.ext` | <ul class="gobl-test"><li>No global tag</li><li>Ext require [mx-cfdi-prod-serv]</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-14`<br />Item requires 'mx-cfdi-prod-serv' extension |
 | `lines[*].item.ext` | <ul class="gobl-test"><li>No global tag</li><li>Valid prod-serv</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-15`<br />Product/service code must have 8 digits |
 | `tax.ext` | <ul class="gobl-test"><li>Has preceding</li><li>Ext require [mx-cfdi-rel-type]</li></ul> | `GOBL-MX-CFDI-BILL-INVOICE-16`<br />Tax requires 'mx-cfdi-rel-type' extension when preceding documents are present |
@@ -300,7 +300,7 @@ failures with a unique code and message.
 | `customer.ext` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Ext require [mx-cfdi-fiscal-regime]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-12`<br />Mexican customer requires 'mx-cfdi-fiscal-regime' extension |
 | `customer.addresses` | <ul class="gobl-test"><li>Customer is Mexican</li><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-13`<br />Mexican customer must have at least one address |
 | `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-14`<br />Customer address postal code is required |
-| `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Matches ^[0-9]{5}$</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-15`<br />Customer address postal code format is invalid |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Customer is Mexican</li><li>Matches `^[0-9]{5}$`</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-15`<br />Customer address postal code format is invalid |
 | `payee` | <ul class="gobl-test"><li>Empty</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-16`<br />Payee cannot be represented in a CFDI payment |
 | `methods` | <ul class="gobl-test"><li>Length between 1 and 1</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-17`<br />Exactly one payment method is required |
 | `methods[*].ext` | <ul class="gobl-test"><li>Ext require [mx-cfdi-payment-means]</li></ul> | `GOBL-MX-CFDI-BILL-PAYMENT-18`<br />Payment method requires 'mx-cfdi-payment-means' extension |
@@ -356,10 +356,10 @@ failures with a unique code and message.
 | `lines[*].employee.tax_code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-10`<br />Employee tax code (RFC) is required |
 | `lines[*].employee.tax_code` | <ul class="gobl-test"><li>Valid RFC</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-11`<br />Employee tax code (RFC) must be valid |
 | `lines[*].employee.curp` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-12`<br />Employee CURP is required |
-| `lines[*].employee.curp` | <ul class="gobl-test"><li>Matches ^[A-Z][AEIOUX][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][MH][A-Z]{2}[BCDFGHJKLMNÑPQRSTVWXYZ]{3}[0-9A-Z][0-9]$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-13`<br />Employee CURP format must be valid |
+| `lines[*].employee.curp` | <ul class="gobl-test"><li>Matches `^[A-Z][AEIOUX][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][MH][A-Z]{2}[BCDFGHJKLMNÑPQRSTVWXYZ]{3}[0-9A-Z][0-9]$`</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-13`<br />Employee CURP format must be valid |
 | `lines[*].employee.name` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-14`<br />Employee name is required |
 | `lines[*].employee.name` | <ul class="gobl-test"><li>Length at most 100</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-15`<br />Employee name must be no more than 100 characters |
-| `lines[*].employee.social_security` | <ul class="gobl-test"><li>Matches ^[0-9]{11}$</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-16`<br />Employee social security number format is invalid |
+| `lines[*].employee.social_security` | <ul class="gobl-test"><li>Matches `^[0-9]{11}$`</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-16`<br />Employee social security number format is invalid |
 | `lines[*].amount` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-MX-CFDI-FOODVOUCHERS-17`<br />Line amount is required |
 </Accordion>
 <Accordion title="addon.FuelAccountBalance">

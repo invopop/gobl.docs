@@ -16,7 +16,7 @@ Identity is used to define a code for a specific context.
 | UUID | `uuid` | string | Universally Unique Identifier. |
 | Label | `label` | string | Optional label useful for non-standard identities to give a bit more context. |
 | Scope | `scope` | [cbc.Key](/draft-0/cbc/key) | Context in which the identity is meant to be used. |
-| Country | `country` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | Country from which the identity was issued. |
+| Country | `country` | [l10n.ISOCountryCode](/draft-0/l10n/iso_country_code) | Country from which the identity was issued. |
 | Key | `key` | [cbc.Key](/draft-0/cbc/key) | Uniquely classifies the identity, used instead of a type. |
 | Type | `type` | [cbc.Code](/draft-0/cbc/code) | Type of code being represented, usually specific to a particular context, country, or tax regime. Cannot be used alongside the key. |
 | Code | `code` | [cbc.Code](/draft-0/cbc/code) | Value of the identity. |

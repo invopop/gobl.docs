@@ -28,7 +28,7 @@ Item is used to describe a single product or service.
 | Alternative Prices | `alt_prices` | array of [currency.Amount](/draft-0/currency/amount) | Prices in other currencies that may be used as an alternative to the item's price. |
 | Per Quantity | `per` | [num.Amount](/draft-0/num/amount) | Number of units the prices apply to, e.g. 100 for a price per 100 kg. Assumed to be 1 when empty. |
 | Unit | `unit` | [cbc.Key](/draft-0/cbc/key) | Unit of measure using a GOBL key. Standard UN/ECE codes may be preserved in the untdid-unit extension. |
-| Country of Origin | `origin` | [l10n.ISOCountryCode](/draft-0/l10n/i_s_o_country_code) | Country code of where the item originates from. |
+| Country of Origin | `origin` | [l10n.ISOCountryCode](/draft-0/l10n/iso_country_code) | Country code of where the item originates from. |
 | Extensions | `ext` | [tax.Extensions](/draft-0/tax/extensions) | Extension code map for any additional regime specific codes that may be required. |
 | Meta | `meta` | [cbc.Meta](/draft-0/cbc/meta) | Additional semi-structured information that may be useful. |
 

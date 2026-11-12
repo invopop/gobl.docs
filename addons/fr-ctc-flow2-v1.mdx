@@ -166,15 +166,15 @@ failures with a unique code and message.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `code` | <ul class="gobl-test"><li>Scheme 0224</li><li>Length at most 100</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-IDENTITY-01`<br />Identity code for private-id (0224) must not exceed 100 characters (BR-FR-26) |
-| `code` | <ul class="gobl-test"><li>Scheme 0224</li><li>Matches ^[A-Za-z0-9+\-_.]+$</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-IDENTITY-02`<br />Identity code for private-id (0224) must contain only alphanumeric characters and +, -, _, . (BR-FR-24) |
-| `code` | <ul class="gobl-test"><li>Scheme 0002 or 0231</li><li>Matches ^\d{9}$</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-IDENTITY-03`<br />Identity code must be exactly 9 digits (BR-FR-32) |
+| `code` | <ul class="gobl-test"><li>Scheme 0224</li><li>Matches `^[A-Za-z0-9+\-_.]+$`</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-IDENTITY-02`<br />Identity code for private-id (0224) must contain only alphanumeric characters and +, -, _, . (BR-FR-24) |
+| `code` | <ul class="gobl-test"><li>Scheme 0002 or 0231</li><li>Matches `^\d{9}$`</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-IDENTITY-03`<br />Identity code must be exactly 9 digits (BR-FR-32) |
 </Accordion>
 <Accordion title="org.Inbox">
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `code` | <ul class="gobl-test"><li>Scheme 0225</li><li>Length at most 125</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-INBOX-01`<br />The length must be between 0 and 125 |
-| `code` | <ul class="gobl-test"><li>Scheme 0225</li><li>Matches ^[A-Za-z0-9+\-_.]+$</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-INBOX-02`<br />Must contain only alphanumeric characters and +, -, _, . (BR-FR-23) |
+| `code` | <ul class="gobl-test"><li>Scheme 0225</li><li>Matches `^[A-Za-z0-9+\-_.]+$`</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-INBOX-02`<br />Must contain only alphanumeric characters and +, -, _, . (BR-FR-23) |
 </Accordion>
 <Accordion title="org.Note">
 
@@ -187,7 +187,7 @@ failures with a unique code and message.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `uri` | <ul class="gobl-test"><li>Uri scheme in [iso6523-actorid-upis]</li><li>Address within 125 characters</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-ENDPOINT-02`<br />Iso6523-actorid-upis endpoint address must not exceed 125 characters (BR-FR-25) |
-| `uri` | <ul class="gobl-test"><li>Uri opaque matches ^:0225:</li><li>Uri opaque matches ^:0225:[A-Za-z0-9+\-_.]+$</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-ENDPOINT-01`<br />Iso6523-actorid-upis endpoint on scheme 0225 must contain only alphanumeric characters and +, -, _, . (BR-FR-23) |
+| `uri` | <ul class="gobl-test"><li>Uri opaque matches `^:0225:`</li><li>Uri opaque matches `^:0225:[A-Za-z0-9+\-_.]+$`</li></ul> | `GOBL-FR-CTC-FLOW2-ORG-ENDPOINT-01`<br />Iso6523-actorid-upis endpoint on scheme 0225 must contain only alphanumeric characters and +, -, _, . (BR-FR-23) |
 </Accordion>
 <Accordion title="org.Item">
 

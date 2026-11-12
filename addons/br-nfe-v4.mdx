@@ -422,7 +422,7 @@ failures with a unique code and message.
 | `customer` | <ul class="gobl-test"><li>ICMS taxpayer exempt</li><li>Has no state registration</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-52`<br />Invoice customer must not have 'br-nfe-state-reg' identity when 'br-nfe-state-reg-ind' is '2' |
 | `customer.ext` | <ul class="gobl-test"><li>Invoice is NFCe</li><li>Ext 'br-nfe-state-reg-ind' in [9]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-53`<br />NFC-e invoices require '9' for 'br-nfe-state-reg-ind' |
 | `series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-23`<br />Invoice series is required |
-| `series` | <ul class="gobl-test"><li>Matches ^(?:0\|[1-9]{1}[0-9]{0,2})$</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-24`<br />Invoice series format is invalid; must be 0 or 1-999 |
+| `series` | <ul class="gobl-test"><li>Matches `^(?:0\|[1-9]{1}[0-9]{0,2})$`</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-24`<br />Invoice series format is invalid; must be 0 or 1-999 |
 | `tax` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-25`<br />Invoice tax is required |
 | `tax.ext` | <ul class="gobl-test"><li>Ext require [br-nfe-model, br-nfe-presence, br-nfe-purpose, br-nfe-operation-type]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-26`<br />Invoice tax requires 'br-nfe-model', 'br-nfe-presence', 'br-nfe-purpose' and 'br-nfe-operation-type' extensions |
 | `tax.ext` | <ul class="gobl-test"><li>Ext 'br-nfe-model' in [55, 65]</li></ul> | `GOBL-BR-NFE-BILL-INVOICE-44`<br />'br-nfe-model' extension, when set, must be a valid code |
@@ -474,8 +474,8 @@ failures with a unique code and message.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li>CEST identity</li><li>Matches ^\d{7}$</li></ul> | `GOBL-BR-NFE-ORG-IDENTITY-01`<br />CEST identity code must be a 7-digit number |
-| `code` | <ul class="gobl-test"><li>NCM identity</li><li>Matches ^(\d{2}\|\d{8})$</li></ul> | `GOBL-BR-NFE-ORG-IDENTITY-02`<br />NCM identity code must be an 8-digit number (or 2 digits in exceptional cases), without separators |
+| `code` | <ul class="gobl-test"><li>CEST identity</li><li>Matches `^\d{7}$`</li></ul> | `GOBL-BR-NFE-ORG-IDENTITY-01`<br />CEST identity code must be a 7-digit number |
+| `code` | <ul class="gobl-test"><li>NCM identity</li><li>Matches `^(\d{2}\|\d{8})$`</li></ul> | `GOBL-BR-NFE-ORG-IDENTITY-02`<br />NCM identity code must be an 8-digit number (or 2 digits in exceptional cases), without separators |
 </Accordion>
 <Accordion title="org.Party">
 

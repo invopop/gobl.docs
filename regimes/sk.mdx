@@ -61,7 +61,7 @@ failures with a unique code and message.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| `code` | <ul class="gobl-test"><li>Code in [SK]</li><li>Matches ^[1-9]\d{9}$</li></ul> | `GOBL-SK-TAX-IDENTITY-01`<br />Tax identity code for SK must be 10 digits starting with 1-9 |
+| `code` | <ul class="gobl-test"><li>Code in [SK]</li><li>Matches `^[1-9]\d{9}$`</li></ul> | `GOBL-SK-TAX-IDENTITY-01`<br />Tax identity code for SK must be 10 digits starting with 1-9 |
 | `code` | <ul class="gobl-test"><li>Code in [SK]</li><li>Checksum</li></ul> | `GOBL-SK-TAX-IDENTITY-02`<br />Tax identity code for SK failed the checksum: the 10 digit number must be divisible by 11 |
 </Accordion>
 </AccordionGroup>
