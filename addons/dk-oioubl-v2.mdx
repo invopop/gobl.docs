@@ -107,6 +107,6 @@ failures with a unique code and message.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | `ext` | <ul class="gobl-test"><li>Ext 'untdid-payment-means' in [1, 10, 20, 31, 42, 48, 49, 50, 58, 59, 93, 97]</li></ul> | `GOBL-DK-OIOUBL-PAY-INSTRUCTIONS-01`<br />Tax extension 'untdid-payment-means' must use a payment means code OIOUBL supports (F-LIB100) |
-| `credit_transfer[*].clearing` | <ul class="gobl-test"><li>Domestic bank transfer (means 42)</li><li class="gobl-test-present">Present</li><li>Matches ^\d{4}$</li></ul> | `GOBL-DK-OIOUBL-PAY-INSTRUCTIONS-02`<br />A domestic transfer needs a four-digit bank clearing code (F-LIB124 / F-LIB130) |
+| `credit_transfer[*].clearing` | <ul class="gobl-test"><li>Domestic bank transfer (means 42)</li><li class="gobl-test-present">Present</li><li>Matches `^\d{4}$`</li></ul> | `GOBL-DK-OIOUBL-PAY-INSTRUCTIONS-02`<br />A domestic transfer needs a four-digit bank clearing code (F-LIB124 / F-LIB130) |
 </Accordion>
 </AccordionGroup>

@@ -24,7 +24,7 @@ type JSONSchema struct {
 	Type              string                                      `json:"type,omitempty"`
 	Title             string                                      `json:"title,omitempty"`
 	Description       string                                      `json:"description,omitempty"`
-	Properties        *orderedmap.OrderedMap[string, *JSONSchema]  `json:"properties,omitempty"`
+	Properties        *orderedmap.OrderedMap[string, *JSONSchema] `json:"properties,omitempty"`
 	Required          []string                                    `json:"required,omitempty"`
 	Items             *JSONSchema                                 `json:"items,omitempty"`
 	OneOf             []*JSONSchema                               `json:"oneOf,omitempty"`
@@ -507,13 +507,20 @@ func cleanDescription(desc string) string {
 	return strings.TrimSpace(desc)
 }
 
-// toSnakeCase converts PascalCase to snake_case.
+// toSnakeCase converts PascalCase to snake_case, keeping acronyms together.
+// e.g. "LineCharge" → "line_charge", "URI" → "uri", "ISOCountryCode" → "iso_country_code"
 func toSnakeCase(s string) string {
 	var result strings.Builder
-	for i, r := range s {
+	rs := []rune(s)
+	for i, r := range rs {
 		if r >= 'A' && r <= 'Z' {
 			if i > 0 {
-				result.WriteByte('_')
+				prev := rs[i-1]
+				nextLower := i+1 < len(rs) && rs[i+1] >= 'a' && rs[i+1] <= 'z'
+				prevUpper := prev >= 'A' && prev <= 'Z'
+				if !prevUpper || nextLower {
+					result.WriteByte('_')
+				}
 			}
 			result.WriteRune(r + 32) // toLower
 		} else {

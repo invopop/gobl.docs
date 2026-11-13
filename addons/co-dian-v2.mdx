@@ -174,9 +174,6 @@ For example:
 
 ## Correction Definitions
 
-Auto-generation of corrective invoices or credit and debit notes is
-supported.
-
 A reason is required in the <code>reason</code> field
 when submitting the correction options.
 
@@ -390,6 +387,34 @@ For example:
 | `ZA` | VAT and national consumption tax |
 | `ZZ` | Not applicable |
 </Accordion>
+### Document Type
+
+The type of sales invoice reported to the DIAN. Only applies to standard
+invoices; when not set, the invoice is a regular electronic sales invoice.
+
+Use `03` to transmit a paper invoice (factura de talonario o de papel) issued
+while the supplier could not invoice electronically. The invoice's series and
+code must be the paper invoice's number, from a DIAN contingency numbering
+resolution, and the `issue_date` the date the paper invoice was issued.
+
+For example:
+
+```js
+"series": "CONT",
+"code": "1001",
+"issue_date": "2026-10-22",
+"tax": {
+	"ext": { "co-dian-invoice-type": "03" }
+}
+```
+
+<Accordion title="co-dian-invoice-type">
+
+| Code | Name |
+| ---- | ---- |
+| `01` | Electronic sales invoice |
+| `03` | Contingency transmission |
+</Accordion>
 
 ## Validation Rules
 
@@ -416,7 +441,7 @@ failures with a unique code and message.
 | `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [credit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-12`<br />Preceding reason is required |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li>Ext require [co-dian-debit-code]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-11`<br />Extension 'co-dian-debit-code' is required for debit notes |
 | `preceding[*].reason` | <ul class="gobl-test"><li>Invoice type in [debit-note]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-13`<br />Preceding reason is required |
-| `code` | <ul class="gobl-test"><li>Matches ^[1-9][0-9]*$</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-15`<br />Invoice code must be a positive integer without leading zeroes |
+| `code` | <ul class="gobl-test"><li>Matches `^[1-9][0-9]*$`</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-15`<br />Invoice code must be a positive integer without leading zeroes |
 | `preceding[*].ext` | <ul class="gobl-test"><li>Missing dian-cude stamp</li><li>Ext 'co-dian-credit-code' not in [2]</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-16`<br />Extension 'co-dian-credit-code' cannot be '2' (revoked) without a 'dian-cude' stamp |
 | `preceding[*].period` | <ul class="gobl-test"><li>Missing dian-cude stamp</li><li>Single calendar month</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-17`<br />Period must be within a single calendar month without a 'dian-cude' stamp |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Invoice type in [standard, credit-note, debit-note]</li><li>Credit sale has due date</li></ul> | `GOBL-CO-DIAN-BILL-INVOICE-18`<br />Payment due date is required when the invoice is not fully paid |

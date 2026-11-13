@@ -8,9 +8,6 @@ Module: [github.com/invopop/gobl](https://github.com/invopop/gobl)
 
 ## Correction Definitions
 
-Auto-generation of corrective invoices or credit and debit notes is
-supported.
-
 ### Extension Keys
 
 One or all of the following extensions may be required as part of the correction
@@ -251,7 +248,7 @@ failures with a unique code and message.
 | `preceding[*].ext` | <ul class="gobl-test"><li>Ext require [es-tbai-correction]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-06`<br />Invoice preceding ext 'es-tbai-correction' is required |
 | `notes` | <ul class="gobl-test"><li>Has general note</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-07`<br />Invoice must have a note with key 'general' |
 | `supplier.ext` | <ul class="gobl-test"><li>Bizkaia individual</li><li>Ext require [es-tbai-bi-activity]</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-10`<br />Invoice supplier extension 'es-tbai-bi-activity' is required for Bizkaia individuals |
-| `supplier.ext` | <ul class="gobl-test"><li>Ext 'es-tbai-bi-activity' matches pattern '^\d{1,7}$'</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-11`<br />Invoice supplier extension 'es-tbai-bi-activity' must be a valid Bizkaia activity code (epígrafe) |
+| `supplier.ext` | <ul class="gobl-test"><li>Ext 'es-tbai-bi-activity' matches pattern `^\d{1,7}$`</li></ul> | `GOBL-ES-TBAI-BILL-INVOICE-11`<br />Invoice supplier extension 'es-tbai-bi-activity' must be a valid Bizkaia activity code (epígrafe) |
 </Accordion>
 <Accordion title="tax.Combo">
 

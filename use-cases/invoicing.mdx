@@ -12,15 +12,15 @@ In this page we cover some of the basics of invoices and describe how GOBL can m
 
 An invoice is a kind of legal contract sent from a supplier to a customer that informs them of the sale of goods or services for which they must now pay. The concept is often confused with sale receipts, especially in the United States, as they're very similar in content. In jurisdictions that apply "Value Added Tax" or "General Sales Tax" to sales, an invoice is a legally binding document that must either be adhered to or annulled with another document, like a credit note. A sales receipt by contrast simply represents a transaction that has already taken place and doesn't normally imply a contractual agreement.
 
-Traditionally invoices were, and indeed still are, issued on paper. In the last few decades companies have started switching to sending PDF invoices via email with significant bookkeeping time savings. They're not perfect however, they're still effectively paper-like so it's not normally possible to automatically extract data without OCR and the inherent risk of mistakes.
+Traditionally invoices were, and indeed still are, issued on paper. In the last few decades companies have started switching to sending PDF invoices via email with significant bookkeeping time savings. They're not perfect however, they're still effectively paper-like so its not normally possible to automatically extract data without OCR and the inherent risk of mistakes.
 
-AI has made impressive leaps of late to extract and interpret data from a PDF or image, but they can not guarantee 100% accuracy and it's still quite a resource intensive process for information that was created on someone else's computer.
+AI has made impressive leaps of late to extract and interpret data from a PDF or image, but you they can not guarantee 100% accuracy and its still quite a resource intensive process for information that was created on someone else's computer.
 
 ## What is an electronic invoice?
 
 While a PDF is an electronic format, it is not considered an electronic invoice. The key difference is in the structured contents. A true electronic invoice can be read by a machine that can automatically extract the data with 100% accuracy.
 
-The main benefit of electronic structured formats is **automation**. Incalculable hours are spent by company administrators and bookkeeping teams manually receiving, forwarding, reading, validating, and extracting data from invoices and introducing the key details by hand into their accounting software. It's a tremendous waste of time.
+The main benefit of electronic structured formats is **automation**. Incalculable hours are spent by company administrators and book keeping teams manually receiving, forwarding, reading, validating, and extracting data from invoices and introducing the key details by hand into their accounting software. Its a tremendous waste of time.
 
 In an ideal world we'd be able to send an e-invoice to our customers and the only thing they need to do is approve and pay automatically.
 
@@ -36,7 +36,7 @@ In GOBL, an Invoice is represented by [bill.Invoice](/draft-0/bill/invoice).
 
 There are some basic universal sections you'll need to be aware about for any invoice:
 
-- _Type_ - is this a standard invoice, proforma, credit note, etc.
+- _Type_ - is this is standard invoice, proforma, credit note, etc.
 - _Issue Date_ - an issue date shows when the invoice was sent, and there may also be "value" and "operation" dates.
 - _Code_ - a single unique code that identifies the invoice, possibly also with an associated _series_ to help group documents together. Most countries require codes to be generated consecutively.
 - _Supplier_ - the party responsible for issuing the invoice, supplying the services, and requesting payment. Essential data would include the name, address, contact details, and most importantly, a country specific Tax Identity.
@@ -64,6 +64,10 @@ GOBL contains tax identity code normalization and validation rules that help you
 
 One of the first tasks we do when adding a new tax regime to GOBL is figuring out the local tax code validation rules and checksum calculations with the aim of creating a central and global source reference.
 
+<Prompt description="Have your agent map your data model onto a GOBL invoice." icon="diagram-project" actions={["copy", "cursor"]}>
+Read https://docs.gobl.org/use-cases/invoicing.md, https://docs.gobl.org/llms.md and the invoice schema at https://docs.gobl.org/draft-0/bill/invoice.md. Look at how this project represents invoices, customers, line items, taxes, discounts and payment terms, and produce a mapping table from each of our fields to the GOBL property it belongs in, naming the GOBL type for each nested object such as org/party, bill/line, tax/combo and pay/terms. Flag every field of ours that has no GOBL home and suggest whether it belongs in meta, in an identities entry or nowhere. Then write a converter function in this project's language that emits the minimal GOBL document, without totals or percentages, and a test that builds its output with https://gobl.dev/v0/build and checks the payable amount.
+</Prompt>
+
 ## Invoice Types
 
 GOBL defines a specific set of common [types](/draft-0/bill/invoice#type-values) assigned to an invoice via the `type` property. Other standards define many more, but these are the ones we think are key for most use cases:
@@ -74,28 +78,26 @@ GOBL defines a specific set of common [types](/draft-0/bill/invoice#type-values)
 - `credit-note` - traditional and most frequently used type when a supplier needs to issue a refund or cancel part of an invoice through a [preceding definition](/draft-0/org/document_ref).
 - `debit-note` - indicates that the preceding invoice was incomplete and there are now some additional costs. Most companies will just issue a new invoice to complement the previous one as opposed to issuing a specific debit note.
 
-Not every country will have support for all these types. Spain for example doesn't have support for credit-notes, and instead requires corrective invoices, more details below.
+Not every country accepts every type, and each [tax regime](/regimes/overview) lists the ones it does under **Correction Definitions**. Spanish law, for example, recognises only rectifying invoices, so GOBL maps a `credit-note` to a rectification by differences and a `corrective` to a full replacement when converting to local formats, while the United Kingdom accepts `credit-note` only.
 
 ## Invoice Scenarios
 
-Sometimes the type of invoice alone is not enough to be able to classify a document, so each tax regime definition in GOBL has the option of defining "tax scenarios". A scenario implies a combination of different key fields within an invoice, including a special field known in GOBL as "tax tags".
+Sometimes the type of invoice alone is not enough to be able to classify a document, so each tax regime definition in GOBL has the option of defining "tax scenarios". A scenario implies a combination of different key fields within an invoice, including a special top-level field known in GOBL as `$tags`.
 
-For example, to define a "simplified invoice" in Spain, essentially an invoice without customer data, you'd include a tax tag called `"simplified"`:
+For example, to define a "simplified invoice" in Spain, essentially an invoice without customer data, you'd include the `"simplified"` tag:
 
 ```json
 {
   "$schema": "https://gobl.org/draft-0/bill/invoice",
   "type": "standard",
-  "tax": {
-    "tags": ["simplified"]
-  }
+  "$tags": ["simplified"],
   // ....
 }
 ```
 
 In this example the validation rules for checking for the presence of the customer will be skipped.
 
-Another common scenario deals with "reverse charge" invoices, a special VAT situation whereby the supplier is indicating that the taxes will be dealt with by the customer instead of the supplier, and thus does not include any VAT. This is represented in GOBL using the `"reverse-charge"` tax tag, and will automatically include a special note.
+Another common scenario deals with "reverse charge" invoices, a special VAT situation whereby the supplier is indicating that the taxes will be dealt with by the customer instead of the supplier, and thus does not include any VAT. This is represented in GOBL using the `"reverse-charge"` tag in `$tags` together with a `reverse-charge` key on the line taxes, and build adds the regime's legal note under `tax.notes`.
 
 The Italian FatturaPA format for example defines some 22 different invoice type codes that cover multiple different scenarios, including self billing. To support these we've defined a set of scenarios with different tags defined in the Italian tax regime. Here's an example for an "Advance or down payment on a freelance invoice" type:
 
@@ -103,9 +105,7 @@ The Italian FatturaPA format for example defines some 22 different invoice type 
 {
   "$schema": "https://gobl.org/draft-0/bill/invoice",
   "type": "standard",
-  "tax": {
-    "tags": ["partial", "freelance"]
-  }
+  "$tags": ["partial", "freelance"],
   // ....
 }
 ```

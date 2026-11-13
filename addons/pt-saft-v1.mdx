@@ -20,9 +20,6 @@ the AT.
 
 ## Correction Definitions
 
-Auto-generation of corrective invoices or credit and debit notes is
-supported.
-
 A reason is required in the <code>reason</code> field
 when submitting the correction options.
 
@@ -39,7 +36,7 @@ Scenarios attach notes and extensions to a document when its filters match.
 | - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FT"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FS"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | `cash-vat` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-cash-vat": "1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
-| [custom](https://github.com/invopop/gobl.pt.saft/blob/v0.0.9/addon/scenarios.go#L39) | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| [custom](https://github.com/invopop/gobl.pt.saft/blob/v0.0.11/addon/scenarios.go#L39) | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | - | `debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "ND"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "NC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | - | `proforma` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-work-type": "PF"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
@@ -667,14 +664,14 @@ failures with a unique code and message.
 | <small>Delivery</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-03`<br />Delivery code format must be valid |
 | `supplier.tax_id` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-04`<br />Delivery supplier tax ID is required |
 | `supplier.tax_id.code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-05`<br />Delivery supplier tax ID code is required |
-| `supplier.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-10`<br />Delivery supplier post code must be in the 'NNNN-NNN' format |
+| `supplier.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches `^[0-9]{4}-[0-9]{3}$`</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-10`<br />Delivery supplier post code must be in the 'NNNN-NNN' format |
 | `despatch_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-06`<br />Delivery despatch date is required |
 | `preceding` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-07`<br />Delivery preceding must have at most one entry |
 | `preceding[*].series` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-08`<br />Delivery preceding series is required |
 | `preceding[*].code` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-09`<br />Delivery preceding code is required |
-| `customer.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-11`<br />Delivery customer post code must be in the 'NNNN-NNN' format |
-| `despatcher.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-12`<br />Delivery despatcher post code must be in the 'NNNN-NNN' format |
-| `receiver.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches ^[0-9]{4}-[0-9]{3}$</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-13`<br />Delivery receiver post code must be in the 'NNNN-NNN' format |
+| `customer.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches `^[0-9]{4}-[0-9]{3}$`</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-11`<br />Delivery customer post code must be in the 'NNNN-NNN' format |
+| `despatcher.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches `^[0-9]{4}-[0-9]{3}$`</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-12`<br />Delivery despatcher post code must be in the 'NNNN-NNN' format |
+| `receiver.addresses[*].code` | <ul class="gobl-test"><li>Portuguese address</li><li>Matches `^[0-9]{4}-[0-9]{3}$`</li></ul> | `GOBL-PT-SAFT-BILL-DELIVERY-13`<br />Delivery receiver post code must be in the 'NNNN-NNN' format |
 </Accordion>
 <Accordion title="bill.Order">
 

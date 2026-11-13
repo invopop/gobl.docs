@@ -38,6 +38,7 @@
             "group": "Overview",
             "pages": [
               "introduction",
+              "llms",
               "overview/components",
               "overview/tools",
               "overview/versions",
@@ -83,6 +84,7 @@
                   "regimes/ch",
                   "regimes/co",
                   "regimes/cr",
+                  "regimes/cz",
                   "regimes/de",
                   "regimes/dk",
                   "regimes/el",
@@ -100,6 +102,7 @@
                   "regimes/pe",
                   "regimes/pl",
                   "regimes/pt",
+                  "regimes/ro",
                   "regimes/sa",
                   "regimes/se",
                   "regimes/sg",
@@ -142,6 +145,7 @@
                   "addons/peppol-pint-v1",
                   "addons/pl-favat-v3",
                   "addons/pt-saft-v1",
+                  "addons/ro-efactura-v1",
                   "addons/sa-zatca-v1"
                 ]
               }
@@ -415,5 +419,8 @@
   "styling": {
     "codeblocks": "system"
   },
-  "theme": "mint"
+  "theme": "mint",
+  "contextual": {
+    "options": ["copy", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+  }
 }

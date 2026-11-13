@@ -1,0 +1,76 @@
+---
+title: Romania
+---
+Romania's tax system is administered by the Agenția Națională de
+Administrare Fiscală (ANAF). As an EU member state, Romania follows
+the EU VAT Directive.
+
+VAT (Taxa pe Valoarea Adăugată, TVA) applies to most goods and
+services. Businesses are identified by their Cod de Identificare Fiscală
+(CIF), also known historically as the Cod Unic de Înregistrare
+(CUI). For VAT-registered entities this is prefixed with RO to
+form the Romanian VAT number (e.g. RO12345678).
+
+Romania has progressively mandated the RO e-Factura national
+e-invoicing system for B2B and B2G transactions; support for this
+format is out of scope for this base regime and is expected to be
+implemented as a separate addon.
+
+## Base Details
+
+| Key | Value |
+| --- | ----- |
+| Tax Country Code | `RO` |
+| Currency | `RON` |
+| Base Time Zone | `Europe/Bucharest` |
+
+## Tax Categories
+
+| Code | Name | Title |
+| ---- | ---- | ----- |
+| `VAT` | VAT | Value Added Tax |
+
+### VAT Rates
+
+| Rate | Keys | Name | Percents | Description |
+| ---- | ---- | ---- | -------- | ----------- |
+| `general` | `standard` | General Rate | 21.0% |  |
+| `reduced` | `standard` | Reduced Rate | 11.0% |  |
+
+## Correction Definitions
+
+### Invoice Types
+
+The types of invoices that can be created with a preceding definition:
+- `credit-note`
+- `corrective`
+
+## Scenarios
+
+Scenarios attach notes and extensions to a document when its filters match.
+[Read more about scenarios](/overview/scenarios).
+
+<AccordionGroup>
+<Accordion title="bill/invoice">
+
+| Tags | Categories | Output |
+| --- | --- | --- |
+| `reverse-charge` | `VAT` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"note": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"cat": "VAT",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"key": "reverse-charge",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"text": "Reverse charge: Customer to account for VAT to the relevant tax authority."<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+
+</Accordion>
+</AccordionGroup>
+
+## Validation Rules
+
+Validation rules check each struct against a set of assertions and report any
+failures with a unique code and message.
+[Read more about validation](/overview/validation).
+
+<AccordionGroup>
+<Accordion title="tax.Identity">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `code` | <ul class="gobl-test"><li>Code in [RO]</li><li>Valid</li></ul> | `GOBL-RO-TAX-IDENTITY-01`<br />Invalid Romanian CIF/CUI |
+</Accordion>
+</AccordionGroup>
