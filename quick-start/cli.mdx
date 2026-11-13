@@ -38,7 +38,7 @@ Read https://docs.gobl.org/quick-start/cli.md and https://docs.gobl.org/llms.md.
 
 ### Building a Message
 
-The [notes.Message](https://github.com/invopop/gobl/blob/main/note/message.go) type is great for setting up a simple test. For this tutorial open your text editor and a simple JSON file called `message.json` that looks like:
+The [notes.Message](https://github.com/invopop/gobl/blob/main/note/message.go) type is great for setting up a simple test. For this tutorial open your text editor and create a simple JSON file called `message.json` that looks like:
 
 ```json
 {
@@ -164,6 +164,6 @@ The output produced should be something like:
 }
 ```
 
-Essentially the `doc` and `head` fields are identical to the original message, but we've now added the `sigs` array at the end. Combined with your public key, anyone can easily verify the contents of your message where indeed signed with your private key.
+Essentially the `doc` and `head` fields are identical to the original message, but we've now added the `sigs` array at the end. Combined with your public key, anyone can easily verify the contents of your message were indeed signed with your private key.
 
 If you're interested, you can check the contents of the signature at [jwt.io](https://jwt.io).
