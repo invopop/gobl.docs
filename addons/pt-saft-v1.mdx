@@ -36,7 +36,7 @@ Scenarios attach notes and extensions to a document when its filters match.
 | - | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FT"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | `simplified` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FS"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | `cash-vat` | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-cash-vat": "1"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
-| [custom](https://github.com/invopop/gobl.pt.saft/blob/v0.0.11/addon/scenarios.go#L39) | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
+| [custom](https://github.com/invopop/gobl.pt.saft/blob/v0.0.13/addon/scenarios.go#L39) | `standard` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "FR"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | - | `debit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "ND"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | - | `credit-note` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-invoice-type": "NC"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
 | - | `proforma` | <code class="code-block">&#123;<br/>&nbsp;&nbsp;"ext": &#123;<br/>&nbsp;&nbsp;&nbsp;&nbsp;"pt-saft-work-type": "PF"<br/>&nbsp;&nbsp;&#125;<br/>&#125;</code> |
@@ -60,6 +60,10 @@ The table below shows how this mapping is done:
 | `FR` | Invoice-Receipt     | `standard`    | `invoice-receipt` |
 | `ND` | Debit Note          | `debit-note`  |                 |
 | `NC` | Credit Note         | `credit-note` |                 |
+
+Standard invoices fully paid in advance are also set to `FR`, unless `FT` is set
+explicitly in the extension (e.g. to issue an FT followed by an RC receipt) and the
+`invoice-receipt` tag is not used. The tag always sets `FR`.
 
 Example:
 
@@ -510,6 +514,52 @@ Example with a recovered document:
 
 <Accordion title="pt-saft-source-ref">
 </Accordion>
+### Document Reference
+
+GOBL provides the `pt-saft-reference` extension to link an element of a document to one of
+the invoice's preceding documents, using the SAF-T document number (e.g. "FT SERIES-A/1").
+
+It is used on advance payment deductions (document discounts with the `deduction` key) to
+identify the advance payment invoice being deducted. The value must match one of the
+invoice's `preceding` entries. It is required when the invoice has more than one preceding
+document, and defaults to the only preceding document otherwise.
+
+Example:
+
+```js
+{
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	// ...
+	"preceding": [
+		{
+			"series": "FT SERIES-A",
+			"code": "1",
+			"issue_date": "2024-07-01"
+		}
+	],
+	// ...
+	"discounts": [
+		{
+			"key": "deduction",
+			"reason": "Deposit for 1 hotel room",
+			"amount": "50.00",
+			"taxes": [
+				{
+					"cat": "VAT",
+					"rate": "general"
+				}
+			],
+			"ext": {
+				"pt-saft-reference": "FT SERIES-A/1"
+			}
+		}
+	],
+	// ...
+}
+```
+
+<Accordion title="pt-saft-reference">
+</Accordion>
 ### Movement Type
 
 SAF-T's `MovementType` (Tipo de documento de movimentação de mercadorias) specifies the type of
@@ -630,14 +680,26 @@ failures with a unique code and message.
 | <small>Invoice</small> | <ul class="gobl-test"><li>Code format</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-05`<br />Code format must be valid |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Tax has source</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-12`<br />Tax requires 'pt-saft-source' extension |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Source ref format</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-14`<br />Source ref format is invalid |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Deduction references found</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-21`<br />Discount deduction 'pt-saft-reference' must match a preceding document |
 | `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-06`<br />Cannot be blank |
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-07`<br />Line taxes must include VAT category |
 | `payment.advances[*].date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-08`<br />Cannot be blank |
 | `payment.advances[*].amount` | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-16`<br />Must be no less than 0 |
 | `totals.payable`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-09`<br />Must be no less than 0 |
 | `totals.due`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is invoice-receipt</li><li>Equals 0</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-10`<br />Must be equal to 0 |
-| `preceding` | <ul class="gobl-test"><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |
+| `preceding` | <ul class="gobl-test"><li>Not (has deductions)</li><li>Length at most 1</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-11`<br />The length must be no more than 1 |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Source not produced</li><li>Tax has source ref</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-13`<br />Tax requires 'pt-saft-source-ref' extension when source is not produced |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Has deductions</li><li>Deductible doc type</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-18`<br />Discount deductions are only supported in invoices (FT, FS, FR) |
+| `preceding` | <ul class="gobl-test"><li>Has deductions</li><li class="gobl-test-present">Present</li></ul> | `GOBL-PT-SAFT-BILL-INVOICE-20`<br />Discount deductions require a preceding document |
+</Accordion>
+<Accordion title="bill.Discount">
+
+| Field | Test | Validation Code / Message |
+| ----- | ---- | ------------------------- |
+| `taxes` | <ul class="gobl-test"><li>Is deduction</li><li>All of [VAT]</li></ul> | `GOBL-PT-SAFT-BILL-DISCOUNT-01`<br />Invoice discount deduction taxes must include VAT category |
+| `amount`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>Is deduction</li><li>Min 0</li></ul> | `GOBL-PT-SAFT-BILL-DISCOUNT-02`<br />Invoice discount amount must be greater than 0 |
+| `ext` | <ul class="gobl-test"><li>Is deduction</li><li>Ext require [pt-saft-reference]</li></ul> | `GOBL-PT-SAFT-BILL-DISCOUNT-04`<br />Discount deductions require 'pt-saft-reference' extension |
+| `ext` | <ul class="gobl-test"><li>Is deduction</li><li>Reference is deductible</li></ul> | `GOBL-PT-SAFT-BILL-DISCOUNT-03`<br />Invoice deducted preceding document must be an invoice (FT, FS, FR) |
 </Accordion>
 <Accordion title="bill.Payment">
 

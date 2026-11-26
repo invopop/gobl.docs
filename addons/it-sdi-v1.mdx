@@ -445,7 +445,7 @@ failures with a unique code and message.
 | `lines[*]` | <ul class="gobl-test"><li>Line has tax category VAT</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-17`<br />Line must have VAT tax category |
 | `lines[*].item.name` | <ul class="gobl-test"><li>Latin1</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-18`<br />Item name must use Latin-1 characters |
 | `lines[*].item.meta` | <ul class="gobl-test"><li>Unit label fits UnitaMisura</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-72`<br />Item unit label must be 1 to 10 Basic Latin characters |
-| `lines[*].cost` | <ul class="gobl-test"><li>Matches ^[[:ascii:]]{0,20}$</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-71`<br />Line cost reference must be 20 ASCII characters or fewer |
+| `lines[*].cost` | <ul class="gobl-test"><li>Matches `^[[:ascii:]]{0,20}$`</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-71`<br />Line cost reference must be 20 ASCII characters or fewer |
 | `ordering.despatch[*].issue_date` | <ul class="gobl-test"><li>Has deferred tag</li><li class="gobl-test-present">Present</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-19`<br />Despatch issue date is required |
 | `ordering.despatch` | <ul class="gobl-test"><li>No deferred tag</li><li>Empty</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-20`<br />Despatch can only be set when invoice has deferred tag |
 | `tax.ext` | <ul class="gobl-test"><li>Simplified format matches document type</li></ul> | `GOBL-IT-SDI-BILL-INVOICE-23`<br />'it-sdi-format' FSM10 goes with document types TD07, TD08 and TD09 only |
