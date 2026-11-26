@@ -4,7 +4,7 @@ go 1.26.2
 
 require (
 	github.com/invopop/gobl v0.512.0
-	github.com/invopop/gobl.dev v0.512.0
+	github.com/invopop/gobl.dev v0.512.2
 	github.com/wk8/go-ordered-map/v2 v2.1.8
 )
 
@@ -21,22 +21,22 @@ require (
 	github.com/invopop/gobl.ar.arca v0.0.3 // indirect
 	github.com/invopop/gobl.br.nfe v0.0.4 // indirect
 	github.com/invopop/gobl.br.nfse v0.0.4 // indirect
-	github.com/invopop/gobl.cii v0.84.0 // indirect
+	github.com/invopop/gobl.cii v0.85.0 // indirect
 	github.com/invopop/gobl.co.dian v0.0.5 // indirect
 	github.com/invopop/gobl.de.xinvoice v0.0.10 // indirect
 	github.com/invopop/gobl.dk.oioubl v0.0.9 // indirect
 	github.com/invopop/gobl.es.facturae v0.30.0 // indirect
 	github.com/invopop/gobl.es.verifactu v0.41.0 // indirect
 	github.com/invopop/gobl.fi.finvoice v0.0.6 // indirect
-	github.com/invopop/gobl.fr.ctc v0.0.18 // indirect
+	github.com/invopop/gobl.fr.ctc v0.0.19 // indirect
 	github.com/invopop/gobl.it.sdi v0.90.0 // indirect
 	github.com/invopop/gobl.mx.cfdi v0.68.0 // indirect
-	github.com/invopop/gobl.peppol v0.0.2 // indirect
+	github.com/invopop/gobl.peppol v0.0.5 // indirect
 	github.com/invopop/gobl.pl.ksef v0.49.0 // indirect
-	github.com/invopop/gobl.pt.saft v0.0.11 // indirect
+	github.com/invopop/gobl.pt.saft v0.0.13 // indirect
 	github.com/invopop/gobl.ro.anaf v0.7.0 // indirect
 	github.com/invopop/gobl.sa.zatca v0.0.7 // indirect
-	github.com/invopop/gobl.ubl v0.101.0 // indirect
+	github.com/invopop/gobl.ubl v0.103.0 // indirect
 	github.com/invopop/jsonschema v0.14.0 // indirect
 	github.com/invopop/validation v0.8.0 // indirect
 	github.com/invopop/xmlctx v0.14.0 // indirect

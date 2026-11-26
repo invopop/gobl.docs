@@ -113,7 +113,7 @@ failures with a unique code and message.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-01`<br />Invoice must be in EUR or provide an exchange rate to EUR |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Totals == nil \|\| !Totals.Tax.IsZero()</li><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-01`<br />Invoice with tax must be in EUR or provide an exchange rate to EUR |
 | `supplier.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-02`<br />Invoice supplier address country is required |
 | `customer.addresses[*].country` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-03`<br />Invoice customer address country is required |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Invoice is B2C (no legal customer)</li><li>Allowed Flow 10 VAT percents</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-INVOICE-07`<br />Invoice VAT line percent must be one of the Flow 10 permitted values 0%, 0.9%, 1.05%, 1.75%, 2.1%, 5.5%, 7%, 8.5%, 9.2%, 9.6%, 10%, 13%, 19.6%, 20%, 20.6% (G1.24) |
@@ -135,6 +135,7 @@ failures with a unique code and message.
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
 | <small>Payment</small> | <ul class="gobl-test"><li>Allowed Flow 10 VAT percents</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-03`<br />Payment VAT line percent must be one of the Flow 10 permitted values (G1.24) |
+| <small>Payment</small> | <ul class="gobl-test"><li>String(Currency) == "EUR" \|\| any(ExchangeRates, string(#?.From) == string(Currency) && string(#?.To) == "EUR")</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-09`<br />Payment must be in EUR or provide an exchange rate to EUR (G6.27) |
 | `type`<br /><small class="gobl-field-calculated">Calculated</small> | <ul class="gobl-test"><li>One of [receipt]</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-01`<br />Payment type must be 'receipt' for Flow 10 reporting |
 | `value_date` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-02`<br />Payment value_date (settlement date) is required |
 | `supplier` | <ul class="gobl-test"><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW10-BILL-PAYMENT-04`<br />Payment supplier is required |

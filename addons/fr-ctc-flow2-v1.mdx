@@ -103,8 +103,8 @@ failures with a unique code and message.
 
 | Field | Test | Validation Code / Message |
 | ----- | ---- | ------------------------- |
-| <small>Invoice</small> | <ul class="gobl-test"><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-01`<br />Invoice must be in EUR or provide an exchange rate to EUR |
 | <small>Invoice</small> | <ul class="gobl-test"><li>Valid invoice code</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-02`<br />Invoice code (with series, when set) must be 1-35 characters of alphanumerics plus -+_/ (BR-FR-01/02) |
+| <small>Invoice</small> | <ul class="gobl-test"><li>Totals == nil \|\| !Totals.Tax.IsZero()</li><li>Can convert to [EUR]</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-01`<br />Invoice with tax must be in EUR or provide an exchange rate to EUR |
 | `preceding[*]` | <ul class="gobl-test"><li>Valid preceding code</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-03`<br />Invoice preceding code (with series, when set) must be 1-35 characters of alphanumerics plus -+_/ (BR-FR-01/02) |
 | `preceding` | <ul class="gobl-test"><li>Invoice tax ext untdid-document-type in [384, 471, 472, 473]</li><li class="gobl-test-present">Present</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-04`<br />Invoice preceding is required for corrective invoices (BR-FR-CO-04) |
 | `preceding` | <ul class="gobl-test"><li>Invoice tax ext untdid-document-type in [384, 471, 472, 473]</li><li>Length between 1 and 1</li></ul> | `GOBL-FR-CTC-FLOW2-BILL-INVOICE-05`<br />Invoice preceding must contain exactly one reference for corrective invoices (BR-FR-CO-04) |

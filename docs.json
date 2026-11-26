@@ -5,6 +5,17 @@
     "light": "#24abd0",
     "primary": "#15c6f6"
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
   "favicon": "static/favicon.svg",
   "footer": {
     "socials": {
@@ -419,8 +430,5 @@
   "styling": {
     "codeblocks": "system"
   },
-  "theme": "mint",
-  "contextual": {
-    "options": ["copy", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
-  }
+  "theme": "mint"
 }
